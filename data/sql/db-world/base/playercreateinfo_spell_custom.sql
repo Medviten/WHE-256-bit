@@ -9777,4 +9777,4 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4096', '1024', '33948', 'Flight Form(Passive)'),
 ('4096', '1024', '34123', 'Tree of Life(Passive)'),
 ('4096', '1024', '40120', 'Swift Flight Form'),
-('4096', '1024', '40121', 'Swift Flight Form(Passive)'),
+('4096', '1024', '40121', 'Swift Flight Form(Passive)');
