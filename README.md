@@ -1,5 +1,7 @@
 # This is an attempt at merging Worgoblin and AzerothCore High Elf modules, as well as (optionally) several other DBC-heavy modules
 
+Important: to avoid issues with textures not rendering (in my case, Nagas with bright green fins), you need to put "-enUS" (or whatever your client uses – mine is enUS) in the patch name. I spent hours struggling with this so you don't have to, and I have [may](https://discord.com/channels/407664041016688662/1386725301676933330/1387796347175829609) to thank for solving this annoying problem. 感謝！
+
 # Worgoblin Module
 
 [![core-build](https://github.com/benjymansy123/mod-worgoblin/actions/workflows/core-build.yml/badge.svg)](https://github.com/benjymansy123/mod-worgoblin/actions/workflows/core-build.yml)
