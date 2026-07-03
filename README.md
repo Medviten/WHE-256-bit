@@ -1,6 +1,8 @@
 # This is an attempt at merging Worgoblin and AzerothCore High Elf modules, as well as (optionally) several other DBC-heavy modules
 
-Important: to avoid issues with textures not rendering (in my case, Nagas with bright green fins), you need to make your the patch load after whatever is in your locale folder (e.g. "enUS"). Adding the locale to the filename is one way to do that, but I found "patch-Z.MPQ" to be better, because my Interface changes were no loading when I tried "patch-enUS-A.MPQ", so I could play as Goblins, Worgen, and High Elves, but not make new ones. I spent hours struggling with this so you don't have to, and I have [may](https://discord.com/channels/407664041016688662/1386725301676933330/1387796347175829609) to thank for solving this annoying problem. 感謝！
+Important: to avoid issues with textures not rendering (in my case, Nagas with bright green fins), you need to add your locale (e.g. "enUS") to the patch that has CharSections.dbc in it. Interface changes won't work if you put them in there, so they have to go in "patch-A.MPQ" instead. Unfortunate, because I would like to keep everything in one patch, but it looks like that is impossible.
+
+I spent hours struggling with this so you don't have to, and I have [may](https://discord.com/channels/407664041016688662/1386725301676933330/1387796347175829609) to thank for solving this annoying problem. 感謝！
 
 # Worgoblin Module
 
@@ -18,7 +20,8 @@ This is a module for [AzerothCore](http://www.azerothcore.org) that adds Worgen,
 ### NYI Features
 - Mount vendors
 - Worgen druid forms (currently uses night elf forms)
-- Two Forms (a spell exists)
+- Two Forms (one male and one female morph spell exists and you can learn it with GM commands, but the morph is semi-permanent)
+- Running Wild
 - Vanilla goblin models
 
 ## Important Notes

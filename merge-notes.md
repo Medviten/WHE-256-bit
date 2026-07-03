@@ -108,6 +108,8 @@ These DBCs are the same as the ones in patch-a.mpq, probably separated for user 
 
 ##### CreatureDisplayInfoExtra.dbc
 - No ID conflicts.
+- Existing race 13 -> 22
+- Race 12 -> 13
 - 1679 High Elf entries
 
 ##### EmotesTextSound.dbc
