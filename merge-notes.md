@@ -200,6 +200,7 @@ All AzerothCore High Elf DBCs are also in Worgoblin, but below are the ones that
 
 ##### Spell.dbc
 - Probably irrelevant because High Elves are based on Blood Elves.
+- Very annoying trying to fix the localization fields in this one because the fields themselves contain " and , – meaning it is actually impossible to import the same file you just exported. As yet haven't been able to fix.
 
 ##### SpellIcon.dbc
 - Probably irrelevant for High Elves.

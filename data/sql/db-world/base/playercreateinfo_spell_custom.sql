@@ -6872,7 +6872,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '1', '202', 'Two-Handed Swords'),
 ('512', '1', '813', 'Language Thalassian'),
 ('512', '1', '822', 'Magic Resistance'),
-('512', '1', '28730', 'Arcane Torrent'), -- Maybe 80867 or 80868?
+('512', '1', '80868', 'Arcane Torrent (Rage)'),
 ('512', '1', '28877', 'Arcane Affinity'),
 ('512', '1', '2048', 'Battle Shout'),
 ('512', '1', '30324', 'Heroic Strike'),
@@ -7490,7 +7490,8 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '1024', '33786', 'Cyclone'),
 ('512', '1024', '813', 'Language Thalassian'),
 ('512', '1024', '822', 'Magic Resistance'),
-('512', '1024', '28730', 'Arcane Torrent'),
+('512', '1024', '80867', 'Arcane Torrent (Druid)'),
+('512', '1024', '80866', 'Arcane Torrent (Feral)'),
 ('512', '1024', '28877', 'Arcane Affinity'),
 ('512', '1024', '81', 'Dodge'),
 ('512', '1024', '198', 'One-Handed Maces'),
@@ -9070,7 +9071,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4096', '1', '9125', 'Generic'),
 ('4096', '1', '813', 'Language Thalassian'),
 ('4096', '1', '822', 'Magic Resistance'),
-('4096', '1', '28730', 'Arcane Torrent (rage)'), -- Maybe 80867 or 80868?
+('4096', '1', '80868', 'Arcane Torrent (Rage)'),
 ('4096', '1', '28877', 'Arcane Affinity'),
 ('4096', '1', '21156', 'Battle Stance Passive'),
 ('4096', '1', '21651', 'Opening'),
@@ -9323,7 +9324,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4096', '8', '16092', 'Defensive State(DND)'),
 ('4096', '8', '813', 'Language Thalassian'),
 ('4096', '8', '822', 'Magic Resistance'),
-('4096', '8', '25046', 'Arcane Torrent'), -- Maybe 80867 or 80868?
+('4096', '8', '25046', 'Arcane Torrent'),
 ('4096', '8', '28877', 'Arcane Affinity'),
 ('4096', '8', '21184', 'Rogue Passive(DND)'),
 ('4096', '8', '21651', 'Opening'),
@@ -9731,7 +9732,8 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4096', '1024', '18960', 'Teleport: Moonglade'),
 ('4096', '1024', '813', 'Language Thalassian'),
 ('4096', '1024', '822', 'Magic Resistance'),
-('4096', '1024', '28730', 'Arcane Torrent'), -- Maybe also 80866?
+('4096', '1024', '80867', 'Arcane Torrent (Druid)'),
+('4096', '1024', '80866', 'Arcane Torrent (Feral)'),
 ('4096', '1024', '28877', 'Arcane Affinity'),
 ('4096', '1024', '21178', 'Bear Form(Passive2)'),
 ('4096', '1024', '21651', 'Opening'),
