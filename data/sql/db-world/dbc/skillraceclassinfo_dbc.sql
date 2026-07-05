@@ -41,16 +41,16 @@ INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `Class
 
 INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
 -- Skill 43 (SKILL_SWORDS) - matches pattern from playercreateinfo_skills (0,39,43,0)
-(1000, 43, 8191, 39, 128, 0, 0, 0), -- Allow swords for all races, class mask 39 (Warrior,Paladin,Hunter,Death Knight)
+(1000, 43, 8191, 39, 128, 0, 0, 0), -- Allow swords for all races, class mask 39 (Warrior, Paladin, Hunter, Death Knight)
 
 -- Skill 44 (SKILL_AXES) - matches pattern from playercreateinfo_skills (0,37,44,0)
-(1001, 44, 8191, 37, 128, 0, 0, 0), -- Allow axes for all races, class mask 37 (Warrior,Hunter,Death Knight)
+(1001, 44, 8191, 37, 128, 0, 0, 0), -- Allow axes for all races, class mask 37 (Warrior, Hunter, Death Knight)
 
 -- Skill 54 (SKILL_MACES) - matches pattern from playercreateinfo_skills (0,1107,54,0)
-(1002, 54, 8191, 1107, 128, 0, 0, 0), -- Allow maces for all races, class mask 1107 (Warrior,Paladin,Rogue,Shaman,Druid)
+(1002, 54, 8191, 1107, 128, 0, 0, 0), -- Allow maces for all races, class mask 1107 (Warrior, Paladin, Rogue, Shaman, Druid)
 
 -- Skill 172 (SKILL_2H_AXES) - matches pattern from playercreateinfo_skills (0,37,172,0)
-(1003, 172, 8191, 37, 128, 0, 0, 0), -- Allow 2H axes for all races, class mask 37 (Warrior,Hunter,Death Knight)
+(1003, 172, 8191, 37, 128, 0, 0, 0), -- Allow 2H axes for all races, class mask 37 (Warrior, Hunter, Death Knight)
 
 -- Skill 173 (SKILL_DAGGERS) - matches pattern from playercreateinfo_skills (735,1293,173,0)
-(1004, 173, 8191, 1293, 128, 0, 0, 0); -- Allow daggers for all races, class mask 1293 (Warrior,Hunter,Rogue,Warlock,Druid) 
+(1004, 173, 8191, 1293, 128, 0, 0, 0); -- Allow daggers for all races, class mask 1293 (Warrior, Hunter, Rogue, Warlock, Druid) 
