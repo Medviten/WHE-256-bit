@@ -9,10 +9,10 @@ INSERT INTO `achievement_criteria_data` (`criteria_id`, `type`, `value1`, `value
 (13474, 10, 1, 0, ''),
 (13475, 2, 0, 9, ''), -- Achievement 291 (Check Your Head)
 (13476, 2, 0, 12, ''),
-(13477, 21, 0, 9, ''), -- Achievement 1429 (Realm First! Level 80 Goblin)
-(13478, 21, 0, 12, ''), -- Achievement 1430 (Realm First! Level 80 Worgen)
 (13484, 2, 0, 13, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (13484, 9, 18, 0, ''),
 (13484, 10, 1, 0, ''),
 (13485, 2, 0, 13, ''), -- Achievement 291 (Check Your Head)
-(13486, 21, 0, 13, ''); -- Achievement 1431 (Realm First! Level 80 High Elf)
+(13477, 18, 0, 9, ''),  -- Achievement 1429 (Realm First! Level 80 Goblin)
+(13478, 18, 0, 12, ''), -- Achievement 1430 (Realm First! Level 80 Worgen)
+(19216, 18, 0, 13, ''); -- Achievement 1431 (Realm First! Level 80 High Elf)
