@@ -103,7 +103,7 @@
 (13, 1, 0, 6603, 0), -- Auto Attack
 (13, 1, 72, 6603, 0), -- Auto Attack
 (13, 1, 73, 78, 0), -- Heroic Strike
-(13, 1, 82, 80868, 0), -- Arcane Torrent (Rage)
+(13, 1, 82, 110005, 0), -- Quel’dorei Meditation
 (13, 1, 84, 6603, 0), -- Auto Attack
 (13, 1, 96, 6603, 0), -- Auto Attack
 (13, 1, 108, 6603, 0), -- Auto Attack
@@ -175,7 +175,7 @@
 (13, 2, 0, 6603, 0), -- Auto Attack
 (13, 2, 1, 21084, 0), -- Seal of Righteousness
 (13, 2, 2, 635, 0), -- Holy Light
-(13, 2, 3, 28730, 0), -- Arcane Torrent (Mana)
+(13, 2, 3, 110005, 0), -- Quel’dorei Meditation
 -- Human Hunter
 (1, 3, 0, 6603, 0), -- Auto Attack
 (1, 3, 1, 2973, 0), -- Raptor Strike
@@ -244,7 +244,7 @@
 (13, 3, 0, 6603, 0), -- Auto Attack
 (13, 3, 1, 2973, 0), -- Raptor Strike
 (13, 3, 2, 75, 0), -- Auto Shot
-(13, 3, 3, 28730, 0), -- Arcane Torrent (Mana)
+(13, 3, 3, 110005, 0), -- Quel’dorei Meditation
 -- Human Rogue
 (1, 4, 0, 6603, 0), -- Auto Attack
 (1, 4, 1, 1752, 0), -- Sinister Strike
@@ -326,7 +326,7 @@
 (13, 4, 1, 1752, 0), -- Sinister Strike
 (13, 4, 2, 2098, 0), -- Eviscerate
 (13, 4, 3, 2764, 0), -- Throw
-(13, 4, 4, 25046, 0), -- Arcane Torrent (Energy)
+(13, 4, 4, 110005, 0), -- Quel’dorei Meditation
 -- Human Priest
 (1, 5, 0, 585, 0), -- Smite
 (1, 5, 1, 2050, 0), -- Lesser Heal
@@ -382,7 +382,7 @@
 -- High Elf Priest
 (13, 5, 0, 585, 0), -- Smite
 (13, 5, 1, 2050, 0), -- Lesser Heal
-(13, 5, 2, 28730, 0), -- Arcane Torrent (Mana)
+(13, 5, 2, 110005, 0), -- Quel’dorei Meditation
 -- Human Death Knight
 (1, 6, 0, 6603, 0), -- Auto Attack
 (1, 6, 1, 49576, 0), -- Death Grip
@@ -501,7 +501,7 @@
 (13, 6, 3, 45462, 0), -- Plague Strike
 (13, 6, 4, 45902, 0), -- Blood Strike
 (13, 6, 5, 47541, 0), -- Death Coil
-(13, 6, 6, 50613, 0), -- Arcane Torrent (Runic Power)
+(13, 6, 6, 110005, 0), -- Quel’dorei Meditation
 (13, 6, 11, 41751, 128), -- Increased All Resist 08
 -- Human Shaman
 (1, 7, 0, 6603, 0), -- Auto Attack
@@ -571,7 +571,7 @@
 (13, 7, 0, 6603, 0), -- Auto Attack
 (13, 7, 1, 403, 0), -- Lightning Bolt
 (13, 7, 2, 331, 0), -- Healing Wave
-(13, 7, 3, 28730, 0), -- Arcane Torrent (Mana)
+(13, 7, 3, 110005, 0), -- Quel’dorei Meditation
 -- Human Mage
 (1, 8, 0, 133, 0), -- Fireball
 (1, 8, 1, 168, 0), -- Frost Armor
@@ -627,7 +627,7 @@
 -- High Elf Mage
 (13, 8, 0, 133, 0), -- Fireball
 (13, 8, 1, 168, 0), -- Frost Armor
-(13, 8, 2, 28730, 0), -- Arcane Torrent (Mana)
+(13, 8, 2, 110005, 0), -- Quel’dorei Meditation
 -- Human Warlock
 (1, 9, 0, 686, 0), -- Shadow Bolt
 (1, 9, 1, 687, 0), -- Demon Skin
@@ -683,7 +683,7 @@
 -- High Elf Warlock
 (13, 9, 0, 686, 0), -- Shadow Bolt
 (13, 9, 1, 687, 0), -- Demon Skin
-(13, 9, 2, 28730, 0), -- Arcane Torrent (Mana)
+(13, 9, 2, 110005, 0), -- Quel’dorei Meditation
 -- Human Druid
 (1, 11, 97, 6603, 0), -- Auto Attack
 (1, 11, 0, 5176, 0), -- Wrath
@@ -758,5 +758,4 @@
 (13, 11, 96, 6603, 0), -- Auto Attack
 (13, 11, 0, 5176, 0), -- Wrath
 (13, 11, 1, 5185, 0), -- Healing Touch
-(13, 11, 10, 80867, 0), -- Arcane Torrent (Druid)
-(13, 11, 11, 80866, 0); -- Arcane Torrent (Feral)
+(13, 11, 10, 110005, 0); -- Quel’dorei Meditation

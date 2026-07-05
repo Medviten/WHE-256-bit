@@ -8,7 +8,7 @@ UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|64|256|2048 WHERE `
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|1|5 WHERE `skill` = 226 AND `racemask` = 1024; -- Crossbows for Humans, Undead, and Draenei
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048|4096 WHERE `skill` = 173 AND `racemask` = 735; -- Daggers for everyone except Tauren and Draenei
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048 WHERE `skill` = 160 AND `racemask` = 1061; -- 2H-maces for Humans, Dwarves, Tauren, Goblins, Draenei, and Worgen Warriors
-/* Special cases */
+/* Special cases */ 
 INSERT INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (0, 8, 173, 0, 'Daggers - Rogues'), -- Tauren and Draenei Rogues need Daggers
 (0, 2, 173, 0, '2H-Maces - Paladins'); -- 2H-Maces for all Paladins
@@ -22,5 +22,5 @@ UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|4096 WHERE `skill` 
 DELETE FROM `playercreateinfo_skills` WHERE `raceMask` IN (256, 2048) AND `classMask` = 0;
 INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (256, 0, 790, 0, 'Goblin - Racial'),
-(2048, 0, 789, 0, 'Worgen - Racial');
-UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|4096 WHERE `skill` = 756; -- High Elves copy Blood Elves.
+(2048, 0, 789, 0, 'Worgen - Racial'),
+(4096, 0, 791, 0, 'High Elf - Racial');
