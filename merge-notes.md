@@ -176,6 +176,7 @@ All AzerothCore High Elf DBCs are also in Worgoblin, but below are the ones that
 ##### Achievement_Criteria.dbc
 - Added four lines. More may be needed, but I'm not sure.
 - It looks like 13471 and 13472 have the opposite achievement IDs, so I changed them around.
+- For the level 80 achievements, Asset_Id (0) and Quantity (80) were switched around, so I swapped them.
 
 ##### AnimationData.dbc
 - Probably irrelevant because High Elves are based on Blood Elves.
