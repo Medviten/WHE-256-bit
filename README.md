@@ -1,8 +1,6 @@
-# This is an attempt at merging Worgoblin and AzerothCore High Elf modules, as well as (optionally) several other DBC-heavy modules
+# This is an attempt at merging Worgoblin and AzerothCore High Elf modules, as well as other DBC-heavy modules
 
-Important: to avoid issues with textures not rendering (in my case, Nagas with bright green fins), you need to add your locale (e.g. "enUS") to the patch that has CharSections.dbc in it. Interface changes won't work if you put them in there, so they have to go in "patch-A.MPQ" instead. Unfortunate, because I would like to keep everything in one patch, but it looks like that is impossible.
-
-I spent hours struggling with this so you don't have to, and I have [may](https://discord.com/channels/407664041016688662/1386725301676933330/1387796347175829609) to thank for solving this annoying problem. 感謝！
+I had already merged Worgoblin and ARAC when I started adding AzerothCore High Elf. Maybe I'll make a non-ARAC version in the future, IDK.
 
 # Worgoblin Module
 

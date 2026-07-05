@@ -37,7 +37,7 @@ INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `Class
 
 -- Add missing weapon skill entries for skillraceclassinfo_dbc table
 -- Based on the existing playercreateinfo_skills.sql patterns:
--- RaceMask 8191 = all races, ClassMask values match existing patterns
+-- RaceMask 8191 = all 13 races, ClassMask values match existing patterns
 
 INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
 -- Skill 43 (SKILL_SWORDS) - matches pattern from playercreateinfo_skills (0,39,43,0)
@@ -53,4 +53,4 @@ INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `Class
 (1003, 172, 8191, 37, 128, 0, 0, 0), -- Allow 2H axes for all races, class mask 37 (Warrior, Hunter, Death Knight)
 
 -- Skill 173 (SKILL_DAGGERS) - matches pattern from playercreateinfo_skills (735,1293,173,0)
-(1004, 173, 8191, 1293, 128, 0, 0, 0); -- Allow daggers for all races, class mask 1293 (Warrior, Hunter, Rogue, Warlock, Druid) 
+(1004, 173, 8191, 1293, 128, 0, 0, 0); -- Allow daggers for all races, class mask 1293 (Warrior, Hunter, Rogue, Warlock, Druid)
