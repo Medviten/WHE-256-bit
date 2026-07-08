@@ -1,6 +1,6 @@
 # This is an attempt at merging Worgoblin and AzerothCore High Elf modules, as well as other DBC-heavy modules
 
-I had already merged Worgoblin and ARAC when I started adding AzerothCore High Elf. Maybe I'll make a non-ARAC version in the future, IDK.
+I had already merged Worgoblin and ARAC when I started adding AzerothCore High Elf, so the DBCs let any race be any class. However, the optional patch-J.MPQ contains DBC that undo flying in Azeroth and ARAC. If something breaks, let me know.
 
 # Worgoblin Module
 
@@ -19,7 +19,7 @@ This is a module for [AzerothCore](http://www.azerothcore.org) that adds Worgen,
 - Mount vendors
 - Worgen druid forms (currently uses night elf forms)
 - Two Forms (one male and one female morph spell exists and you can learn it with GM commands, but the morph is semi-permanent)
-- Running Wild
+- Running Wild (implemented at GM-command level - needs to be made a spell)
 - Vanilla goblin models
 
 ## Important Notes
