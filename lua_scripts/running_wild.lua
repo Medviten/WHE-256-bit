@@ -24,11 +24,6 @@ local function CancelRunningWild(player)
 end
 
 local function StartRunningWild(player)
-
-    if IsRunningWild(player) then
-        return
-    end
-
     if player:GetGender() == 0 then
         player:SetDisplayId(MALE_DISPLAY_QUAD)
     else
