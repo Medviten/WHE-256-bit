@@ -20,7 +20,7 @@ local NATIVE_DISPLAY = {
     [11] = { [0] = 22, [1] = 20323 }, -- Draenei: male*, female
     [12] = { [0] = 29422, [1] = 29423 }, -- Worgen: male, female
     [13] = { [0] = 22, [1] = 22 }, -- High Elf: male*, female*
-    [14] = { [0] = 22, [1] = 22 }, -- Mag'har Orc: male*, female*
+    [14] = { [0] = 22, [1] = 22 } -- Mag'har Orc: male*, female*
 }
 
 local function GetNativeDisplay(player)
