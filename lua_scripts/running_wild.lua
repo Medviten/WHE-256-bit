@@ -21,7 +21,6 @@ local function CancelRunningWild(player)
     player:RemoveAura(SPEED_100)
 
     player:DeMorph()
-    end
 end
 
 local function StartRunningWild(player)
