@@ -36,9 +36,9 @@ local function StartRunningWild(player)
     end
 
     if player:HasSpell(JOURNEYMAN_RIDING) then
-        player:AddAura(SPEED_100, player)
+        player:CastSpell(SPEED_100, player)
     else
-        player:AddAura(SPEED_60, player)
+        player:CastSpell(SPEED_60, player)
     end
 end
 
