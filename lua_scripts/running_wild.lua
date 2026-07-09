@@ -8,31 +8,6 @@ local SPEED_100 = 110011
 local MALE_DISPLAY_QUAD   = 94133
 local FEMALE_DISPLAY_QUAD = 94134
 
-local NATIVE_DISPLAY = {
-    [1]  = { [0] = 19723, [1] = 19724 },
-    [2]  = { [0] = 22,    [1] = 20316 },
-    [3]  = { [0] = 20317, [1] = 22 },
-    [4]  = { [0] = 20318, [1] = 22 },
-    [5]  = { [0] = 22,    [1] = 22 },
-    [6]  = { [0] = 20585, [1] = 20584 },
-    [7]  = { [0] = 20580, [1] = 20320 },
-    [8]  = { [0] = 20321, [1] = 22 },
-    [9]  = { [0] = 20582, [1] = 20583 },
-    [10] = { [0] = 20578, [1] = 20579 },
-    [11] = { [0] = 22,    [1] = 20323 },
-    [12] = { [0] = 29422, [1] = 29423 },
-    [13] = { [0] = 22,    [1] = 22 },
-    [14] = { [0] = 22,    [1] = 22 },
-}
-
-local function GetNativeDisplay(player)
-    local race = NATIVE_DISPLAY[player:GetRace()]
-    if race then
-        return race[player:GetGender()]
-    end
-    return nil
-end
-
 local function IsRunningWild(player)
     local display = player:GetDisplayId()
 
@@ -45,9 +20,7 @@ local function CancelRunningWild(player)
     player:RemoveAura(SPEED_60)
     player:RemoveAura(SPEED_100)
 
-    local native = GetNativeDisplay(player)
-    if native then
-        player:SetDisplayId(native)
+    player:DeMorph()
     end
 end
 
