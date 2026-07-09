@@ -24,6 +24,11 @@ local function CancelRunningWild(player)
 end
 
 local function StartRunningWild(player)
+
+    if IsRunningWild(player) then
+        return
+    end
+
     if player:GetGender() == 0 then
         player:SetDisplayId(MALE_DISPLAY_QUAD)
     else
@@ -54,10 +59,6 @@ local function OnSpellCast(event, player, spell)
         end
 
         return
-    end
-
-    if IsRunningWild(player) then
-        CancelRunningWild(player)
     end
 end
 
