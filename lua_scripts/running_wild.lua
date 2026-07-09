@@ -5,6 +5,34 @@ local SPEED_100 = 110011
 local MALE_DISPLAY_QUAD   = 94133
 local FEMALE_DISPLAY_QUAD = 94134
 
+local NATIVE_DISPLAY = {
+    -- [raceId] = { [genderId] = displayId }
+    [1] = { [0] = 19723, [1] = 19724 }, -- Human: male, female
+    [2] = { [0] = 20317, [1] = 20316 }, -- Orc: male*, female
+    [3] = { [0] = 20317, [1] = 29423 }, -- Dwarf: male, female*
+    [4] = { [0] = 20318, [1] = 29423 }, -- Night Elf: male, female*
+    [5] = { [0] = 20318, [1] = 29423 }, -- Undead: male*, female*
+    [6] = { [0] = 20585, [1] = 20584 }, -- Tauren: male, female
+    [7] = { [0] = 20580, [1] = 20320 }, -- Gnome: male, female
+    [8] = { [0] = 20321, [1] = 20320 }, -- Troll: male, female*
+    [9] = { [0] = 20582, [1] = 20583 }, -- Goblin: male, female
+    [10] = { [0] = 20578, [1] = 20579 }, -- Blood Elf: male, female
+    [11] = { [0] = 94133, [1] = 20323 }, -- Draenei: male*, female
+    [12] = { [0] = 94133, [1] = 29423 }, -- Worgen: male, female
+    [13] = { [0] = 94133, [1] = 29423 }, -- High Elf: male*, female*
+    [14] = { [0] = 94133, [1] = 29423 }, -- Mag'har Orc: male*, female*
+}
+
+local function GetNativeDisplay(player)
+    local race = player:GetRace()
+    local gender = player:GetGender()
+    local raceTable = NATIVE_DISPLAY[race]
+    if raceTable and raceTable[gender] then
+        return raceTable[gender]
+    end
+    return nil -- fall through / log a warning if a race is missing an entry
+end
+
 local function GetActiveBuff(player)
     if player:HasAura(SPEED_60) then return SPEED_60 end
     if player:HasAura(SPEED_100) then return SPEED_100 end
@@ -19,7 +47,7 @@ local function CancelRunningWild(player)
     if not IsRunningWildActive(player) then return end
     player:RemoveAura(SPEED_60)
     player:RemoveAura(SPEED_100)
-    player:SetDisplayId(player:GetNativeDisplayId())
+    player:SetDisplayId(GetNativeDisplay(player))
 end
 
 local function StartRunningWild(player, spell)
@@ -65,7 +93,7 @@ local function PollRunningWild()
         if not player:IsAlive() or player:IsInWater() then
             CancelRunningWild(player)
         elseif not player:HasAura(GetActiveBuff(player) or 0) then
-            player:SetDisplayId(player:GetNativeDisplayId())
+            player:SetDisplayId(GetNativeDisplay(player))
         end
         ::continue::
     end
