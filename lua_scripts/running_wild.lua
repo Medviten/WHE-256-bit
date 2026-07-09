@@ -8,19 +8,19 @@ local FEMALE_DISPLAY_QUAD = 94134
 local NATIVE_DISPLAY = {
     -- [raceId] = { [genderId] = displayId }
     [1] = { [0] = 19723, [1] = 19724 }, -- Human: male, female
-    [2] = { [0] = 20317, [1] = 20316 }, -- Orc: male*, female
-    [3] = { [0] = 20317, [1] = 29423 }, -- Dwarf: male, female*
-    [4] = { [0] = 20318, [1] = 29423 }, -- Night Elf: male, female*
-    [5] = { [0] = 20318, [1] = 29423 }, -- Undead: male*, female*
+    [2] = { [0] = 22, [1] = 20316 }, -- Orc: male*, female
+    [3] = { [0] = 20317, [1] = 22 }, -- Dwarf: male, female*
+    [4] = { [0] = 20318, [1] = 22 }, -- Night Elf: male, female*
+    [5] = { [0] = 22, [1] = 22 }, -- Undead: male*, female*
     [6] = { [0] = 20585, [1] = 20584 }, -- Tauren: male, female
     [7] = { [0] = 20580, [1] = 20320 }, -- Gnome: male, female
-    [8] = { [0] = 20321, [1] = 20320 }, -- Troll: male, female*
+    [8] = { [0] = 20321, [1] = 22 }, -- Troll: male, female*
     [9] = { [0] = 20582, [1] = 20583 }, -- Goblin: male, female
     [10] = { [0] = 20578, [1] = 20579 }, -- Blood Elf: male, female
-    [11] = { [0] = 94133, [1] = 20323 }, -- Draenei: male*, female
-    [12] = { [0] = 94133, [1] = 29423 }, -- Worgen: male, female
-    [13] = { [0] = 94133, [1] = 29423 }, -- High Elf: male*, female*
-    [14] = { [0] = 94133, [1] = 29423 }, -- Mag'har Orc: male*, female*
+    [11] = { [0] = 22, [1] = 20323 }, -- Draenei: male*, female
+    [12] = { [0] = 29422, [1] = 29423 }, -- Worgen: male, female
+    [13] = { [0] = 22, [1] = 22 }, -- High Elf: male*, female*
+    [14] = { [0] = 22, [1] = 22 }, -- Mag'har Orc: male*, female*
 }
 
 local function GetNativeDisplay(player)
