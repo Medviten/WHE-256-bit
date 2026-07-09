@@ -96,19 +96,25 @@ local function Poll()
 
     for _, player in ipairs(GetPlayersInWorld()) do
 
-        if IsRunningWild(player) then
+        local hasAura = player:HasAura(SPEED_60) or player:HasAura(SPEED_100)
+        local morphed = IsRunningWild(player)
 
-            if not player:HasAura(SPEED_60)
-            and not player:HasAura(SPEED_100) then
+        -- Conditions that always cancel Running Wild
+        if hasAura and (not player:IsAlive() or player:IsInWater()) then
+            CancelRunningWild(player)
 
-                CancelRunningWild(player)
+        -- Aura exists but player isn't morphed (login, .reload ale, etc.)
+        elseif hasAura and not morphed then
 
-            elseif not player:IsAlive()
-                or player:IsInWater() then
-
-                CancelRunningWild(player)
-
+            if player:GetGender() == 0 then
+                player:SetDisplayId(MALE_DISPLAY_QUAD)
+            else
+                player:SetDisplayId(FEMALE_DISPLAY_QUAD)
             end
+
+        -- Morphed but aura disappeared
+        elseif morphed and not hasAura then
+            CancelRunningWild(player)
         end
     end
 
