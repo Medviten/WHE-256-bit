@@ -31,9 +31,9 @@ local function StartRunningWild(player)
     end
 
     if player:HasSpell(JOURNEYMAN_RIDING) then
-        player:CastSpell(SPEED_100, player)
+        player:CastSpell(player, SPEED_100, false)
     else
-        player:CastSpell(SPEED_60, player)
+        player:CastSpell(player, SPEED_60, false)
     end
 end
 
@@ -111,8 +111,11 @@ local function Poll()
 
         -- Morphed but aura disappeared
         elseif morphed and not hasAura then
-            CancelRunningWild(player)
+            if not player:IsCasting() then
+                CancelRunningWild(player)
+            end
         end
+        
     end
 
     return 500
