@@ -51,7 +51,13 @@ local function OnSpellCast(event, player, spell)
     local id = spell:GetEntry()
 
     if id == RUNNING_WILD_TRIGGER then
-        StartRunningWild(player)
+
+        if IsRunningWild(player) then
+            CancelRunningWild(player)
+        else
+            StartRunningWild(player)
+        end
+
         return
     end
 
