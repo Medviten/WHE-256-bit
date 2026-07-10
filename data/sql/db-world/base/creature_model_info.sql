@@ -9,4 +9,8 @@ INSERT INTO `creature_model_info` (`DisplayID`, `BoundingRadius`, `CombatReach`,
 (36445, 0.406, 1.5, 0, 0), -- Lord Harford
 (36446, 0.306, 1.5, 0, 0), -- Gally Lumpstain
 (39095, 1, 1.5, 2, 0), -- Horse
-(39096, 1, 1.5, 2, 0); -- Quik-horse
+(39096, 1, 1.5, 2, 0), -- Quik-horse
+(39097, 94133, 0.406, 1.5, 0, 0), -- Running Wild Male
+(39098, 94134, 0.406, 1.5, 1, 0), -- Running Wild Female
+(39099, 94135, 0.306, 1.5, 0, 0), -- Gilnean Male
+(39100, 94136, 0.306, 1.5, 1, 0); -- Gilnean Female
