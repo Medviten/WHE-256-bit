@@ -1682,4 +1682,4 @@ INSERT INTO `creaturedisplayinfoextra_dbc` (`ID`, `DisplayRaceID`, `DisplaySexID
 (43178, 13, 0, 0, 0, 2, 8, 2, 38234, 38578, 60245, 38228, 38123, 38124, 41241, 43725, 41242, 31252, 40592, 0, 'CreatureDisplayExtra-21178.blp'),
 (43179, 13, 1, 1, 6, 10, 8, 6, 0, 36853, 24437, 58213, 44208, 44198, 67208, 38306, 47587, 0, 38091, 0, 'CreatureDisplayExtra-21179.blp'),
 (45424, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ''), -- Gilnean male without gear
-(45424, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ''); -- Gilnean female without gear
+(45425, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ''); -- Gilnean female without gear
