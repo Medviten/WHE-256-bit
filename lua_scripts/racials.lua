@@ -1,25 +1,32 @@
 local WORGEN = 3
 local LEVEL = 20
 
-void OnFirstLogin(Player* player) override
-{
-    player->RemoveSpell(87840);
-    player->RemoveSpell(68996);
-}
+local JOURNEYMAN_RIDING = 33388
+local RUNNING_WILD = 87840
+local TWO_FORMS = 68996
+
+local function OnFirstLogin(event, player)
+    if player:GetLevel() ~= 1 then
+        player:RemoveSpell(RUNNING_WILD)
+        player:RemoveSpell(TWO_FORMS)
+    end
+end
+
+RegisterPlayerEvent(30, OnFirstLogin)
 
 function OnLevelChange(event, player, oldLevel)
     if oldLevel < LEVEL and player:GetLevel() >= LEVEL then
         if player:GetRace() == WORGEN then
-            if not player:HasSpell(33388) then
-                player:LearnSpell(33388)
+            if not player:HasSpell(JOURNEYMAN_RIDING) then
+                player:LearnSpell(JOURNEYMAN_RIDING)
             end
 
-            if not player:HasSpell(87840) then
-                player:LearnSpell(87840)
+            if not player:HasSpell(RUNNING_WILD) then
+                player:LearnSpell(RUNNING_WILD)
             end
 
-            if not player:HasSpell(68996) then
-                player:LearnSpell(68996)
+            if not player:HasSpell(TWO_FORMS) then
+                player:LearnSpell(TWO_FORMS)
             end
         end
     end
