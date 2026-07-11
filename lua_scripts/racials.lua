@@ -7,8 +7,8 @@ local TWO_FORMS = 68996
 
 local function OnFirstLogin(event, player)
     if player:GetLevel() ~= 1 then
-        player:RemoveSpell(RUNNING_WILD)
-        player:RemoveSpell(TWO_FORMS)
+        player:RemoveSpell(87840)
+        player:RemoveSpell(68996)
     end
 end
 
