@@ -1,13 +1,9 @@
-local WORGEN = 3
+local WORGEN = 12
 local LEVEL = 20
-
-local RUNNING_WILD = 87840
-local TWO_FORMS = 68996
 
 local function OnFirstLogin(event, player)
     if player:GetLevel() ~= 1 then
         player:RemoveSpell(87840)
-        player:RemoveSpell(68996)
     end
 end
 
@@ -20,12 +16,9 @@ function OnLevelChange(event, player, oldLevel)
                 player:LearnSpell(33388)
             end
 
-            if not player:HasSpell(RUNNING_WILD) then
-                player:LearnSpell(RUNNING_WILD)
-            end
+            if not player:HasSpell(87840) then
+                player:LearnSpell(87840)
 
-            if not player:HasSpell(TWO_FORMS) then
-                player:LearnSpell(TWO_FORMS)
             end
         end
     end

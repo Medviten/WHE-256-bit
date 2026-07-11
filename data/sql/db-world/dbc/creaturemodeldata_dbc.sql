@@ -1,7 +1,11 @@
-DELETE FROM `creaturemodeldata_dbc` WHERE `ID` IN (3141, 3142, 3194, 3623, 3624);
+DELETE FROM `creaturemodeldata_dbc` WHERE `ID` IN (3141, 3142, 3194, 3623, 3624, 3626, 3627, 3628, 3629);
 INSERT INTO `creaturemodeldata_dbc` (`ID`, `Flags`, `ModelName`, `SizeClass`, `ModelScale`, `BloodID`, `FootprintTextureID`, `FootprintTextureLength`, `FootprintTextureWidth`, `FootprintParticleScale`, `FoleyMaterialID`, `FootstepShakeSize`, `DeathThudShakeSize`, `SoundID`, `CollisionWidth`, `CollisionHeight`, `MountHeight`, `GeoBoxMinX`, `GeoBoxMinY`, `GeoBoxMinZ`, `GeoBoxMaxX`, `GeoBoxMaxY`, `GeoBoxMaxZ`, `WorldEffectScale`, `AttachedEffectScale`, `MissileCollisionRadius`, `MissileCollisionPush`, `MissileCollisionRaise`) VALUES
 (3141, 4, 'Character\\\\Worgen\\\\Male\\\\WorgenMale.mdx', 1, 1, 1, 7, 18, 12, 1, 0, 0, 0, 44, 0.6111, 2.031, 1.29405, -0.655967, -1.17623, 0.000852, 0.702095, 1.08036, 2.29018, 1, 1, 0, 0, 0), -- redo this
 (3142, 4, 'Character\\\\Worgen\\\\Female\\\\WorgenFemale.mdx', 1, 1, 1, 7, 18, 12, 1, 0, 0, 0, 44, 0.6111, 2.031, 1.29405, -0.655967, -1.17623, 0.000852, 0.702095, 1.08036, 2.29018, 1, 1, 0, 0, 0),
 (3194, 0, 'Creature\\\\Hobgoblin\\\\Hobgoblin.mdx', 2, 1, 3, 4, 18, 12, 1, 0, 0, 0, 3110, 0.6112, 2.031, 1.34669, -0.571247, -0.994102, -0.01056, 0.590039, 0.989905, 2.81037, 1, 1, 0, 0, 0),
 (3623, 12291, 'Creature\\\\GoblinTrike\\\\GoblinTrike01.mdx', 0, 1, 3, 4, 18, 12, 1, 0, 0, 0, 0, 0.6112, 2.031, 0.540327, -2.03107, -0.995891, -0.02369, 0, 0, 0, 1, 1, 0, 0, 0),
-(3624, 12291, 'Creature\\\\GoblinTrike\\\\GoblinTrike02.mdx', 0, 1, 3, 4, 18, 12, 1, 0, 0, 0, 0, 0.6112, 2.031, 0.540327, -1.76779, -1.08014, -0.006577, 0, 0, 0, 1, 1, 0, 0, 0);
+(3624, 12291, 'Creature\\\\GoblinTrike\\\\GoblinTrike02.mdx', 0, 1, 3, 4, 18, 12, 1, 0, 0, 0, 0, 0.6112, 2.031, 0.540327, -1.76779, -1.08014, -0.006577, 0, 0, 0, 1, 1, 0, 0, 0),
+(3626, 4, 'Character\\\\WorgenWild\\\\Male\\\\WorgenWildMale.mdx', 1, 1, 1, 7, 18, 12, 1, 0, 0, 0, 44, 0.6111, 2.031, 2.031, -0.655967, -1.176232, 0.000852, 0.702095, 1.080357, 2.290177, 1, 1, 0, 0, 0),
+(3627, 4, 'Character\\\\WorgenWild\\\\Female\\\\WorgenWildFemale.mdx', 1, 1, 1, 7, 18, 12, 1, 0, 0, 0, 44, 0.6111, 2.031, 2.031, -0.655967, -1.176232, 0.000852, 0.702095, 1.080357, 2.290177, 1, 1, 0, 0, 0),
+(3628, 2052, 'Character\\\\Human\\\\Male\\\\HumanMale.mdx', 1, 1, 1, 1, 12, 10, 1, 0, 0, 0, 49, 0.6111, 2.031, 1.036183, -0.576729, -0.544345, -0.000694, 0.368137, 0.535902, 2.1292, 1, 1, 0, 0, 0),
+(3629, 2052, 'Character\\\\Human\\\\Female\\\\HumanFemale.mdx', 1, 1, 1, 1, 12, 10, 1, 0, 0, 0, 50, 0.4167, 1.913, 1.002637, -0.487307, -0.359981, -0.002223, 0.275955, 0.370421, 1.924935, 1, 1, 0, 0, 0);
