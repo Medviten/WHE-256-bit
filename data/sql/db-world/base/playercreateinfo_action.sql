@@ -96,9 +96,9 @@
 (12, 1, 73, 78, 0), -- Heroic Strike
 (12, 1, 84, 6603, 0), -- Auto Attack
 (12, 1, 96, 6603, 0), -- Auto Attack
--- (12, 1, 120, 68992, 0), Darkflight Warrior
--- (12, 1, 120, 68996, 0), Two Forms Warrior
--- (12, 1, 120, 87840, 0), Running Wild Warrior
+(12, 1, 120, 68992, 0), Darkflight Warrior
+(12, 1, 120, 68996, 0), Two Forms Warrior
+(12, 1, 120, 87840, 0), Running Wild Warrior
 -- High Elf Warrior
 (13, 1, 0, 6603, 0), -- Auto Attack
 (13, 1, 72, 6603, 0), -- Auto Attack
@@ -168,9 +168,9 @@
 (12, 3, 0, 6603, 0), -- Auto Attack
 (12, 3, 1, 21084, 0), -- Seal of Righteousness
 (12, 2, 2, 635, 0), -- Holy Light
--- (12, 3, 120, 68992, 0), Darkflight Hunter
--- (12, 3, 120, 68996, 0), Two Forms Hunter
--- (12, 3, 120, 87840, 0), Running Wild Hunter
+(12, 3, 120, 68992, 0), Darkflight Hunter
+(12, 3, 120, 68996, 0), Two Forms Hunter
+(12, 3, 120, 87840, 0), Running Wild Hunter
 -- High Elf Paladin
 (13, 2, 0, 6603, 0), -- Auto Attack
 (13, 2, 1, 21084, 0), -- Seal of Righteousness
@@ -237,9 +237,9 @@
 (12, 3, 0, 6603, 0), -- Auto Attack
 (12, 3, 1, 2973, 0), -- Raptor Strike
 (12, 3, 2, 75, 0), -- Auto Shot
--- (12, 3, 120, 68992, 0), Darkflight Hunter
--- (12, 3, 120, 68996, 0), Two Forms Hunter
--- (12, 3, 120, 87840, 0), Running Wild Hunter
+(12, 3, 120, 68992, 0), Darkflight Hunter
+(12, 3, 120, 68996, 0), Two Forms Hunter
+(12, 3, 120, 87840, 0), Running Wild Hunter
 -- High Elf Hunter
 (13, 3, 0, 6603, 0), -- Auto Attack
 (13, 3, 1, 2973, 0), -- Raptor Strike
@@ -318,9 +318,9 @@
 (12, 4, 1, 1752, 0), -- Sinister Strike
 (12, 4, 2, 2098, 0), -- Eviscerate
 (12, 4, 3, 2764, 0), -- Throw
--- (12, 4, 120, 68992, 0), Darkflight Rogue
--- (12, 4, 120, 68996, 0), Two Forms Rogue
--- (12, 4, 120, 87840, 0), Running Wild Rogue
+(12, 4, 120, 68992, 0), Darkflight Rogue
+(12, 4, 120, 68996, 0), Two Forms Rogue
+(12, 4, 120, 87840, 0), Running Wild Rogue
 -- High Elf Rogue
 (13, 4, 0, 6603, 0), -- Auto Attack
 (13, 4, 1, 1752, 0), -- Sinister Strike
@@ -376,9 +376,9 @@
 -- Worgen Priest
 (12, 5, 0, 585, 0), -- Smite
 (12, 5, 1, 2050, 0), -- Lesser Heal
--- (12, 5, 120, 68992, 0), Darkflight Priest
--- (12, 5, 120, 68996, 0), Two Forms Priest
--- (12, 5, 120, 87840, 0), Running Wild Priest
+(12, 5, 120, 68992, 0), Darkflight Priest
+(12, 5, 120, 68996, 0), Two Forms Priest
+(12, 5, 120, 87840, 0), Running Wild Priest
 -- High Elf Priest
 (13, 5, 0, 585, 0), -- Smite
 (13, 5, 1, 2050, 0), -- Lesser Heal
@@ -491,9 +491,9 @@
 (12, 6, 3, 45462, 0), -- Plague Strike
 (12, 6, 4, 45902, 0), -- Blood Strike
 (12, 6, 5, 47541, 0), -- Death Coil
--- (12, 6, 9, 68992, 0), Darkflight Death Knight
--- (12, 6, 120, 68996, 0), Two Forms Death Knight
--- (12, 6, 120, 87840, 0), Running Wild Death Knight
+(12, 6, 9, 68992, 0), Darkflight Death Knight
+(12, 6, 120, 68996, 0), Two Forms Death Knight
+(12, 6, 120, 87840, 0), Running Wild Death Knight
 -- High Elf Death Knight
 (13, 6, 0, 6603, 0), -- Auto Attack
 (13, 6, 1, 49576, 0), -- Death Grip
@@ -564,9 +564,9 @@
 (12, 7, 0, 6603, 0), -- Auto Attack
 (12, 8, 1, 403, 0), -- Lightning Bolt
 (12, 8, 2, 331, 0), -- Healing Wave
--- (12, 8, 120, 68992, 0), Darkflight Mage
--- (12, 8, 120, 68996, 0), Two Forms Mage
--- (12, 8, 120, 87840, 0), Running Wild Mage
+(12, 8, 120, 68992, 0), Darkflight Mage
+(12, 8, 120, 68996, 0), Two Forms Mage
+(12, 8, 120, 87840, 0), Running Wild Mage
 -- High Elf Shaman
 (13, 7, 0, 6603, 0), -- Auto Attack
 (13, 7, 1, 403, 0), -- Lightning Bolt
@@ -621,9 +621,9 @@
 -- Worgen Mage
 (12, 8, 0, 133, 0), -- Fireball
 (12, 8, 1, 168, 0), -- Frost Armor
--- (12, 8, 120, 68992, 0), Darkflight Mage
--- (12, 8, 120, 68996, 0), Two Forms Mage
--- (12, 8, 120, 87840, 0), Running Wild Mage
+(12, 8, 120, 68992, 0), Darkflight Mage
+(12, 8, 120, 68996, 0), Two Forms Mage
+(12, 8, 120, 87840, 0), Running Wild Mage
 -- High Elf Mage
 (13, 8, 0, 133, 0), -- Fireball
 (13, 8, 1, 168, 0), -- Frost Armor
@@ -677,9 +677,9 @@
 -- Worgen Warlock
 (12, 9, 0, 686, 0), -- Shadow Bolt
 (12, 9, 1, 687, 0), -- Demon Skin
--- (12, 9, 120, 68992, 0), Darkflight Warlock
--- (12, 9, 120, 68996, 0), Two Forms Warlock
--- (12, 9, 120, 87840, 0), Running Wild Warlock
+(12, 9, 120, 68992, 0), Darkflight Warlock
+(12, 9, 120, 68996, 0), Two Forms Warlock
+(12, 9, 120, 87840, 0), Running Wild Warlock
 -- High Elf Warlock
 (13, 9, 0, 686, 0), -- Shadow Bolt
 (13, 9, 1, 687, 0), -- Demon Skin
@@ -751,9 +751,9 @@
 (12, 11, 0, 5176, 0), -- Wrath
 (12, 11, 1, 5185, 0), -- Healing Touch
 (12, 11, 72, 6603, 0), -- Auto Attack
--- (12, 11, 120, 68992, 0), Darkflight Druid
--- (12, 11, 120, 68996, 0), Two Forms Druid
--- (12, 11, 120, 87840, 0) Running Wild Druid
+(12, 11, 120, 68992, 0), Darkflight Druid
+(12, 11, 120, 68996, 0), Two Forms Druid
+(12, 11, 120, 87840, 0) Running Wild Druid
 -- High Elf Druid
 (13, 11, 96, 6603, 0), -- Auto Attack
 (13, 11, 0, 5176, 0), -- Wrath
