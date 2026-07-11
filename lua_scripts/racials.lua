@@ -1,6 +1,12 @@
 local WORGEN = 3
 local LEVEL = 20
 
+void OnFirstLogin(Player* player) override
+{
+    player->RemoveSpell(87840);
+    player->RemoveSpell(68996);
+}
+
 function OnLevelChange(event, player, oldLevel)
     if oldLevel < LEVEL and player:GetLevel() >= LEVEL then
         if player:GetRace() == WORGEN then
