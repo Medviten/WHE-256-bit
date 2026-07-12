@@ -1,18 +1,100 @@
 /* Update achievement criteria involving interactions with all races to include Worgen, Goblins, and High Elves */
 DELETE FROM `achievement_criteria_data` WHERE `criteria_id` IN (13473, 13474, 13475, 13476, 13477, 13478, 19216);
-INSERT INTO `achievement_criteria_data` (`criteria_id`, `type`, `value1`, `value2`, `ScriptName`) VALUES
-(13473, 2, 0, 9, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
-(13473, 9, 18, 0, ''),
-(13473, 10, 1, 0, ''),
-(13474, 2, 0, 12, ''),
-(13474, 9, 18, 0, ''),
-(13474, 10, 1, 0, ''),
-(13475, 2, 0, 9, ''), -- Achievement 291 (Check Your Head)
-(13476, 2, 0, 12, ''),
-(13484, 2, 0, 13, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
-(13484, 9, 18, 0, ''),
-(13484, 10, 1, 0, ''),
-(13485, 2, 0, 13, ''), -- Achievement 291 (Check Your Head)
-(13477, 18, 0, 9, ''),  -- Achievement 1429 (Realm First! Level 80 Goblin)
-(13478, 18, 0, 12, ''), -- Achievement 1430 (Realm First! Level 80 Worgen)
-(19216, 18, 0, 13, ''); -- Achievement 1431 (Realm First! Level 80 High Elf)
+INSERT INTO `achievement_criteria_data` (
+    `criteria_id`, -- ID from Achievement_Criteria.dbc
+    `type`, -- Determines how value1 and value2 are used (0–23)
+    `value1`, -- Depends on type
+    `value2`, -- Depends on type
+    `ScriptName`
+) VALUES
+(
+	13473, -- criteria_id (Achievement 2422 (Shake Your Bunny-Maker))
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	0, -- value1: The target here is a valid class (paste class list). value2 must also be set
+	9, -- value2: The value here is a valid race ID. See ChrRaces.dbc
+	'', -- ScriptName
+), (
+	13473, -- criteria_id 
+	9, -- type: TYPE_T_LEVEL
+	18, -- value1: The minimum level that the target can be.
+	0, -- value2: N/A
+	'', -- ScriptName
+), (
+	13473, -- criteria_id 
+	10, -- type: TYPE_T_GENDER
+	1, -- value1: Gender: 0=Male, 1=Female
+	0, -- value2: N/A
+	'', -- ScriptName
+), (
+	13474, -- criteria_id 
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	0, -- value1: The target here is a valid class (paste class list). value2 must also be set
+	12, -- value2: The value here is a valid race ID. See ChrRaces.dbc
+	'', -- ScriptName
+), (
+	13474, -- criteria_id 
+	9, -- type: TYPE_T_LEVEL
+	18, -- value1: The minimum level that the target can be.
+	0, -- value2: N/A
+	'', -- ScriptName
+), (
+	13474, -- criteria_id 
+	10, -- type: TYPE_T_GENDER
+	1, -- value1: Gender: 0=Male, 1=Female
+	0, -- value2: N/A
+	'', -- ScriptName
+), (
+	13475, -- criteria_id (Achievement 291 (Check Your Head))
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	0, -- value1: The target here is a valid class (paste class list). value2 must also be set
+	9, -- value2: The value here is a valid race ID. See ChrRaces.dbc
+	'', -- ScriptName
+), (
+	13476, -- criteria_id 
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	0, -- value1: The target here is a valid class (paste class list). value2 must also be set
+	12, -- value2: The value here is a valid race ID. See ChrRaces.dbc
+	'', -- ScriptName
+), (
+	13484, -- criteria_id (Achievement 2422 (Shake Your Bunny-Maker))
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	0, -- value1: The target here is a valid class (paste class list). value2 must also be set
+	13, -- value2: The value here is a valid race ID. See ChrRaces.dbc
+	'', -- ScriptName
+), (
+	13484, -- criteria_id 
+	9, -- type: TYPE_T_LEVEL
+	18, -- value1: The minimum level that the target can be.
+	0, -- value2: N/A
+	'', -- ScriptName
+), (
+	13484, -- criteria_id 
+	10, -- type: TYPE_T_GENDER
+	1, -- value1: Gender: 0=Male, 1=Female
+	0, -- value2: N/A
+	'', -- ScriptName
+), (
+	13485, -- criteria_id (Achievement 291 (Check Your Head))
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
+	0, -- value1: The target here is a valid class (paste class list). value2 must also be set
+	13, -- value2: The value here is a valid race ID. See ChrRaces.dbc
+	'', -- ScriptName
+), (
+	13477, -- criteria_id (Achievement 1429 (Realm First! Level 80 Goblin))
+	18, -- type: TYPE_INSTANCE_SCRIPT
+	0, -- value1: Make instance script call for check current criteria requirements fit.
+	9, -- value2
+	'', -- ScriptName
+), (
+	13478, -- criteria_id (Achievement 1430 (Realm First! Level 80 Worgen))
+	18, -- type: TYPE_INSTANCE_SCRIPT
+	0, -- value1
+	12, -- value2
+	'', -- ScriptName
+), (
+	19216, -- criteria_id (Achievement 1431 (Realm First! Level 80 High Elf))
+	18, -- type: TYPE_INSTANCE_SCRIPT
+	0, -- value1
+	13, -- value2
+	'', -- ScriptName
+);
