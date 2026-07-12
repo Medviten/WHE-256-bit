@@ -2,7 +2,9 @@
 This repository is my attempt at merging the Worgoblin and AzerothCore High Elf modules, as well as some other DBC-reliant modules. Any two modules that rely on the same DBCs need to be merged manually, unfortunately. This requires making them compatible in certain ways, and at the end of the day, I had to make some editorial decisions that went beyond a simple merger.
 
 ## patch-J.MPQ
-If you don't like these changes, the optional patch-J.MPQ is a simple patch that contains (client-side and, optionally, server-side) DBCs that disable my taxipath edits, Flying in Azeroth, ARAC's race/class additions, and even interface files that hide the extra races themselves from the character creation screen.
+If you don't like these changes, the optional patch-J.MPQ is a simple patch that contains (client-side and, optionally, server-side) DBCs that disable my taxipath edits, Flying in Azeroth, ARAC's race/class additions, and even interface files that hide the extra races themselves from the character creation screen (but you can safely delete that Interface folder if you want to make them).
+
+Another method is to delete my edited TaxiPath.dbc, TaxiPathNodes.dbc, and AreaTable.dbc from patch-A.MPQ – the ones in patch-J.MPQ are the default enUS ones anyway. However, ChrRaces.dbc is edited to include the custom races.
 
 I also considered making a patch that would camouflage the extra races as existing ones (Worgen –> Night Elf, Goblin –> Orc, High Elf –> Human), but it would be too much work to make it work properly, e.g. not crashing as soon as you get too close to a barber shop. It would also be too much to work to maintain.
 
