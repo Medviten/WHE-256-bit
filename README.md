@@ -92,7 +92,7 @@ Because WoW uses signature checks so as to not allow Interface files to be modif
 
 There is a longstanding bug in WotLK that causes your mouse to reset to the center of the screen, resulting in frequent disorientation while playing. It requires a patched client executable to fix, which causes compatibility issues with this module. However, you can use the script provided [here](https://github.com/idempotentiation/mod-worgoblin/releases/tag/patched-client-merger) to merge the two patched executables, allowing you to use this module alongside the camera fix.
 
-## 4) Run the provided SQL files against your world database
+## 5) Run the provided SQL files against your world database
 
 Some tables in the database override DBC files. I am not sure exactly how that works, but I know that sometimes things don't work until I change the DB to agree with the DBC.
 
