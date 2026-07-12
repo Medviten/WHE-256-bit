@@ -20,7 +20,7 @@ UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|4096 WHERE `skill` 
 
 /* Add racial skills */
 DELETE FROM `playercreateinfo_skills` WHERE `raceMask` IN (256, 2048) AND `classMask` = 0;
-INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (256, 0, 790, 0, 'Goblin - Racial'),
 (2048, 0, 789, 0, 'Worgen - Racial'),
 (4096, 0, 791, 0, 'High Elf - Racial');
