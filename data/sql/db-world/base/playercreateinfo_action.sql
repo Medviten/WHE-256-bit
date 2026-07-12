@@ -750,7 +750,7 @@
 (12, 11, 1, 5185, 0), -- Healing Touch
 (12, 11, 2, 68992, 0), -- Darkflight
 (12, 11, 82, 68996, 0), -- Two Forms
-(12, 11, 120, 87840, 0), Running Wild
+(12, 11, 120, 87840, 0), -- Running Wild
 -- High Elf Druid
 (13, 11, 96, 6603, 0), -- Auto Attack
 (13, 11, 0, 5176, 0), -- Wrath
