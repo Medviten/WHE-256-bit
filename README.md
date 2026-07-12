@@ -1,102 +1,71 @@
-# This is an attempt at merging Worgoblin and AzerothCore High Elf modules, as well as other DBC-heavy modules
+# Purpose
+This repository is my attempt at merging the Worgoblin and AzerothCore High Elf modules, as well as some other DBC-reliant modules. Any two modules that rely on the same DBCs need to be merged manually, unfortunately. This requires making them compatible in certain ways, and at the end of the day, I had to make some editorial decisions that went beyond a simple merger.
 
-I had already merged Worgoblin and ARAC when I started adding AzerothCore High Elf, so the DBCs let any race be any class. However, the optional patch-J.MPQ contains DBC that undo flying in Azeroth and ARAC. If something breaks, let me know.
+## patch-J.MPQ
+If you don't like these changes, the optional patch-J.MPQ is a simple patch that contains (client-side and, optionally, server-side) DBCs that disable my taxipath edits, Flying in Azeroth, ARAC's race/class additions, and even interface files that hide the extra races themselves from the character creation screen.
 
-# Worgoblin Module
+I also considered making a patch that would camouflage the extra races as existing ones (Worgen –> Night Elf, Goblin –> Orc, High Elf –> Human), but it would be too much work to make it work properly, e.g. not crashing as soon as you get too close to a barber shop. It would also be too much to work to maintain.
 
+## TaxiPath and TaxiPathNodes
+I have edited in a flight path from Auberdine to the Exodar and back. It's janky, but it works. It just always annoyed me that it didn't already exist.
+
+## Fly Anywhere
+Allows players to fly anywhere as soon as they learn flying (though Northrend still requires Cold Weather Flying).
+
+## ARAC (All Races All Classes)
+Allows all races to be all classes. The updated version fixed some bugs in the original and adds a few spells. I noticed some missing combinations (e.g. Blood Elf Druid) were missing spells in some files, so I have added those in there as well as extending the module to cover Worgen, Goblins and High Elves.
+
+## Worgoblin Module
 [![core-build](https://github.com/benjymansy123/mod-worgoblin/actions/workflows/core-build.yml/badge.svg)](https://github.com/benjymansy123/mod-worgoblin/actions/workflows/core-build.yml)
 
 This is a module for [AzerothCore](http://www.azerothcore.org) that adds Worgen, Goblins, and numerous features related to their playability.
 
-## Features
+### Features
 
 - Worgen as a playable Alliance race and goblins as a playable Horde race
-- Optional alpha worgen models and Gilnean voices
-- Mage and warlock class trainers in Teldrassil (worgen starting zone)
+- Optional alpha Worgen models and Gilnean voices
+- Mage and warlock class trainers in Teldrassil (I ought to extend this to give ARAC combinations access to trainers in their starting areas)
 - Compatibility patches for PlayerBots and Individual Progression modules
 
-### NYI Features
+#### NYI Features
 - Mount vendors
 - Worgen druid forms (currently uses night elf forms)
-- Two Forms (one male and one female morph spell exists and you can learn it with GM commands, but the morph is semi-permanent)
-- Running Wild (implemented at GM-command level - needs to be made a spell)
+- Two Forms (currently requires a lua script to work)
+- Running Wild (currently requires a lua script to work)
 - Vanilla goblin models
 
-## Important Notes
+### Important Notes
+This module makes *heavy* use of client patching and modification. Because of this, it is recommended to use a [clean, unmodified enUS WoW client](https://www.chromiecraft.com/downloads) as issues have been reported due to use of other clients, such as the one offered from Warmane. The HD patch included on the ChromieCraft website has been known to cause issues with this patch. It is for that reason that it's recommended for you to use the HD patch adapted to the Worgoblin module in particular, which can be found [here](https://github.com/benjymansy123/mod-worgoblin/releases/tag/hd-patch) with instructions on how to install it.
 
-This module makes *heavy* use of client patching and modification. Because of this, it is recommended to use a [clean, unmodified enUS WoW client](https://www.chromiecraft.com/downloads) as issues have been reported due to use of other clients, such as the one offered from Warmane. The HD patch included on the ChromieCraft website has been known to cause issues with this patch. It is for that reason that it's recommended for you to use the HD patch adapted to the Worgoblin module in particular, which can be found [here](https://github.com/benjymansy123/mod-worgoblin/releases/tag/hd-patch) with instructions on how to install it. (It may not work with this module, however.)
+(It may not work with *this* module, however.)
 
-# AzerothCore High Elf
-
+## AzerothCore High Elf
 Mod to add High Elves as playable characters on Azeroth Core with support for mod-playerbots. By Abracadaniel22.
 
-## Goals
-
-The goals for this project are very simple and limited, allowing for quick feedback and a quick POC:
-
-1. Duplicate blood elf models into a new high elf race
-2. Copy everything else from humans (starting zone, mounts, reputation, quests, etc)
-
-Anything extra or too intrusive should be added as optional features in the "extras" directory. The base mod should remain as clean as possible with the minimum changes to make the custom race reasonably work.
-
-## Features
+### Features
 
 - A new High Elf alliance race is added
 - - It shares the same models as the Blood Elf race
-- - It shares the same starting zone, reputation, skills as the humans
-- - High Elves can be any class except shaman or druid
+- - It shares the same starting zone, reputation, skills as the humans (but Turtle WoW-based racials)
+- - High Elves can be any class except shaman or druid (in the non-ARAC version)
 
 - Compatible with HD models
 
-### Extra features
-
-The "extras" directory contains optional features that can be installed on top of the base installation:
-
-- Compatibility patch to work with mod-individual-progression (thanks to Dasbadman)
-- Arcane Torrent spell for High Elf warriors (thanks to Dasbadman)
-
-## Known limitations
-
-No audio in emotes (such as /hi, /joke, etc)
-
-## Requirements
-
-This requires a patched version of WoW.exe that allows interface edits (SIG & MD5 Protection removed). The version downloaded from Warmane or ChromieCraft should work. You can also download a patcher tool from the WoW Modding Community discord or from ownedcore.com and do it yourself. Without a patched version, the client will not accept the interface changes and will not allow you to play the game, throwing out errors such as "Your login interface files are corrupt".
-
-# Fly Anywhere
-
-AzerothCore mod that allows players to use flying mounts in Eastern Kingdoms and Kalimdor as soon as they can fly in Outland.
-
-This mod also allows players to fly in the Burning Crusade starter zones, Isle of Quel'danas, and any other Outland area not flyable.
-
-## Overview
-
-When [Expert Riding]([url](https://www.wowhead.com/wotlk/spell=34090/expert-riding)) skill is learned, players can fly in the old world continents (Eastern Kingdoms and Kalimdor) and BC starter zones with any mount their skill and level allow them to use. Expert Riding can be learned at level 60.
-
-## Extra info
-
-### What was modified in the DBC file?
-- server/AreaTable.dbc: for each area in which ContinentID is either 0 or 1, if Flags is greater than 0, add the AREA_FLAG_FLYING (value 0x00000400) and the AREA_FLAG_EnableFlightBoundsonMap (value 0x00004000) to the bit mask, basically mimicking the flags from the expansion continents. Also done the same for ContinentID 530 (Outlands) to include starter zones.
-
-# ARAC
-
-Allows all races to be all classes. The updated version fixed some bugs in the original. I noticed some missing combinations (e.g. Blood Elf Druid) were missing spells, so I have added those in there as well as extending the module to cover Worgen, Goblins and High Elves.
-
 # How to Install
 
-### 1) Replace the DBC files in your AzerothCore Data directory with the ones provided in data/patch-A.MPQ/DBFilesClient
+## 1) Replace the DBC files in your AzerothCore Data directory with the ones provided in data/patch-A.MPQ/DBFilesClient
 
 Copy the contents of the DBFilesClient folder (`mod-worgoblin-high-elf/data/patch-A.MPQ/DBFilesClient`) to your AzerothCore `Data/dbc` directory (defined by `DataDir` in `worldserver.conf`). I recommend backing up your DBC folder before overwriting these files.
 
 If you're using the alpha models and/or Gilnean voice files, overwrite the relevant DBC files.
 
-### 2) Copy patch-A.MPQ from (`mod-worgoblin-high-elf/data/patch-A.MPQ`) to your Data folder in your WoW client
+## 2) Copy patch-A.MPQ from (`mod-worgoblin-high-elf/data/patch-A.MPQ`) to your Data folder in your WoW client
 
 Overwrite the relevant files in `patch-A.MPQ/DBFilesClient` if you're using the alpha models and/or Gilnean voice files.
 
-### 2.5) Optional: compatibility patches
+## 2.5) Optional: compatibility patches
 
-#### [Playerbots](https://github.com/liyunfan1223/mod-playerbots)
+### [Playerbots](https://github.com/liyunfan1223/mod-playerbots)
 
 This patch fixes the problem of bots failing to recognize Worgen and High Elf as Alliance races and allows playerbots to spawn as Worgen, Goblins and High Elves.
 
@@ -110,18 +79,18 @@ git commit -m "Add worgoblin-high-elf playerbots patch"
 
 There is also a patch for Individual Progression. I tried to merge it too, but I don't use that mod myself and so can't test it. Take it for what it's worth.
 
-### 3) Compile and install AzerothCore
+## 3) Compile and install AzerothCore
 
 See AzerothCore's [official documentation](https://www.azerothcore.org/wiki/installing-a-module) for more details about compiling and installing modules. If you applied one of the compatibility patches after a previous installation, you will have to recompile AzerothCore.
 
-### 4) Remove signature checks from your WoW executable
+## 4) Remove signature checks from your WoW executable
 Windows users can use [this patcher](https://www.wowmodding.net/files/file/283-wow-335-patcher-custom-item-fix/) created by kebabstorm to patch Wow.exe file (also available from [this](https://github.com/anzz1/WoWPatcher335/releases) GitHub repository). macOS users can download this [pre-patched .app file](https://github.com/benjymansy123/custom-race-ac-12_6_21/releases/download/sig-check/WoW.app.zip), since no easy patcher exists for macOS.
 
 Because WoW uses signature checks so as to not allow Interface files to be modified, we need to remove those checks in order to be able to use custom races. This is accomplished using the patcher included in the repo. Move the patcher into your WoW client directory and run it. Again, feel free to make a backup of your original executable.
 
 There is a longstanding bug in WotLK that causes your mouse to reset to the center of the screen, resulting in frequent disorientation while playing. It requires a patched client executable to fix, which causes compatibility issues with this module. However, you can use the script provided [here](https://github.com/idempotentiation/mod-worgoblin/releases/tag/patched-client-merger) to merge the two patched executables, allowing you to use this module alongside the camera fix.
 
-### 4) Run the provided SQL files against your world database
+## 4) Run the provided SQL files against your world database
 
 Some tables in the database override DBC files. I am not sure exactly how that works, but I know that sometimes things don't work until I change the DB to agree with the DBC.
 
@@ -137,11 +106,10 @@ You can also choose to run one file at a time if you so wish.
 And with that, you are all done!
 
 # Credits
-
 * heyitsbench and Helias for the [Worgoblin]([url](https://github.com/heyitsbench/mod-worgoblin)) [modules]([url](https://github.com/Helias/mod-worgoblin))
 * idempotentiation for the [Worgoblin fork]([url](https://github.com/idempotentiation/mod-worgoblin)) with patches
 * abracadaniel22 for the [High Elf custom race]([url](https://github.com/abracadaniel22/azerothcore-highelf)) and [Fly Anywhere]([url](https://github.com/abracadaniel22/mod-fly-anywhere)) modules
 * heyitsbench (again) for the original [ARAC]([url](https://github.com/heyitsbench/mod-arac)) module
 * ChromWolf for the updated [ARAC]([url](https://github.com/ChromWolf/mod-arac-updated)) module
-* gitdalisar for the [Faction Free]([url](https://github.com/gitdalisar/mod-Faction-Free)) module
+* gitdalisar for the [Faction Free]([url](https://github.com/gitdalisar/mod-Faction-Free)) module (which I may or may not implement in the future)
 * Several people who helped on Discord
