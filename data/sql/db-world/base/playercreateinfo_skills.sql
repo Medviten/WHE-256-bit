@@ -9,7 +9,7 @@ UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|1|5 WHERE `skill` =
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048|4096 WHERE `skill` = 173 AND `racemask` = 735; -- Daggers for everyone except Tauren and Draenei
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048 WHERE `skill` = 160 AND `racemask` = 1061; -- 2H-maces for Humans, Dwarves, Tauren, Goblins, Draenei, and Worgen Warriors
 /* Special cases */ 
-INSERT INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`, `comment`) VALUES
+INSERT IGNORE INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (0, 8, 173, 0, 'Daggers - Rogues'), -- Tauren and Draenei Rogues need Daggers
 (0, 2, 173, 0, '2H-Maces - Paladins'); -- 2H-Maces for all Paladins
 
