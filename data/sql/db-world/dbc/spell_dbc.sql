@@ -3352,7 +3352,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
-	0, -- RecoveryTime
+	1500, -- RecoveryTime
 	0, -- CategoryRecoveryTime
 	31, -- InterruptFlags
 	0, -- AuraInterruptFlags
