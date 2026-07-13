@@ -3878,8 +3878,8 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectRealPointsPerLevel_1
 	0, -- EffectRealPointsPerLevel_2
 	0, -- EffectRealPointsPerLevel_3
-	0, -- EffectBasePoints_1
-	59, -- EffectBasePoints_2
+	59, -- EffectBasePoints_1
+	0, -- EffectBasePoints_2
 	0, -- EffectBasePoints_3
 	0, -- EffectMechanic_1
 	0, -- EffectMechanic_2
@@ -3893,8 +3893,8 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectRadiusIndex_1
 	0, -- EffectRadiusIndex_2
 	0, -- EffectRadiusIndex_3
-	56, -- EffectAura_1
-	31, -- EffectAura_2
+	31, -- EffectAura_1
+	56, -- EffectAura_2
 	0, -- EffectAura_3
 	0, -- EffectAuraPeriod_1
 	0, -- EffectAuraPeriod_2
@@ -3908,8 +3908,8 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	55274, -- EffectMiscValue_1
-	0, -- EffectMiscValue_2
+	0, -- EffectMiscValue_1
+	55274, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
 	0, -- EffectMiscValueB_2
@@ -3985,7 +3985,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	"", -- Description_Lang_itIT
 	"", -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
-	"Increases speed by $s2%.", -- AuraDescription_Lang_enUS
+	"Increases speed by $s1%.", -- AuraDescription_Lang_enUS
 	"", -- AuraDescription_Lang_enGB
 	"", -- AuraDescription_Lang_koKR
 	"", -- AuraDescription_Lang_frFR
