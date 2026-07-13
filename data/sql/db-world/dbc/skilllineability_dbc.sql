@@ -1,5 +1,4 @@
-DELETE FROM `skilllineability_dbc` WHERE `ID` IN (590, 592, 727, 3269, 3270, 3271, 3272, 3273, 3274, 5989, 5990, 5991, 5992, 5993, 5994, 7594, 12518, 13151, 14815, 14816,  14817, 14818, 15040, 15041, 15252, 15253, 15606, 15607, 16999, 17000, 17003, 17004, 20110, 20283, 20289, 20290, 21723, 21724, 21981, 21982, 21983, 21984, 21985, 21986, 21987, 21988, 21989, 31448, 13338, 14013, 20089, 20090, 20091, 20092, 31449, 31450, 31451, 31452, 31463, 31464, 31465, 31466, 31467, 31468, 31469, 110001, 110002, 110003, 110004, 110005, 110006, 110007);
-INSERT INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `ClassMask`, `ExcludeRace`, `ExcludeClass`, `MinSkillLineRank`, `SupercededBySpell`, `AcquireMethod`, `TrivialSkillLineRankHigh`, `TrivialSkillLineRankLow`, `CharacterPoints_1`, `CharacterPoints_2`) VALUES
+REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `ClassMask`, `ExcludeRace`, `ExcludeClass`, `MinSkillLineRank`, `SupercededBySpell`, `AcquireMethod`, `TrivialSkillLineRankHigh`, `TrivialSkillLineRankLow`, `CharacterPoints_1`, `CharacterPoints_2`) VALUES
 (
 	590, -- ID
 	98, -- SkillLine: Language: Common
@@ -568,30 +567,75 @@ INSERT INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cla
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
 	0, -- Spell: SupercededBySpell
-	2, -- AcquireMethod
+	1, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31468, -- ID
-	789, -- SkillLine: Worgen racials
-	87840, -- Spell: Running Wild 
+	762, -- SkillLine: Riding
+	110010, -- Spell: Running Wild (Male, 60%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
-	1, -- MinSkillLineRank
+	75, -- MinSkillLineRank
 	0, -- Spell: SupercededBySpell
-	2, -- AcquireMethod
-	0, -- TrivialSkillLineRankHigh
+	1, -- AcquireMethod
+	110012, -- TrivialSkillLineRankHigh
+	0, -- Spell: TrivialSkillLineRankLow
+	0, -- Spell: CharacterPoints_1
+	0 -- CharacterPoints_2
+), (
+	31470, -- ID
+	762, -- SkillLine: Riding
+	110011, -- Spell: Running Wild (Female, 60%)
+	2048, -- RaceMask: Worgen
+	0, -- ClassMask
+	0, -- ExcludeRace
+	0, -- ExcludeClass
+	75, -- MinSkillLineRank
+	0, -- Spell: SupercededBySpell
+	1, -- AcquireMethod
+	110013, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31469, -- ID
+	762, -- SkillLine: Riding
+	110012, -- Spell: Running Wild (Male, 100%)
+	2048, -- RaceMask: Worgen
+	0, -- ClassMask
+	0, -- ExcludeRace
+	0, -- ExcludeClass
+	150, -- MinSkillLineRank
+	0, -- Spell: SupercededBySpell
+	1, -- AcquireMethod
+	0, -- TrivialSkillLineRankHigh
+	0, -- Spell: TrivialSkillLineRankLow
+	0, -- Spell: CharacterPoints_1
+	0 -- CharacterPoints_2
+), (
+	31471, -- ID
+	762, -- SkillLine: Riding
+	110013, -- Spell: Running Wild (Female, 100%)
+	2048, -- RaceMask: Worgen
+	0, -- ClassMask
+	0, -- ExcludeRace
+	0, -- ExcludeClass
+	150, -- MinSkillLineRank
+	0, -- Spell: SupercededBySpell
+	1, -- AcquireMethod
+	0, -- TrivialSkillLineRankHigh
+	0, -- Spell: TrivialSkillLineRankLow
+	0, -- Spell: CharacterPoints_1
+	0 -- CharacterPoints_2
+), (
+	31472, -- ID
 	789, -- SkillLine: Worgen racials
-	68996, -- Spell: Two Forms 
+	68996, -- Spell: Two Forms (trigger)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
