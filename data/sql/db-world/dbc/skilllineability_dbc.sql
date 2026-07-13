@@ -581,7 +581,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	75, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	110012, -- Spell: SupercededBySpell
 	1, -- AcquireMethod
 	110012, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -596,7 +596,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	75, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	110013, -- Spell: SupercededBySpell
 	1, -- AcquireMethod
 	110013, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
