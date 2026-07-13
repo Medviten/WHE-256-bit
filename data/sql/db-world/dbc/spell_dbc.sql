@@ -3592,7 +3592,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- CastingTimeIndex
 	0, -- RecoveryTime
 	0, -- CategoryRecoveryTime
-	31, -- InterruptFlags
+	0, -- InterruptFlags
 	0, -- AuraInterruptFlags
 	0, -- ChannelInterruptFlags
 	0, -- ProcTypeMask
@@ -3872,7 +3872,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	6, -- Effect_1
 	6, -- Effect_2
 	0, -- Effect_3
-	0, -- EffectDieSides_1
+	1, -- EffectDieSides_1
 	0, -- EffectDieSides_2
 	0, -- EffectDieSides_3
 	0, -- EffectRealPointsPerLevel_1
