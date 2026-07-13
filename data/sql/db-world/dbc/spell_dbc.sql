@@ -1894,7 +1894,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 /* Worgen racials */
@@ -2133,7 +2133,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Aberration (Worgen racial) */
 (
@@ -2370,7 +2370,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Flayer (Worgen racial) */
 (
@@ -2607,7 +2607,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Darkflight (Worgen racial) */
 (
@@ -2844,7 +2844,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 /* Two Forms (Worgen male racial) */
@@ -3082,7 +3082,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Two Forms (Worgen female racial) */
 (
@@ -3319,7 +3319,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Two Forms (Worgen racial trigger) */
 (
@@ -3556,7 +3556,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 /* Running Wild (Worgen racial trigger) */
@@ -3794,7 +3794,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Running Wild (Worgen male 60% racial) */
 (
@@ -4031,7 +4031,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Running Wild (Worgen male 100% racial) */
 (
@@ -4268,7 +4268,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Running Wild (Worgen female 60% racial) */
 (
@@ -4505,7 +4505,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Running Wild (Worgen female 100% racial) */
 (
@@ -4742,7 +4742,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 
@@ -4982,7 +4982,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Time is Money (goblin racial) */
 (
@@ -5219,7 +5219,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Best Deals Anywhere (goblin racial) */
 (
@@ -5456,7 +5456,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Better Living Through Chemistry (goblin racial) */
 (
@@ -5693,7 +5693,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Pack Hobgoblin (goblin racial) */
 (
@@ -5930,7 +5930,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Rocket Jump (goblin racial) */
 (
@@ -6167,7 +6167,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 /* Mounts */
@@ -6406,7 +6406,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Goblin Turbo-Trike */
 (
@@ -6643,7 +6643,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Mountain Horse */
 (
@@ -6880,7 +6880,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 /* Swift Mountain Horse */
 (
@@ -7117,7 +7117,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 /* Mag'har Orc Racials */
@@ -7355,7 +7355,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110002, -- ID
@@ -7591,7 +7591,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110003, -- ID
@@ -7827,7 +7827,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110004, -- ID
@@ -8063,7 +8063,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 
 /* High Elf Racials (based on Turtle WoW's) */
@@ -8301,7 +8301,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110006, -- ID
@@ -8537,7 +8537,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110007, -- ID
@@ -8773,7 +8773,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectBonusMultiplier_2
 	0, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110008, -- ID
@@ -9009,7 +9009,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 ),
 (
 	110009, -- ID
@@ -9245,5 +9245,5 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- EffectBonusMultiplier_2
 	1, -- EffectBonusMultiplier_3
 	0, -- SpellDescriptionVariableID
-	0, -- SpellDifficultyID
+	0 -- SpellDifficultyID
 );
