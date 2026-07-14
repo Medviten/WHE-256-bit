@@ -1,125 +1,137 @@
-local RUNNING_WILD_TRIGGER = 87840
+--[[
+    Worgen "Running Wild" speed-spell teacher
+    ------------------------------------------
+    Fires whenever a player learns a spell. If the spell learned is one of the
+    two native riding-skill spells, and the player is a Worgen, teach the
+    correct gendered custom speed spell and drop the old one if upgrading.
 
-local JOURNEYMAN_RIDING = 33391
+    Native riding spells (static WotLK content, do not change per-core):
+        33388 = Apprentice Riding   (75 skill,  60% speed)
+        33391 = Journeyman Riding   (150 skill, 100% speed)
+]]
 
-local SPEED_60_MALE  = 110010
-local SPEED_100_MALE = 110011
-local SPEED_60_FEMALE  = 110012
-local SPEED_100_FEMALE = 110013
+local RACE_WORGEN = 12
 
-local TWO_FORMS_TRIGGER = 68996
+local RIDE_APPRENTICE_SPELL = 33388
+local RIDE_JOURNEYMAN_SPELL = 33391
 
-local TWO_FORMS_MALE = 68994
-local TWO_FORMS_FEMALE = 68995
+local WORGEN_APPRENTICE_MALE   = 110010
+local WORGEN_APPRENTICE_FEMALE = 110012
+local WORGEN_JOURNEYMAN_MALE   = 110011
+local WORGEN_JOURNEYMAN_FEMALE = 110013
 
-local function IsRunningWild(player)
-    return player:HasAura(SPEED_60_MALE) or player:HasAura(SPEED_100_MALE)
-        or player:HasAura(SPEED_60_FEMALE) or player:HasAura(SPEED_100_FEMALE)
+-- GENDER_MALE = 0, GENDER_FEMALE = 1 (standard Eluna/DBC convention)
+local function GetGenderedSpells(player)
+    local isMale = (player:GetGender() == 0)
+    return {
+        apprentice = isMale and WORGEN_APPRENTICE_MALE or WORGEN_APPRENTICE_FEMALE,
+        journeyman = isMale and WORGEN_JOURNEYMAN_MALE or WORGEN_JOURNEYMAN_FEMALE,
+    }
 end
 
-local function IsHumanForm(player)
-    return player:HasAura(TWO_FORMS_MALE) or player:HasAura(TWO_FORMS_FEMALE)
-end
+-- We do learn the new tier immediately, but defer removing the old one by a
+-- short tick. This avoids RemoveSpell's resync packet landing in the same
+-- transaction as the LearnSpell call above it, which is what appeared to
+-- cause the new spell not to show up live the first time we tried removal.
+local function ApplyRunningWildTier(player, tier)
+    if player:GetRace() ~= RACE_WORGEN then
+        return
+    end
 
-local function CancelRunningWild(player)
+    local spells = GetGenderedSpells(player)
+    local spellId = spells[tier]
 
-    player:RemoveAura(SPEED_60_MALE)
-    player:RemoveAura(SPEED_100_MALE)
-    player:RemoveAura(SPEED_60_FEMALE)
-    player:RemoveAura(SPEED_100_FEMALE)
+    if spellId and not player:HasSpell(spellId) then
+        player:LearnSpell(spellId)
+    end
 
-end
-
-local function CancelTwoForms(player)
-
-    player:RemoveAura(TWO_FORMS_MALE)
-    player:RemoveAura(TWO_FORMS_FEMALE)
-
-end
-
-local function StartRunningWild(player)
-
-    if player:HasSpell(JOURNEYMAN_RIDING) then
-        if player:GetGender() == 0 then
-            player:CastSpell(player, SPEED_100_MALE, false)
-        else
-            player:CastSpell(player, SPEED_100_FEMALE, false)
-        end
-
-    else
-        if player:GetGender() == 0 then
-            player:CastSpell(player, SPEED_60_MALE, false)
-        else
-            player:CastSpell(player, SPEED_60_FEMALE, false)
-        end
+    if tier == "journeyman" and player:HasSpell(spells.apprentice) then
+        player:RegisterEvent(function(eventId, delay, repeats, plr)
+            if plr and plr:IsInWorld() and plr:HasSpell(spells.apprentice) then
+                plr:RemoveSpell(spells.apprentice)
+            end
+        end, 250, 1) -- 250ms later, fire once
     end
 end
 
-local function StartTwoForms(player)
-
-    if player:GetGender() == 0 then
-        player:CastSpell(player, TWO_FORMS_MALE, false)
-
-    else
-        player:CastSpell(player, TWO_FORMS_FEMALE, false)
-
+local function OnLearnSpell(event, player, spellId)
+    if spellId == RIDE_APPRENTICE_SPELL then
+        ApplyRunningWildTier(player, "apprentice")
+    elseif spellId == RIDE_JOURNEYMAN_SPELL then
+        ApplyRunningWildTier(player, "journeyman")
     end
 end
 
-----------------------------------------------------
--- SPELL CAST
-----------------------------------------------------
-
-local function OnSpellCast(event, player, spell)
-
-    local id = spell:GetEntry()
-
-    if id == RUNNING_WILD_TRIGGER then
-
-        if IsRunningWild(player) then
-            CancelRunningWild(player)
-        else
-            StartRunningWild(player)
+-- Primary trigger: hook the actual spell CAST rather than the generic
+-- "learn spell" player event. PLAYER_EVENT_ON_LEARN_SPELL turned out not to
+-- fire reliably for Journeyman Riding — most likely because that spell's
+-- skill-line auto-grant path doesn't route through the same internal call
+-- as a normal LearnSpell(). Hooking SPELL_EVENT_ON_CAST on the two riding
+-- spell IDs directly sidesteps that: it fires whenever the player casts
+-- (i.e. trains) that spell, full stop, regardless of the internal path.
+local function OnCastRidingSpell(tier)
+    return function(event, caster, spell, skipCheck)
+        local player = caster
+        if player.ToPlayer then
+            player = caster:ToPlayer()
         end
-
-    elseif id == TWO_FORMS_TRIGGER then
-
-        if IsHumanForm(player) then
-            CancelTwoForms(player)
-        else
-            StartTwoForms(player)
+        if player then
+            ApplyRunningWildTier(player, tier)
         end
     end
 end
 
-RegisterPlayerEvent(5, OnSpellCast)
+RegisterSpellEvent(RIDE_APPRENTICE_SPELL, 2, OnCastRidingSpell("apprentice")) -- SPELL_EVENT_ON_CAST
+RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell("journeyman")) -- SPELL_EVENT_ON_CAST
 
-----------------------------------------------------
--- COMBAT
-----------------------------------------------------
-
-RegisterPlayerEvent(33, function(event, player)
-    if IsRunningWild(player) then
-        CancelRunningWild(player)
+-- Safety net: re-sync on login in case a character already knows a riding
+-- tier (e.g. granted via SQL/.learn/character import) without ever passing
+-- through OnLearnSpell above.
+local function OnLogin(event, player)
+    if player:GetRace() ~= RACE_WORGEN then
+        return
     end
 
-    if IsHumanForm(player) then
-        CancelTwoForms(player)
+    if player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
+        ApplyRunningWildTier(player, "journeyman")
+    elseif player:HasSpell(RIDE_APPRENTICE_SPELL) then
+        ApplyRunningWildTier(player, "apprentice")
     end
-end)
+end
 
-----------------------------------------------------
--- LOOT
-----------------------------------------------------
+RegisterPlayerEvent(44, OnLearnSpell) -- PLAYER_EVENT_ON_LEARN_SPELL
+RegisterPlayerEvent(3, OnLogin)       -- PLAYER_EVENT_ON_LOGIN
 
-RegisterPlayerEvent(32, function(event, player)
-    if IsRunningWild(player) then
-        CancelRunningWild(player)
+-- Toggle-off behavior: real mount spells let you press the same spell again
+-- to dismount rather than just refreshing the aura. Our Transform-based
+-- spells don't get that for free, so we hook SPELL_EVENT_ON_PREPARE (fires
+-- BEFORE the new cast's effects are applied, so HasAura still reflects the
+-- pre-cast state) on each of the four custom spells. If the caster already
+-- has that spell's aura, we cancel the incoming cast and remove the aura
+-- instead of letting it refresh.
+local RUNNING_WILD_SPELLS = {
+    WORGEN_APPRENTICE_MALE,
+    WORGEN_APPRENTICE_FEMALE,
+    WORGEN_JOURNEYMAN_MALE,
+    WORGEN_JOURNEYMAN_FEMALE,
+}
+
+local function OnPrepareRunningWild(event, caster, spell)
+    local player = caster
+    if player.ToPlayer then
+        player = caster:ToPlayer()
     end
-end)
-
-RegisterPlayerEvent(37, function(event, player)
-    if IsRunningWild(player) then
-        CancelRunningWild(player)
+    if not player then
+        return
     end
-end)
+
+    local spellId = spell:GetEntry()
+    if player:HasAura(spellId) then
+        spell:Cancel()
+        player:RemoveAura(spellId)
+    end
+end
+
+for _, spellId in ipairs(RUNNING_WILD_SPELLS) do
+    RegisterSpellEvent(spellId, 1, OnPrepareRunningWild) -- SPELL_EVENT_ON_PREPARE
+end
