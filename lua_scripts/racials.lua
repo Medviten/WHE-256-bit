@@ -16,8 +16,8 @@ local RIDE_APPRENTICE_SPELL = 33388
 local RIDE_JOURNEYMAN_SPELL = 33391
 
 local WORGEN_APPRENTICE_MALE   = 110010
-local WORGEN_JOURNEYMAN_MALE   = 110011
 local WORGEN_APPRENTICE_FEMALE = 110012
+local WORGEN_JOURNEYMAN_MALE   = 110011
 local WORGEN_JOURNEYMAN_FEMALE = 110013
 
 -- GENDER_MALE = 0, GENDER_FEMALE = 1 (standard Eluna/DBC convention)
@@ -51,11 +51,26 @@ local function ApplyRunningWildTier(player, tier)
     end
 end
 
+-- Deferred (one-tick-later) tier apply. We don't call ApplyRunningWildTier
+-- directly from OnLearnSpell: doing spellbook writes while still inside the
+-- callstack of the spell-learn transaction that triggered the hook can get
+-- silently overwritten by the core's own tail-end processing for that
+-- transaction, which is why the change previously only became visible after
+-- a relog. Queuing it via RegisterEvent runs it on the next server tick,
+-- once the original learn has fully completed and flushed to the client.
+local function DeferApplyRunningWildTier(player, tier)
+    player:RegisterEvent(function(eventId, delay, repeats, plr)
+        if plr and plr:IsInWorld() then
+            ApplyRunningWildTier(plr, tier)
+        end
+    end, 100, 1) -- 100ms delay, fire once
+end
+
 local function OnLearnSpell(event, player, spellId)
     if spellId == RIDE_APPRENTICE_SPELL then
-        ApplyRunningWildTier(player, "apprentice")
+        DeferApplyRunningWildTier(player, "apprentice")
     elseif spellId == RIDE_JOURNEYMAN_SPELL then
-        ApplyRunningWildTier(player, "journeyman")
+        DeferApplyRunningWildTier(player, "journeyman")
     end
 end
 
