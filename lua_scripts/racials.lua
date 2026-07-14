@@ -56,6 +56,28 @@ local function OnLearnSpell(event, player, spellId)
     end
 end
 
+-- Primary trigger: hook the actual spell CAST rather than the generic
+-- "learn spell" player event. PLAYER_EVENT_ON_LEARN_SPELL turned out not to
+-- fire reliably for Journeyman Riding — most likely because that spell's
+-- skill-line auto-grant path doesn't route through the same internal call
+-- as a normal LearnSpell(). Hooking SPELL_EVENT_ON_CAST on the two riding
+-- spell IDs directly sidesteps that: it fires whenever the player casts
+-- (i.e. trains) that spell, full stop, regardless of the internal path.
+local function OnCastRidingSpell(tier)
+    return function(event, caster, spell, skipCheck)
+        local player = caster
+        if player.ToPlayer then
+            player = caster:ToPlayer()
+        end
+        if player then
+            ApplyRunningWildTier(player, tier)
+        end
+    end
+end
+
+RegisterSpellEvent(RIDE_APPRENTICE_SPELL, 2, OnCastRidingSpell("apprentice")) -- SPELL_EVENT_ON_CAST
+RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell("journeyman")) -- SPELL_EVENT_ON_CAST
+
 -- Safety net: re-sync on login in case a character already knows a riding
 -- tier (e.g. granted via SQL/.learn/character import) without ever passing
 -- through OnLearnSpell above.
