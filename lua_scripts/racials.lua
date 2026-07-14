@@ -29,12 +29,10 @@ local function GetGenderedSpells(player)
     }
 end
 
--- NOTE: we intentionally never remove the lower-tier spell. WotLK's client
--- keeps lower-rank riding/speed spells and lower mounts around fine (unlike
--- later expansions with a consolidated mount journal), so there's no need to
--- strip it — and trying to do so via RemoveSpell() was what caused the new
--- spell to not show up live in the first place (its resync packet appears to
--- stomp the just-learned spell until the next full login sync).
+-- We do learn the new tier immediately, but defer removing the old one by a
+-- short tick. This avoids RemoveSpell's resync packet landing in the same
+-- transaction as the LearnSpell call above it, which is what appeared to
+-- cause the new spell not to show up live the first time we tried removal.
 local function ApplyRunningWildTier(player, tier)
     if player:GetRace() ~= RACE_WORGEN then
         return
@@ -45,6 +43,14 @@ local function ApplyRunningWildTier(player, tier)
 
     if spellId and not player:HasSpell(spellId) then
         player:LearnSpell(spellId)
+    end
+
+    if tier == "journeyman" and player:HasSpell(spells.apprentice) then
+        player:RegisterEvent(function(eventId, delay, repeats, plr)
+            if plr and plr:IsInWorld() and plr:HasSpell(spells.apprentice) then
+                plr:RemoveSpell(spells.apprentice)
+            end
+        end, 250, 1) -- 250ms later, fire once
     end
 end
 
