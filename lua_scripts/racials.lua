@@ -29,48 +29,30 @@ local function GetGenderedSpells(player)
     }
 end
 
+-- NOTE: we intentionally never remove the lower-tier spell. WotLK's client
+-- keeps lower-rank riding/speed spells and lower mounts around fine (unlike
+-- later expansions with a consolidated mount journal), so there's no need to
+-- strip it — and trying to do so via RemoveSpell() was what caused the new
+-- spell to not show up live in the first place (its resync packet appears to
+-- stomp the just-learned spell until the next full login sync).
 local function ApplyRunningWildTier(player, tier)
     if player:GetRace() ~= RACE_WORGEN then
         return
     end
 
     local spells = GetGenderedSpells(player)
+    local spellId = spells[tier]
 
-    if tier == "apprentice" then
-        if not player:HasSpell(spells.apprentice) then
-            player:LearnSpell(spells.apprentice)
-        end
-    elseif tier == "journeyman" then
-        if not player:HasSpell(spells.journeyman) then
-            player:LearnSpell(spells.journeyman)
-        end
-        -- upgrading: drop the 60% version so it doesn't linger in the spellbook
-        if player:HasSpell(spells.apprentice) then
-            player:RemoveSpell(spells.apprentice)
-        end
+    if spellId and not player:HasSpell(spellId) then
+        player:LearnSpell(spellId)
     end
-end
-
--- Deferred (one-tick-later) tier apply. We don't call ApplyRunningWildTier
--- directly from OnLearnSpell: doing spellbook writes while still inside the
--- callstack of the spell-learn transaction that triggered the hook can get
--- silently overwritten by the core's own tail-end processing for that
--- transaction, which is why the change previously only became visible after
--- a relog. Queuing it via RegisterEvent runs it on the next server tick,
--- once the original learn has fully completed and flushed to the client.
-local function DeferApplyRunningWildTier(player, tier)
-    player:RegisterEvent(function(eventId, delay, repeats, plr)
-        if plr and plr:IsInWorld() then
-            ApplyRunningWildTier(plr, tier)
-        end
-    end, 100, 1) -- 100ms delay, fire once
 end
 
 local function OnLearnSpell(event, player, spellId)
     if spellId == RIDE_APPRENTICE_SPELL then
-        DeferApplyRunningWildTier(player, "apprentice")
+        ApplyRunningWildTier(player, "apprentice")
     elseif spellId == RIDE_JOURNEYMAN_SPELL then
-        DeferApplyRunningWildTier(player, "journeyman")
+        ApplyRunningWildTier(player, "journeyman")
     end
 end
 
