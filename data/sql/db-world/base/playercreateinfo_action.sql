@@ -29,7 +29,7 @@
 (5, 1, 84, 6603, 0), -- Auto Attack (SpecialB: Defensive Stance)
 (5, 1, 96, 6603, 0), -- Auto Attack (SpecialC: Berserker Stance)
 (5, 1, 73, 78, 0), -- Heroic Strike (SpecialA: Battle Stance)
-(5, 1, 74, 20577, 0), -- Cannibalize
+(5, 1, 74, 20577, 0), -- Cannibalize (SpecialA: Battle Stance)
 -- Tauren Warrior
 (6, 1, 72, 6603, 0), -- Auto Attack (SpecialA: Battle Stance)
 (6, 1, 73, 78, 0), -- Heroic Strike (SpecialA: Battle Stance)
@@ -42,7 +42,7 @@
 (7, 1, 84, 6603, 0), -- Auto Attack (SpecialB: Defensive Stance)
 (7, 1, 96, 6603, 0), -- Auto Attack (SpecialC: Berserker Stance)
 (7, 1, 73, 78, 0), -- Heroic Strike (SpecialA: Battle Stance)
-(7, 1, 82, 20589, 0), -- Escape Artist
+(7, 1, 82, 20589, 0), -- Escape Artist (SpecialA: Battle Stance)
 -- Troll Warrior
 (8, 1, 72, 6603, 0), -- Auto Attack (SpecialA: Battle Stance)
 (8, 1, 84, 6603, 0), -- Auto Attack (SpecialB: Defensive Stance)
@@ -62,13 +62,13 @@
 (10, 1, 84, 6603, 0), -- Auto Attack (SpecialB: Defensive Stance)
 (10, 1, 96, 6603, 0), -- Auto Attack (SpecialC: Berserker Stance)
 (10, 1, 73, 78, 0), -- Heroic Strike (SpecialA: Battle Stance)
-(10, 1, 82, 80868, 0), -- Arcane Torrent (Rage)
+(10, 1, 82, 80868, 0), -- Arcane Torrent (Rage) (SpecialA: Battle Stance)
 -- Draenei Warrior
 (11, 1, 72, 6603, 0), -- Auto Attack (SpecialA: Battle Stance)
 (11, 1, 84, 6603, 0), -- Auto Attack (SpecialB: Defensive Stance)
 (11, 1, 96, 6603, 0), -- Auto Attack (SpecialC: Berserker Stance)
 (11, 1, 73, 78, 0), -- Heroic Strike (SpecialA: Battle Stance)
-(11, 1, 74, 28880, 0), -- Gift of the Naaru (Warrior)
+(11, 1, 74, 28880, 0), -- Gift of the Naaru (Warrior) (SpecialA: Battle Stance)
 -- Worgen Warrior
 (12, 1, 72, 6603, 0), -- Auto Attack (SpecialA: Battle Stance)
 (12, 1, 84, 6603, 0), -- Auto Attack (SpecialB: Defensive Stance)
@@ -676,7 +676,6 @@
 (6, 11, 0, 5176, 0), -- Wrath
 (6, 11, 1, 5185, 0), -- Healing Touch
 (6, 11, 2, 20549, 0), -- War Stomp
-(6, 11, 74, 20549, 0), -- War Stomp (SpecialA: Bear Form)
 -- Gnome Druid
 (7, 11, 72, 6603, 0), -- Auto Attack (SpecialA: Bear Form)
 (7, 11, 96, 6603,0), -- Auto Attack (SpecialB: Cat Form)
