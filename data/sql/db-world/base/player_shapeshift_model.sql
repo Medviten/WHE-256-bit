@@ -5,7 +5,36 @@ REPLACE INTO `player_shapeshift_model` (
     `GenderID`, -- 0: male, 1: female, 2: both
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
-/* Undead */
+/* Worgen Racials */
+(
+    34, -- ShapeshiftID: Two Forms
+    12, -- RaceID: Worgen
+    255, -- CustomizationID: default
+    0, -- GenderID: male
+    55276 -- ModelID: Gilnean (male)
+),
+(
+    34, -- ShapeshiftID: Two Forms
+    12, -- RaceID: Worgen
+    255, -- CustomizationID: default
+    1, -- GenderID: female
+    55277 -- ModelID: Gilnean (female)
+),
+(
+    33, -- ShapeshiftID: Running Wild
+    12, -- RaceID: Worgen
+    255, -- CustomizationID: default
+    0, -- GenderID: male
+    94133 -- ModelID: WorgenWild (male)
+),
+(
+    33, -- ShapeshiftID: Running Wild
+    12, -- RaceID: Worgen
+    255, -- CustomizationID: default
+    1, -- GenderID: female
+    94134 -- ModelID: WorgenWild (female)
+),
+/* Undead Druid Forms */
 (
 	2, -- ShapeshiftID: Tree of Life Form
     5, -- RaceID: Undead
@@ -43,7 +72,7 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     10007 -- ModelID: DragonWhelpSkinDiseased
 ),
-/* Gnomes */
+/* Gnome Druid Forms */
 (
 	2, -- ShapeshiftID: Tree of Life Form
 	7, -- RaceID: Gnome
