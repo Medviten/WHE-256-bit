@@ -11,14 +11,14 @@ REPLACE INTO `player_shapeshift_model` (
     12, -- RaceID: Worgen
     255, -- CustomizationID: default
     0, -- GenderID: male
-    55276 -- ModelID: Gilnean (male)
+    94135 -- ModelID: Gilnean (male)
 ),
 (
     34, -- ShapeshiftID: Two Forms
     12, -- RaceID: Worgen
     255, -- CustomizationID: default
     1, -- GenderID: female
-    55277 -- ModelID: Gilnean (female)
+    94136 -- ModelID: Gilnean (female)
 ),
 (
     33, -- ShapeshiftID: Running Wild
