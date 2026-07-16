@@ -6,6 +6,6 @@ REPLACE INTO `spell_ranks` (`first_spell_id`, `spell_id`, `rank`) VALUES
     1 -- Rank
 ), (
     87840, -- Basic spell ID: Running Wild (rank 1)
-    87839, -- Spell ID: Running Wild (rank 2) 
+    87841, -- Spell ID: Running Wild (rank 2) 
     2 -- Rank
 );
