@@ -575,52 +575,22 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 ), (
 	31468, -- ID
 	762, -- SkillLine: Riding
-	110010, -- Spell: Running Wild (Male, 60%)
+	87840, -- Spell: Running Wild (60%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	75, -- MinSkillLineRank
-	110011, -- Spell: SupercededBySpell
+	87841, -- Spell: SupercededBySpell
 	1, -- AcquireMethod
-	110011, -- TrivialSkillLineRankHigh
+	87841, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31469, -- ID
 	762, -- SkillLine: Riding
-	110011, -- Spell: Running Wild (Male, 100%)
-	2048, -- RaceMask: Worgen
-	0, -- ClassMask
-	0, -- ExcludeRace
-	0, -- ExcludeClass
-	150, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
-	1, -- AcquireMethod
-	0, -- TrivialSkillLineRankHigh
-	0, -- Spell: TrivialSkillLineRankLow
-	0, -- Spell: CharacterPoints_1
-	0 -- CharacterPoints_2
-), (
-	31470, -- ID
-	762, -- SkillLine: Riding
-	110012, -- Spell: Running Wild (Female, 60%)
-	2048, -- RaceMask: Worgen
-	0, -- ClassMask
-	0, -- ExcludeRace
-	0, -- ExcludeClass
-	75, -- MinSkillLineRank
-	110013, -- Spell: SupercededBySpell
-	1, -- AcquireMethod
-	110013, -- TrivialSkillLineRankHigh
-	0, -- Spell: TrivialSkillLineRankLow
-	0, -- Spell: CharacterPoints_1
-	0 -- CharacterPoints_2
-), (
-	31471, -- ID
-	762, -- SkillLine: Riding
-	110013, -- Spell: Running Wild (Female, 100%)
+	87841, -- Spell: Running Wild (100%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
@@ -635,7 +605,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 ), (
 	31472, -- ID
 	789, -- SkillLine: Worgen racials
-	68996, -- Spell: Two Forms (trigger)
+	68996, -- Spell: Two Forms
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
