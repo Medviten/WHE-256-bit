@@ -2846,494 +2846,19 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- SpellDescriptionVariableID
 	0 -- SpellDifficultyID
 ),
-
-/* Two Forms (Worgen male racial) */
-(
-	68994, -- ID
-	0, -- Category
-	0, -- DispelType
-	0, -- Mechanic
-	402981120, -- Attributes
-	0, -- AttributesEx
-	0, -- AttributesEx2
-	268435456, -- AttributesEx3
-	0, -- AttributesEx4
-	0, -- AttributesEx5
-	0, -- AttributesEx6
-	0, -- AttributesEx7
-	0, -- ShapeshiftMask
-	0, -- unk_320_2
-	0, -- ShapeshiftExclude
-	0, -- unk_320_3
-	0, -- Targets
-	0, -- TargetCreatureType
-	0, -- RequiresSpellFocus
-	0, -- FacingCasterFlags
-	0, -- CasterAuraState
-	0, -- TargetAuraState
-	0, -- ExcludeCasterAuraState
-	0, -- ExcludeTargetAuraState
-	0, -- CasterAuraSpell
-	0, -- TargetAuraSpell
-	0, -- ExcludeCasterAuraSpell
-	0, -- ExcludeTargetAuraSpell
-	1, -- CastingTimeIndex
-	0, -- RecoveryTime
-	0, -- CategoryRecoveryTime
-	0, -- InterruptFlags
-	0, -- AuraInterruptFlags
-	0, -- ChannelInterruptFlags
-	0, -- ProcTypeMask
-	101, -- ProcChance
-	0, -- ProcCharges
-	0, -- MaxLevel
-	0, -- BaseLevel
-	0, -- SpellLevel
-	21, -- DurationIndex
-	0, -- PowerType
-	0, -- ManaCost
-	0, -- ManaCostPerLevel
-	0, -- ManaPerSecond
-	0, -- ManaPerSecondPerLevel
-	1, -- RangeIndex
-	0, -- Speed
-	0, -- ModalNextSpell
-	0, -- CumulativeAura
-	0, -- Totem_1
-	0, -- Totem_2
-	0, -- Reagent_1
-	0, -- Reagent_2
-	0, -- Reagent_3
-	0, -- Reagent_4
-	0, -- Reagent_5
-	0, -- Reagent_6
-	0, -- Reagent_7
-	0, -- Reagent_8
-	0, -- ReagentCount_1
-	0, -- ReagentCount_2
-	0, -- ReagentCount_3
-	0, -- ReagentCount_4
-	0, -- ReagentCount_5
-	0, -- ReagentCount_6
-	0, -- ReagentCount_7
-	0, -- ReagentCount_8
-	-1, -- EquippedItemClass
-	0, -- EquippedItemSubclass
-	0, -- EquippedItemInvTypes
-	6, -- Effect_1
-	0, -- Effect_2
-	0, -- Effect_3
-	0, -- EffectDieSides_1
-	0, -- EffectDieSides_2
-	0, -- EffectDieSides_3
-	0, -- EffectRealPointsPerLevel_1
-	0, -- EffectRealPointsPerLevel_2
-	0, -- EffectRealPointsPerLevel_3
-	0, -- EffectBasePoints_1
-	0, -- EffectBasePoints_2
-	0, -- EffectBasePoints_3
-	0, -- EffectMechanic_1
-	0, -- EffectMechanic_2
-	0, -- EffectMechanic_3
-	1, -- ImplicitTargetA_1
-	0, -- ImplicitTargetA_2
-	0, -- ImplicitTargetA_3
-	0, -- ImplicitTargetB_1
-	0, -- ImplicitTargetB_2
-	0, -- ImplicitTargetB_3
-	0, -- EffectRadiusIndex_1
-	0, -- EffectRadiusIndex_2
-	0, -- EffectRadiusIndex_3
-	56, -- EffectAura_1
-	0, -- EffectAura_2
-	0, -- EffectAura_3
-	0, -- EffectAuraPeriod_1
-	0, -- EffectAuraPeriod_2
-	2000, -- EffectAuraPeriod_3
-	0, -- EffectMultipleValue_1
-	0, -- EffectMultipleValue_2
-	0, -- EffectMultipleValue_3
-	0, -- EffectChainTargets_1
-	0, -- EffectChainTargets_2
-	0, -- EffectChainTargets_3
-	0, -- EffectItemType_1
-	0, -- EffectItemType_2
-	0, -- EffectItemType_3
-	55276, -- EffectMiscValue_1
-	0, -- EffectMiscValue_2
-	0, -- EffectMiscValue_3
-	0, -- EffectMiscValueB_1
-	0, -- EffectMiscValueB_2
-	0, -- EffectMiscValueB_3
-	0, -- EffectTriggerSpell_1
-	0, -- EffectTriggerSpell_2
-	0, -- EffectTriggerSpell_3
-	0, -- EffectPointsPerCombo_1
-	0, -- EffectPointsPerCombo_2
-	0, -- EffectPointsPerCombo_3
-	0, -- EffectSpellClassMaskA_1
-	0, -- EffectSpellClassMaskA_2
-	0, -- EffectSpellClassMaskA_3
-	0, -- EffectSpellClassMaskB_1
-	0, -- EffectSpellClassMaskB_2
-	0, -- EffectSpellClassMaskB_3
-	0, -- EffectSpellClassMaskC_1
-	0, -- EffectSpellClassMaskC_2
-	0, -- EffectSpellClassMaskC_3
-	0, -- SpellVisualID_1
-	0, -- SpellVisualID_2
-	463876, -- SpellIconID
-	0, -- ActiveIconID
-	0, -- SpellPriority
-	'Two Forms', -- Name_Lang_enUS
-	'두 가지 모습', -- Name_Lang_enGB
-	'Deux formes', -- Name_Lang_koKR
-	'Zwei Gestalten', -- Name_Lang_frFR
-	'双形态', -- Name_Lang_deDE
-	'雙重形態', -- Name_Lang_enCN
-	'Dos formas', -- Name_Lang_zhCN
-	'Dos formas', -- Name_Lang_enTW
-	'Два облика', -- Name_Lang_zhTW
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
-	16712190, -- Name_Lang_Mask
-	'Racial', -- NameSubtext_Lang_enUS
-	'종족 특성', -- NameSubtext_Lang_enGB
-	'Raciale', -- NameSubtext_Lang_koKR
-	'Volksfähigkeit', -- NameSubtext_Lang_frFR
-	'种族特长', -- NameSubtext_Lang_deDE
-	'種族特長', -- NameSubtext_Lang_enCN
-	'Racial', -- NameSubtext_Lang_zhCN
-	'Racial', -- NameSubtext_Lang_enTW
-	'Расовая', -- NameSubtext_Lang_zhTW
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
-	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
-	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
-	16712190, -- NameSubtext_Lang_Mask
-	'Turn into your currently inactive form.', -- Description_Lang_enUS
-	'현재와 다른 모습으로 변신합니다.', -- Description_Lang_enGB
-	'Vous prenez la forme qui n\'était pas active.', -- Description_Lang_koKR
-	'Verwandelt Euch in Eure momentan inaktive Form.', -- Description_Lang_frFR
-	'使你变成另一个形态。', -- Description_Lang_deDE
-	'轉變成目前未啟動的那個形態。', -- Description_Lang_enCN
-	'Vuelves a tu otra forma.', -- Description_Lang_zhCN
-	'Vuelves a tu otra forma.', -- Description_Lang_enTW
-	'Принять противоположный облик.', -- Description_Lang_zhTW
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
-	16712190, -- Description_Lang_Mask
-	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB
-	'', -- AuraDescription_Lang_koKR
-	'', -- AuraDescription_Lang_frFR
-	'', -- AuraDescription_Lang_deDE
-	'', -- AuraDescription_Lang_enCN
-	'', -- AuraDescription_Lang_zhCN
-	'', -- AuraDescription_Lang_enTW
-	'', -- AuraDescription_Lang_zhTW
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
-	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
-	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
-	16712190, -- AuraDescription_Lang_Mask
-	0, -- ManaCostPct
-	0, -- StartRecoveryCategory
-	0, -- StartRecoveryTime
-	0, -- MaxTargetLevel
-	0, -- SpellClassSet
-	0, -- SpellClassMask_1
-	0, -- SpellClassMask_2
-	0, -- SpellClassMask_3
-	0, -- MaxTargets
-	0, -- DefenseType
-	0, -- PreventionType
-	0, -- StanceBarOrder
-	1, -- EffectChainAmplitude_1
-	1, -- EffectChainAmplitude_2
-	1, -- EffectChainAmplitude_3
-	0, -- MinFactionID
-	0, -- MinReputation
-	0, -- RequiredAuraVision
-	0, -- RequiredTotemCategoryID_1
-	0, -- RequiredTotemCategoryID_2
-	0, -- RequiredAreasID
-	1, -- SchoolMask
-	0, -- RuneCostID
-	0, -- SpellMissileID
-	0, -- PowerDisplayID
-	0, -- EffectBonusMultiplier_1
-	0, -- EffectBonusMultiplier_2
-	0, -- EffectBonusMultiplier_3
-	0, -- SpellDescriptionVariableID
-	0 -- SpellDifficultyID
-),
-/* Two Forms (Worgen female racial) */
+/* Two Forms (semi-permanent) */
 (
 	68995, -- ID
 	0, -- Category
 	0, -- DispelType
 	0, -- Mechanic
-	402981120, -- Attributes
-	0, -- AttributesEx
-	0, -- AttributesEx2
-	268435456, -- AttributesEx3
+	134545664, -- Attributes: 256: SPELL_ATTR0_DO_NOT_LOG, 65536: SPELL_ATTR0_NOT_SHAPESHIFTED, 262144: SPELL_ATTR0_DO_NOT_SHEATH, 134217728: SPELL_ATTR0_ALLOW_WHILE_SITTING
+	268435456, -- AttributesEx: 268435456: SPELL_ATTR1_NO_AURA_ICON
+	2, -- AttributesEx2: 2: SPELL_ATTR2_NO_SHAPESHIFT_UI, 
+	537919488, -- AttributesEx3: 1048576: SPELL_ATTR3_ALLOW_AURA_WHILE_DEAD, 536870912: SPELL_ATTR3_IGNORE_CASTER_MODIFIERS
 	0, -- AttributesEx4
 	0, -- AttributesEx5
-	0, -- AttributesEx6
-	0, -- AttributesEx7
-	0, -- ShapeshiftMask
-	0, -- unk_320_2
-	0, -- ShapeshiftExclude
-	0, -- unk_320_3
-	0, -- Targets
-	0, -- TargetCreatureType
-	0, -- RequiresSpellFocus
-	0, -- FacingCasterFlags
-	0, -- CasterAuraState
-	0, -- TargetAuraState
-	0, -- ExcludeCasterAuraState
-	0, -- ExcludeTargetAuraState
-	0, -- CasterAuraSpell
-	0, -- TargetAuraSpell
-	0, -- ExcludeCasterAuraSpell
-	0, -- ExcludeTargetAuraSpell
-	1, -- CastingTimeIndex
-	0, -- RecoveryTime
-	0, -- CategoryRecoveryTime
-	0, -- InterruptFlags
-	0, -- AuraInterruptFlags
-	0, -- ChannelInterruptFlags
-	0, -- ProcTypeMask
-	101, -- ProcChance
-	0, -- ProcCharges
-	0, -- MaxLevel
-	0, -- BaseLevel
-	0, -- SpellLevel
-	21, -- DurationIndex
-	0, -- PowerType
-	0, -- ManaCost
-	0, -- ManaCostPerLevel
-	0, -- ManaPerSecond
-	0, -- ManaPerSecondPerLevel
-	1, -- RangeIndex
-	0, -- Speed
-	0, -- ModalNextSpell
-	0, -- CumulativeAura
-	0, -- Totem_1
-	0, -- Totem_2
-	0, -- Reagent_1
-	0, -- Reagent_2
-	0, -- Reagent_3
-	0, -- Reagent_4
-	0, -- Reagent_5
-	0, -- Reagent_6
-	0, -- Reagent_7
-	0, -- Reagent_8
-	0, -- ReagentCount_1
-	0, -- ReagentCount_2
-	0, -- ReagentCount_3
-	0, -- ReagentCount_4
-	0, -- ReagentCount_5
-	0, -- ReagentCount_6
-	0, -- ReagentCount_7
-	0, -- ReagentCount_8
-	-1, -- EquippedItemClass
-	0, -- EquippedItemSubclass
-	0, -- EquippedItemInvTypes
-	6, -- Effect_1
-	0, -- Effect_2
-	0, -- Effect_3
-	0, -- EffectDieSides_1
-	0, -- EffectDieSides_2
-	0, -- EffectDieSides_3
-	0, -- EffectRealPointsPerLevel_1
-	0, -- EffectRealPointsPerLevel_2
-	0, -- EffectRealPointsPerLevel_3
-	0, -- EffectBasePoints_1
-	0, -- EffectBasePoints_2
-	0, -- EffectBasePoints_3
-	0, -- EffectMechanic_1
-	0, -- EffectMechanic_2
-	0, -- EffectMechanic_3
-	1, -- ImplicitTargetA_1
-	0, -- ImplicitTargetA_2
-	0, -- ImplicitTargetA_3
-	0, -- ImplicitTargetB_1
-	0, -- ImplicitTargetB_2
-	0, -- ImplicitTargetB_3
-	0, -- EffectRadiusIndex_1
-	0, -- EffectRadiusIndex_2
-	0, -- EffectRadiusIndex_3
-	56, -- EffectAura_1
-	0, -- EffectAura_2
-	0, -- EffectAura_3
-	0, -- EffectAuraPeriod_1
-	0, -- EffectAuraPeriod_2
-	2000, -- EffectAuraPeriod_3
-	0, -- EffectMultipleValue_1
-	0, -- EffectMultipleValue_2
-	0, -- EffectMultipleValue_3
-	0, -- EffectChainTargets_1
-	0, -- EffectChainTargets_2
-	0, -- EffectChainTargets_3
-	0, -- EffectItemType_1
-	0, -- EffectItemType_2
-	0, -- EffectItemType_3
-	55277, -- EffectMiscValue_1
-	0, -- EffectMiscValue_2
-	0, -- EffectMiscValue_3
-	0, -- EffectMiscValueB_1
-	0, -- EffectMiscValueB_2
-	0, -- EffectMiscValueB_3
-	0, -- EffectTriggerSpell_1
-	0, -- EffectTriggerSpell_2
-	0, -- EffectTriggerSpell_3
-	0, -- EffectPointsPerCombo_1
-	0, -- EffectPointsPerCombo_2
-	0, -- EffectPointsPerCombo_3
-	0, -- EffectSpellClassMaskA_1
-	0, -- EffectSpellClassMaskA_2
-	0, -- EffectSpellClassMaskA_3
-	0, -- EffectSpellClassMaskB_1
-	0, -- EffectSpellClassMaskB_2
-	0, -- EffectSpellClassMaskB_3
-	0, -- EffectSpellClassMaskC_1
-	0, -- EffectSpellClassMaskC_2
-	0, -- EffectSpellClassMaskC_3
-	0, -- SpellVisualID_1
-	0, -- SpellVisualID_2
-	463876, -- SpellIconID
-	0, -- ActiveIconID
-	0, -- SpellPriority
-	'Two Forms', -- Name_Lang_enUS
-	'두 가지 모습', -- Name_Lang_enGB
-	'Deux formes', -- Name_Lang_koKR
-	'Zwei Gestalten', -- Name_Lang_frFR
-	'双形态', -- Name_Lang_deDE
-	'雙重形態', -- Name_Lang_enCN
-	'Dos formas', -- Name_Lang_zhCN
-	'Dos formas', -- Name_Lang_enTW
-	'Два облика', -- Name_Lang_zhTW
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
-	16712190, -- Name_Lang_Mask
-	'Racial', -- NameSubtext_Lang_enUS
-	'종족 특성', -- NameSubtext_Lang_enGB
-	'Raciale', -- NameSubtext_Lang_koKR
-	'Volksfähigkeit', -- NameSubtext_Lang_frFR
-	'种族特长', -- NameSubtext_Lang_deDE
-	'種族特長', -- NameSubtext_Lang_enCN
-	'Racial', -- NameSubtext_Lang_zhCN
-	'Racial', -- NameSubtext_Lang_enTW
-	'Расовая', -- NameSubtext_Lang_zhTW
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
-	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
-	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
-	16712190, -- NameSubtext_Lang_Mask
-	'Turn into your currently inactive form.', -- Description_Lang_enUS
-	'현재와 다른 모습으로 변신합니다.', -- Description_Lang_enGB
-	'Vous prenez la forme qui n\'était pas active.', -- Description_Lang_koKR
-	'Verwandelt Euch in Eure momentan inaktive Form.', -- Description_Lang_frFR
-	'使你变成另一个形态。', -- Description_Lang_deDE
-	'轉變成目前未啟動的那個形態。', -- Description_Lang_enCN
-	'Vuelves a tu otra forma.', -- Description_Lang_zhCN
-	'Vuelves a tu otra forma.', -- Description_Lang_enTW
-	'Принять противоположный облик.', -- Description_Lang_zhTW
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
-	16712190, -- Description_Lang_Mask
-	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB
-	'', -- AuraDescription_Lang_koKR
-	'', -- AuraDescription_Lang_frFR
-	'', -- AuraDescription_Lang_deDE
-	'', -- AuraDescription_Lang_enCN
-	'', -- AuraDescription_Lang_zhCN
-	'', -- AuraDescription_Lang_enTW
-	'', -- AuraDescription_Lang_zhTW
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
-	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
-	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
-	16712190, -- AuraDescription_Lang_Mask
-	0, -- ManaCostPct
-	0, -- StartRecoveryCategory
-	0, -- StartRecoveryTime
-	0, -- MaxTargetLevel
-	0, -- SpellClassSet
-	0, -- SpellClassMask_1
-	0, -- SpellClassMask_2
-	0, -- SpellClassMask_3
-	0, -- MaxTargets
-	0, -- DefenseType
-	0, -- PreventionType
-	0, -- StanceBarOrder
-	1, -- EffectChainAmplitude_1
-	1, -- EffectChainAmplitude_2
-	1, -- EffectChainAmplitude_3
-	0, -- MinFactionID
-	0, -- MinReputation
-	0, -- RequiredAuraVision
-	0, -- RequiredTotemCategoryID_1
-	0, -- RequiredTotemCategoryID_2
-	0, -- RequiredAreasID
-	1, -- SchoolMask
-	0, -- RuneCostID
-	0, -- SpellMissileID
-	0, -- PowerDisplayID
-	0, -- EffectBonusMultiplier_1
-	0, -- EffectBonusMultiplier_2
-	0, -- EffectBonusMultiplier_3
-	0, -- SpellDescriptionVariableID
-	0 -- SpellDifficultyID
-),
-/* Two Forms (Worgen racial trigger) */
-(
-	68996, -- ID
-	0, -- Category
-	0, -- DispelType
-	0, -- Mechanic
-	269844752, -- Attributes
-	0, -- AttributesEx
-	0, -- AttributesEx2
-	536870912, -- AttributesEx3
-	0, -- AttributesEx4
-	0, -- AttributesEx5
-	131072, -- AttributesEx6
+	131072, -- AttributesEx6: 4096: SPELL_ATTR6_ALLOW_WHILE_RIDING_VEHICLE, 131072: SPELL_ATTR6_ALLOW_EQUIP_WHILE_CASTING
 	0, -- AttributesEx7
 	0, -- ShapeshiftMask
 	0, -- unk_320_2
@@ -3354,15 +2879,252 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
 	0, -- CategoryRecoveryTime
-	31, -- InterruptFlags
-	47108, -- AuraInterruptFlags
+	0, -- InterruptFlags
+	6144, -- AuraInterruptFlags
 	0, -- ChannelInterruptFlags
 	0, -- ProcTypeMask
 	101, -- ProcChance
 	0, -- ProcCharges
 	0, -- MaxLevel
 	0, -- BaseLevel
-	1, -- SpellLevel
+	0, -- SpellLevel
+	21, -- DurationIndex
+	0, -- PowerType
+	0, -- ManaCost
+	0, -- ManaCostPerLevel
+	0, -- ManaPerSecond
+	0, -- ManaPerSecondPerLevel
+	1, -- RangeIndex
+	0, -- Speed
+	0, -- ModalNextSpell
+	0, -- CumulativeAura
+	0, -- Totem_1
+	0, -- Totem_2
+	0, -- Reagent_1
+	0, -- Reagent_2
+	0, -- Reagent_3
+	0, -- Reagent_4
+	0, -- Reagent_5
+	0, -- Reagent_6
+	0, -- Reagent_7
+	0, -- Reagent_8
+	0, -- ReagentCount_1
+	0, -- ReagentCount_2
+	0, -- ReagentCount_3
+	0, -- ReagentCount_4
+	0, -- ReagentCount_5
+	0, -- ReagentCount_6
+	0, -- ReagentCount_7
+	0, -- ReagentCount_8
+	-1, -- EquippedItemClass
+	0, -- EquippedItemSubclass
+	0, -- EquippedItemInvTypes
+	6, -- Effect_1
+	0, -- Effect_2
+	0, -- Effect_3
+	0, -- EffectDieSides_1
+	0, -- EffectDieSides_2
+	0, -- EffectDieSides_3
+	0, -- EffectRealPointsPerLevel_1
+	0, -- EffectRealPointsPerLevel_2
+	0, -- EffectRealPointsPerLevel_3
+	0, -- EffectBasePoints_1
+	0, -- EffectBasePoints_2
+	0, -- EffectBasePoints_3
+	0, -- EffectMechanic_1
+	0, -- EffectMechanic_2
+	0, -- EffectMechanic_3
+	1, -- ImplicitTargetA_1
+	0, -- ImplicitTargetA_2
+	0, -- ImplicitTargetA_3
+	0, -- ImplicitTargetB_1
+	0, -- ImplicitTargetB_2
+	0, -- ImplicitTargetB_3
+	0, -- EffectRadiusIndex_1
+	0, -- EffectRadiusIndex_2
+	0, -- EffectRadiusIndex_3
+	36, -- EffectAura_1
+	0, -- EffectAura_2
+	0, -- EffectAura_3
+	0, -- EffectAuraPeriod_1
+	0, -- EffectAuraPeriod_2
+	0, -- EffectAuraPeriod_3
+	0, -- EffectMultipleValue_1
+	0, -- EffectMultipleValue_2
+	0, -- EffectMultipleValue_3
+	0, -- EffectChainTargets_1
+	0, -- EffectChainTargets_2
+	0, -- EffectChainTargets_3
+	0, -- EffectItemType_1
+	0, -- EffectItemType_2
+	0, -- EffectItemType_3
+	34, -- EffectMiscValue_1
+	0, -- EffectMiscValue_2
+	0, -- EffectMiscValue_3
+	0, -- EffectMiscValueB_1
+	0, -- EffectMiscValueB_2
+	0, -- EffectMiscValueB_3
+	0, -- EffectTriggerSpell_1
+	0, -- EffectTriggerSpell_2
+	0, -- EffectTriggerSpell_3
+	0, -- EffectPointsPerCombo_1
+	0, -- EffectPointsPerCombo_2
+	0, -- EffectPointsPerCombo_3
+	0, -- EffectSpellClassMaskA_1
+	0, -- EffectSpellClassMaskA_2
+	0, -- EffectSpellClassMaskA_3
+	0, -- EffectSpellClassMaskB_1
+	0, -- EffectSpellClassMaskB_2
+	0, -- EffectSpellClassMaskB_3
+	0, -- EffectSpellClassMaskC_1
+	0, -- EffectSpellClassMaskC_2
+	0, -- EffectSpellClassMaskC_3
+	0, -- SpellVisualID_1
+	0, -- SpellVisualID_2
+	463876, -- SpellIconID
+	122, -- ActiveIconID
+	0, -- SpellPriority
+	"Two Forms", -- Name_Lang_enUS
+	"", -- Name_Lang_enGB
+	"", -- Name_Lang_koKR
+	"", -- Name_Lang_frFR
+	"", -- Name_Lang_deDE
+	"", -- Name_Lang_enCN
+	"", -- Name_Lang_zhCN
+	"", -- Name_Lang_enTW
+	"", -- Name_Lang_zhTW
+	"", -- Name_Lang_esES
+	"", -- Name_Lang_esMX
+	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_ptPT
+	"", -- Name_Lang_ptBR
+	"", -- Name_Lang_itIT
+	"", -- Name_Lang_Unk
+	16712190, -- Name_Lang_Mask
+	"Racial", -- NameSubtext_Lang_enUS
+	"", -- NameSubtext_Lang_enGB
+	"", -- NameSubtext_Lang_koKR
+	"", -- NameSubtext_Lang_frFR
+	"", -- NameSubtext_Lang_deDE
+	"", -- NameSubtext_Lang_enCN
+	"", -- NameSubtext_Lang_zhCN
+	"", -- NameSubtext_Lang_enTW
+	"", -- NameSubtext_Lang_zhTW
+	"", -- NameSubtext_Lang_esES
+	"", -- NameSubtext_Lang_esMX
+	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_ptPT
+	"", -- NameSubtext_Lang_ptBR
+	"", -- NameSubtext_Lang_itIT
+	"", -- NameSubtext_Lang_Unk
+	16712172, -- NameSubtext_Lang_Mask
+	"Turn into your currently inactive form.", -- Description_Lang_enUS
+	"", -- Description_Lang_enGB
+	"", -- Description_Lang_koKR
+	"", -- Description_Lang_frFR
+	"", -- Description_Lang_deDE
+	"", -- Description_Lang_enCN
+	"", -- Description_Lang_zhCN
+	"", -- Description_Lang_enTW
+	"", -- Description_Lang_zhTW
+	"", -- Description_Lang_esES
+	"", -- Description_Lang_esMX
+	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_ptPT
+	"", -- Description_Lang_ptBR
+	"", -- Description_Lang_itIT
+	"", -- Description_Lang_Unk
+	16712190, -- Description_Lang_Mask
+	"Human form", -- AuraDescription_Lang_enUS
+	"", -- AuraDescription_Lang_enGB
+	"", -- AuraDescription_Lang_koKR
+	"", -- AuraDescription_Lang_frFR
+	"", -- AuraDescription_Lang_deDE
+	"", -- AuraDescription_Lang_enCN
+	"", -- AuraDescription_Lang_zhCN
+	"", -- AuraDescription_Lang_enTW
+	"", -- AuraDescription_Lang_zhTW
+	"", -- AuraDescription_Lang_esES
+	"", -- AuraDescription_Lang_esMX
+	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_ptPT
+	"", -- AuraDescription_Lang_ptBR
+	"", -- AuraDescription_Lang_itIT
+	"", -- AuraDescription_Lang_Unk
+	16712190, -- AuraDescription_Lang_Mask
+	0, -- ManaCostPct
+	330, -- StartRecoveryCategory
+	0, -- StartRecoveryTime
+	0, -- MaxTargetLevel
+	8, -- SpellClassSet
+	0, -- SpellClassMask_1
+	0, -- SpellClassMask_2
+	0, -- SpellClassMask_3
+	0, -- MaxTargets
+	0, -- DefenseType
+	0, -- PreventionType
+	0, -- StanceBarOrder
+	1, -- EffectChainAmplitude_1
+	1, -- EffectChainAmplitude_2
+	1, -- EffectChainAmplitude_3
+	0, -- MinFactionID
+	0, -- MinReputation
+	0, -- RequiredAuraVision
+	0, -- RequiredTotemCategoryID_1
+	0, -- RequiredTotemCategoryID_2
+	0, -- RequiredAreasID
+	1, -- SchoolMask
+	0, -- RuneCostID
+	0, -- SpellMissileID
+	0, -- PowerDisplayID
+	0, -- EffectBonusMultiplier_1
+	0, -- EffectBonusMultiplier_2
+	0, -- EffectBonusMultiplier_3
+	0, -- SpellDescriptionVariableID
+	0 -- SpellDifficultyID
+),
+/* Two Forms (Worgen racial) */
+(
+	68996, -- ID
+	0, -- Category
+	0, -- DispelType
+	0, -- Mechanic
+	402981120, -- Attributes: 256: SPELL_ATTR0_DO_NOT_LOG, 65536: SPELL_ATTR0_NOT_SHAPESHIFTED, 262144: SPELL_ATTR0_DO_NOT_SHEATH, 134217728: SPELL_ATTR0_ALLOW_WHILE_SITTING, 268435456: SPELL_ATTR0_NOT_IN_COMBAT_ONLY_PEACEFUL
+	268435456, -- AttributesEx: 268435456: SPELL_ATTR1_NO_AURA_ICON
+	2, -- AttributesEx2: 2: SPELL_ATTR2_NO_SHAPESHIFT_UI, 
+	537919488, -- AttributesEx3: 1048576: SPELL_ATTR3_ALLOW_AURA_WHILE_DEAD, 536870912: SPELL_ATTR3_IGNORE_CASTER_MODIFIERS
+	0, -- AttributesEx4
+	0, -- AttributesEx5
+	131072, -- AttributesEx6: 4096: SPELL_ATTR6_ALLOW_WHILE_RIDING_VEHICLE, 131072: SPELL_ATTR6_ALLOW_EQUIP_WHILE_CASTING
+	0, -- AttributesEx7
+	0, -- ShapeshiftMask
+	0, -- unk_320_2
+	0, -- ShapeshiftExclude
+	0, -- unk_320_3
+	0, -- Targets
+	0, -- TargetCreatureType
+	0, -- RequiresSpellFocus
+	0, -- FacingCasterFlags
+	0, -- CasterAuraState
+	0, -- TargetAuraState
+	0, -- ExcludeCasterAuraState
+	0, -- ExcludeTargetAuraState
+	0, -- CasterAuraSpell
+	0, -- TargetAuraSpell
+	0, -- ExcludeCasterAuraSpell
+	0, -- ExcludeTargetAuraSpell
+	1, -- CastingTimeIndex
+	1500, -- RecoveryTime
+	0, -- CategoryRecoveryTime
+	0, -- InterruptFlags
+	6144, -- AuraInterruptFlags
+	0, -- ChannelInterruptFlags
+	0, -- ProcTypeMask
+	101, -- ProcChance
+	0, -- ProcCharges
+	0, -- MaxLevel
+	0, -- BaseLevel
+	0, -- SpellLevel
 	21, -- DurationIndex
 	0, -- PowerType
 	0, -- ManaCost
