@@ -574,68 +574,83 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0 -- CharacterPoints_2
 ), (
 	31468, -- ID
-	762, -- SkillLine: Riding
+	793, -- SkillLine: Worgen racials (gender-differentiated)
 	87840, -- Spell: Running Wild (male, 60%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
-	75, -- MinSkillLineRank
-	110010, -- Spell: SupercededBySpell
+	75, -- MinSkillLineRank (doesn't seem to do anything)
+	110010, -- Spell: SupercededBySpell (doesn't seem to do anything)
 	1, -- AcquireMethod
-	110010, -- TrivialSkillLineRankHigh
+	110010, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
 	0, -- Spell: TrivialSkillLineRankLow
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31469, -- ID
-	762, -- SkillLine: Riding
+	793, -- SkillLine: Worgen racials (gender-differentiated)
 	87841, -- Spell: Running Wild (female, 60%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	75, -- MinSkillLineRank
-	110011, -- Spell: SupercededBySpell
+	110011, -- Spell: SupercededBySpell (doesn't seem to do anything)
 	1, -- AcquireMethod
-	110011, -- TrivialSkillLineRankHigh
+	110011, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
 	0, -- Spell: TrivialSkillLineRankLow
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31470, -- ID
-	762, -- SkillLine: Riding
+	793, -- SkillLine: Worgen racials (gender-differentiated)
 	110010, -- Spell: Running Wild (male, 100%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
-	150, -- MinSkillLineRank
+	150, -- MinSkillLineRank (doesn't seem to do anything)
 	0, -- Spell: SupercededBySpell
 	1, -- AcquireMethod
-	110010, -- TrivialSkillLineRankHigh
-	87840, -- Spell: TrivialSkillLineRankLow
+	110010, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
+	87840, -- Spell: TrivialSkillLineRankLow (doesn't seem to do anything)
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31471, -- ID
-	762, -- SkillLine: Riding
+	793, -- SkillLine: Worgen racials (gender-differentiated)
 	110011, -- Spell: Running Wild (female, 100%)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
-	150, -- MinSkillLineRank
+	150, -- MinSkillLineRank (doesn't seem to do anything)
 	0, -- Spell: SupercededBySpell
 	1, -- AcquireMethod
-	110011, -- TrivialSkillLineRankHigh
-	87841, -- Spell: TrivialSkillLineRankLow
+	110011, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
+	87841, -- Spell: TrivialSkillLineRankLow (doesn't seem to do anything)
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
 	31472, -- ID
-	789, -- SkillLine: Worgen racials
-	68996, -- Spell: Two Forms
+	793, -- SkillLine: Worgen racials (gender-differentiated)
+	68996, -- Spell: Two Forms (male)
+	2048, -- RaceMask: Worgen
+	0, -- ClassMask
+	0, -- ExcludeRace
+	0, -- ExcludeClass
+	1, -- MinSkillLineRank
+	0, -- Spell: SupercededBySpell
+	2, -- AcquireMethod
+	0, -- TrivialSkillLineRankHigh
+	0, -- Spell: TrivialSkillLineRankLow
+	0, -- Spell: CharacterPoints_1
+	0 -- CharacterPoints_2
+), (
+	31472, -- ID
+	793, -- SkillLine: Worgen racials (gender-differentiated)
+	68995, -- Spell: Two Forms (female)
 	2048, -- RaceMask: Worgen
 	0, -- ClassMask
 	0, -- ExcludeRace
