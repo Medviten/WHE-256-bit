@@ -29,10 +29,6 @@ local function GetGenderedSpells(player)
     }
 end
 
--- We learn the new tier immediately after removing the old one (by a
--- short tick). This avoids RemoveSpell's resync packet landing in the same
--- transaction as the LearnSpell call above it, which is what appeared to
--- cause the new spell not to show up live the first time we tried removal.
 local function ApplyRunningWildTier(player, tier)
     if player:GetRace() ~= RACE_WORGEN then
         return
@@ -40,18 +36,18 @@ local function ApplyRunningWildTier(player, tier)
 
     local spells = GetGenderedSpells(player)
     local spellId = spells[tier]
-    
+
     if tier == "journeyman" and player:HasSpell(spells.apprentice) then
-        player:RegisterEvent(function(eventId, delay, repeats, plr)
-            if plr and plr:IsInWorld() and plr:HasSpell(spells.apprentice) then
-                plr:RemoveSpell(spells.apprentice)
-            end
-        end
+        player:RemoveSpell(spells.apprentice)
     end
-        
+
     if spellId and not player:HasSpell(spellId) then
-        player:LearnSpell(spellId)
-    end, 250, 1) -- 250ms later, fire once
+        player:RegisterEvent(function(eventId, delay, repeats, plr)
+            if plr and plr:IsInWorld() and not plr:HasSpell(spellId) then
+                plr:LearnSpell(spellId)
+            end
+        end, 250, 1)
+    end
 end
 
 local function OnLearnSpell(event, player, spellId)
