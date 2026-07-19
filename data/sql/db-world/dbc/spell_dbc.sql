@@ -3984,7 +3984,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	"", -- Description_Lang_itIT
 	"", -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
-	"Ground speed increased by $110010s1% or $110011s1%.", -- AuraDescription_Lang_enUS
+	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
 	"", -- AuraDescription_Lang_enGB
 	"", -- AuraDescription_Lang_koKR
 	"", -- AuraDescription_Lang_frFR
@@ -4035,7 +4035,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 
 /* Running Wild (male, 100%) */
 (
-	87840, -- ID
+	110010, -- ID
 	0, -- Category
 	0, -- DispelType
 	0, -- Mechanic
@@ -4222,7 +4222,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	"", -- Description_Lang_itIT
 	"", -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
-	"Ground speed increased by $110010s1% or $110011s1%.", -- AuraDescription_Lang_enUS
+	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
 	"", -- AuraDescription_Lang_enGB
 	"", -- AuraDescription_Lang_koKR
 	"", -- AuraDescription_Lang_frFR
@@ -4360,7 +4360,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectMechanic_2
 	0, -- EffectMechanic_3
 	1, -- ImplicitTargetA_1
-	0, -- ImplicitTargetA_2
+	1, -- ImplicitTargetA_2
 	0, -- ImplicitTargetA_3
 	0, -- ImplicitTargetB_1
 	0, -- ImplicitTargetB_2
@@ -4460,7 +4460,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	"", -- Description_Lang_itIT
 	"", -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
-	"Ground speed increased by $110010s1% or $110011s1%.", -- AuraDescription_Lang_enUS
+	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
 	"", -- AuraDescription_Lang_enGB
 	"", -- AuraDescription_Lang_koKR
 	"", -- AuraDescription_Lang_frFR
@@ -4598,7 +4598,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectMechanic_2
 	0, -- EffectMechanic_3
 	1, -- ImplicitTargetA_1
-	0, -- ImplicitTargetA_2
+	1, -- ImplicitTargetA_2
 	0, -- ImplicitTargetA_3
 	0, -- ImplicitTargetB_1
 	0, -- ImplicitTargetB_2
@@ -4698,7 +4698,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	"", -- Description_Lang_itIT
 	"", -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
-	"Ground speed increased by $110010s1% or $110011s1%.", -- AuraDescription_Lang_enUS
+	"Ground speed increased by $s1%.", -- AuraDescription_Lang_enUS
 	"", -- AuraDescription_Lang_enGB
 	"", -- AuraDescription_Lang_koKR
 	"", -- AuraDescription_Lang_frFR
