@@ -3884,7 +3884,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectMechanic_2
 	0, -- EffectMechanic_3
 	1, -- ImplicitTargetA_1
-	0, -- ImplicitTargetA_2
+	1, -- ImplicitTargetA_2
 	0, -- ImplicitTargetA_3
 	0, -- ImplicitTargetB_1
 	0, -- ImplicitTargetB_2
@@ -4122,7 +4122,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- EffectMechanic_2
 	0, -- EffectMechanic_3
 	1, -- ImplicitTargetA_1
-	0, -- ImplicitTargetA_2
+	1, -- ImplicitTargetA_2
 	0, -- ImplicitTargetA_3
 	0, -- ImplicitTargetB_1
 	0, -- ImplicitTargetB_2
