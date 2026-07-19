@@ -5,11 +5,11 @@ REPLACE INTO `spell_ranks` (
     `Active` -- Whether the spell is shown in the spell book.
 ) VALUES
 (
-    33388, -- Entry: Apprentice Riding
-    87840, -- Spell ID: Running Wild (rank 1)
+    87840, -- Entry: Running Wild (male, 60%)
+    33388, -- Spell ID: Apprentice Riding
     1 -- Active: Yes
 ), (
-    33391, -- Entry: Journeyman Riding
-    87841, -- Spell ID: Running Wild (rank 2) 
+    87841, -- Entry: Running Wild (female, 60%)
+    33388, -- Spell ID: Apprentice Riding
     1 -- Active: Yes
 );

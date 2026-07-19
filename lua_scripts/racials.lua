@@ -15,10 +15,10 @@ local RACE_WORGEN = 12
 local RIDE_APPRENTICE_SPELL = 33388
 local RIDE_JOURNEYMAN_SPELL = 33391
 
-local WORGEN_APPRENTICE_MALE   = 110010
-local WORGEN_APPRENTICE_FEMALE = 110012
-local WORGEN_JOURNEYMAN_MALE   = 110011
-local WORGEN_JOURNEYMAN_FEMALE = 110013
+local WORGEN_APPRENTICE_MALE   = 87840
+local WORGEN_APPRENTICE_FEMALE = 87841
+local WORGEN_JOURNEYMAN_MALE   = 110010
+local WORGEN_JOURNEYMAN_FEMALE = 110011
 
 -- GENDER_MALE = 0, GENDER_FEMALE = 1 (standard Eluna/DBC convention)
 local function GetGenderedSpells(player)
@@ -29,8 +29,8 @@ local function GetGenderedSpells(player)
     }
 end
 
--- We do learn the new tier immediately, but defer removing the old one by a
--- short tick. This avoids RemoveSpell's resync packet landing in the same
+-- We learn the new tier immediately after removing the old one (by a
+-- short tick). This avoids RemoveSpell's resync packet landing in the same
 -- transaction as the LearnSpell call above it, which is what appeared to
 -- cause the new spell not to show up live the first time we tried removal.
 local function ApplyRunningWildTier(player, tier)
@@ -40,18 +40,18 @@ local function ApplyRunningWildTier(player, tier)
 
     local spells = GetGenderedSpells(player)
     local spellId = spells[tier]
-
-    if spellId and not player:HasSpell(spellId) then
-        player:LearnSpell(spellId)
-    end
-
+    
     if tier == "journeyman" and player:HasSpell(spells.apprentice) then
         player:RegisterEvent(function(eventId, delay, repeats, plr)
             if plr and plr:IsInWorld() and plr:HasSpell(spells.apprentice) then
                 plr:RemoveSpell(spells.apprentice)
             end
-        end, 250, 1) -- 250ms later, fire once
+        end
     end
+        
+    if spellId and not player:HasSpell(spellId) then
+        player:LearnSpell(spellId)
+    end, 250, 1) -- 250ms later, fire once
 end
 
 local function OnLearnSpell(event, player, spellId)
