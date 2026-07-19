@@ -3872,7 +3872,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	6, -- Effect_2
 	0, -- Effect_3
 	1, -- EffectDieSides_1
-	1, -- EffectDieSides_2
+	0, -- EffectDieSides_2
 	0, -- EffectDieSides_3
 	0, -- EffectRealPointsPerLevel_1
 	0, -- EffectRealPointsPerLevel_2
