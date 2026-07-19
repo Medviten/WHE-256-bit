@@ -648,7 +648,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- Spell: CharacterPoints_1
 	0 -- CharacterPoints_2
 ), (
-	31472, -- ID
+	31473, -- ID
 	793, -- SkillLine: Worgen racials (gender-differentiated)
 	68995, -- Spell: Two Forms (female)
 	2048, -- RaceMask: Worgen
