@@ -80,23 +80,6 @@ end
 RegisterSpellEvent(RIDE_APPRENTICE_SPELL, 2, OnCastRidingSpell("apprentice")) -- SPELL_EVENT_ON_CAST
 RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell("journeyman")) -- SPELL_EVENT_ON_CAST
 
-local function GrantWorgenRiding(player)
-    if player:GetRace() ~= RACE_WORGEN then
-        return
-    end
-
-    if player:HasSpell(APPRENTICE_RIDING) or player:HasSpell(JOURNEYMAN_RIDING) then
-        return -- already has riding from some path, don't touch it
-    end
-
-    if player:GetClass() == CLASS_DEATH_KNIGHT then
-        -- DKs start at 55, already past the level-20 threshold everyone else uses -
-        -- give them Journeyman directly, matching how they get it at creation on retail
-        player:LearnSpell(JOURNEYMAN_RIDING)
-    elseif player:GetLevel() >= 20 then
-        player:LearnSpell(APPRENTICE_RIDING)
-    end
-end
 
 -- Safety net: re-sync on login in case a character already knows a riding
 -- tier (e.g. granted via SQL/.learn/character import) without ever passing
