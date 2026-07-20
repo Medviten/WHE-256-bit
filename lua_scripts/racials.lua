@@ -80,6 +80,24 @@ end
 RegisterSpellEvent(RIDE_APPRENTICE_SPELL, 2, OnCastRidingSpell("apprentice")) -- SPELL_EVENT_ON_CAST
 RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell("journeyman")) -- SPELL_EVENT_ON_CAST
 
+-- Teach Worgen apprentice riding at level 20.
+class WorgenRidingGrant : public PlayerScript
+{
+public:
+    WorgenRidingGrant() : PlayerScript("WorgenRidingGrant") { }
+
+    void OnLevelChanged(Player* player, uint8 oldLevel) override
+    {
+        if (player->getRace() != RACE_WORGEN)
+            return;
+        if (player->getClass() == CLASS_DEATH_KNIGHT)
+            return; // already granted Journeyman at creation, don't touch
+
+        if (player->GetLevel() >= 20 && !player->HasSpell(APPRENTICE_RIDING) && !player->HasSpell(JOURNEYMAN_RIDING))
+            player->learnSpell(APPRENTICE_RIDING);
+    }
+};
+
 -- Safety net: re-sync on login in case a character already knows a riding
 -- tier (e.g. granted via SQL/.learn/character import) without ever passing
 -- through OnLearnSpell above.
