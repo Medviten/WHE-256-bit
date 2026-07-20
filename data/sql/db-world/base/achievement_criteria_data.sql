@@ -1,6 +1,5 @@
 /* Update achievement criteria involving interactions with all races to include Worgen, Goblins, and High Elves */
-DELETE FROM `achievement_criteria_data` WHERE `criteria_id` IN (13473, 13474, 13475, 13476, 13477, 13478, 13484, 13485, 19216);
-INSERT INTO `achievement_criteria_data` (
+REPLACE INTO `achievement_criteria_data` (
     `criteria_id`, -- ID from Achievement_Criteria.dbc
     `type`, -- Determines how value1 and value2 are used (0–23)
     `value1`, -- Depends on type
