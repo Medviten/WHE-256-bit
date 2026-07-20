@@ -81,19 +81,19 @@ INSERT INTO `achievement_criteria_data` (
 	'' -- ScriptName
 ), (
 	13477, -- criteria_id (Achievement 1429 (Realm First! Level 80 Goblin))
-	18, -- type: TYPE_INSTANCE_SCRIPT
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
 	0, -- value1: Make instance script call for check current criteria requirements fit.
 	9, -- value2: The value here is a valid race ID. See ChrRaces.dbc
 	'' -- ScriptName
 ), (
 	13478, -- criteria_id (Achievement 1430 (Realm First! Level 80 Worgen))
-	18, -- type: TYPE_INSTANCE_SCRIPT
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
 	0, -- value1
 	12, -- value2: The value here is a valid race ID. See ChrRaces.dbc
 	'' -- ScriptName
 ), (
 	19216, -- criteria_id (Achievement 1431 (Realm First! Level 80 High Elf))
-	18, -- type: TYPE_INSTANCE_SCRIPT
+	2, -- type: TYPE_T_PLAYER_CLASS_RACE
 	0, -- value1
 	13, -- value2: The value here is a valid race ID. See ChrRaces.dbc
 	'' -- ScriptName
