@@ -31,6 +31,33 @@ local WORGEN_APPRENTICE_FEMALE = 87841
 local WORGEN_JOURNEYMAN_MALE   = 110010
 local WORGEN_JOURNEYMAN_FEMALE = 110011
 
+local DARKFLIGHT_SPELL_ID = 68992
+
+-- Replace these with your actual spell IDs
+local TWO_FORMS_HUMAN_MALE      = 68996  -- placeholder
+local TWO_FORMS_HUMAN_FEMALE    = 68995  -- placeholder
+local PRE_WORGEN_HUMAN_MALE     = 68994  -- placeholder
+local PRE_WORGEN_HUMAN_FEMALE   = 110020  -- placeholder
+
+local WORGEN_HUMAN_AURAS = {
+    TWO_FORMS_HUMAN_MALE,
+    TWO_FORMS_HUMAN_FEMALE,
+    PRE_WORGEN_HUMAN_MALE,
+    PRE_WORGEN_HUMAN_FEMALE
+}
+
+local function OnSpellCast(event, player, spell, skipCheck)
+    if spell:GetEntry() == DARKFLIGHT_SPELL_ID then
+        for _, auraId in ipairs(WORGEN_HUMAN_AURAS) do
+            if player:HasAura(auraId) then
+                player:RemoveAura(auraId)
+            end
+        end
+    end
+end
+
+RegisterPlayerEvent(42, OnSpellCast) -- PLAYER_EVENT_ON_SPELL_CAST
+
 -- GENDER_MALE = 0, GENDER_FEMALE = 1 (standard Eluna/DBC convention)
 local function GetGenderedSpells(player)
     local isMale = (player:GetGender() == 0)
