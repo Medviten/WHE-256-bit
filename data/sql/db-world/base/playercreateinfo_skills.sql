@@ -25,7 +25,7 @@ REPLACE INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`
 (0,32,129,4,'Death Knight - First Aid'),
 (0,32,229,0,'Polearms'),
 (0,32,293,0,'Plate'),
-(0,32,762,0,'Death Knight - Riding'),
+(0,32,762,1,'Death Knight - Riding'), -- testing with 1
 (0,32,770,0,'Death Knight - Blood'),
 (0,32,771,0,'Death Knight - Frost'),
 (0,32,772,0,'Death Knight - Unholy'),
