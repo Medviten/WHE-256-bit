@@ -56,7 +56,7 @@ local function OnSpellCast(event, player, spell, skipCheck)
     end
 end
 
-RegisterPlayerEvent(42, OnSpellCast) -- PLAYER_EVENT_ON_SPELL_CAST
+RegisterPlayerEvent(5, OnSpellCast) -- PLAYER_EVENT_ON_SPELL_CAST
 
 -- GENDER_MALE = 0, GENDER_FEMALE = 1 (standard Eluna/DBC convention)
 local function GetGenderedSpells(player)
