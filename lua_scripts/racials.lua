@@ -35,13 +35,19 @@ local function ApplyRunningWildTier(player, tier)
         return
     end
 
+    -- Death Knights start with 150 riding skill innately and should go
+    -- straight to Journeyman-tier Running Wild; they never need (and never
+    -- naturally receive) the Apprentice-tier custom spell, so skip only
+    -- that tier for them instead of bailing out of every tier.
+    if tier == "apprentice" and player:GetClass() == CLASS_DEATH_KNIGHT then
+        return
+    end
+
     local spells = GetGenderedSpells(player)
     local spellId = spells[tier]
 
     if tier == "journeyman" and player:HasSpell(spells.apprentice) then
         player:RemoveSpell(spells.apprentice)
-    elseif player:GetClass() == CLASS_DEATH_KNIGHT then
-        return -- Skip this tier for Death Knights
     end
 
     if spellId and not player:HasSpell(spellId) then
@@ -87,9 +93,25 @@ RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell("journeyman")) --
 -- Safety net: re-sync on login in case a character already knows a riding
 -- tier (e.g. granted via SQL/.learn/character import) without ever passing
 -- through OnLearnSpell above.
+--
+-- Also handles the Death Knight edge case: DKs get 150 riding skill for
+-- free at creation, but only Apprentice Riding (33388) is ever cast via
+-- playercreateinfo_cast_spell — Journeyman Riding (33391) is never cast, so
+-- it never reaches our spell-cast hook, and these characters get stuck on
+-- the 60%-speed custom Apprentice Running Wild spell despite already having
+-- full 150 skill, with Journeyman Riding then wrongly showing as purchasable
+-- at trainers. We cast it here — after full player load, rather than via
+-- playercreateinfo_cast_spell at creation time, which is what was unlearning
+-- Apprentice for you — and then explicitly re-sync the tier immediately
+-- after, rather than relying solely on the cast hook firing for a triggered
+-- cast.
 local function OnLogin(event, player)
     if player:GetRace() ~= RACE_WORGEN then
         return
+    end
+
+    if player:GetClass() == CLASS_DEATH_KNIGHT and not player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
+        player:CastSpell(player, RIDE_JOURNEYMAN_SPELL, true)
     end
 
     if player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
