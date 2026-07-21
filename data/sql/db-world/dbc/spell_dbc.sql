@@ -2870,11 +2870,11 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	68992, -- ExcludeCasterAuraState
+	0, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	0, -- ExcludeCasterAuraSpell
+	68992 -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -3107,11 +3107,11 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	68992, -- ExcludeCasterAuraState
+	0, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	0, -- ExcludeCasterAuraSpell
+	68992 -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -3344,11 +3344,11 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	68992, -- ExcludeCasterAuraState
+	0, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	0, -- ExcludeCasterAuraSpell
+	68992 -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -3581,11 +3581,11 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	68992, -- ExcludeCasterAuraState
+	0, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	0, -- ExcludeCasterAuraSpell
+	68992 -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
