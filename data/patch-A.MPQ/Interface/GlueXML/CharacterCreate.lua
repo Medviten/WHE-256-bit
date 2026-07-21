@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 13;
+MAX_RACES = 14;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -45,18 +45,18 @@ RACE_ICON_TCOORDS = {
 
 	["BLOODELF_MALE"]	= {0.5, 0.625, 0.25, 0.5},
 	["BLOODELF_FEMALE"]	= {0.5, 0.625, 0.75, 1.0}, 
-
 	["DRAENEI_MALE"]	= {0.5, 0.625, 0, 0.25},
 	["DRAENEI_FEMALE"]	= {0.5, 0.625, 0.5, 0.75},
 
    	["GOBLIN_MALE"]     	= {0.625, 0.750, 0.25, 0.5},
    	["GOBLIN_FEMALE"]   	= {0.625, 0.750, 0.75, 1.0},
-
    	["WORGEN_MALE"]     	= {0.625, 0.750, 0, 0.25},
    	["WORGEN_FEMALE"]   	= {0.625, 0.750, 0.5, 0.75},
 
     ["HIGHELF_MALE"]        = {0.750, 0.875, 0, 0.25},
     ["HIGHELF_FEMALE"]    = {0.750, 0.875, 0.5, 0.75},
+	["MAGHAR_MALE"]        = {0.750, 0.875, 0.25, 0.5},
+    ["MAGHAR_FEMALE"]    = {0.750, 0.875, 0.75, 1.0},
 };
 CLASS_ICON_TCOORDS = {
 	["WARRIOR"]	= {0, 0.25, 0, 0.25},

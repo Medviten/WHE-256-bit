@@ -45,3 +45,5 @@ local.properties
 .loadpath
 .project
 .cproject
+data/patch-A.MPQ/Interface/GLUES/CHARACTERCREATE/UI-CharacterCreate-Races.blp.bk
+data/patch-A.MPQ/Interface/GLUES/CHARACTERCREATE/UI-CharacterCreate-RacesRound.blp.bk
