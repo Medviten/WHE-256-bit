@@ -1,13 +1,23 @@
 --[[
     Worgen "Running Wild" speed-spell teacher
     ------------------------------------------
-    Fires whenever a player learns a spell. If the spell learned is one of the
-    two native riding-skill spells, and the player is a Worgen, teach the
-    correct gendered custom speed spell and drop the old one if upgrading.
+    Fires whenever a player casts/learns a native riding spell, or logs in.
+    Teaches the correctly-gendered custom speed spell for their tier, and
+    removes the wrong tier if they have it.
 
     Native riding spells (static WotLK content, do not change per-core):
         33388 = Apprentice Riding   (75 skill,  60% speed)
         33391 = Journeyman Riding   (150 skill, 100% speed)
+
+    Death Knights start with 150 riding skill at creation, but the engine
+    only ever casts 33388 on them (never 33391). We do NOT try to fix that
+    on the native-spell side anymore -- any LearnSpell/CastSpell of 33391
+    triggers the engine's own rank-supersede logic and strips 33388 from
+    the spellbook, which then falsely shows Apprentice Riding as
+    purchasable at trainers. Instead we leave native riding spells alone
+    entirely and just directly grant DKs the Journeyman-tier CUSTOM speed
+    spell, since they already have full 150 skill regardless of what the
+    trainer UI shows.
 ]]
 
 local RACE_WORGEN = 12
@@ -30,95 +40,88 @@ local function GetGenderedSpells(player)
     }
 end
 
-local function ApplyRunningWildTier(player, tier)
+-- What custom RW tier SHOULD this player have right now?
+-- DKs always target journeyman directly, bypassing native spell state.
+-- Everyone else follows whichever native riding spell they've trained.
+local function GetTargetTier(player)
+    if player:GetClass() == CLASS_DEATH_KNIGHT then
+        return "journeyman"
+    end
+    if player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
+        return "journeyman"
+    elseif player:HasSpell(RIDE_APPRENTICE_SPELL) then
+        return "apprentice"
+    end
+    return nil -- hasn't trained any riding yet, nothing to do
+end
+
+-- Bring the player's custom Running Wild spell in line with their target
+-- tier. Only calls RemoveSpell/LearnSpell if something is actually wrong;
+-- if they already have exactly the right spell and nothing else, this is
+-- a complete no-op. That single up-front check is what stops any
+-- remove/re-add flicker on repeat logins.
+local function SyncRunningWild(player)
     if player:GetRace() ~= RACE_WORGEN then
         return
     end
 
-    -- Death Knights start with 150 riding skill innately and should go
-    -- straight to Journeyman-tier Running Wild; they never need (and never
-    -- naturally receive) the Apprentice-tier custom spell, so skip only
-    -- that tier for them instead of bailing out of every tier.
-    if tier == "apprentice" and player:GetClass() == CLASS_DEATH_KNIGHT then
+    local targetTier = GetTargetTier(player)
+    if not targetTier then
         return
     end
 
     local spells = GetGenderedSpells(player)
-    local spellId = spells[tier]
+    local otherTier = (targetTier == "journeyman") and "apprentice" or "journeyman"
+    local wantSpell  = spells[targetTier]
+    local otherSpell = spells[otherTier]
 
-    if tier == "journeyman" and player:HasSpell(spells.apprentice) then
-        player:RemoveSpell(spells.apprentice)
+    local hasWant  = player:HasSpell(wantSpell)
+    local hasOther = player:HasSpell(otherSpell)
+
+    if hasWant and not hasOther then
+        return -- already exactly correct, do nothing
     end
 
-    if spellId and not player:HasSpell(spellId) then
+    if hasOther then
+        player:RemoveSpell(otherSpell)
+    end
+
+    if not hasWant then
         player:RegisterEvent(function(eventId, delay, repeats, plr)
-            if plr and plr:IsInWorld() and not plr:HasSpell(spellId) then
-                plr:LearnSpell(spellId)
+            if plr and plr:IsInWorld() and not plr:HasSpell(wantSpell) then
+                plr:LearnSpell(wantSpell)
             end
         end, 250, 1)
     end
 end
 
 local function OnLearnSpell(event, player, spellId)
-    if spellId == RIDE_APPRENTICE_SPELL then
-        ApplyRunningWildTier(player, "apprentice")
-    elseif spellId == RIDE_JOURNEYMAN_SPELL then
-        ApplyRunningWildTier(player, "journeyman")
+    if spellId == RIDE_APPRENTICE_SPELL or spellId == RIDE_JOURNEYMAN_SPELL then
+        SyncRunningWild(player)
     end
 end
 
--- Primary trigger: hook the actual spell CAST rather than the generic
--- "learn spell" player event. PLAYER_EVENT_ON_LEARN_SPELL turned out not to
--- fire reliably for Journeyman Riding — most likely because that spell's
--- skill-line auto-grant path doesn't route through the same internal call
--- as a normal LearnSpell(). Hooking SPELL_EVENT_ON_CAST on the two riding
--- spell IDs directly sidesteps that: it fires whenever the player casts
--- (i.e. trains) that spell, full stop, regardless of the internal path.
-local function OnCastRidingSpell(tier)
-    return function(event, caster, spell, skipCheck)
-        local player = caster
-        if player.ToPlayer then
-            player = caster:ToPlayer()
-        end
-        if player then
-            ApplyRunningWildTier(player, tier)
-        end
+-- Hook the actual spell CAST (training) rather than relying solely on
+-- PLAYER_EVENT_ON_LEARN_SPELL, which doesn't fire reliably for Journeyman
+-- Riding's auto-grant path.
+local function OnCastRidingSpell(event, caster, spell, skipCheck)
+    local player = caster
+    if player.ToPlayer then
+        player = caster:ToPlayer()
+    end
+    if player then
+        SyncRunningWild(player)
     end
 end
 
-RegisterSpellEvent(RIDE_APPRENTICE_SPELL, 2, OnCastRidingSpell("apprentice")) -- SPELL_EVENT_ON_CAST
-RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell("journeyman")) -- SPELL_EVENT_ON_CAST
+RegisterSpellEvent(RIDE_APPRENTICE_SPELL, 2, OnCastRidingSpell) -- SPELL_EVENT_ON_CAST
+RegisterSpellEvent(RIDE_JOURNEYMAN_SPELL, 2, OnCastRidingSpell) -- SPELL_EVENT_ON_CAST
 
-
--- Safety net: re-sync on login in case a character already knows a riding
--- tier (e.g. granted via SQL/.learn/character import) without ever passing
--- through OnLearnSpell above.
---
--- Also handles the Death Knight edge case: DKs get 150 riding skill for
--- free at creation, but only Apprentice Riding (33388) is ever cast via
--- playercreateinfo_cast_spell — Journeyman Riding (33391) is never cast, so
--- it never reaches our spell-cast hook, and these characters get stuck on
--- the 60%-speed custom Apprentice Running Wild spell despite already having
--- full 150 skill, with Journeyman Riding then wrongly showing as purchasable
--- at trainers. We cast it here — after full player load, rather than via
--- playercreateinfo_cast_spell at creation time, which is what was unlearning
--- Apprentice for you — and then explicitly re-sync the tier immediately
--- after, rather than relying solely on the cast hook firing for a triggered
--- cast.
+-- Safety net + DK handling: re-sync on every login. Thanks to the
+-- early-return guard in SyncRunningWild, this is a true no-op for anyone
+-- who's already correct, so it's safe to run unconditionally every time.
 local function OnLogin(event, player)
-    if player:GetRace() ~= RACE_WORGEN then
-        return
-    end
-
-    if player:GetClass() == CLASS_DEATH_KNIGHT and not player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
-        player:CastSpell(player, RIDE_JOURNEYMAN_SPELL, true)
-    end
-
-    if player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
-        ApplyRunningWildTier(player, "journeyman")
-    elseif player:HasSpell(RIDE_APPRENTICE_SPELL) then
-        ApplyRunningWildTier(player, "apprentice")
-    end
+    SyncRunningWild(player)
 end
 
 RegisterPlayerEvent(44, OnLearnSpell) -- PLAYER_EVENT_ON_LEARN_SPELL
