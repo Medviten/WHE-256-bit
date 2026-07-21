@@ -31,6 +31,7 @@ INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `Class
 (899, 165, 8191, 1535, 160, 0, 41, 0),
 (971, 789, 2048, 1469, 1170, 0, 0, 0),
 (972, 790, 256, 509, 1170, 0, 0, 0);
+(973, 793, 2048, 0, 0, 20, 0, 0);
 
 -- Fix skill race/class validation errors for Goblin and Worgen characters
 -- This resolves worldserver.exe console errors about invalid skills for race/class combinations
