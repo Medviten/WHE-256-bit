@@ -32,8 +32,7 @@ This is a module for [AzerothCore](http://www.azerothcore.org) that adds Worgen,
 #### NYI Features
 - Mount vendors
 - Worgen druid forms (currently uses night elf forms)
-- Two Forms (currently requires a lua script to work)
-- Running Wild (currently requires a lua script to work)
+- Two Forms and Running Wild (spells for each gender [and speed combination] work, but learning the right ones currently requires lua support)
 - Vanilla goblin models
 
 ### Important Notes
