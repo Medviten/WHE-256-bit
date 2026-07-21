@@ -39,6 +39,8 @@ local function ApplyRunningWildTier(player, tier)
 
     if tier == "journeyman" and player:HasSpell(spells.apprentice) then
         player:RemoveSpell(spells.apprentice)
+    elseif player:GetClass() == CLASS_DEATH_KNIGHT then
+        return -- Skip this tier for Death Knights
     end
 
     if spellId and not player:HasSpell(spellId) then
