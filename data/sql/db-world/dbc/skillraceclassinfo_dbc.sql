@@ -1,4 +1,4 @@
-INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
+REPLACE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
 (21, 293, 8191, 3, 128, 40, 0, 0), -- redo this
 (27, 356, 8191, 1535, 128, 0, 23, 0),
 (28, 182, 8191, 1535, 160, 0, 2, 0),
