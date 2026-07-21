@@ -121,5 +121,39 @@ local function OnLogin(event, player)
     end
 end
 
+local function OnLogin(event, player)
+    if player:GetRace() ~= RACE_WORGEN then
+        return
+    end
+
+    if player:GetClass() == CLASS_DEATH_KNIGHT and not player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
+        player:CastSpell(player, RIDE_JOURNEYMAN_SPELL, true)
+
+        -- Casting Journeyman Riding triggers the engine's normal
+        -- "supersede the lower rank" behavior, which strips 33388 from the
+        -- spellbook exactly like it would for a leveling character who just
+        -- trained Journeyman naturally. That's correct engine behavior, but
+        -- it leaves DKs with no record of ever knowing Apprentice, so the
+        -- riding trainer wrongly still offers to sell it to them.
+        --
+        -- Fix: re-add 33388 directly into the spellbook via LearnSpell
+        -- (not CastSpell) once the Journeyman cast's own effects have
+        -- finished resolving. LearnSpell just writes the character_spell
+        -- row without running the spell's effect script, so it won't
+        -- retrigger the removal logic that's tied to *casting* 33391.
+        player:RegisterEvent(function(eventId, delay, repeats, plr)
+            if plr and plr:IsInWorld() and not plr:HasSpell(RIDE_APPRENTICE_SPELL) then
+                plr:LearnSpell(RIDE_APPRENTICE_SPELL)
+            end
+        end, 250, 1)
+    end
+
+    if player:HasSpell(RIDE_JOURNEYMAN_SPELL) then
+        ApplyRunningWildTier(player, "journeyman")
+    elseif player:HasSpell(RIDE_APPRENTICE_SPELL) then
+        ApplyRunningWildTier(player, "apprentice")
+    end
+end
+
 RegisterPlayerEvent(44, OnLearnSpell) -- PLAYER_EVENT_ON_LEARN_SPELL
 RegisterPlayerEvent(3, OnLogin)       -- PLAYER_EVENT_ON_LOGIN
