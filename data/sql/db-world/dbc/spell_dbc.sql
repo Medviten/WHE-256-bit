@@ -2870,7 +2870,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	0, -- ExcludeCasterAuraState
+	68992, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
@@ -3107,7 +3107,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	0, -- ExcludeCasterAuraState
+	68992, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
@@ -3344,7 +3344,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	0, -- ExcludeCasterAuraState
+	68992, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
@@ -3581,7 +3581,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- FacingCasterFlags
 	0, -- CasterAuraState
 	0, -- TargetAuraState
-	0, -- ExcludeCasterAuraState
+	68992, -- ExcludeCasterAuraState
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
