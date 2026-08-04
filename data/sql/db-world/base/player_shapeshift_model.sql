@@ -5,34 +5,225 @@ REPLACE INTO `player_shapeshift_model` (
     `GenderID`, -- 0: male, 1: female, 2: both
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
-/* Worgen Racials */
+/* Troll Druid forms */
 (
-    34, -- ShapeshiftID: Two Forms
-    12, -- RaceID: Worgen
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    0, -- CustomizationID: pink hair
+    2, -- GenderID: both
+    33665 -- ModelID: DruidCatTrollSkinBlack
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    1, -- CustomizationID: red hair
+    2, -- GenderID: both
+    33668 -- ModelID: DruidCatTrollSkinRed
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    2, -- CustomizationID: orange hair
+    2, -- GenderID: both
+    33668 -- ModelID: DruidCatTrollSkinRed
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    3, -- CustomizationID: yellow hair
+    2, -- GenderID: both
+    33667 -- ModelID: DruidCatTrollSkinGreen
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    4, -- CustomizationID: green hair
+    2, -- GenderID: both
+    33666 -- ModelID: DruidCatTrollSkinBlue
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    5, -- CustomizationID: blue-green hair
+    2, -- GenderID: both
+    33666 -- ModelID: DruidCatTrollSkinBlue
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    6, -- CustomizationID: blue hair
+    2, -- GenderID: both
+    33666 -- ModelID: DruidCatTrollSkinBlue
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    7, -- CustomizationID: purple hair
+    2, -- GenderID: both
+    33666 -- ModelID: DruidCatTrollSkinBlue
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    8, -- CustomizationID: gray hair
+    2, -- GenderID: both
+    33669 -- ModelID: DruidCatTrollSkinWhite
+), (
+	1, -- ShapeshiftID: Cat form
+    8, -- RaceID: Troll
+    9, -- CustomizationID: white hair
+    2, -- GenderID: both
+    33669 -- ModelID: DruidCatTrollSkinWhite
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    0, -- CustomizationID: pink hair
+    2, -- GenderID: both
+    33656 -- ModelID: DruidBearTrollPurple
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    1, -- CustomizationID: red hair
+    2, -- GenderID: both
+    33657 -- ModelID: DruidBearTrollRed
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    2, -- CustomizationID: orange hair
+    2, -- GenderID: both
+    33657 -- ModelID: DruidBearTrollRed
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    3, -- CustomizationID: yellow hair
+    2, -- GenderID: both
+    33659 -- ModelID: DruidBearTrollYellow
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    4, -- CustomizationID: green hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    5, -- CustomizationID: blue-green hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    6, -- CustomizationID: blue hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    7, -- CustomizationID: purple hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    8, -- CustomizationID: gray hair
+    2, -- GenderID: both
+    33658 -- ModelID: DruidBearTrollWhite
+), (
+	5, -- ShapeshiftID: Bear form
+    8, -- RaceID: Troll
+    9, -- CustomizationID: white hair
+    2, -- GenderID: both
+    33658 -- ModelID: DruidBearTrollWhite
+), (
+	31, -- ShapeshiftID: Moonkin form
+    8, -- RaceID: Troll
     255, -- CustomizationID: default
-    0, -- GenderID: male
-    94135 -- ModelID: Gilnean (male)
+    2, -- GenderID: both
+    37174 -- ModelID: DruidOwlBearRedSkin, DruidOwlBearRedSkin2
+), (
+	2, -- ShapeshiftID: Tree of Life form
+    8, -- RaceID: Troll
+    255, -- CustomizationID: default
+    2, -- GenderID: both
+    37166 -- ModelID: DruidTreeFormOrange
+), (
+	29, -- ShapeshiftID: Flight form
+    8, -- RaceID: Troll
+    255, -- CustomizationID: default
+    2, -- GenderID: both
+    37730 -- ModelID: EpicDruidFlightTroll1, EpicDruidFlightTroll2
 ),
+/* Worgen Druid forms */
 (
-    34, -- ShapeshiftID: Two Forms
+	1, -- ShapeshiftID: Cat form
+    12, -- RaceID: Worgen
+    0, -- CustomizationID: black hair
+    2, -- GenderID: both
+    33661 -- ModelID: DruidCatSkinWorgenBlack
+), (
+	1, -- ShapeshiftID: Cat form
+    12, -- RaceID: Worgen
+    1, -- CustomizationID: light brown hair
+    2, -- GenderID: both
+    33660 -- ModelID: DruidCatSkinWorgen
+), (
+	1, -- ShapeshiftID: Cat form
+    12, -- RaceID: Worgen
+    2, -- CustomizationID: brown hair
+    2, -- GenderID: both
+    33662 -- ModelID: DruidCatSkinWorgenBrown
+), (
+	1, -- ShapeshiftID: Cat form
+    12, -- RaceID: Worgen
+    3, -- CustomizationID: red hair
+    2, -- GenderID: both
+    33663 -- ModelID: DruidCatSkinWorgenWhite
+), (
+	1, -- ShapeshiftID: Cat form
+    12, -- RaceID: Worgen
+    4, -- CustomizationID: dark blonde hair
+    2, -- GenderID: both
+    33664 -- ModelID: DruidCatSkinWorgenYellow
+), (
+	5, -- ShapeshiftID: Bear form
+    12, -- RaceID: Worgen
+    0, -- CustomizationID: black hair
+    2, -- GenderID: both
+    33651 -- ModelID: DruidBearWorgenBlack
+), (
+	5, -- ShapeshiftID: Bear form
+    12, -- RaceID: Worgen
+    1, -- CustomizationID: light brown hair
+    2, -- GenderID: both
+    33650 -- ModelID: DruidBearWorgen
+), (
+	5, -- ShapeshiftID: Bear form
+    12, -- RaceID: Worgen
+    2, -- CustomizationID: brown hair
+    2, -- GenderID: both
+    33652 -- ModelID: DruidBearWorgenBrown
+), (
+	5, -- ShapeshiftID: Bear form
+    12, -- RaceID: Worgen
+    3, -- CustomizationID: red hair
+    2, -- GenderID: both
+    33654 -- ModelID: DruidBearWorgenWhite
+), (
+	5, -- ShapeshiftID: Bear form
+    12, -- RaceID: Worgen
+    4, -- CustomizationID: dark blonde hair
+    2, -- GenderID: both
+    33653 -- ModelID: DruidBearWorgenTan
+), (
+	31, -- ShapeshiftID: Moonkin form
     12, -- RaceID: Worgen
     255, -- CustomizationID: default
-    1, -- GenderID: female
-    94136 -- ModelID: Gilnean (female)
-),
-(
-    33, -- ShapeshiftID: Running Wild
+    2, -- GenderID: both
+    37173 -- ModelID: DruidOwlBearBlackSkin, DruidOwlBearBlackSkin2
+), (
+	2, -- ShapeshiftID: Tree of Life form
     12, -- RaceID: Worgen
     255, -- CustomizationID: default
-    0, -- GenderID: male
-    94133 -- ModelID: WorgenWild (male)
-),
-(
-    33, -- ShapeshiftID: Running Wild
+    2, -- GenderID: both
+    37164 -- ModelID: DruidTreeFormRed
+), (
+	29, -- ShapeshiftID: Flight form
     12, -- RaceID: Worgen
     255, -- CustomizationID: default
-    1, -- GenderID: female
-    94134 -- ModelID: WorgenWild (female)
+    2, -- GenderID: both
+    37727 -- ModelID: StormCrowDruidSkin
 ),
 /* Undead Druid Forms */
 (

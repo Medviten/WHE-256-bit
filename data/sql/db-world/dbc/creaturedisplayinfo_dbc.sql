@@ -33,7 +33,7 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (33667, 3519, 0, 0, 1, 255, 'DruidCatTrollSkinGreen', '', '', '', -1, 0, 0, 0, 0, 0),
 (33668, 3519, 0, 0, 1, 255, 'DruidCatTrollSkinRed', '', '', '', -1, 0, 0, 0, 0, 0),
 (33669, 3519, 0, 0, 1, 255, 'DruidCatTrollSkinWhite', '', '', '', -1, 0, 0, 0, 0, 0),
-(34204, 3519, 0, 0, 1, 255, 'DruidCatTrollSkinRed', '', '', '', -1, 0, 73, 0, 0, 0),
+(34204, 3519, 0, 0, 1, 255, 'DruidCatTrollSkinRed', '', '', '', -1, 0, 73, 0, 0, 0), -- Don't know why there is an extra one.
 
 /* Cataclysm Druid forms (not conflicting) */
 (34521, 1231, 0, 0, 0.9, 255, 'DruidCatSkinPurple', 'DruidCatSkinPurple', '', '', 1, 1, 0, 0, 0, 0),
