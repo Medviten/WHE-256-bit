@@ -5,6 +5,7 @@ REPLACE INTO `player_shapeshift_model` (
     `GenderID`, -- 0: male, 1: female, 2: both
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
+
 /* Troll Druid forms */
 (
 	1, -- ShapeshiftID: Cat form
@@ -145,6 +146,7 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     37730 -- ModelID: EpicDruidFlightTroll1, EpicDruidFlightTroll2
 ),
+
 /* Worgen Druid forms */
 (
 	1, -- ShapeshiftID: Cat form
@@ -225,6 +227,7 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     37727 -- ModelID: StormCrowDruidSkin
 ),
+
 /* Undead Druid Forms */
 (
 	2, -- ShapeshiftID: Tree of Life Form
@@ -263,6 +266,7 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     10007 -- ModelID: DragonWhelpSkinDiseased
 ),
+
 /* Gnome Druid Forms */
 (
 	2, -- ShapeshiftID: Tree of Life Form
@@ -303,7 +307,7 @@ REPLACE INTO `player_shapeshift_model` (
 ), (
 	2, -- ShapeshiftID: Tree of Life Form
 	7, -- RaceID: Gnome
-	9, -- CustomizationID: black
+	9, -- CustomizationID: black hair
 	2, -- GenderID: both
 	94147 -- ModelID: LasherOrchidSkinPurple
 ), (
@@ -324,4 +328,70 @@ REPLACE INTO `player_shapeshift_model` (
 	255, -- CustomizationID: default
 	2, -- GenderID: both
 	24978 -- ModelID: NorthrendPenguin01
+),
+
+/* Alliance Travel form */
+(
+	3, -- ShapeshiftID: Travel form
+	1, -- RaceID: Human
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	40816 -- ModelID: DruidTravelAlliance
+), (
+	3, -- ShapeshiftID: Travel form
+	3, -- RaceID: Dwarf
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	40816 -- ModelID: DruidTravelAlliance
+), (
+	3, -- ShapeshiftID: Travel form
+	7, -- RaceID: Gnome
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	40816 -- ModelID: DruidTravelAlliance
+), (
+	3, -- ShapeshiftID: Travel form
+	11, -- RaceID: Draenei
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	40816 -- ModelID: DruidTravelAlliance
+), (
+	3, -- ShapeshiftID: Travel form
+	12, -- RaceID: Worgen
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	40816 -- ModelID: DruidTravelAlliance
+), (
+	3, -- ShapeshiftID: Travel form
+	13, -- RaceID: High Elf
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	40816 -- ModelID: DruidTravelAlliance
+),
+
+/* Horde Travel forms */
+(
+	3, -- ShapeshiftID: Travel form
+	2, -- RaceID: Orc
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	45339 -- ModelID: DruidTravelHorde
+), (
+	3, -- ShapeshiftID: Travel form
+	8, -- RaceID: Troll
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	45339 -- ModelID: DruidTravelHorde
+), (
+	3, -- ShapeshiftID: Travel form
+	9, -- RaceID: Goblin
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	45339 -- ModelID: DruidTravelHorde
+), (
+	3, -- ShapeshiftID: Travel form
+	10, -- RaceID: Blood Elf
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	45339 -- ModelID: DruidTravelHorde
 );
