@@ -61,10 +61,14 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (94166, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_blue', '', '', '', -1, 0, 0, 0, 0, 0),
 (94167, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_green', '', '', '', -1, 0, 0, 0, 0, 0),
 (94168, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_white', '', '', '', -1, 0, 0, 0, 0, 0),
-(94169, 4875, 0, 0, 1, 255, 'druidflightzandalaritroll', '', '', '', 1, 0, 0, 0, 0, 0),
+(94169, 4875, 0, 0, 0.3, 255, 'druidflightzandalaritroll', '', '', '', 1, 0, 0, 0, 0, 0),
 (94170, 4876, 204, 0, 0.9, 255, 'druidowlbearzandalariepic2', '', '', '', -1, 0, 0, 0, 0, 0),
 (94171, 4877, 0, 0, 1, 255, 'druidtravelzandalaritroll', '', '', '', 1, 0, 0, 0, 0, 0),
 (94172, 3805, 0, 0, 1.5, 255, 'DruidTreeFormZandalari', '', '', '', -1, 0, 0, 602, 0, 0),
+(94173, 4878, 0, 0, 1, 255, 'druidaquaticzandalari_armor', '', '', '', 0, 0, 0, 0, 0, 0),
+(94174, 4878, 0, 0, 1, 255, 'druidaquaticzandalari_dark', '', '', '', 0, 0, 0, 0, 0, 0),
+(94175, 4878, 0, 0, 1, 255, 'druidaquaticzandalari_green', '', '', '', 0, 0, 0, 0, 0, 0),
+(94178, 4878, 0, 0, 1, 255, 'druidaquaticzandalari_light', '', '', '', 0, 0, 0, 0, 0, 0),
 
 /* The following are copies of Blood Elf entries and are probably not really needed. */
 (32756, 2208, 0, 36060, 1, 255, '', '', '', '', -1, 0, 149, 0, 0, 0),
