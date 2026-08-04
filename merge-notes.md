@@ -104,7 +104,8 @@ These DBCs are the same as the ones in patch-a.mpq, probably separated for user 
 
 ##### CreatureDisplayInfo.dbc
 - No ID conflicts.
-- 1526 High Elf entries
+- 1526 High Elf entries (but I don't think more than two are really needed)
+- Trying to add Cata druid forms, I do get some ID conflicts: 33650–33669 and 34204 are now occupied by High Elf copies of Blood Elf display IDs that don't seem to be used anywhere. I will replace these with druid forms to keep the IDs from Cataclysm.
 
 ##### CreatureDisplayInfoExtra.dbc
 - No ID conflicts.

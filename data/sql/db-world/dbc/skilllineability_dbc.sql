@@ -8,7 +8,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -23,7 +23,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -38,7 +38,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -53,7 +53,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -68,7 +68,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -83,7 +83,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -98,7 +98,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -113,7 +113,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -128,7 +128,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -143,7 +143,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -158,7 +158,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -173,7 +173,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -188,7 +188,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -203,7 +203,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -218,7 +218,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -233,7 +233,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -248,7 +248,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -263,7 +263,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -278,7 +278,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -293,7 +293,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -308,7 +308,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -323,7 +323,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -338,7 +338,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -353,7 +353,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -368,7 +368,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -383,7 +383,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -398,7 +398,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -413,7 +413,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -428,7 +428,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -443,7 +443,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -458,7 +458,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	490, -- TrivialSkillLineRankHigh
 	480, -- Spell: TrivialSkillLineRankLow
@@ -473,7 +473,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	490, -- TrivialSkillLineRankHigh
 	480, -- Spell: TrivialSkillLineRankLow
@@ -488,7 +488,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -503,7 +503,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -521,7 +521,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -536,7 +536,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -551,7 +551,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -566,7 +566,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	1, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -581,7 +581,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	75, -- MinSkillLineRank (doesn't seem to do anything)
-	110010, -- Spell: SupercededBySpell (doesn't seem to do anything)
+	110010, -- SupercededBySpell (doesn't seem to do anything)
 	1, -- AcquireMethod
 	110010, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
 	0, -- Spell: TrivialSkillLineRankLow
@@ -596,7 +596,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	75, -- MinSkillLineRank
-	110011, -- Spell: SupercededBySpell (doesn't seem to do anything)
+	110011, -- SupercededBySpell (doesn't seem to do anything)
 	1, -- AcquireMethod
 	110011, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
 	0, -- Spell: TrivialSkillLineRankLow
@@ -611,7 +611,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	150, -- MinSkillLineRank (doesn't seem to do anything)
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	1, -- AcquireMethod
 	110010, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
 	87840, -- Spell: TrivialSkillLineRankLow (doesn't seem to do anything)
@@ -626,7 +626,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	150, -- MinSkillLineRank (doesn't seem to do anything)
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	1, -- AcquireMethod
 	110011, -- TrivialSkillLineRankHigh (doesn't seem to do anything)
 	87841, -- Spell: TrivialSkillLineRankLow (doesn't seem to do anything)
@@ -641,7 +641,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	1, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -656,7 +656,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	1, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -674,7 +674,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -689,7 +689,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -704,7 +704,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -719,7 +719,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -734,7 +734,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -749,7 +749,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -767,7 +767,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -782,7 +782,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -797,7 +797,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -812,7 +812,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -827,7 +827,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -845,7 +845,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -860,7 +860,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -875,7 +875,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -908,7 +908,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -923,7 +923,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -953,7 +953,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	0, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -971,7 +971,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -986,7 +986,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -1001,7 +1001,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -1016,7 +1016,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
@@ -1031,7 +1031,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	0, -- ExcludeRace
 	0, -- ExcludeClass
 	1, -- MinSkillLineRank
-	0, -- Spell: SupercededBySpell
+	0, -- SupercededBySpell
 	2, -- AcquireMethod
 	0, -- TrivialSkillLineRankHigh
 	0, -- Spell: TrivialSkillLineRankLow
