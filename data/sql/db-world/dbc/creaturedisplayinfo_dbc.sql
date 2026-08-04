@@ -47,6 +47,10 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (37729, 3845, 0, 0, 1, 255, 'EpicDruidFlightWorgen', '', '', '', 1, 0, 0, 0, 0, 0),
 (37730, 3846, 0, 0, 1, 255, 'EpicDruidFlightTroll1', 'EpicDruidFlightTroll2', '', '', 1, 0, 0, 0, 0, 0),
 
+/* Mists of Pandaria Druid forms */
+(40816, 4871, 0, 0, 1, 255, 'DruidTravelAlliance', 'DruidTravelAlliance', 'DruidTravelAlliance', '', 1, 0, 0, 0, 0, 0, 0),
+(45339, 4870, 0, 0, 1, 255, 'DruidTravelHorde', 'DruidTravelHorde', 'DruidTravelHorde', '', 1, 0, 0, 0, 0, 0, 0),
+
 /* The following are copies of Blood Elf entries and are probably not really needed. */
 (32756, 2208, 0, 36060, 1, 255, '', '', '', '', -1, 0, 149, 0, 0, 0),
 (32757, 2209, 0, 40009, 1.2, 255, '', '', '', '', 0, 0, 175, 0, 0, 0),
