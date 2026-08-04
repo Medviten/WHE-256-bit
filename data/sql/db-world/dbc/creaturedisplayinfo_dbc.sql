@@ -37,7 +37,7 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 
 /* Cataclysm Druid forms (not conflicting) */
 (34521, 1231, 0, 0, 0.9, 255, 'DruidCatSkinPurple', 'DruidCatSkinPurple', '', '', 1, 1, 0, 0, 0, 0),
-(37163, 3805, 0, 0, 1.75, 255, 'DruidTreeFormGreen', '', '', '', -1, 0, 0, 599, 0, 0),
+(37163, 3805, 0, 0, 1.5, 255, 'DruidTreeFormGreen', '', '', '', -1, 0, 0, 599, 0, 0),
 (37164, 3805, 0, 0, 1.5, 255, 'DruidTreeFormRed', '', '', '', -1, 0, 0, 600, 0, 0),
 (37165, 3805, 0, 0, 1.5, 255, 'DruidTreeFormPurple', '', '', '', -1, 0, 0, 601, 0, 0),
 (37166, 3805, 0, 0, 1.5, 255, 'DruidTreeFormOrange', '', '', '', -1, 0, 0, 602, 0, 0),
@@ -53,6 +53,18 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 
 /* Battle for Azeroth Druid forms (random ID because I couldn't open the DB2 files) */
 (94160, 4872, 0, 0, 1, 255, 'druidflighthmtauren_brown', 'druidflighthmtauren_brown', '', '', 1, 0, 0, 0, 0, 0),
+(94161, 4873, 0, 0, 1, 255, 'druidbearzandalaritroll_blue', '', '', '', 1, 0, 0, 0, 0, 0),
+(94162, 4873, 0, 0, 1, 255, 'druidbearzandalaritroll_dark', '', '', '', 1, 0, 0, 0, 0, 0),
+(94163, 4873, 0, 0, 1, 255, 'druidbearzandalaritroll_green', '', '', '', 1, 0, 0, 0, 0, 0),
+(94164, 4873, 0, 0, 1, 255, 'druidbearzandalaritroll_white', '', '', '', 1, 0, 0, 0, 0, 0),
+(94165, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_black', '', '', '', -1, 0, 0, 0, 0, 0),
+(94166, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_blue', '', '', '', -1, 0, 0, 0, 0, 0),
+(94167, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_green', '', '', '', -1, 0, 0, 0, 0, 0),
+(94168, 4874, 0, 0, 1, 255, 'druidcatzandalaritroll_white', '', '', '', -1, 0, 0, 0, 0, 0),
+(94169, 4875, 0, 0, 1, 255, 'druidflightzandalaritroll', '', '', '', 1, 0, 0, 0, 0, 0),
+(94170, 4876, 204, 0, 0.9, 255, 'druidowlbearzandalariepic2', '', '', '', -1, 0, 0, 0, 0, 0),
+(94171, 4877, 0, 0, 1, 255, 'druidtravelzandalaritroll', '', '', '', 1, 0, 0, 0, 0, 0),
+(94172, 3805, 0, 0, 1.5, 255, 'DruidTreeFormZandalari', '', '', '', -1, 0, 0, 602, 0, 0),
 
 /* The following are copies of Blood Elf entries and are probably not really needed. */
 (32756, 2208, 0, 36060, 1, 255, '', '', '', '', -1, 0, 149, 0, 0, 0),
