@@ -18,4 +18,6 @@ REPLACE INTO `creaturemodeldata_dbc` (`ID`, `Flags`, `ModelName`, `SizeClass`, `
 (3846, 9, 'creature\\\\epicdruidflighttroll\\\\epicdruidflighttroll.mdx', 1, 1, 2, 4, 18, 12, 1, 0, 0, 0, 189, 0.6111, 2.031, 1.193891, -2.269799, -5.229756, 1.458794, 3.439837, 5.235109, 8.225035, 1, 1, 0, 0, 0),
 /* Mists of Pandaria Druid forms */
 (4870, 4096, 'creature\\\\DruidTravelAlliance\\\\DruidTravelAlliance.mdx', 1, 1, 1, 6, 18, 12, 1, 0, 0, 0, 184, 0.611112, 2.03128, 1.988437, -1.334559, -1.236567, -0.026485, 2.552204, 1.204619, 3.858606, 1, 1, 0, 0, 0),
-(4871, 4096, 'creature\\\\DruidTravelHorde\\\\DruidTravelHorde.mdx', 1, 1, 1, 6, 18, 12, 1, 0, 0, 0, 184, 0.611112, 2.03128, 1.988437, -1.284157, -1.16473, -0.008078, 2.284149, 1.147742, 3.863387, 1, 1, 0, 0, 0);
+(4871, 4096, 'creature\\\\DruidTravelHorde\\\\DruidTravelHorde.mdx', 1, 1, 1, 6, 18, 12, 1, 0, 0, 0, 184, 0.611112, 2.03128, 1.988437, -1.284157, -1.16473, -0.008078, 2.284149, 1.147742, 3.863387, 1, 1, 0, 0, 0),
+/* Battle for Azeroth Druid forms (random ID because I couldn't open the DB2 files) */
+(4872, 0, 'Creature\\\\druidflighthmtauren\\\\druidflighthmtauren.mdx', 0, 1, 3, 5, 18, 12, 1, 0, 0, 0, 2392, 0.6111, 2.031, 0, -1.954294, -3.480421, 0.341441, 2.210581, 3.514402, 4.482859, 1, 1, 0, 0, 0);
