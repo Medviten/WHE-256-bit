@@ -108,6 +108,9 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (94211, 4888, 0, 0, 1, 255, 'caravan_hyena1_tan', 'caravan_hyena1_saddle', '', '', 1, 0, 0, 0, 0, 0),
 (94212, 4888, 0, 0, 1, 255, 'caravan_hyena2_tan', 'caravan_hyena2_saddle', '', '', 1, 0, 0, 0, 0, 0),
 
+/* Vehicles */
+(94213, 4890, 0, 0, 1, 255, 'smoothreflect01', '', '', '', 0, 0, 0, 0, 0, 0),
+
 /* The following are copies of Blood Elf entries and are probably not really needed. */
 (32756, 2208, 0, 36060, 1, 255, '', '', '', '', -1, 0, 149, 0, 0, 0),
 (32757, 2209, 0, 40009, 1.2, 255, '', '', '', '', 0, 0, 175, 0, 0, 0),
