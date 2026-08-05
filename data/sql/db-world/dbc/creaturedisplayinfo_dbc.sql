@@ -103,6 +103,7 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (94208, 4887, 0, 0, 1, 255, 'druidaquatickultiran_dark', '', '', '', 0, 0, 0, 0, 0, 0),
 (94209, 4887, 0, 0, 1, 255, 'druidaquatickultiran_green', '', '', '', 0, 0, 0, 0, 0, 0),
 (94210, 4887, 0, 0, 1, 255, 'druidaquatickultiran_light', '', '', '', 0, 0, 0, 0, 0, 0),
+(94214, 3805, 0, 0, 1.5, 255, 'druidtreeformkultiran', '', '', '', -1, 0, 0, 602, 0, 0),
 
 /* Vulpera Mounts */
 (94211, 4888, 0, 0, 1, 255, 'caravan_hyena1_tan', 'caravan_hyena1_saddle', '', '', 1, 0, 0, 0, 0, 0),
