@@ -7512,7 +7512,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	'', -- Name_Lang_itIT
 	'', -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
-	'Racial', -- NameSubtext_Lang_enUS
+	'Racial Passive', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB
 	'', -- NameSubtext_Lang_koKR
 	'', -- NameSubtext_Lang_frFR
@@ -7748,7 +7748,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	'', -- Name_Lang_itIT
 	'', -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
-	'Racial', -- NameSubtext_Lang_enUS
+	'Racial Passive', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB
 	'', -- NameSubtext_Lang_koKR
 	'', -- NameSubtext_Lang_frFR
@@ -7984,7 +7984,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	'', -- Name_Lang_itIT
 	'', -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
-	'Racial', -- NameSubtext_Lang_enUS
+	'Racial Passive', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB
 	'', -- NameSubtext_Lang_koKR
 	'', -- NameSubtext_Lang_frFR

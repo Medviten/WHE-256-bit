@@ -28,12 +28,13 @@ This is a module for [AzerothCore](http://www.azerothcore.org) that adds Worgen,
 - Optional alpha Worgen models and Gilnean voices
 - Mage and warlock class trainers in Teldrassil (I ought to extend this to give ARAC combinations access to trainers in their starting areas)
 - Compatibility patches for PlayerBots and Individual Progression modules
+- Worgen druid forms (new!)
+- Running Wild (w/o start animation)
 
 #### NYI Features
 - Mount vendors
-- Worgen druid forms (currently uses night elf forms)
-- Two Forms and Running Wild (spells for each gender [and speed combination] work, but learning the right ones currently requires lua support)
 - Vanilla goblin models
+- Two Forms (currently requires lua support to work)
 
 ### Important Notes
 This module makes *heavy* use of client patching and modification. Because of this, it is recommended to use a [clean, unmodified enUS WoW client](https://www.chromiecraft.com/downloads) as issues have been reported due to use of other clients, such as the one offered from Warmane. The HD patch included on the ChromieCraft website has been known to cause issues with this patch. It is for that reason that it's recommended for you to use the HD patch adapted to the Worgoblin module in particular, which can be found [here](https://github.com/benjymansy123/mod-worgoblin/releases/tag/hd-patch) with instructions on how to install it.
@@ -95,14 +96,14 @@ There is a longstanding bug in WotLK that causes your mouse to reset to the cent
 
 Some tables in the database override DBC files. I am not sure exactly how that works, but I know that sometimes things don't work until I change the DB to agree with the DBC.
 
-Assuming you are using default names for your databases, log into MySQL and run:
+Assuming you are using default names for your databases, log into MySQL and run, e.g.:
 
 ```
 use acore_world;
 source /path/to/modules/mod-worgoblin-high-elf/data/sql/base/world/mod-worgoblin-high-elf.sql;
 ```
 
-You can also choose to run one file at a time if you so wish.
+You currently need to run one file at a time.
 
 And with that, you are all done!
 

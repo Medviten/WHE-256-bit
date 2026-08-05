@@ -62,8 +62,13 @@ SET @GoblinEarthTotem := 30757;
 SET @GoblinWaterTotem := 30759;
 SET @GoblinAirTotem := 30756;
 
--- Human, Night Elf, Undead, Gnome, Goblin, Blood Elf, Worgen, and High Elf
-DELETE FROM player_totem_model WHERE RaceID IN (1,4,5,7,9,10,12,13);
+SET @MagharOrcFireTotem := 30758;
+SET @MagharOrcEarthTotem := 30757;
+SET @MagharOrcWaterTotem := 30759;
+SET @MagharOrcAirTotem := 30756;
+
+-- Human, Night Elf, Undead, Gnome, Goblin, Blood Elf, Worgen, High Elf, and Mag'har Orc
+DELETE FROM player_totem_model WHERE RaceID IN (1,4,5,7,9,10,12,13,14);
 INSERT INTO player_totem_model (TotemID, RaceID, ModelID) VALUES 
 (1, 1, @HumanFireTotem),
 (2, 1, @HumanEarthTotem),
@@ -104,4 +109,9 @@ INSERT INTO player_totem_model (TotemID, RaceID, ModelID) VALUES
 (2, 13, @HighElfEarthTotem),
 (3, 13, @HighElfWaterTotem),
 (4, 13, @HighElfAirTotem);
+
+(1, 14, @MagharOrcFireTotem),
+(2, 14, @MagharOrcEarthTotem),
+(3, 14, @MagharOrcWaterTotem),
+(4, 14, @MagharOrcAirTotem);
 
