@@ -10,6 +10,16 @@ enum Spells
     BEST_DEALS_ANYWHERE = 69044,
 };
 
+enum WorgenRiding
+{
+    SPELL_APPRENTICE_RIDING  = 33388,
+    SPELL_JOURNEYMAN_RIDING  = 33391,
+    SPELL_RW_APPR_MALE       = 87840,
+    SPELL_RW_APPR_FEMALE     = 87841,
+    SPELL_RW_JOURN_MALE      = 110010,
+    SPELL_RW_JOURN_FEMALE    = 110011,
+};
+
 class worgoblin : public PlayerScript {
 
 public:
@@ -50,8 +60,82 @@ class spell_rocket_barrage : public SpellScript
     }
 };
 
+class player_worgen_running_wild : public PlayerScript
+{
+public:
+    player_worgen_running_wild() : PlayerScript("player_worgen_running_wild") { }
+
+    void OnPlayerLogin(Player* player) override { HandleWorgen(player); }
+    void OnPlayerLevelChanged(Player* player, uint8 /*oldLevel*/) override { HandleWorgen(player); }
+
+private:
+    void HandleWorgen(Player* player)
+    {
+        if (player->getRace() != RACE_WORGEN)
+            return;
+
+        // riding-skill spells don't reliably show up on AC for DKs, so give them the fast RW at creation
+        if (player->getClass() == CLASS_DEATH_KNIGHT)
+        {
+            uint32 rwSpell    = GetRWSpell(player, true);
+            uint32 otherSpell = GetRWSpell(player, false);
+
+            if (player->HasSpell(otherSpell))
+                player->removeSpell(otherSpell, SPEC_MASK_ALL, false);
+
+            if (!player->HasSpell(rwSpell))
+                player->learnSpell(rwSpell);
+
+            return;
+        }
+
+        uint8 level = player->GetLevel();
+
+        if (sConfigMgr->GetOption<bool>("Worgoblin.RunningWild.FreeApprentice", true)
+            && level >= 20 && !player->HasSpell(SPELL_APPRENTICE_RIDING))
+            player->learnSpell(SPELL_APPRENTICE_RIDING);
+
+        if (sConfigMgr->GetOption<bool>("Worgoblin.RunningWild.FreeJourneyman", true)
+            && level >= 40 && !player->HasSpell(SPELL_JOURNEYMAN_RIDING))
+            player->learnSpell(SPELL_JOURNEYMAN_RIDING);
+
+        SyncRunningWild(player);
+    }
+
+    uint32 GetRWSpell(Player* player, bool journeyman) const
+    {
+        bool isMale = player->getGender() == GENDER_MALE;
+        if (journeyman)
+            return isMale ? SPELL_RW_JOURN_MALE : SPELL_RW_JOURN_FEMALE;
+        return isMale ? SPELL_RW_APPR_MALE : SPELL_RW_APPR_FEMALE;
+    }
+
+    void SyncRunningWild(Player* player)
+    {
+        // Only reached for non-DKs, so these HasSpell checks are trustworthy here.
+        bool hasJourneyman = player->HasSpell(SPELL_JOURNEYMAN_RIDING);
+        bool hasApprentice = player->HasSpell(SPELL_APPRENTICE_RIDING);
+
+        if (!hasJourneyman && !hasApprentice)
+            return; // no riding skill yet, nothing to sync
+
+        uint32 wantSpell  = GetRWSpell(player, hasJourneyman);
+        uint32 otherSpell = GetRWSpell(player, !hasJourneyman);
+
+        if (player->HasSpell(wantSpell) && !player->HasSpell(otherSpell))
+            return; // already correct
+
+        if (player->HasSpell(otherSpell))
+            player->removeSpell(otherSpell, SPEC_MASK_ALL, false);
+
+        if (!player->HasSpell(wantSpell))
+            player->learnSpell(wantSpell);
+    }
+};
+
 void Add_Worgoblin()
 {
     new worgoblin();
     RegisterSpellScript(spell_rocket_barrage);
+    new player_worgen_running_wild();
 }
