@@ -90,7 +90,9 @@ enum Races
     //RACE_NORTHREND_SKELETON = 20,
     //RACE_ICE_TROLL      = 21,
     //RACE_NAGA           = 22,
-    //RACE_BROKEN         = 23
+    //RACE_GILNEAN        = 23,
+    //RACE_FELORC         = 24,
+    //RACE_BROKEN         = 25
 };
 
 // DisplayRace values from CreatureDisplayInfoExtra.dbc
@@ -119,7 +121,9 @@ enum class DisplayRace : uint8
     NorthrendSkeleton = 20,
     IceTroll          = 21,
     Naga              = 22,
-    Broken            = 23,
+    Gilnean           = 23,
+    FelOrc            = 24,
+    Broken            = 25,
 };
 
 // Class value is index in ChrClasses.dbc
