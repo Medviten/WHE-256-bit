@@ -1,5 +1,5 @@
 /* Add model info for mounts and other NPCs */
-DELETE FROM `creature_model_info` WHERE `DisplayID` IN (29422, 29423, 33000, 33001, 32385, 35249, 35250, 36445, 36446, 39095, 39096, 94133, 94134, 94135, 94136);
+DELETE FROM `creature_model_info` WHERE `DisplayID` IN (29422, 29423, 33000, 33001, 32385, 35249, 35250, 36445, 36446, 39095, 39096, 94133, 94134, 94135, 94136, 94137, 94138);
 INSERT INTO `creature_model_info` (`DisplayID`, `BoundingRadius`, `CombatReach`, `Gender`, `DisplayID_Other_Gender`) VALUES
 (29422, 0.406, 1.5, 0, 0), -- Worgen
 (29423, 0.406, 1.5, 1, 0), -- Worgenette
@@ -13,4 +13,6 @@ INSERT INTO `creature_model_info` (`DisplayID`, `BoundingRadius`, `CombatReach`,
 (94133, 0.406, 1.5, 0, 0), -- Running Wild Male
 (94134, 0.406, 1.5, 1, 0), -- Running Wild Female
 (94135, 0.306, 1.5, 0, 0), -- Gilnean Male
-(94136, 0.306, 1.5, 1, 0); -- Gilnean Female
+(94136, 0.306, 1.5, 1, 0), -- Gilnean Female
+(94137, 0.306, 1.5, 0, 0), -- Mag'har Male
+(94138, 0.306, 1.5, 1, 0); -- Mag'har Female

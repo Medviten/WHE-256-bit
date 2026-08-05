@@ -540,7 +540,7 @@ public:
 
         float _speed = speed ? *speed : 1.0f;
 
-        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 50.0f))
+        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 100.0f))
         {
             return false;
         }

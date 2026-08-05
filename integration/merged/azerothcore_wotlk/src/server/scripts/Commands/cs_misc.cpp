@@ -2335,6 +2335,9 @@ public:
             case RACE_HIGHELF:
                 raceStr = "High Elf";
                 break;
+            case RACE_MAGHARORC:
+                raceStr = "Mag'har Orc";
+                break;
         }
 
         switch (classid)

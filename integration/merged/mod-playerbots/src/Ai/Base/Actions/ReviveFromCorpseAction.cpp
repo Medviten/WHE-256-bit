@@ -254,7 +254,7 @@ GraveyardStruct const* SpiritHealerAction::GetGrave(bool startZone)
     if (bot->GetTeamId() == TEAM_ALLIANCE)
         races = {RACE_HUMAN, RACE_DWARF, RACE_GNOME, RACE_NIGHTELF, RACE_DRAENEI, RACE_WORGEN, RACE_HIGHELF};
     else
-        races = {RACE_ORC, RACE_TROLL, RACE_TAUREN, RACE_UNDEAD_PLAYER, RACE_BLOODELF, RACE_GOBLIN};
+        races = {RACE_ORC, RACE_TROLL, RACE_TAUREN, RACE_UNDEAD_PLAYER, RACE_BLOODELF, RACE_GOBLIN, RACE_MAGHARORC};
 
     float graveDistance = -1;
 

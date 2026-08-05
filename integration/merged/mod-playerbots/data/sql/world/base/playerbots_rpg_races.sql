@@ -446,12 +446,13 @@ INSERT INTO `playerbots_rpg_races` VALUES
 --
 --       HORDE
 --
---       ORCS, TROLLS & GOBLINS
+--       ORCS, TROLLS, GOBLINS & MAG'HAR ORCS
 --
 -- Innkeeper Grosk, Durotar
-(NULL, 6928, 2, 1, 10),
-(NULL, 6928, 8, 1, 10),
-(NULL, 6928, 9, 1, 10),
+(NULL, 6928, 2, 1, 10), -- orcs
+(NULL, 6928, 8, 1, 10), -- trolls
+(NULL, 6928, 9, 1, 10), -- goblins
+(NULL, 6928, 14, 1, 10), -- mag'har orcs
 --
 --       TAUREN
 --
@@ -467,9 +468,9 @@ INSERT INTO `playerbots_rpg_races` VALUES
 --
 --       BLOOD ELVES
 --
--- Blood Elves Eversong Woods
+-- Blood Elves, Eversong Woods
 (NULL, 15397, 10, 1, 10),
--- Blood Elves Ghostlands
+-- Blood Elves, Ghostlands
 (NULL, 16542, 10, 10, 20),
 --
 --       HORDE CITIES
@@ -481,6 +482,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 6929, 5, 20, 80), -- undead
 (NULL, 6929, 10, 20, 80), -- blood elves
 (NULL, 6929, 9, 10, 80), -- goblins
+(NULL, 6929, 14, 10, 80), -- mag'har orcs
 --
 -- Innkeeper Pala, Thunder Bluff, Mulgore
 (NULL, 6746, 6, 10, 80), -- tauren
@@ -497,6 +499,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 17630, 6, 60, 80), -- tauren
 (NULL, 17630, 8, 60, 80), -- trolls
 (NULL, 17630, 9, 60, 80), -- goblins
+(NULL, 17630, 14, 60, 80), -- mag'har orcs
 -- Innkeeper Delaniel Silvermoon Entrance
 (NULL, 15433, 10, 5, 7), -- blood elves
 --
@@ -509,12 +512,14 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 3934, 10, 20, 25), -- blood elves
 -- (NULL, 3934, 5, 15, 25), -- undead
 (NULL, 3934, 9, 10, 25), -- goblins
+(NULL, 3934, 14, 10, 25), -- mag'har orcs
 --
 -- Innkeeper Byula, Camp Taurajo, Barrens
 (NULL, 7714, 2, 10, 25), -- orcs
 (NULL, 7714, 6, 10, 25), -- tauren
 (NULL, 7714, 8, 10, 25), -- trolls
 (NULL, 7714, 9, 10, 25), -- goblins
+(NULL, 7714, 14, 10, 25), -- mag'har orcs
 --
 -- Innkeeper Jayka, Stonetalon, Red Rock Retreat
 (NULL, 7731, 2, 15, 27), -- orcs
@@ -522,6 +527,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 7731, 8, 15, 27), -- trolls
 (NULL, 7731, 10, 20, 27), -- blood elves
 (NULL, 7731, 9, 15, 27), -- goblins
+(NULL, 7731, 14, 15, 27), -- mag'har orcs
 --
 -- Innkeeper Abeqwa, Thousand Needles
 (NULL, 11116, 2, 25, 35), -- orcs
@@ -529,6 +535,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 11116, 8, 25, 35), -- trolls
 (NULL, 11116, 10, 25, 35), -- blood elves
 (NULL, 11116, 9, 25, 35), -- goblins
+(NULL, 11116, 14, 25, 35), -- mag'har orcs
 --
 -- Innkeeper Shay, Tarren Mill, Hillsbrad
 (NULL, 2388, 5, 20, 30), -- undead
@@ -542,17 +549,20 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 12196, 8, 18, 30), -- trolls
 (NULL, 12196, 10, 20, 30), -- blood elves
 (NULL, 12196, 9, 18, 30), -- goblins
+(NULL, 12196, 14, 18, 30), -- mag'har orcs
 --
 -- Marukai, Zoram'gar, Ashenvale
 (NULL, 12719, 2, 18, 30), -- orcs
 (NULL, 12719, 8, 18, 30), -- trolls
 (NULL, 12719, 9, 18, 30), -- goblins
+(NULL, 12719, 14, 18, 30), -- mag'har orcs
 --
 -- Innkeeper Sikewa, Desolace
 (NULL, 11106, 2, 30, 40), -- orcs
 (NULL, 11106, 6, 30, 40), -- tauren
 (NULL, 11106, 8, 30, 40), -- trolls
 (NULL, 11106, 9, 30, 40), -- goblins
+(NULL, 11106, 14, 30, 40), -- mag'har orcs
 --
 -- Innkeeper Adegwa, Arathi, Hammerfall
 (NULL, 9501, 2, 30, 40), -- orcs
@@ -561,6 +571,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 9501, 8, 30, 40), -- trolls
 (NULL, 9501, 10, 30, 40), -- blood elves
 (NULL, 9501, 9, 30, 40), -- goblins
+(NULL, 9501, 14, 30, 40), -- mag'har orcs
 --
 -- Innkeeper Lard, Revantusk Village , Hinterlands
 (NULL, 14731, 2, 40, 50), -- orcs
@@ -569,6 +580,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 14731, 8, 40, 50), -- trolls
 (NULL, 14731, 10, 40, 50), -- blood elves
 (NULL, 14731, 9, 40, 50), -- goblins
+(NULL, 14731, 14, 40, 50), -- mag'har orcs
 --
 -- Innkeeper Shul'kar, Kargath Outpost, Badlands
 (NULL, 9356, 2, 35, 45), -- orcs
@@ -577,6 +589,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 9356, 8, 35, 45), -- trolls
 (NULL, 9356, 10, 35, 45), -- blood elves
 (NULL, 9356, 9, 35, 45), -- goblins
+(NULL, 9356, 14, 35, 45), -- mag'har orcs
 --
 -- Innkeeper Karakul, Swamp of Sorrows
 (NULL, 6930, 2, 35, 45), -- orcs
@@ -585,6 +598,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 6930, 8, 35, 45), -- trolls
 (NULL, 6930, 10, 35, 45), -- blood elves
 (NULL, 6930, 9, 35, 45), -- goblins
+(NULL, 6930, 14, 35, 45), -- mag'har orcs
 --
 -- Innkeeper Thulbek, Grom Gol, Stranglethorn Vale
 (NULL, 5814, 2, 30, 45), -- orcs
@@ -593,12 +607,14 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 5814, 8, 30, 45), -- trolls
 (NULL, 5814, 10, 30, 45), -- blood elves
 (NULL, 5814, 9, 30, 45), -- goblins
+(NULL, 5814, 14, 30, 45), -- mag'har orcs
 --
 -- Overlord Mok'Morokk, Dustwallow Marsh
 (NULL, 4500, 2, 35, 45), -- orcs
 (NULL, 4500, 6, 35, 45), -- tauren
 (NULL, 4500, 8, 35, 45), -- trolls
-(NULL, 4500, 9, 35, 45), -- orcs
+(NULL, 4500, 9, 35, 45), -- goblins
+(NULL, 4500, 14, 35, 45), -- mag'har orcs
 --
 -- Jediga, Azshara horde camp
 (NULL, 8587, 2, 45, 55), -- orcs
@@ -606,6 +622,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 8587, 6, 45, 55), -- tauren
 (NULL, 8587, 10, 45, 55), -- blood elves
 (NULL, 8587, 9, 45, 55), -- goblins
+(NULL, 8587, 14, 45, 55), -- mag'har orcs
 --
 -- Winna Hazzard, Felwood horde camp
 (NULL, 9996, 2, 48, 55), -- orcs
@@ -614,6 +631,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 9996, 5, 48, 55), -- undead
 (NULL, 9996, 10, 48, 55), -- blood elves
 (NULL, 9996, 9, 48, 55), -- goblins
+(NULL, 9996, 14, 48, 55), -- mag'har orcs
 --
 -- Larion, Horde Q-giver, Un'Goro
 (NULL, 9118, 2, 48, 55), -- orcs
@@ -622,6 +640,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 9118, 5, 48, 55), -- undead
 (NULL, 9118, 10, 48, 55), -- blood elves
 (NULL, 9118, 9, 48, 55), -- goblins
+(NULL, 9118, 14, 48, 55), -- mag'har orcs
 --
 -- Vahgruk, Horde Taxi, Burning Steppes
 (NULL, 13177, 2, 50, 60), -- orcs
@@ -630,6 +649,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 13177, 8, 50, 60), -- trolls
 (NULL, 13177, 10, 50, 60), -- blood elves
 (NULL, 13177, 9, 50, 60), -- goblins
+(NULL, 13177, 14, 50, 60), -- mag'har orcs
 --
 -- General Kirika, Horde camp, Silithus
 (NULL, 17079, 2, 55, 60), -- orcs
@@ -638,6 +658,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 17079, 8, 55, 60), -- trolls
 (NULL, 17079, 10, 55, 60), -- blood elves
 (NULL, 17079, 9, 55, 60), -- goblins
+(NULL, 17079, 14, 55, 60), -- mag'har orcs
 --
 --        OUTLAND
 --
@@ -648,6 +669,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 19253, 8, 58, 59), -- trolls
 (NULL, 19253, 10, 58, 59), -- blood elves
 (NULL, 19253, 9, 58, 59), -- goblins
+(NULL, 19253, 14, 58, 59), -- mag'har orcs
 --
 -- Floyd Pinkus, Thrallmar, Hellfire
 (NULL, 16602, 2, 58, 63), -- orcs
@@ -656,6 +678,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 16602, 8, 58, 63), -- trolls
 (NULL, 16602, 10, 58, 63), -- blood elves
 (NULL, 16602, 9, 58, 63), -- goblins
+(NULL, 16602, 14, 58, 63), -- mag'har orcs
 --
 -- Innkeeper Bazil, Falcon Watch, Hellfire
 (NULL, 18905, 2, 60, 63), -- orcs
@@ -664,6 +687,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 18905, 8, 60, 63), -- trolls
 (NULL, 18905, 10, 60, 63), -- blood elves
 (NULL, 18905, 9, 60, 63), -- goblins
+(NULL, 18905, 14, 60, 63), -- mag'har orcs
 --
 -- Innkeeper Merajit, Zabra'jin, Zangarmarsh
 (NULL, 18245, 2, 60, 64), -- orcs
@@ -672,6 +696,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 18245, 8, 60, 64), -- trolls
 (NULL, 18245, 10, 60, 64), -- blood elves
 (NULL, 18245, 9, 60, 64), -- goblins
+(NULL, 18245, 14, 60, 64), -- mag'har orcs
 --
 -- Innkeeper Grilka, Terrokar
 (NULL, 18957, 2, 62, 65), -- orcs
@@ -680,6 +705,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 18957, 8, 62, 65), -- trolls
 (NULL, 18957, 10, 62, 65), -- blood elves
 (NULL, 18957, 9, 62, 65), -- goblins
+(NULL, 18957, 14, 62, 65), -- mag'har orcs
 --
 -- Matron Tikkit, Garadar, Nagrand
 (NULL, 18913, 2, 62, 65), -- orcs
@@ -688,6 +714,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 18913, 8, 62, 65), -- trolls
 (NULL, 18913, 10, 62, 65), -- blood elves
 (NULL, 18913, 9, 62, 65), -- goblins
+(NULL, 18913, 14, 62, 65), -- mag'har orcs
 --
 -- Innkeeper Matron Varah, Mok'Nathal, Blade's Edge
 (NULL, 21088, 2, 65, 68), -- orcs
@@ -696,6 +723,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 21088, 8, 65, 68), -- trolls
 (NULL, 21088, 10, 65, 68), -- blood elves
 (NULL, 21088, 9, 65, 68), -- goblins
+(NULL, 21088, 14, 65, 68), -- mag'har orcs
 --
 -- Innkeeper Gholah, Thunderlord, Blade's Edge
 (NULL, 19470, 2, 65, 68), -- orcs
@@ -704,6 +732,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 19470, 8, 65, 68), -- trolls
 (NULL, 19470, 10, 65, 68), -- blood elves
 (NULL, 19470, 9, 65, 68), -- goblins
+(NULL, 19470, 14, 65, 68), -- mag'har orcs
 --
 -- Innkeeper Darg Bloodclaw, Shadowmoon Village
 (NULL, 19319, 2, 67, 70), -- orcs
@@ -712,6 +741,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 19319, 8, 67, 70), -- trolls
 (NULL, 19319, 10, 67, 70), -- blood elves
 (NULL, 19319, 9, 67, 70), -- goblins
+(NULL, 19319, 14, 67, 70), -- mag'har orcs
 --
 --        NORTHREND
 --
@@ -722,6 +752,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 31557, 8, 72, 80), -- trolls
 (NULL, 31557, 10, 72, 80), -- blood elves
 (NULL, 31557, 9, 72, 80), -- goblins
+(NULL, 31557, 14, 72, 80), -- mag'har orcs
 --
 -- Williamson, Warsong Hold, Borean Tundra
 (NULL, 25278, 2, 68, 72), -- orcs
@@ -730,6 +761,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 25278, 8, 68, 72), -- trolls
 (NULL, 25278, 10, 68, 72), -- blood elves
 (NULL, 25278, 9, 68, 72), -- goblins
+(NULL, 25278, 14, 68, 72), -- mag'har orcs
 --
 -- Pahu Frosthoof, Taunka'le Village, Borean Tundra
 (NULL, 26709, 2, 69, 72), -- orcs
@@ -738,6 +770,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 26709, 8, 69, 72), -- trolls
 (NULL, 26709, 10, 69, 72), -- blood elves
 (NULL, 26709, 9, 69, 72), -- goblins
+(NULL, 26709, 14, 69, 72), -- mag'har orcs
 --
 -- Matron Magah, Bor'Gorok Outpost, Borean Tundra
 (NULL, 26709, 2, 70, 72), -- orcs
@@ -746,6 +779,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 26709, 8, 70, 72), -- trolls
 (NULL, 26709, 10, 70, 72), -- blood elves
 (NULL, 26709, 9, 70, 72), -- goblins
+(NULL, 26709, 14, 70, 72), -- mag'har orcs
 --
 -- Basil Osgood, New Agamand, Howling Fjord
 (NULL, 24149, 2, 68, 72), -- orcs
@@ -754,6 +788,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 24149, 8, 68, 72), -- trolls
 (NULL, 24149, 10, 68, 72), -- blood elves
 (NULL, 24149, 9, 68, 72), -- goblins
+(NULL, 24149, 14, 68, 72), -- mag'har orcs
 --
 -- Timothy Holland, Vengeance Landing, Howling Fjord
 (NULL, 24342, 2, 69, 72), -- orcs
@@ -762,6 +797,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 24342, 8, 69, 72), -- trolls
 (NULL, 24342, 10, 69, 72), -- blood elves
 (NULL, 24342, 9, 69, 72), -- goblins
+(NULL, 24342, 14, 69, 72), -- mag'har orcs
 --
 -- Bori Wintertotem, Camp Winterhoof, Howling Fjord
 (NULL, 24033, 2, 70, 72), -- orcs
@@ -770,6 +806,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 24033, 8, 70, 72), -- trolls
 (NULL, 24033, 10, 70, 72), -- blood elves
 (NULL, 24033, 9, 70, 72), -- goblins
+(NULL, 24033, 14, 70, 72), -- mag'har orcs
 --
 -- Barracks Master Rhekku, Conquest Hold, Grizzly Hills
 (NULL, 27125, 2, 70, 74), -- orcs
@@ -778,6 +815,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 27125, 8, 70, 74), -- trolls
 (NULL, 27125, 10, 70, 74), -- blood elves
 (NULL, 27125, 9, 70, 74), -- goblins
+(NULL, 27125, 14, 70, 74), -- mag'har orcs
 --
 -- Aiyan Coldwind, Capm Onequah, Grizzly Hills
 (NULL, 26680, 2, 70, 74), -- orcs
@@ -786,6 +824,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 26680, 8, 70, 74), -- trolls
 (NULL, 26680, 10, 70, 74), -- blood elves
 (NULL, 26680, 9, 70, 74), -- goblins
+(NULL, 26680, 14, 70, 74), -- mag'har orcs
 --
 -- Mrs. Winterby, Venomspite, Dragonblight
 (NULL, 27027, 2, 71, 75), -- orcs
@@ -794,6 +833,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 27027, 8, 71, 75), -- trolls
 (NULL, 27027, 10, 71, 75), -- blood elves
 (NULL, 27027, 9, 71, 75), -- goblins
+(NULL, 27027, 14, 71, 75), -- mag'har orcs
 --
 -- Barracks Master Harga, Agmar's Hammer, Dragonblight
 (NULL, 26985, 2, 71, 75), -- orcs
@@ -802,6 +842,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 26985, 8, 71, 75), -- trolls
 (NULL, 26985, 10, 71, 75), -- blood elves
 (NULL, 26985, 9, 71, 75), -- goblins
+(NULL, 26985, 14, 71, 75), -- mag'har orcs
 --
 -- Wabada Whiteflower, Camp Tunka'lo, Storm Peaks
 (NULL, 29971, 2, 77, 80), -- orcs
@@ -810,6 +851,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 29971, 8, 77, 80), -- trolls
 (NULL, 29971, 10, 77, 80), -- blood elves
 (NULL, 29971, 9, 77, 80), -- goblins
+(NULL, 29971, 14, 77, 80), -- mag'har orcs
 --
 -- Jarin Dawnglow, Argent Tournament, Icecrown
 (NULL, 33971, 2, 80, 80), -- orcs
@@ -818,6 +860,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 33971, 8, 80, 80), -- trolls
 (NULL, 33971, 10, 80, 80), -- blood elves
 (NULL, 33971, 9, 80, 80), -- goblins
+(NULL, 33971, 14, 80, 80), -- mag'har orcs
 --
 --        NEUTRAL AREAS
 --
@@ -827,6 +870,7 @@ INSERT INTO `playerbots_rpg_races` VALUES
 (NULL, 6791, 2, 10, 25),
 (NULL, 6791, 8, 10, 25),
 (NULL, 6791, 9, 10, 25),
+(NULL, 6791, 14, 10, 25),
 -- Innkeeper Fizzgrimble, Tanaris 7733 (Neutral)
 (NULL, 7733, 0, 40, 50),
 -- Master Smith Burninate, Searing Gorge

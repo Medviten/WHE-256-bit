@@ -46,6 +46,7 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (37727, 2540, 0, 0, 1, 255, 'StormCrowDruidSkin', '', '', '', 1, 0, 0, 0, 0, 0),
 (37729, 3845, 0, 0, 1, 255, 'EpicDruidFlightWorgen', '', '', '', 1, 0, 0, 0, 0, 0),
 (37730, 3846, 0, 0, 1, 255, 'EpicDruidFlightTroll1', 'EpicDruidFlightTroll2', '', '', 1, 0, 0, 0, 0, 0),
+(94216, 3846, 0, 0, 1, 255, 'DruidFlightTroll1', 'DruidFlightTroll2', '', '', 1, 0, 0, 0, 0, 0), -- Different regular form.
 
 /* Mists of Pandaria Druid forms */
 (40816, 4871, 0, 0, 1, 255, 'DruidTravelAlliance', 'DruidTravelAlliance', 'DruidTravelAlliance', '', 1, 0, 0, 0, 0, 0),

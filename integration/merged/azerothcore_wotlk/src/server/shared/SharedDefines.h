@@ -80,8 +80,8 @@ enum Races
     RACE_BLOODELF           = 10, // TITLE Blood Elf
     RACE_DRAENEI            = 11, // TITLE Draenei
     RACE_WORGEN             = 12, // TITLE Worgen
-    RACE_HIGHELF            = 13  //, TITLE High Elf
-    //RACE_BROKEN         = 14,
+    RACE_HIGHELF            = 13,  // TITLE High Elf
+    RACE_MAGHARORC          = 14  //, TITLE Mag'har Orc
     //RACE_SKELETON       = 15,
     //RACE_VRYKUL         = 16,
     //RACE_TUSKARR        = 17,
@@ -89,7 +89,8 @@ enum Races
     //RACE_TAUNKA         = 19,
     //RACE_NORTHREND_SKELETON = 20,
     //RACE_ICE_TROLL      = 21,
-    //RACE_NAGA           = 22
+    //RACE_NAGA           = 22,
+    //RACE_BROKEN         = 23
 };
 
 // DisplayRace values from CreatureDisplayInfoExtra.dbc
@@ -109,7 +110,7 @@ enum class DisplayRace : uint8
     Draenei           = 11,
     Worgen            = 12,
     HighElf           = 13,
-    Broken            = 14,
+    MagharOrc         = 14,
     Skeleton          = 15,
     Vrykul            = 16,
     Tuskarr           = 17,
@@ -117,7 +118,8 @@ enum class DisplayRace : uint8
     Taunka            = 19,
     NorthrendSkeleton = 20,
     IceTroll          = 21,
-    Naga              = 22
+    Naga              = 22,
+    Broken            = 23,
 };
 
 // Class value is index in ChrClasses.dbc

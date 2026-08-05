@@ -32,6 +32,7 @@ constexpr RandomPlayerbotFactory::NameRaceAndGender RandomPlayerbotFactory::Comb
         case RACE_HIGHELF:    baseIndex = NameRaceAndGender::BloodelfMale; break; // Blood Elf names for High Elves
         case RACE_DRAENEI:    baseIndex = NameRaceAndGender::DraeneiMale; break;
         case RACE_GOBLIN:     baseIndex = NameRaceAndGender::GnomeMale; break; // Gnome names for Goblins
+        case RACE_MAGHARORC:  baseIndex = NameRaceAndGender::OrcMale; break; // Orc names for Mag'har Orcs
         case RACE_HUMAN:
         case RACE_UNDEAD_PLAYER:
         case RACE_WORGEN: // Generic names for Worgen

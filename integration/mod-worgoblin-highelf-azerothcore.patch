@@ -20,7 +20,21 @@ diff -ruN originals/azerothcore-wotlk/src/server/game/Entities/Player/PlayerTaxi
      // new continent starting masks (It will be accessible only at new map)
 diff -ruN originals/azerothcore-wotlk/src/server/game/Globals/ObjectMgr.cpp merged/azerothcore_wotlk/src/server/game/Globals/ObjectMgr.cpp
 --- originals/azerothcore-wotlk/src/server/game/Globals/ObjectMgr.cpp	2026-06-29 14:54:51.353569400 +0200
-+++ merged/azerothcore_wotlk/src/server/game/Globals/ObjectMgr.cpp	2026-06-29 15:15:35.582813700 +0200
++++ merged/azerothcore_wotlk/src/server/game/Globals/ObjectMgr.cpp	2026-08-05 19:23:05.255867300 +0200
+@@ -1890,10 +1890,10 @@
+ {
+     uint8 customizationID;
+ 
+-    if (player->GetTeamId() == TEAM_ALLIANCE)
+-        customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
+-    else
++    if (player->getRace() == RACE_TAUREN)
+         customizationID = player->GetByteValue(PLAYER_BYTES, 0); // Use Skin Color
++    else
++        customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
+ 
+     // getGender() tracks the active display model; real gender lives in PLAYER_BYTES_3
+     uint8 gender = player->GetByteValue(PLAYER_BYTES_3, PLAYER_BYTES_3_OFFSET_GENDER);
 @@ -4867,7 +4867,7 @@
                      continue;
  

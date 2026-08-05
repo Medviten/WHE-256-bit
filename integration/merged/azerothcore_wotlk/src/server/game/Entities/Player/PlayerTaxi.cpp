@@ -51,7 +51,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
             break;     // Night Elf
         case RACE_UNDEAD_PLAYER:
             SetTaximaskNode(11);
-            break;// Undead
+            break;     // Undead
         case RACE_TAUREN:
             SetTaximaskNode(22);
             break;     // Tauren
@@ -77,6 +77,9 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         case RACE_HIGHELF:
             SetTaximaskNode(2);
             break;     // High Elf
+        case RACE_MAGHARORC:
+            SetTaximaskNode(23);
+            break;     // Mag'har Orc
     }
 
     // new continent starting masks (It will be accessible only at new map)
