@@ -74,7 +74,7 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (94179, 4879, 3022, 0, 1, 255, 'druidbearhmtauren_silver', '', '', '', 1, 0, 0, 0, 0, 0),
 (94180, 4879, 3022, 0, 1, 255, 'druidbearhmtauren_white', '', '', '', 1, 0, 0, 0, 0, 0),
 (94181, 4879, 3022, 0, 1, 255, 'druidbearhmtauren_yellow', '', '', '', 1, 0, 0, 0, 0, 0),
-(94182, 4880, 0, 0, 1, 255, 'druidcathmtauren_1black', 'druidcathmtauren_2hornsblack', '', '', -1, 0, 0, 0, 0, 0),
+(94182, 4880, 0, 0, 1, 255, 'druidcathmtauren_1black', '', '', '', -1, 0, 0, 0, 0, 0),
 
 /* The following are copies of Blood Elf entries and are probably not really needed. */
 (32756, 2208, 0, 36060, 1, 255, '', '', '', '', -1, 0, 149, 0, 0, 0),
