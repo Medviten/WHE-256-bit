@@ -78,7 +78,7 @@ REPLACE INTO `creaturedisplayinfo_dbc` (`ID`, `ModelID`, `SoundID`, `ExtendedDis
 (94183, 4880, 0, 0, 1, 255, 'druidcathmtauren_1brown', 'druidcathmtauren_2hornsbrown', '', '', -1, 0, 0, 0, 0, 0),
 (94184, 4880, 0, 0, 1, 255, 'druidcathmtauren_1red', 'druidcathmtauren_2hornsred', '', '', -1, 0, 0, 0, 0, 0),
 (94185, 4880, 0, 0, 1, 255, 'druidcathmtauren_1white', 'druidcathmtauren_2hornswhite', '', '', -1, 0, 0, 0, 0, 0),
-(94186, 4881, 204, 0, 0.9, 255, 'druidowlbear2_hmt', 'druidowlbear2_hmt_horns', '', '', -1, 0, 0, 0, 0, 0),
+(94186, 4881, 204, 0, 0.9, 255, 'druidowlbear2_hmt', 'druidowlbear2_hmt_horns', 'druidowlbear2_ta', '', -1, 0, 0, 0, 0, 0),
 (94187, 4882, 3022, 0, 1, 255, 'druidbearkultiran_brown', 'druidbearkultiran_fx', '', '', 1, 0, 0, 0, 0, 0),
 (94188, 4882, 3022, 0, 1, 255, 'druidbearkultiran_dark', 'druidbearkultiran_fx', '', '', 1, 0, 0, 0, 0, 0),
 (94189, 4882, 3022, 0, 1, 255, 'druidbearkultiran_green', 'druidbearkultiran_fx', '', '', 1, 0, 0, 0, 0, 0),
