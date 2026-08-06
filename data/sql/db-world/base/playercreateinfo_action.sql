@@ -780,4 +780,4 @@
 (14, 11, 0, 5176, 0), -- Wrath
 (14, 11, 1, 5185, 0), -- Healing Touch
 (14, 11, 2, 110001, 0), -- Ancestral Call
-(14, 11, 74, 110001, 0), -- Ancestral Call (SpecialA: Bear Form)
+(14, 11, 74, 110001, 0); -- Ancestral Call (SpecialA: Bear Form)
