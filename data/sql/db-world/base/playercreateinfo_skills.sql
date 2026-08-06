@@ -88,7 +88,7 @@ UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|4096|8192 WHERE `sk
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|64|256|2048 WHERE `skill` = 46 AND `racemask` = 36; -- Guns for Dwarves, Tauren, Gnomes, Goblins, and Worgen
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|1|5 WHERE `skill` = 226 AND `racemask` = 1024; -- Crossbows for Humans, Undead, and Draenei
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048|4096|8192 WHERE `skill` = 173 AND `racemask` = 735; -- Daggers for everyone except Tauren and Draenei
-UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048|8192 WHERE `skill` = 160 AND `racemask` = 1061; -- 2H-maces for Humans, Dwarves, Tauren, Goblins, Draenei, Worgen, and Mag'har Orc Warriors
+UPDATE `playercreateinfo_skills` SET `racemask` = `racemask`|256|2048 WHERE `skill` = 160 AND `racemask` = 1061; -- 2H-maces for Humans, Dwarves, Tauren, Goblins, Draenei, and Worgen Warriors
 
 /* Special cases */ 
 INSERT IGNORE INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`, `comment`) VALUES
