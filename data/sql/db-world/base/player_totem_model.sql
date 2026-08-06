@@ -108,7 +108,7 @@ INSERT INTO player_totem_model (TotemID, RaceID, ModelID) VALUES
 (1, 13, @HighElfFireTotem),
 (2, 13, @HighElfEarthTotem),
 (3, 13, @HighElfWaterTotem),
-(4, 13, @HighElfAirTotem);
+(4, 13, @HighElfAirTotem),
 
 (1, 14, @MagharOrcFireTotem),
 (2, 14, @MagharOrcEarthTotem),
