@@ -1,4 +1,4 @@
-/* AC Defaults */
+/* AC Defaults
 REPLACE INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (0,0,95,0,'Defense'),
 (0,0,162,0,'Unarmed'),
@@ -77,7 +77,7 @@ REPLACE INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, `rank`
 (1024,4,226,0,'Crossbows'),
 (1061,3,160,0,'Two-Handed Maces'),
 (1101,0,98,0,'Language: Common');
-
+*/
 
 /*Updates existing starting skills to include Worgen, Goblins, and High Elves where relevant*/
 /* Only update skill if it has the default racemask to prevent conflict with other modules that change starting weapon skills. */
