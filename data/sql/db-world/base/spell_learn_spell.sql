@@ -1,4 +1,4 @@
-/* Learn Running Wild when learning Riding */
+/* Learn Running Wild when learning Riding
 REPLACE INTO `spell_ranks` (
     `entry`, -- The ID of the spell learned first
     `SpellID`, -- The spell learned afterwards
@@ -13,3 +13,4 @@ REPLACE INTO `spell_ranks` (
     33388, -- Spell ID: Apprentice Riding
     1 -- Active: Yes
 );
+*/
