@@ -430,4 +430,10 @@ REPLACE INTO `player_shapeshift_model` (
 	255, -- CustomizationID: default
 	2, -- GenderID: both
 	45339 -- ModelID: DruidTravelHorde
+), (
+	3, -- ShapeshiftID: Travel form
+	14, -- RaceID: Mag'har Orc
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	45339 -- ModelID: DruidTravelHorde
 );
