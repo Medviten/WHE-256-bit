@@ -23,12 +23,11 @@ Allows all races to be all classes. The updated version fixed some bugs in the o
 This is a module for [AzerothCore](http://www.azerothcore.org) that adds Worgen, Goblins, and numerous features related to their playability.
 
 ### Features
-
 - Worgen as a playable Alliance race and goblins as a playable Horde race
 - Optional alpha Worgen models and Gilnean voices
 - Mage and warlock class trainers in Teldrassil (I ought to extend this to give ARAC combinations access to trainers in their starting areas)
 - Compatibility patches for PlayerBots and Individual Progression modules
-- Worgen druid forms (new!)
+- Worgen and Troll druid forms (Horde forms follow skin colour in AC, but the patch makes it so everyone but Tauren defaults to hair colour)
 - Running Wild (w/o start animation)
 
 #### NYI Features
@@ -45,12 +44,10 @@ This module makes *heavy* use of client patching and modification. Because of th
 Mod to add High Elves as playable characters on Azeroth Core with support for mod-playerbots. By Abracadaniel22.
 
 ### Features
-
 - A new High Elf alliance race is added
 - - It shares the same models as the Blood Elf race
 - - It shares the same starting zone, reputation, skills as the humans (but Turtle WoW-based racials)
-- - High Elves can be any class except shaman or druid (in the non-ARAC version)
-
+- - High Elves can be any class (except shaman or druid in the non-ARAC version)
 - Compatible with HD models
 
 # How to Install
