@@ -215,6 +215,36 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     33653 -- ModelID: DruidBearWorgenTan
 ), (
+	8, -- ShapeshiftID: Dire Bear Form
+    12, -- RaceID: Worgen
+    0, -- CustomizationID: black hair
+    2, -- GenderID: both
+    33651 -- ModelID: DruidBearWorgenBlack
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    12, -- RaceID: Worgen
+    1, -- CustomizationID: light brown hair
+    2, -- GenderID: both
+    33650 -- ModelID: DruidBearWorgen
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    12, -- RaceID: Worgen
+    2, -- CustomizationID: brown hair
+    2, -- GenderID: both
+    33652 -- ModelID: DruidBearWorgenBrown
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    12, -- RaceID: Worgen
+    3, -- CustomizationID: red hair
+    2, -- GenderID: both
+    33654 -- ModelID: DruidBearWorgenWhite
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    12, -- RaceID: Worgen
+    4, -- CustomizationID: dark blonde hair
+    2, -- GenderID: both
+    33653 -- ModelID: DruidBearWorgenTan
+), (
 	31, -- ShapeshiftID: Moonkin Form
     12, -- RaceID: Worgen
     255, -- CustomizationID: default
