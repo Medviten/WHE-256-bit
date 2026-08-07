@@ -128,6 +128,66 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     33658 -- ModelID: DruidBearTrollWhite
 ), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    0, -- CustomizationID: pink hair
+    2, -- GenderID: both
+    33656 -- ModelID: DruidBearTrollPurple
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    1, -- CustomizationID: red hair
+    2, -- GenderID: both
+    33657 -- ModelID: DruidBearTrollRed
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    2, -- CustomizationID: orange hair
+    2, -- GenderID: both
+    33657 -- ModelID: DruidBearTrollRed
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    3, -- CustomizationID: yellow hair
+    2, -- GenderID: both
+    33659 -- ModelID: DruidBearTrollYellow
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    4, -- CustomizationID: green hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    5, -- CustomizationID: blue-green hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    6, -- CustomizationID: blue hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    7, -- CustomizationID: purple hair
+    2, -- GenderID: both
+    33655 -- ModelID: DruidBearTrollBlue
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    8, -- CustomizationID: gray hair
+    2, -- GenderID: both
+    33658 -- ModelID: DruidBearTrollWhite
+), (
+	8, -- ShapeshiftID: Dire Bear Form
+    8, -- RaceID: Troll
+    9, -- CustomizationID: white hair
+    2, -- GenderID: both
+    33658 -- ModelID: DruidBearTrollWhite
+), (
 	31, -- ShapeshiftID: Moonkin Form
     8, -- RaceID: Troll
     255, -- CustomizationID: default
@@ -290,6 +350,12 @@ REPLACE INTO `player_shapeshift_model` (
     2, -- GenderID: both
     94140 -- ModelID: BearSkinWhiteDiseased
 ), (
+    8, -- ShapeshiftID: Dire Bear Form
+    5, -- RaceID: Undead
+    255, -- CustomizationID: default
+    2, -- GenderID: both
+    94139 -- ModelID: BearSkinBrownDiseased
+), (
     4, -- ShapeshiftID: Aquatic Form
     5, -- RaceID: Undead
     255, -- CustomizationID: default
@@ -354,6 +420,12 @@ REPLACE INTO `player_shapeshift_model` (
 	94145 -- ModelID: LasherOrchidSkinGreen
 ), (
 	5, -- ShapeshiftID: Bear Form
+	7, -- RaceID: Gnome
+	255, -- CustomizationID: default
+	2, -- GenderID: both
+	23946 -- ModelID: PolarBearCubSkin
+), (
+	8, -- ShapeshiftID: Dire Bear Form
 	7, -- RaceID: Gnome
 	255, -- CustomizationID: default
 	2, -- GenderID: both
