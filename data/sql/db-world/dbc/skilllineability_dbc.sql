@@ -18,7 +18,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	592, -- ID
 	109, -- SkillLine: Language: Orcish
 	669, -- Spell: Language Orcish 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -78,7 +78,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	3271, -- ID
 	237, -- SkillLine: Arcane
 	3567, -- Spell: Teleport: Orgrimmar 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -108,7 +108,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	3273, -- ID
 	237, -- SkillLine: Arcane
 	3566, -- Spell: Teleport: Thunder Bluff 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -123,7 +123,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	3274, -- ID
 	237, -- SkillLine: Arcane
 	3563, -- Spell: Teleport: Undercity 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -168,7 +168,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	5991, -- ID
 	237, -- SkillLine: Arcane
 	11417, -- Spell: Portal: Orgrimmar 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -198,7 +198,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	5993, -- ID
 	237, -- SkillLine: Arcane
 	11420, -- Spell: Portal: Thunder Bluff 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -213,7 +213,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	5994, -- ID
 	237, -- SkillLine: Arcane
 	11418, -- Spell: Portal: Undercity 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -228,7 +228,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	13151, -- ID
 	373, -- SkillLine: Enhancement
 	2825, -- Spell: Bloodlust 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	64, -- ClassMask: Shaman
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -258,7 +258,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	14816, -- ID
 	237, -- SkillLine: Arcane
 	32272, -- Spell: Teleport: Silvermoon 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -288,7 +288,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	14818, -- ID
 	237, -- SkillLine: Arcane
 	32267, -- Spell: Portal: Silvermoon 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -333,7 +333,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	15606, -- ID
 	237, -- SkillLine: Arcane
 	35715, -- Spell: Teleport: Shattrath 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -348,7 +348,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	15607, -- ID
 	237, -- SkillLine: Arcane
 	35717, -- Spell: Portal: Shattrath 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -378,7 +378,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	17000, -- ID
 	237, -- SkillLine: Arcane
 	49358, -- Spell: Teleport: Stonard 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -393,7 +393,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	17003, -- ID
 	237, -- SkillLine: Arcane
 	49361, -- Spell: Portal: Stonard 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	128, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -423,7 +423,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	20110, -- ID
 	777, -- SkillLine: Mounts
 	55531, -- Spell: Mechano-hog 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -468,7 +468,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	20290, -- ID
 	202, -- SkillLine: Engineering
 	60866, -- Spell: Mechano-hog 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	0, -- ClassMask
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -813,7 +813,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	15253, -- ID
 	594, -- SkillLine: Holy
 	34769, -- Spell: Thalassian Warhorse (Horde Paladin mount),
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	2, -- ClassMask: Paladin
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -828,7 +828,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	20092, -- ID
 	777, -- SkillLine: Mounts
 	34769, -- Spell: Thalassian Warhorse (Horde Paladin mount) 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	2, -- ClassMask: Paladin
 	0, -- ExcludeRace
 	0, -- ExcludeClass
@@ -858,7 +858,7 @@ REPLACE INTO `skilllineability_dbc` (`ID`, `SkillLine`, `Spell`, `RaceMask`, `Cl
 	20090, -- ID
 	777, -- SkillLine: Mounts
 	34767, -- Spell: Thalassian Charger (fast Horde Paladin mount) 
-	946, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
+	9138, -- RaceMask: Horde (Orc, Undead, Tauren, Troll, Goblin, Blood Elf)
 	2, -- ClassMask: Paladin
 	0, -- ExcludeRace
 	0, -- ExcludeClass
