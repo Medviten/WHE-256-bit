@@ -1,6 +1,6 @@
 /* Ensures that faction-restricted items include worgen and goblins */
-UPDATE item_template SET allowablerace = allowablerace|256 WHERE allowablerace & 2 AND allowablerace != -1 AND allowablerace != 2147483647 AND allowablerace != 2047 AND allowablerace != 4095 AND allowablerace != 8191 AND allowablerace != 16383 AND allowablerace != 32767 AND allowablerace != 65535 AND allowablerace != 131071 AND allowablerace != 262143 AND allowablerace != 524287 AND allowablerace != 1048575 AND allowablerace != 2097151;
-UPDATE item_template SET allowablerace = allowablerace|2048 WHERE allowablerace & 1 AND allowablerace != -1 AND allowablerace != 2147483647 AND allowablerace != 2047 AND allowablerace != 4095 AND allowablerace != 8191 AND allowablerace != 16383 AND allowablerace != 32767 AND allowablerace != 65535 AND allowablerace != 131071 AND allowablerace != 262143 AND allowablerace != 524287 AND allowablerace != 1048575 AND allowablerace != 2097151;
+UPDATE item_template SET allowablerace = allowablerace|256|8192 WHERE allowablerace & 2 AND allowablerace != -1 AND allowablerace != 2147483647 AND allowablerace != 2047 AND allowablerace != 4095 AND allowablerace != 16383 AND allowablerace != 16383 AND allowablerace != 32767 AND allowablerace != 65535 AND allowablerace != 131071 AND allowablerace != 262143 AND allowablerace != 524287 AND allowablerace != 1048575 AND allowablerace != 2097151;
+UPDATE item_template SET allowablerace = allowablerace|2048 WHERE allowablerace & 1 AND allowablerace != -1 AND allowablerace != 2147483647 AND allowablerace != 2047 AND allowablerace != 4095 AND allowablerace != 16383 AND allowablerace != 16383 AND allowablerace != 32767 AND allowablerace != 65535 AND allowablerace != 131071 AND allowablerace != 262143 AND allowablerace != 524287 AND allowablerace != 1048575 AND allowablerace != 2097151;
 
 /* Add racial mount items */
 DELETE FROM `item_template` WHERE `entry` IN (62461, 62462, 73838, 73839);
@@ -12,46 +12,46 @@ INSERT INTO `item_template` (`entry`, `class`, `subclass`, `SoundOverrideSubclas
 
 -- Allow high elves to obtain certain items and mounts
 -- If humans can have it, high elves also can
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1029;/*name: Tablet of Serpent Totem, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1057;/*name: Tablet of Restoration III, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1122;/*name: Deprecated Amulet of the White Stallion, old mask: 415*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1123;/*name: Deprecated Amulet of the Pinto, old mask: 415*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1124;/*name: Deprecated Amulet of the Palomino, old mask: 415*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1125;/*name: Deprecated Amulet of the Nightmare, old mask: 415*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1133;/*name: Horn of the Winter Wolf, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 1134;/*name: Horn of the Gray Wolf, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2128;/*name: Scratched Claymore, old mask: 2047*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1029;/*name: Tablet of Serpent Totem, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1057;/*name: Tablet of Restoration III, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1122;/*name: Deprecated Amulet of the White Stallion, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1123;/*name: Deprecated Amulet of the Pinto, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1124;/*name: Deprecated Amulet of the Palomino, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1125;/*name: Deprecated Amulet of the Nightmare, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1133;/*name: Horn of the Winter Wolf, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 1134;/*name: Horn of the Gray Wolf, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2128;/*name: Scratched Claymore, old mask: 2047*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 2411;/*name: Black Stallion Bridle, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2412;/*name: Deprecated Nightmare Bridle, old mask: 415*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2413;/*name: Palomino, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2412;/*name: Deprecated Nightmare Bridle, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2413;/*name: Palomino, old mask: 415*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 2414;/*name: Pinto Bridle, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2415;/*name: White Stallion, old mask: 415*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2484;/*name: Small Knife, old mask: 2047*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2502;/*name: Scuffed Dagger, old mask: 2047*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 2556;/*name: Recipe: Elixir of Tongues, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 3144;/*name: Grimoire of Burning Spirit II, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 4143;/*name: Tome of Conjure Food II, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 4273;/*name: Codex of Heal, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 5000;/*name: Coral Band, old mask: 2047*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 5150;/*name: Book of Healing Touch III, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2415;/*name: White Stallion, old mask: 415*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2484;/*name: Small Knife, old mask: 2047*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2502;/*name: Scuffed Dagger, old mask: 2047*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 2556;/*name: Recipe: Elixir of Tongues, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 3144;/*name: Grimoire of Burning Spirit II, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 4143;/*name: Tome of Conjure Food II, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 4273;/*name: Codex of Heal, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 5000;/*name: Coral Band, old mask: 2047*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 5150;/*name: Book of Healing Touch III, old mask: 511*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 5655;/*name: Chestnut Mare Bridle, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 5656;/*name: Brown Horse Bridle, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 5657;/*name: Recipe: Instant Toxin, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 5660;/*name: Libram: Seal of Righteousness, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 5663;/*name: Horn of the Red Wolf, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 5657;/*name: Recipe: Instant Toxin, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 5660;/*name: Libram: Seal of Righteousness, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 5663;/*name: Horn of the Red Wolf, old mask: 223*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 5864;/*name: Gray Ram, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 5872;/*name: Brown Ram, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 5873;/*name: White Ram, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 6516;/*name: Imp Summoning Scroll, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 6544;/*name: Voidwalker Summoning Scroll, old mask: 511*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 6623;/*name: Succubus Summoning Scroll, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 6516;/*name: Imp Summoning Scroll, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 6544;/*name: Voidwalker Summoning Scroll, old mask: 511*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 6623;/*name: Succubus Summoning Scroll, old mask: 511*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 8563;/*name: Red Mechanostrider, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 8583;/*name: Horn of the Skeletal Mount, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 8589;/*name: Old Whistle of the Ivory Raptor, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 8590;/*name: Old Whistle of the Obsidian Raptor, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 8583;/*name: Horn of the Skeletal Mount, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 8589;/*name: Old Whistle of the Ivory Raptor, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 8590;/*name: Old Whistle of the Obsidian Raptor, old mask: 223*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 8595;/*name: Blue Mechanostrider, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 8627;/*name: Reins of the Night saber, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 8628;/*name: Reins of the Spotted Nightsaber, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 8627;/*name: Reins of the Night saber, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 8628;/*name: Reins of the Spotted Nightsaber, old mask: 223*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 8629;/*name: Reins of the Striped Nightsaber, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 8631;/*name: Reins of the Striped Frostsaber, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 8632;/*name: Reins of the Spotted Frostsaber, old mask: 1101*/
@@ -67,12 +67,12 @@ UPDATE item_template SET allowablerace = 7245 WHERE entry = 13326;/*name: White 
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 13327;/*name: Icy Blue Mechanostrider Mod A, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 13328;/*name: Black Ram, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 13329;/*name: Frost Ram, old mask: 1101*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 16338;/*name: Knight-Lieutenant's Steed, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 16339;/*name: Commander's Steed, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 16343;/*name: Blood Guard's Mount, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 16344;/*name: Lieutenant General's Mount, old mask: 223*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 17019;/*name: Arcane Dust, old mask: 2047*/
-UPDATE item_template SET allowablerace = 8191 WHERE entry = 17027;/*name: Scented Candle, old mask: 2047*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 16338;/*name: Knight-Lieutenant's Steed, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 16339;/*name: Commander's Steed, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 16343;/*name: Blood Guard's Mount, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 16344;/*name: Lieutenant General's Mount, old mask: 223*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 17019;/*name: Arcane Dust, old mask: 2047*/
+UPDATE item_template SET allowablerace = 16383 WHERE entry = 17027;/*name: Scented Candle, old mask: 2047*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 18241;/*name: Black War Steed Bridle, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 18242;/*name: Reins of the Black War Tiger, old mask: 1101*/
 UPDATE item_template SET allowablerace = 7245 WHERE entry = 18243;/*name: Black Battlestrider, old mask: 1101*/
