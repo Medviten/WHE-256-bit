@@ -2846,7 +2846,7 @@ REPLACE INTO `spell_dbc` (`ID`, `Category`, `DispelType`, `Mechanic`, `Attribute
 	0, -- SpellDescriptionVariableID
 	0 -- SpellDifficultyID
 ),
-/* Two Forms (semi-permanent, male) */
+/* Human Form (semi-permanent, male) */
 (
 	68994, -- ID
 	0, -- Category
