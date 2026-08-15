@@ -240,7 +240,7 @@ enum FactionTemplates
 #define MIN_REPUTATION_RANK (REP_HATED)
 #define MAX_REPUTATION_RANK 8
 
-#define MAX_SPILLOVER_FACTIONS 6
+#define MAX_SPILLOVER_FACTIONS 12
 
 enum MoneyConstants
 {
