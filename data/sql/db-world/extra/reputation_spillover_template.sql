@@ -1,4 +1,4 @@
-REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `rank_1`, `faction2`, `rate_2`, `rank_2`, `faction3`, `rate_3`, `rank_3`, `faction4`, `rate_4`, `rank_4`, `faction5`, `rate_5`, `rank_5`, `faction6`, `rate_6`, `rank_6`, `faction7`, `rate_7`, `rank_7`, `faction8`, `rate_8`, `rank_8`, `faction9`, `rate_9`, `rank_9`, `faction10`, `rate_10`, `rank_10`, `faction11`, `rate_11`, `rank_11`, `faction12`, `rate_12`, `rank_12`) VALUES
+REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `rank_1`, `faction2`, `rate_2`, `rank_2`, `faction3`, `rate_3`, `rank_3`, `faction4`, `rate_4`, `rank_4`, `faction5`, `rate_5`, `rank_5`, `faction6`, `rate_6`, `rank_6`) VALUES -- , `faction7`, `rate_7`, `rank_7`, `faction8`, `rate_8`, `rank_8`, `faction9`, `rate_9`, `rank_9`, `faction10`, `rate_10`, `rank_10`, `faction11`, `rate_11`, `rank_11`, `faction12`, `rate_12`, `rank_12`
 /* Alliance */
 (
 	72, -- faction: Stormwind
