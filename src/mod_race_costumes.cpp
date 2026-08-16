@@ -10,6 +10,10 @@
 
 namespace
 {
+    // Race value 0 is not a real player race (WotLK races start at 1 =
+    // Human), so we reuse it as our wildcard meaning "any race".
+    constexpr uint8 COSTUME_RACE_ANY = 0;
+
     // Gender values:
     // 0 = male
     // 1 = female
@@ -35,19 +39,25 @@ namespace
 
     uint32 GetCostumeDisplayId(uint32 spellId, uint8 race, uint8 gender)
     {
-        // First try exact race + gender.
-        CostumeKey exactKey{ spellId, race, gender };
+        // Check every combination from most to least specific:
+        //   1. exact race,        exact gender
+        //   2. exact race,        any gender
+        //   3. any race,          exact gender
+        //   4. any race,          any gender
+        uint8 const raceCandidates[]   = { race, COSTUME_RACE_ANY };
+        uint8 const genderCandidates[] = { gender, COSTUME_GENDER_ANY };
 
-        auto itr = CostumeDatabaseMap.find(exactKey);
-        if (itr != CostumeDatabaseMap.end())
-            return itr->second;
+        for (uint8 r : raceCandidates)
+        {
+            for (uint8 g : genderCandidates)
+            {
+                CostumeKey key{ spellId, r, g };
 
-        // Then try race + wildcard gender.
-        CostumeKey anyGenderKey{ spellId, race, COSTUME_GENDER_ANY };
-
-        itr = CostumeDatabaseMap.find(anyGenderKey);
-        if (itr != CostumeDatabaseMap.end())
-            return itr->second;
+                auto itr = CostumeDatabaseMap.find(key);
+                if (itr != CostumeDatabaseMap.end())
+                    return itr->second;
+            }
+        }
 
         return 0;
     }
