@@ -20,4 +20,4 @@ REPLACE INTO `game_graveyard` (`ID`,  `Map`, `x`,  `y`,  `z`,  `Comment`) VALUES
 	 (1739, 0, -1642.3, 1828.94, 4.75, 'Gilneas - Aderic''s Repose'),
 	 (1740, 0, -1576.75, 1603.2, 21.513, 'Gilneas City - Light''s Dawn Cathedral'),
 	 (1741, 0, -1763.8, 1659.5, 21, 'Gilneas City - Greymane Court'),
-	 (1742, 0, -1389.5, 1371.9, 35.8, 'Gilneas City - Merchant Square'),
+	 (1742, 0, -1389.5, 1371.9, 35.8, 'Gilneas City - Merchant Square');
