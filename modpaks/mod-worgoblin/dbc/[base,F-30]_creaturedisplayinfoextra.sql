@@ -1,0 +1,19 @@
+-- creaturedisplayinfoextra: 8 inserts, 0 updates, 0 deletes
+
+-- New entries
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 24081;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (24081, 12, 0, 1, 1, 4, 0, 1, 0, 0, 0, 0, 0, 1883, 0, 0, 0, 13909, 0, 0, 'CreatureDisplayExtra-24081.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 24082;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (24082, 9, 0, 2, 0, 4, 1, 4, 0, 0, 0, 0, 5904, 1883, 0, 0, 0, 13909, 0, 0, 'CreatureDisplayExtra-24082.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 62100;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (62100, 12, 0, 3, 4, 3, 3, 0, 0, 0, 0, 12656, 0, 0, 0, 0, 0, 0, 0, 0, 'CreatureDisplayExtra-62100.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 62101;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (62101, 12, 0, 1, 3, 4, 2, 0, 0, 0, 0, 30868, 0, 0, 0, 0, 0, 0, 0, 0, 'CreatureDisplayExtra-62101.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 62102;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (62102, 12, 1, 4, 4, 16, 1, 0, 0, 0, 0, 12673, 0, 0, 0, 0, 0, 0, 0, 0, 'CreatureDisplayExtra-62102.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 62103;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (62103, 12, 1, 7, 5, 14, 0, 0, 0, 0, 0, 12646, 0, 0, 0, 0, 0, 0, 0, 0, 'CreatureDisplayExtra-62103.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 62104;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (62104, 12, 1, 8, 2, 8, 4, 0, 0, 0, 0, 12696, 11533, 0, 0, 0, 0, 0, 0, 0, 'CreatureDisplayExtra-62104.blp');
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 62105;
+INSERT INTO `creaturedisplayinfoextra` (`id`, `race`, `gender`, `skin_color`, `face_type`, `hair_style`, `hair_color`, `facial_hair`, `helm_id`, `shoulders_id`, `shirt_id`, `chest_id`, `belt_id`, `legs_id`, `boots_id`, `wrists_id`, `gloves_id`, `tabard_id`, `cape_id`, `can_equip`, `texture`) VALUES (62105, 12, 0, 2, 1, 0, 4, 0, 0, 0, 0, 0, 25225, 43193, 0, 0, 0, 0, 0, 0, 'CreatureDisplayExtra-62105.blp');
