@@ -8443,8 +8443,8 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
 
     _repSpilloverTemplateStore.clear();                      // for reload case
 
-    uint32 count = 0; //                                0         1        2       3        4       5       6         7        8      9        10       11     12        13       14      15       16       17     18 (plus 18 additional ones)
-    QueryResult result = WorldDatabase.Query("SELECT faction, faction1, rate_1, rank_1, faction2, rate_2, rank_2, faction3, rate_3, rank_3, faction4, rate_4, rank_4, faction5, rate_5, rank_5, faction6, rate_6, rank_6, faction7, rate_7, rank_7, faction8, rate_8, rank_8, faction9, rate_9, rank_9, faction10, rate_10, rank_10, faction11, rate_11, rank_11, faction12, rate_12, rank_12 FROM reputation_spillover_template");
+    uint32 count = 0; //                                0         1        2       3        4       5       6         7        8      9        10       11     12        13       14      15       16       17     18 (plus 18 additional ones: , faction7, rate_7, rank_7, faction8, rate_8, rank_8, faction9, rate_9, rank_9, faction10, rate_10, rank_10, faction11, rate_11, rank_11, faction12, rate_12, rank_12)
+    QueryResult result = WorldDatabase.Query("SELECT faction, faction1, rate_1, rank_1, faction2, rate_2, rank_2, faction3, rate_3, rank_3, faction4, rate_4, rank_4, faction5, rate_5, rank_5, faction6, rate_6, rank_6 FROM reputation_spillover_template");
 
     if (!result)
     {
@@ -8482,24 +8482,24 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
         repTemplate.faction[6]          = fields[19].Get<uint16>();
         repTemplate.faction_rate[6]     = fields[20].Get<float>();
         repTemplate.faction_rank[6]     = fields[21].Get<uint8>();
-        repTemplate.faction[7]          = fields[22].Get<uint16>();
-        repTemplate.faction_rate[7]     = fields[23].Get<float>();
-        repTemplate.faction_rank[7]     = fields[24].Get<uint8>();
-        repTemplate.faction[8]          = fields[25].Get<uint16>();
-        repTemplate.faction_rate[8]     = fields[26].Get<float>();
-        repTemplate.faction_rank[8]     = fields[27].Get<uint8>();
-        repTemplate.faction[9]          = fields[28].Get<uint16>();
-        repTemplate.faction_rate[9]     = fields[29].Get<float>();
-        repTemplate.faction_rank[9]     = fields[30].Get<uint8>();
-        repTemplate.faction[10]          = fields[31].Get<uint16>();
-        repTemplate.faction_rate[10]     = fields[32].Get<float>();
-        repTemplate.faction_rank[10]     = fields[33].Get<uint8>();
-        repTemplate.faction[11]          = fields[34].Get<uint16>();
-        repTemplate.faction_rate[11]     = fields[35].Get<float>();
-        repTemplate.faction_rank[11]     = fields[36].Get<uint8>();
-        repTemplate.faction[12]          = fields[37].Get<uint16>();
-        repTemplate.faction_rate[12]     = fields[38].Get<float>();
-        repTemplate.faction_rank[12]     = fields[39].Get<uint8>();
+//        repTemplate.faction[7]          = fields[22].Get<uint16>();
+//        repTemplate.faction_rate[7]     = fields[23].Get<float>();
+//        repTemplate.faction_rank[7]     = fields[24].Get<uint8>();
+//        repTemplate.faction[8]          = fields[25].Get<uint16>();
+//        repTemplate.faction_rate[8]     = fields[26].Get<float>();
+//        repTemplate.faction_rank[8]     = fields[27].Get<uint8>();
+//        repTemplate.faction[9]          = fields[28].Get<uint16>();
+//        repTemplate.faction_rate[9]     = fields[29].Get<float>();
+//        repTemplate.faction_rank[9]     = fields[30].Get<uint8>();
+//        repTemplate.faction[10]          = fields[31].Get<uint16>();
+//        repTemplate.faction_rate[10]     = fields[32].Get<float>();
+//        repTemplate.faction_rank[10]     = fields[33].Get<uint8>();
+//        repTemplate.faction[11]          = fields[34].Get<uint16>();
+//        repTemplate.faction_rate[11]     = fields[35].Get<float>();
+//        repTemplate.faction_rank[11]     = fields[36].Get<uint8>();
+//        repTemplate.faction[12]          = fields[37].Get<uint16>();
+//        repTemplate.faction_rate[12]     = fields[38].Get<float>();
+//        repTemplate.faction_rank[12]     = fields[39].Get<uint8>();
 
         FactionEntry const* factionEntry = sFactionStore.LookupEntry(factionId);
 

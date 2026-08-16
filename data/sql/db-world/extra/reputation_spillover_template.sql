@@ -19,25 +19,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1167, -- faction6: High Elven Loyalists
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	47, -- faction: Ironforge
 	72, -- faction1: Stormwind
@@ -57,25 +39,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1167, -- faction6: High Elven Loyalists
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	54, -- faction: Gnomeregan Exiles
 	47, -- faction1: Ironforge
@@ -95,25 +59,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1167, -- faction6: High Elven Loyalists
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	69, -- faction: Darnassus
 	47, -- faction1: Ironforge
@@ -133,25 +79,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1167, -- faction6: High Elven Loyalists
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	930, -- faction: Exodar
 	47, -- faction1: Ironforge
@@ -171,25 +99,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1167, -- faction6: High Elven Loyalists
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	1165, -- faction: Gilneas
 	47, -- faction1: Ironforge
@@ -209,25 +119,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1167, -- faction6: High Elven Loyalists
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	1167, -- faction: High Elven Loyalists
 	47, -- faction1: Ironforge
@@ -247,25 +139,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1165, -- faction6: Gilneas
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ),
 /* Horde */
 (
@@ -287,25 +161,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1168, -- faction6: Mag'har of the Horde
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	81, -- faction: Thunder Bluff
 	76, -- faction1: Orgrimmar
@@ -325,25 +181,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1168, -- faction6: Mag'har of the Horde
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	68, -- faction: Undercity
 	76, -- faction1: Orgrimmar
@@ -363,25 +201,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1168, -- faction6: Mag'har of the Horde
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	530, -- faction: Darkspear Trolls
 	76, -- faction1: Orgrimmar
@@ -401,25 +221,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1168, -- faction6: Mag'har of the Horde
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	911, -- faction: Silvermoon City
 	76, -- faction1: Orgrimmar
@@ -439,25 +241,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1168, -- faction6: Mag'har of the Horde
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	1164, -- faction: Bilgewater Cartel
 	76, -- faction1: Orgrimmar
@@ -477,25 +261,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	1168, -- faction6: Mag'har of the Horde
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 ), (
 	1168, -- faction: Mag'har of the Horde
 	76, -- faction1: Orgrimmar
@@ -515,23 +281,5 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_5: Exalted
 	68, -- faction6: Undercity
 	0.25, -- rate_6: 1/4
-	7, -- rank_6: Exalted
-	0, -- faction7
-	0, -- rate_7
-	0, -- rank_7
-	0, -- faction8
-	0, -- rate_8
-	0, -- rank_8
-	0, -- faction9
-	0, -- rate_9
-	0, -- rank_9
-	0, -- faction10
-	0, -- rate_10
-	0, -- rank_10
-	0, -- faction11
-	0, -- rate_11
-	0, -- rank_11
-	0, -- faction12
-	0, -- rate_12
-	0 -- rank_12
+	7 -- rank_6: Exalted
 );
