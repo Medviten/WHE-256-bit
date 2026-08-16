@@ -8479,9 +8479,9 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
         repTemplate.faction[5]          = fields[16].Get<uint16>();
         repTemplate.faction_rate[5]     = fields[17].Get<float>();
         repTemplate.faction_rank[5]     = fields[18].Get<uint8>();
-        repTemplate.faction[6]          = fields[19].Get<uint16>();
-        repTemplate.faction_rate[6]     = fields[20].Get<float>();
-        repTemplate.faction_rank[6]     = fields[21].Get<uint8>();
+//        repTemplate.faction[6]          = fields[19].Get<uint16>();
+//        repTemplate.faction_rate[6]     = fields[20].Get<float>();
+//        repTemplate.faction_rank[6]     = fields[21].Get<uint8>();
 //        repTemplate.faction[7]          = fields[22].Get<uint16>();
 //        repTemplate.faction_rate[7]     = fields[23].Get<float>();
 //        repTemplate.faction_rank[7]     = fields[24].Get<uint8>();
@@ -8497,9 +8497,6 @@ void ObjectMgr::LoadReputationSpilloverTemplate()
 //        repTemplate.faction[11]          = fields[34].Get<uint16>();
 //        repTemplate.faction_rate[11]     = fields[35].Get<float>();
 //        repTemplate.faction_rank[11]     = fields[36].Get<uint8>();
-//        repTemplate.faction[12]          = fields[37].Get<uint16>();
-//        repTemplate.faction_rate[12]     = fields[38].Get<float>();
-//        repTemplate.faction_rank[12]     = fields[39].Get<uint8>();
 
         FactionEntry const* factionEntry = sFactionStore.LookupEntry(factionId);
 
