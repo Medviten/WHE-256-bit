@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "SpellAuras.h"
 #include "SpellAuraEffects.h"
+#include "SpellScript.h"
 #include "DatabaseEnv.h"
 
 #include <cstdint>
@@ -127,51 +128,32 @@ public:
 };
 
 // ============================================================
-// Global aura hook
+// Aura script - fires on the transform effect's initial apply AND
+// every subsequent reapply (recast/refresh/stack), which a plain
+// UnitScript::OnAuraApply hook does not: that one only fires the
+// very first time the aura lands on a unit. Recasting an
+// already-active aura re-runs the effect's native handler through a
+// lower-level path that skips that hook, silently reverting to the
+// spell's built-in default model. AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK
+// covers both cases.
 // ============================================================
 
-class CustomCostumeUnitScript : public UnitScript
+class spell_costume_override : public AuraScript
 {
-public:
-    CustomCostumeUnitScript()
-        : UnitScript("CustomCostumeUnitScript")
-    {
-    }
+    PrepareAuraScript(spell_costume_override);
 
-    void OnAuraApply(Unit* unit, Aura* aura) override
+    void HandleApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
-        if (!unit || !aura)
+        Unit* target = GetTarget();
+        if (!target)
             return;
 
-        // We only care about player characters.
-        Player* player = unit->ToPlayer();
+        Player* player = target->ToPlayer();
         if (!player)
             return;
 
-        SpellInfo const* spellInfo = aura->GetSpellInfo();
-        if (!spellInfo)
-            return;
-
-        uint32 spellId = spellInfo->Id;
-
-        // Only bother with the lookup if this aura actually has a
-        // transform effect - otherwise it's not one of ours.
-        bool hasTransformEffect = false;
-        for (uint8 i = 0; i < MAX_SPELL_EFFECTS; ++i)
-        {
-            AuraEffect* effect = aura->GetEffect(i);
-            if (effect && effect->GetAuraType() == SPELL_AURA_TRANSFORM)
-            {
-                hasTransformEffect = true;
-                break;
-            }
-        }
-
-        if (!hasTransformEffect)
-            return;
-
         uint32 displayId = GetCostumeDisplayId(
-            spellId,
+            GetId(),
             player->getRace(),
             player->getGender()
         );
@@ -182,21 +164,28 @@ public:
         // Set the display ID directly. SPELL_AURA_TRANSFORM's own effect
         // "amount" is not what controls the model shown to the client
         // (for this aura type it's used internally as a CC-duration cap),
-        // so we can't influence it by changing that value. This hook fires
-        // after the aura's default effect handling has already run, so
-        // this simply overrides whatever model the core just applied.
-        // When the aura is removed, AzerothCore's own transform-removal
-        // logic recomputes the player's native model from scratch, so no
-        // explicit restore is needed here.
+        // so we can't influence it by changing that value - we override
+        // the unit's display ID directly instead, after the default
+        // handling for this apply/reapply has already run.
         player->SetDisplayId(displayId);
 
         LOG_DEBUG(
             "scripts",
             "Custom costume applied: spell={}, race={}, gender={}, display={}",
-            spellId,
+            GetId(),
             (uint32)player->getRace(),
             (uint32)player->getGender(),
             displayId
+        );
+    }
+
+    void Register() override
+    {
+        OnEffectApply += AuraEffectApplyFn(
+            spell_costume_override::HandleApply,
+            EFFECT_ALL,
+            SPELL_AURA_TRANSFORM,
+            AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK
         );
     }
 };
@@ -208,5 +197,5 @@ public:
 void AddSC_mod_race_costumes()
 {
     new CustomCostumeWorldScript();
-    new CustomCostumeUnitScript();
+    RegisterSpellScript(spell_costume_override);
 }
