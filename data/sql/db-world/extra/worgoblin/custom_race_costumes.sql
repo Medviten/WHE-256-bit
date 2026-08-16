@@ -1,4 +1,4 @@
-CREATE TABLE IF_NOT_EXISTS `custom_race_costumes` (
+CREATE TABLE IF NOT EXISTS `custom_race_costumes` (
     `trigger_spell_id` INT UNSIGNED NOT NULL COMMENT 'The spell ID cast by the item/NPC',
     `race` TINYINT UNSIGNED NOT NULL COMMENT 'Target original race ID (0 for any)',
     `gender` TINYINT UNSIGNED NOT NULL COMMENT '0 = Male, 1 = Female, 2 = Both',
