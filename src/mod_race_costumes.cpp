@@ -3,139 +3,46 @@
 #include "SpellAuras.h"
 #include "SpellAuraEffects.h"
 #include "SpellScript.h"
-#include "DatabaseEnv.h"
 
 #include <cstdint>
 #include <map>
-#include <tuple>
 
 namespace
 {
-    // Race value 0 is not a real player race (WotLK races start at 1 =
-    // Human), so we reuse it as our wildcard meaning "any race".
-    constexpr uint8 COSTUME_RACE_ANY = 0;
-
-    // Gender values:
-    // 0 = male
-    // 1 = female
-    //
-    // 2 is our custom wildcard meaning "either gender".
-    constexpr uint8 COSTUME_GENDER_ANY = 2;
-
-    struct CostumeKey
+    struct GenderedDisplay
     {
-        uint32 spellId;
-        uint8 race;
-        uint8 gender;
-
-        bool operator<(CostumeKey const& other) const
-        {
-            return std::tie(spellId, race, gender) <
-                   std::tie(other.spellId, other.race, other.gender);
-        }
+        uint32 maleDisplayId;
+        uint32 femaleDisplayId;
     };
 
-    // spellId + race + gender -> display ID
-    std::map<CostumeKey, uint32> CostumeDatabaseMap;
-
-    uint32 GetCostumeDisplayId(uint32 spellId, uint8 race, uint8 gender)
+    // To add a new costume: add a line below and recompile. Key is the
+    // trigger spell ID cast by whatever item/NPC/command grants the
+    // transform aura. No database table involved.
+    std::map<uint32, GenderedDisplay> const CostumeSpells =
     {
-        // Check every combination from most to least specific:
-        //   1. exact race,        exact gender
-        //   2. exact race,        any gender
-        //   3. any race,          exact gender
-        //   4. any race,          any gender
-        uint8 const raceCandidates[]   = { race, COSTUME_RACE_ANY };
-        uint8 const genderCandidates[] = { gender, COSTUME_GENDER_ANY };
+        // spellId, { maleDisplayId, femaleDisplayId }
+        { 68994,    { 94135,          94136          } }, // Gilnean disguise
+        { 110020,   { 20585,          20584          } }, // Tauren disguise
+    };
 
-        for (uint8 r : raceCandidates)
-        {
-            for (uint8 g : genderCandidates)
-            {
-                CostumeKey key{ spellId, r, g };
-
-                auto itr = CostumeDatabaseMap.find(key);
-                if (itr != CostumeDatabaseMap.end())
-                    return itr->second;
-            }
-        }
-
-        return 0;
-    }
-
-    void LoadCostumeDatabase()
+    uint32 GetCostumeDisplayId(uint32 spellId, uint8 gender)
     {
-        CostumeDatabaseMap.clear();
+        auto itr = CostumeSpells.find(spellId);
+        if (itr == CostumeSpells.end())
+            return 0;
 
-        LOG_INFO("server.loading", "Loading custom_race_costumes...");
-
-        QueryResult result = WorldDatabase.Query(
-            "SELECT trigger_spell_id, race, gender, display_id "
-            "FROM custom_race_costumes"
-        );
-
-        if (!result)
-        {
-            LOG_INFO(
-                "server.loading",
-                ">> Loaded 0 custom race costumes. Table is empty."
-            );
-            return;
-        }
-
-        uint32 count = 0;
-
-        do
-        {
-            Field* fields = result->Fetch();
-
-            uint32 spellId   = fields[0].Get<uint32>();
-            uint8 race       = fields[1].Get<uint8>();
-            uint8 gender     = fields[2].Get<uint8>();
-            uint32 displayId = fields[3].Get<uint32>();
-
-            CostumeKey key{ spellId, race, gender };
-
-            CostumeDatabaseMap[key] = displayId;
-            ++count;
-
-        } while (result->NextRow());
-
-        LOG_INFO(
-            "server.loading",
-            ">> Loaded {} custom race costume entries.",
-            count
-        );
+        return (gender == GENDER_FEMALE) ? itr->second.femaleDisplayId : itr->second.maleDisplayId;
     }
 }
 
 // ============================================================
-// World script
-// ============================================================
-
-class CustomCostumeWorldScript : public WorldScript
-{
-public:
-    CustomCostumeWorldScript()
-        : WorldScript("CustomCostumeWorldScript")
-    {
-    }
-
-    void OnStartup() override
-    {
-        LoadCostumeDatabase();
-    }
-};
-
-// ============================================================
-// Aura script - fires on the transform effect's initial apply AND
-// every subsequent reapply (recast/refresh/stack), which a plain
-// UnitScript::OnAuraApply hook does not: that one only fires the
-// very first time the aura lands on a unit. Recasting an
-// already-active aura re-runs the effect's native handler through a
-// lower-level path that skips that hook, silently reverting to the
-// spell's built-in default model. AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK
-// covers both cases.
+// Aura script - applies the correct gendered model on the transform
+// aura's initial apply AND every later reapply (recast/refresh/
+// stack). AfterEffectApply runs once the built-in SPELL_AURA_TRANSFORM
+// handling for this effect has already completed, so our override
+// reliably lands last instead of risking being overwritten by it -
+// which is what OnEffectApply (used in an earlier version of this
+// file) was vulnerable to.
 // ============================================================
 
 class spell_costume_override : public AuraScript
@@ -152,28 +59,16 @@ class spell_costume_override : public AuraScript
         if (!player)
             return;
 
-        uint32 displayId = GetCostumeDisplayId(
-            GetId(),
-            player->getRace(),
-            player->getGender()
-        );
-
+        uint32 displayId = GetCostumeDisplayId(GetId(), player->getGender());
         if (!displayId)
             return;
 
-        // Set the display ID directly. SPELL_AURA_TRANSFORM's own effect
-        // "amount" is not what controls the model shown to the client
-        // (for this aura type it's used internally as a CC-duration cap),
-        // so we can't influence it by changing that value - we override
-        // the unit's display ID directly instead, after the default
-        // handling for this apply/reapply has already run.
         player->SetDisplayId(displayId);
 
         LOG_DEBUG(
             "scripts",
-            "Custom costume applied: spell={}, race={}, gender={}, display={}",
+            "Custom costume applied: spell={}, gender={}, display={}",
             GetId(),
-            (uint32)player->getRace(),
             (uint32)player->getGender(),
             displayId
         );
@@ -181,7 +76,7 @@ class spell_costume_override : public AuraScript
 
     void Register() override
     {
-        OnEffectApply += AuraEffectApplyFn(
+        AfterEffectApply += AuraEffectApplyFn(
             spell_costume_override::HandleApply,
             EFFECT_ALL,
             SPELL_AURA_TRANSFORM,
@@ -196,6 +91,5 @@ class spell_costume_override : public AuraScript
 
 void AddSC_mod_race_costumes()
 {
-    new CustomCostumeWorldScript();
     RegisterSpellScript(spell_costume_override);
 }
