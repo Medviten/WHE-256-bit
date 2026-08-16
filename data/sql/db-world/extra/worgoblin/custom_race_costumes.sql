@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `custom_race_costumes` (
     PRIMARY KEY (`trigger_spell_id`, `race`, `gender`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `custom_race_costumes` (`trigger_spell_id`, `race`, `gender`, `display_id`) VALUES 
+REPLACE INTO `custom_race_costumes` (`trigger_spell_id`, `race`, `gender`, `display_id`) VALUES 
 (68994, 0, 0, 94135), -- Gilnean male
 (68994, 0, 1, 94136), -- Gilnean female
 (110020, 0, 0, 20585), -- Tauren male
