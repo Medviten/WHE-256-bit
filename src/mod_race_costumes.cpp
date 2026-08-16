@@ -1,6 +1,7 @@
 #include "ScriptMgr.h"
 #include "Player.h"
 #include "SpellAuras.h"
+#include "SpellAuraEffects.h"
 #include "DatabaseEnv.h"
 
 #include <cstdint>
