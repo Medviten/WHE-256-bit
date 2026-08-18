@@ -8,6 +8,9 @@ Another method is to delete my edited TaxiPath.dbc, TaxiPathNodes.dbc, and AreaT
 
 I also considered making a patch that would camouflage the extra races as existing ones (Worgen –> Night Elf, Goblin –> Orc, High Elf –> Human), but it would be too much work to make it work properly, e.g. not crashing as soon as you get too close to a barber shop. It would also be too much to work to maintain.
 
+## Modpaks
+I'm trying out a system for handling DBC files as (idempotent) SQL, inspired by Justurn's [zpaks](https://github.com/ZepplinCore-Development/Zeppelin-Craft/tree/main). The idea is to make even DBC-reliant systems more modular and easier to bulk edit. For now, it's only the Worgoblin DBCs, but I'll try to incorporate all the mods I've used into the modpak format.
+
 ## ARAC (All Races All Classes)
 Allows all races to be all classes. The updated version fixed some bugs in the original and adds a few spells. I noticed some missing combinations (e.g. Blood Elf Druid) were missing spells in some files, so I have added those in there as well as extending the module to cover Worgen, Goblins and High Elves.
 
