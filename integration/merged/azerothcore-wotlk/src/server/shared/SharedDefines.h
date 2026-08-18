@@ -145,7 +145,7 @@ enum class DisplayRace : uint8
 //  HordeDracthyr     = 28,
 //  HordeEarthen      = 29,
 //  AllianceEarthen   = 30,
-//  Eredar   = 31
+//  Eredar            = 31
     FelOrc            = 32,
     Naga              = 33,
     Broken            = 34,
