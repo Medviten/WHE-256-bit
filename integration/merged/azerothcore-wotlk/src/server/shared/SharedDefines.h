@@ -98,7 +98,7 @@ enum Races
     //RACE_HORDEDRACTHYR    = 28, // TITLE Horde Dracthyr
     //RACE_HORDEEARTHEN     = 29, // TITLE Horde Earthen
     //RACE_ALLIANCEEARTHEN  = 30, // TITLE Alliance Earthen
-    //RACE_ALLIANCEHARANIR  = 31 // TITLE Alliance Haranir
+    //RACE_EREDAR           = 31 // TITLE Eredar
     //RACE_FELORC         = 32,
     //RACE_NAGA           = 33,
     //RACE_BROKEN         = 34,
@@ -145,7 +145,7 @@ enum class DisplayRace : uint8
 //  HordeDracthyr     = 28,
 //  HordeEarthen      = 29,
 //  AllianceEarthen   = 30,
-//  AllianceHaranir   = 31
+//  Eredar   = 31
     FelOrc            = 32,
     Naga              = 33,
     Broken            = 34,
