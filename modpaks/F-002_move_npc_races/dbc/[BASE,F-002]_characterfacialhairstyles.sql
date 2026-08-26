@@ -49,7 +49,7 @@ INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geos
 DELETE FROM `characterfacialhairstyles` WHERE `race` = 38 AND `gender` = 0 AND `variation_id` = 3;
 INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES (38, 0, 3, 0, 5, 0, 0, 0);
 DELETE FROM `characterfacialhairstyles` WHERE `race` = 38 AND `gender` = 1 AND `variation_id` = 0;
-INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES (38, 1, 0, 0, 0, 0, -858993460, -858993460);
+INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES (38, 1, 0, 0, 0, 0, 3435973836, 3435973836);
 DELETE FROM `characterfacialhairstyles` WHERE `race` = 38 AND `gender` = 0 AND `variation_id` = 0;
 INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES (38, 0, 0, 0, 2, 0, 0, 0);
 DELETE FROM `characterfacialhairstyles` WHERE `race` = 38 AND `gender` = 0 AND `variation_id` = 10;
