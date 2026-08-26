@@ -1,7 +1,6 @@
 -- [F-032] mod-maghar: emotestextsound: 720 inserts, 0 updates, 0 deletes
 
 -- New entries
-INSERT INTO `emotestextsound` (`id`, `emotes_text_id`, `race_id`, `sex_id`, `sound_id`) VALUES (2500, 14, 13, 1, 10025);
 DELETE FROM `emotestextsound` WHERE `id` = 2501;
 INSERT INTO `emotestextsound` (`id`, `emotes_text_id`, `race_id`, `sex_id`, `sound_id`) VALUES (2501, 14, 13, 0, 10026);
 DELETE FROM `emotestextsound` WHERE `id` = 2502;
