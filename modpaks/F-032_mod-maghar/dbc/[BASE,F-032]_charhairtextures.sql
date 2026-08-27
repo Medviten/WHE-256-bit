@@ -1,6 +1,7 @@
 -- [F-032] mod-maghar: charhairtextures: 24 inserts, 2 updates, 0 deletes
 
 -- New entries
+DELETE FROM `charhairtextures` WHERE `id` = 109;
 INSERT INTO `charhairtextures` (`id`, `race`, `gender`, `unk_1`, `unk_2`, `unk_3`, `unk_4`, `unk_5`) VALUES (109, 14, 0, 0, 70, 0, 0, 0);
 DELETE FROM `charhairtextures` WHERE `id` = 110;
 INSERT INTO `charhairtextures` (`id`, `race`, `gender`, `unk_1`, `unk_2`, `unk_3`, `unk_4`, `unk_5`) VALUES (110, 14, 0, 0, 8, 0, 1, 1);

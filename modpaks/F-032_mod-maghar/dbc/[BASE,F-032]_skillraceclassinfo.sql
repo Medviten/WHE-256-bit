@@ -1,14 +1,6 @@
 -- [F-032] mod-maghar: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
 
 -- New entries
-DELETE FROM `skillraceclassinfo` WHERE `id` = 0;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (0, 0, 0, 0, 0, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 791;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (791, 0, 0, 0, 0, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 792;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (792, 790, 256, 1535, 1170, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 1140;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (1140, 791, 4096, 1535, 1170, 0, 0, 0);
 DELETE FROM `skillraceclassinfo` WHERE `id` = 1141;
 INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (1141, 792, 8192, 1535, 1170, 0, 0, 0);
 
