@@ -1,6 +1,6 @@
-diff -ruN a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
---- a/src/server/game/Entities/Player/Player.cpp	2026-06-29 14:54:51.338569100 +0200
-+++ b/src/server/game/Entities/Player/Player.cpp	2026-08-12 19:54:27.950993000 +0200
+diff -ruN originals/azerothcore-wotlk/src/server/game/Entities/Player/Player.cpp merged/azerothcore-wotlk/src/server/game/Entities/Player/Player.cpp
+--- originals/azerothcore-wotlk/src/server/game/Entities/Player/Player.cpp	2026-06-29 14:54:51.338569100 +0200
++++ merged/azerothcore-wotlk/src/server/game/Entities/Player/Player.cpp	2026-08-12 19:54:27.950993000 +0200
 @@ -828,7 +828,7 @@
      switch (timer)
      {
@@ -10,9 +10,9 @@ diff -ruN a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entitie
          case BREATH_TIMER:
              {
                  if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
-diff -ruN a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
---- a/src/server/game/Entities/Player/PlayerTaxi.cpp	2026-06-29 15:12:32.439405200 +0200
-+++ b/src/server/game/Entities/Player/PlayerTaxi.cpp	2026-08-05 19:58:33.725598300 +0200
+diff -ruN originals/azerothcore-wotlk/src/server/game/Entities/Player/PlayerTaxi.cpp merged/azerothcore-wotlk/src/server/game/Entities/Player/PlayerTaxi.cpp
+--- originals/azerothcore-wotlk/src/server/game/Entities/Player/PlayerTaxi.cpp	2026-06-29 15:12:32.439405200 +0200
++++ merged/azerothcore-wotlk/src/server/game/Entities/Player/PlayerTaxi.cpp	2026-08-28 14:46:50.780097300 +0200
 @@ -51,7 +51,7 @@
              break;     // Night Elf
          case RACE_UNDEAD_PLAYER:
@@ -22,7 +22,7 @@ diff -ruN a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Ent
          case RACE_TAUREN:
              SetTaximaskNode(22);
              break;     // Tauren
-@@ -67,6 +67,19 @@
+@@ -67,6 +67,22 @@
          case RACE_DRAENEI:
              SetTaximaskNode(94);
              break;     // Draenei
@@ -39,12 +39,15 @@ diff -ruN a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Ent
 +        case RACE_MAGHARORC:
 +            SetTaximaskNode(23);
 +            break;     // Mag'har Orc
++        case RACE_OGRE:
++            SetTaximaskNode(23);
++            break;     // Ogre
      }
  
      // new continent starting masks (It will be accessible only at new map)
-diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
---- a/src/server/game/Globals/ObjectMgr.cpp	2026-06-29 14:54:51.353569400 +0200
-+++ b/src/server/game/Globals/ObjectMgr.cpp	2026-08-16 19:04:51.835922100 +0200
+diff -ruN originals/azerothcore-wotlk/src/server/game/Globals/ObjectMgr.cpp merged/azerothcore-wotlk/src/server/game/Globals/ObjectMgr.cpp
+--- originals/azerothcore-wotlk/src/server/game/Globals/ObjectMgr.cpp	2026-06-29 14:54:51.353569400 +0200
++++ merged/azerothcore-wotlk/src/server/game/Globals/ObjectMgr.cpp	2026-08-16 19:04:51.835922100 +0200
 @@ -1890,10 +1890,10 @@
  {
      uint8 customizationID;
@@ -102,9 +105,9 @@ diff -ruN a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/Obje
  
          FactionEntry const* factionEntry = sFactionStore.LookupEntry(factionId);
  
-diff -ruN a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
---- a/src/server/game/Handlers/CharacterHandler.cpp	2026-06-26 17:27:34.202487200 +0200
-+++ b/src/server/game/Handlers/CharacterHandler.cpp	2026-06-29 15:17:01.111546700 +0200
+diff -ruN originals/azerothcore-wotlk/src/server/game/Handlers/CharacterHandler.cpp merged/azerothcore-wotlk/src/server/game/Handlers/CharacterHandler.cpp
+--- originals/azerothcore-wotlk/src/server/game/Handlers/CharacterHandler.cpp	2026-06-26 17:27:34.202487200 +0200
++++ merged/azerothcore-wotlk/src/server/game/Handlers/CharacterHandler.cpp	2026-06-29 15:17:01.111546700 +0200
 @@ -2219,6 +2219,9 @@
              case RACE_BLOODELF:
                  stmt->SetData(1, 137);
@@ -115,10 +118,10 @@ diff -ruN a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Hand
              }
  
              trans->Append(stmt);
-diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
---- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp	2026-06-29 15:28:25.877191500 +0200
-+++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp	2026-08-05 20:01:53.824147900 +0200
-@@ -2311,10 +2311,22 @@
+diff -ruN originals/azerothcore-wotlk/src/server/game/Spells/Auras/SpellAuraEffects.cpp merged/azerothcore-wotlk/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+--- originals/azerothcore-wotlk/src/server/game/Spells/Auras/SpellAuraEffects.cpp	2026-06-29 15:28:25.877191500 +0200
++++ merged/azerothcore-wotlk/src/server/game/Spells/Auras/SpellAuraEffects.cpp	2026-08-28 14:56:56.674273700 +0200
+@@ -2311,10 +2311,26 @@
                                  case RACE_BLOODELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 17829 : 17830);
                                      break;
@@ -134,6 +137,10 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
 +                                case RACE_MAGHARORC:
 +                                    target->SetDisplayId(target->getGender() == GENDER_MALE ? 10139 : 10140); // Orc ones
 +                                    break;
++                                // Ogre
++                                case RACE_OGRE:
++                                    target->SetDisplayId(target->getGender() == GENDER_MALE ? 10139 : 10140); // Orc ones
++                                    break;
 +                                // Goblin
 +                                case RACE_GOBLIN:
 +                                    target->SetDisplayId(target->getGender() == GENDER_MALE ? 10139 : 10140); // Orc ones
@@ -141,7 +148,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Troll
                                  case RACE_TROLL:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10135 : 10134);
-@@ -2343,6 +2355,10 @@
+@@ -2343,6 +2359,10 @@
                                  case RACE_HUMAN:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10137 : 10138);
                                      break;
@@ -152,7 +159,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Night Elf
                                  case RACE_NIGHTELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10143 : 10144);
-@@ -2370,10 +2386,22 @@
+@@ -2370,10 +2390,26 @@
                                  case RACE_BLOODELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25032 : 25043);
                                      break;
@@ -168,6 +175,10 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
 +                                case RACE_MAGHARORC:
 +                                    target->SetDisplayId(target->getGender() == GENDER_MALE ? 25039 : 25050); // Orc ones
 +                                    break;
++                                // Ogre
++                                case RACE_OGRE:
++                                    target->SetDisplayId(target->getGender() == GENDER_MALE ? 25039 : 25050); // Orc ones
++                                    break;
 +                                // Goblin
 +                                case RACE_GOBLIN:
 +                                    target->SetDisplayId(target->getGender() == GENDER_MALE ? 25039 : 25050); // Orc ones
@@ -175,7 +186,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Troll
                                  case RACE_TROLL:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25041 : 25052);
-@@ -2402,6 +2430,10 @@
+@@ -2402,6 +2438,10 @@
                                  case RACE_HUMAN:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25037 : 25048);
                                      break;
@@ -186,7 +197,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                  // Night Elf
                                  case RACE_NIGHTELF:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25038 : 25049);
-@@ -2426,12 +2458,14 @@
+@@ -2426,12 +2466,15 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -198,10 +209,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21867 : 21866);
                                      else
-@@ -2474,6 +2508,7 @@
+@@ -2474,6 +2517,7 @@
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21853 : 21852);
                                      break;
                                  case DisplayRace::Human:
@@ -209,7 +221,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21859 : 21858);
                                      else
-@@ -2514,9 +2549,11 @@
+@@ -2514,9 +2558,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -218,10 +230,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18805 : 18804);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2538,6 +2575,7 @@
+@@ -2538,6 +2585,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18799 : 18798);
                                      break;
                                  case DisplayRace::Human:
@@ -229,7 +242,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18801 : 18800);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2556,9 +2594,11 @@
+@@ -2556,9 +2604,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -238,10 +251,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19182 : 19181);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2580,6 +2620,7 @@
+@@ -2580,6 +2631,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19176 : 19175);
                                      break;
                                  case DisplayRace::Human:
@@ -249,7 +263,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19178 : 19177);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2598,9 +2639,11 @@
+@@ -2598,9 +2650,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -258,10 +272,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18870 : 18869);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2622,6 +2665,7 @@
+@@ -2622,6 +2677,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18847 : 18846);
                                      break;
                                  case DisplayRace::Human:
@@ -269,7 +284,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 18860 : 18858);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2640,9 +2684,11 @@
+@@ -2640,9 +2696,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -278,10 +293,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22375 : 22374);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2664,6 +2710,7 @@
+@@ -2664,6 +2723,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22367 : 22366);
                                      break;
                                  case DisplayRace::Human:
@@ -289,7 +305,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22371 : 22370);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2682,9 +2729,11 @@
+@@ -2682,9 +2742,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -298,10 +314,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 16438 : 16436);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2706,6 +2755,7 @@
+@@ -2706,6 +2769,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 16448 : 16447);
                                      break;
                                  case DisplayRace::Human:
@@ -309,7 +326,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 16433 : 16412);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2724,9 +2774,11 @@
+@@ -2724,9 +2788,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -318,10 +335,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24515 : 24526);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2748,6 +2800,7 @@
+@@ -2748,6 +2815,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24511 : 24522);
                                      break;
                                  case DisplayRace::Human:
@@ -329,7 +347,7 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24513 : 24524);
                                      break;
                                  case DisplayRace::NightElf:
-@@ -2766,9 +2819,11 @@
+@@ -2766,9 +2834,12 @@
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -338,10 +356,11 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      break;
                                  case DisplayRace::Orc:
 +                                case DisplayRace::MagharOrc:
++                                case DisplayRace::Ogre:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25039 : 25050);
                                      break;
                                  case DisplayRace::Troll:
-@@ -2790,6 +2845,7 @@
+@@ -2790,6 +2861,7 @@
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25035 : 25046);
                                      break;
                                  case DisplayRace::Human:
@@ -349,10 +368,10 @@ diff -ruN a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25037 : 25048);
                                      break;
                                  case DisplayRace::NightElf:
-diff -ruN a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Commands/cs_misc.cpp
---- a/src/server/scripts/Commands/cs_misc.cpp	2026-06-29 14:54:51.387777300 +0200
-+++ b/src/server/scripts/Commands/cs_misc.cpp	2026-08-05 20:05:30.551225600 +0200
-@@ -2326,6 +2326,18 @@
+diff -ruN originals/azerothcore-wotlk/src/server/scripts/Commands/cs_misc.cpp merged/azerothcore-wotlk/src/server/scripts/Commands/cs_misc.cpp
+--- originals/azerothcore-wotlk/src/server/scripts/Commands/cs_misc.cpp	2026-06-29 14:54:51.387777300 +0200
++++ merged/azerothcore-wotlk/src/server/scripts/Commands/cs_misc.cpp	2026-08-28 14:57:51.410907600 +0200
+@@ -2326,6 +2326,21 @@
              case RACE_DRAENEI:
                  raceStr = "Draenei";
                  break;
@@ -368,12 +387,60 @@ diff -ruN a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Command
 +            case RACE_MAGHARORC:
 +                raceStr = "Mag'har Orc";
 +                break;
++            case RACE_OGRE:
++                raceStr = "Ogre";
++                break;
          }
  
          switch (classid)
-diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Commands/cs_modify.cpp
---- a/src/server/scripts/Commands/cs_modify.cpp	2026-06-26 17:27:34.466097000 +0200
-+++ b/src/server/scripts/Commands/cs_modify.cpp	2026-08-05 20:06:23.909119700 +0200
+diff -ruN originals/azerothcore-wotlk/src/server/scripts/Commands/cs_modify.cpp merged/azerothcore-wotlk/src/server/scripts/Commands/cs_modify.cpp
+--- originals/azerothcore-wotlk/src/server/scripts/Commands/cs_modify.cpp	2026-06-26 17:27:34.466097000 +0200
++++ merged/azerothcore-wotlk/src/server/scripts/Commands/cs_modify.cpp	2026-08-28 15:00:07.947267700 +0200
+@@ -415,7 +415,7 @@
+     static bool HandleModifyASpeedCommand(ChatHandler* handler, float allSpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_ASPEED, LANG_YOURS_ASPEED_CHANGED, allSpeed);
+             target->SetSpeed(MOVE_WALK, allSpeed, true);
+@@ -432,7 +432,7 @@
+     static bool HandleModifySpeedCommand(ChatHandler* handler, float speed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, speed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, speed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_SPEED, LANG_YOURS_SPEED_CHANGED, speed);
+             target->SetSpeedRate(MOVE_RUN, speed);
+@@ -446,7 +446,7 @@
+     static bool HandleModifySwimCommand(ChatHandler* handler, float swimSpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_SWIM_SPEED, LANG_YOURS_SWIM_SPEED_CHANGED, swimSpeed);
+             target->SetSpeedRate(MOVE_SWIM, swimSpeed);
+@@ -460,7 +460,7 @@
+     static bool HandleModifyBWalkCommand(ChatHandler* handler, float backSpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 50.0f))
++        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 100.0f))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_BACK_SPEED, LANG_YOURS_BACK_SPEED_CHANGED, backSpeed);
+             target->SetSpeedRate(MOVE_RUN_BACK, backSpeed);
+@@ -474,7 +474,7 @@
+     static bool HandleModifyFlyCommand(ChatHandler* handler, float flySpeed)
+     {
+         Player* target = handler->getSelectedPlayerOrSelf();
+-        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 50.0f, false))
++        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 100.0f, false))
+         {
+             NotifyModification(handler, target, LANG_YOU_CHANGE_FLY_SPEED, LANG_YOURS_FLY_SPEED_CHANGED, flySpeed);
+             target->SetSpeedRate(MOVE_FLIGHT, flySpeed);
 @@ -487,7 +487,7 @@
      //Edit Player or Creature Scale
      static bool HandleModifyScaleCommand(ChatHandler* handler, float scale)
@@ -392,9 +459,9 @@ diff -ruN a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Comma
          {
              return false;
          }
-diff -ruN a/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp b/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp
---- a/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp	2026-06-26 17:27:34.528788300 +0200
-+++ b/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp	2026-06-25 00:08:46.451545400 +0200
+diff -ruN originals/azerothcore-wotlk/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp merged/azerothcore-wotlk/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp
+--- originals/azerothcore-wotlk/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp	2026-06-26 17:27:34.528788300 +0200
++++ merged/azerothcore-wotlk/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp	2026-06-25 00:08:46.451545400 +0200
 @@ -330,8 +330,24 @@
          uint32 spellId;
          switch (target->GetDisplayId())
@@ -420,10 +487,10 @@ diff -ruN a/src/server/scripts/EasternKingdoms/ScarletEnclave/chapter1.cpp b/src
              case 25363: spellId = 51542; break; // draenei female
              case 25357: spellId = 51541; break; // draenei male
              case 25361: spellId = 51537; break; // dwarf female
-diff -ruN a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_generic.cpp
---- a/src/server/scripts/Pet/pet_generic.cpp	2026-06-26 17:27:34.825000300 +0200
-+++ b/src/server/scripts/Pet/pet_generic.cpp	2026-08-05 20:10:04.542058900 +0200
-@@ -141,7 +141,11 @@
+diff -ruN originals/azerothcore-wotlk/src/server/scripts/Pet/pet_generic.cpp merged/azerothcore-wotlk/src/server/scripts/Pet/pet_generic.cpp
+--- originals/azerothcore-wotlk/src/server/scripts/Pet/pet_generic.cpp	2026-06-26 17:27:34.825000300 +0200
++++ merged/azerothcore-wotlk/src/server/scripts/Pet/pet_generic.cpp	2026-08-28 15:01:21.384316400 +0200
+@@ -141,7 +141,12 @@
      {RACE_GNOME,         {2779, 63396, "Gnomeregan Champion's Pennant"}},
      {RACE_TROLL,         {2784, 63399, "Darkspear Champion's Pennant"}},
      {RACE_BLOODELF,      {2785, 63403, "Silvermoon Champion's Pennant"}},
@@ -432,14 +499,15 @@ diff -ruN a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_
 +    {RACE_GOBLIN,        {2783, 63433, "Orgrimmar Champion's Pennant"}},
 +    {RACE_WORGEN,        {2777, 63406, "Darnassus Champion's Pennant"}},
 +    {RACE_HIGHELF,       {2781, 62594, "Stormwind Champion's Pennant"}},
-+    {RACE_MAGHARORC,     {2783, 63433, "Orgrimmar Champion's Pennant"}}
++    {RACE_MAGHARORC,     {2783, 63433, "Orgrimmar Champion's Pennant"}},
++    {RACE_OGRE,          {2783, 63433, "Orgrimmar Champion's Pennant"}}
  };
  
  struct npc_pet_gen_argent_pony_bridle : public ScriptedAI
-diff -ruN a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enuminfo_SharedDefines.cpp
---- a/src/server/shared/enuminfo_SharedDefines.cpp	2026-06-29 15:46:46.380132200 +0200
-+++ b/src/server/shared/enuminfo_SharedDefines.cpp	2026-08-05 20:11:53.177830500 +0200
-@@ -42,6 +42,10 @@
+diff -ruN originals/azerothcore-wotlk/src/server/shared/enuminfo_SharedDefines.cpp merged/azerothcore-wotlk/src/server/shared/enuminfo_SharedDefines.cpp
+--- originals/azerothcore-wotlk/src/server/shared/enuminfo_SharedDefines.cpp	2026-06-29 15:46:46.380132200 +0200
++++ merged/azerothcore-wotlk/src/server/shared/enuminfo_SharedDefines.cpp	2026-08-28 15:02:28.593682800 +0200
+@@ -42,6 +42,11 @@
          case RACE_TROLL: return { "RACE_TROLL", "Troll", "" };
          case RACE_BLOODELF: return { "RACE_BLOODELF", "Blood Elf", "" };
          case RACE_DRAENEI: return { "RACE_DRAENEI", "Draenei", "" };
@@ -447,10 +515,11 @@ diff -ruN a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enu
 +        case RACE_WORGEN: return { "RACE_WORGEN", "Worgen", "" };
 +        case RACE_HIGHELF: return { "RACE_HIGHELF", "High Elf", "" };
 +        case RACE_MAGHARORC: return { "RACE_MAGHARORC", "Mag'har Orc", "" };
++        case RACE_OGRE: return { "RACE_OGRE", "Ogre", "" };
          default: throw std::out_of_range("value");
      }
  }
-@@ -64,6 +68,10 @@
+@@ -64,6 +69,11 @@
          case 7: return RACE_TROLL;
          case 8: return RACE_BLOODELF;
          case 9: return RACE_DRAENEI;
@@ -458,10 +527,11 @@ diff -ruN a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enu
 +        case 11: return RACE_WORGEN;
 +        case 12: return RACE_HIGHELF;
 +        case 13: return RACE_MAGHARORC;
++        case 14: return RACE_OGRE;
          default: throw std::out_of_range("index");
      }
  }
-@@ -83,6 +91,10 @@
+@@ -83,6 +93,11 @@
          case RACE_TROLL: return 7;
          case RACE_BLOODELF: return 8;
          case RACE_DRAENEI: return 9;
@@ -469,13 +539,14 @@ diff -ruN a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enu
 +        case RACE_WORGEN: return 11;
 +        case RACE_HIGHELF: return 12;
 +        case RACE_MAGHARORC: return 13;
++        case RACE_OGRE: return 14;
          default: throw std::out_of_range("value");
      }
  }
-diff -ruN a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
---- a/src/server/shared/SharedDefines.h	2026-06-26 17:27:34.863277500 +0200
-+++ b/src/server/shared/SharedDefines.h	2026-08-16 17:16:36.900022500 +0200
-@@ -76,19 +76,23 @@
+diff -ruN originals/azerothcore-wotlk/src/server/shared/SharedDefines.h merged/azerothcore-wotlk/src/server/shared/SharedDefines.h
+--- originals/azerothcore-wotlk/src/server/shared/SharedDefines.h	2026-06-26 17:27:34.863277500 +0200
++++ merged/azerothcore-wotlk/src/server/shared/SharedDefines.h	2026-08-28 15:06:11.405987200 +0200
+@@ -76,19 +76,39 @@
      RACE_TAUREN             = 6,  // TITLE Tauren
      RACE_GNOME              = 7,  // TITLE Gnome
      RACE_TROLL              = 8,  // TITLE Troll
@@ -486,53 +557,97 @@ diff -ruN a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.
 -    //RACE_FEL_ORC        = 12,
 -    //RACE_NAGA           = 13,
 -    //RACE_BROKEN         = 14,
+-    //RACE_SKELETON       = 15,
+-    //RACE_VRYKUL         = 16,
+-    //RACE_TUSKARR        = 17,
+-    //RACE_FOREST_TROLL   = 18,
+-    //RACE_TAUNKA         = 19,
+-    //RACE_NORTHREND_SKELETON = 20,
+-    //RACE_ICE_TROLL      = 21
 +    RACE_DRAENEI            = 11, // TITLE Draenei
 +    RACE_WORGEN             = 12, // TITLE Worgen
 +    RACE_HIGHELF            = 13,  // TITLE High Elf
-+    RACE_MAGHARORC          = 14  //, TITLE Mag'har Orc
-     //RACE_SKELETON       = 15,
-     //RACE_VRYKUL         = 16,
-     //RACE_TUSKARR        = 17,
-     //RACE_FOREST_TROLL   = 18,
-     //RACE_TAUNKA         = 19,
-     //RACE_NORTHREND_SKELETON = 20,
--    //RACE_ICE_TROLL      = 21
-+    //RACE_ICE_TROLL      = 21,
-+    //RACE_NAGA           = 22,
-+    //RACE_GILNEAN        = 23,
-+    //RACE_FELORC         = 24,
-+    //RACE_BROKEN         = 25
++    RACE_MAGHARORC          = 14,  //, TITLE Mag'har Orc
++    RACE_OGRE          = 15  //, TITLE Ogre
++    //RACE_ALLIANCEPANDAREN   = 16, // TITLE Tushui Pandaren
++    //RACE_HORDEPANDAREN      = 17, // TITLE Huojin Pandaren
++    //RACE_NIGHTBORNE         = 18, // TITLE Nightborne
++    //RACE_HIGHMOUNTAINTAUREN = 19, // TITLE Highmountain Tauren
++    //RACE_VOIDELF            = 20, // TITLE Void Elf
++    //RACE_LIGHTFORGEDDRAENEI = 21, // TITLE Lightforged Draenei
++    //RACE_ZANDALARITROLL     = 22, // TITLE Zandalari Troll
++    //RACE_GILNEAN        = 23, // TITLE Gilnean
++    //RACE_KULTIRAN           = 24, // TITLE Kul Tiran
++    //RACE_DARKIRONDWARF  = 25, // TITLE Dark Iron Dwarf
++    //RACE_VULPERA        = 26, // TITLE Vulpera
++    //RACE_MECHAGNOME     = 27, // TITLE Mechagnome
++    //RACE_ALLIANCEDRACTHYR = 28, // TITLE Alliance Dracthyr
++    //RACE_HORDEEARTHEN     = 29, // TITLE Horde Earthen
++    //RACE_ALLIANCEEARTHEN  = 30, // TITLE Alliance Earthen
++    //RACE_EREDAR           = 31 // TITLE Eredar
++    //RACE_FELORC         = 32,
++    //RACE_NAGA           = 33,
++    //RACE_BROKEN         = 34,
++    //RACE_SKELETON       = 35,
++    //RACE_VRYKUL         = 36,
++    //RACE_TUSKARR        = 37,
++    //RACE_FOREST_TROLL   = 38,
++    //RACE_TAUNKA         = 39,
++    //RACE_NORTHREND_SKELETON = 40,
++    //RACE_ICE_TROLL      = 41
  };
  
  // DisplayRace values from CreatureDisplayInfoExtra.dbc
-@@ -106,16 +110,20 @@
+@@ -106,16 +126,36 @@
      Goblin            = 9,
      BloodElf          = 10,
      Draenei           = 11,
 -    FelOrc            = 12,
 -    Naga              = 13,
 -    Broken            = 14,
+-    Skeleton          = 15,
+-    Vrykul            = 16,
+-    Tuskarr           = 17,
+-    ForestTroll       = 18,
+-    Taunka            = 19,
+-    NorthrendSkeleton = 20,
+-    IceTroll          = 21
 +    Worgen            = 12,
 +    HighElf           = 13,
 +    MagharOrc         = 14,
-     Skeleton          = 15,
-     Vrykul            = 16,
-     Tuskarr           = 17,
-     ForestTroll       = 18,
-     Taunka            = 19,
-     NorthrendSkeleton = 20,
--    IceTroll          = 21
-+    IceTroll          = 21,
-+    Naga              = 22,
++    Ogre              = 15,
++//  AlliancePandaren  = 16,
++//  HordePandaren     = 17,
++//  Nightborne        = 18,
++// HighmountainTauren = 19,
++//  VoidElf           = 20,
++// LightforgedDraenei = 21,
++//  ZandalariTroll    = 22,
 +    Gilnean           = 23,
-+    FelOrc            = 24,
-+    Broken            = 25,
++//  KulTiran          = 24,
++//  DarkIronDwarf     = 25,
++//  Vulpera           = 26,
++//  Mechagnome        = 27,
++//  AllianceDracthyr  = 28,
++//  HordeEarthen      = 29,
++//  AllianceEarthen   = 30,
++//  Eredar            = 31
++    FelOrc            = 32,
++    Naga              = 33,
++    Broken            = 34,
++    Skeleton          = 35,
++    Vrykul            = 36,
++    Tuskarr           = 37,
++    ForestTroll       = 38,
++    Taunka            = 39,
++    NorthrendSkeleton = 40,
++    IceTroll          = 41,
  };
  
  // Class value is index in ChrClasses.dbc
-diff -ruN a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator/MapBuilder.cpp
---- a/src/tools/mmaps_generator/MapBuilder.cpp	2026-06-26 17:27:34.914277500 +0200
-+++ b/src/tools/mmaps_generator/MapBuilder.cpp	2026-08-08 00:18:49.553121200 +0200
+diff -ruN originals/azerothcore-wotlk/src/tools/mmaps_generator/MapBuilder.cpp merged/azerothcore-wotlk/src/tools/mmaps_generator/MapBuilder.cpp
+--- originals/azerothcore-wotlk/src/tools/mmaps_generator/MapBuilder.cpp	2026-06-26 17:27:34.914277500 +0200
++++ merged/azerothcore-wotlk/src/tools/mmaps_generator/MapBuilder.cpp	2026-08-08 00:18:49.553121200 +0200
 @@ -98,7 +98,7 @@
      {
          std::vector<std::string> files;

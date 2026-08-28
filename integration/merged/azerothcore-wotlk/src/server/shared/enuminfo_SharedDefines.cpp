@@ -46,6 +46,7 @@ AC_API_EXPORT EnumText EnumUtils<Races>::ToString(Races value)
         case RACE_WORGEN: return { "RACE_WORGEN", "Worgen", "" };
         case RACE_HIGHELF: return { "RACE_HIGHELF", "High Elf", "" };
         case RACE_MAGHARORC: return { "RACE_MAGHARORC", "Mag'har Orc", "" };
+        case RACE_OGRE: return { "RACE_OGRE", "Ogre", "" };
         default: throw std::out_of_range("value");
     }
 }
@@ -72,6 +73,7 @@ AC_API_EXPORT Races EnumUtils<Races>::FromIndex(std::size_t index)
         case 11: return RACE_WORGEN;
         case 12: return RACE_HIGHELF;
         case 13: return RACE_MAGHARORC;
+        case 14: return RACE_OGRE;
         default: throw std::out_of_range("index");
     }
 }
@@ -95,6 +97,7 @@ AC_API_EXPORT std::size_t EnumUtils<Races>::ToIndex(Races value)
         case RACE_WORGEN: return 11;
         case RACE_HIGHELF: return 12;
         case RACE_MAGHARORC: return 13;
+        case RACE_OGRE: return 14;
         default: throw std::out_of_range("value");
     }
 }

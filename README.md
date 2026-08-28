@@ -61,14 +61,26 @@ Overwrite the relevant files in `patch-A.MPQ/DBFilesClient` if you're using the 
 
 ## 2.5) Optional: compatibility patches
 
+### AzerothCore
+
+You can skip this, but certain things won't work, like Goblin racial discounts and Running Wild.
+
+To apply the patch, copy whe-acore.patch to the root of your AzerothCore directory and run the following commands from there:
+
+```
+git apply --ignore-space-change --ignore-whitespace whe-acore.patch
+git add .
+git commit -m "Add worgoblin-high-elf acore patch"
+```
+
 ### [Playerbots](https://github.com/liyunfan1223/mod-playerbots)
 
 This patch fixes the problem of bots failing to recognize Worgen and High Elf as Alliance races and allows playerbots to spawn as Worgen, Goblins and High Elves.
 
-To apply the patch, copy playerbots.patch to the root of your Playerbots directory and run the following commands from there:
+To apply the patch, copy whe-playerbots.patch to the root of your Playerbots directory and run the following commands from there:
 
 ```
-git apply --ignore-space-change --ignore-whitespace playerbots.patch
+git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
 git add .
 git commit -m "Add worgoblin-high-elf playerbots patch"
 ```

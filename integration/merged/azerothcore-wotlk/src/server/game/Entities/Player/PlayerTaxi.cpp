@@ -80,6 +80,9 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         case RACE_MAGHARORC:
             SetTaximaskNode(23);
             break;     // Mag'har Orc
+        case RACE_OGRE:
+            SetTaximaskNode(23);
+            break;     // Ogre
     }
 
     // new continent starting masks (It will be accessible only at new map)

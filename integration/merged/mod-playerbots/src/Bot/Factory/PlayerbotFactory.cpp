@@ -3753,6 +3753,10 @@ void PlayerbotFactory::InitMounts()
             slow = {6654, 6653, 580};
             fast = {23250, 23252, 23251};
             break;
+        case RACE_OGRE:
+            slow = {18990, 18989, 64657};
+            fast = {23249, 23248, 23247};
+            break;
         default:
             if (bot->GetTeamId() == TEAM_HORDE)
             { // Orc mounts
