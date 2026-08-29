@@ -15,7 +15,7 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 -- Worgen racial support
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 94133; -- male running wild
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES (94133, 3626, 0, 45424, 1, 255, '', '', '', '', 3, 0, 0, 0, 0, 0);
-DELETE FROM `creaturedisplayinfo` WHERE `id` = 94133; -- female running wild
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 94134; -- female running wild
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES (94134, 3627, 0, 45425, 1, 255, '', '', '', '', 3, 0, 0, 0, 0, 0);
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 94135; -- male Gilnean
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES (94135, 3628, 0, 13749, 1, 255, '', '', '', '', 1, 0, 0, 0, 0, 0);
