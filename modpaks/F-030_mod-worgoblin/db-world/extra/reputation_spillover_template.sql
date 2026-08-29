@@ -1,4 +1,4 @@
-REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `rank_1`, `faction2`, `rate_2`, `rank_2`, `faction3`, `rate_3`, `rank_3`, `faction4`, `rate_4`, `rank_4`, `faction5`, `rate_5`, `rank_5`, `faction6`, `rate_6`, `rank_6`) VALUES -- , `faction7`, `rate_7`, `rank_7`, `faction8`, `rate_8`, `rank_8`, `faction9`, `rate_9`, `rank_9`, `faction10`, `rate_10`, `rank_10`, `faction11`, `rate_11`, `rank_11`, `faction12`, `rate_12`, `rank_12`
+REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `rank_1`, `faction2`, `rate_2`, `rank_2`, `faction3`, `rate_3`, `rank_3`, `faction4`, `rate_4`, `rank_4`, `faction5`, `rate_5`, `rank_5`) VALUES -- , `faction6`, `rate_6`, `rank_6`, `faction7`, `rate_7`, `rank_7`, `faction8`, `rate_8`, `rank_8`, `faction9`, `rate_9`, `rank_9`, `faction10`, `rate_10`, `rank_10`, `faction11`, `rate_11`, `rank_11`, `faction12`, `rate_12`, `rank_12`
 /* Alliance */
 (
 	72, -- faction: Stormwind
@@ -16,10 +16,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_4: Exalted
 	1165, -- faction5: Gilneas
 	0.25, -- rate_5: 1/4
-	7, -- rank_5: Exalted
-	1167, -- faction6: High Elven Loyalists
-	0.25, -- rate_6: 1/4
-	7 -- rank_6: Exalted
+	7 -- rank_5: Exalted
 ), (
 	47, -- faction: Ironforge
 	72, -- faction1: Stormwind
@@ -36,10 +33,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_4: Exalted
 	1165, -- faction5: Gilneas
 	0.25, -- rate_5: 1/4
-	7, -- rank_5: Exalted
-	1167, -- faction6: High Elven Loyalists
-	0.25, -- rate_6: 1/4
-	7 -- rank_6: Exalted
+	7 -- rank_5: Exalted
 ), (
 	54, -- faction: Gnomeregan Exiles
 	47, -- faction1: Ironforge
@@ -56,10 +50,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_4: Exalted
 	1165, -- faction5: Gilneas
 	0.25, -- rate_5: 1/4
-	7, -- rank_5: Exalted
-	1167, -- faction6: High Elven Loyalists
-	0.25, -- rate_6: 1/4
-	7 -- rank_6: Exalted
+	7 -- rank_5: Exalted
 ), (
 	69, -- faction: Darnassus
 	47, -- faction1: Ironforge
@@ -76,10 +67,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_4: Exalted
 	1165, -- faction5: Gilneas
 	0.25, -- rate_5: 1/4
-	7, -- rank_5: Exalted
-	1167, -- faction6: High Elven Loyalists
-	0.25, -- rate_6: 1/4
-	7 -- rank_6: Exalted
+	7 -- rank_5: Exalted
 ), (
 	930, -- faction: Exodar
 	47, -- faction1: Ironforge
@@ -96,10 +84,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_4: Exalted
 	1165, -- faction5: Gilneas
 	0.25, -- rate_5: 1/4
-	7, -- rank_5: Exalted
-	1167, -- faction6: High Elven Loyalists
-	0.25, -- rate_6: 1/4
-	7 -- rank_6: Exalted
+	7 -- rank_5: Exalted
 ), (
 	1165, -- faction: Gilneas
 	47, -- faction1: Ironforge
@@ -116,10 +101,7 @@ REPLACE INTO `reputation_spillover_template` (`faction`, `faction1`, `rate_1`, `
 	7, -- rank_4: Exalted
 	930, -- faction5: Exodar
 	0.25, -- rate_5: 1/4
-	7, -- rank_5: Exalted
-	1167, -- faction6: High Elven Loyalists
-	0.25, -- rate_6: 1/4
-	7 -- rank_6: Exalted
+	7 -- rank_5: Exalted
 ), (
 	1167, -- faction: High Elven Loyalists
 	47, -- faction1: Ironforge

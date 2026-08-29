@@ -123,10 +123,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '2', '27762', 'Libram'),
 ('1', '2', '27149', 'Devotion Aura'),
 ('1', '2', '27136', 'Holy Light'),
-('1', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('1', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('1', '2', '27140', 'Blessing of Might'),
 ('1', '2', '20271', 'Judgement of Light'),
-('1', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('1', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('1', '2', '10308', 'Hammer of Justice'),
 ('1', '2', '10278', 'Hand of Protection'),
 ('1', '2', '27154', 'Lay on Hands'),
@@ -142,29 +142,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '2', '27137', 'Flash of Light'),
 ('1', '2', '5502', 'Sense Undead'),
 ('1', '2', '19746', 'Concentration Aura'),
-('1', '2', '31895', 'Seal of Justice'), -- Removed?
-('1', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('1', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('1', '2', '5627', 'Turn Undead'), -- Removed?
 ('1', '2', '1038', 'Hand of Salvation'),
 ('1', '2', '27151', 'Shadow Resistance Aura'),
 ('1', '2', '19752', 'Divine Intervention'),
-('1', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('1', '2', '27160', 'Seal of Light'), -- Removed?
 ('1', '2', '27152', 'Frost Resistance Aura'),
-('1', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('1', '2', '1020', 'Divine Shield'), -- Removed?
 ('1', '2', '27153', 'Fire Resistance Aura'),
-('1', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('1', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('1', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('1', '2', '27144', 'Blessing of Light'), -- Removed?
 ('1', '2', '4987', 'Cleanse'),
 ('1', '2', '27180', 'Hammer of Wrath'),
-('1', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('1', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('1', '2', '27139', 'Holy Wrath'),
 ('1', '2', '27141', 'Greater Blessing of Might'),
 ('1', '2', '10326', 'Turn Evil'),
 ('1', '2', '27143', 'Greater Blessing of Wisdom'),
 ('1', '2', '25898', 'Greater Blessing of Kings'),
-('1', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('1', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('1', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('1', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('1', '2', '32223', 'Crusader Aura'),
-('1', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('1', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('1', '2', '31884', 'Avenging Wrath'),
 ('1', '2', '750', 'Plate Armor'),
 ('1', '2', '3127', 'Parry'),
@@ -240,11 +240,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '4', '22810', 'Opening - No Text'),
 ('1', '4', '24949', 'Defensive State 2(DND)'),
 ('1', '4', '27014', 'Raptor Strike'),
-('1', '4', '27015', 'Disengage'), -- Removed?
+-- ('1', '4', '27015', 'Disengage'), -- Removed?
 ('1', '4', '27016', 'Serpent Sting'),
-('1', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('1', '4', '27018', 'Viper Sting'), -- Removed?
 ('1', '4', '27019', 'Arcane Shot'),
-('1', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('1', '4', '27020', 'Distracting Shot'), -- Removed?
 ('1', '4', '27021', 'Multi-Shot'),
 ('1', '4', '27022', 'Volley'),
 ('1', '4', '27023', 'Immolation Trap'),
@@ -330,12 +330,12 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '8', '3127', 'Parry'),
 ('1', '8', '674', 'Dual Wield'),
 ('1', '8', '3776', 'Green Leather Bracers'), -- What?
-('1', '8', '9186', null), -- Removed?
+-- ('1', '8', '9186', null), -- Removed?
 ('1', '8', '21927', 'Natures Ally'), -- What?
 ('1', '8', '22054', 'QAEnchant Bracer +7 Intellect'), -- What?
-('1', '8', '22055', null), -- Removed?
+-- ('1', '8', '22055', null), -- Removed?
 ('1', '8', '2836', 'Detect Traps'),
-('1', '8', '1860', 'Safe Fall'), -- Removed?
+-- ('1', '8', '1860', 'Safe Fall'), -- Removed?
 -- Human Priest
 ('1', '16', '81', 'Dodge'),
 ('1', '16', '198', 'One-Handed Maces'),
@@ -376,7 +376,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '16', '25364', 'Smite'),
 ('1', '16', '25368', 'Shadow Word: Pain'),
 ('1', '16', '25218', 'Power Word: Shield'),
-('1', '16', '25429', 'Fade'), -- Removed?
+-- ('1', '16', '25429', 'Fade'), -- Removed?
 ('1', '16', '25222', 'Renew'),
 ('1', '16', '25375', 'Mind Blast'),
 ('1', '16', '25435', 'Resurrection'),
@@ -387,11 +387,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '16', '6346', 'Fear Ward'),
 ('1', '16', '25235', 'Flash Heal'),
 ('1', '16', '25384', 'Holy Fire'),
-('1', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('1', '16', '25596', 'Mind Soothe'), -- Removed?
 ('1', '16', '10955', 'Shackle Undead'),
 ('1', '16', '10909', 'Mind Vision'),
-('1', '16', '25380', 'Mana Burn'), -- Removed?
-('1', '16', '10912', 'Mind Control'), -- Removed?
+-- ('1', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('1', '16', '10912', 'Mind Control'), -- Removed?
 ('1', '16', '25308', 'Prayer of Healing'),
 ('1', '16', '25433', 'Shadow Protection'),
 ('1', '16', '552', 'Abolish Disease'),
@@ -405,7 +405,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '16', '34433', 'Shadowfiend'),
 ('1', '16', '33076', 'Prayer of Mending'),
 ('1', '16', '32375', 'Mass Dispel'),
-('1', '16', '25441', 'Feedback'), -- Removed? Only 4?
+-- ('1', '16', '25441', 'Feedback'), -- Removed? Only 4?
 ('1', '16', '25312', 'Divine Spirit'),
 ('1', '16', '25437', 'Desperate Prayer'), -- Only 5?
 -- Human Shaman
@@ -430,7 +430,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '64', '2484', 'Earthbind Totem'),
 ('1', '64', '2645', 'Ghost Wolf'),
 ('1', '64', '2825', 'Bloodlust'),
-('1', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('1', '64', '2870', 'Cure Disease'), -- Removed?
 ('1', '64', '2894', 'Fire Elemental Totem'),
 ('1', '64', '3050', 'Detect'),
 ('1', '64', '3365', 'Opening'),
@@ -465,7 +465,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '64', '21652', 'Closing'),
 ('1', '64', '22027', 'Remove Insignia'),
 ('1', '64', '22810', 'Opening - No Text'),
-('1', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('1', '64', '25359', 'Grace of Air Totem'), -- Removed?
 ('1', '64', '25396', 'Healing Wave'),
 ('1', '64', '25420', 'Lesser Healing Wave'),
 ('1', '64', '25423', 'Chain Heal'),
@@ -474,7 +474,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '64', '25457', 'Flame Shock'),
 ('1', '64', '25464', 'Frost Shock'),
 ('1', '64', '25472', 'Lightning Shield'),
-('1', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('1', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('1', '64', '25489', 'Flametongue Weapon'),
 ('1', '64', '25500', 'Frostbrand Weapon'),
 ('1', '64', '25505', 'Windfury Weapon'),
@@ -490,9 +490,9 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '64', '25567', 'Healing Stream Totem'),
 ('1', '64', '25570', 'Mana Spring Totem'),
 ('1', '64', '25574', 'Nature Resistance Totem'),
-('1', '64', '25577', 'Windwall Totem'), -- Removed?
-('1', '64', '25587', 'Windfury Totem'), -- Removed?
-('1', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('1', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('1', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('1', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('1', '64', '27763', 'Totem'),
 ('1', '64', '33736', 'Water Shield'),
 ('1', '64', '36936', 'Totemic Recall'),
@@ -534,9 +534,9 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '128', '22810', 'Opening - No Text'),
 ('1', '128', '27126', 'Arcane Intellect'),
 ('1', '128', '27070', 'Fireball'),
-('1', '128', '22018', null), -- Removed?
+-- ('1', '128', '22018', null), -- Removed?
 ('1', '128', '27072', 'Frostbolt'),
-('1', '128', '22019', null), -- Removed?
+-- ('1', '128', '22019', null), -- Removed?
 ('1', '128', '27079', 'Fire Blast'),
 ('1', '128', '38704', 'Arcane Missiles'),
 ('1', '128', '28272', 'Polymorph (Pig)'),
@@ -615,7 +615,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '256', '27230', 'Create Healthstone'),
 ('1', '256', '27217', 'Drain Soul'),
 ('1', '256', '27259', 'Health Funnel'),
-('1', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('1', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('1', '256', '27220', 'Drain Life'),
 ('1', '256', '5697', 'Unending Breath'),
 ('1', '256', '27238', 'Create Soulstone'),
@@ -624,7 +624,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '256', '27212', 'Rain of Fire'),
 ('1', '256', '698', 'Ritual of Summoning'),
 ('1', '256', '5500', 'Sense Demons'),
-('1', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('1', '256', '30908', 'Drain Mana'), -- Removed?
 ('1', '256', '11719', 'Curse of Tongues'),
 ('1', '256', '132', 'Detect Invisibility'),
 ('1', '256', '18647', 'Banish'),
@@ -636,7 +636,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '256', '27250', 'Create Firestone'),
 ('1', '256', '17928', 'Howl of Terror'),
 ('1', '256', '27223', 'Death Coil'),
-('1', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('1', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('1', '256', '30545', 'Soul Fire'),
 ('1', '256', '30910', 'Curse of Doom'),
 ('1', '256', '18540', 'Ritual of Doom'),
@@ -724,13 +724,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1', '1024', '26990', 'Mark of the Wild'),
 ('1', '1024', '26991', 'Gift of the Wild'),
 ('1', '1024', '26992', 'Thorns'),
-('1', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('1', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('1', '1024', '26994', 'Rebirth'),
 ('1', '1024', '26995', 'Soothe Animal'),
 ('1', '1024', '26996', 'Maul'),
 ('1', '1024', '26997', 'Swipe (Bear)'),
 ('1', '1024', '26998', 'Demoralizing Roar'),
-('1', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('1', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('1', '1024', '27000', 'Claw'),
 ('1', '1024', '27002', 'Shred'),
 ('1', '1024', '27003', 'Rake'),
@@ -841,7 +841,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '2', '635', 'Holy Light'),
 ('2', '2', '669', 'Language Orcish'),
 ('2', '2', '750', 'Plate Armor'),
-('2', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('2', '2', '1020', 'Divine Shield'), -- Removed?
 ('2', '2', '1038', 'Hand of Salvation'),
 ('2', '2', '1044', 'Hand of Freedom'),
 ('2', '2', '2382', 'Generic'),
@@ -851,7 +851,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '2', '3365', 'Opening'),
 ('2', '2', '4987', 'Cleanse'),
 ('2', '2', '5502', 'Sense Undead'),
-('2', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('2', '2', '5627', 'Turn Undead'), -- Removed?
 ('2', '2', '6233', 'Closing'),
 ('2', '2', '6246', 'Closing'),
 ('2', '2', '6247', 'Opening'),
@@ -885,7 +885,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '2', '22810', 'Opening - No Text'),
 ('2', '2', '23214', 'Charger'),
 ('2', '2', '25780', 'Righteous Fury'),
-('2', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('2', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('2', '2', '25898', 'Greater Blessing of Kings'),
 ('2', '2', '27136', 'Holy Light'),
 ('2', '2', '27137', 'Flash of Light'),
@@ -895,27 +895,27 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '2', '27141', 'Greater Blessing of Might'),
 ('2', '2', '27142', 'Blessing of Wisdom'),
 ('2', '2', '27143', 'Greater Blessing of Wisdom'),
-('2', '2', '27144', 'Blessing of Light'), -- Removed?
-('2', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('2', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('2', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('2', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('2', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('2', '2', '27149', 'Devotion Aura'),
 ('2', '2', '27150', 'Retribution Aura'),
 ('2', '2', '27151', 'Shadow Resistance Aura'),
 ('2', '2', '27152', 'Frost Resistance Aura'),
 ('2', '2', '27153', 'Fire Resistance Aura'),
 ('2', '2', '27154', 'Lay on Hands'),
-('2', '2', '27155', 'Seal of Righteousness'), -- Removed?
-('2', '2', '27158', 'Seal of the Crusader'), -- Removed?
-('2', '2', '27160', 'Seal of Light'), -- Removed?
-('2', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('2', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('2', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('2', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('2', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('2', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('2', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('2', '2', '27173', 'Consecration'),
 ('2', '2', '27180', 'Hammer of Wrath'),
 ('2', '2', '27762', 'Libram'),
 ('2', '2', '31789', 'Righteous Defense'),
 ('2', '2', '31801', 'Seal of Vengeance'),
 ('2', '2', '31884', 'Avenging Wrath'),
-('2', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('2', '2', '31895', 'Seal of Justice'), -- Removed?
 ('2', '2', '32223', 'Crusader Aura'),
 ('2', '2', '33776', 'Spiritual Attunement'),
 -- Orc Hunter
@@ -970,7 +970,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '4', '982', 'Revive Pet'),
 ('2', '4', '1515', 'Tame Beast'),
 ('2', '4', '19883', 'Track Humanoids'),
-('2', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('2', '4', '27020', 'Distracting Shot'), -- Removed?
 ('2', '4', '27046', 'Mend Pet'),
 ('2', '4', '14268', 'Alliance Flag'), -- What?
 ('2', '4', '6197', 'Eagle Eye'),
@@ -981,7 +981,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '4', '27021', 'Multi-Shot'),
 ('2', '4', '19884', 'Track Undead'),
 ('2', '4', '5118', 'Aspect of the Cheetah'),
-('2', '4', '27015', 'Disengage'), -- Removed?
+-- ('2', '4', '27015', 'Disengage'), -- Removed?
 ('2', '4', '14311', 'Freezing Trap'),
 ('2', '4', '3043', 'Scorpid Sting'),
 ('2', '4', '1462', 'Beast Lore'),
@@ -994,7 +994,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '4', '1543', 'Flare'),
 ('2', '4', '19878', 'Track Demons'),
 ('2', '4', '27025', 'Explosive Trap'),
-('2', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('2', '4', '27018', 'Viper Sting'), -- Removed?
 ('2', '4', '13159', 'Aspect of the Pack'),
 ('2', '4', '19882', 'Track Giants'),
 ('2', '4', '27022', 'Volley'),
@@ -1080,10 +1080,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '8', '3127', 'Parry'),
 ('2', '8', '674', 'Dual Wield'),
 ('2', '8', '3776', 'Green Leather Bracers'),
-('2', '8', '9186', null), -- Removed?
+-- ('2', '8', '9186', null), -- Removed?
 ('2', '8', '21927', 'Natures Ally'),
 ('2', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('2', '8', '22055', null), -- Removed?
+-- ('2', '8', '22055', null), -- Removed?
 ('2', '8', '2836', 'Detect Traps'),
 ('2', '8', '1860', 'Safe Fall'),
 -- Orc Priest
@@ -1125,7 +1125,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '16', '25364', 'Smite'),
 ('2', '16', '25368', 'Shadow Word: Pain'),
 ('2', '16', '25218', 'Power Word: Shield'),
-('2', '16', '25429', 'Fade'), -- Removed?
+-- ('2', '16', '25429', 'Fade'), -- Removed?
 ('2', '16', '25222', 'Renew'),
 ('2', '16', '25375', 'Mind Blast'),
 ('2', '16', '25435', 'Resurrection'),
@@ -1136,11 +1136,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '16', '6346', 'Fear Ward'),
 ('2', '16', '25235', 'Flash Heal'),
 ('2', '16', '25384', 'Holy Fire'),
-('2', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('2', '16', '25596', 'Mind Soothe'), -- Removed?
 ('2', '16', '10955', 'Shackle Undead'),
 ('2', '16', '10909', 'Mind Vision'),
-('2', '16', '25380', 'Mana Burn'), -- Removed?
-('2', '16', '10912', 'Mind Control'), -- Removed?
+-- ('2', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('2', '16', '10912', 'Mind Control'), -- Removed?
 ('2', '16', '25308', 'Prayer of Healing'),
 ('2', '16', '25433', 'Shadow Protection'),
 ('2', '16', '552', 'Abolish Disease'),
@@ -1154,7 +1154,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '16', '34433', 'Shadowfiend'),
 ('2', '16', '33076', 'Prayer of Mending'),
 ('2', '16', '32375', 'Mass Dispel'),
-('2', '16', '25441', 'Feedback'), -- Removed?
+-- ('2', '16', '25441', 'Feedback'), -- Removed?
 ('2', '16', '25312', 'Divine Spirit'),
 ('2', '16', '25437', 'Desperate Prayer'),
 -- Orc Shaman
@@ -1197,7 +1197,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '64', '33697', 'Blood Fury'),
 ('2', '64', '25396', 'Healing Wave'),
 ('2', '64', '25449', 'Lightning Bolt'),
-('2', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('2', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('2', '64', '25454', 'Earth Shock'),
 ('2', '64', '25509', 'Stoneskin Totem'),
 ('2', '64', '2484', 'Earthbind Totem'),
@@ -1217,7 +1217,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '64', '2645', 'Ghost Wolf'),
 ('2', '64', '25567', 'Healing Stream Totem'),
 ('2', '64', '25420', 'Lesser Healing Wave'),
-('2', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('2', '64', '2870', 'Cure Disease'), -- Removed?
 ('2', '64', '8166', 'Poison Cleansing Totem'),
 ('2', '64', '131', 'Water Breathing'),
 ('2', '64', '25560', 'Frost Resistance Totem'),
@@ -1233,13 +1233,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '64', '36936', 'Totemic Recall'),
 ('2', '64', '25505', 'Windfury Weapon'),
 ('2', '64', '421', 'Chain Lightning'),
-('2', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('2', '64', '25587', 'Windfury Totem'), -- Removed?
 ('2', '64', '6495', 'Sentry Totem'),
-('2', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('2', '64', '25577', 'Windwall Totem'), -- Removed?
 ('2', '64', '8170', 'Cleansing Totem'),
 ('2', '64', '25423', 'Chain Heal'),
-('2', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('2', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('2', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('2', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('2', '64', '33736', 'Water Shield'),
 ('2', '64', '3738', 'Wrath of Air Totem'),
 ('2', '64', '2062', 'Earth Elemental Totem'),
@@ -1365,7 +1365,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '256', '27230', 'Create Healthstone'),
 ('2', '256', '27217', 'Drain Soul'),
 ('2', '256', '27259', 'Health Funnel'),
-('2', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('2', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('2', '256', '27220', 'Drain Life'),
 ('2', '256', '5697', 'Unending Breath'),
 ('2', '256', '27238', 'Create Soulstone'),
@@ -1374,7 +1374,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '256', '27212', 'Rain of Fire'),
 ('2', '256', '698', 'Ritual of Summoning'),
 ('2', '256', '5500', 'Sense Demons'),
-('2', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('2', '256', '30908', 'Drain Mana'), -- Removed?
 ('2', '256', '11719', 'Curse of Tongues'),
 ('2', '256', '132', 'Detect Invisibility'),
 ('2', '256', '18647', 'Banish'),
@@ -1386,7 +1386,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '256', '27250', 'Create Firestone'),
 ('2', '256', '17928', 'Howl of Terror'),
 ('2', '256', '27223', 'Death Coil'),
-('2', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('2', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('2', '256', '30545', 'Soul Fire'),
 ('2', '256', '30910', 'Curse of Doom'),
 ('2', '256', '18540', 'Ritual of Doom'),
@@ -1469,7 +1469,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '1024', '8983', 'Bash'),
 ('2', '1024', '8946', 'Cure Poison'),
 ('2', '1024', '26997', 'Swipe (Bear)'),
-('2', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('2', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('2', '1024', '18658', 'Hibernate'),
 ('2', '1024', '27000', 'Claw'),
 ('2', '1024', '9913', 'Prowl'),
@@ -1489,7 +1489,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('2', '1024', '24248', 'Ferocious Bite'),
 ('2', '1024', '27005', 'Ravage'),
 ('2', '1024', '5225', 'Track Humanoids'),
-('2', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('2', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('2', '1024', '27012', 'Hurricane'),
 ('2', '1024', '27006', 'Pounce'),
 ('2', '1024', '29166', 'Innervate'),
@@ -1624,10 +1624,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '2', '27762', 'Libram'),
 ('4', '2', '27149', 'Devotion Aura'),
 ('4', '2', '27136', 'Holy Light'),
-('4', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('4', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('4', '2', '27140', 'Blessing of Might'),
 ('4', '2', '20271', 'Judgement of Light'),
-('4', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('4', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('4', '2', '10308', 'Hammer of Justice'),
 ('4', '2', '10278', 'Hand of Protection'),
 ('4', '2', '27154', 'Lay on Hands'),
@@ -1643,29 +1643,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '2', '27137', 'Flash of Light'),
 ('4', '2', '5502', 'Sense Undead'),
 ('4', '2', '19746', 'Concentration Aura'),
-('4', '2', '31895', 'Seal of Justice'), -- Removed?
-('4', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('4', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('4', '2', '5627', 'Turn Undead'), -- Removed?
 ('4', '2', '1038', 'Hand of Salvation'),
 ('4', '2', '27151', 'Shadow Resistance Aura'),
 ('4', '2', '19752', 'Divine Intervention'),
-('4', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('4', '2', '27160', 'Seal of Light'), -- Removed?
 ('4', '2', '27152', 'Frost Resistance Aura'),
-('4', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('4', '2', '1020', 'Divine Shield'), -- Removed?
 ('4', '2', '27153', 'Fire Resistance Aura'),
-('4', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('4', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('4', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('4', '2', '27144', 'Blessing of Light'), -- Removed?
 ('4', '2', '4987', 'Cleanse'),
 ('4', '2', '27180', 'Hammer of Wrath'),
-('4', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('4', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('4', '2', '27139', 'Holy Wrath'),
 ('4', '2', '27141', 'Greater Blessing of Might'),
 ('4', '2', '10326', 'Turn Evil'),
 ('4', '2', '27143', 'Greater Blessing of Wisdom'),
 ('4', '2', '25898', 'Greater Blessing of Kings'),
-('4', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('4', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('4', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('4', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('4', '2', '32223', 'Crusader Aura'),
-('4', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('4', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('4', '2', '31884', 'Avenging Wrath'),
 ('4', '2', '750', 'Plate Armor'),
 ('4', '2', '3127', 'Parry'),
@@ -1724,7 +1724,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '4', '982', 'Revive Pet'),
 ('4', '4', '1515', 'Tame Beast'),
 ('4', '4', '19883', 'Track Humanoids'),
-('4', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('4', '4', '27020', 'Distracting Shot'), -- Removed?
 ('4', '4', '27046', 'Mend Pet'),
 ('4', '4', '14268', 'Alliance Flag'), -- What?
 ('4', '4', '6197', 'Eagle Eye'),
@@ -1735,7 +1735,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '4', '27021', 'Multi-Shot'),
 ('4', '4', '19884', 'Track Undead'),
 ('4', '4', '5118', 'Aspect of the Cheetah'),
-('4', '4', '27015', 'Disengage'), -- Removed?
+-- ('4', '4', '27015', 'Disengage'), -- Removed?
 ('4', '4', '14311', 'Freezing Trap'),
 ('4', '4', '3043', 'Scorpid Sting'),
 ('4', '4', '1462', 'Beast Lore'),
@@ -1748,7 +1748,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '4', '1543', 'Flare'),
 ('4', '4', '19878', 'Track Demons'),
 ('4', '4', '27025', 'Explosive Trap'),
-('4', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('4', '4', '27018', 'Viper Sting'), -- Removed?
 ('4', '4', '13159', 'Aspect of the Pack'),
 ('4', '4', '19882', 'Track Giants'),
 ('4', '4', '27022', 'Volley'),
@@ -1835,10 +1835,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '8', '3127', 'Parry'),
 ('4', '8', '674', 'Dual Wield'),
 ('4', '8', '3776', 'Green Leather Bracers'),
-('4', '8', '9186', null), -- Removed?
+-- ('4', '8', '9186', null), -- Removed?
 ('4', '8', '21927', 'Natures Ally'),
 ('4', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('4', '8', '22055', null), -- Removed?
+-- ('4', '8', '22055', null), -- Removed?
 ('4', '8', '2836', 'Detect Traps'),
 ('4', '8', '1860', 'Safe Fall'),
 -- Dwarf Priest
@@ -1881,7 +1881,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '16', '25364', 'Smite'),
 ('4', '16', '25368', 'Shadow Word: Pain'),
 ('4', '16', '25218', 'Power Word: Shield'),
-('4', '16', '25429', 'Fade'), -- Removed?
+-- ('4', '16', '25429', 'Fade'), -- Removed?
 ('4', '16', '25222', 'Renew'),
 ('4', '16', '25375', 'Mind Blast'),
 ('4', '16', '25435', 'Resurrection'),
@@ -1892,11 +1892,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '16', '6346', 'Fear Ward'),
 ('4', '16', '25235', 'Flash Heal'),
 ('4', '16', '25384', 'Holy Fire'),
-('4', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('4', '16', '25596', 'Mind Soothe'), -- Removed?
 ('4', '16', '10955', 'Shackle Undead'),
 ('4', '16', '10909', 'Mind Vision'),
-('4', '16', '25380', 'Mana Burn'), -- Removed?
-('4', '16', '10912', 'Mind Control'), -- Removed?
+-- ('4', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('4', '16', '10912', 'Mind Control'), -- Removed?
 ('4', '16', '25308', 'Prayer of Healing'),
 ('4', '16', '25433', 'Shadow Protection'),
 ('4', '16', '552', 'Abolish Disease'),
@@ -1953,7 +1953,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '64', '27763', 'Totem'),
 ('4', '64', '25396', 'Healing Wave'),
 ('4', '64', '25449', 'Lightning Bolt'),
-('4', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('4', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('4', '64', '25454', 'Earth Shock'),
 ('4', '64', '25509', 'Stoneskin Totem'),
 ('4', '64', '2484', 'Earthbind Totem'),
@@ -1973,7 +1973,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '64', '2645', 'Ghost Wolf'),
 ('4', '64', '25567', 'Healing Stream Totem'),
 ('4', '64', '25420', 'Lesser Healing Wave'),
-('4', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('4', '64', '2870', 'Cure Disease'), -- Removed?
 ('4', '64', '8166', 'Poison Cleansing Totem'),
 ('4', '64', '131', 'Water Breathing'),
 ('4', '64', '25560', 'Frost Resistance Totem'),
@@ -1989,13 +1989,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '64', '36936', 'Totemic Recall'),
 ('4', '64', '25505', 'Windfury Weapon'),
 ('4', '64', '421', 'Chain Lightning'),
-('4', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('4', '64', '25587', 'Windfury Totem'), -- Removed?
 ('4', '64', '6495', 'Sentry Totem'),
-('4', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('4', '64', '25577', 'Windwall Totem'), -- Removed?
 ('4', '64', '8170', 'Cleansing Totem'),
 ('4', '64', '25423', 'Chain Heal'),
-('4', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('4', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('4', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('4', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('4', '64', '33736', 'Water Shield'),
 ('4', '64', '3738', 'Wrath of Air Totem'),
 ('4', '64', '2062', 'Earth Elemental Totem'),
@@ -2120,7 +2120,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '256', '27230', 'Create Healthstone'),
 ('4', '256', '27217', 'Drain Soul'),
 ('4', '256', '27259', 'Health Funnel'),
-('4', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('4', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('4', '256', '27220', 'Drain Life'),
 ('4', '256', '5697', 'Unending Breath'),
 ('4', '256', '27238', 'Create Soulstone'),
@@ -2129,7 +2129,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '256', '27212', 'Rain of Fire'),
 ('4', '256', '698', 'Ritual of Summoning'),
 ('4', '256', '5500', 'Sense Demons'),
-('4', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('4', '256', '30908', 'Drain Mana'), -- Removed?
 ('4', '256', '11719', 'Curse of Tongues'),
 ('4', '256', '132', 'Detect Invisibility'),
 ('4', '256', '18647', 'Banish'),
@@ -2141,7 +2141,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '256', '27250', 'Create Firestone'),
 ('4', '256', '17928', 'Howl of Terror'),
 ('4', '256', '27223', 'Death Coil'),
-('4', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('4', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('4', '256', '30545', 'Soul Fire'),
 ('4', '256', '30910', 'Curse of Doom'),
 ('4', '256', '18540', 'Ritual of Doom'),
@@ -2225,7 +2225,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '1024', '8983', 'Bash'),
 ('4', '1024', '8946', 'Cure Poison'),
 ('4', '1024', '26997', 'Swipe (Bear)'),
-('4', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('4', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('4', '1024', '18658', 'Hibernate'),
 ('4', '1024', '27000', 'Claw'),
 ('4', '1024', '9913', 'Prowl'),
@@ -2245,7 +2245,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('4', '1024', '24248', 'Ferocious Bite'),
 ('4', '1024', '27005', 'Ravage'),
 ('4', '1024', '5225', 'Track Humanoids'),
-('4', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('4', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('4', '1024', '27012', 'Hurricane'),
 ('4', '1024', '27006', 'Pounce'),
 ('4', '1024', '29166', 'Innervate'),
@@ -2381,10 +2381,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '2', '27762', 'Libram'),
 ('8', '2', '27149', 'Devotion Aura'),
 ('8', '2', '27136', 'Holy Light'),
-('8', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('8', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('8', '2', '27140', 'Blessing of Might'),
 ('8', '2', '20271', 'Judgement of Light'),
-('8', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('8', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('8', '2', '10308', 'Hammer of Justice'),
 ('8', '2', '10278', 'Hand of Protection'),
 ('8', '2', '27154', 'Lay on Hands'),
@@ -2400,29 +2400,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '2', '27137', 'Flash of Light'),
 ('8', '2', '5502', 'Sense Undead'),
 ('8', '2', '19746', 'Concentration Aura'),
-('8', '2', '31895', 'Seal of Justice'), -- Removed?
-('8', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('8', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('8', '2', '5627', 'Turn Undead'), -- Removed?
 ('8', '2', '1038', 'Hand of Salvation'),
 ('8', '2', '27151', 'Shadow Resistance Aura'),
 ('8', '2', '19752', 'Divine Intervention'),
-('8', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('8', '2', '27160', 'Seal of Light'), -- Removed?
 ('8', '2', '27152', 'Frost Resistance Aura'),
-('8', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('8', '2', '1020', 'Divine Shield'), -- Removed?
 ('8', '2', '27153', 'Fire Resistance Aura'),
-('8', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('8', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('8', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('8', '2', '27144', 'Blessing of Light'), -- Removed?
 ('8', '2', '4987', 'Cleanse'),
 ('8', '2', '27180', 'Hammer of Wrath'),
-('8', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('8', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('8', '2', '27139', 'Holy Wrath'),
 ('8', '2', '27141', 'Greater Blessing of Might'),
 ('8', '2', '10326', 'Turn Evil'),
 ('8', '2', '27143', 'Greater Blessing of Wisdom'),
 ('8', '2', '25898', 'Greater Blessing of Kings'),
-('8', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('8', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('8', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('8', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('8', '2', '32223', 'Crusader Aura'),
-('8', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('8', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('8', '2', '31884', 'Avenging Wrath'),
 ('8', '2', '750', 'Plate Armor'),
 ('8', '2', '3127', 'Parry'),
@@ -2482,7 +2482,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '4', '982', 'Revive Pet'),
 ('8', '4', '1515', 'Tame Beast'),
 ('8', '4', '19883', 'Track Humanoids'),
-('8', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('8', '4', '27020', 'Distracting Shot'), -- Removed?
 ('8', '4', '27046', 'Mend Pet'),
 ('8', '4', '14268', 'Alliance Flag'), -- What?
 ('8', '4', '6197', 'Eagle Eye'),
@@ -2493,7 +2493,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '4', '27021', 'Multi-Shot'),
 ('8', '4', '19884', 'Track Undead'),
 ('8', '4', '5118', 'Aspect of the Cheetah'),
-('8', '4', '27015', 'Disengage'), -- Removed?
+-- ('8', '4', '27015', 'Disengage'), -- Removed?
 ('8', '4', '14311', 'Freezing Trap'),
 ('8', '4', '3043', 'Scorpid Sting'),
 ('8', '4', '1462', 'Beast Lore'),
@@ -2506,7 +2506,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '4', '1543', 'Flare'),
 ('8', '4', '19878', 'Track Demons'),
 ('8', '4', '27025', 'Explosive Trap'),
-('8', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('8', '4', '27018', 'Viper Sting'), -- Removed?
 ('8', '4', '13159', 'Aspect of the Pack'),
 ('8', '4', '19882', 'Track Giants'),
 ('8', '4', '27022', 'Volley'),
@@ -2573,8 +2573,8 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '8', '11305', 'Sprint'),
 ('8', '8', '38768', 'Kick'),
 ('8', '8', '26866', 'Expose Armor'),
-('8', '8', '426884', 'Shoot'), -- Removed?
-('8', '8', '427448', null), -- Removed?
+-- ('8', '8', '426884', 'Shoot'), -- Removed?
+-- ('8', '8', '427448', null), -- Removed?
 ('8', '8', '1804', 'Pick Lock'),
 ('8', '8', '27441', 'Ambush'),
 ('8', '8', '2842', 'Poisons'),
@@ -2593,10 +2593,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '8', '3127', 'Parry'),
 ('8', '8', '674', 'Dual Wield'),
 ('8', '8', '3776', 'Green Leather Bracers'),
-('8', '8', '9186', null), -- Removed?
+-- ('8', '8', '9186', null), -- Removed?
 ('8', '8', '21927', 'Natures Ally'),
 ('8', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('8', '8', '22055', null), -- Removed?
+-- ('8', '8', '22055', null), -- Removed?
 ('8', '8', '2836', 'Detect Traps'),
 ('8', '8', '1860', 'Safe Fall'),
 -- Night Elf Priest
@@ -2640,7 +2640,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '16', '25364', 'Smite'),
 ('8', '16', '25368', 'Shadow Word: Pain'),
 ('8', '16', '25218', 'Power Word: Shield'),
-('8', '16', '25429', 'Fade'), -- Removed?
+-- ('8', '16', '25429', 'Fade'), -- Removed?
 ('8', '16', '25222', 'Renew'),
 ('8', '16', '25375', 'Mind Blast'),
 ('8', '16', '25435', 'Resurrection'),
@@ -2651,11 +2651,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '16', '6346', 'Fear Ward'),
 ('8', '16', '25235', 'Flash Heal'),
 ('8', '16', '25384', 'Holy Fire'),
-('8', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('8', '16', '25596', 'Mind Soothe'), -- Removed?
 ('8', '16', '10955', 'Shackle Undead'),
 ('8', '16', '10909', 'Mind Vision'),
-('8', '16', '25380', 'Mana Burn'), -- Removed?
-('8', '16', '10912', 'Mind Control'), -- Removed?
+-- ('8', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('8', '16', '10912', 'Mind Control'), -- Removed?
 ('8', '16', '25308', 'Prayer of Healing'),
 ('8', '16', '25433', 'Shadow Protection'),
 ('8', '16', '552', 'Abolish Disease'),
@@ -2713,7 +2713,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '64', '27763', 'Totem'),
 ('8', '64', '25396', 'Healing Wave'),
 ('8', '64', '25449', 'Lightning Bolt'),
-('8', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('8', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('8', '64', '25454', 'Earth Shock'),
 ('8', '64', '25509', 'Stoneskin Totem'),
 ('8', '64', '2484', 'Earthbind Totem'),
@@ -2733,7 +2733,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '64', '2645', 'Ghost Wolf'),
 ('8', '64', '25567', 'Healing Stream Totem'),
 ('8', '64', '25420', 'Lesser Healing Wave'),
-('8', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('8', '64', '2870', 'Cure Disease'), -- Removed?
 ('8', '64', '8166', 'Poison Cleansing Totem'),
 ('8', '64', '131', 'Water Breathing'),
 ('8', '64', '25560', 'Frost Resistance Totem'),
@@ -2749,13 +2749,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '64', '36936', 'Totemic Recall'),
 ('8', '64', '25505', 'Windfury Weapon'),
 ('8', '64', '421', 'Chain Lightning'),
-('8', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('8', '64', '25587', 'Windfury Totem'), -- Removed?
 ('8', '64', '6495', 'Sentry Totem'),
-('8', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('8', '64', '25577', 'Windwall Totem'), -- Removed?
 ('8', '64', '8170', 'Cleansing Totem'),
 ('8', '64', '25423', 'Chain Heal'),
-('8', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('8', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('8', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('8', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('8', '64', '33736', 'Water Shield'),
 ('8', '64', '3738', 'Wrath of Air Totem'),
 ('8', '64', '2062', 'Earth Elemental Totem'),
@@ -2882,7 +2882,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '256', '27230', 'Create Healthstone'),
 ('8', '256', '27217', 'Drain Soul'),
 ('8', '256', '27259', 'Health Funnel'),
-('8', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('8', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('8', '256', '27220', 'Drain Life'),
 ('8', '256', '5697', 'Unending Breath'),
 ('8', '256', '27238', 'Create Soulstone'),
@@ -2891,7 +2891,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '256', '27212', 'Rain of Fire'),
 ('8', '256', '698', 'Ritual of Summoning'),
 ('8', '256', '5500', 'Sense Demons'),
-('8', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('8', '256', '30908', 'Drain Mana'), -- Removed?
 ('8', '256', '11719', 'Curse of Tongues'),
 ('8', '256', '132', 'Detect Invisibility'),
 ('8', '256', '18647', 'Banish'),
@@ -2903,7 +2903,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '256', '27250', 'Create Firestone'),
 ('8', '256', '17928', 'Howl of Terror'),
 ('8', '256', '27223', 'Death Coil'),
-('8', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('8', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('8', '256', '30545', 'Soul Fire'),
 ('8', '256', '30910', 'Curse of Doom'),
 ('8', '256', '18540', 'Ritual of Doom'),
@@ -2988,7 +2988,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '1024', '8983', 'Bash'),
 ('8', '1024', '8946', 'Cure Poison'),
 ('8', '1024', '26997', 'Swipe (Bear)'),
-('8', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('8', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('8', '1024', '18658', 'Hibernate'),
 ('8', '1024', '27000', 'Claw'),
 ('8', '1024', '9913', 'Prowl'),
@@ -3008,7 +3008,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('8', '1024', '24248', 'Ferocious Bite'),
 ('8', '1024', '27005', 'Ravage'),
 ('8', '1024', '5225', 'Track Humanoids'),
-('8', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('8', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('8', '1024', '27012', 'Hurricane'),
 ('8', '1024', '27006', 'Pounce'),
 ('8', '1024', '29166', 'Innervate'),
@@ -3143,10 +3143,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '2', '27762', 'Libram'),
 ('16', '2', '27149', 'Devotion Aura'),
 ('16', '2', '27136', 'Holy Light'),
-('16', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('16', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('16', '2', '27140', 'Blessing of Might'),
 ('16', '2', '20271', 'Judgement of Light'),
-('16', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('16', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('16', '2', '10308', 'Hammer of Justice'),
 ('16', '2', '10278', 'Hand of Protection'),
 ('16', '2', '27154', 'Lay on Hands'),
@@ -3162,29 +3162,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '2', '27137', 'Flash of Light'),
 ('16', '2', '5502', 'Sense Undead'),
 ('16', '2', '19746', 'Concentration Aura'),
-('16', '2', '31895', 'Seal of Justice'), -- Removed?
-('16', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('16', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('16', '2', '5627', 'Turn Undead'), -- Removed?
 ('16', '2', '1038', 'Hand of Salvation'),
 ('16', '2', '27151', 'Shadow Resistance Aura'),
 ('16', '2', '19752', 'Divine Intervention'),
-('16', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('16', '2', '27160', 'Seal of Light'), -- Removed?
 ('16', '2', '27152', 'Frost Resistance Aura'),
-('16', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('16', '2', '1020', 'Divine Shield'), -- Removed?
 ('16', '2', '27153', 'Fire Resistance Aura'),
-('16', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('16', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('16', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('16', '2', '27144', 'Blessing of Light'), -- Removed?
 ('16', '2', '4987', 'Cleanse'),
 ('16', '2', '27180', 'Hammer of Wrath'),
-('16', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('16', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('16', '2', '27139', 'Holy Wrath'),
 ('16', '2', '27141', 'Greater Blessing of Might'),
 ('16', '2', '10326', 'Turn Evil'),
 ('16', '2', '27143', 'Greater Blessing of Wisdom'),
 ('16', '2', '25898', 'Greater Blessing of Kings'),
-('16', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('16', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('16', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('16', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('16', '2', '32223', 'Crusader Aura'),
-('16', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('16', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('16', '2', '31884', 'Avenging Wrath'),
 ('16', '2', '750', 'Plate Armor'),
 ('16', '2', '3127', 'Parry'),
@@ -3244,7 +3244,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '4', '982', 'Revive Pet'),
 ('16', '4', '1515', 'Tame Beast'),
 ('16', '4', '19883', 'Track Humanoids'),
-('16', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('16', '4', '27020', 'Distracting Shot'), -- Removed?
 ('16', '4', '27046', 'Mend Pet'),
 ('16', '4', '14268', 'Alliance Flag'), -- What?
 ('16', '4', '6197', 'Eagle Eye'),
@@ -3255,7 +3255,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '4', '27021', 'Multi-Shot'),
 ('16', '4', '19884', 'Track Undead'),
 ('16', '4', '5118', 'Aspect of the Cheetah'),
-('16', '4', '27015', 'Disengage'), -- Removed?
+-- ('16', '4', '27015', 'Disengage'), -- Removed?
 ('16', '4', '14311', 'Freezing Trap'),
 ('16', '4', '3043', 'Scorpid Sting'),
 ('16', '4', '1462', 'Beast Lore'),
@@ -3268,7 +3268,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '4', '1543', 'Flare'),
 ('16', '4', '19878', 'Track Demons'),
 ('16', '4', '27025', 'Explosive Trap'),
-('16', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('16', '4', '27018', 'Viper Sting'), -- Removed?
 ('16', '4', '13159', 'Aspect of the Pack'),
 ('16', '4', '19882', 'Track Giants'),
 ('16', '4', '27022', 'Volley'),
@@ -3355,10 +3355,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '8', '3127', 'Parry'),
 ('16', '8', '674', 'Dual Wield'),
 ('16', '8', '3776', 'Green Leather Bracers'),
-('16', '8', '9186', null), -- Removed?
+-- ('16', '8', '9186', null), -- Removed?
 ('16', '8', '21927', 'Natures Ally'),
 ('16', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('16', '8', '22055', null), -- Removed?
+-- ('16', '8', '22055', null), -- Removed?
 ('16', '8', '2836', 'Detect Traps'),
 ('16', '8', '1860', 'Safe Fall'),
 -- Undead Priest
@@ -3401,7 +3401,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '16', '25364', 'Smite'),
 ('16', '16', '25368', 'Shadow Word: Pain'),
 ('16', '16', '25218', 'Power Word: Shield'),
-('16', '16', '25429', 'Fade'), -- Removed?
+-- ('16', '16', '25429', 'Fade'), -- Removed?
 ('16', '16', '25222', 'Renew'),
 ('16', '16', '25375', 'Mind Blast'),
 ('16', '16', '25435', 'Resurrection'),
@@ -3412,11 +3412,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '16', '6346', 'Fear Ward'),
 ('16', '16', '25235', 'Flash Heal'),
 ('16', '16', '25384', 'Holy Fire'),
-('16', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('16', '16', '25596', 'Mind Soothe'), -- Removed?
 ('16', '16', '10955', 'Shackle Undead'),
 ('16', '16', '10909', 'Mind Vision'),
-('16', '16', '25380', 'Mana Burn'), -- Removed?
-('16', '16', '10912', 'Mind Control'), -- Removed?
+-- ('16', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('16', '16', '10912', 'Mind Control'), -- Removed?
 ('16', '16', '25308', 'Prayer of Healing'),
 ('16', '16', '25433', 'Shadow Protection'),
 ('16', '16', '552', 'Abolish Disease'),
@@ -3472,7 +3472,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '64', '27763', 'Totem'),
 ('16', '64', '25396', 'Healing Wave'),
 ('16', '64', '25449', 'Lightning Bolt'),
-('16', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('16', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('16', '64', '25454', 'Earth Shock'),
 ('16', '64', '25509', 'Stoneskin Totem'),
 ('16', '64', '2484', 'Earthbind Totem'),
@@ -3492,7 +3492,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '64', '2645', 'Ghost Wolf'),
 ('16', '64', '25567', 'Healing Stream Totem'),
 ('16', '64', '25420', 'Lesser Healing Wave'),
-('16', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('16', '64', '2870', 'Cure Disease'), -- Removed?
 ('16', '64', '8166', 'Poison Cleansing Totem'),
 ('16', '64', '131', 'Water Breathing'),
 ('16', '64', '25560', 'Frost Resistance Totem'),
@@ -3508,13 +3508,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '64', '36936', 'Totemic Recall'),
 ('16', '64', '25505', 'Windfury Weapon'),
 ('16', '64', '421', 'Chain Lightning'),
-('16', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('16', '64', '25587', 'Windfury Totem'), -- Removed?
 ('16', '64', '6495', 'Sentry Totem'),
-('16', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('16', '64', '25577', 'Windwall Totem'), -- Removed?
 ('16', '64', '8170', 'Cleansing Totem'),
 ('16', '64', '25423', 'Chain Heal'),
-('16', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('16', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('16', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('16', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('16', '64', '33736', 'Water Shield'),
 ('16', '64', '3738', 'Wrath of Air Totem'),
 ('16', '64', '2062', 'Earth Elemental Totem'),
@@ -3642,7 +3642,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '256', '27230', 'Create Healthstone'),
 ('16', '256', '27217', 'Drain Soul'),
 ('16', '256', '27259', 'Health Funnel'),
-('16', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('16', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('16', '256', '27220', 'Drain Life'),
 ('16', '256', '5697', 'Unending Breath'),
 ('16', '256', '27238', 'Create Soulstone'),
@@ -3651,7 +3651,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '256', '27212', 'Rain of Fire'),
 ('16', '256', '698', 'Ritual of Summoning'),
 ('16', '256', '5500', 'Sense Demons'),
-('16', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('16', '256', '30908', 'Drain Mana'), -- Removed?
 ('16', '256', '11719', 'Curse of Tongues'),
 ('16', '256', '132', 'Detect Invisibility'),
 ('16', '256', '18647', 'Banish'),
@@ -3663,7 +3663,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '256', '27250', 'Create Firestone'),
 ('16', '256', '17928', 'Howl of Terror'),
 ('16', '256', '27223', 'Death Coil'),
-('16', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('16', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('16', '256', '30545', 'Soul Fire'),
 ('16', '256', '30910', 'Curse of Doom'),
 ('16', '256', '18540', 'Ritual of Doom'),
@@ -3747,7 +3747,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '1024', '8983', 'Bash'),
 ('16', '1024', '8946', 'Cure Poison'),
 ('16', '1024', '26997', 'Swipe (Bear)'),
-('16', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('16', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('16', '1024', '18658', 'Hibernate'),
 ('16', '1024', '27000', 'Claw'),
 ('16', '1024', '9913', 'Prowl'),
@@ -3767,7 +3767,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('16', '1024', '24248', 'Ferocious Bite'),
 ('16', '1024', '27005', 'Ravage'),
 ('16', '1024', '5225', 'Track Humanoids'),
-('16', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('16', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('16', '1024', '27012', 'Hurricane'),
 ('16', '1024', '27006', 'Pounce'),
 ('16', '1024', '29166', 'Innervate'),
@@ -3913,7 +3913,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '4', '982', 'Revive Pet'),
 ('32', '4', '1515', 'Tame Beast'),
 ('32', '4', '19883', 'Track Humanoids'),
-('32', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('32', '4', '27020', 'Distracting Shot'), -- Removed?
 ('32', '4', '27046', 'Mend Pet'),
 ('32', '4', '14268', 'Alliance Flag'), -- What?
 ('32', '4', '6197', 'Eagle Eye'),
@@ -3924,7 +3924,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '4', '27021', 'Multi-Shot'),
 ('32', '4', '19884', 'Track Undead'),
 ('32', '4', '5118', 'Aspect of the Cheetah'),
-('32', '4', '27015', 'Disengage'), -- Removed?
+-- ('32', '4', '27015', 'Disengage'), -- Removed?
 ('32', '4', '14311', 'Freezing Trap'),
 ('32', '4', '3043', 'Scorpid Sting'),
 ('32', '4', '1462', 'Beast Lore'),
@@ -3937,7 +3937,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '4', '1543', 'Flare'),
 ('32', '4', '19878', 'Track Demons'),
 ('32', '4', '27025', 'Explosive Trap'),
-('32', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('32', '4', '27018', 'Viper Sting'), -- Removed?
 ('32', '4', '13159', 'Aspect of the Pack'),
 ('32', '4', '19882', 'Track Giants'),
 ('32', '4', '27022', 'Volley'),
@@ -3995,10 +3995,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '2', '27762', 'Libram'),
 ('32', '2', '27149', 'Devotion Aura'),
 ('32', '2', '27136', 'Holy Light'),
-('32', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('32', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('32', '2', '27140', 'Blessing of Might'),
 ('32', '2', '20271', 'Judgement of Light'),
-('32', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('32', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('32', '2', '10308', 'Hammer of Justice'),
 ('32', '2', '10278', 'Hand of Protection'),
 ('32', '2', '27154', 'Lay on Hands'),
@@ -4014,29 +4014,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '2', '27137', 'Flash of Light'),
 ('32', '2', '5502', 'Sense Undead'),
 ('32', '2', '19746', 'Concentration Aura'),
-('32', '2', '31895', 'Seal of Justice'), -- Removed?
-('32', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('32', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('32', '2', '5627', 'Turn Undead'), -- Removed?
 ('32', '2', '1038', 'Hand of Salvation'),
 ('32', '2', '27151', 'Shadow Resistance Aura'),
 ('32', '2', '19752', 'Divine Intervention'),
-('32', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('32', '2', '27160', 'Seal of Light'), -- Removed?
 ('32', '2', '27152', 'Frost Resistance Aura'),
-('32', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('32', '2', '1020', 'Divine Shield'), -- Removed?
 ('32', '2', '27153', 'Fire Resistance Aura'),
-('32', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('32', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('32', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('32', '2', '27144', 'Blessing of Light'), -- Removed?
 ('32', '2', '4987', 'Cleanse'),
 ('32', '2', '27180', 'Hammer of Wrath'),
-('32', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('32', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('32', '2', '27139', 'Holy Wrath'),
 ('32', '2', '27141', 'Greater Blessing of Might'),
 ('32', '2', '10326', 'Turn Evil'),
 ('32', '2', '27143', 'Greater Blessing of Wisdom'),
 ('32', '2', '25898', 'Greater Blessing of Kings'),
-('32', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('32', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('32', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('32', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('32', '2', '32223', 'Crusader Aura'),
-('32', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('32', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('32', '2', '31884', 'Avenging Wrath'),
 ('32', '2', '750', 'Plate Armor'),
 ('32', '2', '3127', 'Parry'),
@@ -4113,10 +4113,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '8', '3127', 'Parry'),
 ('32', '8', '674', 'Dual Wield'),
 ('32', '8', '3776', 'Green Leather Bracers'),
-('32', '8', '9186', null), -- Removed?
+-- ('32', '8', '9186', null), -- Removed?
 ('32', '8', '21927', 'Natures Ally'),
 ('32', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('32', '8', '22055', null), -- Removed?
+-- ('32', '8', '22055', null), -- Removed?
 ('32', '8', '2836', 'Detect Traps'),
 ('32', '8', '1860', 'Safe Fall'),
 -- Tauren Priest
@@ -4159,7 +4159,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '16', '25364', 'Smite'),
 ('32', '16', '25368', 'Shadow Word: Pain'),
 ('32', '16', '25218', 'Power Word: Shield'),
-('32', '16', '25429', 'Fade'), -- Removed?
+-- ('32', '16', '25429', 'Fade'), -- Removed?
 ('32', '16', '25222', 'Renew'),
 ('32', '16', '25375', 'Mind Blast'),
 ('32', '16', '25435', 'Resurrection'),
@@ -4170,11 +4170,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '16', '6346', 'Fear Ward'),
 ('32', '16', '25235', 'Flash Heal'),
 ('32', '16', '25384', 'Holy Fire'),
-('32', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('32', '16', '25596', 'Mind Soothe'), -- Removed?
 ('32', '16', '10955', 'Shackle Undead'),
 ('32', '16', '10909', 'Mind Vision'),
-('32', '16', '25380', 'Mana Burn'), -- Removed?
-('32', '16', '10912', 'Mind Control'), -- Removed?
+-- ('32', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('32', '16', '10912', 'Mind Control'), -- Removed?
 ('32', '16', '25308', 'Prayer of Healing'),
 ('32', '16', '25433', 'Shadow Protection'),
 ('32', '16', '552', 'Abolish Disease'),
@@ -4188,7 +4188,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '16', '34433', 'Shadowfiend'),
 ('32', '16', '33076', 'Prayer of Mending'),
 ('32', '16', '32375', 'Mass Dispel'),
-('32', '16', '25441', 'Feedback'), -- Removed?
+-- ('32', '16', '25441', 'Feedback'), -- Removed?
 ('32', '16', '25312', 'Divine Spirit'),
 ('32', '16', '25437', 'Desperate Prayer'),
 -- Tauren Shaman
@@ -4232,7 +4232,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '64', '27763', 'Totem'),
 ('32', '64', '25396', 'Healing Wave'),
 ('32', '64', '25449', 'Lightning Bolt'),
-('32', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('32', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('32', '64', '25454', 'Earth Shock'),
 ('32', '64', '25509', 'Stoneskin Totem'),
 ('32', '64', '2484', 'Earthbind Totem'),
@@ -4252,7 +4252,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '64', '2645', 'Ghost Wolf'),
 ('32', '64', '25567', 'Healing Stream Totem'),
 ('32', '64', '25420', 'Lesser Healing Wave'),
-('32', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('32', '64', '2870', 'Cure Disease'), -- Removed?
 ('32', '64', '8166', 'Poison Cleansing Totem'),
 ('32', '64', '131', 'Water Breathing'),
 ('32', '64', '25560', 'Frost Resistance Totem'),
@@ -4268,13 +4268,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '64', '36936', 'Totemic Recall'),
 ('32', '64', '25505', 'Windfury Weapon'),
 ('32', '64', '421', 'Chain Lightning'),
-('32', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('32', '64', '25587', 'Windfury Totem'), -- Removed?
 ('32', '64', '6495', 'Sentry Totem'),
-('32', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('32', '64', '25577', 'Windwall Totem'), -- Removed?
 ('32', '64', '8170', 'Cleansing Totem'),
 ('32', '64', '25423', 'Chain Heal'),
-('32', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('32', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('32', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('32', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('32', '64', '33736', 'Water Shield'),
 ('32', '64', '3738', 'Wrath of Air Totem'),
 ('32', '64', '2062', 'Earth Elemental Totem'),
@@ -4402,7 +4402,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '256', '27230', 'Create Healthstone'),
 ('32', '256', '27217', 'Drain Soul'),
 ('32', '256', '27259', 'Health Funnel'),
-('32', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('32', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('32', '256', '27220', 'Drain Life'),
 ('32', '256', '5697', 'Unending Breath'),
 ('32', '256', '27238', 'Create Soulstone'),
@@ -4411,7 +4411,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '256', '27212', 'Rain of Fire'),
 ('32', '256', '698', 'Ritual of Summoning'),
 ('32', '256', '5500', 'Sense Demons'),
-('32', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('32', '256', '30908', 'Drain Mana'), -- Removed?
 ('32', '256', '11719', 'Curse of Tongues'),
 ('32', '256', '132', 'Detect Invisibility'),
 ('32', '256', '18647', 'Banish'),
@@ -4423,7 +4423,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '256', '27250', 'Create Firestone'),
 ('32', '256', '17928', 'Howl of Terror'),
 ('32', '256', '27223', 'Death Coil'),
-('32', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('32', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('32', '256', '30545', 'Soul Fire'),
 ('32', '256', '30910', 'Curse of Doom'),
 ('32', '256', '18540', 'Ritual of Doom'),
@@ -4507,7 +4507,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '1024', '8983', 'Bash'),
 ('32', '1024', '8946', 'Cure Poison'),
 ('32', '1024', '26997', 'Swipe (Bear)'),
-('32', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('32', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('32', '1024', '18658', 'Hibernate'),
 ('32', '1024', '27000', 'Claw'),
 ('32', '1024', '9913', 'Prowl'),
@@ -4527,7 +4527,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('32', '1024', '24248', 'Ferocious Bite'),
 ('32', '1024', '27005', 'Ravage'),
 ('32', '1024', '5225', 'Track Humanoids'),
-('32', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('32', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('32', '1024', '27012', 'Hurricane'),
 ('32', '1024', '27006', 'Pounce'),
 ('32', '1024', '29166', 'Innervate'),
@@ -4663,10 +4663,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '2', '27762', 'Libram'),
 ('64', '2', '27149', 'Devotion Aura'),
 ('64', '2', '27136', 'Holy Light'),
-('64', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('64', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('64', '2', '27140', 'Blessing of Might'),
 ('64', '2', '20271', 'Judgement of Light'),
-('64', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('64', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('64', '2', '10308', 'Hammer of Justice'),
 ('64', '2', '10278', 'Hand of Protection'),
 ('64', '2', '27154', 'Lay on Hands'),
@@ -4682,29 +4682,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '2', '27137', 'Flash of Light'),
 ('64', '2', '5502', 'Sense Undead'),
 ('64', '2', '19746', 'Concentration Aura'),
-('64', '2', '31895', 'Seal of Justice'), -- Removed?
-('64', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('64', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('64', '2', '5627', 'Turn Undead'), -- Removed?
 ('64', '2', '1038', 'Hand of Salvation'),
 ('64', '2', '27151', 'Shadow Resistance Aura'),
 ('64', '2', '19752', 'Divine Intervention'),
-('64', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('64', '2', '27160', 'Seal of Light'), -- Removed?
 ('64', '2', '27152', 'Frost Resistance Aura'),
-('64', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('64', '2', '1020', 'Divine Shield'), -- Removed?
 ('64', '2', '27153', 'Fire Resistance Aura'),
-('64', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('64', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('64', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('64', '2', '27144', 'Blessing of Light'), -- Removed?
 ('64', '2', '4987', 'Cleanse'),
 ('64', '2', '27180', 'Hammer of Wrath'),
-('64', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('64', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('64', '2', '27139', 'Holy Wrath'),
 ('64', '2', '27141', 'Greater Blessing of Might'),
 ('64', '2', '10326', 'Turn Evil'),
 ('64', '2', '27143', 'Greater Blessing of Wisdom'),
 ('64', '2', '25898', 'Greater Blessing of Kings'),
-('64', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('64', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('64', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('64', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('64', '2', '32223', 'Crusader Aura'),
-('64', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('64', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('64', '2', '31884', 'Avenging Wrath'),
 ('64', '2', '750', 'Plate Armor'),
 ('64', '2', '3127', 'Parry'),
@@ -4764,7 +4764,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '4', '982', 'Revive Pet'),
 ('64', '4', '1515', 'Tame Beast'),
 ('64', '4', '19883', 'Track Humanoids'),
-('64', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('64', '4', '27020', 'Distracting Shot'), -- Removed?
 ('64', '4', '27046', 'Mend Pet'),
 ('64', '4', '14268', 'Alliance Flag'), -- What?
 ('64', '4', '6197', 'Eagle Eye'),
@@ -4775,7 +4775,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '4', '27021', 'Multi-Shot'),
 ('64', '4', '19884', 'Track Undead'),
 ('64', '4', '5118', 'Aspect of the Cheetah'),
-('64', '4', '27015', 'Disengage'), -- Removed?
+-- ('64', '4', '27015', 'Disengage'), -- Removed?
 ('64', '4', '14311', 'Freezing Trap'),
 ('64', '4', '3043', 'Scorpid Sting'),
 ('64', '4', '1462', 'Beast Lore'),
@@ -4788,7 +4788,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '4', '1543', 'Flare'),
 ('64', '4', '19878', 'Track Demons'),
 ('64', '4', '27025', 'Explosive Trap'),
-('64', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('64', '4', '27018', 'Viper Sting'), -- Removed?
 ('64', '4', '13159', 'Aspect of the Pack'),
 ('64', '4', '19882', 'Track Giants'),
 ('64', '4', '27022', 'Volley'),
@@ -4871,10 +4871,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '8', '3127', 'Parry'),
 ('64', '8', '674', 'Dual Wield'),
 ('64', '8', '3776', 'Green Leather Bracers'),
-('64', '8', '9186', null), -- Removed?
+-- ('64', '8', '9186', null), -- Removed?
 ('64', '8', '21927', 'Natures Ally'),
 ('64', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('64', '8', '22055', null), -- Removed?
+-- ('64', '8', '22055', null), -- Removed?
 ('64', '8', '2836', 'Detect Traps'),
 ('64', '8', '1860', 'Safe Fall'),
 -- Gnome Priest
@@ -4917,7 +4917,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '16', '25364', 'Smite'),
 ('64', '16', '25368', 'Shadow Word: Pain'),
 ('64', '16', '25218', 'Power Word: Shield'),
-('64', '16', '25429', 'Fade'), -- Removed?
+-- ('64', '16', '25429', 'Fade'), -- Removed?
 ('64', '16', '25222', 'Renew'),
 ('64', '16', '25375', 'Mind Blast'),
 ('64', '16', '25435', 'Resurrection'),
@@ -4928,11 +4928,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '16', '6346', 'Fear Ward'),
 ('64', '16', '25235', 'Flash Heal'),
 ('64', '16', '25384', 'Holy Fire'),
-('64', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('64', '16', '25596', 'Mind Soothe'), -- Removed?
 ('64', '16', '10955', 'Shackle Undead'),
 ('64', '16', '10909', 'Mind Vision'),
-('64', '16', '25380', 'Mana Burn'), -- Removed?
-('64', '16', '10912', 'Mind Control'), -- Removed?
+-- ('64', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('64', '16', '10912', 'Mind Control'), -- Removed?
 ('64', '16', '25308', 'Prayer of Healing'),
 ('64', '16', '25433', 'Shadow Protection'),
 ('64', '16', '552', 'Abolish Disease'),
@@ -4946,7 +4946,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '16', '34433', 'Shadowfiend'),
 ('64', '16', '33076', 'Prayer of Mending'),
 ('64', '16', '32375', 'Mass Dispel'),
-('64', '16', '25441', 'Feedback'), -- Removed?
+-- ('64', '16', '25441', 'Feedback'), -- Removed?
 ('64', '16', '25312', 'Divine Spirit'),
 ('64', '16', '25437', 'Desperate Prayer'),
 -- Gnome Shaman
@@ -4990,7 +4990,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '64', '27763', 'Totem'),
 ('64', '64', '25396', 'Healing Wave'),
 ('64', '64', '25449', 'Lightning Bolt'),
-('64', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('64', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('64', '64', '25454', 'Earth Shock'),
 ('64', '64', '25509', 'Stoneskin Totem'),
 ('64', '64', '2484', 'Earthbind Totem'),
@@ -5010,7 +5010,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '64', '2645', 'Ghost Wolf'),
 ('64', '64', '25567', 'Healing Stream Totem'),
 ('64', '64', '25420', 'Lesser Healing Wave'),
-('64', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('64', '64', '2870', 'Cure Disease'), -- Removed?
 ('64', '64', '8166', 'Poison Cleansing Totem'),
 ('64', '64', '131', 'Water Breathing'),
 ('64', '64', '25560', 'Frost Resistance Totem'),
@@ -5026,13 +5026,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '64', '36936', 'Totemic Recall'),
 ('64', '64', '25505', 'Windfury Weapon'),
 ('64', '64', '421', 'Chain Lightning'),
-('64', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('64', '64', '25587', 'Windfury Totem'), -- Removed?
 ('64', '64', '6495', 'Sentry Totem'),
-('64', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('64', '64', '25577', 'Windwall Totem'), -- Removed?
 ('64', '64', '8170', 'Cleansing Totem'),
 ('64', '64', '25423', 'Chain Heal'),
-('64', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('64', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('64', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('64', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('64', '64', '33736', 'Water Shield'),
 ('64', '64', '3738', 'Wrath of Air Totem'),
 ('64', '64', '2062', 'Earth Elemental Totem'),
@@ -5157,7 +5157,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '256', '27230', 'Create Healthstone'),
 ('64', '256', '27217', 'Drain Soul'),
 ('64', '256', '27259', 'Health Funnel'),
-('64', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('64', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('64', '256', '27220', 'Drain Life'),
 ('64', '256', '5697', 'Unending Breath'),
 ('64', '256', '27238', 'Create Soulstone'),
@@ -5166,7 +5166,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '256', '27212', 'Rain of Fire'),
 ('64', '256', '698', 'Ritual of Summoning'),
 ('64', '256', '5500', 'Sense Demons'),
-('64', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('64', '256', '30908', 'Drain Mana'), -- Removed?
 ('64', '256', '11719', 'Curse of Tongues'),
 ('64', '256', '132', 'Detect Invisibility'),
 ('64', '256', '18647', 'Banish'),
@@ -5178,7 +5178,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '256', '27250', 'Create Firestone'),
 ('64', '256', '17928', 'Howl of Terror'),
 ('64', '256', '27223', 'Death Coil'),
-('64', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('64', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('64', '256', '30545', 'Soul Fire'),
 ('64', '256', '30910', 'Curse of Doom'),
 ('64', '256', '18540', 'Ritual of Doom'),
@@ -5262,7 +5262,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '1024', '8983', 'Bash'),
 ('64', '1024', '8946', 'Cure Poison'),
 ('64', '1024', '26997', 'Swipe (Bear)'),
-('64', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('64', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('64', '1024', '18658', 'Hibernate'),
 ('64', '1024', '27000', 'Claw'),
 ('64', '1024', '9913', 'Prowl'),
@@ -5282,7 +5282,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('64', '1024', '24248', 'Ferocious Bite'),
 ('64', '1024', '27005', 'Ravage'),
 ('64', '1024', '5225', 'Track Humanoids'),
-('64', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('64', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('64', '1024', '27012', 'Hurricane'),
 ('64', '1024', '27006', 'Pounce'),
 ('64', '1024', '29166', 'Innervate'),
@@ -5430,7 +5430,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '4', '982', 'Revive Pet'),
 ('128', '4', '1515', 'Tame Beast'),
 ('128', '4', '19883', 'Track Humanoids'),
-('128', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('128', '4', '27020', 'Distracting Shot'), -- Removed?
 ('128', '4', '27046', 'Mend Pet'),
 ('128', '4', '14268', 'Alliance Flag'), -- What?
 ('128', '4', '6197', 'Eagle Eye'),
@@ -5441,7 +5441,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '4', '27021', 'Multi-Shot'),
 ('128', '4', '19884', 'Track Undead'),
 ('128', '4', '5118', 'Aspect of the Cheetah'),
-('128', '4', '27015', 'Disengage'), -- Removed?
+-- ('128', '4', '27015', 'Disengage'), -- Removed?
 ('128', '4', '14311', 'Freezing Trap'),
 ('128', '4', '3043', 'Scorpid Sting'),
 ('128', '4', '1462', 'Beast Lore'),
@@ -5454,7 +5454,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '4', '1543', 'Flare'),
 ('128', '4', '19878', 'Track Demons'),
 ('128', '4', '27025', 'Explosive Trap'),
-('128', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('128', '4', '27018', 'Viper Sting'), -- Removed?
 ('128', '4', '13159', 'Aspect of the Pack'),
 ('128', '4', '19882', 'Track Giants'),
 ('128', '4', '27022', 'Volley'),
@@ -5513,10 +5513,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '2', '27762', 'Libram'),
 ('128', '2', '27149', 'Devotion Aura'),
 ('128', '2', '27136', 'Holy Light'),
-('128', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('128', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('128', '2', '27140', 'Blessing of Might'),
 ('128', '2', '20271', 'Judgement of Light'),
-('128', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('128', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('128', '2', '10308', 'Hammer of Justice'),
 ('128', '2', '10278', 'Hand of Protection'),
 ('128', '2', '27154', 'Lay on Hands'),
@@ -5532,29 +5532,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '2', '27137', 'Flash of Light'),
 ('128', '2', '5502', 'Sense Undead'),
 ('128', '2', '19746', 'Concentration Aura'),
-('128', '2', '31895', 'Seal of Justice'), -- Removed?
-('128', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('128', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('128', '2', '5627', 'Turn Undead'), -- Removed?
 ('128', '2', '1038', 'Hand of Salvation'),
 ('128', '2', '27151', 'Shadow Resistance Aura'),
 ('128', '2', '19752', 'Divine Intervention'),
-('128', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('128', '2', '27160', 'Seal of Light'), -- Removed?
 ('128', '2', '27152', 'Frost Resistance Aura'),
-('128', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('128', '2', '1020', 'Divine Shield'), -- Removed?
 ('128', '2', '27153', 'Fire Resistance Aura'),
-('128', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('128', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('128', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('128', '2', '27144', 'Blessing of Light'), -- Removed?
 ('128', '2', '4987', 'Cleanse'),
 ('128', '2', '27180', 'Hammer of Wrath'),
-('128', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('128', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('128', '2', '27139', 'Holy Wrath'),
 ('128', '2', '27141', 'Greater Blessing of Might'),
 ('128', '2', '10326', 'Turn Evil'),
 ('128', '2', '27143', 'Greater Blessing of Wisdom'),
 ('128', '2', '25898', 'Greater Blessing of Kings'),
-('128', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('128', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('128', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('128', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('128', '2', '32223', 'Crusader Aura'),
-('128', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('128', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('128', '2', '31884', 'Avenging Wrath'),
 ('128', '2', '750', 'Plate Armor'),
 ('128', '2', '3127', 'Parry'),
@@ -5632,10 +5632,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '8', '3127', 'Parry'),
 ('128', '8', '674', 'Dual Wield'),
 ('128', '8', '3776', 'Green Leather Bracers'),
-('128', '8', '9186', null), -- Removed?
+-- ('128', '8', '9186', null), -- Removed?
 ('128', '8', '21927', 'Natures Ally'),
 ('128', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('128', '8', '22055', null), -- Removed?
+-- ('128', '8', '22055', null), -- Removed?
 ('128', '8', '2836', 'Detect Traps'),
 ('128', '8', '1860', 'Safe Fall'),
 -- Troll Priest
@@ -5679,7 +5679,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '16', '25364', 'Smite'),
 ('128', '16', '25368', 'Shadow Word: Pain'),
 ('128', '16', '25218', 'Power Word: Shield'),
-('128', '16', '25429', 'Fade'), -- Removed?
+-- ('128', '16', '25429', 'Fade'), -- Removed?
 ('128', '16', '25222', 'Renew'),
 ('128', '16', '25375', 'Mind Blast'),
 ('128', '16', '25435', 'Resurrection'),
@@ -5690,11 +5690,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '16', '6346', 'Fear Ward'),
 ('128', '16', '25235', 'Flash Heal'),
 ('128', '16', '25384', 'Holy Fire'),
-('128', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('128', '16', '25596', 'Mind Soothe'), -- Removed?
 ('128', '16', '10955', 'Shackle Undead'),
 ('128', '16', '10909', 'Mind Vision'),
-('128', '16', '25380', 'Mana Burn'), -- Removed?
-('128', '16', '10912', 'Mind Control'), -- Removed?
+-- ('128', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('128', '16', '10912', 'Mind Control'), -- Removed?
 ('128', '16', '25308', 'Prayer of Healing'),
 ('128', '16', '25433', 'Shadow Protection'),
 ('128', '16', '552', 'Abolish Disease'),
@@ -5751,7 +5751,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '64', '27763', 'Totem'),
 ('128', '64', '25396', 'Healing Wave'),
 ('128', '64', '25449', 'Lightning Bolt'),
-('128', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('128', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('128', '64', '25454', 'Earth Shock'),
 ('128', '64', '25509', 'Stoneskin Totem'),
 ('128', '64', '2484', 'Earthbind Totem'),
@@ -5771,7 +5771,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '64', '2645', 'Ghost Wolf'),
 ('128', '64', '25567', 'Healing Stream Totem'),
 ('128', '64', '25420', 'Lesser Healing Wave'),
-('128', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('128', '64', '2870', 'Cure Disease'), -- Removed?
 ('128', '64', '8166', 'Poison Cleansing Totem'),
 ('128', '64', '131', 'Water Breathing'),
 ('128', '64', '25560', 'Frost Resistance Totem'),
@@ -5787,13 +5787,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '64', '36936', 'Totemic Recall'),
 ('128', '64', '25505', 'Windfury Weapon'),
 ('128', '64', '421', 'Chain Lightning'),
-('128', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('128', '64', '25587', 'Windfury Totem'), -- Removed?
 ('128', '64', '6495', 'Sentry Totem'),
-('128', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('128', '64', '25577', 'Windwall Totem'), -- Removed?
 ('128', '64', '8170', 'Cleansing Totem'),
 ('128', '64', '25423', 'Chain Heal'),
-('128', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('128', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('128', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('128', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('128', '64', '33736', 'Water Shield'),
 ('128', '64', '3738', 'Wrath of Air Totem'),
 ('128', '64', '2062', 'Earth Elemental Totem'),
@@ -5923,7 +5923,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '256', '27230', 'Create Healthstone'),
 ('128', '256', '27217', 'Drain Soul'),
 ('128', '256', '27259', 'Health Funnel'),
-('128', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('128', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('128', '256', '27220', 'Drain Life'),
 ('128', '256', '5697', 'Unending Breath'),
 ('128', '256', '27238', 'Create Soulstone'),
@@ -5932,7 +5932,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '256', '27212', 'Rain of Fire'),
 ('128', '256', '698', 'Ritual of Summoning'),
 ('128', '256', '5500', 'Sense Demons'),
-('128', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('128', '256', '30908', 'Drain Mana'), -- Removed?
 ('128', '256', '11719', 'Curse of Tongues'),
 ('128', '256', '132', 'Detect Invisibility'),
 ('128', '256', '18647', 'Banish'),
@@ -5944,7 +5944,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '256', '27250', 'Create Firestone'),
 ('128', '256', '17928', 'Howl of Terror'),
 ('128', '256', '27223', 'Death Coil'),
-('128', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('128', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('128', '256', '30545', 'Soul Fire'),
 ('128', '256', '30910', 'Curse of Doom'),
 ('128', '256', '18540', 'Ritual of Doom'),
@@ -6029,7 +6029,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '1024', '8983', 'Bash'),
 ('128', '1024', '8946', 'Cure Poison'),
 ('128', '1024', '26997', 'Swipe (Bear)'),
-('128', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('128', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('128', '1024', '18658', 'Hibernate'),
 ('128', '1024', '27000', 'Claw'),
 ('128', '1024', '9913', 'Prowl'),
@@ -6049,7 +6049,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '1024', '24248', 'Ferocious Bite'),
 ('128', '1024', '27005', 'Ravage'),
 ('128', '1024', '5225', 'Track Humanoids'),
-('128', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('128', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('128', '1024', '27012', 'Hurricane'),
 ('128', '1024', '27006', 'Pounce'),
 ('128', '1024', '29166', 'Innervate'),
@@ -6060,775 +6060,6 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('128', '1024', '33745', 'Lacerate'),
 ('128', '1024', '33786', 'Cyclone'),
 ('128', '1024', '20719', 'Feline Grace'),
--- Goblin Warrior
-('256', '1', '78', 'Heroic Strike'),
-('256', '1', '81', 'Dodge'),
-('256', '1', '107', 'Block'),
-('256', '1', '196', 'One-Handed Axes'),
-('256', '1', '197', 'Two-Handed Axes'),
-('256', '1', '201', 'One-Handed Swords'),
-('256', '1', '203', 'Unarmed'),
-('256', '1', '204', 'Defense'),
-('256', '1', '522', 'SPELLDEFENSE(DND)'),
-('256', '1', '669', 'Language Orcish'),
-('256', '1', '2382', 'Generic'),
-('256', '1', '2457', 'Battle Stance'),
-('256', '1', '2479', 'Honorless Target'),
-('256', '1', '3050', 'Detect'),
-('256', '1', '3365', 'Opening'),
-('256', '1', '5301', 'Defensive State(DND)'),
-('256', '1', '6233', 'Closing'),
-('256', '1', '6246', 'Closing'),
-('256', '1', '6247', 'Opening'),
-('256', '1', '6477', 'Opening'),
-('256', '1', '6478', 'Opening'),
-('256', '1', '6603', 'Attack'),
-('256', '1', '7266', 'Duel'),
-('256', '1', '7267', 'Grovel'),
-('256', '1', '7355', 'Stuck'),
-('256', '1', '7376', 'Defensive Stance Passive'),
-('256', '1', '7381', 'Berserker Stance Passive'),
-('256', '1', '8386', 'Attacking'),
-('256', '1', '8737', 'Mail'),
-('256', '1', '9077', 'Leather'),
-('256', '1', '9078', 'Cloth'),
-('256', '1', '9116', 'Shield'),
-('256', '1', '9125', 'Generic'),
-('256', '1', '69041', 'Rocket Barrage'),
-('256', '1', '69042', 'Time is Money'),
-('256', '1', '69044', 'Best Deals Anywhere'),
-('256', '1', '69045', 'Better Living Through Chemistry'),
-('256', '1', '69046', 'Pack Hobgoblin'),
-('256', '1', '69070', 'Rocket Jump'),
-('256', '1', '21156', 'Battle Stance Passive'),
-('256', '1', '21651', 'Opening'),
-('256', '1', '21652', 'Closing'),
-('256', '1', '22027', 'Remove Insignia'),
-('256', '1', '22810', 'Opening - No Text'),
-('256', '1', '32215', 'Victorious State'),
-('256', '1', '2048', 'Battle Shout'),
-('256', '1', '30324', 'Heroic Strike'),
-('256', '1', '11578', 'Charge'),
-('256', '1', '25208', 'Rend'),
-('256', '1', '25264', 'Thunder Clap'),
-('256', '1', '2687', 'Bloodrage'),
-('256', '1', '71', 'Defensive Stance'),
-('256', '1', '25225', 'Sunder Armor'),
-('256', '1', '355', 'Taunt'),
-('256', '1', '11585', 'Overpower'),
-('256', '1', '29704', 'Shield Bash'),
-('256', '1', '25203', 'Demoralizing Shout'),
-('256', '1', '30357', 'Revenge'),
-('256', '1', '25266', 'Mocking Blow'),
-('256', '1', '2565', 'Shield Block'),
-('256', '1', '676', 'Disarm'),
-('256', '1', '25231', 'Cleave'),
-('256', '1', '20230', 'Retaliation'),
-('256', '1', '5246', 'Intimidating Shout'),
-('256', '1', '25236', 'Execute'),
-('256', '1', '1161', 'Challenging Shout'),
-('256', '1', '871', 'Shield Wall'),
-('256', '1', '2458', 'Berserker Stance'),
-('256', '1', '25275', 'Intercept'),
-('256', '1', '25242', 'Slam'),
-('256', '1', '18499', 'Berserker Rage'),
-('256', '1', '1680', 'Whirlwind'),
-('256', '1', '6554', 'Pummel'),
-('256', '1', '1719', 'Recklessness'),
-('256', '1', '34428', 'Victory Rush'),
-('256', '1', '23920', 'Spell Reflection'),
-('256', '1', '469', 'Commanding Shout'),
-('256', '1', '3411', 'Intervene'),
-('256', '1', '25212', 'Hamstring'),
-('256', '1', '674', 'Dual Wield'),
-('256', '1', '750', 'Plate Armor'),
-('256', '1', '12678', 'Stance Mastery'),
--- Goblin Paladin
-('256', '2', '81', 'Dodge'),
-('256', '2', '107', 'Block'),
-('256', '2', '198', 'One-Handed Maces'),
-('256', '2', '199', 'Two-Handed Maces'),
-('256', '2', '203', 'Unarmed'),
-('256', '2', '204', 'Defense'),
-('256', '2', '522', 'SPELLDEFENSE(DND)'),
-('256', '2', '635', 'Holy Light'),
-('256', '2', '669', 'Language Orcish'),
-('256', '2', '750', 'Plate Armor'),
-('256', '2', '1020', 'Divine Shield'), -- Removed?
-('256', '2', '1038', 'Hand of Salvation'),
-('256', '2', '1044', 'Hand of Freedom'),
-('256', '2', '2382', 'Generic'),
-('256', '2', '2479', 'Honorless Target'),
-('256', '2', '3050', 'Detect'),
-('256', '2', '3127', 'Parry'),
-('256', '2', '3365', 'Opening'),
-('256', '2', '4987', 'Cleanse'),
-('256', '2', '5502', 'Sense Undead'),
-('256', '2', '5627', 'Turn Undead'), -- Removed?
-('256', '2', '6233', 'Closing'),
-('256', '2', '6246', 'Closing'),
-('256', '2', '6247', 'Opening'),
-('256', '2', '6477', 'Opening'),
-('256', '2', '6478', 'Opening'),
-('256', '2', '6603', 'Attack'),
-('256', '2', '7266', 'Duel'),
-('256', '2', '7267', 'Grovel'),
-('256', '2', '7355', 'Stuck'),
-('256', '2', '8386', 'Attacking'),
-('256', '2', '8737', 'Mail'),
-('256', '2', '9077', 'Leather'),
-('256', '2', '9078', 'Cloth'),
-('256', '2', '9116', 'Shield'),
-('256', '2', '9125', 'Generic'),
-('256', '2', '10278', 'Hand of Protection'),
-('256', '2', '10308', 'Hammer of Justice'),
-('256', '2', '10326', 'Turn Evil'),
-('256', '2', '19746', 'Concentration Aura'),
-('256', '2', '19752', 'Divine Intervention'),
-('256', '2', '20271', 'Judgement of Light'),
-('256', '2', '69041', 'Rocket Barrage'),
-('256', '2', '69042', 'Time is Money'),
-('256', '2', '69044', 'Best Deals Anywhere'),
-('256', '2', '69045', 'Better Living Through Chemistry'),
-('256', '2', '69046', 'Pack Hobgoblin'),
-('256', '2', '69070', 'Rocket Jump'),
-('256', '2', '20773', 'Redemption'),
-('256', '2', '21084', 'Seal of Righteousness'),
-('256', '2', '21651', 'Opening'),
-('256', '2', '21652', 'Closing'),
-('256', '2', '22027', 'Remove Insignia'),
-('256', '2', '22810', 'Opening - No Text'),
-('256', '2', '23214', 'Charger'),
-('256', '2', '25780', 'Righteous Fury'),
-('256', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
-('256', '2', '25898', 'Greater Blessing of Kings'),
-('256', '2', '27136', 'Holy Light'),
-('256', '2', '27137', 'Flash of Light'),
-('256', '2', '27138', 'Exorcism'),
-('256', '2', '27139', 'Holy Wrath'),
-('256', '2', '27140', 'Blessing of Might'),
-('256', '2', '27141', 'Greater Blessing of Might'),
-('256', '2', '27142', 'Blessing of Wisdom'),
-('256', '2', '27143', 'Greater Blessing of Wisdom'),
-('256', '2', '27144', 'Blessing of Light'), -- Removed?
-('256', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('256', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
-('256', '2', '27149', 'Devotion Aura'),
-('256', '2', '27150', 'Retribution Aura'),
-('256', '2', '27151', 'Shadow Resistance Aura'),
-('256', '2', '27152', 'Frost Resistance Aura'),
-('256', '2', '27153', 'Fire Resistance Aura'),
-('256', '2', '27154', 'Lay on Hands'),
-('256', '2', '27155', 'Seal of Righteousness'), -- Removed?
-('256', '2', '27158', 'Seal of the Crusader'), -- Removed?
-('256', '2', '27160', 'Seal of Light'), -- Removed?
-('256', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('256', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
-('256', '2', '27173', 'Consecration'),
-('256', '2', '27180', 'Hammer of Wrath'),
-('256', '2', '27762', 'Libram'),
-('256', '2', '31789', 'Righteous Defense'),
-('256', '2', '31801', 'Seal of Vengeance'),
-('256', '2', '31884', 'Avenging Wrath'),
-('256', '2', '31895', 'Seal of Justice'), -- Removed?
-('256', '2', '32223', 'Crusader Aura'),
-('256', '2', '33776', 'Spiritual Attunement'),
--- Goblin Hunter
-('256', '4', '75', 'Auto Shot'),
-('256', '4', '81', 'Dodge'),
-('256', '4', '196', 'One-Handed Axes'),
-('256', '4', '203', 'Unarmed'),
-('256', '4', '204', 'Defense'),
-('256', '4', '264', 'Bows'),
-('256', '4', '522', 'SPELLDEFENSE(DND)'),
-('256', '4', '669', 'Language Orcish'),
-('256', '4', '2382', 'Generic'),
-('256', '4', '2479', 'Honorless Target'),
-('256', '4', '2973', 'Raptor Strike'),
-('256', '4', '3050', 'Detect'),
-('256', '4', '3365', 'Opening'),
-('256', '4', '6233', 'Closing'),
-('256', '4', '6246', 'Closing'),
-('256', '4', '6247', 'Opening'),
-('256', '4', '6477', 'Opening'),
-('256', '4', '6478', 'Opening'),
-('256', '4', '6603', 'Attack'),
-('256', '4', '7266', 'Duel'),
-('256', '4', '7267', 'Grovel'),
-('256', '4', '7355', 'Stuck'),
-('256', '4', '8386', 'Attacking'),
-('256', '4', '9077', 'Leather'),
-('256', '4', '9078', 'Cloth'),
-('256', '4', '9125', 'Generic'),
-('256', '4', '13358', 'Defensive State(DND)'),
-('256', '4', '69041', 'Rocket Barrage'),
-('256', '4', '69042', 'Time is Money'),
-('256', '4', '69044', 'Best Deals Anywhere'),
-('256', '4', '69045', 'Better Living Through Chemistry'),
-('256', '4', '69046', 'Pack Hobgoblin'),
-('256', '4', '69070', 'Rocket Jump'),
-('256', '4', '21651', 'Opening'),
-('256', '4', '21652', 'Closing'),
-('256', '4', '22027', 'Remove Insignia'),
-('256', '4', '22810', 'Opening - No Text'),
-('256', '4', '24949', 'Defensive State 2(DND)'),
-('256', '4', '34082', 'Advantaged State(DND)'),
-('256', '4', '27014', 'Raptor Strike'),
-('256', '4', '1494', 'Track Beasts'),
-('256', '4', '13163', 'Aspect of the Monkey'),
-('256', '4', '27016', 'Serpent Sting'),
-('256', '4', '27019', 'Arcane Shot'),
-('256', '4', '14325', 'Hunters Mark'),
-('256', '4', '5116', 'Concussive Shot'),
-('256', '4', '27044', 'Aspect of the Hawk'),
-('256', '4', '883', 'Call Pet'),
-('256', '4', '2641', 'Dismiss Pet'),
-('256', '4', '6991', 'Feed Pet'),
-('256', '4', '982', 'Revive Pet'),
-('256', '4', '1515', 'Tame Beast'),
-('256', '4', '19883', 'Track Humanoids'),
-('256', '4', '27020', 'Distracting Shot'), -- Removed?
-('256', '4', '27046', 'Mend Pet'),
-('256', '4', '14268', 'Alliance Flag'), -- What?
-('256', '4', '6197', 'Eagle Eye'),
-('256', '4', '1002', 'Eyes of the Beast'),
-('256', '4', '14327', 'Scare Beast'),
-('256', '4', '27023', 'Immolation Trap'),
-('256', '4', '36916', 'Mongoose Bite'),
-('256', '4', '27021', 'Multi-Shot'),
-('256', '4', '19884', 'Track Undead'),
-('256', '4', '5118', 'Aspect of the Cheetah'),
-('256', '4', '27015', 'Disengage'), -- Removed?
-('256', '4', '14311', 'Freezing Trap'),
-('256', '4', '3043', 'Scorpid Sting'),
-('256', '4', '1462', 'Beast Lore'),
-('256', '4', '19885', 'Track Hidden'),
-('256', '4', '3045', 'Rapid Fire'),
-('256', '4', '19880', 'Track Elementals'),
-('256', '4', '13809', 'Frost Trap'),
-('256', '4', '13161', 'Aspect of the Beast'),
-('256', '4', '5384', 'Feign Death'),
-('256', '4', '1543', 'Flare'),
-('256', '4', '19878', 'Track Demons'),
-('256', '4', '27025', 'Explosive Trap'),
-('256', '4', '27018', 'Viper Sting'), -- Removed?
-('256', '4', '13159', 'Aspect of the Pack'),
-('256', '4', '19882', 'Track Giants'),
-('256', '4', '27022', 'Volley'),
-('256', '4', '27045', 'Aspect of the Wild'),
-('256', '4', '19879', 'Track Dragonkin'),
-('256', '4', '19801', 'Tranquilizing Shot'),
-('256', '4', '34120', 'Steady Shot'),
-('256', '4', '34074', 'Aspect of the Viper'),
-('256', '4', '34026', 'Kill Command'),
-('256', '4', '34600', 'Snake Trap'),
-('256', '4', '34477', 'Misdirection'),
-('256', '4', '674', 'Dual Wield'),
-('256', '4', '8737', 'Mail'),
-('256', '4', '5149', 'Beast Training'), -- Only 8?
-('256', '4', '3127', 'Parry'),
--- Goblin Rogue
-('256', '8', '81', 'Dodge'),
-('256', '8', '203', 'Unarmed'),
-('256', '8', '204', 'Defense'),
-('256', '8', '522', 'SPELLDEFENSE(DND)'),
-('256', '8', '669', 'Language Orcish'),
-('256', '8', '1180', 'Daggers'),
-('256', '8', '1752', 'Sinister Strike'),
-('256', '8', '2098', 'Eviscerate'),
-('256', '8', '2382', 'Generic'),
-('256', '8', '2479', 'Honorless Target'),
-('256', '8', '2567', 'Thrown'),
-('256', '8', '2764', 'Throw'),
-('256', '8', '3050', 'Detect'),
-('256', '8', '3365', 'Opening'),
-('256', '8', '6233', 'Closing'),
-('256', '8', '6246', 'Closing'),
-('256', '8', '6247', 'Opening'),
-('256', '8', '6477', 'Opening'),
-('256', '8', '6478', 'Opening'),
-('256', '8', '6603', 'Attack'),
-('256', '8', '7266', 'Duel'),
-('256', '8', '7267', 'Grovel'),
-('256', '8', '7355', 'Stuck'),
-('256', '8', '8386', 'Attacking'),
-('256', '8', '9077', 'Leather'),
-('256', '8', '9078', 'Cloth'),
-('256', '8', '9125', 'Generic'),
-('256', '8', '16092', 'Defensive State(DND)'),
-('256', '8', '69041', 'Rocket Barrage'),
-('256', '8', '69042', 'Time is Money'),
-('256', '8', '69044', 'Best Deals Anywhere'),
-('256', '8', '69045', 'Better Living Through Chemistry'),
-('256', '8', '69046', 'Pack Hobgoblin'),
-('256', '8', '69070', 'Rocket Jump'),
-('256', '8', '21184', 'Rogue Passive(DND)'),
-('256', '8', '21651', 'Opening'),
-('256', '8', '21652', 'Closing'),
-('256', '8', '22027', 'Remove Insignia'),
-('256', '8', '22810', 'Opening - No Text'),
-('256', '8', '26865', 'Eviscerate'),
-('256', '8', '26862', 'Sinister Strike'),
-('256', '8', '1787', 'Stealth'),
-('256', '8', '26863', 'Backstab'),
-('256', '8', '921', 'Pick Pocket'),
-('256', '8', '38764', 'Gouge'),
-('256', '8', '26669', 'Evasion'),
-('256', '8', '11297', 'Sap'),
-('256', '8', '6774', 'Slice and Dice'),
-('256', '8', '11305', 'Sprint'),
-('256', '8', '38768', 'Kick'),
-('256', '8', '26866', 'Expose Armor'),
-('256', '8', '26884', 'Garrote'),
-('256', '8', '27448', 'Feint'),
-('256', '8', '1804', 'Pick Lock'),
-('256', '8', '27441', 'Ambush'),
-('256', '8', '2842', 'Poisons'),
-('256', '8', '1725', 'Distract'),
-('256', '8', '26867', 'Rupture'),
-('256', '8', '26889', 'Vanish'),
-('256', '8', '1833', 'Cheap Shot'),
-('256', '8', '1842', 'Disarm Trap'),
-('256', '8', '408', 'Kidney Shot'),
-('256', '8', '2094', 'Blind'),
-('256', '8', '32684', 'Envenom'),
-('256', '8', '26679', 'Deadly Throw'),
-('256', '8', '31224', 'Cloak of Shadows'),
-('256', '8', '5938', 'Shiv'),
-('256', '8', '8643', 'Kidney Shot'),
-('256', '8', '3127', 'Parry'),
-('256', '8', '674', 'Dual Wield'),
-('256', '8', '3776', 'Green Leather Bracers'),
-('256', '8', '9186', null), -- Removed?
-('256', '8', '21927', 'Natures Ally'),
-('256', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('256', '8', '22055', null), -- Removed?
-('256', '8', '2836', 'Detect Traps'),
-('256', '8', '1860', 'Safe Fall'),
--- Goblin Priest
-('256', '16', '669', 'Language Orcish'),
-('256', '16', '69041', 'Rocket Barrage'),
-('256', '16', '69042', 'Time is Money'),
-('256', '16', '69044', 'Best Deals Anywhere'),
-('256', '16', '69045', 'Better Living Through Chemistry'),
-('256', '16', '69046', 'Pack Hobgoblin'),
-('256', '16', '69070', 'Rocket Jump'),
-('256', '16', '81', 'Dodge'),
-('256', '16', '198', 'One-Handed Maces'),
-('256', '16', '203', 'Unarmed'),
-('256', '16', '204', 'Defense'),
-('256', '16', '522', 'SPELLDEFENSE(DND)'),
-('256', '16', '585', 'Smite'),
-('256', '16', '2050', 'Lesser Heal'),
-('256', '16', '2382', 'Generic'),
-('256', '16', '2479', 'Honorless Target'),
-('256', '16', '3050', 'Detect'),
-('256', '16', '3365', 'Opening'),
-('256', '16', '5009', 'Wands'),
-('256', '16', '5019', 'Shoot'),
-('256', '16', '6233', 'Closing'),
-('256', '16', '6246', 'Closing'),
-('256', '16', '6247', 'Opening'),
-('256', '16', '6477', 'Opening'),
-('256', '16', '6478', 'Opening'),
-('256', '16', '6603', 'Attack'),
-('256', '16', '7266', 'Duel'),
-('256', '16', '7267', 'Grovel'),
-('256', '16', '7355', 'Stuck'),
-('256', '16', '8386', 'Attacking'),
-('256', '16', '9078', 'Cloth'),
-('256', '16', '9125', 'Generic'),
-('256', '16', '21651', 'Opening'),
-('256', '16', '21652', 'Closing'),
-('256', '16', '22027', 'Remove Insignia'),
-('256', '16', '22810', 'Opening - No Text'),
-('256', '16', '25389', 'Power Word: Fortitude'),
-('256', '16', '25364', 'Smite'),
-('256', '16', '25368', 'Shadow Word: Pain'),
-('256', '16', '25218', 'Power Word: Shield'),
-('256', '16', '25429', 'Fade'), -- Removed?
-('256', '16', '25222', 'Renew'),
-('256', '16', '25375', 'Mind Blast'),
-('256', '16', '25435', 'Resurrection'),
-('256', '16', '25431', 'Inner Fire'),
-('256', '16', '528', 'Cure Disease'),
-('256', '16', '10890', 'Psychic Scream'),
-('256', '16', '988', 'Dispel Magic'),
-('256', '16', '6346', 'Fear Ward'),
-('256', '16', '25235', 'Flash Heal'),
-('256', '16', '25384', 'Holy Fire'),
-('256', '16', '25596', 'Mind Soothe'), -- Removed?
-('256', '16', '10955', 'Shackle Undead'),
-('256', '16', '10909', 'Mind Vision'),
-('256', '16', '25380', 'Mana Burn'), -- Removed?
-('256', '16', '10912', 'Mind Control'), -- Removed?
-('256', '16', '25308', 'Prayer of Healing'),
-('256', '16', '25433', 'Shadow Protection'),
-('256', '16', '552', 'Abolish Disease'),
-('256', '16', '1706', 'Levitate'),
-('256', '16', '25213', 'Greater Heal'),
-('256', '16', '25392', 'Prayer of Fortitude'),
-('256', '16', '39374', 'Prayer of Shadow Protection'),
-('256', '16', '32999', 'Prayer of Spirit'),
-('256', '16', '32996', 'Shadow Word: Death'),
-('256', '16', '32546', 'Binding Heal'),
-('256', '16', '34433', 'Shadowfiend'),
-('256', '16', '33076', 'Prayer of Mending'),
-('256', '16', '32375', 'Mass Dispel'),
-('256', '16', '25441', 'Feedback'), -- Removed?
-('256', '16', '25312', 'Divine Spirit'),
-('256', '16', '25437', 'Desperate Prayer'),
--- Goblin Shaman
-('256', '64', '81', 'Dodge'),
-('256', '64', '107', 'Block'),
-('256', '64', '198', 'One-Handed Maces'),
-('256', '64', '203', 'Unarmed'),
-('256', '64', '204', 'Defense'),
-('256', '64', '227', 'Staves'),
-('256', '64', '331', 'Healing Wave'),
-('256', '64', '403', 'Lightning Bolt'),
-('256', '64', '522', 'SPELLDEFENSE(DND)'),
-('256', '64', '669', 'Language Orcish'),
-('256', '64', '2382', 'Generic'),
-('256', '64', '2479', 'Honorless Target'),
-('256', '64', '3050', 'Detect'),
-('256', '64', '3365', 'Opening'),
-('256', '64', '6233', 'Closing'),
-('256', '64', '6246', 'Closing'),
-('256', '64', '6247', 'Opening'),
-('256', '64', '6477', 'Opening'),
-('256', '64', '6478', 'Opening'),
-('256', '64', '6603', 'Attack'),
-('256', '64', '7266', 'Duel'),
-('256', '64', '7267', 'Grovel'),
-('256', '64', '7355', 'Stuck'),
-('256', '64', '8386', 'Attacking'),
-('256', '64', '9077', 'Leather'),
-('256', '64', '9078', 'Cloth'),
-('256', '64', '9116', 'Shield'),
-('256', '64', '9125', 'Generic'),
-('256', '64', '69041', 'Rocket Barrage'),
-('256', '64', '69042', 'Time is Money'),
-('256', '64', '69044', 'Best Deals Anywhere'),
-('256', '64', '69045', 'Better Living Through Chemistry'),
-('256', '64', '69046', 'Pack Hobgoblin'),
-('256', '64', '69070', 'Rocket Jump'),
-('256', '64', '21651', 'Opening'),
-('256', '64', '21652', 'Closing'),
-('256', '64', '22027', 'Remove Insignia'),
-('256', '64', '22810', 'Opening - No Text'),
-('256', '64', '27763', 'Totem'),
-('256', '64', '25396', 'Healing Wave'),
-('256', '64', '25449', 'Lightning Bolt'),
-('256', '64', '25485', 'Rockbiter Weapon'), -- Removed?
-('256', '64', '25454', 'Earth Shock'),
-('256', '64', '25509', 'Stoneskin Totem'),
-('256', '64', '2484', 'Earthbind Totem'),
-('256', '64', '25472', 'Lightning Shield'),
-('256', '64', '25525', 'Stoneclaw Totem'),
-('256', '64', '25457', 'Flame Shock'),
-('256', '64', '25489', 'Flametongue Weapon'),
-('256', '64', '25533', 'Searing Totem'),
-('256', '64', '25528', 'Strength of Earth Totem'),
-('256', '64', '20777', 'Ancestral Spirit'),
-('256', '64', '25547', 'Fire Nova'),
-('256', '64', '8012', 'Purge'),
-('256', '64', '526', 'Cure Toxins'),
-('256', '64', '8143', 'Tremor Totem'),
-('256', '64', '25464', 'Frost Shock'),
-('256', '64', '25500', 'Frostbrand Weapon'),
-('256', '64', '2645', 'Ghost Wolf'),
-('256', '64', '25567', 'Healing Stream Totem'),
-('256', '64', '25420', 'Lesser Healing Wave'),
-('256', '64', '2870', 'Cure Disease'), -- Removed?
-('256', '64', '8166', 'Poison Cleansing Totem'),
-('256', '64', '131', 'Water Breathing'),
-('256', '64', '25560', 'Frost Resistance Totem'),
-('256', '64', '6196', 'Far Sight'),
-('256', '64', '25552', 'Magma Totem'),
-('256', '64', '25570', 'Mana Spring Totem'),
-('256', '64', '25563', 'Fire Resistance Totem'),
-('256', '64', '25557', 'Flametongue Totem'),
-('256', '64', '546', 'Water Walking'),
-('256', '64', '556', 'Astral Recall'),
-('256', '64', '8177', 'Grounding Totem'),
-('256', '64', '25574', 'Nature Resistance Totem'),
-('256', '64', '36936', 'Totemic Recall'),
-('256', '64', '25505', 'Windfury Weapon'),
-('256', '64', '421', 'Chain Lightning'),
-('256', '64', '25587', 'Windfury Totem'), -- Removed?
-('256', '64', '6495', 'Sentry Totem'),
-('256', '64', '25577', 'Windwall Totem'), -- Removed?
-('256', '64', '8170', 'Cleansing Totem'),
-('256', '64', '25423', 'Chain Heal'),
-('256', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('256', '64', '25908', 'Tranquil Air Totem'), -- Removed?
-('256', '64', '33736', 'Water Shield'),
-('256', '64', '3738', 'Wrath of Air Totem'),
-('256', '64', '2062', 'Earth Elemental Totem'),
-('256', '64', '2894', 'Fire Elemental Totem'),
-('256', '64', '2825', 'Bloodlust'), -- Only 9?
-('256', '64', '25442', 'Chain Lightning'), -- Only 6?
-('256', '64', '8737', 'Mail'),
-('256', '64', '20608', 'Reincarnation'), -- Only 6?
--- Goblin Mage
-('256', '128', '669', 'Language Orcish'),
-('256', '128', '69041', 'Rocket Barrage'),
-('256', '128', '69042', 'Time is Money'),
-('256', '128', '69044', 'Best Deals Anywhere'),
-('256', '128', '69045', 'Better Living Through Chemistry'),
-('256', '128', '69046', 'Pack Hobgoblin'),
-('256', '128', '69070', 'Rocket Jump'),
-('256', '128', '81', 'Dodge'),
-('256', '128', '133', 'Fireball'),
-('256', '128', '168', 'Frost Armor'),
-('256', '128', '203', 'Unarmed'),
-('256', '128', '204', 'Defense'),
-('256', '128', '227', 'Staves'),
-('256', '128', '522', 'SPELLDEFENSE(DND)'),
-('256', '128', '2382', 'Generic'),
-('256', '128', '2479', 'Honorless Target'),
-('256', '128', '3050', 'Detect'),
-('256', '128', '3365', 'Opening'),
-('256', '128', '5009', 'Wands'),
-('256', '128', '5019', 'Shoot'),
-('256', '128', '6233', 'Closing'),
-('256', '128', '6246', 'Closing'),
-('256', '128', '6247', 'Opening'),
-('256', '128', '6477', 'Opening'),
-('256', '128', '6478', 'Opening'),
-('256', '128', '6603', 'Attack'),
-('256', '128', '7266', 'Duel'),
-('256', '128', '7267', 'Grovel'),
-('256', '128', '7355', 'Stuck'),
-('256', '128', '8386', 'Attacking'),
-('256', '128', '9078', 'Cloth'),
-('256', '128', '9125', 'Generic'),
-('256', '128', '21651', 'Opening'),
-('256', '128', '21652', 'Closing'),
-('256', '128', '22027', 'Remove Insignia'),
-('256', '128', '22810', 'Opening - No Text'),
-('256', '128', '27126', 'Arcane Intellect'),
-('256', '128', '27070', 'Fireball'),
-('256', '128', '22018', null),
-('256', '128', '27072', 'Frostbolt'),
-('256', '128', '22019', null),
-('256', '128', '27079', 'Fire Blast'),
-('256', '128', '38704', 'Arcane Missiles'),
-('256', '128', '28272', 'Polymorph (Pig)'),
-('256', '128', '28271', 'Polymorph (Turtle)'),
-('256', '128', '12826', 'Polymorph (Sheep)'),
-('256', '128', '27088', 'Frost Nova'),
-('256', '128', '33944', 'Dampen Magic'),
-('256', '128', '130', 'Slow Fall'),
-('256', '128', '27082', 'Arcane Explosion'),
-('256', '128', '27086', 'Flamestrike'),
-('256', '128', '33946', 'Amplify Magic'),
-('256', '128', '475', 'Remove Curse'),
-('256', '128', '1953', 'Blink'),
-('256', '128', '27085', 'Blizzard'),
-('256', '128', '12051', 'Evocation'),
-('256', '128', '27128', 'Fire Ward'),
-('256', '128', '27131', 'Mana Shield'),
-('256', '128', '32796', 'Frost Ward'),
-('256', '128', '27074', 'Scorch'),
-('256', '128', '2139', 'Counterspell'),
-('256', '128', '27101', 'Conjure Mana Gem'),
-('256', '128', '27124', 'Ice Armor'),
-('256', '128', '45438', 'Ice Block'),
-('256', '128', '27125', 'Mage Armor'),
-('256', '128', '27127', 'Arcane Brilliance'),
-('256', '128', '30482', 'Molten Armor'),
-('256', '128', '30451', 'Arcane Blast'),
-('256', '128', '30455', 'Ice Lance'),
-('256', '128', '66', 'Invisibility'),
-('256', '128', '43987', 'Ritual of Refreshment'),
-('256', '128', '30449', 'Spellsteal'),
-('256', '128', '27087', 'Cone of Cold'),
--- Goblin Warlock
-('256', '256', '81', 'Dodge'),
-('256', '256', '203', 'Unarmed'),
-('256', '256', '204', 'Defense'),
-('256', '256', '522', 'SPELLDEFENSE(DND)'),
-('256', '256', '669', 'Language Orcish'),
-('256', '256', '686', 'Shadow Bolt'),
-('256', '256', '687', 'Demon Skin'),
-('256', '256', '1180', 'Daggers'),
-('256', '256', '2382', 'Generic'),
-('256', '256', '2479', 'Honorless Target'),
-('256', '256', '3050', 'Detect'),
-('256', '256', '3365', 'Opening'),
-('256', '256', '5009', 'Wands'),
-('256', '256', '5019', 'Shoot'),
-('256', '256', '6233', 'Closing'),
-('256', '256', '6246', 'Closing'),
-('256', '256', '6247', 'Opening'),
-('256', '256', '6477', 'Opening'),
-('256', '256', '6478', 'Opening'),
-('256', '256', '6603', 'Attack'),
-('256', '256', '7266', 'Duel'),
-('256', '256', '7267', 'Grovel'),
-('256', '256', '7355', 'Stuck'),
-('256', '256', '8386', 'Attacking'),
-('256', '256', '9078', 'Cloth'),
-('256', '256', '9125', 'Generic'),
-('256', '256', '69041', 'Rocket Barrage'),
-('256', '256', '69042', 'Time is Money'),
-('256', '256', '69044', 'Best Deals Anywhere'),
-('256', '256', '69045', 'Better Living Through Chemistry'),
-('256', '256', '69046', 'Pack Hobgoblin'),
-('256', '256', '69070', 'Rocket Jump'),
-('256', '256', '21651', 'Opening'),
-('256', '256', '21652', 'Closing'),
-('256', '256', '22027', 'Remove Insignia'),
-('256', '256', '22810', 'Opening - No Text'),
-('256', '256', '27215', 'Immolate'),
-('256', '256', '27209', 'Shadow Bolt'),
-('256', '256', '27216', 'Corruption'),
-('256', '256', '30909', 'Curse of Weakness'),
-('256', '256', '27222', 'Life Tap'),
-('256', '256', '27218', 'Curse of Agony'),
-('256', '256', '6215', 'Fear'),
-('256', '256', '27230', 'Create Healthstone'),
-('256', '256', '27217', 'Drain Soul'),
-('256', '256', '27259', 'Health Funnel'),
-('256', '256', '27226', 'Curse of Recklessness'), -- Removed?
-('256', '256', '27220', 'Drain Life'),
-('256', '256', '5697', 'Unending Breath'),
-('256', '256', '27238', 'Create Soulstone'),
-('256', '256', '30459', 'Searing Pain'),
-('256', '256', '27260', 'Demon Armor'),
-('256', '256', '27212', 'Rain of Fire'),
-('256', '256', '698', 'Ritual of Summoning'),
-('256', '256', '5500', 'Sense Demons'),
-('256', '256', '30908', 'Drain Mana'), -- Removed?
-('256', '256', '11719', 'Curse of Tongues'),
-('256', '256', '132', 'Detect Invisibility'),
-('256', '256', '18647', 'Banish'),
-('256', '256', '27213', 'Hellfire'),
-('256', '256', '11726', 'Subjugate Demon'),
-('256', '256', '27228', 'Curse of the Elements'),
-('256', '256', '28610', 'Shadow Ward'),
-('256', '256', '28172', 'Create Spellstone'),
-('256', '256', '27250', 'Create Firestone'),
-('256', '256', '17928', 'Howl of Terror'),
-('256', '256', '27223', 'Death Coil'),
-('256', '256', '27229', 'Curse of Shadow'), -- Removed?
-('256', '256', '30545', 'Soul Fire'),
-('256', '256', '30910', 'Curse of Doom'),
-('256', '256', '18540', 'Ritual of Doom'),
-('256', '256', '28189', 'Fel Armor'),
-('256', '256', '32231', 'Incinerate'),
-('256', '256', '29858', 'Soulshatter'),
-('256', '256', '29893', 'Ritual of Souls'),
-('256', '256', '27243', 'Seed of Corruption'),
-('256', '256', '23161', 'Dreadsteed'),
-('256', '256', '688', 'Summon Imp'),
-('256', '256', '697', 'Summon Voidwalker'),
-('256', '256', '712', 'Summon Succubus'),
-('256', '256', '691', 'Summon Felhunter'),
-('256', '256', '126', 'Eye of Kilrogg'),
--- Goblin Druid
-('256', '1024', '669', 'Language Orcish'),
-('256', '1024', '69041', 'Rocket Barrage'),
-('256', '1024', '69042', 'Time is Money'),
-('256', '1024', '69044', 'Best Deals Anywhere'),
-('256', '1024', '69045', 'Better Living Through Chemistry'),
-('256', '1024', '69046', 'Pack Hobgoblin'),
-('256', '1024', '69070', 'Rocket Jump'),
-('256', '1024', '81', 'Dodge'),
-('256', '1024', '198', 'One-Handed Maces'),
-('256', '1024', '203', 'Unarmed'),
-('256', '1024', '204', 'Defense'),
-('256', '1024', '227', 'Staves'),
-('256', '1024', '522', 'SPELLDEFENSE(DND)'),
-('256', '1024', '1178', 'Bear Form(Passive)'),
-('256', '1024', '2382', 'Generic'),
-('256', '1024', '2479', 'Honorless Target'),
-('256', '1024', '3025', 'Cat Form(Passive)'),
-('256', '1024', '3050', 'Detect'),
-('256', '1024', '3365', 'Opening'),
-('256', '1024', '5176', 'Wrath'),
-('256', '1024', '5185', 'Healing Touch'),
-('256', '1024', '5419', 'Travel Form(Passive)'),
-('256', '1024', '5420', 'Tree of Life'),
-('256', '1024', '5421', 'Aquatic Form(Passive)'),
-('256', '1024', '6233', 'Closing'),
-('256', '1024', '6246', 'Closing'),
-('256', '1024', '6247', 'Opening'),
-('256', '1024', '6477', 'Opening'),
-('256', '1024', '6478', 'Opening'),
-('256', '1024', '6603', 'Attack'),
-('256', '1024', '7266', 'Duel'),
-('256', '1024', '7267', 'Grovel'),
-('256', '1024', '7355', 'Stuck'),
-('256', '1024', '8386', 'Attacking'),
-('256', '1024', '9077', 'Leather'),
-('256', '1024', '9078', 'Cloth'),
-('256', '1024', '9125', 'Generic'),
-('256', '1024', '9635', 'Dire Bear Form(Passive)'),
-('256', '1024', '21178', 'Bear Form(Passive2)'),
-('256', '1024', '21651', 'Opening'),
-('256', '1024', '21652', 'Closing'),
-('256', '1024', '22027', 'Remove Insignia'),
-('256', '1024', '22810', 'Opening - No Text'),
-('256', '1024', '24905', 'Moonkin Form(Passive)'),
-('256', '1024', '27764', 'Fetish'),
-('256', '1024', '33948', 'Flight Form(Passive)'),
-('256', '1024', '34123', 'Tree of Life(Passive)'),
-('256', '1024', '40121', 'Swift Flight Form(Passive)'),
-('256', '1024', '26979', 'Healing Touch'),
-('256', '1024', '26990', 'Mark of the Wild'),
-('256', '1024', '26985', 'Wrath'),
-('256', '1024', '26988', 'Moonfire'),
-('256', '1024', '26982', 'Rejuvenation'),
-('256', '1024', '26992', 'Thorns'),
-('256', '1024', '26989', 'Entangling Roots'),
-('256', '1024', '26998', 'Demoralizing Roar'),
-('256', '1024', '6795', 'Growl'),
-('256', '1024', '26996', 'Maul'),
-('256', '1024', '18960', 'Teleport: Moonglade'),
-('256', '1024', '9634', 'Dire Bear Form'),
-('256', '1024', '768', 'Cat Form'),
-('256', '1024', '783', 'Travel Form'),
-('256', '1024', '1066', 'Aquatic Form'),
-('256', '1024', '40120', 'Swift Flight Form'),
-('256', '1024', '5229', 'Enrage'),
-('256', '1024', '26980', 'Regrowth'),
-('256', '1024', '8983', 'Bash'),
-('256', '1024', '8946', 'Cure Poison'),
-('256', '1024', '26997', 'Swipe (Bear)'),
-('256', '1024', '26993', 'Faerie Fire'), -- Removed?
-('256', '1024', '18658', 'Hibernate'),
-('256', '1024', '27000', 'Claw'),
-('256', '1024', '9913', 'Prowl'),
-('256', '1024', '26994', 'Rebirth'),
-('256', '1024', '27008', 'Rip'),
-('256', '1024', '26986', 'Starfire'),
-('256', '1024', '27002', 'Shred'),
-('256', '1024', '26995', 'Soothe Animal'),
-('256', '1024', '27003', 'Rake'),
-('256', '1024', '2782', 'Remove Curse'),
-('256', '1024', '9846', 'Tigers Fury'),
-('256', '1024', '2893', 'Abolish Poison'),
-('256', '1024', '33357', 'Dash'),
-('256', '1024', '5209', 'Challenging Roar'),
-('256', '1024', '27004', 'Cower'),
-('256', '1024', '26983', 'Tranquility'),
-('256', '1024', '24248', 'Ferocious Bite'),
-('256', '1024', '27005', 'Ravage'),
-('256', '1024', '5225', 'Track Humanoids'),
-('256', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
-('256', '1024', '27012', 'Hurricane'),
-('256', '1024', '27006', 'Pounce'),
-('256', '1024', '29166', 'Innervate'),
-('256', '1024', '22812', 'Bark Skin'),
-('256', '1024', '26991', 'Gift of the Wild'),
-('256', '1024', '22570', 'Maim'),
-('256', '1024', '33763', 'Lifebloom'),
-('256', '1024', '33745', 'Lacerate'),
-('256', '1024', '33786', 'Cyclone'),
-('256', '1024', '20719', 'Feline Grace'),
 -- Blood Elf Warrior
 ('512', '1', '78', 'Heroic Strike'),
 ('512', '1', '81', 'Dodge'),
@@ -6948,10 +6179,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '2', '28877', 'Arcane Affinity'),
 ('512', '2', '27149', 'Devotion Aura'),
 ('512', '2', '27136', 'Holy Light'),
-('512', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('512', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('512', '2', '27140', 'Blessing of Might'),
 ('512', '2', '20271', 'Judgement of Light'),
-('512', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('512', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('512', '2', '10308', 'Hammer of Justice'),
 ('512', '2', '10278', 'Hand of Protection'),
 ('512', '2', '27154', 'Lay on Hands'),
@@ -6967,29 +6198,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '2', '27137', 'Flash of Light'),
 ('512', '2', '5502', 'Sense Undead'),
 ('512', '2', '19746', 'Concentration Aura'),
-('512', '2', '31895', 'Seal of Justice'), -- Removed?
-('512', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('512', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('512', '2', '5627', 'Turn Undead'), -- Removed?
 ('512', '2', '1038', 'Hand of Salvation'),
 ('512', '2', '27151', 'Shadow Resistance Aura'),
 ('512', '2', '19752', 'Divine Intervention'),
-('512', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('512', '2', '27160', 'Seal of Light'), -- Removed?
 ('512', '2', '27152', 'Frost Resistance Aura'),
-('512', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('512', '2', '1020', 'Divine Shield'), -- Removed?
 ('512', '2', '27153', 'Fire Resistance Aura'),
-('512', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('512', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('512', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('512', '2', '27144', 'Blessing of Light'), -- Removed?
 ('512', '2', '4987', 'Cleanse'),
 ('512', '2', '27180', 'Hammer of Wrath'),
-('512', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('512', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('512', '2', '27139', 'Holy Wrath'),
 ('512', '2', '27141', 'Greater Blessing of Might'),
 ('512', '2', '10326', 'Turn Evil'),
 ('512', '2', '27143', 'Greater Blessing of Wisdom'),
 ('512', '2', '25898', 'Greater Blessing of Kings'),
-('512', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('512', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('512', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('512', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('512', '2', '32223', 'Crusader Aura'),
-('512', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('512', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('512', '2', '31884', 'Avenging Wrath'),
 ('512', '2', '750', 'Plate Armor'),
 ('512', '2', '3127', 'Parry'),
@@ -7046,7 +6277,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '4', '982', 'Revive Pet'),
 ('512', '4', '1515', 'Tame Beast'),
 ('512', '4', '19883', 'Track Humanoids'),
-('512', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('512', '4', '27020', 'Distracting Shot'), -- Removed?
 ('512', '4', '27046', 'Mend Pet'),
 ('512', '4', '14268', 'Alliance Flag'), -- What?
 ('512', '4', '6197', 'Eagle Eye'),
@@ -7057,7 +6288,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '4', '27021', 'Multi-Shot'),
 ('512', '4', '19884', 'Track Undead'),
 ('512', '4', '5118', 'Aspect of the Cheetah'),
-('512', '4', '27015', 'Disengage'), -- Removed?
+-- ('512', '4', '27015', 'Disengage'), -- Removed?
 ('512', '4', '14311', 'Freezing Trap'),
 ('512', '4', '3043', 'Scorpid Sting'),
 ('512', '4', '1462', 'Beast Lore'),
@@ -7070,7 +6301,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '4', '1543', 'Flare'),
 ('512', '4', '19878', 'Track Demons'),
 ('512', '4', '27025', 'Explosive Trap'),
-('512', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('512', '4', '27018', 'Viper Sting'), -- Removed?
 ('512', '4', '13159', 'Aspect of the Pack'),
 ('512', '4', '19882', 'Track Giants'),
 ('512', '4', '27022', 'Volley'),
@@ -7156,10 +6387,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '8', '3127', 'Parry'),
 ('512', '8', '674', 'Dual Wield'),
 ('512', '8', '3776', 'Green Leather Bracers'),
-('512', '8', '9186', null), -- Removed?
+-- ('512', '8', '9186', null), -- Removed?
 ('512', '8', '21927', 'Natures Ally'),
 ('512', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('512', '8', '22055', null), -- Removed?
+-- ('512', '8', '22055', null), -- Removed?
 ('512', '8', '2836', 'Detect Traps'),
 ('512', '8', '1860', 'Safe Fall'),
 -- Blood Elf Priest
@@ -7201,7 +6432,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '16', '25364', 'Smite'),
 ('512', '16', '25368', 'Shadow Word: Pain'),
 ('512', '16', '25218', 'Power Word: Shield'),
-('512', '16', '25429', 'Fade'), -- Removed?
+-- ('512', '16', '25429', 'Fade'), -- Removed?
 ('512', '16', '25222', 'Renew'),
 ('512', '16', '25375', 'Mind Blast'),
 ('512', '16', '25435', 'Resurrection'),
@@ -7212,11 +6443,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '16', '6346', 'Fear Ward'),
 ('512', '16', '25235', 'Flash Heal'),
 ('512', '16', '25384', 'Holy Fire'),
-('512', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('512', '16', '25596', 'Mind Soothe'), -- Removed?
 ('512', '16', '10955', 'Shackle Undead'),
 ('512', '16', '10909', 'Mind Vision'),
-('512', '16', '25380', 'Mana Burn'), -- Removed?
-('512', '16', '10912', 'Mind Control'), -- Removed?
+-- ('512', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('512', '16', '10912', 'Mind Control'), -- Removed?
 ('512', '16', '25308', 'Prayer of Healing'),
 ('512', '16', '25433', 'Shadow Protection'),
 ('512', '16', '552', 'Abolish Disease'),
@@ -7267,7 +6498,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '64', '27763', 'Totem'),
 ('512', '64', '25396', 'Healing Wave'),
 ('512', '64', '25449', 'Lightning Bolt'),
-('512', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('512', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('512', '64', '25454', 'Earth Shock'),
 ('512', '64', '25509', 'Stoneskin Totem'),
 ('512', '64', '2484', 'Earthbind Totem'),
@@ -7287,7 +6518,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '64', '2645', 'Ghost Wolf'),
 ('512', '64', '25567', 'Healing Stream Totem'),
 ('512', '64', '25420', 'Lesser Healing Wave'),
-('512', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('512', '64', '2870', 'Cure Disease'), -- Removed?
 ('512', '64', '8166', 'Poison Cleansing Totem'),
 ('512', '64', '131', 'Water Breathing'),
 ('512', '64', '25560', 'Frost Resistance Totem'),
@@ -7303,13 +6534,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '64', '36936', 'Totemic Recall'),
 ('512', '64', '25505', 'Windfury Weapon'),
 ('512', '64', '421', 'Chain Lightning'),
-('512', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('512', '64', '25587', 'Windfury Totem'), -- Removed?
 ('512', '64', '6495', 'Sentry Totem'),
-('512', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('512', '64', '25577', 'Windwall Totem'), -- Removed?
 ('512', '64', '8170', 'Cleansing Totem'),
 ('512', '64', '25423', 'Chain Heal'),
-('512', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('512', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('512', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('512', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('512', '64', '33736', 'Water Shield'),
 ('512', '64', '3738', 'Wrath of Air Totem'),
 ('512', '64', '2062', 'Earth Elemental Totem'),
@@ -7458,7 +6689,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '1024', '8983', 'Bash'),
 ('512', '1024', '8946', 'Cure Poison'),
 ('512', '1024', '26997', 'Swipe (Bear)'),
-('512', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('512', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('512', '1024', '18658', 'Hibernate'),
 ('512', '1024', '27000', 'Claw'),
 ('512', '1024', '9913', 'Prowl'),
@@ -7478,7 +6709,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('512', '1024', '24248', 'Ferocious Bite'),
 ('512', '1024', '27005', 'Ravage'),
 ('512', '1024', '5225', 'Track Humanoids'),
-('512', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('512', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('512', '1024', '27012', 'Hurricane'),
 ('512', '1024', '27006', 'Pounce'),
 ('512', '1024', '29166', 'Innervate'),
@@ -7659,10 +6890,10 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '2', '29932', 'Language Draenei'),
 ('1024', '2', '27149', 'Devotion Aura'),
 ('1024', '2', '27136', 'Holy Light'),
-('1024', '2', '27155', 'Seal of Righteousness'), -- Removed?
+-- ('1024', '2', '27155', 'Seal of Righteousness'), -- Removed?
 ('1024', '2', '27140', 'Blessing of Might'),
 ('1024', '2', '20271', 'Judgement of Light'),
-('1024', '2', '27158', 'Seal of the Crusader'), -- Removed?
+-- ('1024', '2', '27158', 'Seal of the Crusader'), -- Removed?
 ('1024', '2', '10308', 'Hammer of Justice'),
 ('1024', '2', '10278', 'Hand of Protection'),
 ('1024', '2', '27154', 'Lay on Hands'),
@@ -7678,29 +6909,29 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '2', '27137', 'Flash of Light'),
 ('1024', '2', '5502', 'Sense Undead'),
 ('1024', '2', '19746', 'Concentration Aura'),
-('1024', '2', '31895', 'Seal of Justice'), -- Removed?
-('1024', '2', '5627', 'Turn Undead'), -- Removed?
+-- ('1024', '2', '31895', 'Seal of Justice'), -- Removed?
+-- ('1024', '2', '5627', 'Turn Undead'), -- Removed?
 ('1024', '2', '1038', 'Hand of Salvation'),
 ('1024', '2', '27151', 'Shadow Resistance Aura'),
 ('1024', '2', '19752', 'Divine Intervention'),
-('1024', '2', '27160', 'Seal of Light'), -- Removed?
+-- ('1024', '2', '27160', 'Seal of Light'), -- Removed?
 ('1024', '2', '27152', 'Frost Resistance Aura'),
-('1024', '2', '1020', 'Divine Shield'), -- Removed?
+-- ('1024', '2', '1020', 'Divine Shield'), -- Removed?
 ('1024', '2', '27153', 'Fire Resistance Aura'),
-('1024', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('1024', '2', '27144', 'Blessing of Light'), -- Removed?
+-- ('1024', '2', '27166', 'Seal of Wisdom'), -- Removed?
+-- ('1024', '2', '27144', 'Blessing of Light'), -- Removed?
 ('1024', '2', '4987', 'Cleanse'),
 ('1024', '2', '27180', 'Hammer of Wrath'),
-('1024', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
+-- ('1024', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
 ('1024', '2', '27139', 'Holy Wrath'),
 ('1024', '2', '27141', 'Greater Blessing of Might'),
 ('1024', '2', '10326', 'Turn Evil'),
 ('1024', '2', '27143', 'Greater Blessing of Wisdom'),
 ('1024', '2', '25898', 'Greater Blessing of Kings'),
-('1024', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('1024', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
+-- ('1024', '2', '27145', 'Greater Blessing of Light'), -- Removed?
+-- ('1024', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
 ('1024', '2', '32223', 'Crusader Aura'),
-('1024', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
+-- ('1024', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
 ('1024', '2', '31884', 'Avenging Wrath'),
 ('1024', '2', '750', 'Plate Armor'),
 ('1024', '2', '3127', 'Parry'),
@@ -7759,7 +6990,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '4', '982', 'Revive Pet'),
 ('1024', '4', '1515', 'Tame Beast'),
 ('1024', '4', '19883', 'Track Humanoids'),
-('1024', '4', '27020', 'Distracting Shot'), -- Removed?
+-- ('1024', '4', '27020', 'Distracting Shot'), -- Removed?
 ('1024', '4', '27046', 'Mend Pet'),
 ('1024', '4', '14268', 'Alliance Flag'), -- What?
 ('1024', '4', '6197', 'Eagle Eye'),
@@ -7770,7 +7001,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '4', '27021', 'Multi-Shot'),
 ('1024', '4', '19884', 'Track Undead'),
 ('1024', '4', '5118', 'Aspect of the Cheetah'),
-('1024', '4', '27015', 'Disengage'), -- Removed?
+-- ('1024', '4', '27015', 'Disengage'), -- Removed?
 ('1024', '4', '14311', 'Freezing Trap'),
 ('1024', '4', '3043', 'Scorpid Sting'),
 ('1024', '4', '1462', 'Beast Lore'),
@@ -7783,7 +7014,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '4', '1543', 'Flare'),
 ('1024', '4', '19878', 'Track Demons'),
 ('1024', '4', '27025', 'Explosive Trap'),
-('1024', '4', '27018', 'Viper Sting'), -- Removed?
+-- ('1024', '4', '27018', 'Viper Sting'), -- Removed?
 ('1024', '4', '13159', 'Aspect of the Pack'),
 ('1024', '4', '19882', 'Track Giants'),
 ('1024', '4', '27022', 'Volley'),
@@ -7870,12 +7101,12 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '8', '3127', 'Parry'),
 ('1024', '8', '674', 'Dual Wield'),
 ('1024', '8', '3776', 'Green Leather Bracers'), -- What?
-('1024', '8', '9186', null), -- Removed?
+-- ('1024', '8', '9186', null), -- Removed?
 ('1024', '8', '21927', 'Natures Ally'), -- What?
 ('1024', '8', '22054', 'QAEnchant Bracer +7 Intellect'), -- What?
-('1024', '8', '22055', null), -- Removed?
+-- ('1024', '8', '22055', null), -- Removed?
 ('1024', '8', '2836', 'Detect Traps'),
-('1024', '8', '1860', 'Safe Fall'), -- Removed?
+-- ('1024', '8', '1860', 'Safe Fall'), -- Removed?
 -- Draenei Priest
 ('1024', '16', '81', 'Dodge'),
 ('1024', '16', '198', 'One-Handed Maces'),
@@ -7916,7 +7147,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '16', '25364', 'Smite'),
 ('1024', '16', '25368', 'Shadow Word: Pain'),
 ('1024', '16', '25218', 'Power Word: Shield'),
-('1024', '16', '25429', 'Fade'), -- Removed?
+-- ('1024', '16', '25429', 'Fade'), -- Removed?
 ('1024', '16', '25222', 'Renew'),
 ('1024', '16', '25375', 'Mind Blast'),
 ('1024', '16', '25435', 'Resurrection'),
@@ -7927,11 +7158,11 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '16', '6346', 'Fear Ward'),
 ('1024', '16', '25235', 'Flash Heal'),
 ('1024', '16', '25384', 'Holy Fire'),
-('1024', '16', '25596', 'Mind Soothe'), -- Removed?
+-- ('1024', '16', '25596', 'Mind Soothe'), -- Removed?
 ('1024', '16', '10955', 'Shackle Undead'),
 ('1024', '16', '10909', 'Mind Vision'),
-('1024', '16', '25380', 'Mana Burn'), -- Removed?
-('1024', '16', '10912', 'Mind Control'), -- Removed?
+-- ('1024', '16', '25380', 'Mana Burn'), -- Removed?
+-- ('1024', '16', '10912', 'Mind Control'), -- Removed?
 ('1024', '16', '25308', 'Prayer of Healing'),
 ('1024', '16', '25433', 'Shadow Protection'),
 ('1024', '16', '552', 'Abolish Disease'),
@@ -7987,7 +7218,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '64', '29932', 'Language Draenei'),
 ('1024', '64', '25396', 'Healing Wave'),
 ('1024', '64', '25449', 'Lightning Bolt'),
-('1024', '64', '25485', 'Rockbiter Weapon'), -- Removed?
+-- ('1024', '64', '25485', 'Rockbiter Weapon'), -- Removed?
 ('1024', '64', '25454', 'Earth Shock'),
 ('1024', '64', '25509', 'Stoneskin Totem'),
 ('1024', '64', '2484', 'Earthbind Totem'),
@@ -8007,7 +7238,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '64', '2645', 'Ghost Wolf'),
 ('1024', '64', '25567', 'Healing Stream Totem'),
 ('1024', '64', '25420', 'Lesser Healing Wave'),
-('1024', '64', '2870', 'Cure Disease'), -- Removed?
+-- ('1024', '64', '2870', 'Cure Disease'), -- Removed?
 ('1024', '64', '8166', 'Poison Cleansing Totem'),
 ('1024', '64', '131', 'Water Breathing'),
 ('1024', '64', '25560', 'Frost Resistance Totem'),
@@ -8023,13 +7254,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '64', '36936', 'Totemic Recall'),
 ('1024', '64', '25505', 'Windfury Weapon'),
 ('1024', '64', '421', 'Chain Lightning'),
-('1024', '64', '25587', 'Windfury Totem'), -- Removed?
+-- ('1024', '64', '25587', 'Windfury Totem'), -- Removed?
 ('1024', '64', '6495', 'Sentry Totem'),
-('1024', '64', '25577', 'Windwall Totem'), -- Removed?
+-- ('1024', '64', '25577', 'Windwall Totem'), -- Removed?
 ('1024', '64', '8170', 'Cleansing Totem'),
 ('1024', '64', '25423', 'Chain Heal'),
-('1024', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('1024', '64', '25908', 'Tranquil Air Totem'), -- Removed?
+-- ('1024', '64', '25359', 'Grace of Air Totem'), -- Removed?
+-- ('1024', '64', '25908', 'Tranquil Air Totem'), -- Removed?
 ('1024', '64', '33736', 'Water Shield'),
 ('1024', '64', '3738', 'Wrath of Air Totem'),
 ('1024', '64', '2062', 'Earth Elemental Totem'),
@@ -8157,7 +7388,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '256', '27230', 'Create Healthstone'),
 ('1024', '256', '27217', 'Drain Soul'),
 ('1024', '256', '27259', 'Health Funnel'),
-('1024', '256', '27226', 'Curse of Recklessness'), -- Removed?
+-- ('1024', '256', '27226', 'Curse of Recklessness'), -- Removed?
 ('1024', '256', '27220', 'Drain Life'),
 ('1024', '256', '5697', 'Unending Breath'),
 ('1024', '256', '27238', 'Create Soulstone'),
@@ -8166,7 +7397,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '256', '27212', 'Rain of Fire'),
 ('1024', '256', '698', 'Ritual of Summoning'),
 ('1024', '256', '5500', 'Sense Demons'),
-('1024', '256', '30908', 'Drain Mana'), -- Removed?
+-- ('1024', '256', '30908', 'Drain Mana'), -- Removed?
 ('1024', '256', '11719', 'Curse of Tongues'),
 ('1024', '256', '132', 'Detect Invisibility'),
 ('1024', '256', '18647', 'Banish'),
@@ -8178,7 +7409,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '256', '27250', 'Create Firestone'),
 ('1024', '256', '17928', 'Howl of Terror'),
 ('1024', '256', '27223', 'Death Coil'),
-('1024', '256', '27229', 'Curse of Shadow'), -- Removed?
+-- ('1024', '256', '27229', 'Curse of Shadow'), -- Removed?
 ('1024', '256', '30545', 'Soul Fire'),
 ('1024', '256', '30910', 'Curse of Doom'),
 ('1024', '256', '18540', 'Ritual of Doom'),
@@ -8266,13 +7497,13 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '1024', '26990', 'Mark of the Wild'),
 ('1024', '1024', '26991', 'Gift of the Wild'),
 ('1024', '1024', '26992', 'Thorns'),
-('1024', '1024', '26993', 'Faerie Fire'), -- Removed?
+-- ('1024', '1024', '26993', 'Faerie Fire'), -- Removed?
 ('1024', '1024', '26994', 'Rebirth'),
 ('1024', '1024', '26995', 'Soothe Animal'),
 ('1024', '1024', '26996', 'Maul'),
 ('1024', '1024', '26997', 'Swipe (Bear)'),
 ('1024', '1024', '26998', 'Demoralizing Roar'),
-('1024', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
+-- ('1024', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
 ('1024', '1024', '27000', 'Claw'),
 ('1024', '1024', '27002', 'Shred'),
 ('1024', '1024', '27003', 'Rake'),
@@ -8290,2234 +7521,4 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 ('1024', '1024', '33948', 'Flight Form(Passive)'),
 ('1024', '1024', '34123', 'Tree of Life(Passive)'),
 ('1024', '1024', '40120', 'Swift Flight Form'),
-('1024', '1024', '40121', 'Swift Flight Form(Passive)'),
--- Worgen Warrior
-('2048', '1', '78', 'Heroic Strike'),
-('2048', '1', '81', 'Dodge'),
-('2048', '1', '107', 'Block'),
-('2048', '1', '196', 'One-Handed Axes'),
-('2048', '1', '198', 'One-Handed Maces'),
-('2048', '1', '201', 'One-Handed Swords'),
-('2048', '1', '203', 'Unarmed'),
-('2048', '1', '204', 'Defense'),
-('2048', '1', '522', 'SPELLDEFENSE(DND)'),
-('2048', '1', '668', 'Language Common'),
-('2048', '1', '2382', 'Generic'),
-('2048', '1', '2457', 'Battle Stance'),
-('2048', '1', '2479', 'Honorless Target'),
-('2048', '1', '3050', 'Detect'),
-('2048', '1', '3365', 'Opening'),
-('2048', '1', '5301', 'Defensive State(DND)'),
-('2048', '1', '6233', 'Closing'),
-('2048', '1', '6246', 'Closing'),
-('2048', '1', '6247', 'Opening'),
-('2048', '1', '6477', 'Opening'),
-('2048', '1', '6478', 'Opening'),
-('2048', '1', '6603', 'Attack'),
-('2048', '1', '7266', 'Duel'),
-('2048', '1', '7267', 'Grovel'),
-('2048', '1', '7355', 'Stuck'),
-('2048', '1', '7376', 'Defensive Stance Passive'),
-('2048', '1', '7381', 'Berserker Stance Passive'),
-('2048', '1', '8386', 'Attacking'),
-('2048', '1', '8737', 'Mail'),
-('2048', '1', '9077', 'Leather'),
-('2048', '1', '9078', 'Cloth'),
-('2048', '1', '9116', 'Shield'),
-('2048', '1', '9125', 'Generic'),
-('2048', '1', '68975', 'Viciousness'),
-('2048', '1', '68976', 'Aberration'),
-('2048', '1', '68978', 'Flayer'),
-('2048', '1', '68992', 'Darkflight'),
-('2048', '1', '21156', 'Battle Stance Passive'),
-('2048', '1', '21651', 'Opening'),
-('2048', '1', '21652', 'Closing'),
-('2048', '1', '22027', 'Remove Insignia'),
-('2048', '1', '22810', 'Opening - No Text'),
-('2048', '1', '32215', 'Victorious State'),
-('2048', '1', '2048', 'Battle Shout'),
-('2048', '1', '30324', 'Heroic Strike'),
-('2048', '1', '11578', 'Charge'),
-('2048', '1', '25208', 'Rend'),
-('2048', '1', '25264', 'Thunder Clap'),
-('2048', '1', '2687', 'Bloodrage'),
-('2048', '1', '71', 'Defensive Stance'),
-('2048', '1', '25225', 'Sunder Armor'),
-('2048', '1', '355', 'Taunt'),
-('2048', '1', '11585', 'Overpower'),
-('2048', '1', '29704', 'Shield Bash'),
-('2048', '1', '25203', 'Demoralizing Shout'),
-('2048', '1', '30357', 'Revenge'),
-('2048', '1', '25266', 'Mocking Blow'),
-('2048', '1', '2565', 'Shield Block'),
-('2048', '1', '676', 'Disarm'),
-('2048', '1', '25231', 'Cleave'),
-('2048', '1', '20230', 'Retaliation'),
-('2048', '1', '5246', 'Intimidating Shout'),
-('2048', '1', '25236', 'Execute'),
-('2048', '1', '1161', 'Challenging Shout'),
-('2048', '1', '871', 'Shield Wall'),
-('2048', '1', '2458', 'Berserker Stance'),
-('2048', '1', '25275', 'Intercept'),
-('2048', '1', '25242', 'Slam'),
-('2048', '1', '18499', 'Berserker Rage'),
-('2048', '1', '1680', 'Whirlwind'),
-('2048', '1', '6554', 'Pummel'),
-('2048', '1', '1719', 'Recklessness'),
-('2048', '1', '34428', 'Victory Rush'),
-('2048', '1', '23920', 'Spell Reflection'),
-('2048', '1', '469', 'Commanding Shout'),
-('2048', '1', '3411', 'Intervene'),
-('2048', '1', '25212', 'Hamstring'), -- Only 9?
-('2048', '1', '674', 'Dual Wield'),
-('2048', '1', '750', 'Plate Armor'), -- Only 19?
-('2048', '1', '12678', 'Stance Mastery'), -- Only 9?
--- Worgen Paladin
-('2048', '2', '81', 'Dodge'),
-('2048', '2', '107', 'Block'),
-('2048', '2', '198', 'One-Handed Maces'),
-('2048', '2', '199', 'Two-Handed Maces'),
-('2048', '2', '203', 'Unarmed'),
-('2048', '2', '204', 'Defense'),
-('2048', '2', '522', 'SPELLDEFENSE(DND)'),
-('2048', '2', '635', 'Holy Light'),
-('2048', '2', '668', 'Language Common'),
-('2048', '2', '2382', 'Generic'),
-('2048', '2', '2479', 'Honorless Target'),
-('2048', '2', '3050', 'Detect'),
-('2048', '2', '3365', 'Opening'),
-('2048', '2', '6233', 'Closing'),
-('2048', '2', '6246', 'Closing'),
-('2048', '2', '6247', 'Opening'),
-('2048', '2', '6477', 'Opening'),
-('2048', '2', '6478', 'Opening'),
-('2048', '2', '6603', 'Attack'),
-('2048', '2', '7266', 'Duel'),
-('2048', '2', '7267', 'Grovel'),
-('2048', '2', '7355', 'Stuck'),
-('2048', '2', '8386', 'Attacking'),
-('2048', '2', '8737', 'Mail'),
-('2048', '2', '9077', 'Leather'),
-('2048', '2', '9078', 'Cloth'),
-('2048', '2', '9116', 'Shield'),
-('2048', '2', '9125', 'Generic'),
-('2048', '2', '21084', 'Seal of Righteousness'),
-('2048', '2', '68975', 'Viciousness'),
-('2048', '2', '68976', 'Aberration'),
-('2048', '2', '68978', 'Flayer'),
-('2048', '2', '68992', 'Darkflight'),
-('2048', '2', '21651', 'Opening'),
-('2048', '2', '21652', 'Closing'),
-('2048', '2', '22027', 'Remove Insignia'),
-('2048', '2', '22810', 'Opening - No Text'),
-('2048', '2', '27762', 'Libram'),
-('2048', '2', '27149', 'Devotion Aura'),
-('2048', '2', '27136', 'Holy Light'),
-('2048', '2', '27155', 'Seal of Righteousness'), -- Removed?
-('2048', '2', '27140', 'Blessing of Might'),
-('2048', '2', '20271', 'Judgement of Light'),
-('2048', '2', '27158', 'Seal of the Crusader'), -- Removed?
-('2048', '2', '10308', 'Hammer of Justice'),
-('2048', '2', '10278', 'Hand of Protection'),
-('2048', '2', '27154', 'Lay on Hands'),
-('2048', '2', '20773', 'Redemption'),
-('2048', '2', '27142', 'Blessing of Wisdom'),
-('2048', '2', '31789', 'Righteous Defense'),
-('2048', '2', '27150', 'Retribution Aura'),
-('2048', '2', '25780', 'Righteous Fury'),
-('2048', '2', '1044', 'Hand of Freedom'),
-('2048', '2', '33776', 'Spiritual Attunement'),
-('2048', '2', '27173', 'Consecration'),
-('2048', '2', '27138', 'Exorcism'),
-('2048', '2', '27137', 'Flash of Light'),
-('2048', '2', '5502', 'Sense Undead'),
-('2048', '2', '19746', 'Concentration Aura'),
-('2048', '2', '31895', 'Seal of Justice'), -- Removed?
-('2048', '2', '5627', 'Turn Undead'), -- Removed?
-('2048', '2', '1038', 'Hand of Salvation'),
-('2048', '2', '27151', 'Shadow Resistance Aura'),
-('2048', '2', '19752', 'Divine Intervention'),
-('2048', '2', '27160', 'Seal of Light'), -- Removed?
-('2048', '2', '27152', 'Frost Resistance Aura'),
-('2048', '2', '1020', 'Divine Shield'), -- Removed?
-('2048', '2', '27153', 'Fire Resistance Aura'),
-('2048', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('2048', '2', '27144', 'Blessing of Light'), -- Removed?
-('2048', '2', '4987', 'Cleanse'),
-('2048', '2', '27180', 'Hammer of Wrath'),
-('2048', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
-('2048', '2', '27139', 'Holy Wrath'),
-('2048', '2', '27141', 'Greater Blessing of Might'),
-('2048', '2', '10326', 'Turn Evil'),
-('2048', '2', '27143', 'Greater Blessing of Wisdom'),
-('2048', '2', '25898', 'Greater Blessing of Kings'),
-('2048', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('2048', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
-('2048', '2', '32223', 'Crusader Aura'),
-('2048', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
-('2048', '2', '31884', 'Avenging Wrath'),
-('2048', '2', '750', 'Plate Armor'),
-('2048', '2', '3127', 'Parry'),
-('2048', '2', '23214', 'Charger'), -- Only 9?
-('2048', '2', '31801', 'Seal of Vengeance'), -- Only 9?
--- Worgen Hunter
-('2048', '4', '75', 'Auto Shot'),
-('2048', '4', '81', 'Dodge'),
-('2048', '4', '196', 'One-Handed Axes'),
-('2048', '4', '203', 'Unarmed'),
-('2048', '4', '204', 'Defense'),
-('2048', '4', '264', 'Bows'),
-('2048', '4', '266', 'Guns'),
-('2048', '4', '522', 'SPELLDEFENSE(DND)'),
-('2048', '4', '668', 'Language Common'),
-('2048', '4', '883', 'Call Pet'),
-('2048', '4', '982', 'Revive Pet'),
-('2048', '4', '1002', 'Eyes of the Beast'),
-('2048', '4', '1462', 'Beast Lore'),
-('2048', '4', '1494', 'Track Beasts'),
-('2048', '4', '1515', 'Tame Beast'),
-('2048', '4', '1543', 'Flare'),
-('2048', '4', '2382', 'Generic'),
-('2048', '4', '2479', 'Honorless Target'),
-('2048', '4', '2641', 'Dismiss Pet'),
-('2048', '4', '2973', 'Raptor Strike'),
-('2048', '4', '3043', 'Scorpid Sting'),
-('2048', '4', '3045', 'Rapid Fire'),
-('2048', '4', '3050', 'Detect'),
-('2048', '4', '3365', 'Opening'),
-('2048', '4', '5116', 'Concussive Shot'),
-('2048', '4', '5118', 'Aspect of the Cheetah'),
-('2048', '4', '5384', 'Feign Death'),
-('2048', '4', '6197', 'Eagle Eye'),
-('2048', '4', '6233', 'Closing'),
-('2048', '4', '6246', 'Closing'),
-('2048', '4', '6247', 'Opening'),
-('2048', '4', '6477', 'Opening'),
-('2048', '4', '6478', 'Opening'),
-('2048', '4', '6603', 'Attack'),
-('2048', '4', '6991', 'Feed Pet'),
-('2048', '4', '7266', 'Duel'),
-('2048', '4', '7267', 'Grovel'),
-('2048', '4', '7355', 'Stuck'),
-('2048', '4', '8386', 'Attacking'),
-('2048', '4', '9077', 'Leather'),
-('2048', '4', '9078', 'Cloth'),
-('2048', '4', '9125', 'Generic'),
-('2048', '4', '13159', 'Aspect of the Pack'),
-('2048', '4', '13161', 'Aspect of the Beast'),
-('2048', '4', '13163', 'Aspect of the Monkey'),
-('2048', '4', '13358', 'Defensive State(DND)'),
-('2048', '4', '13809', 'Frost Trap'),
-('2048', '4', '14268', 'Alliance Flag'), -- What?
-('2048', '4', '14311', 'Freezing Trap'),
-('2048', '4', '14325', 'Hunters Mark'),
-('2048', '4', '14327', 'Scare Beast'),
-('2048', '4', '19801', 'Tranquilizing Shot'),
-('2048', '4', '19878', 'Track Demons'),
-('2048', '4', '19879', 'Track Dragonkin'),
-('2048', '4', '19880', 'Track Elementals'),
-('2048', '4', '19882', 'Track Giants'),
-('2048', '4', '19883', 'Track Humanoids'),
-('2048', '4', '19884', 'Track Undead'),
-('2048', '4', '19885', 'Track Hidden'),
-('2048', '4', '68975', 'Viciousness'),
-('2048', '4', '68976', 'Aberration'),
-('2048', '4', '68978', 'Flayer'),
-('2048', '4', '68992', 'Darkflight'),
-('2048', '4', '21651', 'Opening'),
-('2048', '4', '21652', 'Closing'),
-('2048', '4', '22027', 'Remove Insignia'),
-('2048', '4', '22810', 'Opening - No Text'),
-('2048', '4', '24949', 'Defensive State 2(DND)'),
-('2048', '4', '27014', 'Raptor Strike'),
-('2048', '4', '27015', 'Disengage'), -- Removed?
-('2048', '4', '27016', 'Serpent Sting'),
-('2048', '4', '27018', 'Viper Sting'), -- Removed?
-('2048', '4', '27019', 'Arcane Shot'),
-('2048', '4', '27020', 'Distracting Shot'), -- Removed?
-('2048', '4', '27021', 'Multi-Shot'),
-('2048', '4', '27022', 'Volley'),
-('2048', '4', '27023', 'Immolation Trap'),
-('2048', '4', '27025', 'Explosive Trap'),
-('2048', '4', '27044', 'Aspect of the Hawk'),
-('2048', '4', '27045', 'Aspect of the Wild'),
-('2048', '4', '27046', 'Mend Pet'),
-('2048', '4', '34026', 'Kill Command'),
-('2048', '4', '34074', 'Aspect of the Viper'),
-('2048', '4', '34082', 'Advantaged State(DND)'),
-('2048', '4', '34120', 'Steady Shot'),
-('2048', '4', '34477', 'Misdirection'),
-('2048', '4', '34600', 'Snake Trap'),
-('2048', '4', '36916', 'Mongoose Bite'),
--- Worgen Rogue
-('2048', '8', '81', 'Dodge'),
-('2048', '8', '203', 'Unarmed'),
-('2048', '8', '204', 'Defense'),
-('2048', '8', '522', 'SPELLDEFENSE(DND)'),
-('2048', '8', '668', 'Language Common'),
-('2048', '8', '1180', 'Daggers'),
-('2048', '8', '1752', 'Sinister Strike'),
-('2048', '8', '2098', 'Eviscerate'),
-('2048', '8', '2382', 'Generic'),
-('2048', '8', '2479', 'Honorless Target'),
-('2048', '8', '2567', 'Thrown'),
-('2048', '8', '2764', 'Throw'),
-('2048', '8', '3050', 'Detect'),
-('2048', '8', '3365', 'Opening'),
-('2048', '8', '6233', 'Closing'),
-('2048', '8', '6246', 'Closing'),
-('2048', '8', '6247', 'Opening'),
-('2048', '8', '6477', 'Opening'),
-('2048', '8', '6478', 'Opening'),
-('2048', '8', '6603', 'Attack'),
-('2048', '8', '7266', 'Duel'),
-('2048', '8', '7267', 'Grovel'),
-('2048', '8', '7355', 'Stuck'),
-('2048', '8', '8386', 'Attacking'),
-('2048', '8', '9077', 'Leather'),
-('2048', '8', '9078', 'Cloth'),
-('2048', '8', '9125', 'Generic'),
-('2048', '8', '16092', 'Defensive State(DND)'),
-('2048', '8', '68975', 'Viciousness'),
-('2048', '8', '68976', 'Aberration'),
-('2048', '8', '68978', 'Flayer'),
-('2048', '8', '68992', 'Darkflight'),
-('2048', '8', '21184', 'Rogue Passive(DND)'),
-('2048', '8', '21651', 'Opening'),
-('2048', '8', '21652', 'Closing'),
-('2048', '8', '22027', 'Remove Insignia'),
-('2048', '8', '22810', 'Opening - No Text'),
-('2048', '8', '26865', 'Eviscerate'), -- Only 9?
-('2048', '8', '26862', 'Sinister Strike'), -- Only 9?
-('2048', '8', '1787', 'Stealth'), -- Only 9?
-('2048', '8', '26863', 'Backstab'),
-('2048', '8', '921', 'Pick Pocket'),
-('2048', '8', '38764', 'Gouge'),
-('2048', '8', '26669', 'Evasion'),
-('2048', '8', '11297', 'Sap'),
-('2048', '8', '6774', 'Slice and Dice'),
-('2048', '8', '11305', 'Sprint'),
-('2048', '8', '38768', 'Kick'),
-('2048', '8', '26866', 'Expose Armor'),
-('2048', '8', '26884', 'Garrote'),
-('2048', '8', '27448', 'Feint'), -- Only 8?
-('2048', '8', '1804', 'Pick Lock'),
-('2048', '8', '27441', 'Ambush'),
-('2048', '8', '2842', 'Poisons'),
-('2048', '8', '1725', 'Distract'),
-('2048', '8', '26867', 'Rupture'),
-('2048', '8', '26889', 'Vanish'),
-('2048', '8', '1833', 'Cheap Shot'),
-('2048', '8', '1842', 'Disarm Trap'),
-('2048', '8', '408', 'Kidney Shot'),
-('2048', '8', '2094', 'Blind'),
-('2048', '8', '32684', 'Envenom'),
-('2048', '8', '26679', 'Deadly Throw'),
-('2048', '8', '31224', 'Cloak of Shadows'),
-('2048', '8', '5938', 'Shiv'),
-('2048', '8', '8643', 'Kidney Shot'),
-('2048', '8', '3127', 'Parry'),
-('2048', '8', '674', 'Dual Wield'),
-('2048', '8', '3776', 'Green Leather Bracers'), -- What?
-('2048', '8', '9186', null), -- Removed?
-('2048', '8', '21927', 'Natures Ally'), -- What?
-('2048', '8', '22054', 'QAEnchant Bracer +7 Intellect'), -- What?
-('2048', '8', '22055', null), -- Removed?
-('2048', '8', '2836', 'Detect Traps'),
-('2048', '8', '1860', 'Safe Fall'), -- Removed?
--- Worgen Priest
-('2048', '16', '81', 'Dodge'),
-('2048', '16', '198', 'One-Handed Maces'),
-('2048', '16', '203', 'Unarmed'),
-('2048', '16', '204', 'Defense'),
-('2048', '16', '522', 'SPELLDEFENSE(DND)'),
-('2048', '16', '585', 'Smite'),
-('2048', '16', '668', 'Language Common'),
-('2048', '16', '2050', 'Lesser Heal'),
-('2048', '16', '2382', 'Generic'),
-('2048', '16', '2479', 'Honorless Target'),
-('2048', '16', '3050', 'Detect'),
-('2048', '16', '3365', 'Opening'),
-('2048', '16', '5009', 'Wands'),
-('2048', '16', '5019', 'Shoot'),
-('2048', '16', '6233', 'Closing'),
-('2048', '16', '6246', 'Closing'),
-('2048', '16', '6247', 'Opening'),
-('2048', '16', '6477', 'Opening'),
-('2048', '16', '6478', 'Opening'),
-('2048', '16', '6603', 'Attack'),
-('2048', '16', '7266', 'Duel'),
-('2048', '16', '7267', 'Grovel'),
-('2048', '16', '7355', 'Stuck'),
-('2048', '16', '8386', 'Attacking'),
-('2048', '16', '9078', 'Cloth'),
-('2048', '16', '9125', 'Generic'),
-('2048', '16', '68975', 'Viciousness'),
-('2048', '16', '68976', 'Aberration'),
-('2048', '16', '68978', 'Flayer'),
-('2048', '16', '68992', 'Darkflight'),
-('2048', '16', '21651', 'Opening'),
-('2048', '16', '21652', 'Closing'),
-('2048', '16', '22027', 'Remove Insignia'),
-('2048', '16', '22810', 'Opening - No Text'),
-('2048', '16', '25389', 'Power Word: Fortitude'),
-('2048', '16', '25364', 'Smite'),
-('2048', '16', '25368', 'Shadow Word: Pain'),
-('2048', '16', '25218', 'Power Word: Shield'),
-('2048', '16', '25429', 'Fade'), -- Removed?
-('2048', '16', '25222', 'Renew'),
-('2048', '16', '25375', 'Mind Blast'),
-('2048', '16', '25435', 'Resurrection'),
-('2048', '16', '25431', 'Inner Fire'),
-('2048', '16', '528', 'Cure Disease'),
-('2048', '16', '10890', 'Psychic Scream'),
-('2048', '16', '988', 'Dispel Magic'),
-('2048', '16', '6346', 'Fear Ward'),
-('2048', '16', '25235', 'Flash Heal'),
-('2048', '16', '25384', 'Holy Fire'),
-('2048', '16', '25596', 'Mind Soothe'), -- Removed?
-('2048', '16', '10955', 'Shackle Undead'),
-('2048', '16', '10909', 'Mind Vision'),
-('2048', '16', '25380', 'Mana Burn'), -- Removed?
-('2048', '16', '10912', 'Mind Control'), -- Removed?
-('2048', '16', '25308', 'Prayer of Healing'),
-('2048', '16', '25433', 'Shadow Protection'),
-('2048', '16', '552', 'Abolish Disease'),
-('2048', '16', '1706', 'Levitate'),
-('2048', '16', '25213', 'Greater Heal'),
-('2048', '16', '25392', 'Prayer of Fortitude'),
-('2048', '16', '39374', 'Prayer of Shadow Protection'),
-('2048', '16', '32999', 'Prayer of Spirit'),
-('2048', '16', '32996', 'Shadow Word: Death'),
-('2048', '16', '32546', 'Binding Heal'),
-('2048', '16', '34433', 'Shadowfiend'),
-('2048', '16', '33076', 'Prayer of Mending'),
-('2048', '16', '32375', 'Mass Dispel'),
-('2048', '16', '25441', 'Feedback'), -- Removed? Only 4?
-('2048', '16', '25312', 'Divine Spirit'),
-('2048', '16', '25437', 'Desperate Prayer'), -- Only 5?
--- Worgen Shaman
-('2048', '64', '81', 'Dodge'),
-('2048', '64', '107', 'Block'),
-('2048', '64', '131', 'Water Breathing'),
-('2048', '64', '198', 'One-Handed Maces'),
-('2048', '64', '203', 'Unarmed'),
-('2048', '64', '204', 'Defense'),
-('2048', '64', '227', 'Staves'),
-('2048', '64', '331', 'Healing Wave'),
-('2048', '64', '403', 'Lightning Bolt'),
-('2048', '64', '421', 'Chain Lightning'),
-('2048', '64', '522', 'SPELLDEFENSE(DND)'),
-('2048', '64', '526', 'Cure Toxins'),
-('2048', '64', '546', 'Water Walking'),
-('2048', '64', '556', 'Astral Recall'),
-('2048', '64', '668', 'Language Common'),
-('2048', '64', '2062', 'Earth Elemental Totem'),
-('2048', '64', '2382', 'Generic'),
-('2048', '64', '2479', 'Honorless Target'),
-('2048', '64', '2484', 'Earthbind Totem'),
-('2048', '64', '2645', 'Ghost Wolf'),
-('2048', '64', '2825', 'Bloodlust'),
-('2048', '64', '2870', 'Cure Disease'), -- Removed?
-('2048', '64', '2894', 'Fire Elemental Totem'),
-('2048', '64', '3050', 'Detect'),
-('2048', '64', '3365', 'Opening'),
-('2048', '64', '3738', 'Wrath of Air Totem'),
-('2048', '64', '6196', 'Far Sight'),
-('2048', '64', '6233', 'Closing'),
-('2048', '64', '6246', 'Closing'),
-('2048', '64', '6247', 'Opening'),
-('2048', '64', '6477', 'Opening'),
-('2048', '64', '6478', 'Opening'),
-('2048', '64', '6495', 'Sentry Totem'),
-('2048', '64', '6603', 'Attack'),
-('2048', '64', '7266', 'Duel'),
-('2048', '64', '7267', 'Grovel'),
-('2048', '64', '7355', 'Stuck'),
-('2048', '64', '8012', 'Purge'),
-('2048', '64', '8143', 'Tremor Totem'),
-('2048', '64', '8166', 'Poison Cleansing Totem'),
-('2048', '64', '8170', 'Cleansing Totem'),
-('2048', '64', '8177', 'Grounding Totem'),
-('2048', '64', '8386', 'Attacking'),
-('2048', '64', '9077', 'Leather'),
-('2048', '64', '9078', 'Cloth'),
-('2048', '64', '9116', 'Shield'),
-('2048', '64', '9125', 'Generic'),
-('2048', '64', '68975', 'Viciousness'),
-('2048', '64', '68976', 'Aberration'),
-('2048', '64', '68978', 'Flayer'),
-('2048', '64', '68992', 'Darkflight'),
-('2048', '64', '20777', 'Ancestral Spirit'),
-('2048', '64', '21651', 'Opening'),
-('2048', '64', '21652', 'Closing'),
-('2048', '64', '22027', 'Remove Insignia'),
-('2048', '64', '22810', 'Opening - No Text'),
-('2048', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('2048', '64', '25396', 'Healing Wave'),
-('2048', '64', '25420', 'Lesser Healing Wave'),
-('2048', '64', '25423', 'Chain Heal'),
-('2048', '64', '25449', 'Lightning Bolt'),
-('2048', '64', '25454', 'Earth Shock'),
-('2048', '64', '25457', 'Flame Shock'),
-('2048', '64', '25464', 'Frost Shock'),
-('2048', '64', '25472', 'Lightning Shield'),
-('2048', '64', '25485', 'Rockbiter Weapon'), -- Removed?
-('2048', '64', '25489', 'Flametongue Weapon'),
-('2048', '64', '25500', 'Frostbrand Weapon'),
-('2048', '64', '25505', 'Windfury Weapon'),
-('2048', '64', '25509', 'Stoneskin Totem'),
-('2048', '64', '25525', 'Stoneclaw Totem'),
-('2048', '64', '25528', 'Strength of Earth Totem'),
-('2048', '64', '25533', 'Searing Totem'),
-('2048', '64', '25547', 'Fire Nova'),
-('2048', '64', '25552', 'Magma Totem'),
-('2048', '64', '25557', 'Flametongue Totem'),
-('2048', '64', '25560', 'Frost Resistance Totem'),
-('2048', '64', '25563', 'Fire Resistance Totem'),
-('2048', '64', '25567', 'Healing Stream Totem'),
-('2048', '64', '25570', 'Mana Spring Totem'),
-('2048', '64', '25574', 'Nature Resistance Totem'),
-('2048', '64', '25577', 'Windwall Totem'), -- Removed?
-('2048', '64', '25587', 'Windfury Totem'), -- Removed?
-('2048', '64', '25908', 'Tranquil Air Totem'), -- Removed?
-('2048', '64', '27763', 'Totem'),
-('2048', '64', '33736', 'Water Shield'),
-('2048', '64', '36936', 'Totemic Recall'),
--- Worgen Mage
-('2048', '128', '81', 'Dodge'),
-('2048', '128', '133', 'Fireball'),
-('2048', '128', '168', 'Frost Armor'),
-('2048', '128', '203', 'Unarmed'),
-('2048', '128', '204', 'Defense'),
-('2048', '128', '227', 'Staves'),
-('2048', '128', '522', 'SPELLDEFENSE(DND)'),
-('2048', '128', '668', 'Language Common'),
-('2048', '128', '2382', 'Generic'),
-('2048', '128', '2479', 'Honorless Target'),
-('2048', '128', '3050', 'Detect'),
-('2048', '128', '3365', 'Opening'),
-('2048', '128', '5009', 'Wands'),
-('2048', '128', '5019', 'Shoot'),
-('2048', '128', '6233', 'Closing'),
-('2048', '128', '6246', 'Closing'),
-('2048', '128', '6247', 'Opening'),
-('2048', '128', '6477', 'Opening'),
-('2048', '128', '6478', 'Opening'),
-('2048', '128', '6603', 'Attack'),
-('2048', '128', '7266', 'Duel'),
-('2048', '128', '7267', 'Grovel'),
-('2048', '128', '7355', 'Stuck'),
-('2048', '128', '8386', 'Attacking'),
-('2048', '128', '9078', 'Cloth'),
-('2048', '128', '9125', 'Generic'),
-('2048', '128', '68975', 'Viciousness'),
-('2048', '128', '68976', 'Aberration'),
-('2048', '128', '68978', 'Flayer'),
-('2048', '128', '68992', 'Darkflight'),
-('2048', '128', '21651', 'Opening'),
-('2048', '128', '21652', 'Closing'),
-('2048', '128', '22027', 'Remove Insignia'),
-('2048', '128', '22810', 'Opening - No Text'),
-('2048', '128', '27126', 'Arcane Intellect'),
-('2048', '128', '27070', 'Fireball'),
-('2048', '128', '22018', null), -- Removed?
-('2048', '128', '27072', 'Frostbolt'),
-('2048', '128', '22019', null), -- Removed?
-('2048', '128', '27079', 'Fire Blast'),
-('2048', '128', '38704', 'Arcane Missiles'),
-('2048', '128', '28272', 'Polymorph (Pig)'),
-('2048', '128', '28271', 'Polymorph (Turtle)'),
-('2048', '128', '12826', 'Polymorph (Sheep)'),
-('2048', '128', '27088', 'Frost Nova'),
-('2048', '128', '33944', 'Dampen Magic'),
-('2048', '128', '130', 'Slow Fall'),
-('2048', '128', '27082', 'Arcane Explosion'),
-('2048', '128', '27086', 'Flamestrike'),
-('2048', '128', '33946', 'Amplify Magic'),
-('2048', '128', '475', 'Remove Curse'),
-('2048', '128', '1953', 'Blink'),
-('2048', '128', '27085', 'Blizzard'),
-('2048', '128', '12051', 'Evocation'),
-('2048', '128', '27128', 'Fire Ward'),
-('2048', '128', '27131', 'Mana Shield'),
-('2048', '128', '32796', 'Frost Ward'),
-('2048', '128', '27074', 'Scorch'),
-('2048', '128', '2139', 'Counterspell'),
-('2048', '128', '27101', 'Conjure Mana Gem'),
-('2048', '128', '27124', 'Ice Armor'),
-('2048', '128', '45438', 'Ice Block'),
-('2048', '128', '27125', 'Mage Armor'),
-('2048', '128', '27127', 'Arcane Brilliance'),
-('2048', '128', '30482', 'Molten Armor'),
-('2048', '128', '30451', 'Arcane Blast'),
-('2048', '128', '30455', 'Ice Lance'),
-('2048', '128', '66', 'Invisibility'),
-('2048', '128', '43987', 'Ritual of Refreshment'),
-('2048', '128', '30449', 'Spellsteal'),
-('2048', '128', '27087', 'Cone of Cold'),
--- Worgen Warlock
-('2048', '256', '81', 'Dodge'),
-('2048', '256', '203', 'Unarmed'),
-('2048', '256', '204', 'Defense'),
-('2048', '256', '522', 'SPELLDEFENSE(DND)'),
-('2048', '256', '668', 'Language Common'),
-('2048', '256', '686', 'Shadow Bolt'),
-('2048', '256', '687', 'Demon Skin'),
-('2048', '256', '1180', 'Daggers'),
-('2048', '256', '2382', 'Generic'),
-('2048', '256', '2479', 'Honorless Target'),
-('2048', '256', '3050', 'Detect'),
-('2048', '256', '3365', 'Opening'),
-('2048', '256', '5009', 'Wands'),
-('2048', '256', '5019', 'Shoot'),
-('2048', '256', '6233', 'Closing'),
-('2048', '256', '6246', 'Closing'),
-('2048', '256', '6247', 'Opening'),
-('2048', '256', '6477', 'Opening'),
-('2048', '256', '6478', 'Opening'),
-('2048', '256', '6603', 'Attack'),
-('2048', '256', '7266', 'Duel'),
-('2048', '256', '7267', 'Grovel'),
-('2048', '256', '7355', 'Stuck'),
-('2048', '256', '8386', 'Attacking'),
-('2048', '256', '9078', 'Cloth'),
-('2048', '256', '9125', 'Generic'),
-('2048', '256', '68975', 'Viciousness'),
-('2048', '256', '68976', 'Aberration'),
-('2048', '256', '68978', 'Flayer'),
-('2048', '256', '68992', 'Darkflight'),
-('2048', '256', '21651', 'Opening'),
-('2048', '256', '21652', 'Closing'),
-('2048', '256', '22027', 'Remove Insignia'),
-('2048', '256', '22810', 'Opening - No Text'),
-('2048', '256', '27215', 'Immolate'), -- Only 9?
-('2048', '256', '27209', 'Shadow Bolt'),
-('2048', '256', '27216', 'Corruption'),
-('2048', '256', '30909', 'Curse of Weakness'),
-('2048', '256', '27222', 'Life Tap'),
-('2048', '256', '27218', 'Curse of Agony'),
-('2048', '256', '6215', 'Fear'),
-('2048', '256', '27230', 'Create Healthstone'),
-('2048', '256', '27217', 'Drain Soul'),
-('2048', '256', '27259', 'Health Funnel'),
-('2048', '256', '27226', 'Curse of Recklessness'), -- Removed?
-('2048', '256', '27220', 'Drain Life'),
-('2048', '256', '5697', 'Unending Breath'),
-('2048', '256', '27238', 'Create Soulstone'),
-('2048', '256', '30459', 'Searing Pain'),
-('2048', '256', '27260', 'Demon Armor'),
-('2048', '256', '27212', 'Rain of Fire'),
-('2048', '256', '698', 'Ritual of Summoning'),
-('2048', '256', '5500', 'Sense Demons'),
-('2048', '256', '30908', 'Drain Mana'), -- Removed?
-('2048', '256', '11719', 'Curse of Tongues'),
-('2048', '256', '132', 'Detect Invisibility'),
-('2048', '256', '18647', 'Banish'),
-('2048', '256', '27213', 'Hellfire'),
-('2048', '256', '11726', 'Subjugate Demon'),
-('2048', '256', '27228', 'Curse of the Elements'),
-('2048', '256', '28610', 'Shadow Ward'),
-('2048', '256', '28172', 'Create Spellstone'),
-('2048', '256', '27250', 'Create Firestone'),
-('2048', '256', '17928', 'Howl of Terror'),
-('2048', '256', '27223', 'Death Coil'),
-('2048', '256', '27229', 'Curse of Shadow'), -- Removed?
-('2048', '256', '30545', 'Soul Fire'),
-('2048', '256', '30910', 'Curse of Doom'),
-('2048', '256', '18540', 'Ritual of Doom'),
-('2048', '256', '28189', 'Fel Armor'),
-('2048', '256', '32231', 'Incinerate'),
-('2048', '256', '29858', 'Soulshatter'),
-('2048', '256', '29893', 'Ritual of Souls'),
-('2048', '256', '27243', 'Seed of Corruption'),
-('2048', '256', '23161', 'Dreadsteed'),
-('2048', '256', '688', 'Summon Imp'),
-('2048', '256', '697', 'Summon Voidwalker'),
-('2048', '256', '712', 'Summon Succubus'),
-('2048', '256', '691', 'Summon Felhunter'), -- 10 of this?
-('2048', '256', '126', 'Eye of Kilrogg'),
--- Worgen Druid
-('2048', '1024', '81', 'Dodge'),
-('2048', '1024', '203', 'Unarmed'),
-('2048', '1024', '204', 'Defense'),
-('2048', '1024', '227', 'Staves'),
-('2048', '1024', '522', 'SPELLDEFENSE(DND)'),
-('2048', '1024', '668', 'Language Common'),
-('2048', '1024', '768', 'Cat Form'),
-('2048', '1024', '783', 'Travel Form'),
-('2048', '1024', '1066', 'Aquatic Form'),
-('2048', '1024', '1178', 'Bear Form(Passive)'),
-('2048', '1024', '1180', 'Daggers'),
-('2048', '1024', '2382', 'Generic'),
-('2048', '1024', '2479', 'Honorless Target'),
-('2048', '1024', '2782', 'Remove Curse'),
-('2048', '1024', '2893', 'Abolish Poison'),
-('2048', '1024', '3025', 'Cat Form(Passive)'),
-('2048', '1024', '3050', 'Detect'),
-('2048', '1024', '3365', 'Opening'),
-('2048', '1024', '5176', 'Wrath'),
-('2048', '1024', '5185', 'Healing Touch'),
-('2048', '1024', '5209', 'Challenging Roar'),
-('2048', '1024', '5225', 'Track Humanoids'),
-('2048', '1024', '5229', 'Enrage'),
-('2048', '1024', '5419', 'Travel Form(Passive)'),
-('2048', '1024', '5420', 'Tree of Life'),
-('2048', '1024', '5421', 'Aquatic Form(Passive)'),
-('2048', '1024', '6233', 'Closing'),
-('2048', '1024', '6246', 'Closing'),
-('2048', '1024', '6247', 'Opening'),
-('2048', '1024', '6477', 'Opening'),
-('2048', '1024', '6478', 'Opening'),
-('2048', '1024', '6603', 'Attack'),
-('2048', '1024', '6795', 'Growl'),
-('2048', '1024', '7266', 'Duel'),
-('2048', '1024', '7267', 'Grovel'),
-('2048', '1024', '7355', 'Stuck'),
-('2048', '1024', '8386', 'Attacking'),
-('2048', '1024', '8946', 'Cure Poison'),
-('2048', '1024', '8983', 'Bash'),
-('2048', '1024', '9077', 'Leather'),
-('2048', '1024', '9078', 'Cloth'),
-('2048', '1024', '9125', 'Generic'),
-('2048', '1024', '9634', 'Dire Bear Form'),
-('2048', '1024', '9635', 'Dire Bear Form(Passive)'),
-('2048', '1024', '9846', 'Tigers Fury'),
-('2048', '1024', '9913', 'Prowl'),
-('2048', '1024', '18658', 'Hibernate'),
-('2048', '1024', '18960', 'Teleport: Moonglade'),
-('2048', '1024', '68975', 'Viciousness'),
-('2048', '1024', '68976', 'Aberration'),
-('2048', '1024', '68978', 'Flayer'),
-('2048', '1024', '68992', 'Darkflight'),
-('2048', '1024', '21178', 'Bear Form(Passive2)'),
-('2048', '1024', '21651', 'Opening'),
-('2048', '1024', '21652', 'Closing'),
-('2048', '1024', '22027', 'Remove Insignia'),
-('2048', '1024', '22570', 'Maim'),
-('2048', '1024', '22810', 'Opening - No Text'),
-('2048', '1024', '22812', 'Bark Skin'),
-('2048', '1024', '24248', 'Ferocious Bite'),
-('2048', '1024', '24905', 'Moonkin Form(Passive)'),
-('2048', '1024', '26979', 'Healing Touch'),
-('2048', '1024', '26980', 'Regrowth'),
-('2048', '1024', '26982', 'Rejuvenation'),
-('2048', '1024', '26983', 'Tranquility'),
-('2048', '1024', '26985', 'Wrath'),
-('2048', '1024', '26986', 'Starfire'),
-('2048', '1024', '26988', 'Moonfire'),
-('2048', '1024', '26989', 'Entangling Roots'),
-('2048', '1024', '26990', 'Mark of the Wild'),
-('2048', '1024', '26991', 'Gift of the Wild'),
-('2048', '1024', '26992', 'Thorns'),
-('2048', '1024', '26993', 'Faerie Fire'), -- Removed?
-('2048', '1024', '26994', 'Rebirth'),
-('2048', '1024', '26995', 'Soothe Animal'),
-('2048', '1024', '26996', 'Maul'),
-('2048', '1024', '26997', 'Swipe (Bear)'),
-('2048', '1024', '26998', 'Demoralizing Roar'),
-('2048', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
-('2048', '1024', '27000', 'Claw'),
-('2048', '1024', '27002', 'Shred'),
-('2048', '1024', '27003', 'Rake'),
-('2048', '1024', '27004', 'Cower'),
-('2048', '1024', '27005', 'Ravage'),
-('2048', '1024', '27006', 'Pounce'),
-('2048', '1024', '27008', 'Rip'),
-('2048', '1024', '27012', 'Hurricane'),
-('2048', '1024', '27764', 'Fetish'),
-('2048', '1024', '29166', 'Innervate'),
-('2048', '1024', '33357', 'Dash'),
-('2048', '1024', '33745', 'Lacerate'),
-('2048', '1024', '33763', 'Lifebloom'),
-('2048', '1024', '33786', 'Cyclone'),
-('2048', '1024', '33948', 'Flight Form(Passive)'),
-('2048', '1024', '34123', 'Tree of Life(Passive)'),
-('2048', '1024', '40120', 'Swift Flight Form'),
-('2048', '1024', '40121', 'Swift Flight Form(Passive)'),
--- High Elf Warrior
-('4096', '1', '78', 'Heroic Strike'),
-('4096', '1', '81', 'Dodge'),
-('4096', '1', '107', 'Block'),
-('4096', '1', '196', 'One-Handed Axes'),
-('4096', '1', '198', 'One-Handed Maces'),
-('4096', '1', '201', 'One-Handed Swords'),
-('4096', '1', '203', 'Unarmed'),
-('4096', '1', '204', 'Defense'),
-('4096', '1', '522', 'SPELLDEFENSE(DND)'),
-('4096', '1', '668', 'Language Common'),
-('4096', '1', '2382', 'Generic'),
-('4096', '1', '2457', 'Battle Stance'),
-('4096', '1', '2479', 'Honorless Target'),
-('4096', '1', '3050', 'Detect'),
-('4096', '1', '3365', 'Opening'),
-('4096', '1', '5301', 'Defensive State(DND)'),
-('4096', '1', '6233', 'Closing'),
-('4096', '1', '6246', 'Closing'),
-('4096', '1', '6247', 'Opening'),
-('4096', '1', '6477', 'Opening'),
-('4096', '1', '6478', 'Opening'),
-('4096', '1', '6603', 'Attack'),
-('4096', '1', '7266', 'Duel'),
-('4096', '1', '7267', 'Grovel'),
-('4096', '1', '7355', 'Stuck'),
-('4096', '1', '7376', 'Defensive Stance Passive'),
-('4096', '1', '7381', 'Berserker Stance Passive'),
-('4096', '1', '8386', 'Attacking'),
-('4096', '1', '8737', 'Mail'),
-('4096', '1', '9077', 'Leather'),
-('4096', '1', '9078', 'Cloth'),
-('4096', '1', '9116', 'Shield'),
-('4096', '1', '9125', 'Generic'),
-('4096', '1', '813', 'Language Thalassian'),
-('4096', '1', '110005', 'Quel’dorei Meditation'),
-('4096', '1', '110006', 'Swiftness of the Rangers'),
-('4096', '1', '21156', 'Battle Stance Passive'),
-('4096', '1', '21651', 'Opening'),
-('4096', '1', '21652', 'Closing'),
-('4096', '1', '22027', 'Remove Insignia'),
-('4096', '1', '22810', 'Opening - No Text'),
-('4096', '1', '32215', 'Victorious State'),
-('4096', '1', '2048', 'Battle Shout'),
-('4096', '1', '30324', 'Heroic Strike'),
-('4096', '1', '11578', 'Charge'),
-('4096', '1', '25208', 'Rend'),
-('4096', '1', '25264', 'Thunder Clap'),
-('4096', '1', '2687', 'Bloodrage'),
-('4096', '1', '71', 'Defensive Stance'),
-('4096', '1', '25225', 'Sunder Armor'),
-('4096', '1', '355', 'Taunt'),
-('4096', '1', '11585', 'Overpower'),
-('4096', '1', '29704', 'Shield Bash'),
-('4096', '1', '25203', 'Demoralizing Shout'),
-('4096', '1', '30357', 'Revenge'),
-('4096', '1', '25266', 'Mocking Blow'),
-('4096', '1', '2565', 'Shield Block'),
-('4096', '1', '676', 'Disarm'),
-('4096', '1', '25231', 'Cleave'),
-('4096', '1', '20230', 'Retaliation'),
-('4096', '1', '5246', 'Intimidating Shout'),
-('4096', '1', '25236', 'Execute'),
-('4096', '1', '1161', 'Challenging Shout'),
-('4096', '1', '871', 'Shield Wall'),
-('4096', '1', '2458', 'Berserker Stance'),
-('4096', '1', '25275', 'Intercept'),
-('4096', '1', '25242', 'Slam'),
-('4096', '1', '18499', 'Berserker Rage'),
-('4096', '1', '1680', 'Whirlwind'),
-('4096', '1', '6554', 'Pummel'),
-('4096', '1', '1719', 'Recklessness'),
-('4096', '1', '34428', 'Victory Rush'),
-('4096', '1', '23920', 'Spell Reflection'),
-('4096', '1', '469', 'Commanding Shout'),
-('4096', '1', '3411', 'Intervene'),
-('4096', '1', '25212', 'Hamstring'), -- Only 9?
-('4096', '1', '674', 'Dual Wield'),
-('4096', '1', '750', 'Plate Armor'), -- Only 19?
-('4096', '1', '12678', 'Stance Mastery'), -- Only 9?
--- High Elf Paladin
-('4096', '2', '81', 'Dodge'),
-('4096', '2', '107', 'Block'),
-('4096', '2', '198', 'One-Handed Maces'),
-('4096', '2', '199', 'Two-Handed Maces'),
-('4096', '2', '203', 'Unarmed'),
-('4096', '2', '204', 'Defense'),
-('4096', '2', '522', 'SPELLDEFENSE(DND)'),
-('4096', '2', '635', 'Holy Light'),
-('4096', '2', '668', 'Language Common'),
-('4096', '2', '2382', 'Generic'),
-('4096', '2', '2479', 'Honorless Target'),
-('4096', '2', '3050', 'Detect'),
-('4096', '2', '3365', 'Opening'),
-('4096', '2', '6233', 'Closing'),
-('4096', '2', '6246', 'Closing'),
-('4096', '2', '6247', 'Opening'),
-('4096', '2', '6477', 'Opening'),
-('4096', '2', '6478', 'Opening'),
-('4096', '2', '6603', 'Attack'),
-('4096', '2', '7266', 'Duel'),
-('4096', '2', '7267', 'Grovel'),
-('4096', '2', '7355', 'Stuck'),
-('4096', '2', '8386', 'Attacking'),
-('4096', '2', '8737', 'Mail'),
-('4096', '2', '9077', 'Leather'),
-('4096', '2', '9078', 'Cloth'),
-('4096', '2', '9116', 'Shield'),
-('4096', '2', '9125', 'Generic'),
-('4096', '2', '21084', 'Seal of Righteousness'),
-('4096', '2', '813', 'Language Thalassian'),
-('4096', '2', '110005', 'Quel’dorei Meditation'),
-('4096', '2', '110006', 'Swiftness of the Rangers'),
-('4096', '2', '21651', 'Opening'),
-('4096', '2', '21652', 'Closing'),
-('4096', '2', '22027', 'Remove Insignia'),
-('4096', '2', '22810', 'Opening - No Text'),
-('4096', '2', '27762', 'Libram'),
-('4096', '2', '27149', 'Devotion Aura'),
-('4096', '2', '27136', 'Holy Light'),
-('4096', '2', '27155', 'Seal of Righteousness'), -- Removed?
-('4096', '2', '27140', 'Blessing of Might'),
-('4096', '2', '20271', 'Judgement of Light'),
-('4096', '2', '27158', 'Seal of the Crusader'), -- Removed?
-('4096', '2', '10308', 'Hammer of Justice'),
-('4096', '2', '10278', 'Hand of Protection'),
-('4096', '2', '27154', 'Lay on Hands'),
-('4096', '2', '20773', 'Redemption'),
-('4096', '2', '27142', 'Blessing of Wisdom'),
-('4096', '2', '31789', 'Righteous Defense'),
-('4096', '2', '27150', 'Retribution Aura'),
-('4096', '2', '25780', 'Righteous Fury'),
-('4096', '2', '1044', 'Hand of Freedom'),
-('4096', '2', '33776', 'Spiritual Attunement'),
-('4096', '2', '27173', 'Consecration'),
-('4096', '2', '27138', 'Exorcism'),
-('4096', '2', '27137', 'Flash of Light'),
-('4096', '2', '5502', 'Sense Undead'),
-('4096', '2', '19746', 'Concentration Aura'),
-('4096', '2', '31895', 'Seal of Justice'), -- Removed?
-('4096', '2', '5627', 'Turn Undead'), -- Removed?
-('4096', '2', '1038', 'Hand of Salvation'),
-('4096', '2', '27151', 'Shadow Resistance Aura'),
-('4096', '2', '19752', 'Divine Intervention'),
-('4096', '2', '27160', 'Seal of Light'), -- Removed?
-('4096', '2', '27152', 'Frost Resistance Aura'),
-('4096', '2', '1020', 'Divine Shield'), -- Removed?
-('4096', '2', '27153', 'Fire Resistance Aura'),
-('4096', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('4096', '2', '27144', 'Blessing of Light'), -- Removed?
-('4096', '2', '4987', 'Cleanse'),
-('4096', '2', '27180', 'Hammer of Wrath'),
-('4096', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
-('4096', '2', '27139', 'Holy Wrath'),
-('4096', '2', '27141', 'Greater Blessing of Might'),
-('4096', '2', '10326', 'Turn Evil'),
-('4096', '2', '27143', 'Greater Blessing of Wisdom'),
-('4096', '2', '25898', 'Greater Blessing of Kings'),
-('4096', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('4096', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
-('4096', '2', '32223', 'Crusader Aura'),
-('4096', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
-('4096', '2', '31884', 'Avenging Wrath'),
-('4096', '2', '750', 'Plate Armor'),
-('4096', '2', '3127', 'Parry'),
-('4096', '2', '23214', 'Charger'), -- Only 9?
-('4096', '2', '31801', 'Seal of Vengeance'), -- Only 9?
--- High Elf Hunter
-('4096', '4', '75', 'Auto Shot'),
-('4096', '4', '81', 'Dodge'),
-('4096', '4', '196', 'One-Handed Axes'),
-('4096', '4', '203', 'Unarmed'),
-('4096', '4', '204', 'Defense'),
-('4096', '4', '264', 'Bows'),
-('4096', '4', '266', 'Guns'),
-('4096', '4', '522', 'SPELLDEFENSE(DND)'),
-('4096', '4', '668', 'Language Common'),
-('4096', '4', '883', 'Call Pet'),
-('4096', '4', '982', 'Revive Pet'),
-('4096', '4', '1002', 'Eyes of the Beast'),
-('4096', '4', '1462', 'Beast Lore'),
-('4096', '4', '1494', 'Track Beasts'),
-('4096', '4', '1515', 'Tame Beast'),
-('4096', '4', '1543', 'Flare'),
-('4096', '4', '2382', 'Generic'),
-('4096', '4', '2479', 'Honorless Target'),
-('4096', '4', '2641', 'Dismiss Pet'),
-('4096', '4', '2973', 'Raptor Strike'),
-('4096', '4', '3043', 'Scorpid Sting'),
-('4096', '4', '3045', 'Rapid Fire'),
-('4096', '4', '3050', 'Detect'),
-('4096', '4', '3365', 'Opening'),
-('4096', '4', '5116', 'Concussive Shot'),
-('4096', '4', '5118', 'Aspect of the Cheetah'),
-('4096', '4', '5384', 'Feign Death'),
-('4096', '4', '6197', 'Eagle Eye'),
-('4096', '4', '6233', 'Closing'),
-('4096', '4', '6246', 'Closing'),
-('4096', '4', '6247', 'Opening'),
-('4096', '4', '6477', 'Opening'),
-('4096', '4', '6478', 'Opening'),
-('4096', '4', '6603', 'Attack'),
-('4096', '4', '6991', 'Feed Pet'),
-('4096', '4', '7266', 'Duel'),
-('4096', '4', '7267', 'Grovel'),
-('4096', '4', '7355', 'Stuck'),
-('4096', '4', '8386', 'Attacking'),
-('4096', '4', '9077', 'Leather'),
-('4096', '4', '9078', 'Cloth'),
-('4096', '4', '9125', 'Generic'),
-('4096', '4', '13159', 'Aspect of the Pack'),
-('4096', '4', '13161', 'Aspect of the Beast'),
-('4096', '4', '13163', 'Aspect of the Monkey'),
-('4096', '4', '13358', 'Defensive State(DND)'),
-('4096', '4', '13809', 'Frost Trap'),
-('4096', '4', '14268', 'Alliance Flag'), -- What?
-('4096', '4', '14311', 'Freezing Trap'),
-('4096', '4', '14325', 'Hunters Mark'),
-('4096', '4', '14327', 'Scare Beast'),
-('4096', '4', '19801', 'Tranquilizing Shot'),
-('4096', '4', '19878', 'Track Demons'),
-('4096', '4', '19879', 'Track Dragonkin'),
-('4096', '4', '19880', 'Track Elementals'),
-('4096', '4', '19882', 'Track Giants'),
-('4096', '4', '19883', 'Track Humanoids'),
-('4096', '4', '19884', 'Track Undead'),
-('4096', '4', '19885', 'Track Hidden'),
-('4096', '4', '813', 'Language Thalassian'),
-('4096', '4', '110005', 'Quel’dorei Meditation'),
-('4096', '4', '110006', 'Swiftness of the Rangers'),
-('4096', '4', '21651', 'Opening'),
-('4096', '4', '21652', 'Closing'),
-('4096', '4', '22027', 'Remove Insignia'),
-('4096', '4', '22810', 'Opening - No Text'),
-('4096', '4', '24949', 'Defensive State 2(DND)'),
-('4096', '4', '27014', 'Raptor Strike'),
-('4096', '4', '27015', 'Disengage'), -- Removed?
-('4096', '4', '27016', 'Serpent Sting'),
-('4096', '4', '27018', 'Viper Sting'), -- Removed?
-('4096', '4', '27019', 'Arcane Shot'),
-('4096', '4', '27020', 'Distracting Shot'), -- Removed?
-('4096', '4', '27021', 'Multi-Shot'),
-('4096', '4', '27022', 'Volley'),
-('4096', '4', '27023', 'Immolation Trap'),
-('4096', '4', '27025', 'Explosive Trap'),
-('4096', '4', '27044', 'Aspect of the Hawk'),
-('4096', '4', '27045', 'Aspect of the Wild'),
-('4096', '4', '27046', 'Mend Pet'),
-('4096', '4', '34026', 'Kill Command'),
-('4096', '4', '34074', 'Aspect of the Viper'),
-('4096', '4', '34082', 'Advantaged State(DND)'),
-('4096', '4', '34120', 'Steady Shot'),
-('4096', '4', '34477', 'Misdirection'),
-('4096', '4', '34600', 'Snake Trap'),
-('4096', '4', '36916', 'Mongoose Bite'),
--- High Elf Rogue
-('4096', '8', '81', 'Dodge'),
-('4096', '8', '203', 'Unarmed'),
-('4096', '8', '204', 'Defense'),
-('4096', '8', '522', 'SPELLDEFENSE(DND)'),
-('4096', '8', '668', 'Language Common'),
-('4096', '8', '1180', 'Daggers'),
-('4096', '8', '1752', 'Sinister Strike'),
-('4096', '8', '2098', 'Eviscerate'),
-('4096', '8', '2382', 'Generic'),
-('4096', '8', '2479', 'Honorless Target'),
-('4096', '8', '2567', 'Thrown'),
-('4096', '8', '2764', 'Throw'),
-('4096', '8', '3050', 'Detect'),
-('4096', '8', '3365', 'Opening'),
-('4096', '8', '6233', 'Closing'),
-('4096', '8', '6246', 'Closing'),
-('4096', '8', '6247', 'Opening'),
-('4096', '8', '6477', 'Opening'),
-('4096', '8', '6478', 'Opening'),
-('4096', '8', '6603', 'Attack'),
-('4096', '8', '7266', 'Duel'),
-('4096', '8', '7267', 'Grovel'),
-('4096', '8', '7355', 'Stuck'),
-('4096', '8', '8386', 'Attacking'),
-('4096', '8', '9077', 'Leather'),
-('4096', '8', '9078', 'Cloth'),
-('4096', '8', '9125', 'Generic'),
-('4096', '8', '16092', 'Defensive State(DND)'),
-('4096', '8', '813', 'Language Thalassian'),
-('4096', '8', '110005', 'Quel’dorei Meditation'),
-('4096', '8', '110006', 'Swiftness of the Rangers'),
-('4096', '8', '21184', 'Rogue Passive(DND)'),
-('4096', '8', '21651', 'Opening'),
-('4096', '8', '21652', 'Closing'),
-('4096', '8', '22027', 'Remove Insignia'),
-('4096', '8', '22810', 'Opening - No Text'),
-('4096', '8', '26865', 'Eviscerate'), -- Only 9?
-('4096', '8', '26862', 'Sinister Strike'), -- Only 9?
-('4096', '8', '1787', 'Stealth'), -- Only 9?
-('4096', '8', '26863', 'Backstab'),
-('4096', '8', '921', 'Pick Pocket'),
-('4096', '8', '38764', 'Gouge'),
-('4096', '8', '26669', 'Evasion'),
-('4096', '8', '11297', 'Sap'),
-('4096', '8', '6774', 'Slice and Dice'),
-('4096', '8', '11305', 'Sprint'),
-('4096', '8', '38768', 'Kick'),
-('4096', '8', '26866', 'Expose Armor'),
-('4096', '8', '26884', 'Garrote'),
-('4096', '8', '27448', 'Feint'), -- Only 8?
-('4096', '8', '1804', 'Pick Lock'),
-('4096', '8', '27441', 'Ambush'),
-('4096', '8', '2842', 'Poisons'),
-('4096', '8', '1725', 'Distract'),
-('4096', '8', '26867', 'Rupture'),
-('4096', '8', '26889', 'Vanish'),
-('4096', '8', '1833', 'Cheap Shot'),
-('4096', '8', '1842', 'Disarm Trap'),
-('4096', '8', '408', 'Kidney Shot'),
-('4096', '8', '2094', 'Blind'),
-('4096', '8', '32684', 'Envenom'),
-('4096', '8', '26679', 'Deadly Throw'),
-('4096', '8', '31224', 'Cloak of Shadows'),
-('4096', '8', '5938', 'Shiv'),
-('4096', '8', '8643', 'Kidney Shot'),
-('4096', '8', '3127', 'Parry'),
-('4096', '8', '674', 'Dual Wield'),
-('4096', '8', '3776', 'Green Leather Bracers'), -- What?
-('4096', '8', '9186', null), -- Removed?
-('4096', '8', '21927', 'Natures Ally'), -- What?
-('4096', '8', '22054', 'QAEnchant Bracer +7 Intellect'), -- What?
-('4096', '8', '22055', null), -- Removed?
-('4096', '8', '2836', 'Detect Traps'),
-('4096', '8', '1860', 'Safe Fall'), -- Removed?
--- High Elf Priest
-('4096', '16', '81', 'Dodge'),
-('4096', '16', '198', 'One-Handed Maces'),
-('4096', '16', '203', 'Unarmed'),
-('4096', '16', '204', 'Defense'),
-('4096', '16', '522', 'SPELLDEFENSE(DND)'),
-('4096', '16', '585', 'Smite'),
-('4096', '16', '668', 'Language Common'),
-('4096', '16', '2050', 'Lesser Heal'),
-('4096', '16', '2382', 'Generic'),
-('4096', '16', '2479', 'Honorless Target'),
-('4096', '16', '3050', 'Detect'),
-('4096', '16', '3365', 'Opening'),
-('4096', '16', '5009', 'Wands'),
-('4096', '16', '5019', 'Shoot'),
-('4096', '16', '6233', 'Closing'),
-('4096', '16', '6246', 'Closing'),
-('4096', '16', '6247', 'Opening'),
-('4096', '16', '6477', 'Opening'),
-('4096', '16', '6478', 'Opening'),
-('4096', '16', '6603', 'Attack'),
-('4096', '16', '7266', 'Duel'),
-('4096', '16', '7267', 'Grovel'),
-('4096', '16', '7355', 'Stuck'),
-('4096', '16', '8386', 'Attacking'),
-('4096', '16', '9078', 'Cloth'),
-('4096', '16', '9125', 'Generic'),
-('4096', '16', '813', 'Language Thalassian'),
-('4096', '16', '110005','Quel’dorei Meditation'),
-('4096', '16', '110006','Swiftness of the Rangers'),
-('4096', '16', '21651', 'Opening'),
-('4096', '16', '21652', 'Closing'),
-('4096', '16', '22027', 'Remove Insignia'),
-('4096', '16', '22810', 'Opening - No Text'),
-('4096', '16', '25389', 'Power Word: Fortitude'),
-('4096', '16', '25364', 'Smite'),
-('4096', '16', '25368', 'Shadow Word: Pain'),
-('4096', '16', '25218', 'Power Word: Shield'),
-('4096', '16', '25429', 'Fade'), -- Removed?
-('4096', '16', '25222', 'Renew'),
-('4096', '16', '25375', 'Mind Blast'),
-('4096', '16', '25435', 'Resurrection'),
-('4096', '16', '25431', 'Inner Fire'),
-('4096', '16', '528', 'Cure Disease'),
-('4096', '16', '10890', 'Psychic Scream'),
-('4096', '16', '988', 'Dispel Magic'),
-('4096', '16', '6346', 'Fear Ward'),
-('4096', '16', '25235', 'Flash Heal'),
-('4096', '16', '25384', 'Holy Fire'),
-('4096', '16', '25596', 'Mind Soothe'), -- Removed?
-('4096', '16', '10955', 'Shackle Undead'),
-('4096', '16', '10909', 'Mind Vision'),
-('4096', '16', '25380', 'Mana Burn'), -- Removed?
-('4096', '16', '10912', 'Mind Control'), -- Removed?
-('4096', '16', '25308', 'Prayer of Healing'),
-('4096', '16', '25433', 'Shadow Protection'),
-('4096', '16', '552', 'Abolish Disease'),
-('4096', '16', '1706', 'Levitate'),
-('4096', '16', '25213', 'Greater Heal'),
-('4096', '16', '25392', 'Prayer of Fortitude'),
-('4096', '16', '39374', 'Prayer of Shadow Protection'),
-('4096', '16', '32999', 'Prayer of Spirit'),
-('4096', '16', '32996', 'Shadow Word: Death'),
-('4096', '16', '32546', 'Binding Heal'),
-('4096', '16', '34433', 'Shadowfiend'),
-('4096', '16', '33076', 'Prayer of Mending'),
-('4096', '16', '32375', 'Mass Dispel'),
-('4096', '16', '25441', 'Feedback'), -- Removed? Only 4?
-('4096', '16', '25312', 'Divine Spirit'),
-('4096', '16', '25437', 'Desperate Prayer'), -- Only 5?
--- High Elf Shaman
-('4096', '64', '81', 'Dodge'),
-('4096', '64', '107', 'Block'),
-('4096', '64', '131', 'Water Breathing'),
-('4096', '64', '198', 'One-Handed Maces'),
-('4096', '64', '203', 'Unarmed'),
-('4096', '64', '204', 'Defense'),
-('4096', '64', '227', 'Staves'),
-('4096', '64', '331', 'Healing Wave'),
-('4096', '64', '403', 'Lightning Bolt'),
-('4096', '64', '421', 'Chain Lightning'),
-('4096', '64', '522', 'SPELLDEFENSE(DND)'),
-('4096', '64', '526', 'Cure Toxins'),
-('4096', '64', '546', 'Water Walking'),
-('4096', '64', '556', 'Astral Recall'),
-('4096', '64', '668', 'Language Common'),
-('4096', '64', '2062', 'Earth Elemental Totem'),
-('4096', '64', '2382', 'Generic'),
-('4096', '64', '2479', 'Honorless Target'),
-('4096', '64', '2484', 'Earthbind Totem'),
-('4096', '64', '2645', 'Ghost Wolf'),
-('4096', '64', '2825', 'Bloodlust'),
-('4096', '64', '2870', 'Cure Disease'), -- Removed?
-('4096', '64', '2894', 'Fire Elemental Totem'),
-('4096', '64', '3050', 'Detect'),
-('4096', '64', '3365', 'Opening'),
-('4096', '64', '3738', 'Wrath of Air Totem'),
-('4096', '64', '6196', 'Far Sight'),
-('4096', '64', '6233', 'Closing'),
-('4096', '64', '6246', 'Closing'),
-('4096', '64', '6247', 'Opening'),
-('4096', '64', '6477', 'Opening'),
-('4096', '64', '6478', 'Opening'),
-('4096', '64', '6495', 'Sentry Totem'),
-('4096', '64', '6603', 'Attack'),
-('4096', '64', '7266', 'Duel'),
-('4096', '64', '7267', 'Grovel'),
-('4096', '64', '7355', 'Stuck'),
-('4096', '64', '8012', 'Purge'),
-('4096', '64', '8143', 'Tremor Totem'),
-('4096', '64', '8166', 'Poison Cleansing Totem'),
-('4096', '64', '8170', 'Cleansing Totem'),
-('4096', '64', '8177', 'Grounding Totem'),
-('4096', '64', '8386', 'Attacking'),
-('4096', '64', '9077', 'Leather'),
-('4096', '64', '9078', 'Cloth'),
-('4096', '64', '9116', 'Shield'),
-('4096', '64', '9125', 'Generic'),
-('4096', '64', '813', 'Language Thalassian'),
-('4096', '64', '110005', 'Quel’dorei Meditation'),
-('4096', '64', '110006', 'Swiftness of the Rangers'),
-('4096', '64', '20777', 'Ancestral Spirit'),
-('4096', '64', '21651', 'Opening'),
-('4096', '64', '21652', 'Closing'),
-('4096', '64', '22027', 'Remove Insignia'),
-('4096', '64', '22810', 'Opening - No Text'),
-('4096', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('4096', '64', '25396', 'Healing Wave'),
-('4096', '64', '25420', 'Lesser Healing Wave'),
-('4096', '64', '25423', 'Chain Heal'),
-('4096', '64', '25449', 'Lightning Bolt'),
-('4096', '64', '25454', 'Earth Shock'),
-('4096', '64', '25457', 'Flame Shock'),
-('4096', '64', '25464', 'Frost Shock'),
-('4096', '64', '25472', 'Lightning Shield'),
-('4096', '64', '25485', 'Rockbiter Weapon'), -- Removed?
-('4096', '64', '25489', 'Flametongue Weapon'),
-('4096', '64', '25500', 'Frostbrand Weapon'),
-('4096', '64', '25505', 'Windfury Weapon'),
-('4096', '64', '25509', 'Stoneskin Totem'),
-('4096', '64', '25525', 'Stoneclaw Totem'),
-('4096', '64', '25528', 'Strength of Earth Totem'),
-('4096', '64', '25533', 'Searing Totem'),
-('4096', '64', '25547', 'Fire Nova'),
-('4096', '64', '25552', 'Magma Totem'),
-('4096', '64', '25557', 'Flametongue Totem'),
-('4096', '64', '25560', 'Frost Resistance Totem'),
-('4096', '64', '25563', 'Fire Resistance Totem'),
-('4096', '64', '25567', 'Healing Stream Totem'),
-('4096', '64', '25570', 'Mana Spring Totem'),
-('4096', '64', '25574', 'Nature Resistance Totem'),
-('4096', '64', '25577', 'Windwall Totem'), -- Removed?
-('4096', '64', '25587', 'Windfury Totem'), -- Removed?
-('4096', '64', '25908', 'Tranquil Air Totem'), -- Removed?
-('4096', '64', '27763', 'Totem'),
-('4096', '64', '33736', 'Water Shield'),
-('4096', '64', '36936', 'Totemic Recall'),
--- High Elf Mage
-('4096', '128', '81', 'Dodge'),
-('4096', '128', '133', 'Fireball'),
-('4096', '128', '168', 'Frost Armor'),
-('4096', '128', '203', 'Unarmed'),
-('4096', '128', '204', 'Defense'),
-('4096', '128', '227', 'Staves'),
-('4096', '128', '522', 'SPELLDEFENSE(DND)'),
-('4096', '128', '668', 'Language Common'),
-('4096', '128', '2382', 'Generic'),
-('4096', '128', '2479', 'Honorless Target'),
-('4096', '128', '3050', 'Detect'),
-('4096', '128', '3365', 'Opening'),
-('4096', '128', '5009', 'Wands'),
-('4096', '128', '5019', 'Shoot'),
-('4096', '128', '6233', 'Closing'),
-('4096', '128', '6246', 'Closing'),
-('4096', '128', '6247', 'Opening'),
-('4096', '128', '6477', 'Opening'),
-('4096', '128', '6478', 'Opening'),
-('4096', '128', '6603', 'Attack'),
-('4096', '128', '7266', 'Duel'),
-('4096', '128', '7267', 'Grovel'),
-('4096', '128', '7355', 'Stuck'),
-('4096', '128', '8386', 'Attacking'),
-('4096', '128', '9078', 'Cloth'),
-('4096', '128', '9125', 'Generic'),
-('4096', '128', '813', 'Language Thalassian'),
-('4096', '128', '110005', 'Quel’dorei Meditation'),
-('4096', '128', '110006', 'Swiftness of the Rangers'),
-('4096', '128', '21651', 'Opening'),
-('4096', '128', '21652', 'Closing'),
-('4096', '128', '22027', 'Remove Insignia'),
-('4096', '128', '22810', 'Opening - No Text'),
-('4096', '128', '27126', 'Arcane Intellect'),
-('4096', '128', '27070', 'Fireball'),
-('4096', '128', '22018', null), -- Removed?
-('4096', '128', '27072', 'Frostbolt'),
-('4096', '128', '22019', null), -- Removed?
-('4096', '128', '27079', 'Fire Blast'),
-('4096', '128', '38704', 'Arcane Missiles'),
-('4096', '128', '28272', 'Polymorph (Pig)'),
-('4096', '128', '28271', 'Polymorph (Turtle)'),
-('4096', '128', '12826', 'Polymorph (Sheep)'),
-('4096', '128', '27088', 'Frost Nova'),
-('4096', '128', '33944', 'Dampen Magic'),
-('4096', '128', '130', 'Slow Fall'),
-('4096', '128', '27082', 'Arcane Explosion'),
-('4096', '128', '27086', 'Flamestrike'),
-('4096', '128', '33946', 'Amplify Magic'),
-('4096', '128', '475', 'Remove Curse'),
-('4096', '128', '1953', 'Blink'),
-('4096', '128', '27085', 'Blizzard'),
-('4096', '128', '12051', 'Evocation'),
-('4096', '128', '27128', 'Fire Ward'),
-('4096', '128', '27131', 'Mana Shield'),
-('4096', '128', '32796', 'Frost Ward'),
-('4096', '128', '27074', 'Scorch'),
-('4096', '128', '2139', 'Counterspell'),
-('4096', '128', '27101', 'Conjure Mana Gem'),
-('4096', '128', '27124', 'Ice Armor'),
-('4096', '128', '45438', 'Ice Block'),
-('4096', '128', '27125', 'Mage Armor'),
-('4096', '128', '27127', 'Arcane Brilliance'),
-('4096', '128', '30482', 'Molten Armor'),
-('4096', '128', '30451', 'Arcane Blast'),
-('4096', '128', '30455', 'Ice Lance'),
-('4096', '128', '66', 'Invisibility'),
-('4096', '128', '43987', 'Ritual of Refreshment'),
-('4096', '128', '30449', 'Spellsteal'),
-('4096', '128', '27087', 'Cone of Cold'),
--- High Elf Warlock
-('4096', '256', '81', 'Dodge'),
-('4096', '256', '203', 'Unarmed'),
-('4096', '256', '204', 'Defense'),
-('4096', '256', '522', 'SPELLDEFENSE(DND)'),
-('4096', '256', '668', 'Language Common'),
-('4096', '256', '686', 'Shadow Bolt'),
-('4096', '256', '687', 'Demon Skin'),
-('4096', '256', '1180', 'Daggers'),
-('4096', '256', '2382', 'Generic'),
-('4096', '256', '2479', 'Honorless Target'),
-('4096', '256', '3050', 'Detect'),
-('4096', '256', '3365', 'Opening'),
-('4096', '256', '5009', 'Wands'),
-('4096', '256', '5019', 'Shoot'),
-('4096', '256', '6233', 'Closing'),
-('4096', '256', '6246', 'Closing'),
-('4096', '256', '6247', 'Opening'),
-('4096', '256', '6477', 'Opening'),
-('4096', '256', '6478', 'Opening'),
-('4096', '256', '6603', 'Attack'),
-('4096', '256', '7266', 'Duel'),
-('4096', '256', '7267', 'Grovel'),
-('4096', '256', '7355', 'Stuck'),
-('4096', '256', '8386', 'Attacking'),
-('4096', '256', '9078', 'Cloth'),
-('4096', '256', '9125', 'Generic'),
-('4096', '256', '813', 'Language Thalassian'),
-('4096', '256', '110005', 'Quel’dorei Meditation'),
-('4096', '256', '110006', 'Swiftness of the Rangers'),
-('4096', '256', '21651', 'Opening'),
-('4096', '256', '21652', 'Closing'),
-('4096', '256', '22027', 'Remove Insignia'),
-('4096', '256', '22810', 'Opening - No Text'),
-('4096', '256', '27215', 'Immolate'), -- Only 9?
-('4096', '256', '27209', 'Shadow Bolt'),
-('4096', '256', '27216', 'Corruption'),
-('4096', '256', '30909', 'Curse of Weakness'),
-('4096', '256', '27222', 'Life Tap'),
-('4096', '256', '27218', 'Curse of Agony'),
-('4096', '256', '6215', 'Fear'),
-('4096', '256', '27230', 'Create Healthstone'),
-('4096', '256', '27217', 'Drain Soul'),
-('4096', '256', '27259', 'Health Funnel'),
-('4096', '256', '27226', 'Curse of Recklessness'), -- Removed?
-('4096', '256', '27220', 'Drain Life'),
-('4096', '256', '5697', 'Unending Breath'),
-('4096', '256', '27238', 'Create Soulstone'),
-('4096', '256', '30459', 'Searing Pain'),
-('4096', '256', '27260', 'Demon Armor'),
-('4096', '256', '27212', 'Rain of Fire'),
-('4096', '256', '698', 'Ritual of Summoning'),
-('4096', '256', '5500', 'Sense Demons'),
-('4096', '256', '30908', 'Drain Mana'), -- Removed?
-('4096', '256', '11719', 'Curse of Tongues'),
-('4096', '256', '132', 'Detect Invisibility'),
-('4096', '256', '18647', 'Banish'),
-('4096', '256', '27213', 'Hellfire'),
-('4096', '256', '11726', 'Subjugate Demon'),
-('4096', '256', '27228', 'Curse of the Elements'),
-('4096', '256', '28610', 'Shadow Ward'),
-('4096', '256', '28172', 'Create Spellstone'),
-('4096', '256', '27250', 'Create Firestone'),
-('4096', '256', '17928', 'Howl of Terror'),
-('4096', '256', '27223', 'Death Coil'),
-('4096', '256', '27229', 'Curse of Shadow'), -- Removed?
-('4096', '256', '30545', 'Soul Fire'),
-('4096', '256', '30910', 'Curse of Doom'),
-('4096', '256', '18540', 'Ritual of Doom'),
-('4096', '256', '28189', 'Fel Armor'),
-('4096', '256', '32231', 'Incinerate'),
-('4096', '256', '29858', 'Soulshatter'),
-('4096', '256', '29893', 'Ritual of Souls'),
-('4096', '256', '27243', 'Seed of Corruption'),
-('4096', '256', '23161', 'Dreadsteed'),
-('4096', '256', '688', 'Summon Imp'),
-('4096', '256', '697', 'Summon Voidwalker'),
-('4096', '256', '712', 'Summon Succubus'),
-('4096', '256', '691', 'Summon Felhunter'), -- 10 of this?
-('4096', '256', '126', 'Eye of Kilrogg'),
--- High Elf Druid
-('4096', '1024', '81', 'Dodge'),
-('4096', '1024', '203', 'Unarmed'),
-('4096', '1024', '204', 'Defense'),
-('4096', '1024', '227', 'Staves'),
-('4096', '1024', '522', 'SPELLDEFENSE(DND)'),
-('4096', '1024', '668', 'Language Common'),
-('4096', '1024', '768', 'Cat Form'),
-('4096', '1024', '783', 'Travel Form'),
-('4096', '1024', '1066', 'Aquatic Form'),
-('4096', '1024', '1178', 'Bear Form(Passive)'),
-('4096', '1024', '1180', 'Daggers'),
-('4096', '1024', '2382', 'Generic'),
-('4096', '1024', '2479', 'Honorless Target'),
-('4096', '1024', '2782', 'Remove Curse'),
-('4096', '1024', '2893', 'Abolish Poison'),
-('4096', '1024', '3025', 'Cat Form(Passive)'),
-('4096', '1024', '3050', 'Detect'),
-('4096', '1024', '3365', 'Opening'),
-('4096', '1024', '5176', 'Wrath'),
-('4096', '1024', '5185', 'Healing Touch'),
-('4096', '1024', '5209', 'Challenging Roar'),
-('4096', '1024', '5225', 'Track Humanoids'),
-('4096', '1024', '5229', 'Enrage'),
-('4096', '1024', '5419', 'Travel Form(Passive)'),
-('4096', '1024', '5420', 'Tree of Life'),
-('4096', '1024', '5421', 'Aquatic Form(Passive)'),
-('4096', '1024', '6233', 'Closing'),
-('4096', '1024', '6246', 'Closing'),
-('4096', '1024', '6247', 'Opening'),
-('4096', '1024', '6477', 'Opening'),
-('4096', '1024', '6478', 'Opening'),
-('4096', '1024', '6603', 'Attack'),
-('4096', '1024', '6795', 'Growl'),
-('4096', '1024', '7266', 'Duel'),
-('4096', '1024', '7267', 'Grovel'),
-('4096', '1024', '7355', 'Stuck'),
-('4096', '1024', '8386', 'Attacking'),
-('4096', '1024', '8946', 'Cure Poison'),
-('4096', '1024', '8983', 'Bash'),
-('4096', '1024', '9077', 'Leather'),
-('4096', '1024', '9078', 'Cloth'),
-('4096', '1024', '9125', 'Generic'),
-('4096', '1024', '9634', 'Dire Bear Form'),
-('4096', '1024', '9635', 'Dire Bear Form(Passive)'),
-('4096', '1024', '9846', 'Tigers Fury'),
-('4096', '1024', '9913', 'Prowl'),
-('4096', '1024', '18658', 'Hibernate'),
-('4096', '1024', '18960', 'Teleport: Moonglade'),
-('4096', '1024', '813', 'Language Thalassian'),
-('4096', '1024', '110005', 'Quel’dorei Meditation'),
-('4096', '1024', '110006', 'Swiftness of the Rangers'),
-('4096', '1024', '21178', 'Bear Form(Passive2)'),
-('4096', '1024', '21651', 'Opening'),
-('4096', '1024', '21652', 'Closing'),
-('4096', '1024', '22027', 'Remove Insignia'),
-('4096', '1024', '22570', 'Maim'),
-('4096', '1024', '22810', 'Opening - No Text'),
-('4096', '1024', '22812', 'Bark Skin'),
-('4096', '1024', '24248', 'Ferocious Bite'),
-('4096', '1024', '24905', 'Moonkin Form(Passive)'),
-('4096', '1024', '26979', 'Healing Touch'),
-('4096', '1024', '26980', 'Regrowth'),
-('4096', '1024', '26982', 'Rejuvenation'),
-('4096', '1024', '26983', 'Tranquility'),
-('4096', '1024', '26985', 'Wrath'),
-('4096', '1024', '26986', 'Starfire'),
-('4096', '1024', '26988', 'Moonfire'),
-('4096', '1024', '26989', 'Entangling Roots'),
-('4096', '1024', '26990', 'Mark of the Wild'),
-('4096', '1024', '26991', 'Gift of the Wild'),
-('4096', '1024', '26992', 'Thorns'),
-('4096', '1024', '26993', 'Faerie Fire'), -- Removed?
-('4096', '1024', '26994', 'Rebirth'),
-('4096', '1024', '26995', 'Soothe Animal'),
-('4096', '1024', '26996', 'Maul'),
-('4096', '1024', '26997', 'Swipe (Bear)'),
-('4096', '1024', '26998', 'Demoralizing Roar'),
-('4096', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
-('4096', '1024', '27000', 'Claw'),
-('4096', '1024', '27002', 'Shred'),
-('4096', '1024', '27003', 'Rake'),
-('4096', '1024', '27004', 'Cower'),
-('4096', '1024', '27005', 'Ravage'),
-('4096', '1024', '27006', 'Pounce'),
-('4096', '1024', '27008', 'Rip'),
-('4096', '1024', '27012', 'Hurricane'),
-('4096', '1024', '27764', 'Fetish'),
-('4096', '1024', '29166', 'Innervate'),
-('4096', '1024', '33357', 'Dash'),
-('4096', '1024', '33745', 'Lacerate'),
-('4096', '1024', '33763', 'Lifebloom'),
-('4096', '1024', '33786', 'Cyclone'),
-('4096', '1024', '33948', 'Flight Form(Passive)'),
-('4096', '1024', '34123', 'Tree of Life(Passive)'),
-('4096', '1024', '40120', 'Swift Flight Form'),
-('4096', '1024', '40121', 'Swift Flight Form(Passive)'),
--- Mag'har Orc Warrior
-('14', '1', '78', 'Heroic Strike'),
-('14', '1', '81', 'Dodge'),
-('14', '1', '107', 'Block'),
-('14', '1', '196', 'One-Handed Axes'),
-('14', '1', '197', 'Two-Handed Axes'),
-('14', '1', '201', 'One-Handed Swords'),
-('14', '1', '203', 'Unarmed'),
-('14', '1', '204', 'Defense'),
-('14', '1', '522', 'SPELLDEFENSE(DND)'),
-('14', '1', '669', 'Language Orcish'),
-('14', '1', '2382', 'Generic'),
-('14', '1', '2457', 'Battle Stance'),
-('14', '1', '2479', 'Honorless Target'),
-('14', '1', '3050', 'Detect'),
-('14', '1', '3365', 'Opening'),
-('14', '1', '5301', 'Defensive State(DND)'),
-('14', '1', '6233', 'Closing'),
-('14', '1', '6246', 'Closing'),
-('14', '1', '6247', 'Opening'),
-('14', '1', '6477', 'Opening'),
-('14', '1', '6478', 'Opening'),
-('14', '1', '6603', 'Attack'),
-('14', '1', '7266', 'Duel'),
-('14', '1', '7267', 'Grovel'),
-('14', '1', '7355', 'Stuck'),
-('14', '1', '7376', 'Defensive Stance Passive'),
-('14', '1', '7381', 'Berserker Stance Passive'),
-('14', '1', '8386', 'Attacking'),
-('14', '1', '8737', 'Mail'),
-('14', '1', '9077', 'Leather'),
-('14', '1', '9078', 'Cloth'),
-('14', '1', '9116', 'Shield'),
-('14', '1', '9125', 'Generic'),
-('14', '1', '110001', 'Ancestral Call'),
-('14', '1', '110002', 'Savage Blood'),
-('14', '1', '110004', 'Unwavering Will'),
-('14', '1', '21156', 'Battle Stance Passive'),
-('14', '1', '110003', 'Sympathetic Vigor'),
-('14', '1', '21651', 'Opening'),
-('14', '1', '21652', 'Closing'),
-('14', '1', '22027', 'Remove Insignia'),
-('14', '1', '22810', 'Opening - No Text'),
-('14', '1', '32215', 'Victorious State'),
-('14', '1', '2048', 'Battle Shout'),
-('14', '1', '30324', 'Heroic Strike'),
-('14', '1', '11578', 'Charge'),
-('14', '1', '25208', 'Rend'),
-('14', '1', '25264', 'Thunder Clap'),
-('14', '1', '2687', 'Bloodrage'),
-('14', '1', '71', 'Defensive Stance'),
-('14', '1', '25225', 'Sunder Armor'),
-('14', '1', '355', 'Taunt'),
-('14', '1', '11585', 'Overpower'),
-('14', '1', '29704', 'Shield Bash'),
-('14', '1', '25203', 'Demoralizing Shout'),
-('14', '1', '30357', 'Revenge'),
-('14', '1', '25266', 'Mocking Blow'),
-('14', '1', '2565', 'Shield Block'),
-('14', '1', '676', 'Disarm'),
-('14', '1', '25231', 'Cleave'),
-('14', '1', '20230', 'Retaliation'),
-('14', '1', '5246', 'Intimidating Shout'),
-('14', '1', '25236', 'Execute'),
-('14', '1', '1161', 'Challenging Shout'),
-('14', '1', '871', 'Shield Wall'),
-('14', '1', '2458', 'Berserker Stance'),
-('14', '1', '25275', 'Intercept'),
-('14', '1', '25242', 'Slam'),
-('14', '1', '18499', 'Berserker Rage'),
-('14', '1', '1680', 'Whirlwind'),
-('14', '1', '6554', 'Pummel'),
-('14', '1', '1719', 'Recklessness'),
-('14', '1', '34428', 'Victory Rush'),
-('14', '1', '23920', 'Spell Reflection'),
-('14', '1', '469', 'Commanding Shout'),
-('14', '1', '3411', 'Intervene'),
-('14', '1', '25212', 'Hamstring'),
-('14', '1', '674', 'Dual Wield'),
-('14', '1', '750', 'Plate Armor'),
-('14', '1', '12678', 'Stance Mastery'),
--- Mag'har Orc Paladin
-('14', '2', '81', 'Dodge'),
-('14', '2', '107', 'Block'),
-('14', '2', '198', 'One-Handed Maces'),
-('14', '2', '199', 'Two-Handed Maces'),
-('14', '2', '203', 'Unarmed'),
-('14', '2', '204', 'Defense'),
-('14', '2', '522', 'SPELLDEFENSE(DND)'),
-('14', '2', '635', 'Holy Light'),
-('14', '2', '669', 'Language Orcish'),
-('14', '2', '750', 'Plate Armor'),
-('14', '2', '1020', 'Divine Shield'), -- Removed?
-('14', '2', '1038', 'Hand of Salvation'),
-('14', '2', '1044', 'Hand of Freedom'),
-('14', '2', '2382', 'Generic'),
-('14', '2', '2479', 'Honorless Target'),
-('14', '2', '3050', 'Detect'),
-('14', '2', '3127', 'Parry'),
-('14', '2', '3365', 'Opening'),
-('14', '2', '4987', 'Cleanse'),
-('14', '2', '5502', 'Sense Undead'),
-('14', '2', '5627', 'Turn Undead'), -- Removed?
-('14', '2', '6233', 'Closing'),
-('14', '2', '6246', 'Closing'),
-('14', '2', '6247', 'Opening'),
-('14', '2', '6477', 'Opening'),
-('14', '2', '6478', 'Opening'),
-('14', '2', '6603', 'Attack'),
-('14', '2', '7266', 'Duel'),
-('14', '2', '7267', 'Grovel'),
-('14', '2', '7355', 'Stuck'),
-('14', '2', '8386', 'Attacking'),
-('14', '2', '8737', 'Mail'),
-('14', '2', '9077', 'Leather'),
-('14', '2', '9078', 'Cloth'),
-('14', '2', '9116', 'Shield'),
-('14', '2', '9125', 'Generic'),
-('14', '2', '10278', 'Hand of Protection'),
-('14', '2', '10308', 'Hammer of Justice'),
-('14', '2', '10326', 'Turn Evil'),
-('14', '2', '19746', 'Concentration Aura'),
-('14', '2', '19752', 'Divine Intervention'),
-('14', '2', '20271', 'Judgement of Light'),
-('14', '2', '110001', 'Ancestral Call'),
-('14', '2', '110002', 'Savage Blood'),
-('14', '2', '110004', 'Unwavering Will'),
-('14', '2', '110003', 'Sympathetic Vigor'),
-('14', '2', '20773', 'Redemption'),
-('14', '2', '21084', 'Seal of Righteousness'),
-('14', '2', '21651', 'Opening'),
-('14', '2', '21652', 'Closing'),
-('14', '2', '22027', 'Remove Insignia'),
-('14', '2', '22810', 'Opening - No Text'),
-('14', '2', '23214', 'Charger'),
-('14', '2', '25780', 'Righteous Fury'),
-('14', '2', '25895', 'Greater Blessing of Salvation'), -- Removed?
-('14', '2', '25898', 'Greater Blessing of Kings'),
-('14', '2', '27136', 'Holy Light'),
-('14', '2', '27137', 'Flash of Light'),
-('14', '2', '27138', 'Exorcism'),
-('14', '2', '27139', 'Holy Wrath'),
-('14', '2', '27140', 'Blessing of Might'),
-('14', '2', '27141', 'Greater Blessing of Might'),
-('14', '2', '27142', 'Blessing of Wisdom'),
-('14', '2', '27143', 'Greater Blessing of Wisdom'),
-('14', '2', '27144', 'Blessing of Light'), -- Removed?
-('14', '2', '27145', 'Greater Blessing of Light'), -- Removed?
-('14', '2', '27148', 'Blessing of Sacrifice'), -- Removed?
-('14', '2', '27149', 'Devotion Aura'),
-('14', '2', '27150', 'Retribution Aura'),
-('14', '2', '27151', 'Shadow Resistance Aura'),
-('14', '2', '27152', 'Frost Resistance Aura'),
-('14', '2', '27153', 'Fire Resistance Aura'),
-('14', '2', '27154', 'Lay on Hands'),
-('14', '2', '27155', 'Seal of Righteousness'), -- Removed?
-('14', '2', '27158', 'Seal of the Crusader'), -- Removed?
-('14', '2', '27160', 'Seal of Light'), -- Removed?
-('14', '2', '27166', 'Seal of Wisdom'), -- Removed?
-('14', '2', '27169', 'Greater Blessing of Sanctuary'), -- Removed?
-('14', '2', '27173', 'Consecration'),
-('14', '2', '27180', 'Hammer of Wrath'),
-('14', '2', '27762', 'Libram'),
-('14', '2', '31789', 'Righteous Defense'),
-('14', '2', '31801', 'Seal of Vengeance'),
-('14', '2', '31884', 'Avenging Wrath'),
-('14', '2', '31895', 'Seal of Justice'), -- Removed?
-('14', '2', '32223', 'Crusader Aura'),
-('14', '2', '33776', 'Spiritual Attunement'),
--- Mag'har Orc Hunter
-('14', '4', '75', 'Auto Shot'),
-('14', '4', '81', 'Dodge'),
-('14', '4', '196', 'One-Handed Axes'),
-('14', '4', '203', 'Unarmed'),
-('14', '4', '204', 'Defense'),
-('14', '4', '264', 'Bows'),
-('14', '4', '522', 'SPELLDEFENSE(DND)'),
-('14', '4', '669', 'Language Orcish'),
-('14', '4', '2382', 'Generic'),
-('14', '4', '2479', 'Honorless Target'),
-('14', '4', '2973', 'Raptor Strike'),
-('14', '4', '3050', 'Detect'),
-('14', '4', '3365', 'Opening'),
-('14', '4', '6233', 'Closing'),
-('14', '4', '6246', 'Closing'),
-('14', '4', '6247', 'Opening'),
-('14', '4', '6477', 'Opening'),
-('14', '4', '6478', 'Opening'),
-('14', '4', '6603', 'Attack'),
-('14', '4', '7266', 'Duel'),
-('14', '4', '7267', 'Grovel'),
-('14', '4', '7355', 'Stuck'),
-('14', '4', '8386', 'Attacking'),
-('14', '4', '9077', 'Leather'),
-('14', '4', '9078', 'Cloth'),
-('14', '4', '9125', 'Generic'),
-('14', '4', '13358', 'Defensive State(DND)'),
-('14', '4', '110001', 'Ancestral Call'),
-('14', '4', '110002', 'Savage Blood'),
-('14', '4', '110004', 'Unwavering Will'),
-('14', '4', '110003', 'Sympathetic Vigor'),
-('14', '4', '21651', 'Opening'),
-('14', '4', '21652', 'Closing'),
-('14', '4', '22027', 'Remove Insignia'),
-('14', '4', '22810', 'Opening - No Text'),
-('14', '4', '24949', 'Defensive State 2(DND)'),
-('14', '4', '34082', 'Advantaged State(DND)'),
-('14', '4', '27014', 'Raptor Strike'),
-('14', '4', '1494', 'Track Beasts'),
-('14', '4', '13163', 'Aspect of the Monkey'),
-('14', '4', '27016', 'Serpent Sting'),
-('14', '4', '27019', 'Arcane Shot'),
-('14', '4', '14325', 'Hunters Mark'),
-('14', '4', '5116', 'Concussive Shot'),
-('14', '4', '27044', 'Aspect of the Hawk'),
-('14', '4', '883', 'Call Pet'),
-('14', '4', '2641', 'Dismiss Pet'),
-('14', '4', '6991', 'Feed Pet'),
-('14', '4', '982', 'Revive Pet'),
-('14', '4', '1515', 'Tame Beast'),
-('14', '4', '19883', 'Track Humanoids'),
-('14', '4', '27020', 'Distracting Shot'), -- Removed?
-('14', '4', '27046', 'Mend Pet'),
-('14', '4', '14268', 'Alliance Flag'), -- What?
-('14', '4', '6197', 'Eagle Eye'),
-('14', '4', '1002', 'Eyes of the Beast'),
-('14', '4', '14327', 'Scare Beast'),
-('14', '4', '27023', 'Immolation Trap'),
-('14', '4', '36916', 'Mongoose Bite'),
-('14', '4', '27021', 'Multi-Shot'),
-('14', '4', '19884', 'Track Undead'),
-('14', '4', '5118', 'Aspect of the Cheetah'),
-('14', '4', '27015', 'Disengage'), -- Removed?
-('14', '4', '14311', 'Freezing Trap'),
-('14', '4', '3043', 'Scorpid Sting'),
-('14', '4', '1462', 'Beast Lore'),
-('14', '4', '19885', 'Track Hidden'),
-('14', '4', '3045', 'Rapid Fire'),
-('14', '4', '19880', 'Track Elementals'),
-('14', '4', '13809', 'Frost Trap'),
-('14', '4', '13161', 'Aspect of the Beast'),
-('14', '4', '5384', 'Feign Death'),
-('14', '4', '1543', 'Flare'),
-('14', '4', '19878', 'Track Demons'),
-('14', '4', '27025', 'Explosive Trap'),
-('14', '4', '27018', 'Viper Sting'), -- Removed?
-('14', '4', '13159', 'Aspect of the Pack'),
-('14', '4', '19882', 'Track Giants'),
-('14', '4', '27022', 'Volley'),
-('14', '4', '27045', 'Aspect of the Wild'),
-('14', '4', '19879', 'Track Dragonkin'),
-('14', '4', '19801', 'Tranquilizing Shot'),
-('14', '4', '34120', 'Steady Shot'),
-('14', '4', '34074', 'Aspect of the Viper'),
-('14', '4', '34026', 'Kill Command'),
-('14', '4', '34600', 'Snake Trap'),
-('14', '4', '34477', 'Misdirection'),
-('14', '4', '674', 'Dual Wield'),
-('14', '4', '8737', 'Mail'),
-('14', '4', '5149', 'Beast Training'), -- Only 8?
-('14', '4', '3127', 'Parry'),
--- Mag'har Orc Rogue
-('14', '8', '81', 'Dodge'),
-('14', '8', '203', 'Unarmed'),
-('14', '8', '204', 'Defense'),
-('14', '8', '522', 'SPELLDEFENSE(DND)'),
-('14', '8', '669', 'Language Orcish'),
-('14', '8', '1180', 'Daggers'),
-('14', '8', '1752', 'Sinister Strike'),
-('14', '8', '2098', 'Eviscerate'),
-('14', '8', '2382', 'Generic'),
-('14', '8', '2479', 'Honorless Target'),
-('14', '8', '2567', 'Thrown'),
-('14', '8', '2764', 'Throw'),
-('14', '8', '3050', 'Detect'),
-('14', '8', '3365', 'Opening'),
-('14', '8', '6233', 'Closing'),
-('14', '8', '6246', 'Closing'),
-('14', '8', '6247', 'Opening'),
-('14', '8', '6477', 'Opening'),
-('14', '8', '6478', 'Opening'),
-('14', '8', '6603', 'Attack'),
-('14', '8', '7266', 'Duel'),
-('14', '8', '7267', 'Grovel'),
-('14', '8', '7355', 'Stuck'),
-('14', '8', '8386', 'Attacking'),
-('14', '8', '9077', 'Leather'),
-('14', '8', '9078', 'Cloth'),
-('14', '8', '9125', 'Generic'),
-('14', '8', '16092', 'Defensive State(DND)'),
-('14', '8', '110001', 'Ancestral Call'),
-('14', '8', '110002', 'Savage Blood'),
-('14', '8', '110004', 'Unwavering Will'),
-('14', '8', '21184', 'Rogue Passive(DND)'),
-('14', '8', '110003', 'Sympathetic Vigor'),
-('14', '8', '21651', 'Opening'),
-('14', '8', '21652', 'Closing'),
-('14', '8', '22027', 'Remove Insignia'),
-('14', '8', '22810', 'Opening - No Text'),
-('14', '8', '26865', 'Eviscerate'),
-('14', '8', '26862', 'Sinister Strike'),
-('14', '8', '1787', 'Stealth'),
-('14', '8', '26863', 'Backstab'),
-('14', '8', '921', 'Pick Pocket'),
-('14', '8', '38764', 'Gouge'),
-('14', '8', '26669', 'Evasion'),
-('14', '8', '11297', 'Sap'),
-('14', '8', '6774', 'Slice and Dice'),
-('14', '8', '11305', 'Sprint'),
-('14', '8', '38768', 'Kick'),
-('14', '8', '26866', 'Expose Armor'),
-('14', '8', '26884', 'Garrote'),
-('14', '8', '27448', 'Feint'),
-('14', '8', '1804', 'Pick Lock'),
-('14', '8', '27441', 'Ambush'),
-('14', '8', '2842', 'Poisons'),
-('14', '8', '1725', 'Distract'),
-('14', '8', '26867', 'Rupture'),
-('14', '8', '26889', 'Vanish'),
-('14', '8', '1833', 'Cheap Shot'),
-('14', '8', '1842', 'Disarm Trap'),
-('14', '8', '408', 'Kidney Shot'),
-('14', '8', '2094', 'Blind'),
-('14', '8', '32684', 'Envenom'),
-('14', '8', '26679', 'Deadly Throw'),
-('14', '8', '31224', 'Cloak of Shadows'),
-('14', '8', '5938', 'Shiv'),
-('14', '8', '8643', 'Kidney Shot'),
-('14', '8', '3127', 'Parry'),
-('14', '8', '674', 'Dual Wield'),
-('14', '8', '3776', 'Green Leather Bracers'),
-('14', '8', '9186', null), -- Removed?
-('14', '8', '21927', 'Natures Ally'),
-('14', '8', '22054', 'QAEnchant Bracer +7 Intellect'),
-('14', '8', '22055', null), -- Removed?
-('14', '8', '2836', 'Detect Traps'),
-('14', '8', '1860', 'Safe Fall'),
--- Mag'har Orc Priest
-('14', '16', '669', 'Language Orcish'),
-('14', '16', '110001', 'Ancestral Call'),
-('14', '16', '110002', 'Savage Blood'),
-('14', '16', '110004', 'Unwavering Will'),
-('14', '16', '110003', 'Sympathetic Vigor'),
-('14', '16', '81', 'Dodge'),
-('14', '16', '198', 'One-Handed Maces'),
-('14', '16', '203', 'Unarmed'),
-('14', '16', '204', 'Defense'),
-('14', '16', '522', 'SPELLDEFENSE(DND)'),
-('14', '16', '585', 'Smite'),
-('14', '16', '2050', 'Lesser Heal'),
-('14', '16', '2382', 'Generic'),
-('14', '16', '2479', 'Honorless Target'),
-('14', '16', '3050', 'Detect'),
-('14', '16', '3365', 'Opening'),
-('14', '16', '5009', 'Wands'),
-('14', '16', '5019', 'Shoot'),
-('14', '16', '6233', 'Closing'),
-('14', '16', '6246', 'Closing'),
-('14', '16', '6247', 'Opening'),
-('14', '16', '6477', 'Opening'),
-('14', '16', '6478', 'Opening'),
-('14', '16', '6603', 'Attack'),
-('14', '16', '7266', 'Duel'),
-('14', '16', '7267', 'Grovel'),
-('14', '16', '7355', 'Stuck'),
-('14', '16', '8386', 'Attacking'),
-('14', '16', '9078', 'Cloth'),
-('14', '16', '9125', 'Generic'),
-('14', '16', '21651', 'Opening'),
-('14', '16', '21652', 'Closing'),
-('14', '16', '22027', 'Remove Insignia'),
-('14', '16', '22810', 'Opening - No Text'),
-('14', '16', '25389', 'Power Word: Fortitude'),
-('14', '16', '25364', 'Smite'),
-('14', '16', '25368', 'Shadow Word: Pain'),
-('14', '16', '25218', 'Power Word: Shield'),
-('14', '16', '25429', 'Fade'), -- Removed?
-('14', '16', '25222', 'Renew'),
-('14', '16', '25375', 'Mind Blast'),
-('14', '16', '25435', 'Resurrection'),
-('14', '16', '25431', 'Inner Fire'),
-('14', '16', '528', 'Cure Disease'),
-('14', '16', '10890', 'Psychic Scream'),
-('14', '16', '988', 'Dispel Magic'),
-('14', '16', '6346', 'Fear Ward'),
-('14', '16', '25235', 'Flash Heal'),
-('14', '16', '25384', 'Holy Fire'),
-('14', '16', '25596', 'Mind Soothe'), -- Removed?
-('14', '16', '10955', 'Shackle Undead'),
-('14', '16', '10909', 'Mind Vision'),
-('14', '16', '25380', 'Mana Burn'), -- Removed?
-('14', '16', '10912', 'Mind Control'), -- Removed?
-('14', '16', '25308', 'Prayer of Healing'),
-('14', '16', '25433', 'Shadow Protection'),
-('14', '16', '552', 'Abolish Disease'),
-('14', '16', '1706', 'Levitate'),
-('14', '16', '25213', 'Greater Heal'),
-('14', '16', '25392', 'Prayer of Fortitude'),
-('14', '16', '39374', 'Prayer of Shadow Protection'),
-('14', '16', '32999', 'Prayer of Spirit'),
-('14', '16', '32996', 'Shadow Word: Death'),
-('14', '16', '32546', 'Binding Heal'),
-('14', '16', '34433', 'Shadowfiend'),
-('14', '16', '33076', 'Prayer of Mending'),
-('14', '16', '32375', 'Mass Dispel'),
-('14', '16', '25441', 'Feedback'), -- Removed?
-('14', '16', '25312', 'Divine Spirit'),
-('14', '16', '25437', 'Desperate Prayer'),
--- Mag'har Orc Shaman
-('14', '64', '81', 'Dodge'),
-('14', '64', '107', 'Block'),
-('14', '64', '198', 'One-Handed Maces'),
-('14', '64', '203', 'Unarmed'),
-('14', '64', '204', 'Defense'),
-('14', '64', '227', 'Staves'),
-('14', '64', '331', 'Healing Wave'),
-('14', '64', '403', 'Lightning Bolt'),
-('14', '64', '522', 'SPELLDEFENSE(DND)'),
-('14', '64', '669', 'Language Orcish'),
-('14', '64', '2382', 'Generic'),
-('14', '64', '2479', 'Honorless Target'),
-('14', '64', '3050', 'Detect'),
-('14', '64', '3365', 'Opening'),
-('14', '64', '6233', 'Closing'),
-('14', '64', '6246', 'Closing'),
-('14', '64', '6247', 'Opening'),
-('14', '64', '6477', 'Opening'),
-('14', '64', '6478', 'Opening'),
-('14', '64', '6603', 'Attack'),
-('14', '64', '7266', 'Duel'),
-('14', '64', '7267', 'Grovel'),
-('14', '64', '7355', 'Stuck'),
-('14', '64', '8386', 'Attacking'),
-('14', '64', '9077', 'Leather'),
-('14', '64', '9078', 'Cloth'),
-('14', '64', '9116', 'Shield'),
-('14', '64', '9125', 'Generic'),
-('14', '64', '110002', 'Savage Blood'),
-('14', '64', '110004', 'Unwavering Will'),
-('14', '64', '110003', 'Sympathetic Vigor'),
-('14', '64', '21651', 'Opening'),
-('14', '64', '21652', 'Closing'),
-('14', '64', '22027', 'Remove Insignia'),
-('14', '64', '22810', 'Opening - No Text'),
-('14', '64', '27763', 'Totem'),
-('14', '64', '33697', 'Blood Fury'),
-('14', '64', '25396', 'Healing Wave'),
-('14', '64', '25449', 'Lightning Bolt'),
-('14', '64', '25485', 'Rockbiter Weapon'), -- Removed?
-('14', '64', '25454', 'Earth Shock'),
-('14', '64', '25509', 'Stoneskin Totem'),
-('14', '64', '2484', 'Earthbind Totem'),
-('14', '64', '25472', 'Lightning Shield'),
-('14', '64', '25525', 'Stoneclaw Totem'),
-('14', '64', '25457', 'Flame Shock'),
-('14', '64', '25489', 'Flametongue Weapon'),
-('14', '64', '25533', 'Searing Totem'),
-('14', '64', '25528', 'Strength of Earth Totem'),
-('14', '64', '20777', 'Ancestral Spirit'),
-('14', '64', '25547', 'Fire Nova'),
-('14', '64', '8012', 'Purge'),
-('14', '64', '526', 'Cure Toxins'),
-('14', '64', '8143', 'Tremor Totem'),
-('14', '64', '25464', 'Frost Shock'),
-('14', '64', '25500', 'Frostbrand Weapon'),
-('14', '64', '2645', 'Ghost Wolf'),
-('14', '64', '25567', 'Healing Stream Totem'),
-('14', '64', '25420', 'Lesser Healing Wave'),
-('14', '64', '2870', 'Cure Disease'), -- Removed?
-('14', '64', '8166', 'Poison Cleansing Totem'),
-('14', '64', '131', 'Water Breathing'),
-('14', '64', '25560', 'Frost Resistance Totem'),
-('14', '64', '6196', 'Far Sight'),
-('14', '64', '25552', 'Magma Totem'),
-('14', '64', '25570', 'Mana Spring Totem'),
-('14', '64', '25563', 'Fire Resistance Totem'),
-('14', '64', '25557', 'Flametongue Totem'),
-('14', '64', '546', 'Water Walking'),
-('14', '64', '556', 'Astral Recall'),
-('14', '64', '8177', 'Grounding Totem'),
-('14', '64', '25574', 'Nature Resistance Totem'),
-('14', '64', '36936', 'Totemic Recall'),
-('14', '64', '25505', 'Windfury Weapon'),
-('14', '64', '421', 'Chain Lightning'),
-('14', '64', '25587', 'Windfury Totem'), -- Removed?
-('14', '64', '6495', 'Sentry Totem'),
-('14', '64', '25577', 'Windwall Totem'), -- Removed?
-('14', '64', '8170', 'Cleansing Totem'),
-('14', '64', '25423', 'Chain Heal'),
-('14', '64', '25359', 'Grace of Air Totem'), -- Removed?
-('14', '64', '25908', 'Tranquil Air Totem'), -- Removed?
-('14', '64', '33736', 'Water Shield'),
-('14', '64', '3738', 'Wrath of Air Totem'),
-('14', '64', '2062', 'Earth Elemental Totem'),
-('14', '64', '2894', 'Fire Elemental Totem'),
-('14', '64', '2825', 'Bloodlust'), -- Only 9?
-('14', '64', '25442', 'Chain Lightning'), -- Only 6?
-('14', '64', '8737', 'Mail'),
-('14', '64', '20608', 'Reincarnation'), -- Only 6?
--- Mag'har Orc Mage
-('14', '128', '669', 'Language Orcish'),
-('14', '128', '110001', 'Ancestral Call'),
-('14', '128', '110002', 'Savage Blood'),
-('14', '128', '110004', 'Unwavering Will'),
-('14', '128', '110003', 'Sympathetic Vigor'),
-('14', '128', '81', 'Dodge'),
-('14', '128', '133', 'Fireball'),
-('14', '128', '168', 'Frost Armor'),
-('14', '128', '203', 'Unarmed'),
-('14', '128', '204', 'Defense'),
-('14', '128', '227', 'Staves'),
-('14', '128', '522', 'SPELLDEFENSE(DND)'),
-('14', '128', '2382', 'Generic'),
-('14', '128', '2479', 'Honorless Target'),
-('14', '128', '3050', 'Detect'),
-('14', '128', '3365', 'Opening'),
-('14', '128', '5009', 'Wands'),
-('14', '128', '5019', 'Shoot'),
-('14', '128', '6233', 'Closing'),
-('14', '128', '6246', 'Closing'),
-('14', '128', '6247', 'Opening'),
-('14', '128', '6477', 'Opening'),
-('14', '128', '6478', 'Opening'),
-('14', '128', '6603', 'Attack'),
-('14', '128', '7266', 'Duel'),
-('14', '128', '7267', 'Grovel'),
-('14', '128', '7355', 'Stuck'),
-('14', '128', '8386', 'Attacking'),
-('14', '128', '9078', 'Cloth'),
-('14', '128', '9125', 'Generic'),
-('14', '128', '21651', 'Opening'),
-('14', '128', '21652', 'Closing'),
-('14', '128', '22027', 'Remove Insignia'),
-('14', '128', '22810', 'Opening - No Text'),
-('14', '128', '27126', 'Arcane Intellect'),
-('14', '128', '27070', 'Fireball'),
-('14', '128', '22018', null),
-('14', '128', '27072', 'Frostbolt'),
-('14', '128', '22019', null),
-('14', '128', '27079', 'Fire Blast'),
-('14', '128', '38704', 'Arcane Missiles'),
-('14', '128', '28272', 'Polymorph (Pig)'),
-('14', '128', '28271', 'Polymorph (Turtle)'),
-('14', '128', '12826', 'Polymorph (Sheep)'),
-('14', '128', '27088', 'Frost Nova'),
-('14', '128', '33944', 'Dampen Magic'),
-('14', '128', '130', 'Slow Fall'),
-('14', '128', '27082', 'Arcane Explosion'),
-('14', '128', '27086', 'Flamestrike'),
-('14', '128', '33946', 'Amplify Magic'),
-('14', '128', '475', 'Remove Curse'),
-('14', '128', '1953', 'Blink'),
-('14', '128', '27085', 'Blizzard'),
-('14', '128', '12051', 'Evocation'),
-('14', '128', '27128', 'Fire Ward'),
-('14', '128', '27131', 'Mana Shield'),
-('14', '128', '32796', 'Frost Ward'),
-('14', '128', '27074', 'Scorch'),
-('14', '128', '2139', 'Counterspell'),
-('14', '128', '27101', 'Conjure Mana Gem'),
-('14', '128', '27124', 'Ice Armor'),
-('14', '128', '45438', 'Ice Block'),
-('14', '128', '27125', 'Mage Armor'),
-('14', '128', '27127', 'Arcane Brilliance'),
-('14', '128', '30482', 'Molten Armor'),
-('14', '128', '30451', 'Arcane Blast'),
-('14', '128', '30455', 'Ice Lance'),
-('14', '128', '66', 'Invisibility'),
-('14', '128', '43987', 'Ritual of Refreshment'),
-('14', '128', '30449', 'Spellsteal'),
-('14', '128', '27087', 'Cone of Cold'),
--- Mag'har Orc Warlock
-('14', '256', '81', 'Dodge'),
-('14', '256', '203', 'Unarmed'),
-('14', '256', '204', 'Defense'),
-('14', '256', '522', 'SPELLDEFENSE(DND)'),
-('14', '256', '669', 'Language Orcish'),
-('14', '256', '686', 'Shadow Bolt'),
-('14', '256', '687', 'Demon Skin'),
-('14', '256', '1180', 'Daggers'),
-('14', '256', '2382', 'Generic'),
-('14', '256', '2479', 'Honorless Target'),
-('14', '256', '3050', 'Detect'),
-('14', '256', '3365', 'Opening'),
-('14', '256', '5009', 'Wands'),
-('14', '256', '5019', 'Shoot'),
-('14', '256', '6233', 'Closing'),
-('14', '256', '6246', 'Closing'),
-('14', '256', '6247', 'Opening'),
-('14', '256', '6477', 'Opening'),
-('14', '256', '6478', 'Opening'),
-('14', '256', '6603', 'Attack'),
-('14', '256', '7266', 'Duel'),
-('14', '256', '7267', 'Grovel'),
-('14', '256', '7355', 'Stuck'),
-('14', '256', '8386', 'Attacking'),
-('14', '256', '9078', 'Cloth'),
-('14', '256', '9125', 'Generic'),
-('14', '256', '110002', 'Savage Blood'),
-('14', '256', '110004', 'Unwavering Will'),
-('14', '256', '110003', 'Sympathetic Vigor'),
-('14', '256', '21651', 'Opening'),
-('14', '256', '21652', 'Closing'),
-('14', '256', '22027', 'Remove Insignia'),
-('14', '256', '22810', 'Opening - No Text'),
-('14', '256', '33702', 'Blood Fury'),
-('14', '256', '27215', 'Immolate'),
-('14', '256', '27209', 'Shadow Bolt'),
-('14', '256', '27216', 'Corruption'),
-('14', '256', '30909', 'Curse of Weakness'),
-('14', '256', '27222', 'Life Tap'),
-('14', '256', '27218', 'Curse of Agony'),
-('14', '256', '6215', 'Fear'),
-('14', '256', '27230', 'Create Healthstone'),
-('14', '256', '27217', 'Drain Soul'),
-('14', '256', '27259', 'Health Funnel'),
-('14', '256', '27226', 'Curse of Recklessness'), -- Removed?
-('14', '256', '27220', 'Drain Life'),
-('14', '256', '5697', 'Unending Breath'),
-('14', '256', '27238', 'Create Soulstone'),
-('14', '256', '30459', 'Searing Pain'),
-('14', '256', '27260', 'Demon Armor'),
-('14', '256', '27212', 'Rain of Fire'),
-('14', '256', '698', 'Ritual of Summoning'),
-('14', '256', '5500', 'Sense Demons'),
-('14', '256', '30908', 'Drain Mana'), -- Removed?
-('14', '256', '11719', 'Curse of Tongues'),
-('14', '256', '132', 'Detect Invisibility'),
-('14', '256', '18647', 'Banish'),
-('14', '256', '27213', 'Hellfire'),
-('14', '256', '11726', 'Subjugate Demon'),
-('14', '256', '27228', 'Curse of the Elements'),
-('14', '256', '28610', 'Shadow Ward'),
-('14', '256', '28172', 'Create Spellstone'),
-('14', '256', '27250', 'Create Firestone'),
-('14', '256', '17928', 'Howl of Terror'),
-('14', '256', '27223', 'Death Coil'),
-('14', '256', '27229', 'Curse of Shadow'), -- Removed?
-('14', '256', '30545', 'Soul Fire'),
-('14', '256', '30910', 'Curse of Doom'),
-('14', '256', '18540', 'Ritual of Doom'),
-('14', '256', '28189', 'Fel Armor'),
-('14', '256', '32231', 'Incinerate'),
-('14', '256', '29858', 'Soulshatter'),
-('14', '256', '29893', 'Ritual of Souls'),
-('14', '256', '27243', 'Seed of Corruption'),
-('14', '256', '23161', 'Dreadsteed'),
-('14', '256', '688', 'Summon Imp'),
-('14', '256', '697', 'Summon Voidwalker'),
-('14', '256', '712', 'Summon Succubus'),
-('14', '256', '691', 'Summon Felhunter'),
-('14', '256', '126', 'Eye of Kilrogg'),
--- Mag'har Orc Druid
-('14', '1024', '669', 'Language Orcish'),
-('14', '1024', '110001', 'Ancestral Call'),
-('14', '1024', '110002', 'Savage Blood'),
-('14', '1024', '110004', 'Unwavering Will'),
-('14', '1024', '110003', 'Sympathetic Vigor'),
-('14', '1024', '81', 'Dodge'),
-('14', '1024', '198', 'One-Handed Maces'),
-('14', '1024', '203', 'Unarmed'),
-('14', '1024', '204', 'Defense'),
-('14', '1024', '227', 'Staves'),
-('14', '1024', '522', 'SPELLDEFENSE(DND)'),
-('14', '1024', '1178', 'Bear Form(Passive)'),
-('14', '1024', '2382', 'Generic'),
-('14', '1024', '2479', 'Honorless Target'),
-('14', '1024', '3025', 'Cat Form(Passive)'),
-('14', '1024', '3050', 'Detect'),
-('14', '1024', '3365', 'Opening'),
-('14', '1024', '5176', 'Wrath'),
-('14', '1024', '5185', 'Healing Touch'),
-('14', '1024', '5419', 'Travel Form(Passive)'),
-('14', '1024', '5420', 'Tree of Life'),
-('14', '1024', '5421', 'Aquatic Form(Passive)'),
-('14', '1024', '6233', 'Closing'),
-('14', '1024', '6246', 'Closing'),
-('14', '1024', '6247', 'Opening'),
-('14', '1024', '6477', 'Opening'),
-('14', '1024', '6478', 'Opening'),
-('14', '1024', '6603', 'Attack'),
-('14', '1024', '7266', 'Duel'),
-('14', '1024', '7267', 'Grovel'),
-('14', '1024', '7355', 'Stuck'),
-('14', '1024', '8386', 'Attacking'),
-('14', '1024', '9077', 'Leather'),
-('14', '1024', '9078', 'Cloth'),
-('14', '1024', '9125', 'Generic'),
-('14', '1024', '9635', 'Dire Bear Form(Passive)'),
-('14', '1024', '21178', 'Bear Form(Passive2)'),
-('14', '1024', '21651', 'Opening'),
-('14', '1024', '21652', 'Closing'),
-('14', '1024', '22027', 'Remove Insignia'),
-('14', '1024', '22810', 'Opening - No Text'),
-('14', '1024', '24905', 'Moonkin Form(Passive)'),
-('14', '1024', '27764', 'Fetish'),
-('14', '1024', '33948', 'Flight Form(Passive)'),
-('14', '1024', '34123', 'Tree of Life(Passive)'),
-('14', '1024', '40121', 'Swift Flight Form(Passive)'),
-('14', '1024', '26979', 'Healing Touch'),
-('14', '1024', '26990', 'Mark of the Wild'),
-('14', '1024', '26985', 'Wrath'),
-('14', '1024', '26988', 'Moonfire'),
-('14', '1024', '26982', 'Rejuvenation'),
-('14', '1024', '26992', 'Thorns'),
-('14', '1024', '26989', 'Entangling Roots'),
-('14', '1024', '26998', 'Demoralizing Roar'),
-('14', '1024', '6795', 'Growl'),
-('14', '1024', '26996', 'Maul'),
-('14', '1024', '18960', 'Teleport: Moonglade'),
-('14', '1024', '9634', 'Dire Bear Form'),
-('14', '1024', '768', 'Cat Form'),
-('14', '1024', '783', 'Travel Form'),
-('14', '1024', '1066', 'Aquatic Form'),
-('14', '1024', '40120', 'Swift Flight Form'),
-('14', '1024', '5229', 'Enrage'),
-('14', '1024', '26980', 'Regrowth'),
-('14', '1024', '8983', 'Bash'),
-('14', '1024', '8946', 'Cure Poison'),
-('14', '1024', '26997', 'Swipe (Bear)'),
-('14', '1024', '26993', 'Faerie Fire'), -- Removed?
-('14', '1024', '18658', 'Hibernate'),
-('14', '1024', '27000', 'Claw'),
-('14', '1024', '9913', 'Prowl'),
-('14', '1024', '26994', 'Rebirth'),
-('14', '1024', '27008', 'Rip'),
-('14', '1024', '26986', 'Starfire'),
-('14', '1024', '27002', 'Shred'),
-('14', '1024', '26995', 'Soothe Animal'),
-('14', '1024', '27003', 'Rake'),
-('14', '1024', '2782', 'Remove Curse'),
-('14', '1024', '9846', 'Tigers Fury'),
-('14', '1024', '2893', 'Abolish Poison'),
-('14', '1024', '33357', 'Dash'),
-('14', '1024', '5209', 'Challenging Roar'),
-('14', '1024', '27004', 'Cower'),
-('14', '1024', '26983', 'Tranquility'),
-('14', '1024', '24248', 'Ferocious Bite'),
-('14', '1024', '27005', 'Ravage'),
-('14', '1024', '5225', 'Track Humanoids'),
-('14', '1024', '26999', 'Frenzied Regeneration'), -- Removed?
-('14', '1024', '27012', 'Hurricane'),
-('14', '1024', '27006', 'Pounce'),
-('14', '1024', '29166', 'Innervate'),
-('14', '1024', '22812', 'Bark Skin'),
-('14', '1024', '26991', 'Gift of the Wild'),
-('14', '1024', '22570', 'Maim'),
-('14', '1024', '33763', 'Lifebloom'),
-('14', '1024', '33745', 'Lacerate'),
-('14', '1024', '33786', 'Cyclone'),
-('14', '1024', '20719', 'Feline Grace');
+('1024', '1024', '40121', 'Swift Flight Form(Passive)');

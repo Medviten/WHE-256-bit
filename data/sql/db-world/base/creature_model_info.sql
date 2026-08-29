@@ -14,5 +14,5 @@ INSERT INTO `creature_model_info` (`DisplayID`, `BoundingRadius`, `CombatReach`,
 (94134, 0.406, 1.5, 1, 0), -- Running Wild Female
 (94135, 0.306, 1.5, 0, 0), -- Gilnean Male
 (94136, 0.306, 1.5, 1, 0), -- Gilnean Female
-(94137, 0.306, 1.5, 0, 0), -- Mag'har Male
-(94138, 0.306, 1.5, 1, 0); -- Mag'har Female
+(94226, 0.306, 1.5, 0, 0), -- Mag'har Male
+(94227, 0.306, 1.5, 1, 0); -- Mag'har Female
