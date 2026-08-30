@@ -1,215 +1,112 @@
--- [F-032] mod-maghar: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
+-- [F-032] mod-maghar: skillraceclassinfo: 1 inserts, 104 updates, 0 deletes
+SET @MagharOrc = 8192;
 
 -- New entries
-DELETE FROM `skillraceclassinfo` WHERE `id` = 1141;
+DELETE FROM `skillraceclassinfo` WHERE `id` = 1141; -- Skill 792: Racial - Mag'har Orc
 INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (1141, 792, 8192, 1535, 1170, 0, 0, 0);
 
 -- Changed values
-DELETE FROM `skillraceclassinfo` WHERE `id` = 21;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (21, 293, 8191, 3, 128, 40, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 24;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (24, 272, 8191, 1024, 1168, 10, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 26;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (26, 247, 8191, 1024, 1168, 20, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 27;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (27, 356, 8191, 1535, 128, 0, 23, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 28;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (28, 182, 8191, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 29;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (29, 186, 8191, 1535, 160, 0, 2, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 30;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (30, 393, 8191, 1535, 160, 0, 161, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 34;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (34, 273, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 35;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (35, 262, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 36;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (36, 263, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 37;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (37, 264, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 38;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (38, 260, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 40;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (40, 98, 7245, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 48;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (48, 109, 9138, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 49;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (49, 109, 7245, 1503, 160, 0, 21, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 54;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (54, 130, 8191, 128, 1168, 4, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 59;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (59, 96, 8191, 1024, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 62;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (62, 268, 8191, 2, 1170, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 64;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (64, 269, 8191, 2, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 65;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (65, 198, 8191, 2, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 66;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (66, 246, 8191, 2, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 73;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (73, 254, 8191, 8, 1168, 10, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 76;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (76, 241, 8191, 8, 128, 40, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 79;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (79, 238, 8191, 8, 1168, 4, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 81;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (81, 239, 8191, 8, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 83;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (83, 252, 8191, 9, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 84;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (84, 139, 8191, 1535, 160, 0, 21, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 85;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (85, 138, 8191, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 87;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (87, 148, 1, 1535, 1170, 0, 181, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 88;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (88, 141, 8191, 1535, 160, 0, 21, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 89;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (89, 152, 4, 1535, 1170, 0, 181, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 92;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (92, 150, 8, 1535, 1170, 0, 181, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 93;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (93, 140, 8191, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 94;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (94, 149, 2, 1535, 1170, 0, 181, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 97;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (97, 199, 8191, 64, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 104;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (104, 353, 8191, 256, 1170, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 105;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (105, 120, 8191, 256, 1170, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 106;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (106, 245, 8191, 1, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 108;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (108, 255, 8191, 1, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 111;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (111, 244, 8191, 1, 1168, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 112;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (112, 243, 8191, 1, 1170, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 113;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (113, 258, 8191, 1, 1168, 10, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 133;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (133, 46, 2404, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 137;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (137, 227, 8191, 1029, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 145;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (145, 413, 8191, 68, 128, 40, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 146;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (146, 413, 8191, 35, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 147;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (147, 414, 8191, 1135, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 148;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (148, 415, 8191, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 149;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (149, 242, 8191, 8, 1168, 16, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 151;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (151, 416, 8191, 1, 192, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 155;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (155, 416, 8191, 2, 192, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 158;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (158, 416, 8191, 1088, 192, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 159;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (159, 416, 8191, 12, 192, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 175;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (175, 418, 8191, 1, 384, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 178;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (178, 418, 8191, 2, 384, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 183;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (183, 418, 8191, 1284, 384, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 186;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (186, 418, 8191, 144, 384, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 189;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (189, 419, 8191, 12, 640, 0, 0, 2);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 191;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (191, 419, 8191, 1024, 640, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 193;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (193, 419, 8191, 144, 640, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 198;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (198, 419, 8191, 2, 640, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 200;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (200, 419, 8191, 1, 640, 0, 0, 2);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 203;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (203, 420, 8191, 13, 1152, 0, 0, 2);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 204;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (204, 420, 8191, 1026, 1152, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 205;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (205, 420, 8191, 272, 1152, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 241;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (241, 171, 8191, 1535, 160, 0, 41, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 243;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (243, 164, 8191, 1535, 160, 0, 41, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 244;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (244, 202, 8191, 1535, 160, 0, 41, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 246;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (246, 433, 8191, 67, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 265;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (265, 419, 8191, 256, 640, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 266;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (266, 419, 8191, 64, 640, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 268;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (268, 420, 8191, 128, 1152, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 269;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (269, 420, 8191, 64, 1152, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 270;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (270, 418, 8191, 72, 384, 0, 0, 1);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 271;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (271, 416, 8191, 400, 192, 0, 0, 2);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 272;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (272, 453, 8191, 3, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 281;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (281, 333, 8191, 1535, 160, 0, 62, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 282;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (282, 185, 8191, 1535, 128, 0, 61, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 284;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (284, 197, 8191, 1535, 160, 0, 62, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 328;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (328, 43, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 330;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (330, 473, 8191, 1101, 130, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 403;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (403, 515, 8191, 1535, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 441;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (441, 148, 8191, 1535, 1170, 0, 182, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 442;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (442, 152, 8191, 1535, 1170, 0, 182, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 443;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (443, 149, 8191, 1535, 1170, 0, 182, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 446;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (446, 533, 95, 1535, 1170, 0, 182, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 461;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (461, 553, 64, 1535, 1170, 0, 181, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 463;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (463, 554, 16, 1535, 1170, 0, 181, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 481;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (481, 150, 8191, 1535, 1170, 0, 182, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 622;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (622, 172, 8191, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 628;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (628, 44, 8191, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 630;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (630, 44, 8191, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 632;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (632, 173, 8191, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 634;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (634, 173, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 635;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (635, 46, 1691, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 637;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (637, 54, 2962, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 638;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (638, 43, 8191, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 642;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (642, 173, 8191, 1, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 644;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (644, 54, 8191, 4, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 742;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (742, 673, 8191, 1535, 160, 0, 41, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 865;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (865, 142, 8191, 1535, 0, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 866;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (866, 755, 8191, 1024, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 886;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (886, 43, 8191, 2, 128, 0, 0, 0);
-DELETE FROM `skillraceclassinfo` WHERE `id` = 899;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (899, 165, 8191, 1535, 160, 0, 41, 0);
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 21; -- Skill 293: Plate Mail
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 24; -- Skill 272: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 26; -- Skill 247: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 27; -- Skill 356: Fishing
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 28; -- Skill 182: Herbalism
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 29; -- Skill 186: Mining
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 30; -- Skill 393: Skinning
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 34; -- Skill 273: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 35; -- Skill 262: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 36; -- Skill 263: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 37; -- Skill 264: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 38; -- Skill 260: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 40; -- Skill 98: Language: Common
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 48; -- Skill 109: Language: Orcish
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 49; -- Skill 109: Language: Orcish
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 54; -- Skill 130: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 59; -- Skill 96: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 62; -- Skill 268: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 64; -- Skill 269: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 65; -- Skill 198: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 66; -- Skill 246: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 73; -- Skill 254: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 76; -- Skill 241: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 79; -- Skill 238: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 81; -- Skill 239: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 83; -- Skill 252: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 84; -- Skill 139: Language: Demon Tongue
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 85; -- Skill 138: Language: Draconic
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 87; -- Skill 148: Horse Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 88; -- Skill 141: Language: Old Tongue
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 89; -- Skill 152: Ram Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 92; -- Skill 150: Tiger Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 93; -- Skill 140: Language: Titan
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 94; -- Skill 149: Wolf Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 97; -- Skill 199: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 104; -- Skill 353: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 105; -- Skill 120: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 106; -- Skill 245: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 108; -- Skill 255: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 111; -- Skill 244: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 112; -- Skill 243: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 113; -- Skill 258: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 133; -- Skill 46: Guns
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 137; -- Skill 227: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 145; -- Skill 413: Mail
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 146; -- Skill 413: Mail
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 147; -- Skill 414: Leather
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 148; -- Skill 415: Cloth
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 149; -- Skill 242: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 151; -- Skill 416: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 155; -- Skill 416: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 158; -- Skill 416: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 159; -- Skill 416: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 175; -- Skill 418: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 178; -- Skill 418: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 183; -- Skill 418: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 186; -- Skill 418: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 189; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 191; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 193; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 198; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 200; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 203; -- Skill 420: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 204; -- Skill 420: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 205; -- Skill 420: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 241; -- Skill 171: Alchemy
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 243; -- Skill 164: Blacksmithing
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 244; -- Skill 202: Engineering
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 246; -- Skill 433: Shield
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 265; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 266; -- Skill 419: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 268; -- Skill 420: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 269; -- Skill 420: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 270; -- Skill 418: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 271; -- Skill 416: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 272; -- Skill 453: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 281; -- Skill 333: Enchanting
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 282; -- Skill 185: Cooking
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 284; -- Skill 197: Tailoring
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 328; -- Skill 43: Swords
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 330; -- Skill 473: Fist Weapons
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 403; -- Skill 515: NULL
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 441; -- Skill 148: Horse Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 442; -- Skill 152: Ram Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 443; -- Skill 149: Wolf Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 446; -- Skill 533: Raptor Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 461; -- Skill 553: Mechanostrider Piloting
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 463; -- Skill 554: Undead Horsemanship
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 481; -- Skill 150: Tiger Riding
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 622; -- Skill 172: Two-Handed Axes
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 628; -- Skill 44: Axes
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 630; -- Skill 44: Axes
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 632; -- Skill 173: Daggers
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 634; -- Skill 173: Daggers
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 635; -- Skill 46: Guns
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 637; -- Skill 54: Maces
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 638; -- Skill 43: Swords
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 642; -- Skill 173: Daggers
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 644; -- Skill 54: Maces
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 742; -- Skill 673: Language: Gutterspeak
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 865; -- Skill 142: Survival
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 866; -- Skill 755: Jewelcrafting
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 886; -- Skill 43: Swords
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @MagharOrc WHERE `id` = 899; -- Skill 165: Leatherworking

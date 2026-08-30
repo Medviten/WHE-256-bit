@@ -4,6 +4,7 @@
 #Generic
 #
 
+annotate_skillraceclassinfo.py
 .directory
 .mailmap
 *.orig
