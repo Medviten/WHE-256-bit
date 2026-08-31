@@ -1,12 +1,27 @@
+SET @HighElf          =   13;
+SET @Warrior          =    1;
+SET @Paladin          =    2;
+SET @Hunter           =    3;
+SET @Rogue            =    4;
+SET @Priest           =    5;
+SET @DeathKnight      =    6;
+SET @Shaman           =    7;
+SET @Mage             =    8;
+SET @Warlock          =    9;
+SET @Druid            =   11;
+SET @EasternKingdoms  =    0;
+SET @ElwynnForest     =   12;
+SET @Northrend        =  609;
+SET @ScarletEnclave   = 4298;
 INSERT IGNORE INTO `playercreateinfo` VALUES
 /* High Elf starting zone (Elwynn Forest) */
-(13, 1, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Warrior
-(13, 2, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Paladin
-(13, 3, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Hunter
-(13, 4, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Rogue
-(13, 5, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Priest
-(13, 6, 609, 4298, 2358.44, -5666.9, 426.023, 3.65997), -- High Elf Death Knight
-(13, 7, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Shaman (ARAC)
-(13, 8, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Mage
-(13, 9, 0, 12, -8949.95, -132.493, 83.5312, 0), -- High Elf Warlock
-(13, 11, 0, 12, -8949.95, -132.493, 83.5312, 0); -- High Elf Druid (ARAC)
+(@HighElf, @Warrior, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Warrior
+(@HighElf, @Paladin, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Paladin
+(@HighElf, @Hunter, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Hunter
+(@HighElf, @Rogue, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Rogue
+(@HighElf, @Priest, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Priest
+(@HighElf, @DeathKnight, @Northrend, @ScarletEnclave, 2358.44, -5666.9, 426.023, 3.65997), -- High Elf Death Knight
+(@HighElf, @Shaman, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Shaman (ARAC)
+(@HighElf, @Mage, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Mage
+(@HighElf, @Warlock, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0), -- High Elf Warlock
+(@HighElf, @Druid, @EasternKingdoms, @ElwynnForest, -8949.95, -132.493, 83.5312, 0); -- High Elf Druid (ARAC)
