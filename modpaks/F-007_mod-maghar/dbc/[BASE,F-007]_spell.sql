@@ -23,3 +23,15 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 'Racial', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190,
 'Your unbroken spirit reduces the duration of Stun effects by an additional $s1%.', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190,
 '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712188, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1.0000000000000000', '1.0000000000000000', '1.0000000000000000', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, '1.0000000000000000', '1.0000000000000000', '1.0000000000000000', 0, 0);
+
+UPDATE `spell` SET `spell_icon_id` = @IconAncestralCall    WHERE `id` = @MagharOrcRacial1;
+UPDATE `spell` SET `spell_icon_id` = @IconSavageBlood      WHERE `id` = @MagharOrcRacial2;
+UPDATE `spell` SET `spell_icon_id` = @IconSympatheticVigor WHERE `id` = @MagharOrcRacial3;
+UPDATE `spell` SET -- Changing @MagharOrcRacial4 to Open Skies
+    `effect_apply_aura_name_1` = 172, -- SPELL_AURA_MOD_MOUNTED_SPEED_NOT_STACK
+    `effect_base_points_1`     = 9,   -- +10%
+    `effect_misc_value_a_1`    = 0,
+    `spell_name_enus`          = 'Open Skies',
+    `spell_desc_enus`          = 'Increases mounted speed by $s1%.',
+    `spell_icon_id`            = @IconOpenSkies
+WHERE `id` = @MagharOrcRacial4;

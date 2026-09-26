@@ -2,6 +2,9 @@
 SET @Worgen                                := @NextRace := @NextRace +1; -- default: 12
 SET @WorgenMask                            = 1 << (@Worgen - 1); -- default: 2048
 SET @WorgenHelmetMask                      = 1 << @Worgen; -- default: 4096
+SET @Gilnean                                := @NextRace := @NextRace +1; -- default: 23
+SET @GilneanMask                            = 1 << (@Gilnean - 1); -- default: 4194304
+SET @GilneanHelmetMask                      = 1 << @Gilnean; -- default: 8388608
 
 -- Important variable update
 SET @AllianceMask                          = @AllianceMask     | @WorgenMask;

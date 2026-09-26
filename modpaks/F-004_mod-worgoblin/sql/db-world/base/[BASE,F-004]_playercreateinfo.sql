@@ -19,4 +19,4 @@ INSERT INTO `playercreateinfo` (`race`,`class`,`map`,`zone`,`position_x`,`positi
 (@Worgen, @Mage,        @Kalimdor,  @Teldrassil,     @NightElfStartX, @NightElfStartY, @NightElfStartZ, @NightElfStartO),
 (@Worgen, @Warlock,     @Kalimdor,  @Teldrassil,     @NightElfStartX, @NightElfStartY, @NightElfStartZ, @NightElfStartO),
 (@Worgen, @Druid,       @Kalimdor,  @Teldrassil,     @NightElfStartX, @NightElfStartY, @NightElfStartZ, @NightElfStartO),
-(@Worgen, @DeathKnight, @Northrend, @ScarletEnclave, @DKStartX,       @DKStartY,       @DKStartZ,       @DKStartO),
+(@Worgen, @DeathKnight, @Northrend, @ScarletEnclave, @DKStartX,       @DKStartY,       @DKStartZ,       @DKStartO);
