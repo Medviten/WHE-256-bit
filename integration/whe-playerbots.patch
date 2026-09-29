@@ -1,6 +1,6 @@
-diff -ruN a/data/sql/world/base/playerbots_rpg_races.sql b/mod-playerbots/data/sql/world/base/playerbots_rpg_races.sql
+diff -ruN a/data/sql/world/base/playerbots_rpg_races.sql b/data/sql/world/base/playerbots_rpg_races.sql
 --- a/data/sql/world/base/playerbots_rpg_races.sql	2026-06-25 00:27:27.320598400 +0200
-+++ b/mod-playerbots/data/sql/world/base/playerbots_rpg_races.sql	2026-09-06 22:13:48.337418400 +0200
++++ b/data/sql/world/base/playerbots_rpg_races.sql	2026-09-06 22:13:48.337418400 +0200
 @@ -23,80 +23,102 @@
  -- Draenei Bloodmyst Isle
  (NULL, 17553, 11, 10, 20),
@@ -969,9 +969,9 @@ diff -ruN a/data/sql/world/base/playerbots_rpg_races.sql b/mod-playerbots/data/s
 -(NULL, 6807, 15, 90, 90)
 +(NULL, 6807, 35, 90, 90)
  ;
-diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/mod-playerbots/src/Ai/Base/Actions/EmoteAction.cpp
+diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/src/Ai/Base/Actions/EmoteAction.cpp
 --- a/src/Ai/Base/Actions/EmoteAction.cpp	2026-06-25 00:29:46.435141700 +0200
-+++ b/mod-playerbots/src/Ai/Base/Actions/EmoteAction.cpp	2026-09-06 22:17:57.953627700 +0200
++++ b/src/Ai/Base/Actions/EmoteAction.cpp	2026-09-06 22:17:57.953627700 +0200
 @@ -881,6 +881,7 @@
          {
              case RACE_HUMAN:
@@ -1409,9 +1409,9 @@ diff -ruN a/src/Ai/Base/Actions/EmoteAction.cpp b/mod-playerbots/src/Ai/Base/Act
          }
      }
  
-diff -ruN a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/mod-playerbots/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
+diff -ruN a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp
 --- a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp	2026-06-25 00:30:20.486201100 +0200
-+++ b/mod-playerbots/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp	2026-09-06 22:18:34.377227000 +0200
++++ b/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp	2026-09-06 22:18:34.377227000 +0200
 @@ -252,9 +252,9 @@
      std::vector<uint32> races;
  
@@ -1424,9 +1424,9 @@ diff -ruN a/src/Ai/Base/Actions/ReviveFromCorpseAction.cpp b/mod-playerbots/src/
  
      float graveDistance = -1;
  
-diff -ruN a/src/Bot/Cmd/ChatHelper.cpp b/mod-playerbots/src/Bot/Cmd/ChatHelper.cpp
+diff -ruN a/src/Bot/Cmd/ChatHelper.cpp b/src/Bot/Cmd/ChatHelper.cpp
 --- a/src/Bot/Cmd/ChatHelper.cpp	2026-06-25 00:31:00.898342300 +0200
-+++ b/mod-playerbots/src/Bot/Cmd/ChatHelper.cpp	2026-09-06 22:19:14.737651900 +0200
++++ b/src/Bot/Cmd/ChatHelper.cpp	2026-09-06 22:19:14.737651900 +0200
 @@ -181,6 +181,12 @@
      races[RACE_UNDEAD_PLAYER] = "Undead";
      races[RACE_BLOODELF] = "Blood Elf";
@@ -1440,9 +1440,9 @@ diff -ruN a/src/Bot/Cmd/ChatHelper.cpp b/mod-playerbots/src/Bot/Cmd/ChatHelper.c
  }
  
  std::string const ChatHelper::formatMoney(uint32 copper)
-diff -ruN a/src/Bot/Factory/PlayerbotFactory.cpp b/mod-playerbots/src/Bot/Factory/PlayerbotFactory.cpp
+diff -ruN a/src/Bot/Factory/PlayerbotFactory.cpp b/src/Bot/Factory/PlayerbotFactory.cpp
 --- a/src/Bot/Factory/PlayerbotFactory.cpp	2026-06-25 00:31:34.168169300 +0200
-+++ b/mod-playerbots/src/Bot/Factory/PlayerbotFactory.cpp	2026-09-06 22:20:19.829262100 +0200
++++ b/src/Bot/Factory/PlayerbotFactory.cpp	2026-09-06 22:20:19.829262100 +0200
 @@ -3737,6 +3737,30 @@
              slow = {33660, 35020, 35022, 35018};
              fast = {35025, 35025, 35027};
@@ -1474,9 +1474,9 @@ diff -ruN a/src/Bot/Factory/PlayerbotFactory.cpp b/mod-playerbots/src/Bot/Factor
          default:
              if (bot->GetTeamId() == TEAM_HORDE)
              { // Orc mounts
-diff -ruN a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/mod-playerbots/src/Bot/Factory/RandomPlayerbotFactory.cpp
+diff -ruN a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/src/Bot/Factory/RandomPlayerbotFactory.cpp
 --- a/src/Bot/Factory/RandomPlayerbotFactory.cpp	2026-06-25 00:43:38.059201100 +0200
-+++ b/mod-playerbots/src/Bot/Factory/RandomPlayerbotFactory.cpp	2026-09-06 22:22:13.772254800 +0200
++++ b/src/Bot/Factory/RandomPlayerbotFactory.cpp	2026-09-06 22:22:13.772254800 +0200
 @@ -22,16 +22,22 @@
      NameRaceAndGender baseIndex;
      switch (race)
@@ -1508,9 +1508,9 @@ diff -ruN a/src/Bot/Factory/RandomPlayerbotFactory.cpp b/mod-playerbots/src/Bot/
          default:
              baseIndex = NameRaceAndGender::GenericMale;
              break;
-diff -ruN a/src/Bot/PlayerbotAI.cpp b/mod-playerbots/src/Bot/PlayerbotAI.cpp
+diff -ruN a/src/Bot/PlayerbotAI.cpp b/src/Bot/PlayerbotAI.cpp
 --- a/src/Bot/PlayerbotAI.cpp	2026-06-29 16:28:53.181532700 +0200
-+++ b/mod-playerbots/src/Bot/PlayerbotAI.cpp	2026-09-06 22:22:41.242232800 +0200
++++ b/src/Bot/PlayerbotAI.cpp	2026-09-06 22:22:41.242232800 +0200
 @@ -4392,7 +4392,7 @@
  bool IsAlliance(uint8 race)
  {
@@ -1520,9 +1520,9 @@ diff -ruN a/src/Bot/PlayerbotAI.cpp b/mod-playerbots/src/Bot/PlayerbotAI.cpp
  }
  
  Player* PlayerbotAI::FindNewMaster()
-diff -ruN a/src/Bot/RandomPlayerbotMgr.cpp b/mod-playerbots/src/Bot/RandomPlayerbotMgr.cpp
+diff -ruN a/src/Bot/RandomPlayerbotMgr.cpp b/src/Bot/RandomPlayerbotMgr.cpp
 --- a/src/Bot/RandomPlayerbotMgr.cpp	2026-06-29 14:54:19.446469100 +0200
-+++ b/mod-playerbots/src/Bot/RandomPlayerbotMgr.cpp	2026-09-06 22:23:22.317801300 +0200
++++ b/src/Bot/RandomPlayerbotMgr.cpp	2026-09-06 22:23:22.317801300 +0200
 @@ -1742,7 +1742,7 @@
                      Field* fields = results->Fetch();
                      ObjectGuid guid = ObjectGuid(HighGuid::Player, fields[0].Get<uint32>());
@@ -1532,9 +1532,9 @@ diff -ruN a/src/Bot/RandomPlayerbotMgr.cpp b/mod-playerbots/src/Bot/RandomPlayer
                      addclassCache[GetTeamClassIdx(isAlliance, claz)].insert(guid);
                      collected++;
                  } while (results->NextRow());
-diff -ruN a/src/Mgr/Travel/TravelNode.cpp b/mod-playerbots/src/Mgr/Travel/TravelNode.cpp
+diff -ruN a/src/Mgr/Travel/TravelNode.cpp b/src/Mgr/Travel/TravelNode.cpp
 --- a/src/Mgr/Travel/TravelNode.cpp	2026-06-29 14:54:19.458461600 +0200
-+++ b/mod-playerbots/src/Mgr/Travel/TravelNode.cpp	2026-09-06 22:24:14.548831000 +0200
++++ b/src/Mgr/Travel/TravelNode.cpp	2026-09-06 22:24:14.548831000 +0200
 @@ -1653,14 +1653,19 @@
  void TravelNodeMap::generateStartNodes()
  {
