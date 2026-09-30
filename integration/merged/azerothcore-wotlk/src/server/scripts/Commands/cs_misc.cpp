@@ -2344,6 +2344,18 @@ public:
             case RACE_DARKIRONDWARF:
                 raceStr = "Dark Iron Dwarf";
                 break;
+            case RACE_ZANDALARITROLL:
+                raceStr = "Zandalari Troll";
+                break;
+            case RACE_VULPERA:
+                raceStr = "Vulpera";
+                break;
+            case RACE_ALLIANCEPANDAREN:
+                raceStr = "Pandaren";
+                break;
+            case RACE_HORDEPANDAREN:
+                raceStr = "Pandaren";
+                break;
         }
 
         switch (classid)

@@ -1890,7 +1890,7 @@ uint32 ObjectMgr::GetModelForShapeshift(ShapeshiftForm form, Player* player) con
 {
     uint8 customizationID;
 
-    if (player->getRace() == RACE_TAUREN)
+    if ((player->getRace() == RACE_TAUREN) OR (player->getRace() == RACE_VULPERA) OR (player->getRace() == RACE_ALLIANCEPANDAREN) OR (player->getRace() == RACE_HORDEPANDAREN))
         customizationID = player->GetByteValue(PLAYER_BYTES, 0); // Use Skin Color
     else
         customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color

@@ -1653,19 +1653,23 @@ void TravelNodeMap::generateNpcNodes()
 void TravelNodeMap::generateStartNodes()
 {
     std::map<uint8, std::string> startNames;
-    startNames[RACE_HUMAN] = "Human and High Elf";
-    startNames[RACE_ORC] = "Orc, Troll, Goblin, Mag'har Orc and Ogre";
+    startNames[RACE_HUMAN] = "Human, High Elf and Alliance Pandaren";
+    startNames[RACE_ORC] = "Orc, Troll, Goblin, Mag'har Orc, Ogre and Zandalari Troll";
     startNames[RACE_DWARF] = "Dwarf, Gnome and Dark Iron Dwarf";
     startNames[RACE_NIGHTELF] = "Night Elf and Worgen";
     startNames[RACE_UNDEAD_PLAYER] = "Undead";
-    startNames[RACE_TAUREN] = "Tauren";
-    startNames[RACE_GNOME] = "Dwarf and Gnome";
-    startNames[RACE_TROLL] = "Orc, Troll, Goblin,  Mag'har Orc and Ogre";
-    startNames[RACE_GOBLIN] = "Orc, Troll, Goblin,  Mag'har Orc and Ogre";
+    startNames[RACE_TAUREN] = "Tauren, Vulpera and Horde Pandaren";
+    startNames[RACE_GNOME] = "Dwarf, Gnome and Dark Iron Dwarf";
+    startNames[RACE_TROLL] = "Orc, Troll, Goblin, Mag'har Orc, Ogre and Zandalari Troll";
+    startNames[RACE_GOBLIN] = "Orc, Troll, Goblin, Mag'har Orc, Ogre and Zandalari Troll";
     startNames[RACE_WORGEN] = "Night Elf and Worgen";
-    startNames[RACE_HIGHELF] = "Human and High Elf";
-    startNames[RACE_MAGHARORC] = "Orc, Troll, Goblin,  Mag'har Orc and Ogre";
+    startNames[RACE_HIGHELF] = "Human, High Elf and Alliance Pandaren";
+    startNames[RACE_MAGHARORC] = "Orc, Troll, Goblin, Mag'har Orc, Ogre and Zandalari Troll";
     startNames[RACE_DARKIRONDWARF] = "Dwarf, Gnome and Dark Iron Dwarf";
+    startNames[RACE_ZANDALARITROLL] = "Orc, Troll, Goblin, Mag'har Orc, Ogre and Zandalari Troll";
+    startNames[RACE_VULPERA] = "Tauren, Vulpera and Horde Pandaren";
+    startNames[RACE_ALLIANCEPANDAREN] = "Human, High Elf and Alliance Pandaren";
+    startNames[RACE_HORDEPANDAREN] = "Tauren, Vulpera and Horde Pandaren";
 
     for (uint32 i = 0; i < sRaceMgr->GetMaxRaces(); i++)
     {

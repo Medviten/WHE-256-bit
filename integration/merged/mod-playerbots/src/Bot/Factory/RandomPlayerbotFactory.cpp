@@ -22,22 +22,26 @@ constexpr RandomPlayerbotFactory::NameRaceAndGender RandomPlayerbotFactory::Comb
     NameRaceAndGender baseIndex;
     switch (race)
     {
-        case RACE_ORC:           baseIndex = NameRaceAndGender::OrcMale; break;
-        case RACE_DWARF:         baseIndex = NameRaceAndGender::DwarfMale; break;
-        case RACE_DARKIRONDWARF: baseIndex = NameRaceAndGender::DwarfMale; break; // Dwarf names for Dark Iron Dwarves
-        case RACE_NIGHTELF:      baseIndex = NameRaceAndGender::NightelfMale; break;
-        case RACE_TAUREN:        baseIndex = NameRaceAndGender::TaurenMale; break;
-        case RACE_GNOME:         baseIndex = NameRaceAndGender::GnomeMale; break;
-        case RACE_TROLL:         baseIndex = NameRaceAndGender::TrollMale; break;
-        case RACE_BLOODELF:      baseIndex = NameRaceAndGender::BloodelfMale; break;
-        case RACE_HIGHELF:       baseIndex = NameRaceAndGender::BloodelfMale; break; // Blood Elf names for High Elves
-        case RACE_DRAENEI:       baseIndex = NameRaceAndGender::DraeneiMale; break;
-        case RACE_GOBLIN:        baseIndex = NameRaceAndGender::GnomeMale; break; // Gnome names for Goblins
-        case RACE_MAGHARORC:     baseIndex = NameRaceAndGender::OrcMale; break; // Orc names for Mag'har Orcs
-        case RACE_OGRE:          baseIndex = NameRaceAndGender::OrcMale; break; // Orc names for Ogres
+        case RACE_ORC:            baseIndex = NameRaceAndGender::OrcMale; break;
+        case RACE_DWARF:          baseIndex = NameRaceAndGender::DwarfMale; break;
+        case RACE_DARKIRONDWARF:  baseIndex = NameRaceAndGender::DwarfMale; break; // Dwarf names for Dark Iron Dwarves
+        case RACE_NIGHTELF:       baseIndex = NameRaceAndGender::NightelfMale; break;
+        case RACE_TAUREN:         baseIndex = NameRaceAndGender::TaurenMale; break;
+        case RACE_GNOME:          baseIndex = NameRaceAndGender::GnomeMale; break;
+        case RACE_TROLL:          baseIndex = NameRaceAndGender::TrollMale; break;
+        case RACE_ZANDALARITROLL: baseIndex = NameRaceAndGender::TrollMale; break; // Troll names for Zandalari Trolls
+        case RACE_BLOODELF:       baseIndex = NameRaceAndGender::BloodelfMale; break;
+        case RACE_HIGHELF:        baseIndex = NameRaceAndGender::BloodelfMale; break; // Blood Elf names for High Elves
+        case RACE_DRAENEI:        baseIndex = NameRaceAndGender::DraeneiMale; break;
+        case RACE_GOBLIN:         baseIndex = NameRaceAndGender::GnomeMale; break; // Gnome names for Goblins
+        case RACE_MAGHARORC:      baseIndex = NameRaceAndGender::OrcMale; break; // Orc names for Mag'har Orcs
+        case RACE_OGRE:           baseIndex = NameRaceAndGender::OrcMale; break; // Orc names for Ogres
         case RACE_HUMAN:
         case RACE_UNDEAD_PLAYER:
         case RACE_WORGEN: // Generic names for Worgen
+        case RACE_VULPERA: // Generic names for Vulpera
+        case RACE_ALLIANCEPANDAREN: // Generic names for Alliance Pandaren
+        case RACE_HORDEPANDAREN: // Generic names for Horde Pandaren
         default:
             baseIndex = NameRaceAndGender::GenericMale;
             break;

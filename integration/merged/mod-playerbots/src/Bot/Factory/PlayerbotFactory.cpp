@@ -3761,6 +3761,22 @@ void PlayerbotFactory::InitMounts()
             slow = {6899, 6777, 6898};
             fast = {23238, 23239, 23240};
             break;
+        case RACE_ZANDALARITROLL:
+            slow = {10796, 10799, 8395};
+            fast = {23241, 23242, 23243};
+            break;
+        case RACE_VULPERA:
+            slow = {306423};
+            fast = {306424};
+            break;
+        case RACE_ALLIANCEPANDAREN:
+            slow = {127287, 120395};
+            fast = {127289, 127286};
+            break;
+        case RACE_HORDEPANDAREN:
+            slow = {127287, 120395};
+            fast = {127289, 127286};
+            break;
         default:
             if (bot->GetTeamId() == TEAM_HORDE)
             { // Orc mounts

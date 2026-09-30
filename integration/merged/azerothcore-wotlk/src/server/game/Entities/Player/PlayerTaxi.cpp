@@ -86,6 +86,18 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
         case RACE_DARKIRONDWARF:
             SetTaximaskNode(6);
             break;     // Dark Iron Dwarf
+        case RACE_ZANDALARITROLL:
+            SetTaximaskNode(23);
+            break;     // Zandalari Troll
+        case RACE_VULPERA:
+            SetTaximaskNode(22);
+            break;     // Vulpera
+        case RACE_ALLIANCEPANDAREN:
+            SetTaximaskNode(2);
+            break;     // Alliance Pandaren
+        case RACE_HORDEPANDAREN:
+            SetTaximaskNode(22);
+            break;     // Horde Pandaren
     }
 
     // new continent starting masks (It will be accessible only at new map)

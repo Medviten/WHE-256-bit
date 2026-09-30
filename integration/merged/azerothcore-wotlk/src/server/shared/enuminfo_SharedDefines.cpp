@@ -48,6 +48,10 @@ AC_API_EXPORT EnumText EnumUtils<Races>::ToString(Races value)
         case RACE_MAGHARORC: return { "RACE_MAGHARORC", "Mag'har Orc", "" };
         case RACE_OGRE: return { "RACE_OGRE", "Ogre", "" };
         case RACE_DARKIRONDWARF: return { "RACE_DARKIRONDWARF", "Dark Iron Dwarf", "" };
+        case RACE_ZANDALARITROLL: return { "RACE_ZANDALARITROLL", "Zandalari Troll", "" };
+        case RACE_VULPERA: return { "RACE_VULPERA", "Vulpera", "" };
+        case RACE_ALLIANCEPANDAREN: return { "RACE_ALLIANCEPANDAREN", "Pandaren", "" };
+        case RACE_HORDEPANDAREN: return { "RACE_HORDEPANDAREN", "Pandaren", "" };
         default: throw std::out_of_range("value");
     }
 }
@@ -76,6 +80,10 @@ AC_API_EXPORT Races EnumUtils<Races>::FromIndex(std::size_t index)
         case 13: return RACE_MAGHARORC;
         case 14: return RACE_OGRE;
         case 15: return RACE_DARKIRONDWARF;
+        case 16: return RACE_ZANDALARITROLL;
+        case 17: return RACE_VULPERA;
+        case 18: return RACE_ALLIANCEPANDAREN;
+        case 19: return RACE_HORDEPANDAREN;
         default: throw std::out_of_range("index");
     }
 }
@@ -101,6 +109,10 @@ AC_API_EXPORT std::size_t EnumUtils<Races>::ToIndex(Races value)
         case RACE_MAGHARORC: return 13;
         case RACE_OGRE: return 14;
         case RACE_DARKIRONDWARF: return 15;
+        case RACE_ZANDALARITROLL: return 16;
+        case RACE_VULPERA: return 17;
+        case RACE_ALLIANCEPANDAREN: return 18;
+        case RACE_HORDEPANDAREN: return 19;
         default: throw std::out_of_range("value");
     }
 }
