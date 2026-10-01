@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 17;
+MAX_RACES = 21;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -23,44 +23,93 @@ FRAMES_TO_BACKDROP_COLOR = {
 	"CharacterCreateNameEdit",
 };
 RACE_ICON_TCOORDS = {
-	["HUMAN_MALE"]            = {0,       0.0625, 0,    0.25},
-	["DWARF_MALE"]            = {0.0625,  0.125,  0,    0.25},
-	["GNOME_MALE"]            = {0.125,   0.1875, 0,    0.25},
-	["NIGHTELF_MALE"]         = {0.1875,  0.25,   0,    0.25},
-	["DRAENEI_MALE"]          = {0.25,    0.3125, 0,    0.25},
-	["WORGEN_MALE"]           = {0.3125,  0.375,  0,    0.25},
-	["HIGHELF_MALE"]          = {0.375,   0.4375, 0,    0.25},
-	["DARKIRONDWARF_MALE"]    = {0.4375,  0.5,    0,    0.25},
+	["HUMAN_MALE"]                = {0,       0.0625, 0,    0.25},
+	["DWARF_MALE"]                = {0.0625,  0.125,  0,    0.25},
+	["GNOME_MALE"]                = {0.125,   0.1875, 0,    0.25},
+	["NIGHTELF_MALE"]             = {0.1875,  0.25,   0,    0.25},
+	["DRAENEI_MALE"]              = {0.25,    0.3125, 0,    0.25},
+	["WORGEN_MALE"]               = {0.3125,  0.375,  0,    0.25},
+	["HIGHELF_MALE"]              = {0.375,   0.4375, 0,    0.25},
+	["DARKIRONDWARF_MALE"]        = {0.4375,  0.5,    0,    0.25},
+--	["LIGHTFORGEDDRAENEI_MALE"]   = {0.5,     0.5625, 0,    0.25},
+	["KULTIRAN_MALE"]             = {0.5625,  0.625,  0,    0.25},
+	["ALLIANCEPANDAREN_MALE"]     = {0.625,   0.6875, 0,    0.25},
+	
+	["TAUREN_MALE"]               = {0,       0.0625, 0.25, 0.5},
+	["SCOURGE_MALE"]              = {0.0625,  0.125,  0.25, 0.5},
+	["TROLL_MALE"]                = {0.125,   0.1875, 0.25, 0.5},
+	["ORC_MALE"]                  = {0.1875,  0.25,   0.25, 0.5},
+	["BLOODELF_MALE"]             = {0.25,    0.3125, 0.25, 0.5},
+	["GOBLIN_MALE"]               = {0.3125,  0.375,  0.25, 0.5},
+	["MAGHAR_MALE"]               = {0.375,   0.4375, 0.25, 0.5},
+	["OGRE_MALE"]                 = {0.4375,  0.5,    0.25, 0.5},
+	["ZANDALARITROLL_MALE"]       = {0.5,     0.5625, 0.25, 0.5},
+	["VULPERA_MALE"]              = {0.5625,  0.625,  0.25, 0.5},
+	["HORDEPANDAREN_MALE"]        = {0.625,   0.6875, 0.25, 0.5},
 
-	["TAUREN_MALE"]           = {0,       0.0625, 0.25, 0.5},
-	["SCOURGE_MALE"]          = {0.0625,  0.125,  0.25, 0.5},
-	["TROLL_MALE"]            = {0.125,   0.1875, 0.25, 0.5},
-	["ORC_MALE"]              = {0.1875,  0.25,   0.25, 0.5},
-	["BLOODELF_MALE"]         = {0.25,    0.3125, 0.25, 0.5},
-	["GOBLIN_MALE"]           = {0.3125,  0.375,  0.25, 0.5},
-	["MAGHAR_MALE"]           = {0.375,   0.4375, 0.25, 0.5},
-	["OGRE_MALE"]             = {0.4375,  0.5,    0.25, 0.5},
-	["ZANDALARITROLL_MALE"]   = {0.5,     0.5625, 0.25, 0.5},
+	["HUMAN_FEMALE"]              = {0,       0.0625, 0.5,  0.75},  
+	["DWARF_FEMALE"]              = {0.0625,  0.125,  0.5,  0.75},
+	["GNOME_FEMALE"]              = {0.125,   0.1875, 0.5,  0.75},
+	["NIGHTELF_FEMALE"]           = {0.1875,  0.25,   0.5,  0.75},
+	["DRAENEI_FEMALE"]            = {0.25,    0.3125, 0.5,  0.75},
+	["WORGEN_FEMALE"]             = {0.3125,  0.375,  0.5,  0.75},
+	["HIGHELF_FEMALE"]            = {0.375,   0.4375, 0.5,  0.75},
+	["DARKIRONDWARF_FEMALE"]      = {0.4375,  0.5,    0.5,  0.75},
+--	["LIGHTFORGEDDRAENEI_FEMALE"] = {0.5,  0.5625,    0.5,  0.75},
+	["KULTIRAN_FEMALE"]           = {0.5625,  0.625,  0.5,  0.75},
+	["ALLIANCEPANDAREN_FEMALE"]   = {0.625,  0.6875,  0.5,  0.75},
 
-	["HUMAN_FEMALE"]          = {0,       0.0625, 0.5,  0.75},  
-	["DWARF_FEMALE"]          = {0.0625,  0.125,  0.5,  0.75},
-	["GNOME_FEMALE"]          = {0.125,   0.1875, 0.5,  0.75},
-	["NIGHTELF_FEMALE"]       = {0.1875,  0.25,   0.5,  0.75},
-	["DRAENEI_FEMALE"]        = {0.25,    0.3125, 0.5,  0.75},
-	["WORGEN_FEMALE"]         = {0.3125,  0.375,  0.5,  0.75},
-	["HIGHELF_FEMALE"]        = {0.375,   0.4375, 0.5,  0.75},
-	["DARKIRONDWARF_FEMALE"]  = {0.4375,  0.5,    0.5,  0.75},
-
-	["TAUREN_FEMALE"]         = {0,       0.0625, 0.75, 1.0},   
-	["SCOURGE_FEMALE"]        = {0.0625,  0.125,  0.75, 1.0}, 
-	["TROLL_FEMALE"]          = {0.125,   0.1875, 0.75, 1.0}, 
-	["ORC_FEMALE"]            = {0.1875,  0.25,   0.75, 1.0}, 
-	["BLOODELF_FEMALE"]       = {0.25,    0.3125, 0.75, 1.0}, 
-	["GOBLIN_FEMALE"]         = {0.3125,  0.375,  0.75, 1.0},
-	["MAGHAR_FEMALE"]         = {0.375,   0.4375, 0.75, 1.0},
-	["OGRE_FEMALE"]           = {0.4375,  0.5,    0.75, 1.0},
-	["ZANDALARITROLL_FEMALE"] = {0.5,     0.5625, 0.75, 1.0},
+	["TAUREN_FEMALE"]             = {0,       0.0625, 0.75, 1.0},   
+	["SCOURGE_FEMALE"]            = {0.0625,  0.125,  0.75, 1.0}, 
+	["TROLL_FEMALE"]              = {0.125,   0.1875, 0.75, 1.0}, 
+	["ORC_FEMALE"]                = {0.1875,  0.25,   0.75, 1.0}, 
+	["BLOODELF_FEMALE"]           = {0.25,    0.3125, 0.75, 1.0}, 
+	["GOBLIN_FEMALE"]             = {0.3125,  0.375,  0.75, 1.0},
+	["MAGHAR_FEMALE"]             = {0.375,   0.4375, 0.75, 1.0},
+	["OGRE_FEMALE"]               = {0.4375,  0.5,    0.75, 1.0},
+	["ZANDALARITROLL_FEMALE"]     = {0.5,     0.5625, 0.75, 1.0},
+	["VULPERA_FEMALE"]            = {0.5625,  0.625,  0.75, 1.0},
+	["HORDEPANDAREN_FEMALE"]      = {0.625,   0.6875, 0.75, 1.0},
 };
+
+-- Fixed button layout for every race, independent of whatever order (or
+-- completeness) GetAvailableRaces() returns them in. Add new races here as
+-- you add them to your DBCs -- this is what keeps one missing/mis-flagged
+-- race from shifting every race after it into the wrong icon slot.
+-- Matches the layout documented in CharacterCreate.xml.
+RACE_VISUAL_SLOTS = {
+	["HUMAN"]            = 1,
+	["DWARF"]            = 2,
+	["GNOME"]            = 3,
+	["NIGHTELF"]         = 4,
+	["DRAENEI"]          = 5,
+	["WORGEN"]           = 6,
+	["ALLIANCEPANDAREN"] = 7,
+	["DARKIRONDWARF"]    = 8,
+	["KULTIRAN"]         = 9,
+	["HIGHELF"]          = 10,
+	["ORC"]              = 11,
+	["SCOURGE"]          = 12,
+	["TAUREN"]           = 13,
+	["TROLL"]            = 14,
+	["BLOODELF"]         = 15,
+	["GOBLIN"]           = 16,
+	["HORDEPANDAREN"]    = 17,
+	["MAGHAR"]           = 18,
+	["ZANDALARITROLL"]   = 19,
+	["VULPERA"]          = 20,
+	["OGRE"]             = 21,
+};
+
+-- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead
+-- of returning nil, so a race with a missing/misnamed icon entry just shows
+-- a placeholder icon instead of throwing a Lua error and aborting whatever
+-- function called it (which is what silently broke every race after the
+-- broken one previously).
+function GetSafeRaceIconCoords(fileString, gender)
+	local key = strupper((fileString or "HUMAN").."_"..(gender or "MALE"));
+	return RACE_ICON_TCOORDS[key] or RACE_ICON_TCOORDS["HUMAN_"..(gender or "MALE")];
+end
 CLASS_ICON_TCOORDS = {
 	["WARRIOR"]	              = {0, 0.25, 0, 0.25},
 	["MAGE"]	              = {0.25, 0.49609375, 0, 0.25},
@@ -173,9 +222,6 @@ function CharacterCreateEnumerateRaces(...)
 		message("Too many races!  Update MAX_RACES");
 		return;
 	end
-	local coords;
-	local index = 1;
-	local button;
 	local gender;
 	local selectedSex = GetSelectedSex();
 	if ( selectedSex == SEX_MALE ) then
@@ -183,27 +229,70 @@ function CharacterCreateEnumerateRaces(...)
 	elseif ( selectedSex == SEX_FEMALE ) then
 		gender = "FEMALE";
 	end
-	for i=1, select("#", ...), 3 do
-		coords = RACE_ICON_TCOORDS[strupper(select(i+1, ...).."_"..gender)];
-		_G["CharacterCreateRaceButton"..index.."NormalTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
-		_G["CharacterCreateRaceButton"..index.."PushedTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
-		button = _G["CharacterCreateRaceButton"..index];
-		button:Show();
-		if ( select(i+2, ...) == 1 ) then
-			button.enable = true;
-			SetButtonDesaturated(button);
-			button.name = select(i, ...)
-			button.tooltip = select(i, ...);
-		else
-			button.enable = false;
-			SetButtonDesaturated(button, 1);
-			button.name = select(i, ...)
-			button.tooltip = _G[strupper(select(i+1, ...).."_".."DISABLED")];
-		end
-		index = index + 1;
-	end
-	for i=CharacterCreate.numRaces + 1, MAX_RACES, 1 do
+
+	-- Start clean: hide every button first. A race that's absent from the
+	-- list entirely (rather than merely disabled) will now just leave its
+	-- own slot hidden instead of letting every race after it slide over.
+	for i=1, MAX_RACES, 1 do
 		_G["CharacterCreateRaceButton"..i]:Hide();
+	end
+
+	-- realIndex is the race's position in the sequence GetAvailableRaces()
+	-- handed us -- this is what SetSelectedRace()/SetCharacterRace() expect
+	-- to receive, and it can differ from the button's fixed visual slot.
+	local slotData = {};
+	local usedSlots = {};
+	local unslotted = {};
+
+	for i=1, select("#", ...), 3 do
+		local realIndex = (i - 1)/3 + 1;
+		local raceName   = select(i, ...);
+		local fileString = select(i+1, ...);
+		local enabled    = select(i+2, ...);
+		local slot = RACE_VISUAL_SLOTS[strupper(fileString)];
+		if ( slot ) then
+			slotData[slot] = {realIndex, raceName, fileString, enabled};
+			usedSlots[slot] = true;
+		else
+			-- A race we haven't added to RACE_VISUAL_SLOTS yet -- rather than
+			-- drop it, queue it for the first free slot below so it still
+			-- shows up somewhere instead of silently vanishing.
+			table.insert(unslotted, {realIndex, raceName, fileString, enabled});
+		end
+	end
+
+	local nextFreeSlot = 1;
+	for _, data in ipairs(unslotted) do
+		while ( usedSlots[nextFreeSlot] ) do
+			nextFreeSlot = nextFreeSlot + 1;
+		end
+		slotData[nextFreeSlot] = data;
+		usedSlots[nextFreeSlot] = true;
+		nextFreeSlot = nextFreeSlot + 1;
+	end
+
+	for slot=1, MAX_RACES, 1 do
+		local data = slotData[slot];
+		if ( data ) then
+			local realIndex, raceName, fileString, enabled = data[1], data[2], data[3], data[4];
+			local coords = GetSafeRaceIconCoords(fileString, gender);
+			local button = _G["CharacterCreateRaceButton"..slot];
+			_G["CharacterCreateRaceButton"..slot.."NormalTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
+			_G["CharacterCreateRaceButton"..slot.."PushedTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
+			button.raceIndex = realIndex;
+			button:Show();
+			if ( enabled == 1 ) then
+				button.enable = true;
+				SetButtonDesaturated(button);
+				button.name = raceName;
+				button.tooltip = raceName;
+			else
+				button.enable = false;
+				SetButtonDesaturated(button, 1);
+				button.name = raceName;
+				button.tooltip = _G[strupper(fileString).."_DISABLED"];
+			end
+		end
 	end
 end
 
@@ -247,9 +336,9 @@ end
 function SetCharacterRace(id)
 	CharacterCreate.selectedRace = id;
 	local selectedButton;
-	for i=1, CharacterCreate.numRaces, 1 do
+	for i=1, MAX_RACES, 1 do
 		local button = _G["CharacterCreateRaceButton"..i];
-		if ( i == id ) then
+		if ( button.raceIndex == id ) then
 			_G["CharacterCreateRaceButton"..i.."Text"]:SetText(button.name);
 			button:SetChecked(1);
 			selectedButton = button;
@@ -272,7 +361,7 @@ function SetCharacterRace(id)
 	else
 		gender = "FEMALE";
 	end
-	local coords = RACE_ICON_TCOORDS[fileString.."_"..gender];
+	local coords = GetSafeRaceIconCoords(fileString, gender);
 	CharacterCreateRaceIcon:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 	local raceText = _G["RACE_INFO_"..fileString];
 	local abilityIndex = 1;
@@ -349,6 +438,16 @@ end
 
 function CharacterCreate_UpdateModel(self)
 	UpdateCustomizationScene();
+
+	-- UpdateCustomizationScene() resyncs the live camera every frame, which
+	-- would silently overwrite any one-time SetPosition() call elsewhere.
+	-- Reapply our per-race framing fix (or the live /modeloffset debug
+	-- value) here, after the native reset, so it actually sticks.
+	local offset = CharacterCreateDebugOffset or BackgroundModelPositionOffset[self.backgroundRaceKey or ""];
+	if ( offset ) then
+		self:SetPosition(offset.x, offset.y, offset.z);
+	end
+
 	self:AdvanceTime();
 end
 
@@ -435,7 +534,7 @@ function SetCharacterGender(sex)
 	local race, fileString = GetNameForRace();
 	CharacterCreateRaceLabel:SetText(race);
 	fileString = strupper(fileString);
-	local coords = RACE_ICON_TCOORDS[fileString.."_"..gender];
+	local coords = GetSafeRaceIconCoords(fileString, gender);
 	CharacterCreateRaceIcon:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 	
 	CharacterChangeFixup();
@@ -543,26 +642,31 @@ function CharacterChangeFixup()
 		end
 
 		for i=1, MAX_RACES, 1 do
-			local allow = false;
-			if ( PAID_SERVICE_TYPE == PAID_FACTION_CHANGE ) then
-				local faction = GetFactionForRace(PaidChange_GetCurrentRaceIndex());
-				if ( (i == PaidChange_GetCurrentRaceIndex()) or ((GetFactionForRace(i) ~= faction) and (IsRaceClassValid(i,CharacterCreate.selectedClass))) ) then
-					allow = true;
+			local button = _G["CharacterCreateRaceButton"..i];
+			-- Use the button's real race index (set in CharacterCreateEnumerateRaces),
+			-- not its fixed visual slot number, when asking the engine about a race.
+			local raceID = button.raceIndex;
+			if ( raceID ) then
+				local allow = false;
+				if ( PAID_SERVICE_TYPE == PAID_FACTION_CHANGE ) then
+					local faction = GetFactionForRace(PaidChange_GetCurrentRaceIndex());
+					if ( (raceID == PaidChange_GetCurrentRaceIndex()) or ((GetFactionForRace(raceID) ~= faction) and (IsRaceClassValid(raceID,CharacterCreate.selectedClass))) ) then
+						allow = true;
+					end
+				elseif ( PAID_SERVICE_TYPE == PAID_RACE_CHANGE ) then
+					local faction = GetFactionForRace(PaidChange_GetCurrentRaceIndex());
+					if ( (raceID == PaidChange_GetCurrentRaceIndex()) or ((GetFactionForRace(raceID) == faction) and (IsRaceClassValid(raceID,CharacterCreate.selectedClass))) ) then
+						allow = true
+					end
+				elseif ( PAID_SERVICE_TYPE == PAID_CHARACTER_CUSTOMIZATION ) then
+					if ( raceID == CharacterCreate.selectedRace ) then
+						allow = true
+					end
 				end
-			elseif ( PAID_SERVICE_TYPE == PAID_RACE_CHANGE ) then
-				local faction = GetFactionForRace(PaidChange_GetCurrentRaceIndex());
-				if ( (i == PaidChange_GetCurrentRaceIndex()) or ((GetFactionForRace(i) == faction) and (IsRaceClassValid(i,CharacterCreate.selectedClass))) ) then
-					allow = true
+				if (not allow) then
+					button:Disable();
+					SetButtonDesaturated(button, true)
 				end
-			elseif ( PAID_SERVICE_TYPE == PAID_CHARACTER_CUSTOMIZATION ) then
-				if ( i == CharacterCreate.selectedRace ) then
-					allow = true
-				end
-			end
-			if (not allow) then
-				local button = _G["CharacterCreateRaceButton"..i];
-				button:Disable();
-				SetButtonDesaturated(button, true)
 			end
 		end
 	end

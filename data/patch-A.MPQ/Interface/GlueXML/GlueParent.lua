@@ -1,4 +1,3 @@
-
 CurrentGlueMusic = "GS_LichKing";
 
 GlueCreditsSoundKits = { };
@@ -49,10 +48,15 @@ GlueAmbienceTracks["CHARACTERSELECT"] = "GlueScreenIntro";
 GlueAmbienceTracks["GOBLIN"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["WORGEN"] = "GlueScreenHuman";
 GlueAmbienceTracks["HIGHELF"] = "GlueScreenHuman";
+GlueAmbienceTracks["KULTIRAN"] = "GlueScreenTauren";
 GlueAmbienceTracks["MAGHAR"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["OGRE"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["DARKIRONDWARF"] = "GlueScreenDwarfGnome";
-
+GlueAmbienceTracks["ZANDALARITROLL"] = "GlueScreenTauren";
+GlueAmbienceTracks["VULPERA"] = "GlueScreenTauren";
+GlueAmbienceTracks["ALLIANCEPANDAREN"] = "GlueScreenNightElf";
+GlueAmbienceTracks["HORDEPANDAREN"] = "GlueScreenTauren";
+-- GlueAmbienceTracks["LIGHTFORGEDDRAENEI"] = "GlueScreenDraenei";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -122,6 +126,34 @@ RaceLights = {
 		{1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.30000,    0.30000,    0.30000,    0.0,    0.00000,    0.00000,    0.00000},
         {1,     0,  -0.88314,       0.42916,        -0.18945,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.44706,    0.67451,    0.760785},
     },
+    ZANDALARITROLL = {
+        {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
+        {1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.55,       0.338625,   0.148825},
+    },
+    VULPERA = {
+        {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
+        {1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.55,       0.338625,   0.148825},
+    },
+    ALLIANCEPANDAREN = {
+		{1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.09020,    0.09020,    0.17020,    1.0,    0.00000,    0.00000,    0.00000},
+    },
+    HORDEPANDAREN = {
+        {1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
+        {1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.55,       0.338625,   0.148825},
+    },
+    KULTIRAN = {
+		{1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
+--    LIGHTFORGEDDRAENEI = {
+--		{1,     0,  0.61185,        0.62942,        -0.47903,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.56941,    0.52000,    0.60000},
+--        {1,     0,  -0.64345,       -0.31052,       -0.69968,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60941,    0.60392,    0.70000},
+--        {1,     0,  -0.46481,       -0.14320,       0.87376,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.5835,     0.48941,    0.60000},
+--    },
 }
 
 -- indicies for adding lights ModelFFX:Add*Light
@@ -403,6 +435,18 @@ function SetLighting(model, race)
 	end
 end
 
+-- Some added races reuse another race's background .m2 (see the name-swap
+-- chain below), so the baked-in camera framing doesn't match their actual
+-- proportions and can crop the face out of view. This nudges the model
+-- relative to the fixed camera to compensate. Keyed by the ORIGINAL race
+-- name (nameupper, captured before the swap below). x = toward/away from
+-- camera (more negative x = further away = appears smaller), z = up/down.
+-- Start with small values like these and tune per-race in-game.
+BackgroundModelPositionOffset = {
+	["OGRE"]    = { x = -16, y = 0, z = 16 },   -- reuses Orc's camera; Ogre is taller
+	["VULPERA"] = { x = 0.3,  y = 0, z = -0.15 }, -- reuses Tauren's camera; Vulpera is smaller
+};
+
 -- Function to set the background model for character select and create screens
 function SetBackgroundModel(model, name)
     local nameupper = strupper(name);
@@ -411,13 +455,41 @@ function SetBackgroundModel(model, name)
 		name = "Human";
 	end
 
-	if (name == "Maghar" or name == "MAGHAR" or name == "Mag'har" or name == "MAG'HAR" or name == "Ogre" or name == "OGRE") then
+	if (name == "KulTiran" or name == "KULTIRAN" or name == "Kul Tiran" or name == "KUL TIRAN" or name == "KUL_TIRAN") then
+		name = "Human";
+	end
+
+	if (name == "Maghar" or name == "MAGHAR" or name == "Mag'har" or name == "MAG'HAR") then
 		name = "Orc";
 	end
 
-	if (name == "DarkIronDwarf" or name == "DARKIRONDWARF" or name == "Dark Iron Dwarf" or name == "DARK IRON DWARF" or name == "DARK_IRON_DWARF") then
+	if (name == "Ogre" or name == "OGRE") then
+		name = "Orc";
+	end
+
+	if (name == "Zandalari Troll" or name == "ZANDALARI TROLL" or name == "ZANDALARI_TROLL" or name == "ZandalariTroll") then
+		name = "Orc";
+	end
+
+	if (name == "Vulpera" or name == "VULPERA") then
+		name = "Tauren";
+	end
+
+	if (name == "AlliancePandaren" or name == "Alliance Pandaren" or name == "Alliance_Pandaren" or name == "ALLIANCEPANDAREN" or name == "ALLIANCE PANDAREN" or name == "ALLIANCE_PANDAREN") then
+		name = "NightElf";
+	end
+
+	if (name == "HordePandaren" or name == "Horde Pandaren" or name == "Horde_Pandaren" or name == "HORDEPANDAREN" or name == "HORDE PANDAREN" or name == "HORDE_PANDAREN") then
+		name = "Tauren";
+	end
+
+	if (name == "DarkIronDwarf" or name == "Dark Iron Dwarf"  or name == "Dark_Iron_Dwarf" or name == "DARKIRONDWARF" or name == "DARK IRON DWARF" or name == "DARK_IRON_DWARF") then
 		name = "Dwarf";
 	end
+
+--	if (name == "LightforgedDraenei" or name == "Lightforged Draenei" or name == "Lightforged_Draenei" or name == "LIGHTFORGEDDRAENEI" or name == "LIGHTFORGED DRAENEI" or name == "LIGHTFORGED_DRAENEI") then
+--		name = "Draenei";
+--	end
 
     local path = "Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2";
 	if ( model == CharacterCreate ) then
@@ -427,6 +499,12 @@ function SetBackgroundModel(model, name)
 	end
 	PlayGlueAmbience(GlueAmbienceTracks[nameupper], 4.0);
 	SetLighting(model, nameupper)
+
+	-- Store which race's offset (if any) applies to this model, so the
+	-- per-frame OnUpdateModel handler can reapply it every frame — a single
+	-- SetPosition() call here gets stomped on the very next frame by
+	-- UpdateCustomizationScene(), which owns/resyncs the live camera.
+	model.backgroundRaceKey = nameupper;
 end
 
 function SecondsToTime(seconds, noSeconds)
@@ -523,4 +601,3 @@ function UpgradeAccount()
 	PlaySound("gsLoginNewAccount");
 	LaunchURL(AUTH_NO_TIME_URL);
 end
-
