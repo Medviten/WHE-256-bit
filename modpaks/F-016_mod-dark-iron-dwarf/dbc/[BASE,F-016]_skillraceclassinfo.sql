@@ -1,14 +1,12 @@
 -- [F-031] mod-azerothcore-high-elf: skillraceclassinfo: 1 inserts, 104 updates, 0 deletes
 
--- Give Dark Iron every skill permission a normal dwarf has.
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask
-WHERE (`race_mask` & @DwarfMask) <> 0;
-
--- Dedicated racial skill line.
-DELETE FROM `skillraceclassinfo` WHERE `id` = 1143;
+-- New entries
+DELETE FROM `skillraceclassinfo` WHERE `id` = @DarkIronDwarfRacialSkillRaceClass;
 INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`)
-VALUES (1143, @DarkIronDwarfRacials, @DarkIronDwarfMask, @AllClassMask, 1170, 0, 0, 0);
-
+VALUES (
+    @DarkIronDwarfRacialSkillRaceClass, @DarkIronDwarfRacials, @DarkIronDwarfMask, @AllClassMask, 1170, 0, 0, 0
+);
+/*
 -- Changed values
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask WHERE `id` = 21; -- Skill 293: Plate Mail
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask WHERE `id` = 24; -- Skill 272: NULL
@@ -114,3 +112,4 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask W
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask WHERE `id` = 866; -- Skill 755: Jewelcrafting
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask WHERE `id` = 886; -- Skill 43: Swords
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @DarkIronDwarfMask WHERE `id` = 899; -- Skill 165: Leatherworking
+*/

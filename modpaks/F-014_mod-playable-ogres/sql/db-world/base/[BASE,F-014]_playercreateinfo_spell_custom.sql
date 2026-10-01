@@ -1,3 +1,4 @@
+/*
 INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 -- Ogre Warrior
 (@OgreMask, @WarriorMask, '78', 'Heroic Strike'),
@@ -750,3 +751,4 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 (@OgreMask, @DruidMask, '33745', 'Lacerate'),
 (@OgreMask, @DruidMask, '33786', 'Cyclone'),
 (@OgreMask, @DruidMask, '20719', 'Feline Grace');
+*/

@@ -1,3 +1,4 @@
+/*
 -- Horde default totems is the Orc ones.
 SET @OgreFireTotem := 30758;
 SET @OgreEarthTotem := 30757;
@@ -12,3 +13,4 @@ INSERT INTO player_totem_model (TotemID, RaceID, ModelID) VALUES
 (3, @Ogre, @OgreWaterTotem),
 (4, @Ogre, @OgreAirTotem);
 
+*/

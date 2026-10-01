@@ -1,3 +1,4 @@
+/*
 INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 -- Goblin Paladin
 (@GoblinMask, @PaladinMask, '669', 'Language Orcish'),
@@ -191,3 +192,4 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 (@GoblinMask, @DruidMask, '33745', 'Lacerate'),
 (@GoblinMask, @DruidMask, '33786', 'Cyclone'),
 (@GoblinMask, @DruidMask, '20719', 'Feline Grace');
+*/

@@ -6,6 +6,7 @@ INSERT INTO `faction` (`id`, `reputation_index`, `reputation_race_mask_1`, `repu
 (@OgrePlayer, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1.0000000000000000', '1.0000000000000000', 5, 5, '"PLAYER", Ogre', '플레이어 - 오우거', '"JOUEUR", Ogre', '"SPIELER", Oger', '食人魔(玩家)', '巨魔(玩家)', '"JUGADOR", ogro', '"JUGADOR", ogro', 'ИГРОК: огр', 0, 0, 0, 0, 0, 0, 0, 16712190, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16712188),
 (@OgreFaction, @OgreFactionRepIndex, @BarrensBros & ~@OgreMask, @AllianceMask, @OgreMask, @UndercityMask, 0, 0, 0, 0, 3100, -42000, 4000, 500, 273, 6, 17, 17, 67, '1.0000000000000000', '0.2500000000000000', 7, 5, 'Stonemaul Clan', '돌망치 부족', 'Clan Cognepierre', 'Steinbrecherklan', '石槌氏族', '石槌氏族', 'Clan Quebrantarrocas', 'Clan Quebrantarrocas', 'Клан Каменного Молота', 0, 0, 0, 0, 0, 0, 0, 16712190, 'Ogres of the Stonemaul clan, sworn to the Horde.', '호드에 충성을 맹세한 돌망치 부족 오우거입니다.', 'Ogres du clan Cognepierre ayant juré fidélité à la Horde.', 'Oger des Steinbrecherklans, die der Horde die Treue geschworen haben.', '效忠部落的石槌氏族食人魔。', '效忠部落的石槌氏族巨魔。', 'Ogros del clan Quebrantarrocas que juraron lealtad a la Horda.', 'Ogros del clan Quebrantarrocas que juraron lealtad a la Horda.', 'Огры клана Каменного Молота, присягнувшие Орде.', 0, 0, 0, 0, 0, 0, 0, 16712190);
 
+/*
 -- Changed values
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 21;
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 46;
@@ -97,3 +98,4 @@ UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @Ogre
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1119;
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1124;
 UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1126;
+*/

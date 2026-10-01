@@ -10,7 +10,7 @@ DELETE FROM `spellicon` WHERE `id` IN (
 );
 INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@IconGoblinAchievement,            'Interface\\Icons\\achievement_goblinhead'),
-(@IconWorgenAchievement,            'Interface\\Icons\\achievement_worgenhead'),
+(@IconWorgenAchievement,            'Interface\\Icons\\achievement_worganhead'),
 (@IconDarkflight,                   'Interface\\Icons\\ability_racial_darkflight'),
 (@IconRunningWild,                  'Interface\\Icons\\ability_racial_runningwild'),
 (@IconBetterLivingThroughChemistry, 'Interface\\Icons\\ability_racial_betterlivingthroughchemistry'),

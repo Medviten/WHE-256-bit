@@ -27,6 +27,7 @@ FROM (
     UNION ALL SELECT @HordePandaren
     UNION ALL SELECT @Broken
     UNION ALL SELECT @KulTiran
+    UNION ALL SELECT @Gilnean
 ) AS `r`
 CROSS JOIN (
     SELECT @Warrior AS `class`

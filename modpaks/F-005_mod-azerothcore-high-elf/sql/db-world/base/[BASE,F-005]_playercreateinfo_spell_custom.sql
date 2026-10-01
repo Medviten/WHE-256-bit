@@ -1,4 +1,9 @@
 INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
+(@HighElfMask, 0, '813', 'Language Thalassian'),
+(@HighElfMask, @NonDKMask, '110005', 'Quel’dorei Meditation'),
+(@HighElfMask, 0, '110006', 'Swiftness of the Rangers');
+
+/*
 -- High Elf Warrior
 (@HighElfMask, @WarriorMask, '78', 'Heroic Strike'),
 (@HighElfMask, @WarriorMask, '81', 'Dodge'),
@@ -734,3 +739,4 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 (@HighElfMask, @DruidMask, '34123', 'Tree of Life(Passive)'),
 (@HighElfMask, @DruidMask, '40120', 'Swift Flight Form'),
 (@HighElfMask, @DruidMask, '40121', 'Swift Flight Form(Passive)');
+*/

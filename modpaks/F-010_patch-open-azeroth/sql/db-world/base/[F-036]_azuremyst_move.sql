@@ -50,7 +50,7 @@ WHERE
         SELECT 1
         FROM creature_addon
         INNER JOIN creature_template ct ON w.entry = ct.entry
-        INNER JOIN creature cr ON ct.entry = cr.id1
+        INNER JOIN creature cr ON ct.entry = cr.id
         WHERE
           cr.map = @map_id
     );
@@ -66,7 +66,7 @@ WHERE
         SELECT 1
         FROM creature_addon
         INNER JOIN creature ON creature_addon.guid = creature.guid
-        INNER JOIN creature_template ON creature.id1 = creature_template.entry
+        INNER JOIN creature_template ON creature.id = creature_template.entry
         WHERE
             creature.map = @map_id
             AND creature_addon.path_id = wd.id

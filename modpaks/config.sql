@@ -1,3 +1,177 @@
+-- playercreateinfo_action types
+SET @ActionbarSpell                                =        0;
+SET @ActionbarMacro                                =       64;
+SET @ActionbarItem                                 =      128;
+
+-- Item IDs
+SET @BlackMushroom                                 =    41751;
+
+-- Spell IDs
+SET @SellAutoShot                                  =       75;
+SET @SpellHeroicStrike1                            =       78;
+SET @SpellFireball1                                =      133;
+SET @SpellFrostArmor1                              =      168;
+SET @SpellHealingWave1                             =      331;
+SET @SpellLightningBolt1                           =      403;
+SET @SpellSmite1                                   =      585;
+SET @SpellHolyLight1                               =      635;
+SET @SpellShadowBolt1                              =      686;
+SET @SpellDemonSkin1                               =      687;
+SET @SpellSinisterStrike1                          =     1752;
+SET @SpellLesserHeal1                              =     2050;
+SET @SpellEviscerate1                              =     2098;
+SET @SpellFindTreasure                             =     2481; -- Dwarf racial
+SET @SpellThrow                                    =     2764;
+SET @SpellRaptorStrike1                            =     2973;
+SET @SpellWrath1                                   =     5176;
+SET @SpellHealingTouch1                            =     5185;
+SET @SpellAutoAttack                               =     6603;
+SET @SpellWarStomp                                 =    20549; -- Tauren racial
+SET @SpellBloodFuryWHRDK                           =    20572; -- Orc racial: Warrior, Hunter, Rogue, DK
+SET @SpellCannibalize                              =    20577; -- Undead racial
+SET @SpellEscapeArtist                             =    20589; -- Gnome racial
+SET @SpellStoneform                                =    20594; -- Dwarf racial
+SET @SpellSealOfRighteousness                      =    21084;
+SET @SpellArcaneTorrentEnergy                      =    25046; -- Blood Elf racial: Rogue
+SET @SpellBerserking                               =    26297; -- Troll racial
+SET @SpellArcaneTorrentMana                        =    28730; -- Blood Elf racial: Paladin, Hunter, Priest, Mage, Warlock
+SET @SpellGiftOfTheNaaruWarrior                    =    28880; -- Draenei racial: Warrior
+SET @SpellBloodFuryShaman                          =    33697; -- Orc racial: Shaman
+SET @SpellBloodFuryWarlock                         =    33702; -- Orc racial: Warlock
+SET @SpellPlagueStrike1                            =    45462;
+SET @SpellIcyTouch1                                =    45477;
+SET @SpellBloodStrike1                             =    45902;
+SET @SpellDeathCoil1                               =    47541;
+SET @SpellDeathGrip1                               =    49576;
+SET @SpellArcaneTorrentRunicPower                  =    50613; -- Blood Elf racial: DK
+SET @SpellGiftOfTheNaaruHunter                     =    59543; -- Draenei racial: Hunter
+SET @SpellGiftOfTheNaaruPriest                     =    59544; -- Draenei racial: Priest
+SET @SpellGiftOfTheNaaruDK                         =    59545; -- Draenei racial: DK
+SET @SpellGiftOfTheNaaruShaman                     =    59547; -- Draenei racial: Shaman
+SET @SpellGiftOfTheNaaruMage                       =    59548; -- Draenei racial: Mage
+SET @SpellShadowmeld                               =    58984; -- Night Elf racial
+SET @SpellGiftOfTheNaaruPaladin                    =    59542; -- Draenei racial: Paladin
+SET @SpellEveryManForHimself                       =    59752; -- Human racial
+SET @SpellArcaneTorrentDruid2                      =    80865; -- Vacant slot (ARAC support); Druid combined: silence, mana, trigger @ArcaneTorrentFeral for rage and energy
+SET @SpellArcaneTorrentFeral                       =    80866; -- Vacant slot (ARAC support); Druid Feral: rage and energy
+SET @SpellArcaneTorrentDruid1                      =    80867; -- Vacant slot (ARAC support); Druid Mana: unshapeshifts if cast in feral form (deprecated)
+SET @SpellArcaneTorrentRage                        =    80868; -- Vacant slot (ARAC support)
+SET @SpellGiftOfTheNaaruDruid                      =    80869; -- Vacant slot (ARAC support)
+SET @SpellGiftOfTheNaaruRogue                      =    80870; -- Vacant slot (ARAC support)
+SET @SpellGiftOfTheNaaruWarlock                    =    80871; -- Vacant slot (ARAC support)
+SET @SpellShadowResistanceDruid                    =    80872; -- Vacant slot (ARAC support)
+SET @SpellShadowResistanceRogue                    =    80873; -- Vacant slot (ARAC support)
+SET @SpellShadowResistanceWarlock                  =    80874; -- Vacant slot (ARAC support)
+SET @SpellViciousness                              =    68975; -- Cataclysm ID (Worgen racial)
+SET @SpellAberration                               =    68976; -- Cataclysm ID (Worgen racial)
+SET @SpellFlayer                                   =    68978; -- Cataclysm ID (Worgen racial)
+SET @SpellDarkflight                               =    68992; -- Cataclysm ID (Worgen racial)
+SET @SpellTwoFormsMale                             =    68996; -- Cataclysm ID (except gendered) (Worgen racial)
+SET @SpellTwoFormsFemale                           =    68995; -- Vacant slot (Worgen racial)
+SET @SpellHumanFormMale                            =    68994; -- Vacant slot (Worgen support)
+SET @SpellHumanFormFemale                          =   110020; -- Vacant slot (Worgen support)
+SET @SpellRunningWildMale60                        =    87840; -- Cataclysm ID (Worgen racial)
+SET @SpellRunningWildFemale60                      =    87841; -- Vacant slot (Worgen racial)
+SET @SpellRunningWildMale100                       =   110010; -- Vacant slot (Worgen racial)
+SET @SpellRunningWildFemale100                     =   110011; -- Vacant slot (Worgen racial)
+SET @SpellRocketBarrage                            =    69041; -- Cataclysm ID (Goblin racial)
+SET @SpellTimeIsMoney                              =    69042; -- Cataclysm ID (Goblin racial)
+SET @SpellBestDealsAnywhere                        =    69044; -- Cataclysm ID (Goblin racial)
+SET @SpellBetterLivingThroughChemistry             =    69045; -- Cataclysm ID (Goblin racial)
+SET @SpellPackHobgoblin                            =    69046; -- Cataclysm ID (Goblin racial)
+SET @SpellRocketJump                               =    69070; -- Cataclysm ID (Goblin racial)
+SET @SpellBouncy                                   =   107076; -- MoP ID (Pandaren racial)
+SET @SpellEpicurean                                =   107072; -- MoP ID (Pandaren racial)
+SET @SpellGourmand                                 =   107073; -- MoP ID (Pandaren racial)
+SET @SpellInnerPeace                               =   107074; -- MoP ID (Pandaren racial)
+SET @SpellQuakingPalm                              =   107079; -- MoP ID (Pandaren racial)
+SET @SpellQueldoreiMeditationDK                    =   110005; -- Vacant? (High Elf racial)
+SET @SpellSwiftnessOfTheRangers                    =   110006; -- Vacant? (High Elf racial)
+SET @SpellQueldoreiMeditation                      =   110007; -- Vacant? (High Elf racial)
+SET @SpellBowSpecialization                        =   110008; -- Vacant? (High Elf racial)
+SET @SpellEnchantingSpecialization                 =   110009; -- Vacant? (High Elf racial)
+SET @SpellAncientHistory                           =   255663; -- Legion ID (Nightborne racial)
+SET @SpellArcanePulse                              =   260364; -- Legion ID (Nightborne racial)
+SET @SpellArcaneResistance                         =   255664; -- Legion ID (Nightborne racial)
+SET @SpellCantrips                                 =   255661; -- Legion ID (Nightborne racial)
+SET @SpellMagicalAffinity                          =   255665; -- Legion ID (Nightborne racial)
+SET @SpellBullRush                                 =   255654; -- Legion ID (Highmountain Tauren racial)
+SET @SpellMountaineer                              =   255658; -- Legion ID (Highmountain Tauren racial)
+SET @SpellPrideOfIronhorn                          =   255655; -- Legion ID (Highmountain Tauren racial)
+SET @SpellRuggedTenacity                           =   255659; -- Legion ID (Highmountain Tauren racial)
+SET @SpellWasteNotWantNot                          =   255656; -- Legion ID (Highmountain Tauren racial)
+SET @SpellChillOfNight                             =   255668; -- Legion ID (Void Elf racial)
+SET @SpellEntropicEmbrace                          =   255669; -- Legion ID (Void Elf racial)
+SET @SpellEtherealConnection                       =   255667; -- Legion ID (Void Elf racial)
+SET @SpellPreternaturalCalm                        =   255670; -- Legion ID (Void Elf racial)
+SET @SpellSpatialRift                              =   256948; -- Legion ID (Void Elf racial)
+SET @SpellDemonbane                                =   255653; -- Legion ID (Lightforged Draenei racial)
+SET @SpellForgeOfLight                             =   255650; -- Legion ID (Lightforged Draenei racial)
+SET @SpellForgeOfLight                             =   259930; -- Legion ID (Lightforged Draenei racial)
+SET @SpellHolyProvidence                           =   255651; -- Legion ID (Lightforged Draenei racial)
+SET @SpellLightsJudgement                          =   255647; -- Legion ID (Lightforged Draenei racial)
+SET @SpellLightsReckoning                          =   255652; -- Legion ID (Lightforged Draenei racial)
+SET @SpellCityOfGold                               =   291619; -- BfA ID (Zandalari Troll racial)
+SET @SpellEmbraceOfTheLoa1                         =   292751; -- BfA ID (Zandalari Troll racial)
+SET @SpellEmbraceOfTheLoa2                         =   292752; -- BfA ID (Zandalari Troll racial)
+SET @SpellPterrodaxSwoop                           =   281954; -- BfA ID (Zandalari Troll racial)
+SET @SpellRegeneratin                              =   291944; -- BfA ID (Zandalari Troll racial)
+SET @SpellHaymaker                                 =   287712; -- BfA ID (Kul Tiran racial)
+SET @SpellJackOfAllTrades                          =   291442; -- BfA ID (Kul Tiran racial)
+SET @SpellBrushItOff                               =   291628; -- BfA ID (Kul Tiran racial)
+SET @SpellChildOfTheSea                            =   291622; -- BfA ID (Kul Tiran racial)
+SET @SpellRimeOfTheAncientMariner                  =   291417; -- BfA ID (Kul Tiran racial)
+SET @SpellDungeonDelver                            =   265223; -- BfA ID (Dark Iron Dwarf racial)
+SET @BuffDungeonDelver                             =   100001;
+SET @SpellFireblood                                =   265221; -- BfA ID (Dark Iron Dwarf racial)
+SET @SpellForgedInFlames                           =   265224; -- BfA ID (Dark Iron Dwarf racial)
+SET @SpellMassProduction                           =   265222; -- BfA ID (Dark Iron Dwarf racial)
+SET @SpellMoleMachine                              =   265225; -- BfA ID (Dark Iron Dwarf racial)
+SET @SpellAlpacaSaddlebags                         =   317795; -- BfA ID (Vulpera racial)
+SET @SpellBagOfTricks                              =   312411; -- BfA ID (Vulpera racial)
+SET @SpellFireResistance                           =   312198; -- BfA ID (Vulpera racial)
+SET @SpellMakeCamp                                 =   312370; -- BfA ID (Vulpera racial)
+SET @SpellNoseForTrouble                           =   312215; -- BfA ID (Vulpera racial)
+SET @SpellReturnToCamp                             =   312372; -- BfA ID (Vulpera racial)
+SET @SpellRummageYourBag                           =   312425; -- BfA ID (Vulpera racial)
+SET @SpellAncestralCall                            =   274738; -- BfA ID (Mag'har Orc racial)
+SET @SpellSavageBlood                              =   273220; -- BfA ID (Mag'har Orc racial)
+SET @SpellSympatheticVigor                         =   273217; -- BfA ID (Mag'har Orc racial)
+SET @SpellOpenSkies                                =   273216; -- BfA ID (Mag'har Orc racial)
+SET @SpellCombatAnalysis                           =   312923; -- BfA ID (Mechagnome racial)
+SET @SpellEmergencyFailsafe                        =   312916; -- BfA ID (Mechagnome racial)
+SET @SpellHyperOrganicLightOriginator              =   312924; -- BfA ID (Mechagnome racial)
+SET @SpellMastercraft                              =   312896; -- BfA ID (Mechagnome racial)
+SET @SpellSkeletonPinkie                           =   312890; -- BfA ID (Mechagnome racial)
+SET @SpellAerialHalt                               =   403216; -- Dragonflight ID (Dracthyr racial)
+SET @SpellAwakened                                 =   365575; -- Dragonflight ID (Dracthyr racial)
+SET @SpellChosenIdentity                           =   360022; -- Dragonflight ID (Dracthyr racial)
+SET @SpellDiscerningEye                            =   366489; -- Dragonflight ID (Dracthyr racial)
+SET @SpellEmpoweredSoaring                         =   430846; -- Dragonflight ID (Dracthyr racial)
+SET @SpellExpeditedTakeoff                         =   430935; -- Dragonflight ID (Dracthyr racial)
+SET @SpellFamiliarSkies                            =   360009; -- Dragonflight ID (Dracthyr racial)
+SET @SpellGlide                                    =   358731; -- Dragonflight ID (Dracthyr racial)
+SET @SpellGlide                                    =   358733; -- Dragonflight ID (Dracthyr racial)
+SET @SpellPrinciplesOfSoaring                      =   381451; -- Dragonflight ID (Dracthyr racial)
+SET @SpellSkywardAscent                            =   376744; -- Dragonflight ID (Dracthyr racial)
+SET @SpellSurgeForward                             =   376743; -- Dragonflight ID (Dracthyr racial)
+SET @SpellVisage1                                  =   351239; -- Dragonflight ID (Dracthyr racial)
+SET @SpellVisage2                                  =   368437; -- Dragonflight ID (Dracthyr racial)
+SET @SpellWingBuffet                               =   357214; -- Dragonflight ID (Dracthyr racial)
+SET @SpellBattleVisage                             =  1289789; -- Midnight ID (Dracthyr racial)
+SET @SpellAzeriteSurge                             =   436344; -- TWW ID (Earthen racial)
+SET @SpellHyperProductive                          =   436339; -- TWW ID (Earthen racial)
+SET @SpellIngestMinerals                           =   436341; -- TWW ID (Earthen racial)
+SET @SpellQuietContemplation                       =   461063; -- TWW ID (Earthen racial)
+SET @SpellTitanWroughtFrame                        =   436340; -- TWW ID (Earthen racial)
+SET @SpellWideEyedWonder                           =   448924; -- TWW ID (Earthen racial)
+SET @SpellLashOut                                  =  1238623; -- Midnight ID (Haranir racial)
+SET @SpellOneWithNature                            =  1238648; -- Midnight ID (Haranir racial)
+SET @SpellRootwalker                               =  1260715; -- Midnight ID (Haranir racial)
+SET @SpellRootwalking                              =  1238686; -- Midnight ID (Haranir racial)
+SET @SpellSubterraneanPredator                     =  1238677; -- Midnight ID (Haranir racial)
+SET @SpellThornBloom                               =  1237885; -- Midnight ID (Haranir racial)
+
 -- Miscellaneous
 SET @Male                                            =    0;
 SET @Female                                          =    1;
@@ -29,7 +203,7 @@ SET @Troll                                           =    8;
 SET @Goblin                                          =    9;
 SET @BloodElf                                        =   10;
 SET @Draenei                                         =   11;
-SET @NextRace                                        =  @Draenei;
+SET @NextRace                                        =   12; -- Reserved for Worgen – increments before assignment
 
 -- NPC Races
 SET @FelOrc                                          =   72;
@@ -170,8 +344,8 @@ SET @UndeadExplorationSound                          =     4142;
 SET @TaurenExplorationSound                          =     4143;
 SET @GnomeExplorationSound                           =     4146;
 SET @TrollExplorationSound                           =     4144;
-SET @BloodElfExplorationSound                        =  @UndeadExplorationSound; -- same as undead
-SET @DraeneiExplorationSound                         =  @HumanExplorationSound; -- same as human
+SET @BloodElfExplorationSound                        = @UndeadExplorationSound; -- same as undead
+SET @DraeneiExplorationSound                         = @HumanExplorationSound; -- same as human
 
 -- Cinematic Sequences
 SET @HumanCinematicSequence                          =       81;
@@ -201,51 +375,73 @@ SET @BrokenRacials                                   =      798;
 SET @KulTiranRacials                                 =      799;
 
 -- Racial spells
-SET @Cannibalize                                     =    20577; -- Undead racial
-SET @BloodElfRacial1                                 =    80866; -- Arcane Torrent (Druid Feral)
-SET @BloodElfRacial2                                 =    80865; -- Used to be 80867; -- Arcane Torrent (Druid Mana, unshapeshift)
-SET @BloodElfRacial3                                 =    80868; -- Arcane Torrent (Rage)
-SET @BloodElfRacial4                                 =    80867; -- Legacy split druid spell
-SET @DraeneiRacial1                                  =    80869; -- Gift of the Naaru (Druid)
-SET @DraeneiRacial2                                  =    80870; -- Gift of the Naaru (Rogue)
-SET @DraeneiRacial3                                  =    80871; -- Gift of the Naaru (Warlock)
-SET @DraeneiRacial4                                  =    80872; -- Shadow Resistance (Druid)
-SET @DraeneiRacial5                                  =    80873; -- Shadow Resistance (Rogue)
-SET @DraeneiRacial6                                  =    80874; -- Shadow Resistance (Warlock)
-SET @WorgenRacial1                                   =    68975; -- Viciousness
-SET @WorgenRacial2                                   =    68976; -- Aberration
-SET @WorgenRacial3                                   =    68978; -- Flayer
-SET @WorgenRacial4                                   =    68992; -- Darkflight
-SET @TwoFormsMale                                    =    68996;
-SET @TwoFormsFemale                                  =    68995;
-SET @HumanFormMale                                   =    68994;
-SET @HumanFormFemale                                 =   110020;
-SET @RunningWildMale60                               =    87840; -- Running Wild: quadrupedal transform aura (male worgen) & +60% speed boost aura
-SET @RunningWildFemale60                             =    87841; -- Running Wild: quadrupedal transform aura (female worgen) & +60% speed boost aura
-SET @RunningWildMale100                              =   110010; -- Running Wild: quadrupedal transform aura (male worgen) & +100% speed boost aura
-SET @RunningWildFemale100                            =   110011; -- Running Wild: quadrupedal transform aura (female worgen) & +100% speed boost aura
-SET @GoblinRacial1                                   =    69041; -- Rocket Barrage
-SET @GoblinRacial2                                   =    69042; -- Time is Money
-SET @GoblinRacial3                                   =    69044; -- Best Deals Anywhere
-SET @GoblinRacial4                                   =    69045; -- Better Living Through Chemistry
-SET @GoblinRacial5                                   =    69046; -- Pack Hobgoblin
-SET @GoblinRacial6                                   =    69070; -- Rocket Jump
-SET @HighElfRacial1                                  =   110005; -- Quel’dorei Meditation (non-DK)
-SET @HighElfRacial2                                  =   110006; -- Swiftness of the Rangers
-SET @HighElfRacial3                                  =   110007; -- Quel’dorei Meditation (DK)
-SET @HighElfRacial4                                  =   110008; -- Bow Specialization
-SET @HighElfRacial5                                  =   110009; -- Enchanting Specialization
-SET @MagharOrcRacial1                                =   110001; -- Ancestral Call
-SET @MagharOrcRacial2                                =   110002; -- Savage Blood
-SET @MagharOrcRacial3                                =   110003; -- Sympathetic Vigor
-SET @MagharOrcRacial4                                =   110004; -- Open Skies (was Unwavering Will)
+SET @Cannibalize                                     = @SpellCannibalize; -- Undead racial
+SET @BloodElfRacial1                                 = @SpellArcaneTorrentDruid2; -- Arcane Torrent (Druid Feral)
+SET @BloodElfRacial2                                 = @SpellArcaneTorrentFeral; -- Used to be 80867; -- Arcane Torrent (Druid Mana, unshapeshift)
+SET @BloodElfRacial3                                 = @SpellArcaneTorrentDruid1; -- Arcane Torrent (Rage)
+SET @BloodElfRacial4                                 = @SpellArcaneTorrentRage; -- Legacy split druid spell
+SET @DraeneiRacial1                                  = @SpellGiftOfTheNaaruDruid; -- Gift of the Naaru (Druid)
+SET @DraeneiRacial2                                  = @SpellGiftOfTheNaaruRogue; -- Gift of the Naaru (Rogue)
+SET @DraeneiRacial3                                  = @SpellGiftOfTheNaaruWarlock; -- Gift of the Naaru (Warlock)
+SET @DraeneiRacial4                                  = @SpellShadowResistanceDruid; -- Shadow Resistance (Druid)
+SET @DraeneiRacial5                                  = @SpellShadowResistanceRogue; -- Shadow Resistance (Rogue)
+SET @DraeneiRacial6                                  = @SpellShadowResistanceWarlock; -- Shadow Resistance (Warlock)
+SET @WorgenRacial1                                   = @SpellViciousness; -- Viciousness
+SET @WorgenRacial2                                   = @SpellAberration; -- Aberration
+SET @WorgenRacial3                                   = @SpellFlayer; -- Flayer
+SET @WorgenRacial4                                   = @SpellDarkflight; -- Darkflight
+SET @TwoFormsMale                                    = @SpellTwoFormsMale;
+SET @TwoFormsFemale                                  = @SpellTwoFormsFemale;
+SET @HumanFormMale                                   = @SpellHumanFormMale;
+SET @HumanFormFemale                                 = @SpellHumanFormFemale;
+SET @RunningWildMale60                               = @SpellRunningWildMale60; -- Running Wild: quadrupedal transform aura (male worgen) & +60% speed boost aura
+SET @RunningWildFemale60                             = @SpellRunningWildFemale60; -- Running Wild: quadrupedal transform aura (female worgen) & +60% speed boost aura
+SET @RunningWildMale100                              = @SpellRunningWildMale100; -- Running Wild: quadrupedal transform aura (male worgen) & +100% speed boost aura
+SET @RunningWildFemale100                            = @SpellRunningWildFemale100; -- Running Wild: quadrupedal transform aura (female worgen) & +100% speed boost aura
+SET @GoblinRacial1                                   = @SpellRocketBarrage; -- Rocket Barrage
+SET @GoblinRacial2                                   = @SpellTimeIsMoney; -- Time is Money
+SET @GoblinRacial3                                   = @SpellBestDealsAnywhere; -- Best Deals Anywhere
+SET @GoblinRacial4                                   = @SpellBetterLivingThroughChemistry; -- Better Living Through Chemistry
+SET @GoblinRacial5                                   = @SpellPackHobgoblin; -- Pack Hobgoblin
+SET @GoblinRacial6                                   = @SpellRocketJump; -- Rocket Jump
+SET @HighElfRacial1                                  = @SpellQueldoreiMeditationDK; -- Quel’dorei Meditation (non-DK)
+SET @HighElfRacial2                                  = @SpellSwiftnessOfTheRangers; -- Swiftness of the Rangers
+SET @HighElfRacial3                                  = @SpellQueldoreiMeditation; -- Quel’dorei Meditation (DK)
+SET @HighElfRacial4                                  = @SpellBowSpecialization; -- Bow Specialization
+SET @HighElfRacial5                                  = @SpellEnchantingSpecialization; -- Enchanting Specialization
+SET @MagharOrcRacial1                                = @SpellAncestralCall; -- Ancestral Call
+SET @MagharOrcRacial2                                = @SpellSavageBlood; -- Savage Blood
+SET @MagharOrcRacial3                                = @SpellSympatheticVigor; -- Sympathetic Vigor
+SET @MagharOrcRacial4                                = @SpellOpenSkies; -- Open Skies (was Unwavering Will)
+SET @DarkIronDwarfRacial1                            = @SpellMoleMachine;
+SET @DarkIronDwarfRacial2                            = @SpellFireblood;
+SET @DarkIronDwarfRacial3                            = @SpellForgedInFlames;
+SET @DarkIronDwarfRacial4                            = @SpellMassProduction;
+SET @DarkIronDwarfRacial5                            = @SpellDungeonDelver;
+SET @ZandalariTrollRacial1                           = @SpellCityOfGold;
+SET @ZandalariTrollRacial2                           = @SpellEmbraceOfTheLoa1;
+SET @ZandalariTrollRacial3                           = @SpellEmbraceOfTheLoa2;
+SET @ZandalariTrollRacial4                           = @SpellPterrodaxSwoop;
+SET @ZandalariTrollRacial5                           = @SpellRegeneratin;
+SET @VulperaRacial1                                  = @SpellAlpacaSaddlebags;
+SET @VulperaRacial2                                  = @SpellBagOfTricks;
+SET @VulperaRacial3                                  = @SpellFireResistance;
+SET @VulperaRacial4                                  = @SpellMakeCamp;
+SET @VulperaRacial5                                  = @SpellNoseForTrouble;
+SET @VulperaRacial6                                  = @SpellReturnToCamp;
+SET @VulperaRacial7                                  = @SpellRummageYourBag;
+SET @PandarenRacial1                                 = @SpellBouncy;
+SET @PandarenRacial2                                 = @SpellEpicurean;
+SET @PandarenRacial3                                 = @SpellGourmand;
+SET @PandarenRacial4                                 = @SpellInnerPeace;
+SET @PandarenRacial5                                 = @SpellQuakingPalm;
+SET @KulTiranRacial1                                 = @SpellHaymaker;
+SET @KulTiranRacial2                                 = @SpellJackOfAllTrades;
+SET @KulTiranRacial3                                 = @SpellBrushItOff;
+SET @KulTiranRacial4                                 = @SpellChildOfTheSea;
+SET @KulTiranRacial5                                 = @SpellRimeOfTheAncientMariner;
 -- SET @OgreRacial1
--- SET @DarkIronDwarfRacial1
--- SET @ZandalariTrollRacial1
--- SET @VulperaRacial1
--- SET @PandarenRacial1
 -- SET @BrokenRacial1
--- SET @KulTiranRacial1
 
 -- Icons
 SET @IconBestDealsAnywhere                            =    4331; -- Goblin
@@ -271,6 +467,7 @@ SET @IconCityOfGold                                   = 1850547; -- Zandalari Tr
 SET @IconEmbraceTheLoa                                = 1850548; -- Zandalari Troll
 SET @IconPterrodaxSwoop                               = 1850549; -- Zandalari Troll
 SET @IconRegeneratin                                  = 1850550; -- Zandalari Troll
+SET @IconVulperaMount                                 = 3045400; -- Caravan Hyena
 SET @IconAlpacaSaddlebags                             = 3193421; -- Vulpera
 SET @IconBagOfTricks                                  = 3193416; -- Vulpera
 SET @IconFireResistance                               = 3193417; -- Vulpera
@@ -278,6 +475,10 @@ SET @IconMakeCamp                                     = 3193418; -- Vulpera
 SET @IconNoseForTrouble                               = 3193419; -- Vulpera
 SET @IconReturnToCamp                                 = 3193420; -- Vulpera
 SET @IconRummageYourBag                               = 3193422; -- Vulpera
+SET @IconDragonTurtleBlue                             =  656343; -- Dragon Turtle
+SET @IconDragonTurtlePurple                           =  657918; -- Dragon Turtle
+SET @IconDragonTurtleGreen                            =  657917; -- Dragon Turtle
+SET @IconDragonTurtleBlack                            =  656342; -- Dragon Turtle
 SET @IconBouncy                                       =  572033; -- Pandaren
 SET @IconEpicurean                                    =  571692; -- Pandaren
 SET @IconGourmand                                     =  571693; -- Pandaren
@@ -476,6 +677,30 @@ SET @GiftoftheNaaruWarlockSkillLineAbility           =    31455;
 SET @ShadowResistanceDruidSkillLineAbility           =    31456;
 SET @ShadowResistanceRogueSkillLineAbility           =    31457;
 SET @ShadowResistanceWarlockSkillLineAbility         =    31458;
+SET @WorgenSkillLineAbility1                         =    21981;
+SET @WorgenSkillLineAbility2                         =    21982;
+SET @WorgenSkillLineAbility3                         =    21983;
+SET @WorgenSkillLineAbility4                         =    21984;
+SET @GoblinSkillLineAbility1                         =    21985;
+SET @GoblinSkillLineAbility2                         =    21986;
+SET @GoblinSkillLineAbility3                         =    21987;
+SET @GoblinSkillLineAbility4                         =    21988;
+SET @GoblinSkillLineAbility5                         =    21989;
+SET @GoblinSkillLineAbility6                         =    31448;
+SET @MagharOrcSkillLineAbility1                      =    31459;
+SET @MagharOrcSkillLineAbility2                      =    31460;
+SET @MagharOrcSkillLineAbility3                      =    31461;
+SET @MagharOrcSkillLineAbility4                      =    31462;
+SET @HighElfSkillLineAbility1                        =    31463;
+SET @HighElfSkillLineAbility2                        =    31464;
+SET @HighElfSkillLineAbility3                        =    31465;
+SET @HighElfSkillLineAbility4                        =    31466;
+SET @HighElfSkillLineAbility5                        =    31467;
+SET @DarkIronDwarfSkillLineAbility1                  =    31468;
+SET @DarkIronDwarfSkillLineAbility2                  =    31469;
+SET @DarkIronDwarfSkillLineAbility3                  =    31470;
+SET @DarkIronDwarfSkillLineAbility4                  =    31471;
+SET @DarkIronDwarfSkillLineAbility5                  =    31472;
 
 -- Language SkillLineAbility
 SET @OrcishSkillLineAbilityHorde                     =      592;
@@ -544,6 +769,7 @@ SET @ActivateSecondarySpec                           =    20868;
 -- Racial SkillRaceClass
 SET @WorgenRacialSkillRaceClass                      =      971;
 SET @GoblinRacialSkillRaceClass                      =      972;
+SET @DarkIronDwarfRacialSkillRaceClass               =     1143;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                       =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -647,12 +873,21 @@ SET @MechanostriderPilotingDwarfSkillRaceClass       =      501; -- Dwarf
 -- Mount Models
 SET @GoblinTrikeModel                                =     3623;
 SET @GoblinTurboTrikeModel                           =     3624;
+SET @CaravanHyena1Model                              =     3628; -- Vacant slot
+SET @CaravanHyena2Model                              =     3629; -- Vacant slot
+SET @DragonTurtleModel                               =     3630; -- Vacant slot
 
 -- Mount Display IDs
 SET @GoblinTrikeDisplay                              =    35249;
 SET @GoblinTurboTrikeDisplay                         =    35250;
 SET @MountainHorseDisplay                            =    39095; -- black
 SET @SwiftMountainHorseDisplay                       =    39096; -- brown
+SET @CaravanHyena1Display                            =    94211; -- vacant slot
+SET @CaravanHyena2Display                            =    94212; -- vacant slot
+SET @DragonTurtleBlueDisplay                         =    94228; -- vacant slot
+SET @DragonTurtlePurpleDisplay                       =    94229; -- vacant slot
+SET @DragonTurtleGreenDisplay                        =    94230; -- vacant slot
+SET @DragonTurtleBlackDisplay                        =    94231; -- vacant slot
 
 -- Creature IDs
 SET @GobberCreatureID                                =    36613;
@@ -660,35 +895,63 @@ SET @GoblinTrikeCreatureID                           =    46754;
 SET @GoblinTurboTrikeCreatureID                      =    46755;
 SET @MountainHorseCreatureID                         =    55272;
 SET @SwiftMountainHorseCreatureID                    =    55273;
+SET @CaravanHyena1CreatureID                         =   182781; -- vacant slot
+SET @CaravanHyena2CreatureID                         =   182782; -- vacant slot
+SET @DragonTurtleBlueCreatureID                      =   182783; -- vacant slot
+SET @DragonTurtlePurpleCreatureID                    =   182784; -- vacant slot
+SET @DragonTurtleGreenCreatureID                     =   182785; -- vacant slot
+SET @DragonTurtleBlackCreatureID                     =   182786; -- vacant slot
 
 -- Mount Items
-SET @GoblinTrikeItem                                 =   62461;
-SET @GoblinTurboTrikeItem                            =   62462;
-SET @MountainHorseItem                               =   73838;
-SET @SwiftMountainHorseItem                          =   73839;
+SET @GoblinTrikeItem                                 =    62461; -- Cataclysm ID
+SET @GoblinTurboTrikeItem                            =    62462; -- Cataclysm ID
+SET @MountainHorseItem                               =    73838; -- Cataclysm ID
+SET @SwiftMountainHorseItem                          =    73839; -- Cataclysm ID
+SET @CaravanHyena1Item                               =   174066; -- BfA ID
+SET @CaravanHyena2Item                               =   174065; -- Uses BfA ID of Titan Core
+SET @DragonTurtleBlueItem                            =    91009; -- MoP ID
+SET @DragonTurtlePurpleItem                          =    91006; -- MoP ID
+SET @DragonTurtleGreenItem                           =    91004; -- MoP ID
+SET @DragonTurtleBlackItem                           =    91008; -- MoP ID
+
+-- Mount Item Display ID
+SET @GoblinTrikeItemDisplay                          =   134237;
+SET @GoblinTurboTrikeItemDisplay                     =   134238;
+SET @MountainHorseItemDisplay                        =   134238;
+SET @SwiftMountainHorseItemDisplay                   =   @MountainHorseItemDisplay;
+SET @CaravanHyena1ItemDisplay                        =   132262; -- vacant slot
+SET @CaravanHyena2ItemDisplay                        =   @CaravanHyena1ItemDisplay;
+SET @DragonTurtleBlueItemDisplay                     =   132263; -- vacant slot
+SET @DragonTurtlePurpleItemDisplay                   =   132264; -- vacant slot
+SET @DragonTurtleGreenItemDisplay                    =   132265; -- vacant slot
+SET @DragonTurtleBlackItemDisplay                    =   132266; -- vacant slot
 
 -- Mount Spells
-SET @GoblinTrike                                     =    87090;
-SET @GoblinTurboTrike                                =    87091;
-SET @MountainHorse                                   =   103195;
-SET @SwiftMountainHorse                              =   103196;
-SET @CaravanHyena                                    =   110021;
-SET @CaravanHyenaAlt                                 =   110022;
+SET @GoblinTrike                                     =    87090; -- Cataclysm ID
+SET @GoblinTurboTrike                                =    87091; -- Cataclysm ID
+SET @MountainHorse                                   =   103195; -- Cataclysm ID
+SET @SwiftMountainHorse                              =   103196; -- Cataclysm ID
+SET @CaravanHyena1                                   =   306423; -- BfA ID
+SET @CaravanHyena2                                   =   306424; -- Uses BfA ID of Unlocking
+SET @DragonTurtleBlue                                =   127287; -- MoP ID
+SET @DragonTurtlePurple                              =   127289; -- MoP ID
+SET @DragonTurtleGreen                               =   120395; -- MoP ID
+SET @DragonTurtleBlack                               =   127286; -- MoP ID
 
 -- Faction Masks
-SET @VanillaAllianceMask                             =  @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;
-SET @VanillaHordeMask                                =  @OrcMask             | @UndeadMask | @TaurenMask    | @TrollMask;
-SET @BaseAllianceMask                                =  @VanillaAllianceMask | @DraeneiMask;
-SET @BaseHordeMask                                   =  @VanillaHordeMask    | @BloodElfMask;
-SET @AllianceMask                                    =  @BaseAllianceMask; -- | @WorgenMask | @HighElfMask   | @DarkIronDwarfMask | @AlliancePandarenMask | @KulTiranMask;
-SET @HordeMask                                       =  @BaseHordeMask;    -- | @GoblinMask | @MagharOrcMask | @OgreMask          | @ZandalariTrollMask | @VulperaMask;
-SET @UndercityMask                                   =  @UndeadMask          | @BloodElfMask; -- Mostly for easy reputation split
-SET @BarrensBros                                     =  @HordeMask           & ~@UndercityMask; -- Mostly for easy reputation split
-SET @PlayableRaceMask                                =  @AllianceMask        | @HordeMask;
-SET @GunHunters                                      =  @DwarfMask           | @TaurenMask | @GnomeMask;
-SET @CrossbowHunters                                 =  @DraeneiMask         | @HumanMask  | @UndeadMask;
-SET @BowHunters                                      =  @PlayableRaceMask    & ~(@GunHunters | @CrossbowHunters);
-SET @DaggersRogueOnly                                =  @TaurenMask          | @DraeneiMask;
+SET @VanillaAllianceMask                             = @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;
+SET @VanillaHordeMask                                = @OrcMask             | @UndeadMask | @TaurenMask    | @TrollMask;
+SET @BaseAllianceMask                                = @VanillaAllianceMask | @DraeneiMask;
+SET @BaseHordeMask                                   = @VanillaHordeMask    | @BloodElfMask;
+SET @AllianceMask                                    = @BaseAllianceMask; -- | @WorgenMask | @HighElfMask   | @DarkIronDwarfMask | @AlliancePandarenMask | @KulTiranMask;
+SET @HordeMask                                       = @BaseHordeMask;    -- | @GoblinMask | @MagharOrcMask | @OgreMask          | @ZandalariTrollMask | @VulperaMask;
+SET @UndercityMask                                   = @UndeadMask          | @BloodElfMask; -- Mostly for easy reputation split
+SET @BarrensBros                                     = @HordeMask           & ~@UndercityMask; -- Mostly for easy reputation split
+SET @PlayableRaceMask                                = @AllianceMask        | @HordeMask;
+SET @GunHunters                                      = @DwarfMask           | @TaurenMask | @GnomeMask;
+SET @CrossbowHunters                                 = @DraeneiMask         | @HumanMask  | @UndeadMask;
+SET @BowHunters                                      = @PlayableRaceMask    & ~(@GunHunters | @CrossbowHunters);
+SET @DaggersRogueOnly                                = @TaurenMask          | @DraeneiMask;
 
 -- Race and PLAYER factions
 SET @HumanFaction                                    =     72; -- Stormwind
@@ -859,9 +1122,9 @@ SET @WarlockMask                                     =   1 << (@Warlock     - 1)
 -- SET @MonkMask                                        =   1 << (@Monk        - 1); -- class ID 10 → 512
 SET @DruidMask                                       =   1 << (@Druid       - 1); -- class ID 11 → 1024
 
-SET @AllClassMask                                    =  @WarriorMask  | @PaladinMask | @HunterMask | @RogueMask | @PriestMask | @DeathKnightMask | @ShamanMask | @MageMask | @WarlockMask | @DruidMask;
-SET @ManaClassMask                                   =  @PaladinMask  | @HunterMask | @PriestMask | @ShamanMask | @MageMask | @WarlockMask | @DruidMask;
-SET @NonDKMask                                       =  @AllClassMask & ~@DeathKnightMask;
+SET @AllClassMask                                    = @WarriorMask  | @PaladinMask | @HunterMask | @RogueMask | @PriestMask | @DeathKnightMask | @ShamanMask | @MageMask | @WarlockMask | @DruidMask;
+SET @ManaClassMask                                   = @PaladinMask  | @HunterMask | @PriestMask | @ShamanMask | @MageMask | @WarlockMask | @DruidMask;
+SET @NonDKMask                                       = @AllClassMask & ~@DeathKnightMask;
 
 -- Druid Forms
 SET @CatForm                                         =           1;
@@ -877,18 +1140,35 @@ SET @MoonkinForm                                     =          31;
 SET @AllianceTravelForm                              =       40816;
 SET @HordeTravelForm                                 =       45339;
 
--- Default totems Alliance (Dwarf)
-SET @AllianceFireTotem                               =       30754;
-SET @AllianceEarthTotem                              =       30753;
-SET @AllianceWaterTotem                              =       30755;
-SET @AllianceAirTotem                                =       30736;
+-- Orc totems
+SET @OrcFireTotem                                    =       30758;
+SET @OrcEarthTotem                                   =       30757;
+SET @OrcWaterTotem                                   =       30759;
+SET @OrcAirTotem                                     =       30756;
 
--- Default totems Horde (Orc)
-SET @HordeFireTotem                                  =       30758;
-SET @HordeEarthTotem                                 =       30757;
-SET @HordeWaterTotem                                 =       30759;
-SET @HordeAirTotem                                   =       30756;
+-- Dwarf totems
+SET @DwarfFireTotem                                  =       30754;
+SET @DwarfEarthTotem                                 =       30753;
+SET @DwarfWaterTotem                                 =       30755;
+SET @DwarfAirTotem                                   =       30736;
 
+-- Troll totems
+SET @TrollFireTotem                                  =       30762;
+SET @TrollEarthTotem                                 =       30761;
+SET @TrollWaterTotem                                 =       30763;
+SET @TrollAirTotem                                   =       30760;
+
+-- Default totems Alliance
+SET @AllianceFireTotem                               =       @DwarfFireTotem;
+SET @AllianceEarthTotem                              =       @DwarfEarthTotem;
+SET @AllianceWaterTotem                              =       @DwarfWaterTotem;
+SET @AllianceAirTotem                                =       @DwarfAirTotem;
+
+-- Default totems Horde
+SET @HordeFireTotem                                  =       @OrcFireTotem;
+SET @HordeEarthTotem                                 =       @OrcEarthTotem;
+SET @HordeWaterTotem                                 =       @OrcWaterTotem;
+SET @HordeAirTotem                                   =       @OrcAirTotem;
 
 -- Locations
 SET @EasternKingdoms                                 =           0;
@@ -965,8 +1245,8 @@ SET @TaxiNodeExodar                                  =         94;
 
 -- New TaxiPathNodes
 SET @TaxiPathID                =   (SELECT COALESCE(MAX(id), 0) FROM `dbc_db`.`taxipath`);
-SET @TaxiAuberdineExodar             :=  @TaxiPathID             :=  @TaxiPathID +1;
-SET @TaxiExodarAuberdine             :=  @TaxiPathID             :=  @TaxiPathID +1;
+SET @TaxiAuberdineExodar             := @TaxiPathID             := @TaxiPathID +1;
+SET @TaxiExodarAuberdine             := @TaxiPathID             := @TaxiPathID +1;
 
 -- Talents
 SET @MageFire                                        =        41;
@@ -1390,3 +1670,65 @@ SET @FactionSunreaversConversion                     =      1155;
 SET @FactionTheAshenVerdict                          =      1156;
 SET @FactionCTFFlagAlliance2                         =      1159;
 SET @FactionCTFFlagHorde2                            =      1160;
+
+-- playercreateinfo_action buttons
+SET @Row1Button1                                     =         0;
+SET @Row1Button2                                     =         1;
+SET @Row1Button3                                     =         2;
+SET @Row1Button4                                     =         3;
+SET @Row1Button5                                     =         4;
+SET @Row1Button6                                     =         5;
+SET @Row1Button7                                     =         6;
+SET @Row1Button8                                     =         7;
+SET @Row1Button9                                     =         8;
+SET @Row1Button10                                    =         9;
+SET @Row1Button11                                    =        10;
+SET @Row1Button12                                    =        11;
+SET @SpecialAButton1                                 =        72;
+SET @SpecialAButton2                                 =        73;
+SET @SpecialAButton3                                 =        74;
+SET @SpecialAButton4                                 =        75;
+SET @SpecialAButton5                                 =        76;
+SET @SpecialAButton6                                 =        77;
+SET @SpecialAButton7                                 =        78;
+SET @SpecialAButton8                                 =        79;
+SET @SpecialAButton9                                 =        80;
+SET @SpecialAButton10                                =        81;
+SET @SpecialAButton11                                =        82;
+SET @SpecialAButton12                                =        83;
+SET @SpecialBButton1                                 =        84;
+SET @SpecialBButton2                                 =        85;
+SET @SpecialBButton3                                 =        86;
+SET @SpecialBButton4                                 =        87;
+SET @SpecialBButton5                                 =        88;
+SET @SpecialBButton6                                 =        89;
+SET @SpecialBButton7                                 =        90;
+SET @SpecialBButton8                                 =        91;
+SET @SpecialBButton9                                 =        92;
+SET @SpecialBButton10                                =        93;
+SET @SpecialBButton11                                =        94;
+SET @SpecialBButton12                                =        95;
+SET @SpecialCButton1                                 =        96;
+SET @SpecialCButton2                                 =        97;
+SET @SpecialCButton3                                 =        98;
+SET @SpecialCButton4                                 =        99;
+SET @SpecialCButton5                                 =       100;
+SET @SpecialCButton6                                 =       101;
+SET @SpecialCButton7                                 =       102;
+SET @SpecialCButton8                                 =       103;
+SET @SpecialCButton9                                 =       104;
+SET @SpecialCButton10                                =       105;
+SET @SpecialCButton11                                =       106;
+SET @SpecialCButton12                                =       107;
+SET @SpecialDButton1                                 =       108;
+SET @SpecialDButton2                                 =       109;
+SET @SpecialDButton3                                 =       110;
+SET @SpecialDButton4                                 =       111;
+SET @SpecialDButton5                                 =       112;
+SET @SpecialDButton6                                 =       113;
+SET @SpecialDButton7                                 =       114;
+SET @SpecialDButton8                                 =       115;
+SET @SpecialDButton9                                 =       116;
+SET @SpecialDButton10                                =       117;
+SET @SpecialDButton11                                =       118;
+SET @SpecialDButton12                                =       119;

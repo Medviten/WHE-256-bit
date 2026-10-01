@@ -6,6 +6,7 @@ INSERT INTO `faction` (`id`, `reputation_index`, `reputation_race_mask_1`, `repu
 (@HighElfPlayer, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1.0000000000000000', '1.0000000000000000', 5, 5, '"PLAYER"," High Elf"', '플레이어 - 하이 엘프', '"JOUEUR"," Haut-elfe"', '"SPIELER"," Hochelf"', '高等精灵(玩家)', '高等精靈(玩家)', '"JUGADOR"," alto elfo"', '"JUGADOR"," alto elfo"', 'ИГРОК: высший эльф', '', '', '', '', '', '', '', 16712190, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712188),
 (@HighElfFaction, @HighElfFactionRepIndex, @AllianceMask & ~@HighElfMask, @HordeMask, @HighElfMask, 0, 0, 0, 0, 0, 3100, -42000, 4000, 0, 273, 6, 17, 0, 469, '1.0000000000000000', '0.2500000000000000', 7, 5, 'High Elven Loyalists', '하이 엘프 충성파', 'Loyalistes hauts-elfes', 'Hochelfen-Loyalisten', '高等精灵效忠者', '高等精靈效忠者', 'Leales altos elfos', 'Leales altos elfos', 'Верные высшие эльфы', '', '', '', '', '', '', '', 16712190, 'High elves who remained loyal to the Alliance.', '얼라이언스에 충성을 지킨 하이 엘프들.', 'Hauts-elfes restés fidèles à l’Alliance.', 'Hochelfen, die der Allianz treu geblieben sind.', '仍效忠联盟的高等精灵。', '仍效忠聯盟的高等精靈。', 'Altos elfos que permanecieron leales a la Alianza.', 'Altos elfos que permanecieron leales a la Alianza.', 'Высшие эльфы, сохранившие верность Альянсу.', '', '', '', '', '', '', '', 16712190);
 
+/*
 -- Changed values
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @HighElfMask WHERE `id` = 21;
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @HighElfMask WHERE `id` = 46;
@@ -96,3 +97,4 @@ UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @High
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @HighElfMask WHERE `id` = 1119;
 UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @HighElfMask WHERE `id` = 1124;
 UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @HighElfMask WHERE `id` = 1126;
+*/

@@ -12,7 +12,7 @@ INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES
 (1, @Goblin, 4589),
 (2, @Goblin, 4588),
 (3, @Goblin, 4587),
-(4, @Goblin, 4590); */
+(4, @Goblin, 4590);
 
 -- Goblin
 DELETE FROM `player_totem_model` WHERE `RaceID` = @Goblin;
@@ -21,3 +21,5 @@ INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES
 (2, @Goblin, @HordeEarthTotem),
 (3, @Goblin, @HordeWaterTotem),
 (4, @Goblin, @HordeAirTotem);
+
+*/

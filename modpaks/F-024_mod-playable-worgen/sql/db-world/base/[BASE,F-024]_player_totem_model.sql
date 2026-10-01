@@ -7,7 +7,6 @@ INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES
 (2, @Worgen, 30761), -- Earth (borrowing from Troll style for nature theme)
 (3, @Worgen, 30763), -- Water (borrowing from Troll style for nature theme)
 (4, @Worgen, 30760), -- Air (borrowing from Troll style for nature theme)
-*/
 
 DELETE FROM `player_totem_model` WHERE `RaceID` = @Worgen;
 INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES 
@@ -15,3 +14,5 @@ INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES
 (2, @Worgen, @AllianceEarthTotem),
 (3, @Worgen, @AllianceWaterTotem),
 (4, @Worgen, @AllianceAirTotem);
+
+*/

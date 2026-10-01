@@ -1,20 +1,22 @@
--- skilllineability: 10 inserts, 33 updates, 0 deletes
+-- skilllineability: 10 inserts, 0 updates, 0 deletes
 
 -- New entries
-DELETE FROM `skilllineability` WHERE `id` BETWEEN 21981 AND 21989; -- Worgen and Goblin racials
-DELETE FROM `skilllineability` WHERE `id` = 31448; -- Rocket Jump
+DELETE FROM `skilllineability` WHERE `id` IN (
+    @WorgenRacial1, @WorgenRacial2, @WorgenRacial3, @WorgenRacial4, 
+    @GoblinRacial1, @GoblinRacial2, @GoblinRacial3, @GoblinRacial4, @GoblinRacial5, @GoblinRacial6
+);
 INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`, `required_classes`, `excluded_races`, `excluded_classes`, `min_skill_value`, `spell_parent_id`, `acquire_method`, `skill_grey_level`, `skill_yellow_level`, `character_points_1`, `character_points_2`) VALUES
-(21981, @WorgenRacials, @WorgenRacial1, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21982, @WorgenRacials, @WorgenRacial2, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21983, @WorgenRacials, @WorgenRacial3, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21984, @WorgenRacials, @WorgenRacial4, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21985, @GoblinRacials, @GoblinRacial1, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21986, @GoblinRacials, @GoblinRacial2, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21987, @GoblinRacials, @GoblinRacial3, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21988, @GoblinRacials, @GoblinRacial4, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(21989, @GoblinRacials, @GoblinRacial5, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0),
-(31448, @GoblinRacials, @GoblinRacial6, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0); -- Spell: Rocket Jump
-
+(@WorgenRacial1, @WorgenRacials, @WorgenRacial1, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellViciousness
+(@WorgenRacial2, @WorgenRacials, @WorgenRacial2, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellAberration
+(@WorgenRacial3, @WorgenRacials, @WorgenRacial3, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellFlayer
+(@WorgenRacial4, @WorgenRacials, @WorgenRacial4, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellDarkflight
+(@GoblinRacial1, @GoblinRacials, @GoblinRacial1, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellRocketBarrage
+(@GoblinRacial2, @GoblinRacials, @GoblinRacial2, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellTimeIsMoney
+(@GoblinRacial3, @GoblinRacials, @GoblinRacial3, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellBestDealsAnywhere
+(@GoblinRacial4, @GoblinRacials, @GoblinRacial4, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellBetterLivingThroughChemistry
+(@GoblinRacial5, @GoblinRacials, @GoblinRacial5, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellPackHobgoblin
+(@GoblinRacial6, @GoblinRacials, @GoblinRacial6, @GoblinMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0); -- @SpellRocketJump
+/*
 -- Changed values
 UPDATE `skilllineability` SET `required_races` = `required_races` | @WorgenMask WHERE `id` = 590; -- Spell: 668 (Language: Common)
 UPDATE `skilllineability` SET `required_races` = `required_races` | @GoblinMask WHERE `id` = 592; -- Spell: 669 (Language: Orcish)
@@ -49,3 +51,4 @@ UPDATE `skilllineability` SET `required_races` = `required_races` | @WorgenMask 
 UPDATE `skilllineability` SET `required_races` = `required_races` | @GoblinMask WHERE `id` = 20290; -- Spell: 60866 (Mechano-hog)
 UPDATE `skilllineability` SET `required_races` = `required_races` | @GoblinMask | @WorgenMask WHERE `id` = 21723; -- Spell: 75460 (N/A?)
 UPDATE `skilllineability` SET `required_races` = `required_races` | @GoblinMask | @WorgenMask WHERE `id` = 21724; -- Spell: 75461 (Flame Shock Passive)
+*/

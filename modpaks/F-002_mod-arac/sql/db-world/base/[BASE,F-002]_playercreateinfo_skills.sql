@@ -1,10 +1,10 @@
 UPDATE `playercreateinfo_skills` SET `raceMask`  = @BowHunters                  WHERE `skill` = @BowSkill      AND `classMask` !=            0;
 UPDATE `playercreateinfo_skills` SET `raceMask`  = @GunHunters                  WHERE `skill` = @GunSkill      AND `classMask` !=            0;
 UPDATE `playercreateinfo_skills` SET `raceMask`  = @CrossbowHunters             WHERE `skill` = @CrossbowSkill AND `classMask` !=            0;
-UPDATE `playercreateinfo_skills` SET `classMask` = `classMask` & ~@RogueMask    WHERE `skill` = @DaggerSkill   AND `classMask` !=   @RogueMask;
-UPDATE `playercreateinfo_skills` SET `classMask` = `classMask` & ~@PaladinMask  WHERE `skill` = @2HMaceSkill   AND `classMask` != @PaladinMask;
+UPDATE `playercreateinfo_skills` SET `classMask` = `classMask` & ~@RogueMask    WHERE `skill` = @DaggerSkill   AND (`classMask` & @RogueMask)   != 0;
+UPDATE `playercreateinfo_skills` SET `classMask` = `classMask` & ~@PaladinMask  WHERE `skill` = @2HMaceSkill   AND (`classMask` & @PaladinMask) != 0;
 
-INSERT IGNORE INTO `playercreateinfo_skills` VALUES
+INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (0,             @RogueMask,   @DaggerSkill, 0, 'Daggers (Rogues)'),
 (@AllianceMask, @PaladinMask, @2HMaceSkill, 0, '2H-Maces (Alliance Paladins)');
 

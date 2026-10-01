@@ -3941,7 +3941,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	5499, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	514641, -- SpellIconID: Running Wild
+	@IconRunningWild, -- SpellIconID: Running Wild
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
@@ -4179,7 +4179,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	5499, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	514641, -- SpellIconID: Running Wild
+	@IconRunningWild, -- SpellIconID: Running Wild
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
@@ -4417,7 +4417,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	5499, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	514641, -- SpellIconID: Running Wild
+	@IconRunningWild, -- SpellIconID: Running Wild
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
@@ -4655,7 +4655,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	5499, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	514641, -- SpellIconID: Running Wild
+	@IconRunningWild, -- SpellIconID: Running Wild
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
@@ -4871,7 +4871,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	55272, -- EffectMiscValue_1
+	@MountainHorseCreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -5108,7 +5108,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	55273, -- EffectMiscValue_1
+	@SwiftMountainHorseCreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
