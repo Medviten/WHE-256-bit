@@ -1,8 +1,4 @@
--- [F-031] mod-azerothcore-high-elf: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
-
--- New entries
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES
-(1140, @HighElfRacials, @HighElfMask, @AllClassMask, 1170, 0, 0, 0) ON DUPLICATE KEY UPDATE `race_mask` = `race_mask` | @HighElfMask;
+-- [F-002] mod-azerothcore-high-elf: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
 
 -- Changed values
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 21;

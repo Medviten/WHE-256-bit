@@ -8,3 +8,8 @@ INSERT INTO `playercreateinfo` VALUES
 (@Worgen, @Warlock,     @Kalimdor,  @Teldrassil,      @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO),
 (@Worgen, @Druid,       @Kalimdor,  @Teldrassil,      @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO),
 (@Worgen, @DeathKnight, @Northrend, @ScarletEnclave,  @DKStartX,        @DKStartY,       @DKStartZ,       @DKStartZ);
+
+-- ARAC
+INSERT IGNORE INTO `playercreateinfo` VALUES
+(@Worgen, @Paladin, @Kalimdor, @Teldrassil, @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO), -- ARAC
+(@Worgen, @Shaman,  @Kalimdor, @Teldrassil, @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO); -- ARAC

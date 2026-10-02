@@ -45,6 +45,7 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WH
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 112; -- Skill: 243 (N/A)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 113; -- Skill: 258 (N/A)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @GnomeMask WHERE `id` = 133; -- Skill: 46 (Guns [Dwarf, Tauren])
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 123; -- Skill: 160 (Two-Handed Maces [paladin])
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 137; -- Skill: 227 (N/A)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 145; -- Skill: 413 (Mail)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 146; -- Skill: 413 (Mail)
@@ -93,7 +94,7 @@ UPDATE `skillraceclassinfo` SET `class_mask` = `class_mask` | @AllClassMask WHER
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 481; -- Skill: 150 (Tiger Riding)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 622; -- Skill: 172 (Two-Handed Axes)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @TaurenMask WHERE `id` = 624; -- Skill: 160 (Two-Handed Maces)
-UPDATE `skillraceclassinfo` SET `race_mask` = 262111 WHERE `id` = 625; -- Skill: 160 (Two-Handed Maces) UNCHANGED?
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 625; -- Skill: 160 (Two-Handed Maces) UNCHANGED?
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask /*, `class_mask` = 1 */ WHERE `id` = 628; -- Skill: 44 (Axes [Rogue])
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 630; -- Skill: 44 (Axes [Warrior])
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = 632; -- Skill: 173 (Daggers [Rogue])

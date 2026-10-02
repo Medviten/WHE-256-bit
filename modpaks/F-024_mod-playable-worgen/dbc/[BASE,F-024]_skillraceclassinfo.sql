@@ -5,7 +5,7 @@ DELETE FROM `skillraceclassinfo` WHERE `id` = @WorgenRacialSkillRaceClass; -- wo
 INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES (
     @WorgenRacialSkillRaceClass, @WorgenRacials, @WorgenMask, @AllClassMask, 1170, 0, 0, 0
 );
-
+/*
 -- Changed values
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @WorgenMask WHERE `id` = 21; -- skill: 293 (plate mail)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @WorgenMask WHERE `id` = 27; -- skill: 356 (fishing)
@@ -33,3 +33,4 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @WorgenMask WHERE `i
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @WorgenMask WHERE `id` = 865; -- skill: 142 (survival)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @WorgenMask WHERE `id` = 866; -- skill: 755 (jewelcrafting)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @WorgenMask WHERE `id` = 899; -- skill: 165 (leatherworking)
+*/

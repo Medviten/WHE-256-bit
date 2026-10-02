@@ -373,6 +373,7 @@ SET @VulperaRacials                                  =      796;
 SET @PandarenRacials                                 =      797;
 SET @BrokenRacials                                   =      798;
 SET @KulTiranRacials                                 =      799;
+SET @GilneanRacials                                  =      800; -- For completion's sake
 
 -- Racial spells
 SET @Cannibalize                                     = @SpellCannibalize; -- Undead racial
@@ -770,6 +771,7 @@ SET @ActivateSecondarySpec                           =    20868;
 SET @WorgenRacialSkillRaceClass                      =      971;
 SET @GoblinRacialSkillRaceClass                      =      972;
 SET @DarkIronDwarfRacialSkillRaceClass               =     1143;
+SET @GilneanRacialSkillRaceClass                     =     1144; -- For completion's sake
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                       =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -999,6 +1001,8 @@ SET @BrokenFaction                                   =     1181;
 SET @BrokenPlayer                                    =     1182;
 SET @KulTiranFaction                                 =     1183; -- Kul Tiras
 SET @KulTiranPlayer                                  =     1184;
+SET @GilneanFaction                                  =     1185;
+SET @GilneanPlayer                                   =     1186;
 
 -- Faction templates
 SET @GoblinFactionTemplate                           =     2238; -- References @GoblinPlayer
@@ -1013,6 +1017,7 @@ SET @AlliancePandarenFactionTemplate                 =     2245; -- References @
 SET @HordePandarenFactionTemplate                    =     2246; -- References @HordePandarenPlayer
 SET @BrokenFactionTemplate                           =     2247; -- References @BrokenPlayer
 SET @KulTiranFactionTemplate                         =     2248; -- References @KulTiranPlayer
+SET @GilneanFactionTemplate                          =     2249; -- References @GilneanPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                           =    105;
@@ -1027,6 +1032,7 @@ SET @AlliancePandarenFactionRepIndex                 =    113;
 SET @HordePandarenFactionRepIndex                    =    114;
 SET @BrokenFactionRepIndex                           =    115;
 SET @KulTiranFactionRepIndex                         =    116;
+SET @GilneanFactionRepIndex                          =    117;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                            =     246;
@@ -1045,6 +1051,7 @@ SET @AlliancePandarenAchievement                     =    1437;
 SET @HordePandarenAchievement                        =    1438;
 SET @BrokenAchievement                               =    1439;
 SET @KulTiranAchievement                             =    1440;
+SET @GilneanAchievement                              =    1441; -- For completion's sake
 
 -- Achievement Criteria
 SET @GoblinCriteria1                                 =    13471; -- Achievement 1005: Know Thy Enemy
@@ -1095,6 +1102,10 @@ SET @KulTiranCriteria1                               =    19234; -- Achievement 
 SET @KulTiranCriteria2                               =    19235; -- Achievement 2422: Shake Your Bunny-Maker
 SET @KulTiranCriteria3                               =    19236; -- Achievement 291: Check Your Head
 SET @KulTiranCriteria4                               =    19237; -- @KulTiranAchievement: Realm First! Level 80 Kul Tiran
+SET @GilneanCriteria1                                =    19238; -- Achievement 246: Know Thy Enemy
+SET @GilneanCriteria2                                =    19239; -- Achievement 2422: Shake Your Bunny-Maker
+SET @GilneanCriteria3                                =    19240; -- Achievement 291: Check Your Head
+SET @GilneanCriteria4                                =    19241; -- @GilneanAchievement: Realm First! Level 80 Gilnean
 
 -- Classes
 SET @Warrior                                         =      1;
