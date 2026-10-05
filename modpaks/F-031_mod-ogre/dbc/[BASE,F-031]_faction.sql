@@ -1,0 +1,101 @@
+-- faction: 2 inserts, 90 updates, 0 deletes
+
+-- New entries
+DELETE FROM `faction` WHERE `id` IN (@OgrePlayer, @OgreFaction);
+INSERT INTO `faction` (`id`, `reputation_index`, `reputation_race_mask_1`, `reputation_race_mask_2`, `reputation_race_mask_3`, `reputation_race_mask_4`, `reputation_class_mask_1`, `reputation_class_mask_2`, `reputation_class_mask_3`, `reputation_class_mask_4`, `reputation_base_1`, `reputation_base_2`, `reputation_base_3`, `reputation_base_4`, `reputation_flags_1`, `reputation_flags_2`, `reputation_flags_3`, `reputation_flags_4`, `parent_faction_id`, `parent_faction_mod_1`, `parent_faction_mod_2`, `parent_faction_cap_1`, `parent_faction_cap_2`, `name_enus`, `name_kokr`, `name_frfr`, `name_dede`, `name_zhcn`, `name_zhtw`, `name_eses`, `name_esmx`, `name_ruru`, `name_jajp`, `name_ptpt`, `name_itit`, `name_unused_1`, `name_unused_2`, `name_unused_3`, `name_unused_4`, `name_flags`, `description_enus`, `description_kokr`, `description_frfr`, `description_dede`, `description_zhcn`, `description_zhtw`, `description_eses`, `description_esmx`, `description_ruru`, `description_jajp`, `description_ptpt`, `description_itit`, `description_unused_1`, `description_unused_2`, `description_unused_3`, `description_unused_4`, `description_flags`) VALUES
+(@OgrePlayer, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1.0000000000000000', '1.0000000000000000', 5, 5, '"PLAYER", Ogre', '플레이어 - 오우거', '"JOUEUR", Ogre', '"SPIELER", Oger', '食人魔(玩家)', '巨魔(玩家)', '"JUGADOR", ogro', '"JUGADOR", ogro', 'ИГРОК: огр', 0, 0, 0, 0, 0, 0, 0, 16712190, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16712188),
+(@OgreFaction, @OgreFactionRepIndex, @BarrensBros & ~@OgreMask, @AllianceMask, @OgreMask, @UndercityMask, 0, 0, 0, 0, 3100, -42000, 4000, 500, 273, 6, 17, 17, 67, '1.0000000000000000', '0.2500000000000000', 7, 5, 'Stonemaul Clan', '돌망치 부족', 'Clan Cognepierre', 'Steinbrecherklan', '石槌氏族', '石槌氏族', 'Clan Quebrantarrocas', 'Clan Quebrantarrocas', 'Клан Каменного Молота', 0, 0, 0, 0, 0, 0, 0, 16712190, 'Ogres of the Stonemaul clan, sworn to the Horde.', '호드에 충성을 맹세한 돌망치 부족 오우거입니다.', 'Ogres du clan Cognepierre ayant juré fidélité à la Horde.', 'Oger des Steinbrecherklans, die der Horde die Treue geschworen haben.', '效忠部落的石槌氏族食人魔。', '效忠部落的石槌氏族巨魔。', 'Ogros del clan Quebrantarrocas que juraron lealtad a la Horda.', 'Ogros del clan Quebrantarrocas que juraron lealtad a la Horda.', 'Огры клана Каменного Молота, присягнувшие Орде.', 0, 0, 0, 0, 0, 0, 0, 16712190);
+
+/*
+-- Changed values
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 21;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 46;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 47;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 54;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 59;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 67;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 68;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 69;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 70;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 72;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 76;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 81;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 83;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 86;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 87;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 92;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 93;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 169;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 270;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 289;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 349;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 369;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 469;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 470;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 471;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 509;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 510;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 529;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 530;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 549;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 550;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 551;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 569;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 570;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 571;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 574;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 576;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 577;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 589;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 609;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 729;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 730;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 749;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 809;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 889;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 890;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 891;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 892;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 909;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 910;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 911;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 922;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 930;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 932;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 933;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 934;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 935;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 936;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 941;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 942;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 946;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 947;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 967;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 970;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 978;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 989;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 990;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1012;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1015;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1031;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1037;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1038;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1050;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1052;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1064;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1067;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1068;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1073;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1082;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1085;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask, `reputation_race_mask_4` = `reputation_race_mask_4` | @OgreMask WHERE `id` = 1090;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1091;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1094;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1104;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1105;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1117;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1118;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1119;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @OgreMask WHERE `id` = 1124;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @OgreMask WHERE `id` = 1126;
+*/
