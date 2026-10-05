@@ -9,4 +9,4 @@ INSERT INTO `playercreateinfo` VALUES
 (@Gilnean, @Mage,        @Kalimdor,  @Teldrassil,      @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO),
 (@Gilnean, @Warlock,     @Kalimdor,  @Teldrassil,      @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO),
 (@Gilnean, @Druid,       @Kalimdor,  @Teldrassil,      @NightElfStartX,  @NightElfStartY, @NightElfStartZ, @NightElfStartO),
-(@Gilnean, @DeathKnight, @Northrend, @ScarletEnclave,  @DKStartX,        @DKStartY,       @DKStartZ,       @DKStartZ);
+(@Gilnean, @DeathKnight, @Northrend, @ScarletEnclave,  @DKStartX,        @DKStartY,       @DKStartZ,       @DKStartO);
