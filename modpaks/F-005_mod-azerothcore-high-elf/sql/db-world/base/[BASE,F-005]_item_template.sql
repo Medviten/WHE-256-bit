@@ -203,4 +203,4 @@ UPDATE `item_template` SET `allowablerace` = 7245 WHERE entry = 49044; -- Swift 
 UPDATE `item_template` SET `allowablerace` = 7245 WHERE entry = 49096; -- Crusader's White Warhorse, old mask: 1101
 UPDATE `item_template` SET `allowablerace` = 7245 WHERE entry = 49289; -- Little White Stallion Bridle, old mask: 1101
 UPDATE `item_template` SET `allowablerace` = 7245 WHERE entry = 51377; -- Medallion of the Alliance, old mask: 1101
-/*
+*/
