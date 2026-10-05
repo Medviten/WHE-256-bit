@@ -12,6 +12,6 @@ INSERT IGNORE INTO `playercreateinfo_skills` (`racemask`, `classMask`, `skill`, 
 UPDATE `playercreateinfo_skills` SET `racemask` = `racemask` | @OgreMask WHERE `skill` = 109; -- Orcish language
 
 /* Add racial skills */
-DELETE FROM `playercreateinfo_skills` WHERE `raceMask` IN (16384) AND `classMask` = 0;
+DELETE FROM `playercreateinfo_skills` WHERE `raceMask` = @OgreMask AND `classMask` = 0;
 INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES
 (@OgreMask, 0, @OgreRacials, 0, 'Ogre - Racial');
