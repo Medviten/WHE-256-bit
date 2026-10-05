@@ -1,7 +1,7 @@
 -- [F-032] mod-maghar: charhairgeosets: 25 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`charhairgeosets`);
+SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `charhairgeosets`);
 
 DELETE FROM `charhairgeosets` WHERE `race` = @MagharOrc;
 INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `show_scalp`) VALUES
