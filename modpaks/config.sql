@@ -180,6 +180,8 @@ SET @Face                                            =    1;
 SET @FacialHair                                      =    2;
 SET @Hair                                            =    3;
 SET @Underwear                                       =    4;
+SET @FootprintHoof                                   =    3;
+SET @FootprintPaw                                    =    7;
 
 -- CharSections
 SET @CharacterCreateMask                              =   1;
@@ -206,16 +208,16 @@ SET @Draenei                                         =   11;
 SET @NextRace                                        =   12; -- Reserved for Worgen – increments before assignment
 
 -- NPC Races
-SET @FelOrc                                          =   72;
-SET @Naga                                            =   73;
-SET @Broken                                          =   74;
-SET @Skeleton                                        =   75;
-SET @Vrykul                                          =   76;
-SET @Tuskarr                                         =   77;
-SET @ForestTroll                                     =   78;
-SET @Taunka                                          =   79;
-SET @NorthrendSkeleton                               =   80;
-SET @IceTroll                                        =   81;
+SET @NPCFelOrc                                       =   72;
+SET @NPCNaga                                         =   73;
+SET @NPCBroken                                       =   74;
+SET @NPCSkeleton                                     =   75;
+SET @NPCVrykul                                       =   76;
+SET @NPCTuskarr                                      =   77;
+SET @NPCForestTroll                                  =   78;
+SET @NPCTaunka                                       =   79;
+SET @NPCNorthrendSkeleton                            =   80;
+SET @NPCIceTroll                                     =   81;
 
 -- RaceMasks
 SET @HumanMask                                       =   1 << (@Human            - 1);  -- race ID 1  → 1
@@ -249,8 +251,6 @@ SET @WorgenMaleModel                                 =     3141; -- bipedal
 SET @WorgenFemaleModel                               =     3142; -- bipedal
 SET @WorgenWildMaleModel                             =     3626; -- quadrupedal
 SET @WorgenWildFemaleModel                           =     3627; -- quadrupedal
-SET @GilneanMaleModel                                =       49; -- human
-SET @GilneanFemaleModel                              =       50; -- human
 SET @HighElfMaleModel                                =     2208; -- blood elf
 SET @HighElfFemaleModel                              =     2209; -- blood elf
 SET @MagharOrcMaleModel                              =       51; -- orc
@@ -267,8 +267,14 @@ SET @PandarenMaleModel                               =    40006;
 SET @PandarenFemaleModel                             =    40007;
 SET @BrokenMaleModel                                 =     2367;
 SET @BrokenFemaleModel                               =     2368;
-SET @KulTiranMaleModel                               =    40008;
-SET @KulTiranFemaleModel                             =    40009;
+SET @KulTiranMaleModel                               =    40010; -- 40008;
+SET @KulTiranFemaleModel                             =    40011; -- 40009;
+SET @GilneanMaleModel                                =    40010; -- human copy
+SET @GilneanFemaleModel                              =    40011; -- human copy
+SET @HighmountainTaurenMaleModel                     =    40012;
+SET @HighmountainTaurenFemaleModel                   =    40013;
+SET @NagaMaleModel                                   =    40014;
+SET @NagaFemaleModel                                 =    40015;
 
 -- Display IDs
 SET @GoblinMaleDisplay                               =     6894;
@@ -280,8 +286,6 @@ SET @WorgenWildMaleDisplay                           =    94133;
 SET @WorgenWildFemaleDisplay                         =    94134;
 SET @LordHarfordDisplay                              =    36445;
 SET @GallyLumpstainDisplay                           =    36446;
-SET @GilneanMaleDisplay                              =    94135;
-SET @GilneanFemaleDisplay                            =    94136;
 SET @HighElfMaleDisplay                              =    94222;
 SET @HighElfFemaleDisplay                            =    94223;
 SET @MagharOrcMaleDisplay                            =    94226;
@@ -298,16 +302,20 @@ SET @AlliancePandarenMaleDisplay                     =    40006;
 SET @AlliancePandarenFemaleDisplay                   =    40007;
 SET @HordePandarenMaleDisplay                        =    40008;
 SET @HordePandarenFemaleDisplay                      =    40009;
-SET @BrokenMaleDisplay                               =    21105;
-SET @BrokenFemaleDisplay                             =    40010;
-SET @KulTiranMaleDisplay                             =    40011;
-SET @KulTiranFemaleDisplay                           =    40012;
+SET @BrokenMaleDisplay                               =    17576; -- 21105; -- default 17576 (but no extended display)
+SET @BrokenFemaleDisplay                             =    17577; -- 40010; -- default 17577 (but no extended display)
+SET @KulTiranMaleDisplay                             =    94231; -- 40011;
+SET @KulTiranFemaleDisplay                           =    94232; -- 40012;
+SET @GilneanMaleDisplay                              =    94233;
+SET @GilneanFemaleDisplay                            =    94234;
+SET @HighmountainTaurenMaleDisplay                   =    40011;
+SET @HighmountainTaurenFemaleDisplay                 =    40012;
+SET @NagaMaleDisplay                                 =    40013;
+SET @NagaFemaleDisplay                               =    40014;
 
 -- CreatureDisplayInfoExtra
 SET @WorgenMaleDisplayExtra                          =    45424;
 SET @WorgenFemaleDisplayExtra                        =    45425;
-SET @GilneanMaleDisplayExtra                         =    13749;
-SET @GilneanFemaleDisplayExtra                       =    13750;
 SET @HighElfMaleDisplayExtra                         =    45433;
 SET @HighElfFemaleDisplayExtra                       =    45434;
 SET @MagharOrcMaleDisplayExtra                       =    45437;
@@ -328,6 +336,12 @@ SET @BrokenMaleDisplayExtra                          =    14150;
 SET @BrokenFemaleDisplayExtra                        =    45451;
 SET @KulTiranMaleDisplayExtra                        =    45452;
 SET @KulTiranFemaleDisplayExtra                      =    45453;
+SET @GilneanMaleDisplayExtra                         =    45454;
+SET @GilneanFemaleDisplayExtra                       =    45455;
+SET @HighmountainTaurenMaleDisplayExtra              =    45456;
+SET @HighmountainTaurenFemaleDisplayExtra            =    45457;
+SET @NagaMaleDisplayExtra                            =    45458;
+SET @NagaFemaleDisplayExtra                          =    45459;
 
 -- creature_template
 SET @WorgenWildMaleTemplate                          =    55274;
@@ -374,6 +388,8 @@ SET @PandarenRacials                                 =      797;
 SET @BrokenRacials                                   =      798;
 SET @KulTiranRacials                                 =      799;
 SET @GilneanRacials                                  =      800; -- For completion's sake
+SET @HighmountainTaurenRacials                       =      801;
+SET @NagaRacials                                     =      802;
 
 -- Racial spells
 SET @Cannibalize                                     = @SpellCannibalize; -- Undead racial
@@ -443,6 +459,7 @@ SET @KulTiranRacial4                                 = @SpellChildOfTheSea;
 SET @KulTiranRacial5                                 = @SpellRimeOfTheAncientMariner;
 -- SET @OgreRacial1
 -- SET @BrokenRacial1
+-- SET @NagaRacial1
 
 -- Icons
 SET @IconBestDealsAnywhere                            =    4331; -- Goblin
@@ -490,6 +507,12 @@ SET @IconChildOfTheSea                                = 2447781; -- Kul Tiran
 SET @IconHaymaker                                     = 2447782; -- Kul Tiran
 SET @IconJackOfAllTrades                              = 2447783; -- Kul Tiran
 SET @IconRimeOfTheAncientMariner                      = 2447784; -- Kul Tiran
+SET @IconHMMooseMount                                 = 1757668; -- Highmountain Tauren
+SET @IconBullRush                                     = 1723987; -- Highmountain Tauren
+SET @IconMountaineer                                  = 1723999; -- Highmountain Tauren
+SET @IconPrideOfIronhorn                              = 1724002; -- Highmountain Tauren
+SET @IconRuggedTenacity                               = 1724003; -- Highmountain Tauren
+SET @IconWasteNotWantNot                              = 1724005; -- Highmountain Tauren
 
 -- Other Relevant Spells
 SET @ApprenticeSkinning                               =    8613;
@@ -702,6 +725,11 @@ SET @DarkIronDwarfSkillLineAbility2                  =    31469;
 SET @DarkIronDwarfSkillLineAbility3                  =    31470;
 SET @DarkIronDwarfSkillLineAbility4                  =    31471;
 SET @DarkIronDwarfSkillLineAbility5                  =    31472;
+SET @HighmountainTaurenSkillLineAbility1             =    31473;
+SET @HighmountainTaurenSkillLineAbility2             =    31474;
+SET @HighmountainTaurenSkillLineAbility3             =    31475;
+SET @HighmountainTaurenSkillLineAbility4             =    31476;
+SET @HighmountainTaurenSkillLineAbility5             =    31477;
 
 -- Language SkillLineAbility
 SET @OrcishSkillLineAbilityHorde                     =      592;
@@ -772,6 +800,8 @@ SET @WorgenRacialSkillRaceClass                      =      971;
 SET @GoblinRacialSkillRaceClass                      =      972;
 SET @DarkIronDwarfRacialSkillRaceClass               =     1143;
 SET @GilneanRacialSkillRaceClass                     =     1144; -- For completion's sake
+SET @HighmountainTaurenRacialSkillRaceClass          =     1145;
+SET @NagaRacialSkillRaceClass                        =     1146;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                       =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -878,6 +908,7 @@ SET @GoblinTurboTrikeModel                           =     3624;
 SET @CaravanHyena1Model                              =     3628; -- Vacant slot
 SET @CaravanHyena2Model                              =     3629; -- Vacant slot
 SET @DragonTurtleModel                               =     3630; -- Vacant slot
+SET @HighmountainThunderhoofModel                    =     3631; -- Vacant slot
 
 -- Mount Display IDs
 SET @GoblinTrikeDisplay                              =    35249;
@@ -890,6 +921,7 @@ SET @DragonTurtleBlueDisplay                         =    94228; -- vacant slot
 SET @DragonTurtlePurpleDisplay                       =    94229; -- vacant slot
 SET @DragonTurtleGreenDisplay                        =    94230; -- vacant slot
 SET @DragonTurtleBlackDisplay                        =    94231; -- vacant slot
+SET @HighmountainThunderhoofDisplay                  =    94232; -- vacant slot
 
 -- Creature IDs
 SET @GobberCreatureID                                =    36613;
@@ -903,6 +935,7 @@ SET @DragonTurtleBlueCreatureID                      =   182783; -- vacant slot
 SET @DragonTurtlePurpleCreatureID                    =   182784; -- vacant slot
 SET @DragonTurtleGreenCreatureID                     =   182785; -- vacant slot
 SET @DragonTurtleBlackCreatureID                     =   182786; -- vacant slot
+SET @HighmountainThunderhoofCreatureID               =   182787; -- vacant slot
 
 -- Mount Items
 SET @GoblinTrikeItem                                 =    62461; -- Cataclysm ID
@@ -915,6 +948,7 @@ SET @DragonTurtleBlueItem                            =    91009; -- MoP ID
 SET @DragonTurtlePurpleItem                          =    91006; -- MoP ID
 SET @DragonTurtleGreenItem                           =    91004; -- MoP ID
 SET @DragonTurtleBlackItem                           =    91008; -- MoP ID
+SET @HighmountainThunderhoofItem                     =   155662; -- BfA ID
 
 -- Mount Item Display ID
 SET @GoblinTrikeItemDisplay                          =   134237;
@@ -927,6 +961,7 @@ SET @DragonTurtleBlueItemDisplay                     =   132263; -- vacant slot
 SET @DragonTurtlePurpleItemDisplay                   =   132264; -- vacant slot
 SET @DragonTurtleGreenItemDisplay                    =   132265; -- vacant slot
 SET @DragonTurtleBlackItemDisplay                    =   132266; -- vacant slot
+SET @HighmountainThunderhoofItemDisplay              =   132267; -- vacant slot
 
 -- Mount Spells
 SET @GoblinTrike                                     =    87090; -- Cataclysm ID
@@ -939,6 +974,7 @@ SET @DragonTurtleBlue                                =   127287; -- MoP ID
 SET @DragonTurtlePurple                              =   127289; -- MoP ID
 SET @DragonTurtleGreen                               =   120395; -- MoP ID
 SET @DragonTurtleBlack                               =   127286; -- MoP ID
+SET @HighmountainThunderhoof                         =   258060; -- Legion ID
 
 -- Faction Masks
 SET @VanillaAllianceMask                             = @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;
@@ -955,7 +991,7 @@ SET @CrossbowHunters                                 = @DraeneiMask         | @H
 SET @BowHunters                                      = @PlayableRaceMask    & ~(@GunHunters | @CrossbowHunters);
 SET @DaggersRogueOnly                                = @TaurenMask          | @DraeneiMask;
 
--- Race and PLAYER factions
+-- Race and PLAYER factions (stock races)
 SET @HumanFaction                                    =     72; -- Stormwind
 SET @HumanPlayer                                     =      1;
 SET @OrcFaction                                      =     76; -- Orgrimmar
@@ -977,32 +1013,45 @@ SET @BloodElfPlayer                                  =    914;
 SET @DraeneiFaction                                  =    930; -- Exodar
 SET @DraeneiPlayer                                   =    927;
 
+-- Race and PLAYER factions (retroported races)  
 SET @GoblinFaction                                   =     1133; -- Bilgewater Cartel (Cataclysm ID)
-SET @GoblinPlayer                                    =     1152;
+SET @GoblinPlayer                                    =     1152; -- Cataclysm ID
 SET @WorgenFaction                                   =     1134; -- Gilneas (Cataclysm ID)
-SET @WorgenPlayer                                    =     1153;
+SET @WorgenPlayer                                    =     1153; -- Cataclysm ID
+SET @AlliancePandarenFaction                         =     1353; -- Tushui Pandaren (MoP ID)
+SET @AlliancePandarenPlayer                          =     1178; -- Vacant slot
+SET @HordePandarenFaction                            =     1352; -- Huojin Pandaren (MoP ID)
+SET @HordePandarenPlayer                             =     1180; -- Vacant slot
+SET @VoidElfFaction                                  =     2170; -- Argussion Reach (Legion ID)
+SET @VoidElfPlayer                                   =     2229; -- Legion ID
+SET @HighmountainTaurenFaction                       =     1828; -- Highmountain Tribe (Legion ID)
+SET @HighmountainTaurenPlayer                        =     2230; -- Legion ID
+SET @NightborneFaction                               =     1859; -- The Nightfallen (Legion ID)
+SET @NightbornePlayer                                =     2231; -- Legion ID
+SET @LightforgedDraeneiFaction                       =     2165; -- Army of the Light (Legion ID)
+SET @LightforgedDraeneiPlayer                        =     2232; -- Legion ID
+SET @ZandalariTrollFaction                           =     2103; -- Zandalari Empire (BfA ID)
+SET @ZandalariTrollPlayer                            =     1174; -- Vacant slot
+SET @KulTiranFaction                                 =     2160; -- Proudmoore Admiralty (BfA ID)
+SET @KulTiranPlayer                                  =     1184;
+SET @DarkIronDwarfFaction                            =     1171; -- Shadowforge City
+SET @DarkIronDwarfPlayer                             =     1172;
+SET @VulperaFaction                                  =     2158; -- Voldunai (BfA ID)
+SET @VulperaPlayer                                   =     1176;
+
+-- Race and PLAYER factions (custom races)
 SET @HighElfFaction                                  =     1167; -- High Elf Loyalists
 SET @HighElfPlayer                                   =     1161;
 SET @MagharOrcFaction                                =     1168; -- Mag'har of the Horde
 SET @MagharOrcPlayer                                 =     1166;
+SET @BrokenFaction                                   =     1181;
+SET @BrokenPlayer                                    =     1182; -- Broken of the Alliance
 SET @OgreFaction                                     =     1170; -- Stonemaul Clan
 SET @OgrePlayer                                      =     1169;
-SET @DarkIronDwarfFaction                            =     1171; -- Shadowforge City
-SET @DarkIronDwarfPlayer                             =     1172;
-SET @ZandalariTrollFaction                           =     2103; -- Zandalari Empire (BfA ID)
-SET @ZandalariTrollPlayer                            =     1174;
-SET @VulperaFaction                                  =     2158; -- Voldunai (BfA ID)
-SET @VulperaPlayer                                   =     1176;
-SET @AlliancePandarenFaction                         =     1353; -- Tushui Pandaren (MoP ID)
-SET @AlliancePandarenPlayer                          =     1178;
-SET @HordePandarenFaction                            =     1352; -- Huojin Pandaren (MoP ID)
-SET @HordePandarenPlayer                             =     1180;
-SET @BrokenFaction                                   =     1181;
-SET @BrokenPlayer                                    =     1182;
-SET @KulTiranFaction                                 =     1183; -- Kul Tiras
-SET @KulTiranPlayer                                  =     1184;
 SET @GilneanFaction                                  =     1185;
 SET @GilneanPlayer                                   =     1186;
+SET @NagaFaction                                     =     1187;
+SET @NagaPlayer                                      =     1188;
 
 -- Faction templates
 SET @GoblinFactionTemplate                           =     2238; -- References @GoblinPlayer
@@ -1018,6 +1067,8 @@ SET @HordePandarenFactionTemplate                    =     2246; -- References @
 SET @BrokenFactionTemplate                           =     2247; -- References @BrokenPlayer
 SET @KulTiranFactionTemplate                         =     2248; -- References @KulTiranPlayer
 SET @GilneanFactionTemplate                          =     2249; -- References @GilneanPlayer
+SET @HighmountainTaurenFactionTemplate               =     2250; -- References @HighmountainTaurenPlayer
+SET @NagaFactionTemplate                             =     2251; -- References @NagaPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                           =    105;
@@ -1033,6 +1084,8 @@ SET @HordePandarenFactionRepIndex                    =    114;
 SET @BrokenFactionRepIndex                           =    115;
 SET @KulTiranFactionRepIndex                         =    116;
 SET @GilneanFactionRepIndex                          =    117;
+SET @HighmountainTaurenFactionRepIndex               =    118;
+SET @NagaFactionRepIndex                             =    119;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                            =     246;
@@ -1052,6 +1105,8 @@ SET @HordePandarenAchievement                        =    1438;
 SET @BrokenAchievement                               =    1439;
 SET @KulTiranAchievement                             =    1440;
 SET @GilneanAchievement                              =    1441; -- For completion's sake
+SET @HighmountainTaurenAchievement                   =    1442;
+SET @NagaAchievement                                 =    1443;
 
 -- Achievement Criteria
 SET @GoblinCriteria1                                 =    13471; -- Achievement 1005: Know Thy Enemy
@@ -1094,18 +1149,26 @@ SET @HordePandarenCriteria1                          =    19238; -- Achievement 
 SET @HordePandarenCriteria2                          =    19239; -- Achievement 2422: Shake Your Bunny-Maker
 SET @HordePandarenCriteria3                          =    19240; -- Achievement 291: Check Your Head
 SET @HordePandarenCriteria4                          =    19241; -- @HordePandarenAchievement: Realm First! Level 80 Pandaren (Horde)
-SET @BrokenCriteria1                                 =    19234; -- Achievement 246: Know Thy Enemy
-SET @BrokenCriteria2                                 =    19235; -- Achievement 2422: Shake Your Bunny-Maker
-SET @BrokenCriteria3                                 =    19236; -- Achievement 291: Check Your Head
-SET @BrokenCriteria4                                 =    19237; -- @BrokenAchievement: Realm First! Level 80 Broken
-SET @KulTiranCriteria1                               =    19234; -- Achievement 246: Know Thy Enemy
-SET @KulTiranCriteria2                               =    19235; -- Achievement 2422: Shake Your Bunny-Maker
-SET @KulTiranCriteria3                               =    19236; -- Achievement 291: Check Your Head
-SET @KulTiranCriteria4                               =    19237; -- @KulTiranAchievement: Realm First! Level 80 Kul Tiran
-SET @GilneanCriteria1                                =    19238; -- Achievement 246: Know Thy Enemy
-SET @GilneanCriteria2                                =    19239; -- Achievement 2422: Shake Your Bunny-Maker
-SET @GilneanCriteria3                                =    19240; -- Achievement 291: Check Your Head
-SET @GilneanCriteria4                                =    19241; -- @GilneanAchievement: Realm First! Level 80 Gilnean
+SET @HighmountainTaurenCriteria1                     =    19242; -- Achievement 1005: Know Thy Enemy
+SET @HighmountainTaurenCriteria2                     =    19243; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HighmountainTaurenCriteria3                     =    19244; -- Achievement 291: Check Your Head
+SET @HighmountainTaurenCriteria4                     =    19245; -- @HighmountainTaurenAchievement: Realm First! Level 80 Highmountain Tauren
+SET @NagaCriteria1                                   =    19246; -- Achievement 1005: Know Thy Enemy
+SET @NagaCriteria2                                   =    19247; -- Achievement 2422: Shake Your Bunny-Maker
+SET @NagaCriteria3                                   =    19248; -- Achievement 291: Check Your Head
+SET @NagaCriteria4                                   =    19249; -- @NagaAchievement: Realm First! Level 80 Naga
+SET @BrokenCriteria1                                 =    19250; -- Achievement 246: Know Thy Enemy
+SET @BrokenCriteria2                                 =    19251; -- Achievement 2422: Shake Your Bunny-Maker
+SET @BrokenCriteria3                                 =    19252; -- Achievement 291: Check Your Head
+SET @BrokenCriteria4                                 =    19253; -- @BrokenAchievement: Realm First! Level 80 Broken
+SET @KulTiranCriteria1                               =    19254; -- Achievement 246: Know Thy Enemy
+SET @KulTiranCriteria2                               =    19255; -- Achievement 2422: Shake Your Bunny-Maker
+SET @KulTiranCriteria3                               =    19256; -- Achievement 291: Check Your Head
+SET @KulTiranCriteria4                               =    19257; -- @KulTiranAchievement: Realm First! Level 80 Kul Tiran
+SET @GilneanCriteria1                                =    19258; -- Achievement 246: Know Thy Enemy
+SET @GilneanCriteria2                                =    19259; -- Achievement 2422: Shake Your Bunny-Maker
+SET @GilneanCriteria3                                =    19260; -- Achievement 291: Check Your Head
+SET @GilneanCriteria4                                =    19261; -- @GilneanAchievement: Realm First! Level 80 Gilnean
 
 -- Classes
 SET @Warrior                                         =      1;

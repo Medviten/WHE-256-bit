@@ -1,15 +1,15 @@
 -- [F-002] move_npc_races: creaturedisplayinfoextra
 
-UPDATE `creaturedisplayinfoextra` SET `race` = @FelOrc            WHERE `race` = 12;
-UPDATE `creaturedisplayinfoextra` SET `race` = @Naga              WHERE `race` = 13;
-UPDATE `creaturedisplayinfoextra` SET `race` = @Broken            WHERE `race` = 14;
-UPDATE `creaturedisplayinfoextra` SET `race` = @Skeleton          WHERE `race` = 15;
-UPDATE `creaturedisplayinfoextra` SET `race` = @Vrykul            WHERE `race` = 16;
-UPDATE `creaturedisplayinfoextra` SET `race` = @Tuskarr           WHERE `race` = 17;
-UPDATE `creaturedisplayinfoextra` SET `race` = @ForestTroll       WHERE `race` = 18;
-UPDATE `creaturedisplayinfoextra` SET `race` = @Taunka            WHERE `race` = 19;
-UPDATE `creaturedisplayinfoextra` SET `race` = @NorthrendSkeleton WHERE `race` = 20;
-UPDATE `creaturedisplayinfoextra` SET `race` = @IceTroll          WHERE `race` = 21;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCFelOrc            WHERE `race` = 12;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCNaga              WHERE `race` = 13;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCBroken            WHERE `race` = 14;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCSkeleton          WHERE `race` = 15;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCVrykul            WHERE `race` = 16;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCTuskarr           WHERE `race` = 17;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCForestTroll       WHERE `race` = 18;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCTaunka            WHERE `race` = 19;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCNorthrendSkeleton WHERE `race` = 20;
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCIceTroll          WHERE `race` = 21;
 
 /*
 Original range:

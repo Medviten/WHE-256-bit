@@ -1,15 +1,15 @@
 -- [F-30] mod-worgoblin: charhairtextures
 
-UPDATE `charhairtextures` SET `race` = @FelOrc            WHERE `race` = 12;
-UPDATE `charhairtextures` SET `race` = @Naga              WHERE `race` = 13;
-UPDATE `charhairtextures` SET `race` = @Broken            WHERE `race` = 14;
-UPDATE `charhairtextures` SET `race` = @Skeleton          WHERE `race` = 15;
-UPDATE `charhairtextures` SET `race` = @Vrykul            WHERE `race` = 16;
-UPDATE `charhairtextures` SET `race` = @Tuskarr           WHERE `race` = 17;
-UPDATE `charhairtextures` SET `race` = @ForestTroll       WHERE `race` = 18;
-UPDATE `charhairtextures` SET `race` = @Taunka            WHERE `race` = 19;
-UPDATE `charhairtextures` SET `race` = @NorthrendSkeleton WHERE `race` = 20;
-UPDATE `charhairtextures` SET `race` = @IceTroll          WHERE `race` = 21;
+UPDATE `charhairtextures` SET `race` = @NPCFelOrc            WHERE `race` = 12;
+UPDATE `charhairtextures` SET `race` = @NPCNaga              WHERE `race` = 13;
+UPDATE `charhairtextures` SET `race` = @NPCBroken            WHERE `race` = 14;
+UPDATE `charhairtextures` SET `race` = @NPCSkeleton          WHERE `race` = 15;
+UPDATE `charhairtextures` SET `race` = @NPCVrykul            WHERE `race` = 16;
+UPDATE `charhairtextures` SET `race` = @NPCTuskarr           WHERE `race` = 17;
+UPDATE `charhairtextures` SET `race` = @NPCForestTroll       WHERE `race` = 18;
+UPDATE `charhairtextures` SET `race` = @NPCTaunka            WHERE `race` = 19;
+UPDATE `charhairtextures` SET `race` = @NPCNorthrendSkeleton WHERE `race` = 20;
+UPDATE `charhairtextures` SET `race` = @NPCIceTroll          WHERE `race` = 21;
 
 /*
 Original range:

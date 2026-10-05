@@ -1,16 +1,16 @@
 -- [F-30] mod-worgoblin: charhairgeosets
 
-DELETE FROM `charhairgeosets` WHERE `race` IN (@FelOrc, @Naga, @Broken, @Skeleton, @Vrykul, @Tuskarr, @ForestTroll, @Taunka, @NorthrendSkeleton, @IceTroll);
-UPDATE `charhairgeosets` SET `race` = @FelOrc            WHERE `race` = 12;
-UPDATE `charhairgeosets` SET `race` = @Naga              WHERE `race` = 13;
-UPDATE `charhairgeosets` SET `race` = @Broken            WHERE `race` = 14;
-UPDATE `charhairgeosets` SET `race` = @Skeleton          WHERE `race` = 15;
-UPDATE `charhairgeosets` SET `race` = @Vrykul            WHERE `race` = 16;
-UPDATE `charhairgeosets` SET `race` = @Tuskarr           WHERE `race` = 17;
-UPDATE `charhairgeosets` SET `race` = @ForestTroll       WHERE `race` = 18;
-UPDATE `charhairgeosets` SET `race` = @Taunka            WHERE `race` = 19;
-UPDATE `charhairgeosets` SET `race` = @NorthrendSkeleton WHERE `race` = 20;
-UPDATE `charhairgeosets` SET `race` = @IceTroll          WHERE `race` = 21;
+DELETE FROM `charhairgeosets` WHERE `race` IN (@NPCFelOrc, @NPCNaga, @NPCBroken, @NPCSkeleton, @NPCVrykul, @NPCTuskarr, @NPCForestTroll, @NPCTaunka, @NPCNorthrendSkeleton, @NPCIceTroll);
+UPDATE `charhairgeosets` SET `race` = @NPCFelOrc            WHERE `race` = 12;
+UPDATE `charhairgeosets` SET `race` = @NPCNaga              WHERE `race` = 13;
+UPDATE `charhairgeosets` SET `race` = @NPCBroken            WHERE `race` = 14;
+UPDATE `charhairgeosets` SET `race` = @NPCSkeleton          WHERE `race` = 15;
+UPDATE `charhairgeosets` SET `race` = @NPCVrykul            WHERE `race` = 16;
+UPDATE `charhairgeosets` SET `race` = @NPCTuskarr           WHERE `race` = 17;
+UPDATE `charhairgeosets` SET `race` = @NPCForestTroll       WHERE `race` = 18;
+UPDATE `charhairgeosets` SET `race` = @NPCTaunka            WHERE `race` = 19;
+UPDATE `charhairgeosets` SET `race` = @NPCNorthrendSkeleton WHERE `race` = 20;
+UPDATE `charhairgeosets` SET `race` = @NPCIceTroll          WHERE `race` = 21;
 
 /*
 Original range:
