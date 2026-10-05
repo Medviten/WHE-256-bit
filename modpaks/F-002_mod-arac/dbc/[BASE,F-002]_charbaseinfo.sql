@@ -17,16 +17,32 @@ FROM (
     UNION ALL SELECT @BloodElf
     UNION ALL SELECT @Draenei
     UNION ALL SELECT @Worgen -- race 12
-    UNION ALL SELECT @HighElf
-    UNION ALL SELECT @MagharOrc
-    UNION ALL SELECT @Ogre
-    UNION ALL SELECT @DarkIronDwarf
-    UNION ALL SELECT @ZandalariTroll
-    UNION ALL SELECT @Vulpera
     UNION ALL SELECT @AlliancePandaren
     UNION ALL SELECT @HordePandaren
-    UNION ALL SELECT @Broken
+    UNION ALL SELECT @Nightborne
+    UNION ALL SELECT @HighmountainTauren
+    UNION ALL SELECT @VoidElf
+    UNION ALL SELECT @LightforgedDraenei
+    UNION ALL SELECT @ZandalariTroll
     UNION ALL SELECT @KulTiran
+    UNION ALL SELECT @Vulpera
+    UNION ALL SELECT @DarkIronDwarf
+    UNION ALL SELECT @MagharOrc
+    UNION ALL SELECT @Mechagnome
+    UNION ALL SELECT @AllianceDracthyr
+    UNION ALL SELECT @HordeDracthyr
+    UNION ALL SELECT @AllianceEarthen
+    UNION ALL SELECT @HordeEarthen
+    UNION ALL SELECT @AllianceHaranir
+    UNION ALL SELECT @HordeHaranir
+    UNION ALL SELECT @AllianceSkyborne
+    UNION ALL SELECT @HordeSkyborne
+    UNION ALL SELECT @HighElf
+    UNION ALL SELECT @Ogre
+    UNION ALL SELECT @Broken
+    UNION ALL SELECT @Naga
+    UNION ALL SELECT @Murloc
+    UNION ALL SELECT @Furbolg
     UNION ALL SELECT @Gilnean
 ) AS `r`
 CROSS JOIN (
