@@ -7,4 +7,4 @@ REPLACE INTO `player_shapeshift_model` (
 ) VALUES
 
 /* Alliance Travel form – Dark Iron Dwarf */
-(@TravelForm, @Broken, 255, 2, 40816); -- ModelID: DruidTravelAlliance
+(@TravelForm, @Broken, 255, 2, @AllianceTravelForm); -- ModelID: 40816 (DruidTravelAlliance)

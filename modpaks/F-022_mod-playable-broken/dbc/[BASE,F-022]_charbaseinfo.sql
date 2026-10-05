@@ -6,10 +6,7 @@ INSERT INTO `charbaseinfo` (`race`, `class`) VALUES
 (@Broken, @Warrior),
 (@Broken, @Paladin),
 (@Broken, @Hunter),
-(@Broken, @Rogue), -- ARAC
 (@Broken, @Priest),
 (@Broken, @DeathKnight),
 (@Broken, @Shaman),
-(@Broken, @Mage),
-(@Broken, @Warlock), -- ARAC
-(@Broken, @Druid); -- ARAC
+(@Broken, @Mage);

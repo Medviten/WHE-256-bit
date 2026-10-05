@@ -1,9 +1,8 @@
--- characterfacialhairstyles: 16 inserts, 0 updates, 0 deletes
+-- characterfacialhairstyles: 15 inserts, 0 updates, 0 deletes
 
 -- Insertions
 DELETE FROM `characterfacialhairstyles` WHERE `race` = @Broken;
 INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES
-(@Broken, @Male,   0, 0, 0, 0, 0, 0),
 (@Broken, @Male,   0, 1, 0, 0, 0, 0),
 (@Broken, @Male,   1, 2, 0, 0, 0, 0),
 (@Broken, @Male,   2, 3, 0, 2, 0, 0),

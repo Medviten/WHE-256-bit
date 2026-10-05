@@ -1,5 +1,5 @@
 -- talenttab: 0 inserts, 30 updates, 0 deletes
-
+/*
 -- Changed values
 UPDATE `talenttab` SET `race_mask` = `race_mask` | @BrokenMask WHERE `id` = @WarriorArms;
 UPDATE `talenttab` SET `race_mask` = `race_mask` | @BrokenMask WHERE `id` = @WarriorProtection;
@@ -31,3 +31,4 @@ UPDATE `talenttab` SET `race_mask` = `race_mask` | @BrokenMask WHERE `id` = @War
 UPDATE `talenttab` SET `race_mask` = `race_mask` | @BrokenMask WHERE `id` = @DruidFeralCombat;
 UPDATE `talenttab` SET `race_mask` = `race_mask` | @BrokenMask WHERE `id` = @DruidRestoration;
 UPDATE `talenttab` SET `race_mask` = `race_mask` | @BrokenMask WHERE `id` = @DruidBalance;
+*/
