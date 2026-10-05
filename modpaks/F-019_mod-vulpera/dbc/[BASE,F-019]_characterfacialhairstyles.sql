@@ -29,30 +29,30 @@ INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geos
 (@Vulpera, @Male,   24, 5, 0, 5, 0, 0), -- horn-like pointy, right earring (fit)
 (@Vulpera, @Male,   25, 5, 0, 6, 0, 0), -- big and long, right earring (fit)
 (@Vulpera, @Male,   26, 6, 0, 6, 0, 0), -- big and long, three left earrings (fit)
-(@Vulpera, @Female, 27, 1, 0, 2, 0, 0), -- big and long
-(@Vulpera, @Female, 28, 1, 0, 3, 0, 0), -- short and pointy
-(@Vulpera, @Female, 29, 1, 0, 4, 0, 0), -- big and round
-(@Vulpera, @Female, 30, 1, 0, 5, 0, 0), -- bent forward
-(@Vulpera, @Female, 31, 1, 0, 6, 0, 0), -- tube-curled
-(@Vulpera, @Female, 32, 1, 0, 7, 0, 0), -- sharp and curled
-(@Vulpera, @Female, 33, 1, 0, 8, 0, 0), -- one tip missing
-(@Vulpera, @Female, 34, 2, 0, 2, 0, 0), -- big and long, three rings (2–1, fit)
-(@Vulpera, @Female, 35, 2, 0, 4, 0, 0), -- long and round, three rings (2–1, fit)
-(@Vulpera, @Female, 36, 2, 0, 6, 0, 0), -- tube-curled, three rings (2–1, barely touching)
-(@Vulpera, @Female, 37, 2, 0, 7, 0, 0), -- sharp and curled, three rings (2–1, barely touching)
-(@Vulpera, @Female, 38, 3, 0, 3, 0, 0), -- short and pointy, three rings bent up (2–1, fit)
-(@Vulpera, @Female, 39, 3, 0, 8, 0, 0), -- one tip missing, three rings bent up (2–1, barely fit)
-(@Vulpera, @Female, 40, 4, 0, 2, 0, 0), -- big and long, four rings (2–2, fit)
-(@Vulpera, @Female, 41, 4, 0, 3, 0, 0), -- short and pointy, four rings (2–2, fit)
-(@Vulpera, @Female, 42, 4, 0, 4, 0, 0), -- big and round, four rings (2–2, fit)
-(@Vulpera, @Female, 43, 4, 0, 5, 0, 0), -- bent forward, four rings (2–2, barely touch)
-(@Vulpera, @Female, 44, 4, 0, 6, 0, 0), -- tube-curled, four rings (2–2, barely touch)
-(@Vulpera, @Female, 45, 4, 0, 7, 0, 0), -- sharp and curled, four rings (2–2, barely fit)
-(@Vulpera, @Female, 46, 4, 0, 8, 0, 0), -- one tip missing, four rings (2–2, barely fit)
-(@Vulpera, @Female, 47, 5, 0, 3, 0, 0), -- short and pointy, two rings (1–1, fit)
-(@Vulpera, @Female, 48, 5, 0, 4, 0, 0), -- big and round, two rings (1–1, fit)
-(@Vulpera, @Female, 49, 5, 0, 5, 0, 0), -- bent forward, two rings (1–1, fit)
-(@Vulpera, @Female, 50, 5, 0, 6, 0, 0), -- tube-curled, two rings (1–1, fit)
-(@Vulpera, @Female, 51, 5, 0, 7, 0, 0), -- sharp and curled, two rings (1–1, barely fit)
-(@Vulpera, @Female, 52, 5, 0, 8, 0, 0), -- one tip missing, two rings (1–1, fit)
-(@Vulpera, @Female, 53, 6, 0, 6, 0, 0); -- tube-curled, three rings left (fit)
+(@Vulpera, @Female,  1, 1, 0, 2, 0, 0), -- big and long
+(@Vulpera, @Female,  2, 1, 0, 3, 0, 0), -- short and pointy
+(@Vulpera, @Female,  3, 1, 0, 4, 0, 0), -- big and round
+(@Vulpera, @Female,  4, 1, 0, 5, 0, 0), -- bent forward
+(@Vulpera, @Female,  5, 1, 0, 6, 0, 0), -- tube-curled
+(@Vulpera, @Female,  6, 1, 0, 7, 0, 0), -- sharp and curled
+(@Vulpera, @Female,  7, 1, 0, 8, 0, 0), -- one tip missing
+(@Vulpera, @Female,  8, 2, 0, 2, 0, 0), -- big and long, three rings (2–1, fit)
+(@Vulpera, @Female,  9, 2, 0, 4, 0, 0), -- long and round, three rings (2–1, fit)
+(@Vulpera, @Female, 10, 2, 0, 6, 0, 0), -- tube-curled, three rings (2–1, barely touching)
+(@Vulpera, @Female, 11, 2, 0, 7, 0, 0), -- sharp and curled, three rings (2–1, barely touching)
+(@Vulpera, @Female, 12, 3, 0, 3, 0, 0), -- short and pointy, three rings bent up (2–1, fit)
+(@Vulpera, @Female, 13, 3, 0, 8, 0, 0), -- one tip missing, three rings bent up (2–1, barely fit)
+(@Vulpera, @Female, 14, 4, 0, 2, 0, 0), -- big and long, four rings (2–2, fit)
+(@Vulpera, @Female, 15, 4, 0, 3, 0, 0), -- short and pointy, four rings (2–2, fit)
+(@Vulpera, @Female, 16, 4, 0, 4, 0, 0), -- big and round, four rings (2–2, fit)
+(@Vulpera, @Female, 17, 4, 0, 5, 0, 0), -- bent forward, four rings (2–2, barely touch)
+(@Vulpera, @Female, 18, 4, 0, 6, 0, 0), -- tube-curled, four rings (2–2, barely touch)
+(@Vulpera, @Female, 19, 4, 0, 7, 0, 0), -- sharp and curled, four rings (2–2, barely fit)
+(@Vulpera, @Female, 20, 4, 0, 8, 0, 0), -- one tip missing, four rings (2–2, barely fit)
+(@Vulpera, @Female, 21, 5, 0, 3, 0, 0), -- short and pointy, two rings (1–1, fit)
+(@Vulpera, @Female, 22, 5, 0, 4, 0, 0), -- big and round, two rings (1–1, fit)
+(@Vulpera, @Female, 23, 5, 0, 5, 0, 0), -- bent forward, two rings (1–1, fit)
+(@Vulpera, @Female, 24, 5, 0, 6, 0, 0), -- tube-curled, two rings (1–1, fit)
+(@Vulpera, @Female, 25, 5, 0, 7, 0, 0), -- sharp and curled, two rings (1–1, barely fit)
+(@Vulpera, @Female, 26, 5, 0, 8, 0, 0), -- one tip missing, two rings (1–1, fit)
+(@Vulpera, @Female, 27, 6, 0, 6, 0, 0); -- tube-curled, three rings left (fit)
