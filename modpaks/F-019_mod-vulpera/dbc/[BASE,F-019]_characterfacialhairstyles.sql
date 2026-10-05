@@ -75,99 +75,99 @@ INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geos
 (@Vulpera, @Male,   69, 6, 5, 5, 0, 0), -- duplicate
 (@Vulpera, @Male,   70, 6, 0, 6, 0, 0), -- big and long, three left earrings (fit)
 (@Vulpera, @Male,   71, 6, 6, 6, 0, 0), -- duplicate
-(@Vulpera, @Female,  0, 1, 0, 1, 0, 0),
-(@Vulpera, @Female,  1, 1, 1, 1, 0, 0),
-(@Vulpera, @Female,  2, 1, 0, 2, 0, 0),
-(@Vulpera, @Female,  3, 1, 2, 2, 0, 0),
-(@Vulpera, @Female,  4, 1, 0, 3, 0, 0),
-(@Vulpera, @Female,  5, 1, 3, 3, 0, 0),
-(@Vulpera, @Female,  6, 1, 0, 4, 0, 0),
-(@Vulpera, @Female,  7, 1, 4, 4, 0, 0),
-(@Vulpera, @Female,  8, 1, 0, 5, 0, 0),
-(@Vulpera, @Female,  9, 1, 5, 5, 0, 0),
-(@Vulpera, @Female, 10, 1, 0, 6, 0, 0),
-(@Vulpera, @Female, 11, 1, 6, 6, 0, 0),
-(@Vulpera, @Female, 12, 1, 0, 7, 0, 0),
-(@Vulpera, @Female, 13, 1, 7, 7, 0, 0),
-(@Vulpera, @Female, 14, 1, 0, 8, 0, 0),
-(@Vulpera, @Female, 15, 1, 8, 8, 0, 0),
-(@Vulpera, @Female, 16, 2, 0, 1, 0, 0),
-(@Vulpera, @Female, 17, 2, 1, 1, 0, 0),
-(@Vulpera, @Female, 18, 2, 0, 2, 0, 0),
-(@Vulpera, @Female, 19, 2, 2, 2, 0, 0),
-(@Vulpera, @Female, 20, 2, 0, 3, 0, 0),
-(@Vulpera, @Female, 21, 2, 3, 3, 0, 0),
-(@Vulpera, @Female, 22, 2, 0, 4, 0, 0),
-(@Vulpera, @Female, 23, 2, 4, 4, 0, 0),
-(@Vulpera, @Female, 24, 2, 0, 5, 0, 0),
-(@Vulpera, @Female, 25, 2, 5, 5, 0, 0),
-(@Vulpera, @Female, 26, 2, 0, 6, 0, 0),
-(@Vulpera, @Female, 27, 2, 6, 6, 0, 0),
-(@Vulpera, @Female, 28, 2, 0, 7, 0, 0),
-(@Vulpera, @Female, 29, 2, 7, 7, 0, 0),
-(@Vulpera, @Female, 30, 2, 0, 8, 0, 0),
-(@Vulpera, @Female, 31, 2, 8, 8, 0, 0),
-(@Vulpera, @Female, 32, 3, 0, 1, 0, 0),
-(@Vulpera, @Female, 33, 3, 1, 1, 0, 0),
-(@Vulpera, @Female, 34, 3, 0, 2, 0, 0),
-(@Vulpera, @Female, 35, 3, 2, 2, 0, 0),
-(@Vulpera, @Female, 36, 3, 0, 3, 0, 0),
-(@Vulpera, @Female, 37, 3, 3, 3, 0, 0),
-(@Vulpera, @Female, 38, 3, 0, 4, 0, 0),
-(@Vulpera, @Female, 39, 3, 4, 4, 0, 0),
-(@Vulpera, @Female, 40, 3, 0, 5, 0, 0),
-(@Vulpera, @Female, 41, 3, 5, 5, 0, 0),
-(@Vulpera, @Female, 42, 3, 0, 6, 0, 0),
-(@Vulpera, @Female, 43, 3, 6, 6, 0, 0),
-(@Vulpera, @Female, 44, 3, 0, 7, 0, 0),
-(@Vulpera, @Female, 45, 3, 7, 7, 0, 0),
-(@Vulpera, @Female, 46, 3, 0, 8, 0, 0),
-(@Vulpera, @Female, 47, 3, 8, 8, 0, 0),
-(@Vulpera, @Female, 48, 4, 0, 1, 0, 0),
-(@Vulpera, @Female, 49, 4, 1, 1, 0, 0),
-(@Vulpera, @Female, 50, 4, 0, 2, 0, 0),
-(@Vulpera, @Female, 51, 4, 2, 2, 0, 0),
-(@Vulpera, @Female, 52, 4, 0, 3, 0, 0),
-(@Vulpera, @Female, 53, 4, 3, 3, 0, 0),
-(@Vulpera, @Female, 54, 4, 0, 4, 0, 0),
-(@Vulpera, @Female, 55, 4, 4, 4, 0, 0),
-(@Vulpera, @Female, 56, 4, 0, 5, 0, 0),
-(@Vulpera, @Female, 57, 4, 5, 5, 0, 0),
-(@Vulpera, @Female, 58, 4, 0, 6, 0, 0),
-(@Vulpera, @Female, 59, 4, 6, 6, 0, 0),
-(@Vulpera, @Female, 60, 4, 0, 7, 0, 0),
-(@Vulpera, @Female, 61, 4, 7, 7, 0, 0),
-(@Vulpera, @Female, 62, 4, 0, 8, 0, 0),
-(@Vulpera, @Female, 63, 4, 8, 8, 0, 0),
-(@Vulpera, @Female, 64, 5, 0, 1, 0, 0),
-(@Vulpera, @Female, 65, 5, 1, 1, 0, 0),
-(@Vulpera, @Female, 66, 5, 0, 2, 0, 0),
-(@Vulpera, @Female, 67, 5, 2, 2, 0, 0),
-(@Vulpera, @Female, 68, 5, 0, 3, 0, 0),
-(@Vulpera, @Female, 69, 5, 3, 3, 0, 0),
-(@Vulpera, @Female, 70, 5, 0, 4, 0, 0),
-(@Vulpera, @Female, 71, 5, 4, 4, 0, 0),
-(@Vulpera, @Female, 72, 5, 0, 5, 0, 0),
-(@Vulpera, @Female, 73, 5, 5, 5, 0, 0),
-(@Vulpera, @Female, 74, 5, 0, 6, 0, 0),
-(@Vulpera, @Female, 75, 5, 6, 6, 0, 0),
-(@Vulpera, @Female, 76, 5, 0, 7, 0, 0),
-(@Vulpera, @Female, 77, 5, 7, 7, 0, 0),
-(@Vulpera, @Female, 78, 5, 0, 8, 0, 0),
-(@Vulpera, @Female, 79, 5, 8, 8, 0, 0),
-(@Vulpera, @Female, 80, 6, 0, 1, 0, 0),
-(@Vulpera, @Female, 81, 6, 1, 1, 0, 0),
-(@Vulpera, @Female, 82, 6, 0, 2, 0, 0),
-(@Vulpera, @Female, 83, 6, 2, 2, 0, 0),
-(@Vulpera, @Female, 84, 6, 0, 3, 0, 0),
-(@Vulpera, @Female, 85, 6, 3, 3, 0, 0),
-(@Vulpera, @Female, 86, 6, 0, 4, 0, 0),
-(@Vulpera, @Female, 87, 6, 4, 4, 0, 0),
-(@Vulpera, @Female, 88, 6, 0, 5, 0, 0),
-(@Vulpera, @Female, 89, 6, 5, 5, 0, 0),
-(@Vulpera, @Female, 90, 6, 0, 6, 0, 0),
-(@Vulpera, @Female, 91, 6, 6, 6, 0, 0),
-(@Vulpera, @Female, 92, 6, 0, 7, 0, 0),
-(@Vulpera, @Female, 93, 6, 7, 7, 0, 0),
-(@Vulpera, @Female, 94, 6, 0, 8, 0, 0),
-(@Vulpera, @Female, 95, 6, 8, 8, 0, 0);
+(@Vulpera, @Female,  0, 1, 0, 1, 0, 0), -- no ears
+(@Vulpera, @Female,  1, 1, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Female,  2, 1, 0, 2, 0, 0), -- big and long
+(@Vulpera, @Female,  3, 1, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Female,  4, 1, 0, 3, 0, 0), -- short and pointy
+(@Vulpera, @Female,  5, 1, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Female,  6, 1, 0, 4, 0, 0), -- big and round
+(@Vulpera, @Female,  7, 1, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Female,  8, 1, 0, 5, 0, 0), -- bent forward
+(@Vulpera, @Female,  9, 1, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Female, 10, 1, 0, 6, 0, 0), -- tube-curled
+(@Vulpera, @Female, 11, 1, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Female, 12, 1, 0, 7, 0, 0), -- sharp and curled
+(@Vulpera, @Female, 13, 1, 7, 7, 0, 0), -- duplicate
+(@Vulpera, @Female, 14, 1, 0, 8, 0, 0), -- one tip missing
+(@Vulpera, @Female, 15, 1, 8, 8, 0, 0), -- duplicate
+(@Vulpera, @Female, 16, 2, 0, 1, 0, 0), -- no ears, three rings (2–1)
+(@Vulpera, @Female, 17, 2, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Female, 18, 2, 0, 2, 0, 0), -- big and long, three rings (2–1, fit)
+(@Vulpera, @Female, 19, 2, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Female, 20, 2, 0, 3, 0, 0), -- short and sharp, three rings (2–1, one floats)
+(@Vulpera, @Female, 21, 2, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Female, 22, 2, 0, 4, 0, 0), -- long and round, three rings (2–1, fit)
+(@Vulpera, @Female, 23, 2, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Female, 24, 2, 0, 5, 0, 0), -- bent forward, three rings (2–1, floating)
+(@Vulpera, @Female, 25, 2, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Female, 26, 2, 0, 6, 0, 0), -- tube-curled, three rings (2–1, barely touching)
+(@Vulpera, @Female, 27, 2, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Female, 28, 2, 0, 7, 0, 0), -- sharp and curled, three rings (2–1, barely touching)
+(@Vulpera, @Female, 29, 2, 7, 7, 0, 0), -- duplicate
+(@Vulpera, @Female, 30, 2, 0, 8, 0, 0), -- one tip missing, three rings (2–1, floating)
+(@Vulpera, @Female, 31, 2, 8, 8, 0, 0), -- duplicate
+(@Vulpera, @Female, 32, 3, 0, 1, 0, 0), -- no ears, three rings bent up (2–1)
+(@Vulpera, @Female, 33, 3, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Female, 34, 3, 0, 2, 0, 0), -- big and long, three rings bent up (2–1, hidden behind)
+(@Vulpera, @Female, 35, 3, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Female, 36, 3, 0, 3, 0, 0), -- short and pointy, three rings bent up (2–1, fit)
+(@Vulpera, @Female, 37, 3, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Female, 38, 3, 0, 4, 0, 0), -- big and round, three rings bent up (2–1, hidden behind)
+(@Vulpera, @Female, 39, 3, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Female, 40, 3, 0, 5, 0, 0), -- bent forward, three rings bent up (2–1, floating)
+(@Vulpera, @Female, 41, 3, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Female, 42, 3, 0, 6, 0, 0), -- tube-curled, three rings bent up (2–1, hidden behind, clipping through)
+(@Vulpera, @Female, 43, 3, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Female, 44, 3, 0, 7, 0, 0), -- sharp and curled, three rings bent up (2–1, hidden behind, clipping through)
+(@Vulpera, @Female, 45, 3, 7, 7, 0, 0), -- duplicate
+(@Vulpera, @Female, 46, 3, 0, 8, 0, 0), -- one tip missing, three rings bent up (2–1, barely fit)
+(@Vulpera, @Female, 47, 3, 8, 8, 0, 0), -- duplicate
+(@Vulpera, @Female, 48, 4, 0, 1, 0, 0), -- no ears, four rings (2–2)
+(@Vulpera, @Female, 49, 4, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Female, 50, 4, 0, 2, 0, 0), -- big and long, four rings (2–2, fit)
+(@Vulpera, @Female, 51, 4, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Female, 52, 4, 0, 3, 0, 0), -- short and pointy, four rings (2–2, fit)
+(@Vulpera, @Female, 53, 4, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Female, 54, 4, 0, 4, 0, 0), -- big and round, four rings (2–2, fit)
+(@Vulpera, @Female, 55, 4, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Female, 56, 4, 0, 5, 0, 0), -- bent forward, four rings (2–2, barely touch)
+(@Vulpera, @Female, 57, 4, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Female, 58, 4, 0, 6, 0, 0), -- tube-curled, four rings (2–2, barely touch)
+(@Vulpera, @Female, 59, 4, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Female, 60, 4, 0, 7, 0, 0), -- sharp and curled, four rings (2–2, barely fit)
+(@Vulpera, @Female, 61, 4, 7, 7, 0, 0), -- duplicate
+(@Vulpera, @Female, 62, 4, 0, 8, 0, 0), -- one tip missing, four rings (2–2, barely fit)
+(@Vulpera, @Female, 63, 4, 8, 8, 0, 0), -- duplicate
+(@Vulpera, @Female, 64, 5, 0, 1, 0, 0), -- no ears, two rings (1–1)
+(@Vulpera, @Female, 65, 5, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Female, 66, 5, 0, 2, 0, 0), -- big and long, two rings (1–1, clipping through)
+(@Vulpera, @Female, 67, 5, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Female, 68, 5, 0, 3, 0, 0), -- short and pointy, two rings (1–1, fit)
+(@Vulpera, @Female, 69, 5, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Female, 70, 5, 0, 4, 0, 0), -- big and round, two rings (1–1, fit)
+(@Vulpera, @Female, 71, 5, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Female, 72, 5, 0, 5, 0, 0), -- bent forward, two rings (1–1, fit)
+(@Vulpera, @Female, 73, 5, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Female, 74, 5, 0, 6, 0, 0), -- tube-curled, two rings (1–1, fit)
+(@Vulpera, @Female, 75, 5, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Female, 76, 5, 0, 7, 0, 0), -- sharp and curled, two rings (1–1, barely fit)
+(@Vulpera, @Female, 77, 5, 7, 7, 0, 0), -- duplicate
+(@Vulpera, @Female, 78, 5, 0, 8, 0, 0), -- one tip missing, two rings (1–1, fit)
+(@Vulpera, @Female, 79, 5, 8, 8, 0, 0), -- duplicate
+(@Vulpera, @Female, 80, 6, 0, 1, 0, 0), -- no ears, three rings left (
+(@Vulpera, @Female, 81, 6, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Female, 82, 6, 0, 2, 0, 0), -- big and long, three rings left (clipping through)
+(@Vulpera, @Female, 83, 6, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Female, 84, 6, 0, 3, 0, 0), -- short and pointy, three rings left (float)
+(@Vulpera, @Female, 85, 6, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Female, 86, 6, 0, 4, 0, 0), -- big and round, three rings left (clipping through)
+(@Vulpera, @Female, 87, 6, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Female, 88, 6, 0, 5, 0, 0), -- bent forward, three rings left (floating)
+(@Vulpera, @Female, 89, 6, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Female, 90, 6, 0, 6, 0, 0), -- tube-curled, three rings left (fit)
+(@Vulpera, @Female, 91, 6, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Female, 92, 6, 0, 7, 0, 0), -- sharp and curled, three rings left (clipping through)
+(@Vulpera, @Female, 93, 6, 7, 7, 0, 0), -- duplicate
+(@Vulpera, @Female, 94, 6, 0, 8, 0, 0), -- one tip missing, three rings left (floating)
+(@Vulpera, @Female, 95, 6, 8, 8, 0, 0); -- duplicate
