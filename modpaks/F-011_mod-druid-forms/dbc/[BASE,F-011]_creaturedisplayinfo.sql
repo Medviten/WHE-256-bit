@@ -61,7 +61,7 @@ DELETE FROM `creaturedisplayinfo` WHERE `id` IN
     @DruidCatZandalariTrollBlackDisplay,        @DruidCatZandalariTrollBlueDisplay,       @DruidCatZandalariTrollGreenDisplay,       @DruidCatZandalariTrollWhiteDisplay,
     @DruidCatKulTiranBrownDisplay,              @DruidCatKulTiranDarkDisplay,             @DruidCatKulTiranGreenDisplay,             @DruidCatKulTiranLightDisplay,
     @DruidMoonkinHighmountainTaurenDisplay,     @DruidMoonkinZandalariTrollDisplay,       @DruidMoonkinKulTiranDisplay,              @DruidMoonkinKulTiranBlackDisplay,        @DruidMoonkinKulTiranPaleDisplay,            @DruidMoonkinKulTiranRedDisplay,
-    @DruidFlightHighmountainTaurenDisplay, @DruidFlightZandalariTrollDisplay,        @DruidFlightKulTiranBrownDisplay,          @DruidFlightKulTiranDarkDisplay,          @DruidFlightKulTiranGreenDisplay,            @DruidFlightKulTiranLightDisplay,
+    @DruidFlightHighmountainTaurenDisplay,      @DruidFlightZandalariTrollDisplay,        @DruidFlightKulTiranBrownDisplay,          @DruidFlightKulTiranDarkDisplay,          @DruidFlightKulTiranGreenDisplay,            @DruidFlightKulTiranLightDisplay,
     @DruidTravelZandalariTrollDisplay,          @DruidTravelKulTiranBlueDisplay,          @DruidTravelKulTiranBrownDisplay,          @DruidTravelKulTiranGreenDisplay,         @DruidTravelKulTiranWhiteDisplay,
     @DruidAquaticZandalariTrollTealDisplay,     @DruidAquaticZandalariTrollDarkDisplay,   @DruidAquaticZandalariTrollGreenDisplay,   @DruidAquaticZandalariTrollLightDisplay,
     @DruidAquaticKulTiranBrownDisplay,          @DruidAquaticKulTiranDarkDisplay,         @DruidAquaticKulTiranGreenDisplay,         @DruidAquaticKulTiranLightDisplay,
