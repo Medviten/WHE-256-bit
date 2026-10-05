@@ -3,78 +3,78 @@
 -- Insertions
 DELETE FROM `characterfacialhairstyles` WHERE `race` = (@Vulpera);
 INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES
-(@Vulpera, @Male,    0, 1, 0, 1, 0, 0),
-(@Vulpera, @Male,    1, 1, 1, 1, 0, 0),
-(@Vulpera, @Male,    2, 1, 0, 2, 0, 0),
-(@Vulpera, @Male,    3, 1, 2, 2, 0, 0),
-(@Vulpera, @Male,    4, 1, 0, 3, 0, 0),
-(@Vulpera, @Male,    5, 1, 3, 3, 0, 0),
-(@Vulpera, @Male,    6, 1, 0, 4, 0, 0),
-(@Vulpera, @Male,    7, 1, 4, 4, 0, 0),
-(@Vulpera, @Male,    8, 1, 0, 5, 0, 0),
-(@Vulpera, @Male,    9, 1, 5, 5, 0, 0),
-(@Vulpera, @Male,   10, 1, 0, 6, 0, 0),
-(@Vulpera, @Male,   11, 1, 6, 6, 0, 0),
-(@Vulpera, @Male,   12, 2, 0, 1, 0, 0),
-(@Vulpera, @Male,   13, 2, 1, 1, 0, 0),
-(@Vulpera, @Male,   14, 2, 0, 2, 0, 0),
-(@Vulpera, @Male,   15, 2, 2, 2, 0, 0),
-(@Vulpera, @Male,   16, 2, 0, 3, 0, 0),
-(@Vulpera, @Male,   17, 2, 3, 3, 0, 0),
-(@Vulpera, @Male,   18, 2, 0, 4, 0, 0),
-(@Vulpera, @Male,   19, 2, 4, 4, 0, 0),
-(@Vulpera, @Male,   20, 2, 0, 5, 0, 0),
-(@Vulpera, @Male,   21, 2, 5, 5, 0, 0),
-(@Vulpera, @Male,   22, 2, 0, 6, 0, 0),
-(@Vulpera, @Male,   23, 2, 6, 6, 0, 0),
-(@Vulpera, @Male,   24, 3, 0, 1, 0, 0),
-(@Vulpera, @Male,   25, 3, 1, 1, 0, 0),
-(@Vulpera, @Male,   26, 3, 0, 2, 0, 0),
-(@Vulpera, @Male,   27, 3, 2, 2, 0, 0),
-(@Vulpera, @Male,   28, 3, 0, 3, 0, 0),
-(@Vulpera, @Male,   29, 3, 3, 3, 0, 0),
-(@Vulpera, @Male,   30, 3, 0, 4, 0, 0),
-(@Vulpera, @Male,   31, 3, 4, 4, 0, 0),
-(@Vulpera, @Male,   32, 3, 0, 5, 0, 0),
-(@Vulpera, @Male,   33, 3, 5, 5, 0, 0),
-(@Vulpera, @Male,   34, 3, 0, 6, 0, 0),
-(@Vulpera, @Male,   35, 3, 6, 6, 0, 0),
-(@Vulpera, @Male,   36, 4, 0, 1, 0, 0),
-(@Vulpera, @Male,   37, 4, 1, 1, 0, 0),
-(@Vulpera, @Male,   38, 4, 0, 2, 0, 0),
-(@Vulpera, @Male,   39, 4, 2, 2, 0, 0),
-(@Vulpera, @Male,   40, 4, 0, 3, 0, 0),
-(@Vulpera, @Male,   41, 4, 3, 3, 0, 0),
-(@Vulpera, @Male,   42, 4, 0, 4, 0, 0),
-(@Vulpera, @Male,   43, 4, 4, 4, 0, 0),
-(@Vulpera, @Male,   44, 4, 0, 5, 0, 0),
-(@Vulpera, @Male,   45, 4, 5, 5, 0, 0),
-(@Vulpera, @Male,   46, 4, 0, 6, 0, 0),
-(@Vulpera, @Male,   47, 4, 6, 6, 0, 0),
-(@Vulpera, @Male,   48, 5, 0, 1, 0, 0),
-(@Vulpera, @Male,   49, 5, 1, 1, 0, 0),
-(@Vulpera, @Male,   50, 5, 0, 2, 0, 0),
-(@Vulpera, @Male,   51, 5, 2, 2, 0, 0),
-(@Vulpera, @Male,   52, 5, 0, 3, 0, 0),
-(@Vulpera, @Male,   53, 5, 3, 3, 0, 0),
-(@Vulpera, @Male,   54, 5, 0, 4, 0, 0),
-(@Vulpera, @Male,   55, 5, 4, 4, 0, 0),
-(@Vulpera, @Male,   56, 5, 0, 5, 0, 0),
-(@Vulpera, @Male,   57, 5, 5, 5, 0, 0),
-(@Vulpera, @Male,   58, 5, 0, 6, 0, 0),
-(@Vulpera, @Male,   59, 5, 6, 6, 0, 0),
-(@Vulpera, @Male,   60, 6, 0, 1, 0, 0),
-(@Vulpera, @Male,   61, 6, 1, 1, 0, 0),
-(@Vulpera, @Male,   62, 6, 0, 2, 0, 0),
-(@Vulpera, @Male,   63, 6, 2, 2, 0, 0),
-(@Vulpera, @Male,   64, 6, 0, 3, 0, 0),
-(@Vulpera, @Male,   65, 6, 3, 3, 0, 0),
-(@Vulpera, @Male,   66, 6, 0, 4, 0, 0),
-(@Vulpera, @Male,   67, 6, 4, 4, 0, 0),
-(@Vulpera, @Male,   68, 6, 0, 5, 0, 0),
-(@Vulpera, @Male,   69, 6, 5, 5, 0, 0),
-(@Vulpera, @Male,   70, 6, 0, 6, 0, 0),
-(@Vulpera, @Male,   71, 6, 6, 6, 0, 0),
+(@Vulpera, @Male,    0, 1, 0, 1, 0, 0), -- no ears
+(@Vulpera, @Male,    1, 1, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Male,    2, 1, 0, 2, 0, 0), -- favourite
+(@Vulpera, @Male,    3, 1, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Male,    4, 1, 0, 3, 0, 0), -- short and cute
+(@Vulpera, @Male,    5, 1, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Male,    6, 1, 0, 4, 0, 0), -- long and pointy
+(@Vulpera, @Male,    7, 1, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Male,    8, 1, 0, 5, 0, 0), -- horn-like pointy
+(@Vulpera, @Male,    9, 1, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Male,   10, 1, 0, 6, 0, 0), -- big and long
+(@Vulpera, @Male,   11, 1, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Male,   12, 2, 0, 1, 0, 0), -- no ears, left earring
+(@Vulpera, @Male,   13, 2, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Male,   14, 2, 0, 2, 0, 0), -- favourite, left earring
+(@Vulpera, @Male,   15, 2, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Male,   16, 2, 0, 3, 0, 0), -- short and cute, left earring
+(@Vulpera, @Male,   17, 2, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Male,   18, 2, 0, 4, 0, 0), -- long and pointy, left earring
+(@Vulpera, @Male,   19, 2, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Male,   20, 2, 0, 5, 0, 0), -- horn-like pointy, left earring
+(@Vulpera, @Male,   21, 2, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Male,   22, 2, 0, 6, 0, 0), -- big and long, left earring
+(@Vulpera, @Male,   23, 2, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Male,   24, 3, 0, 1, 0, 0), -- no ears, two right earrings
+(@Vulpera, @Male,   25, 3, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Male,   26, 3, 0, 2, 0, 0), -- favourite, two right earrings
+(@Vulpera, @Male,   27, 3, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Male,   28, 3, 0, 3, 0, 0), -- short and cute, two right earrings (fit)
+(@Vulpera, @Male,   29, 3, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Male,   30, 3, 0, 4, 0, 0), -- long and pointy, two right earrings (barely touch)
+(@Vulpera, @Male,   31, 3, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Male,   32, 3, 0, 5, 0, 0), -- horn-like pointy, two right earrings (barely fit)
+(@Vulpera, @Male,   33, 3, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Male,   34, 3, 0, 6, 0, 0), -- big and long, two right earrings (fit)
+(@Vulpera, @Male,   35, 3, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Male,   36, 4, 0, 1, 0, 0), -- no ears, one ring either side
+(@Vulpera, @Male,   37, 4, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Male,   38, 4, 0, 2, 0, 0), -- favourite, one ring either side (barely fit)
+(@Vulpera, @Male,   39, 4, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Male,   40, 4, 0, 3, 0, 0), -- short and cute, one ring either side (barely fit)
+(@Vulpera, @Male,   41, 4, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Male,   42, 4, 0, 4, 0, 0), -- long and pointy, one ring either side (fit)
+(@Vulpera, @Male,   43, 4, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Male,   44, 4, 0, 5, 0, 0), -- horn-like pointy, one ring either side (barely fit)
+(@Vulpera, @Male,   45, 4, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Male,   46, 4, 0, 6, 0, 0), -- big and long, one ring either side (fit)
+(@Vulpera, @Male,   47, 4, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Male,   48, 5, 0, 1, 0, 0), -- no ears, right earring
+(@Vulpera, @Male,   49, 5, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Male,   50, 5, 0, 2, 0, 0), -- favourite, right earring (fit)
+(@Vulpera, @Male,   51, 5, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Male,   52, 5, 0, 3, 0, 0), -- short and cute, right earring (fit)
+(@Vulpera, @Male,   53, 5, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Male,   54, 5, 0, 4, 0, 0), -- long and pointy, right earring (barely touches)
+(@Vulpera, @Male,   55, 5, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Male,   56, 5, 0, 5, 0, 0), -- horn-like pointy, right earring (fit)
+(@Vulpera, @Male,   57, 5, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Male,   58, 5, 0, 6, 0, 0), -- big and long, right earring (fit)
+(@Vulpera, @Male,   59, 5, 6, 6, 0, 0), -- duplicate
+(@Vulpera, @Male,   60, 6, 0, 1, 0, 0), -- no ears, three left earrings
+(@Vulpera, @Male,   61, 6, 1, 1, 0, 0), -- duplicate
+(@Vulpera, @Male,   62, 6, 0, 2, 0, 0), -- favourite, three left earrings (two float)
+(@Vulpera, @Male,   63, 6, 2, 2, 0, 0), -- duplicate
+(@Vulpera, @Male,   64, 6, 0, 3, 0, 0), -- short and cute, three left earrings (two float)
+(@Vulpera, @Male,   65, 6, 3, 3, 0, 0), -- duplicate
+(@Vulpera, @Male,   66, 6, 0, 4, 0, 0), -- long and pointy, three left earrings (two float)
+(@Vulpera, @Male,   67, 6, 4, 4, 0, 0), -- duplicate
+(@Vulpera, @Male,   68, 6, 0, 5, 0, 0), -- horn-like pointy, three left earrings (two float)
+(@Vulpera, @Male,   69, 6, 5, 5, 0, 0), -- duplicate
+(@Vulpera, @Male,   70, 6, 0, 6, 0, 0), -- big and long, three left earrings (fit)
+(@Vulpera, @Male,   71, 6, 6, 6, 0, 0), -- duplicate
 (@Vulpera, @Female,  0, 1, 0, 1, 0, 0),
 (@Vulpera, @Female,  1, 1, 1, 1, 0, 0),
 (@Vulpera, @Female,  2, 1, 0, 2, 0, 0),
