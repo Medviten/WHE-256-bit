@@ -5,6 +5,7 @@ DELETE FROM `skillraceclassinfo` WHERE `id` = @GoblinRacialSkillRaceClass; -- go
 INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES
 (@GoblinRacialSkillRaceClass, @GoblinRacials, @GoblinMask, @AllClassMask, 1170, 0, 0, 0);
 
+/*
 -- Changed values
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @GoblinMask WHERE `id` = @PlateMailSkillRaceClass; -- skill: 293 (plate mail)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @GoblinMask WHERE `id` = @FishingSkillRaceClass; -- skill: 356 (fishing)
@@ -34,3 +35,4 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` & ~@GoblinMask WHERE `
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @GoblinMask WHERE `id` = @SurvivalSkillRaceClass; -- skill: 142 (survival)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @GoblinMask WHERE `id` = @JewelcraftingSkillRaceClass; -- skill: 755 (jewelcrafting)
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @GoblinMask WHERE `id` = @LeatherworkingSkillRaceClass; -- skill: 165 (leatherworking)
+*/
