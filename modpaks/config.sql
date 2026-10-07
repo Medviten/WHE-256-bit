@@ -177,6 +177,7 @@ SET @Face                                            =    1;
 SET @FacialHair                                      =    2;
 SET @Hair                                            =    3;
 SET @Underwear                                       =    4;
+SET @FootprintShoe                                   =    1;
 SET @FootprintHoof                                   =    3;
 SET @FootprintPaw                                    =    7;
 
@@ -394,6 +395,18 @@ SET @GnomeCinematicSequence                          =      101;
 SET @TrollCinematicSequence                          =      121;
 SET @BloodElfCinematicSequence                       =      162;
 SET @DraeneiCinematicSequence                        =      163;
+
+-- Blood
+SET @HumanBlood                                      =        1;
+SET @OrcBlood                                        =        1;
+SET @DwarfBlood                                      =        1;
+SET @NightElfBlood                                   =        1;
+SET @UndeadBlood                                     =        2;
+SET @TaurenBlood                                     =        1;
+SET @GnomeBlood                                      =        1;
+SET @TrollBlood                                      =        1;
+SET @BloodElfBlood                                   =        1;
+SET @DraeneiBlood                                    =        4;
 
 -- Racial skills
 SET @BloodElfRacials                                 =      756;
