@@ -1,6 +1,7 @@
 -- [F-002] move_npc_races: characterfacialhairstyles
 
 DELETE FROM `characterfacialhairstyles` WHERE `race` IN (@NPCFelOrc, @NPCNaga, @NPCBroken, @NPCSkeleton, @NPCVrykul, @NPCTuskarr, @NPCForestTroll, @NPCTaunka, @NPCNorthrendSkeleton, @NPCIceTroll);
+UPDATE `characterfacialhairstyles` SET `race` = @NPCGoblin            WHERE `race` =  9;
 UPDATE `characterfacialhairstyles` SET `race` = @NPCFelOrc            WHERE `race` = 12;
 UPDATE `characterfacialhairstyles` SET `race` = @NPCNaga              WHERE `race` = 13;
 UPDATE `characterfacialhairstyles` SET `race` = @NPCBroken            WHERE `race` = 14;

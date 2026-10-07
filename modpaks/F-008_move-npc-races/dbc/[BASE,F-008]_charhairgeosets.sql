@@ -1,6 +1,7 @@
 -- [F-30] mod-worgoblin: charhairgeosets
 
 DELETE FROM `charhairgeosets` WHERE `race` IN (@NPCFelOrc, @NPCNaga, @NPCBroken, @NPCSkeleton, @NPCVrykul, @NPCTuskarr, @NPCForestTroll, @NPCTaunka, @NPCNorthrendSkeleton, @NPCIceTroll);
+UPDATE `charhairgeosets` SET `race` = @NPCGoblin            WHERE `race` =  9;
 UPDATE `charhairgeosets` SET `race` = @NPCFelOrc            WHERE `race` = 12;
 UPDATE `charhairgeosets` SET `race` = @NPCNaga              WHERE `race` = 13;
 UPDATE `charhairgeosets` SET `race` = @NPCBroken            WHERE `race` = 14;

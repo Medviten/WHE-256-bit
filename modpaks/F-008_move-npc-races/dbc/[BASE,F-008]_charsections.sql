@@ -1,5 +1,6 @@
 -- [F-030] mod-worgoblin: charsections
 
+UPDATE `charsections` SET `race` = @NPCGoblin            WHERE `race` =  9;
 UPDATE `charsections` SET `race` = @NPCFelOrc            WHERE `race` = 12;
 UPDATE `charsections` SET `race` = @NPCNaga              WHERE `race` = 13;
 UPDATE `charsections` SET `race` = @NPCBroken            WHERE `race` = 14;

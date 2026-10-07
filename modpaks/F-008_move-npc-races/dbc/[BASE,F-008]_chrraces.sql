@@ -1,5 +1,6 @@
 -- [F-030] move_npc_races: chrraces: 0 inserts, 10 updates, 0 deletes
 
+UPDATE `chrraces` SET `id` = @NPCGoblin            WHERE `id` =  9;
 UPDATE `chrraces` SET `id` = @NPCFelOrc            WHERE `id` = 12;
 UPDATE `chrraces` SET `id` = @NPCNaga              WHERE `id` = 13;
 UPDATE `chrraces` SET `id` = @NPCBroken            WHERE `id` = 14;

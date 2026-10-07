@@ -3,9 +3,6 @@ SET @ActionbarSpell                                =        0;
 SET @ActionbarMacro                                =       64;
 SET @ActionbarItem                                 =      128;
 
--- Item IDs
-SET @BlackMushroom                                 =    41751;
-
 -- Spell IDs
 SET @SellAutoShot                                  =       75;
 SET @SpellHeroicStrike1                            =       78;
@@ -106,8 +103,8 @@ SET @SpellEtherealConnection                       =   255667; -- Legion ID (Voi
 SET @SpellPreternaturalCalm                        =   255670; -- Legion ID (Void Elf racial)
 SET @SpellSpatialRift                              =   256948; -- Legion ID (Void Elf racial)
 SET @SpellDemonbane                                =   255653; -- Legion ID (Lightforged Draenei racial)
-SET @SpellForgeOfLight                             =   255650; -- Legion ID (Lightforged Draenei racial)
-SET @SpellForgeOfLight                             =   259930; -- Legion ID (Lightforged Draenei racial)
+SET @SpellForgeOfLight1                            =   255650; -- Legion ID (Lightforged Draenei racial)
+SET @SpellForgeOfLight2                            =   259930; -- Legion ID (Lightforged Draenei racial)
 SET @SpellHolyProvidence                           =   255651; -- Legion ID (Lightforged Draenei racial)
 SET @SpellLightsJudgement                          =   255647; -- Legion ID (Lightforged Draenei racial)
 SET @SpellLightsReckoning                          =   255652; -- Legion ID (Lightforged Draenei racial)
@@ -208,16 +205,17 @@ SET @Draenei                                         =   11;
 SET @NextRace                                        =   12; -- Reserved for Worgen – increments before assignment
 
 -- NPC Races
-SET @NPCFelOrc                                       =   72;
-SET @NPCNaga                                         =   73;
-SET @NPCBroken                                       =   74;
-SET @NPCSkeleton                                     =   75;
-SET @NPCVrykul                                       =   76;
-SET @NPCTuskarr                                      =   77;
-SET @NPCForestTroll                                  =   78;
-SET @NPCTaunka                                       =   79;
-SET @NPCNorthrendSkeleton                            =   80;
-SET @NPCIceTroll                                     =   81;
+SET @NPCGoblin                                       =   169;
+SET @NPCFelOrc                                       =   172;
+SET @NPCNaga                                         =   173;
+SET @NPCBroken                                       =   174;
+SET @NPCSkeleton                                     =   175;
+SET @NPCVrykul                                       =   176;
+SET @NPCTuskarr                                      =   177;
+SET @NPCForestTroll                                  =   178;
+SET @NPCTaunka                                       =   179;
+SET @NPCNorthrendSkeleton                            =   180;
+SET @NPCIceTroll                                     =   181;
 
 -- RaceMasks
 SET @HumanMask                                       =   1 << (@Human            - 1);  -- race ID 1  → 1
@@ -251,6 +249,8 @@ SET @WorgenMaleModel                                 =     3141; -- bipedal
 SET @WorgenFemaleModel                               =     3142; -- bipedal
 SET @WorgenWildMaleModel                             =     3626; -- quadrupedal
 SET @WorgenWildFemaleModel                           =     3627; -- quadrupedal
+SET @GoblinMaleModel                                 =      831;
+SET @GoblinFemaleModel                               =      832;
 SET @HighElfMaleModel                                =     2208; -- blood elf
 SET @HighElfFemaleModel                              =     2209; -- blood elf
 SET @MagharOrcMaleModel                              =       51; -- orc
@@ -275,6 +275,12 @@ SET @HighmountainTaurenMaleModel                     =    40012;
 SET @HighmountainTaurenFemaleModel                   =    40013;
 SET @NagaMaleModel                                   =    40014;
 SET @NagaFemaleModel                                 =    40015;
+SET @TaunkaMaleModel                                 =    40016;
+SET @TaunkaFemaleModel                               =       60; -- Tauren female
+SET @VoidElfMaleModel                                =    40017;
+SET @VoidElfFemaleModel                              =    40018;
+SET @LightforgedDraeneiMaleModel                     =    40019;
+SET @LightforgedDraeneiFemaleModel                   =    40020;
 
 -- Display IDs
 SET @GoblinMaleDisplay                               =     6894;
@@ -304,16 +310,24 @@ SET @HordePandarenMaleDisplay                        =    40008;
 SET @HordePandarenFemaleDisplay                      =    40009;
 SET @BrokenMaleDisplay                               =    17576; -- 21105; -- default 17576 (but no extended display)
 SET @BrokenFemaleDisplay                             =    17577; -- 40010; -- default 17577 (but no extended display)
-SET @KulTiranMaleDisplay                             =    94231; -- 40011;
-SET @KulTiranFemaleDisplay                           =    94232; -- 40012;
-SET @GilneanMaleDisplay                              =    94233;
-SET @GilneanFemaleDisplay                            =    94234;
-SET @HighmountainTaurenMaleDisplay                   =    40011;
-SET @HighmountainTaurenFemaleDisplay                 =    40012;
 SET @NagaMaleDisplay                                 =    40013;
 SET @NagaFemaleDisplay                               =    40014;
+SET @TaunkaMaleDisplay                               =    40015;
+SET @TaunkaFemaleDisplay                             =    40016;
+SET @VoidElfMaleDisplay                              =    40015;
+SET @VoidElfFemaleDisplay                            =    40016;
+SET @LightforgedDraeneiMaleDisplay                   =    40015;
+SET @LightforgedDraeneiFemaleDisplay                 =    40016;
+SET @HighmountainTaurenMaleDisplay                   =    40017;
+SET @HighmountainTaurenFemaleDisplay                 =    40018;
+SET @KulTiranMaleDisplay                             =    40019; -- 40011;
+SET @KulTiranFemaleDisplay                           =    40020; -- 40012;
+SET @GilneanMaleDisplay                              =    40021;
+SET @GilneanFemaleDisplay                            =    40022;
 
 -- CreatureDisplayInfoExtra
+SET @LordHarfordDisplayExtra                         =    24081;
+SET @GallyLumpstainDisplayExtra                      =    24082;
 SET @WorgenMaleDisplayExtra                          =    45424;
 SET @WorgenFemaleDisplayExtra                        =    45425;
 SET @HighElfMaleDisplayExtra                         =    45433;
@@ -342,6 +356,12 @@ SET @HighmountainTaurenMaleDisplayExtra              =    45456;
 SET @HighmountainTaurenFemaleDisplayExtra            =    45457;
 SET @NagaMaleDisplayExtra                            =    45458;
 SET @NagaFemaleDisplayExtra                          =    45459;
+SET @TaunkaMaleDisplayExtra                          =    45460;
+SET @TaunkaFemaleDisplayExtra                        =    45461;
+SET @VoidElfMaleDisplayExtra                         =    45462;
+SET @VoidElfFemaleDisplayExtra                       =    45463;
+SET @LightforgedDraeneiMaleDisplayExtra              =    45464;
+SET @LightforgedDraeneiFemaleDisplayExtra            =    45465;
 
 -- creature_template
 SET @WorgenWildMaleTemplate                          =    55274;
@@ -390,6 +410,9 @@ SET @KulTiranRacials                                 =      799;
 SET @GilneanRacials                                  =      800; -- For completion's sake
 SET @HighmountainTaurenRacials                       =      801;
 SET @NagaRacials                                     =      802;
+SET @TaunkaRacials                                   =      803;
+SET @VoidElfRacials                                  =      804;
+SET @LightforgedDraeneiRacials                       =      805;
 
 -- Racial spells
 SET @Cannibalize                                     = @SpellCannibalize; -- Undead racial
@@ -457,6 +480,17 @@ SET @KulTiranRacial2                                 = @SpellJackOfAllTrades;
 SET @KulTiranRacial3                                 = @SpellBrushItOff;
 SET @KulTiranRacial4                                 = @SpellChildOfTheSea;
 SET @KulTiranRacial5                                 = @SpellRimeOfTheAncientMariner;
+SET @VoidElfRacial1                                  = @SpellChillOfNight;
+SET @VoidElfRacial2                                  = @SpellEntropicEmbrace;
+SET @VoidElfRacial3                                  = @SpellEtherealConnection;
+SET @VoidElfRacial4                                  = @SpellPreternaturalCalm;
+SET @VoidElfRacial5                                  = @SpellSpatialRift;
+SET @LightforgedDraeneiRacial1                       = @SpellDemonbane;
+SET @LightforgedDraeneiRacial2                       = @SpellForgeOfLight1;
+SET @LightforgedDraeneiRacial3                       = @SpellForgeOfLight2;
+SET @LightforgedDraeneiRacial4                       = @SpellHolyProvidence;
+SET @LightforgedDraeneiRacial5                       = @SpellLightsJudgement;
+SET @LightforgedDraeneiRacial6                       = @SpellLightsReckoning;
 -- SET @OgreRacial1
 -- SET @BrokenRacial1
 -- SET @NagaRacial1
@@ -513,6 +547,18 @@ SET @IconMountaineer                                  = 1723999; -- Highmountain
 SET @IconPrideOfIronhorn                              = 1724002; -- Highmountain Tauren
 SET @IconRuggedTenacity                               = 1724003; -- Highmountain Tauren
 SET @IconWasteNotWantNot                              = 1724005; -- Highmountain Tauren
+SET @IconVoidElfStriderMount                          =  156486; -- Void Elf
+SET @IconChillOfNight                                 = 1723989; -- Void Elf
+SET @IconEntropicEmbrace                              = 1723992; -- Void Elf
+SET @IconEtherealConnection                           = 1723993; -- Void Elf
+SET @IconPreternaturalCalm                            = 1724001; -- Void Elf
+SET @IconSpatialRift                                  = 1724004; -- Void Elf
+SET @IconLightforgedElekk                             = 1713157; -- Lightforged Draenei
+SET @IconDemonbane                                    = 1723990; -- Lightforged Draenei
+SET @IconForgeOfLight                                 = 1723995; -- Lightforged Draenei
+SET @IconHolyProvidence                               = 1723996; -- Lightforged Draenei
+SET @IconLightsJudgement                              = 1724000; -- Lightforged Draenei
+SET @IconLightsReckoning                              = 1723994; -- Lightforged Draenei
 
 -- Other Relevant Spells
 SET @ApprenticeSkinning                               =    8613;
@@ -730,6 +776,17 @@ SET @HighmountainTaurenSkillLineAbility2             =    31474;
 SET @HighmountainTaurenSkillLineAbility3             =    31475;
 SET @HighmountainTaurenSkillLineAbility4             =    31476;
 SET @HighmountainTaurenSkillLineAbility5             =    31477;
+SET @VoidElfSkillLineAbility1                        =    31478;
+SET @VoidElfSkillLineAbility2                        =    31479;
+SET @VoidElfSkillLineAbility3                        =    31480;
+SET @VoidElfSkillLineAbility4                        =    31481;
+SET @VoidElfSkillLineAbility5                        =    31482;
+SET @LightforgedDraeneiSkillLineAbility1             =    31483;
+SET @LightforgedDraeneiSkillLineAbility2             =    31484;
+SET @LightforgedDraeneiSkillLineAbility3             =    31485;
+SET @LightforgedDraeneiSkillLineAbility4             =    31486;
+SET @LightforgedDraeneiSkillLineAbility5             =    31487;
+SET @LightforgedDraeneiSkillLineAbility6             =    31488;
 
 -- Language SkillLineAbility
 SET @OrcishSkillLineAbilityHorde                     =      592;
@@ -802,6 +859,9 @@ SET @DarkIronDwarfRacialSkillRaceClass               =     1143;
 SET @GilneanRacialSkillRaceClass                     =     1144; -- For completion's sake
 SET @HighmountainTaurenRacialSkillRaceClass          =     1145;
 SET @NagaRacialSkillRaceClass                        =     1146;
+SET @TaunkaRacialSkillRaceClass                      =     1147;
+SET @VoidElfRacialSkillRaceClass                     =     1148;
+SET @LightforgedDraeneiRacialSkillRaceClass          =     1149;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                       =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -903,12 +963,14 @@ SET @TigerRidingGeneralSkillRaceClass                =      481; -- Human, Orc, 
 SET @MechanostriderPilotingDwarfSkillRaceClass       =      501; -- Dwarf
 
 -- Mount Models
+SET @HorseModel                                      =       65;
 SET @GoblinTrikeModel                                =     3623;
 SET @GoblinTurboTrikeModel                           =     3624;
 SET @CaravanHyena1Model                              =     3628; -- Vacant slot
 SET @CaravanHyena2Model                              =     3629; -- Vacant slot
 SET @DragonTurtleModel                               =     3630; -- Vacant slot
 SET @HighmountainThunderhoofModel                    =     3631; -- Vacant slot
+SET @LightforgedFelcrusherModel                      =     3632; -- Vacant slot
 
 -- Mount Display IDs
 SET @GoblinTrikeDisplay                              =    35249;
@@ -922,6 +984,10 @@ SET @DragonTurtlePurpleDisplay                       =    94229; -- vacant slot
 SET @DragonTurtleGreenDisplay                        =    94230; -- vacant slot
 SET @DragonTurtleBlackDisplay                        =    94231; -- vacant slot
 SET @HighmountainThunderhoofDisplay                  =    94232; -- vacant slot
+SET @LightforgedFelcrusherPurpleDisplay              =    94233; -- vacant slot
+SET @LightforgedFelcrusherBlueDisplay                =    94234; -- vacant slot
+SET @LightforgedFelcrusherDarkDisplay                =    94235; -- vacant slot
+SET @LightforgedFelcrusherHolyDisplay                =    94236; -- vacant slot
 
 -- Creature IDs
 SET @GobberCreatureID                                =    36613;
@@ -936,6 +1002,10 @@ SET @DragonTurtlePurpleCreatureID                    =   182784; -- vacant slot
 SET @DragonTurtleGreenCreatureID                     =   182785; -- vacant slot
 SET @DragonTurtleBlackCreatureID                     =   182786; -- vacant slot
 SET @HighmountainThunderhoofCreatureID               =   182787; -- vacant slot
+SET @LightforgedFelcrusherPurpleCreatureID           =   182788; -- vacant slot
+SET @LightforgedFelcrusherBlueCreatureID             =   182789; -- vacant slot
+SET @LightforgedFelcrusherDarkCreatureID             =   182790; -- vacant slot
+SET @LightforgedFelcrusherHolyCreatureID             =   182791; -- vacant slot
 
 -- Mount Items
 SET @GoblinTrikeItem                                 =    62461; -- Cataclysm ID
@@ -948,12 +1018,16 @@ SET @DragonTurtleBlueItem                            =    91009; -- MoP ID
 SET @DragonTurtlePurpleItem                          =    91006; -- MoP ID
 SET @DragonTurtleGreenItem                           =    91004; -- MoP ID
 SET @DragonTurtleBlackItem                           =    91008; -- MoP ID
-SET @HighmountainThunderhoofItem                     =   155662; -- BfA ID
+SET @HighmountainThunderhoofItem                     =   155662; -- Legion ID
+SET @LightforgedFelcrusherHolyItem                   =   155656; -- Legion ID
+SET @LightforgedFelcrusherPurpleItem                 =   174067; -- vacant slot
+SET @LightforgedFelcrusherBlueItem                   =   174068; -- vacant slot
+SET @LightforgedFelcrusherDarkItem                   =   174069; -- vacant slot
 
 -- Mount Item Display ID
 SET @GoblinTrikeItemDisplay                          =   134237;
 SET @GoblinTurboTrikeItemDisplay                     =   134238;
-SET @MountainHorseItemDisplay                        =   134238;
+SET @MountainHorseItemDisplay                        =   132261;
 SET @SwiftMountainHorseItemDisplay                   =   @MountainHorseItemDisplay;
 SET @CaravanHyena1ItemDisplay                        =   132262; -- vacant slot
 SET @CaravanHyena2ItemDisplay                        =   @CaravanHyena1ItemDisplay;
@@ -962,6 +1036,10 @@ SET @DragonTurtlePurpleItemDisplay                   =   132264; -- vacant slot
 SET @DragonTurtleGreenItemDisplay                    =   132265; -- vacant slot
 SET @DragonTurtleBlackItemDisplay                    =   132266; -- vacant slot
 SET @HighmountainThunderhoofItemDisplay              =   132267; -- vacant slot
+SET @LightforgedFelcrusherHolyItemDisplay            =   132268; -- vacant slot
+SET @LightforgedFelcrusherPurpleItemDisplay          =   @LightforgedFelcrusherHolyItemDisplay;
+SET @LightforgedFelcrusherBlueItemDisplay            =   @LightforgedFelcrusherHolyItemDisplay;
+SET @LightforgedFelcrusherDarkItemDisplay            =   @LightforgedFelcrusherHolyItemDisplay;
 
 -- Mount Spells
 SET @GoblinTrike                                     =    87090; -- Cataclysm ID
@@ -975,6 +1053,10 @@ SET @DragonTurtlePurple                              =   127289; -- MoP ID
 SET @DragonTurtleGreen                               =   120395; -- MoP ID
 SET @DragonTurtleBlack                               =   127286; -- MoP ID
 SET @HighmountainThunderhoof                         =   258060; -- Legion ID
+SET @LightforgedFelcrusherHoly                       =   258022; -- Legion ID
+SET @LightforgedFelcrusherPurple                     =   306425; -- vacant slot
+SET @LightforgedFelcrusherBlue                       =   306426; -- vacant slot
+SET @LightforgedFelcrusherDark                       =   306427; -- vacant slot
 
 -- Faction Masks
 SET @VanillaAllianceMask                             = @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;
@@ -1052,6 +1134,8 @@ SET @GilneanFaction                                  =     1185;
 SET @GilneanPlayer                                   =     1186;
 SET @NagaFaction                                     =     1187;
 SET @NagaPlayer                                      =     1188;
+SET @TaunkaFaction                                   =     2231; -- Taunka of the Horde
+SET @TaunkaPlayer                                    =     2232; -- vacant slot
 
 -- Faction templates
 SET @GoblinFactionTemplate                           =     2238; -- References @GoblinPlayer
@@ -1069,6 +1153,9 @@ SET @KulTiranFactionTemplate                         =     2248; -- References @
 SET @GilneanFactionTemplate                          =     2249; -- References @GilneanPlayer
 SET @HighmountainTaurenFactionTemplate               =     2250; -- References @HighmountainTaurenPlayer
 SET @NagaFactionTemplate                             =     2251; -- References @NagaPlayer
+SET @TaunkaFactionTemplate                           =     2252; -- References @TaunkaPlayer
+SET @VoidElfFactionTemplate                          =     2253; -- References @VoidElfPlayer
+SET @LightforgedDraeneiFactionTemplate               =     2254; -- References @LightforgedDraeneiPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                           =    105;
@@ -1086,6 +1173,9 @@ SET @KulTiranFactionRepIndex                         =    116;
 SET @GilneanFactionRepIndex                          =    117;
 SET @HighmountainTaurenFactionRepIndex               =    118;
 SET @NagaFactionRepIndex                             =    119;
+SET @TaunkaFactionRepIndex                           =    120;
+SET @VoidElfFactionRepIndex                          =    121;
+SET @LightforgedDraeneiFactionRepIndex               =    122;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                            =     246;
@@ -1107,6 +1197,9 @@ SET @KulTiranAchievement                             =    1440;
 SET @GilneanAchievement                              =    1441; -- For completion's sake
 SET @HighmountainTaurenAchievement                   =    1442;
 SET @NagaAchievement                                 =    1443;
+SET @TaunkaAchievement                               =    1444;
+SET @VoidElfAchievement                              =    1445;
+SET @LightforgedDraeneiAchievement                   =    1446;
 
 -- Achievement Criteria
 SET @GoblinCriteria1                                 =    13471; -- Achievement 1005: Know Thy Enemy
@@ -1169,6 +1262,18 @@ SET @GilneanCriteria1                                =    19258; -- Achievement 
 SET @GilneanCriteria2                                =    19259; -- Achievement 2422: Shake Your Bunny-Maker
 SET @GilneanCriteria3                                =    19260; -- Achievement 291: Check Your Head
 SET @GilneanCriteria4                                =    19261; -- @GilneanAchievement: Realm First! Level 80 Gilnean
+SET @TaunkaCriteria1                                 =    19262; -- Achievement 1005: Know Thy Enemy
+SET @TaunkaCriteria2                                 =    19263; -- Achievement 2422: Shake Your Bunny-Maker
+SET @TaunkaCriteria3                                 =    19264; -- Achievement 291: Check Your Head
+SET @TaunkaCriteria4                                 =    19265; -- @NagaAchievement: Realm First! Level 80 Naga
+SET @VoidElfCriteria1                                =    19266; -- Achievement 246: Know Thy Enemy
+SET @VoidElfCriteria2                                =    19267; -- Achievement 2422: Shake Your Bunny-Maker
+SET @VoidElfCriteria3                                =    19268; -- Achievement 291: Check Your Head
+SET @VoidElfCriteria4                                =    19269; -- @VoidElfAchievement: Realm First! Level 80 Void Elf
+SET @LightforgedDraeneiCriteria1                     =    19270; -- Achievement 246: Know Thy Enemy
+SET @LightforgedDraeneiCriteria2                     =    19271; -- Achievement 2422: Shake Your Bunny-Maker
+SET @LightforgedDraeneiCriteria3                     =    19272; -- Achievement 291: Check Your Head
+SET @LightforgedDraeneiCriteria4                     =    19273; -- @LightforgedDraeneiAchievement: Realm First! Level 80 Lightforged Draenei
 
 -- Classes
 SET @Warrior                                         =      1;
@@ -1226,11 +1331,23 @@ SET @DwarfEarthTotem                                 =       30753;
 SET @DwarfWaterTotem                                 =       30755;
 SET @DwarfAirTotem                                   =       30736;
 
+-- Tauren totems
+SET @TaurenFireTotem                                 =        4589;
+SET @TaurenEarthTotem                                =        4588;
+SET @TaurenWaterTotem                                =        4587;
+SET @TaurenAirTotem                                  =        4590;
+
 -- Troll totems
 SET @TrollFireTotem                                  =       30762;
 SET @TrollEarthTotem                                 =       30761;
 SET @TrollWaterTotem                                 =       30763;
 SET @TrollAirTotem                                   =       30760;
+
+-- Draenei totems
+SET @DraeneiFireTotem                                =       19074;
+SET @DraeneiEarthTotem                               =       19073;
+SET @DraeneiWaterTotem                               =       19075;
+SET @DraeneiAirTotem                                 =       19071;
 
 -- Default totems Alliance
 SET @AllianceFireTotem                               =       @DwarfFireTotem;
@@ -1806,3 +1923,275 @@ SET @SpecialDButton9                                 =       116;
 SET @SpecialDButton10                                =       117;
 SET @SpecialDButton11                                =       118;
 SET @SpecialDButton12                                =       119;
+
+-- Common Items
+SET @ApprenticesPantsItem                            =      1395;
+SET @ApprenticesShirtItem                            =      6096;
+SET @ApprenticesRobeItem2                            =      6140;
+SET @ApprenticesRobeItem2Display                     =     12649;
+SET @ThugShirtItem                                   =      2105;
+SET @ThugPantsItem                                   =       120;
+SET @ThugBootsItem                                   =       121;
+SET @CrudeThrowingAxeItem                            =     25861;
+SET @WornDaggerItem                                  =      2092;
+
+SET @BentStaffItem                                   =        35;
+SET @WornMaceItem                                    =        36;
+SET @WornAxeItem                                     =        37;
+SET @SquiresBootsItem                                =        43;
+SET @SquiresPantsItem                                =        44;
+SET @SquiresShirtItem                                =        45;
+SET @NeophytesBootsItem                              =        51;
+SET @NeophytesPantsItem                              =        52;
+SET @NeophytesShirtItem                              =        53;
+SET @ApprenticesBootsItem                            =        55;
+SET @ApprenticesRobeItem                             =        56;
+SET @AcolytesRobeItem                                =        57;
+SET @AcolytesRobeItem2                               =      6129;
+SET @AcolytesShoesItem                               =        59;
+SET @AcolytesPantsItem                               =      1396;
+SET @AcolytesShirtItem                               =      6097;
+SET @RuggedTrappersBootsItem                         =       129;
+SET @RuggedTrappersPantsItem                         =       147;
+SET @RuggedTrappersShirtItem                         =       148;
+SET @PrimitiveKiltItem                               =       153;
+SET @PrimitiveMantleItem                             =       154;
+SET @BattlewornBludgeonItem                          =      2361;
+SET @WornWoodenShieldItem                            =      2362;
+SET @HandcraftedStaffItem                            =      3661;
+SET @HearthstoneItem                                 =      6948;
+SET @OldBlunderbussItem                              =      2508;
+SET @SmallAmmoPouchItem                              =      2102;
+SET @LightShotItem                                   =      2516;
+SET @NovicesRobeItem                                 =      6123;
+SET @NeophytesRobeItem                               =      6098;
+SET @NeophytesRobeItem2                              =      6144;
+SET @NovicesPantsItem                                =      6124;
+SET @NovicesRobeItem2                                =      6139;
+SET @WornBattleaxeItem                               =     12282;
+SET @BattlewornClaymoreItem                          =     23346;
+SET @UnadornedChainBootsItem                         =     20915;
+SET @UnadornedChainLeggingsItem                      =     20918;
+SET @UnadornedChainVestItem                          =     20919;
+SET @LightThrowingKnifeItem                          =     28979;
+SET @AcherusKnightsHoodItem                          =     34652;
+SET @AcherusKnightsPauldronsItem                     =     34655;
+SET @AcherusKnightsShroudItem                        =     34659;
+SET @AcherusKnightsTunicItem                         =     34650;
+SET @AcherusKnightsWristguardItem                    =     34653;
+SET @AcherusKnightsGauntletsItem                     =     34649;
+SET @AcherusKnightsGirdleItem                        =     34651;
+SET @AcherusKnightsLegplatesItem                     =     34656;
+SET @AcherusKnightsGreavesItem                       =     34648;
+SET @ChokerOfDamnationItem                           =     34657;
+SET @PlagueBandItem                                  =     34658;
+SET @DeathweaveBagItem                               =     38145;
+SET @CorruptedBandItem                               =     38147;
+SET @BlackMushroomItem                               =     41751;
+SET @ScourgestoneItem                                =     40582;
+SET @WornDirkItem                                    =     50055;
+
+-- Common Item Display
+SET @NeophytesRobeItem2Display                       =     12680;
+SET @NeophytesPantsItemDisplay                       =      9944;
+SET @NeophytesShirtItemDisplay                       =      9945;
+SET @NeophytesBootsItemDisplay                       =      9946;
+SET @NeophytesBootsItemDisplay                       =      9946;
+SET @NeophytesBootsItemDisplay                       =      9946;
+SET @AcolytesRobeItemDisplay                         =     12645;
+SET @AcolytesShirtItemDisplay                        =      2470;
+SET @AcolytesPantsItemDisplay                        =      3260;
+SET @AcolytesShoesItemDisplay                        =      3261;
+SET @ThugShirtItemDisplay                            =     10005;
+SET @ThugPantsItemDisplay                            =     10006;
+SET @ThugBootsItemDisplay                            =     10008;
+SET @AcolytesRobeItem2Display                        =     12646;
+SET @CrudeThrowingAxeItemDisplay                     =     20777;
+SET @WornDaggerItemDisplay                           =      6442;
+SET @WornDirkItemDisplay                             = @WornDaggerItemDisplay;
+SET @ApprenticesRobeItemDisplay                      =     12647;
+SET @ApprenticesPantsItemDisplay                     =      9924;
+SET @ApprenticesBootsItemDisplay                     =      9929;
+SET @ApprenticesShirtItemDisplay                     =      2163;
+SET @ApprenticesRobeItemDisplay                      =     12647;
+
+SET @UnadornedChainBootsItemDisplay                  =     33270;
+SET @UnadornedChainLeggingsItemDisplay               =     33263;
+SET @UnadornedChainVestItemDisplay                   =     33268;
+SET @BentStaffItemDisplay                            =       472;
+SET @LargeRucksackItemDisplay                        =       933;
+SET @OverseersRingItemDisplay                        =       963;
+SET @SmallAmmoPouchItemDisplay                       =      1816;
+SET @BattlewornClaymoreItemDisplay                   =      2380;
+SET @1HDaggerItemDisplay                             =      2704; -- ?
+SET @SquiresShirtItemDisplay                         =      3265;
+SET @WornMaceItemDisplay                             =      5194;
+SET @LightShotItemDisplay                            =      5998;
+SET @HearthstoneItemDisplay                          =      6418;
+SET @GlowingGreenTalismanItemDisplay                 =      6539;
+SET @2HRifleItemDisplay                              =      2409; -- ?
+SET @OldBlunderbussItemDisplay                       =      6606;
+SET @2HMaceItemDisplay                               =      8688; -- ?
+SET @BattlewornBludgeonItemDisplay                   =      8690;
+SET @SquiresPantsItemDisplay                         =      9937;
+SET @SquiresBootsItemDisplay                         =      9938;
+SET @RuggedTrappersPantsItemDisplay                  =      9975;
+SET @RuggedTrappersShirtItemDisplay                  =      9976;
+SET @RuggedTrappersBootsItemDisplay                  =      9977;
+SET @NovicesPantsItemDisplay                         =      9987;
+SET @PrimitiveKiltItemDisplay                        =     10050;
+SET @PrimitiveMantleItemDisplay                      =     10058;
+SET @WornAxeItemDisplay                              =     14029;
+SET @HandcraftedStaffItemDisplay                     =     18530;
+SET @NovicesRobeItemDisplay                          =     12683;
+SET @NovicesRobeItemDisplay2                         =     12684;
+SET @WornWoodenShieldItemDisplay                     =     18730;
+SET @WornBattleaxeItemDisplay                        =     22291;
+SET @FelConeFungusItemDisplay                        =     24043;
+SET @LightThrowingKnifeItemDisplay                   =     40187;
+SET @AcherusKnightsHoodItemDisplay                   =     51495;
+SET @AcherusKnightsPauldronsItemDisplay              =     51501;
+SET @AcherusKnightsShroudItemDisplay                 =     49738;
+SET @AcherusKnightsTunicItemDisplay                  =     51494;
+SET @AcherusKnightsWristguardItemDisplay             =     51500;
+SET @AcherusKnightsGauntletsItemDisplay              =     51498;
+SET @AcherusKnightsGirdleItemDisplay                 =     51497;
+SET @AcherusKnightsLegplatesItemDisplay              =     51499;
+SET @AcherusKnightsGreavesItemDisplay                =     51496;
+SET @ChokerOfDamnationItemDisplay                    = @GlowingGreenTalismanItemDisplay;
+SET @PlagueBandItemDisplay                           = @OverseersRingItemDisplay;
+SET @DeathweaveBagItemDisplay                        = @LargeRucksackItemDisplay;
+SET @CorruptedBandItemDisplay                        = @OverseersRingItemDisplay;
+SET @BlackMushroomItemDisplay                        = @FelConeFungusItemDisplay;
+SET @ScourgestoneItemDisplay                         = @HearthstoneItemDisplay;
+
+-- Other Items
+SET @GoblinBrawlersHarnessItem                       =     49524; -- Cataclysm ID
+SET @GoblinBrawlersBootsItem                         =     49527; -- Cataclysm ID
+SET @GoblinBrawlersGreavesItem                       =     49528; -- Cataclysm ID
+SET @GoblinBrawlersGauntletsItem                     =     49529; -- Cataclysm ID
+SET @GoblinTrappersShirtItem                         =     49502; -- Cataclysm ID
+SET @GoblinTrappersPantsItem                         =     49503; -- Cataclysm ID
+SET @GoblinTrappersBootsItem                         =     49504; -- Cataclysm ID
+SET @WornWoodChopperItem                             =     52532; -- Cataclysm ID
+SET @GoblinThugsTunicItem                            =     49514; -- Cataclysm ID
+SET @GoblinThugsPantsItem                            =     49515; -- Cataclysm ID
+SET @GoblinThugsBootsItem                            =     49516; -- Cataclysm ID
+SET @GoblinNeophytesRobeItem                         =     49510; -- Cataclysm ID
+SET @GoblinNeophytesPantsItem                        =     49512; -- Cataclysm ID
+SET @GoblinNeophytesShoesItem                        =     49531; -- Cataclysm ID
+SET @PrimalShirtItem                                 =     52550; -- Cataclysm ID
+SET @PrimalPantsItem                                 =     52551; -- Cataclysm ID
+SET @PrimalBootsItem                                 =     52552; -- Cataclysm ID
+SET @GoblinApprenticesRobeItem                       =     49505; -- Cataclysm ID
+SET @GoblinApprenticesPantsItem                      =     49506; -- Cataclysm ID
+SET @GoblinApprenticesBootsItem                      =     49508; -- Cataclysm ID
+SET @GoblinAcolytesRobeItem                          =     49520; -- Cataclysm ID
+SET @GoblinAcolytesPantsItem                         =     49521; -- Cataclysm ID
+SET @GoblinAcolytesShoesItem                         =     49522; -- Cataclysm ID
+SET @GilneanApprenticesRobeItem                      =     49399; -- Cataclysm ID
+SET @GilneanApprenticesPantsItem                     =     49400; -- Cataclysm ID
+SET @GilneanApprenticesBootsItem                     =     49401; -- Cataclysm ID
+SET @GilneanNeophytesRobeItem                        =     49403; -- Cataclysm ID
+SET @GilneanNeophytesPantsItem                       =     49404; -- Cataclysm ID
+SET @GilneanNeophytesBootsItem                       =     49406; -- Cataclysm ID
+SET @GilneanAcolytesRobeItem                         =     49408; -- Cataclysm ID
+SET @GilneanAcolytesPantsItem                        =     49409; -- Cataclysm ID
+SET @GilneanAcolytesBootsItem                        =     49407; -- Cataclysm ID
+SET @GilneanNovicesTunicItem                         =     49563; -- Cataclysm ID
+SET @GilneanNovicesPantsItem                         =     49566; -- Cataclysm ID
+SET @GilneanNovicesBootsItem                         =     49564; -- Cataclysm ID
+SET @GilneanNovicesGlovesItem                        =     49565; -- Cataclysm ID
+SET @GilneanAdventurersShirtItem                     =     49567; -- Cataclysm ID
+SET @GilneanTrappersTunicItem                        =     49570; -- Cataclysm ID
+SET @GilneanTrappersShirtItem                        =     49568; -- Cataclysm ID
+SET @GilneanFootpadsPantsItem                        =     49572; -- Cataclysm ID
+SET @GilneanTrappersBootsItem                        =     49569; -- Cataclysm ID
+SET @GilneanTrappersGlovesItem                       =     49571; -- Cataclysm ID
+SET @GilneanFootpadsTunicItem                        =     49574; -- Cataclysm ID
+SET @GilneanFootpadsBootsItem                        =     49575; -- Cataclysm ID
+SET @GilneanFootpadsGlovesItem                       =     49573; -- Cataclysm ID
+SET @GilneanRecruitsTunicItem                        =     49578; -- Cataclysm ID
+SET @GilneanRecruitsPantsItem                        =     49576; -- Cataclysm ID
+SET @GilneanRecruitsBootsItem                        =     49579; -- Cataclysm ID
+SET @GilneanRecruitsBeltItem                         =     49577; -- Cataclysm ID
+SET @WornWoodChopperItem                             =     52532; -- Cataclysm ID
+
+-- ItemDisplay
+SET @GoblinBrawlersGreavesItemDisplay                =     69183; -- Cataclysm ID?
+SET @GoblinBrawlersHarnessItemDisplay                =     69181; -- Cataclysm ID?
+SET @GoblinBrawlersBootsItemDisplay                  =     69185; -- Cataclysm ID?
+SET @GoblinBrawlersGauntletsItemDisplay              =     69182; -- Cataclysm ID?
+SET @GoblinTrappersShirtItemDisplay                  =     62614; -- Cataclysm ID?
+SET @GoblinTrappersPantsItemDisplay                  =     69187; -- Cataclysm ID?
+SET @GoblinTrappersBootsItemDisplay                  =     62617; -- Cataclysm ID?
+SET @WornWoodChopperItemDisplay                      =     65743; -- Cataclysm ID?
+SET @GoblinThugsTunicItemDisplay                     =     65799; -- Cataclysm ID?
+SET @GoblinThugsPantsItemDisplay                     =     69188; -- Cataclysm ID?
+SET @GoblinThugsBootsItemDisplay                     =     65798; -- Cataclysm ID?
+SET @GoblinNeophytesRobeItemDisplay                  =     65789; -- Cataclysm ID?
+SET @GoblinNeophytesPantsItemDisplay                 =     62598; -- Cataclysm ID?
+SET @GoblinNeophytesShoesItemDisplay                 =      6318; -- Cataclysm ID?
+SET @PrimalShirtItemDisplay                          =     65801; -- Cataclysm ID?
+SET @PrimalPantsItemDisplay                          =     62573; -- Cataclysm ID?
+SET @PrimalBootsItemDisplay                          =     65800; -- Cataclysm ID?
+SET @GoblinApprenticesRobeItemDisplay                =     62618; -- Cataclysm ID?
+SET @GoblinApprenticesPantsItemDisplay               =     62621; -- Cataclysm ID?
+SET @GoblinApprenticesBootsItemDisplay               = @ApprenticesBootsItemDisplay;
+SET @GoblinAcolytesRobeItemDisplay                   =     65787; -- Cataclysm ID?
+SET @GoblinAcolytesPantsItemDisplay                  = @GoblinApprenticesPantsItemDisplay;
+SET @GoblinAcolytesShoesItemDisplay                  =      4143; -- Cataclysm ID?
+SET @GilneanApprenticesRobeItemDisplay               =     62549; -- Cataclysm ID?
+SET @GilneanApprenticesPantsItemDisplay              =     62561; -- Cataclysm ID?
+SET @GilneanApprenticesBootsItemDisplay              =     62448; -- Cataclysm ID?
+SET @GilneanNeophytesRobeItemDisplay                 =     62557; -- Cataclysm ID?
+SET @GilneanNeophytesPantsItemDisplay                =     62559; -- Cataclysm ID?
+SET @GilneanNeophytesBootsItemDisplay                =     62568; -- Cataclysm ID?
+SET @GilneanAcolytesBootsItemDisplay                 =     68132; -- Cataclysm ID?
+SET @GilneanAcolytesRobeItemDisplay                  =     62565; -- Cataclysm ID?
+SET @GilneanAcolytesPantsItemDisplay                 =     62566; -- Cataclysm ID?
+SET @GilneanNovicesTunicItemDisplay                  =     65854; -- Cataclysm ID?
+SET @GilneanNovicesBootsItemDisplay                  =     65851; -- Cataclysm ID?
+SET @GilneanNovicesGlovesItemDisplay                 =     65852; -- Cataclysm ID?
+SET @GilneanNovicesPantsItemDisplay                  =     65853; -- Cataclysm ID?
+SET @GilneanAdventurersShirtItemDisplay              =     62558; -- Cataclysm ID?
+SET @GilneanTrappersShirtItemDisplay                 =     62706; -- Cataclysm ID?
+SET @GilneanTrappersBootsItemDisplay                 =     62707; -- Cataclysm ID?
+SET @GilneanTrappersTunicItemDisplay                 =     98023; -- Cataclysm ID?
+SET @GilneanTrappersGlovesItemDisplay                =     69176; -- Cataclysm ID?
+SET @GilneanFootpadsPantsItemDisplay                 =     65849; -- Cataclysm ID?
+SET @GilneanFootpadsGlovesItemDisplay                =     69175; -- Cataclysm ID?
+SET @GilneanFootpadsTunicItemDisplay                 =     65850; -- Cataclysm ID?
+SET @GilneanFootpadsBootsItemDisplay                 =     65847; -- Cataclysm ID?
+SET @GilneanRecruitsPantsItemDisplay                 =     68130; -- Cataclysm ID?
+SET @GilneanRecruitsBeltItemDisplay                  =     68129; -- Cataclysm ID?
+SET @GilneanRecruitsTunicItemDisplay                 =     68128; -- Cataclysm ID?
+SET @GilneanRecruitsBootsItemDisplay                 =     68131; -- Cataclysm ID?
+SET @WornWoodChopperItemDisplay                      =     65743; -- Cataclysm ID?
+
+-- Recurring Localizations
+SET @RacialNameenUS                                  = 'Racial';
+SET @RacialNamekoKR                                  = '종족 특성';
+SET @RacialNamefrFR                                  = 'Raciale';
+SET @RacialNamedeDE                                  = 'Volksfähigkeit';
+SET @RacialNamezhCN                                  = '种族特长';
+SET @RacialNamezhTW                                  = '種族特長';
+SET @RacialNameesES                                  = 'Racial';
+SET @RacialNameesMX                                  = 'Racial';
+SET @RacialNameruRU                                  = 'Расовая';
+SET @RacialNamejaJP                                  =  '';
+SET @RacialNameptPT                                  =  '';
+SET @RacialNameitIT                                  =  '';
+
+SET @RacialPassiveNameenUS                           = 'Racial Passive';
+SET @RacialPassiveNamekoKR                           = '종족 지속효과';
+SET @RacialPassiveNamefrFR                           = 'Raciale passive';
+SET @RacialPassiveNamedeDE                           = 'Passive Volksfähigkeit';
+SET @RacialPassiveNamezhCN                           = '被动种族特长';
+SET @RacialPassiveNamezhTW                           = '種族特長，被動';
+SET @RacialPassiveNameesES                           = 'Pasivo racial';
+SET @RacialPassiveNameesMX                           = 'Pasivo racial';
+SET @RacialPassiveNameruRU                           = 'Расовая, пассивная';
+SET @RacialPassiveNamejaJP                           =  '';
+SET @RacialPassiveNameptPT                           =  '';
+SET @RacialPassiveNameitIT                           =  '';

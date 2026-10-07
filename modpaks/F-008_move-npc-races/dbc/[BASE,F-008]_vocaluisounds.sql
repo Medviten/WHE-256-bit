@@ -1,6 +1,7 @@
 -- [F-30] mod-worgoblin: vocaluisounds
 -- Moving Skeleton entry to the new race id (25) – the others aren't really needed
 
+UPDATE `vocaluisounds` SET `race_id` = @NPCGoblin            WHERE `race_id` =  9;
 UPDATE `vocaluisounds` SET `race_id` = @NPCFelOrc            WHERE `race_id` = 12;
 UPDATE `vocaluisounds` SET `race_id` = @NPCNaga              WHERE `race_id` = 13;
 UPDATE `vocaluisounds` SET `race_id` = @NPCBroken            WHERE `race_id` = 14;

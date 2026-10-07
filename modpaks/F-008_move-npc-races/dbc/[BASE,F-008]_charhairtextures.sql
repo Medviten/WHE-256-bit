@@ -1,5 +1,6 @@
 -- [F-30] mod-worgoblin: charhairtextures
 
+UPDATE `charhairtextures` SET `race` = @NPCGoblin            WHERE `race` =  9;
 UPDATE `charhairtextures` SET `race` = @NPCFelOrc            WHERE `race` = 12;
 UPDATE `charhairtextures` SET `race` = @NPCNaga              WHERE `race` = 13;
 UPDATE `charhairtextures` SET `race` = @NPCBroken            WHERE `race` = 14;

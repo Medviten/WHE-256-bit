@@ -1,5 +1,6 @@
 -- [F-002] move_npc_races: creaturedisplayinfoextra
 
+UPDATE `creaturedisplayinfoextra` SET `race` = @NPCGoblin            WHERE `race` =  9;
 UPDATE `creaturedisplayinfoextra` SET `race` = @NPCFelOrc            WHERE `race` = 12;
 UPDATE `creaturedisplayinfoextra` SET `race` = @NPCNaga              WHERE `race` = 13;
 UPDATE `creaturedisplayinfoextra` SET `race` = @NPCBroken            WHERE `race` = 14;
