@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 21;
+MAX_RACES = 39;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -23,53 +23,87 @@ FRAMES_TO_BACKDROP_COLOR = {
 	"CharacterCreateNameEdit",
 };
 RACE_ICON_TCOORDS = {
-	["HUMAN_MALE"]                = {0,       0.0625, 0,    0.25},
-	["DWARF_MALE"]                = {0.0625,  0.125,  0,    0.25},
-	["GNOME_MALE"]                = {0.125,   0.1875, 0,    0.25},
-	["NIGHTELF_MALE"]             = {0.1875,  0.25,   0,    0.25},
-	["DRAENEI_MALE"]              = {0.25,    0.3125, 0,    0.25},
-	["WORGEN_MALE"]               = {0.3125,  0.375,  0,    0.25},
-	["HIGHELF_MALE"]              = {0.375,   0.4375, 0,    0.25},
-	["DARKIRONDWARF_MALE"]        = {0.4375,  0.5,    0,    0.25},
---	["LIGHTFORGEDDRAENEI_MALE"]   = {0.5,     0.5625, 0,    0.25},
-	["KULTIRAN_MALE"]             = {0.5625,  0.625,  0,    0.25},
-	["ALLIANCEPANDAREN_MALE"]     = {0.625,   0.6875, 0,    0.25},
-	
-	["TAUREN_MALE"]               = {0,       0.0625, 0.25, 0.5},
-	["SCOURGE_MALE"]              = {0.0625,  0.125,  0.25, 0.5},
-	["TROLL_MALE"]                = {0.125,   0.1875, 0.25, 0.5},
-	["ORC_MALE"]                  = {0.1875,  0.25,   0.25, 0.5},
-	["BLOODELF_MALE"]             = {0.25,    0.3125, 0.25, 0.5},
-	["GOBLIN_MALE"]               = {0.3125,  0.375,  0.25, 0.5},
-	["MAGHAR_MALE"]               = {0.375,   0.4375, 0.25, 0.5},
-	["OGRE_MALE"]                 = {0.4375,  0.5,    0.25, 0.5},
-	["ZANDALARITROLL_MALE"]       = {0.5,     0.5625, 0.25, 0.5},
-	["VULPERA_MALE"]              = {0.5625,  0.625,  0.25, 0.5},
-	["HORDEPANDAREN_MALE"]        = {0.625,   0.6875, 0.25, 0.5},
+	["HUMAN_MALE"]                = {0,       0.03125, 0,    0.25},
+	["GILNEAN_MALE"]              = {0,       0.03125, 0,    0.25},
+	["DWARF_MALE"]                = {0.03125, 0.0625,  0,    0.25},
+	["GNOME_MALE"]                = {0.0625,  0.09375, 0,    0.25},
+	["NIGHTELF_MALE"]             = {0.09375, 0.125,   0,    0.25},
+	["DRAENEI_MALE"]              = {0.125,   0.15625, 0,    0.25},
+	["WORGEN_MALE"]               = {0.15625, 0.1875,  0,    0.25},
+	["ALLIANCEPANDAREN_MALE"]     = {0.1875,  0.21875, 0,    0.25},
+	["VOIDELF_MALE"]              = {0.21875, 0.25,    0,    0.25},
+	["LIGHTFORGEDDRAENEI_MALE"]   = {0.25,    0.28125, 0,    0.25},
+	["KULTIRAN_MALE"]             = {0.28125, 0.3125,  0,    0.25},
+	["DARKIRONDWARF_MALE"]        = {0.3125,  0.34375, 0,    0.25},
+	["MECHAGNOME_MALE"]           = {0.34375, 0.375,   0,    0.25},
+	["ALLIANCEDRACTHYR_MALE"]     = {0.375,   0.40625, 0,    0.25},
+	["ALLIANCEEARTHEN_MALE"]      = {0.40625, 0.4375,  0,    0.25},
+	["ALLIANCEHARANIR_MALE"]      = {0.4375,  0.46875, 0,    0.25},
+	["ALLIANCESKYBORNE_MALE"]     = {0.46875, 0.5,     0,    0.25},
+	["HIGHELF_MALE"]              = {0.5,     0.53125, 0,    0.25},
+	["BROKEN_MALE"]               = {0.53125, 0.5625,  0,    0.25},
+	["FURBOLG_MALE"]              = {0.5625,  0.59375, 0,    0.25},
 
-	["HUMAN_FEMALE"]              = {0,       0.0625, 0.5,  0.75},  
-	["DWARF_FEMALE"]              = {0.0625,  0.125,  0.5,  0.75},
-	["GNOME_FEMALE"]              = {0.125,   0.1875, 0.5,  0.75},
-	["NIGHTELF_FEMALE"]           = {0.1875,  0.25,   0.5,  0.75},
-	["DRAENEI_FEMALE"]            = {0.25,    0.3125, 0.5,  0.75},
-	["WORGEN_FEMALE"]             = {0.3125,  0.375,  0.5,  0.75},
-	["HIGHELF_FEMALE"]            = {0.375,   0.4375, 0.5,  0.75},
-	["DARKIRONDWARF_FEMALE"]      = {0.4375,  0.5,    0.5,  0.75},
---	["LIGHTFORGEDDRAENEI_FEMALE"] = {0.5,  0.5625,    0.5,  0.75},
-	["KULTIRAN_FEMALE"]           = {0.5625,  0.625,  0.5,  0.75},
-	["ALLIANCEPANDAREN_FEMALE"]   = {0.625,  0.6875,  0.5,  0.75},
+	["TAUREN_MALE"]               = {0,       0.03125, 0.25,  0.5},
+	["SCOURGE_MALE"]              = {0.03125, 0.0625,  0.25,  0.5},
+	["TROLL_MALE"]                = {0.0625,  0.09375, 0.25,  0.5},
+	["ORC_MALE"]                  = {0.09375, 0.125,   0.25,  0.5},
+	["BLOODELF_MALE"]             = {0.125,   0.15625, 0.25,  0.5},
+	["GOBLIN_MALE"]               = {0.15625, 0.1875,  0.25,  0.5},
+	["HORDEPANDAREN_MALE"]        = {0.1875,  0.21875, 0.25,  0.5},
+	["NIGHTBORNE_MALE"]           = {0.21875, 0.25,    0.25,  0.5},
+	["HIGHMOUNTAINTAUREN_MALE"]   = {0.25,    0.28125, 0.25,  0.5},
+	["ZANDALARITROLL_MALE"]       = {0.28125, 0.3125,  0.25,  0.5},
+	["VULPERA_MALE"]              = {0.3125,  0.34375, 0.25,  0.5},
+	["MAGHAR_MALE"]               = {0.34375, 0.375,   0.25,  0.5},
+	["HORDEDRACTHYR_MALE"]        = {0.34375, 0.375,   0.25,  0.5},
+	["HORDEEARTHEN_MALE"]         = {0.40625, 0.4375,  0.25,  0.5},
+	["HORDEHARANIR_MALE"]         = {0.4375,  0.46875, 0.25,  0.5},
+	["HORDESKYBORNE_MALE"]        = {0.46875, 0.5,     0.25,  0.5},
+	["OGRE_MALE"]                 = {0.5,     0.53125, 0.25,  0.5},
+	["NAGA_MALE"]                 = {0.53125, 0.5625,  0.25,  0.5},
+	["MURLOC_MALE"]               = {0.5625,  0.59375, 0.25,  0.5},
 
-	["TAUREN_FEMALE"]             = {0,       0.0625, 0.75, 1.0},   
-	["SCOURGE_FEMALE"]            = {0.0625,  0.125,  0.75, 1.0}, 
-	["TROLL_FEMALE"]              = {0.125,   0.1875, 0.75, 1.0}, 
-	["ORC_FEMALE"]                = {0.1875,  0.25,   0.75, 1.0}, 
-	["BLOODELF_FEMALE"]           = {0.25,    0.3125, 0.75, 1.0}, 
-	["GOBLIN_FEMALE"]             = {0.3125,  0.375,  0.75, 1.0},
-	["MAGHAR_FEMALE"]             = {0.375,   0.4375, 0.75, 1.0},
-	["OGRE_FEMALE"]               = {0.4375,  0.5,    0.75, 1.0},
-	["ZANDALARITROLL_FEMALE"]     = {0.5,     0.5625, 0.75, 1.0},
-	["VULPERA_FEMALE"]            = {0.5625,  0.625,  0.75, 1.0},
-	["HORDEPANDAREN_FEMALE"]      = {0.625,   0.6875, 0.75, 1.0},
+	["HUMAN_FEMALE"]              = {0,       0.03125, 0.5,  0.75},
+	["GILNEAN_FEMALE"]            = {0,       0.03125, 0.5,  0.75},
+	["DWARF_FEMALE"]              = {0.03125, 0.0625,  0.5,  0.75},
+	["GNOME_FEMALE"]              = {0.0625,  0.09375, 0.5,  0.75},
+	["NIGHTELF_FEMALE"]           = {0.09375, 0.125,   0.5,  0.75},
+	["DRAENEI_FEMALE"]            = {0.125,   0.15625, 0.5,  0.75},
+	["WORGEN_FEMALE"]             = {0.15625, 0.1875,  0.5,  0.75},
+	["ALLIANCEPANDAREN_FEMALE"]   = {0.1875,  0.21875, 0.5,  0.75},
+	["VOIDELF_FEMALE"]            = {0.21875, 0.25,    0.5,  0.75},
+	["LIGHTFORGEDDRAENEI_FEMALE"] = {0.25,    0.28125, 0.5,  0.75},
+	["KULTIRAN_FEMALE"]           = {0.28125, 0.3125,  0.5,  0.75},
+	["DARKIRONDWARF_FEMALE"]      = {0.3125,  0.34375, 0.5,  0.75},
+	["MECHAGNOME_FEMALE"]         = {0.34375, 0.375,   0.5,  0.75},
+	["ALLIANCEDRACTHYR_FEMALE"]   = {0.375,   0.40625, 0.5,  0.75},
+	["ALLIANCEEARTHEN_FEMALE"]    = {0.40625, 0.4375,  0.5,  0.75},
+	["ALLIANCEHARANIR_FEMALE"]    = {0.4375,  0.46875, 0.5,  0.75},
+	["ALLIANCESKYBORNE_FEMALE"]   = {0.46875, 0.5,     0.5,  0.75},
+	["HIGHELF_FEMALE"]            = {0.5,     0.53125, 0.5,  0.75},
+	["BROKEN_FEMALE"]             = {0.53125, 0.5625,  0.5,  0.75},
+	["FURBOLG_FEMALE"]            = {0.5625,  0.59375, 0.5,  0.75},
+
+	["TAUREN_FEMALE"]             = {0,       0.03125, 0.75,  1.0},
+	["SCOURGE_FEMALE"]            = {0.03125, 0.0625,  0.75,  1.0},
+	["TROLL_FEMALE"]              = {0.0625,  0.09375, 0.75,  1.0},
+	["ORC_FEMALE"]                = {0.09375, 0.125,   0.75,  1.0},
+	["BLOODELF_FEMALE"]           = {0.125,   0.15625, 0.75,  1.0},
+	["GOBLIN_FEMALE"]             = {0.15625, 0.1875,  0.75,  1.0},
+	["HORDEPANDAREN_FEMALE"]      = {0.1875,  0.21875, 0.75,  1.0},
+	["NIGHTBORNE_FEMALE"]         = {0.21875, 0.25,    0.75,  1.0},
+	["HIGHMOUNTAINTAUREN_FEMALE"] = {0.25,    0.28125, 0.75,  1.0},
+	["ZANDALARITROLL_FEMALE"]     = {0.28125, 0.3125,  0.75,  1.0},
+	["VULPERA_FEMALE"]            = {0.3125,  0.34375, 0.75,  1.0},
+	["MAGHAR_FEMALE"]             = {0.34375, 0.375,   0.75,  1.0},
+	["HORDEDRACTHYR_FEMALE"]      = {0.375,   0.40625, 0.75,  1.0},
+	["HORDEEARTHEN_FEMALE"]       = {0.40625, 0.4375,  0.75,  1.0},
+	["HORDEHARANIR_FEMALE"]       = {0.4375,  0.46875, 0.75,  1.0},
+	["HORDESKYBORNE_FEMALE"]      = {0.46875, 0.5,     0.75,  1.0},
+	["OGRE_FEMALE"]               = {0.5,     0.53125, 0.75,  1.0},
+	["NAGA_FEMALE"]               = {0.53125, 0.5625,  0.75,  1.0},
+	["MURLOC_FEMALE"]             = {0.5625,  0.59375, 0.75,  1.0},
 };
 
 -- Fixed button layout for every race, independent of whatever order (or
@@ -78,27 +112,45 @@ RACE_ICON_TCOORDS = {
 -- race from shifting every race after it into the wrong icon slot.
 -- Matches the layout documented in CharacterCreate.xml.
 RACE_VISUAL_SLOTS = {
-	["HUMAN"]            = 1,
-	["DWARF"]            = 2,
-	["GNOME"]            = 3,
-	["NIGHTELF"]         = 4,
-	["DRAENEI"]          = 5,
-	["WORGEN"]           = 6,
-	["ALLIANCEPANDAREN"] = 7,
-	["DARKIRONDWARF"]    = 8,
-	["KULTIRAN"]         = 9,
-	["HIGHELF"]          = 10,
-	["ORC"]              = 11,
-	["SCOURGE"]          = 12,
-	["TAUREN"]           = 13,
-	["TROLL"]            = 14,
-	["BLOODELF"]         = 15,
-	["GOBLIN"]           = 16,
-	["HORDEPANDAREN"]    = 17,
-	["MAGHAR"]           = 18,
-	["ZANDALARITROLL"]   = 19,
-	["VULPERA"]          = 20,
-	["OGRE"]             = 21,
+	["HUMAN"]                              = 1,
+	["DWARF"]                              = 2,
+	["NIGHTELF"]                           = 3,
+	["GNOME"]                              = 4,
+	["DRAENEI"]                            = 5,
+	["WORGEN"]                             = 6,
+	["ALLIANCEPANDAREN"]                   = 7,
+	["VOIDELF"]                            = 8,
+	["LIGHTFORGEDDRAENEI"]                 = 9,
+	["KULTIRAN"]                           = 10,
+	["DARKIRONDWARF"]                      = 11,
+	["MECHAGNOME"]                         = 12,
+	["ALLIANCEDRACTHYR"]                   = 13,
+	["ALLIANCEEARTHEN"]                    = 14,
+	["ALLIANCEHARANIR"]                    = 15,
+	["ALLIANCESKYBORNE"]                   = 16,
+	["HIGHELF"]                            = 17,
+	["BROKEN"]                             = 18,
+	["FURBOLG"]                            = 19,
+	["GILNEAN"]                            = 20,
+	["ORC"]                                = 21,
+	["SCOURGE"]                            = 22,
+	["TAUREN"]                             = 23,
+	["TROLL"]                              = 24,
+	["BLOODELF"]                           = 25,
+	["GOBLIN"]                             = 26,
+	["HORDEPANDAREN"]                      = 27,
+	["NIGHTBORNE"]                         = 28,
+	["HIGHMOUNTAINTAUREN"]                 = 29,
+	["ZANDALARITROLL"]                     = 30,
+	["VULPERA"]                            = 31,
+	["MAGHAR"]                             = 32,
+	["HORDEDRACTHYR"]                      = 33,
+	["HORDEEARTHEN"]                       = 34,
+	["HORDEHARANIR"]                       = 35,
+	["HORDESKYBORNE"]                      = 36,
+	["OGRE"]                               = 37,
+	["NAGA"]                               = 38,
+	["MURLOC"]                             = 39,
 };
 
 -- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead
@@ -281,6 +333,7 @@ function CharacterCreateEnumerateRaces(...)
 			_G["CharacterCreateRaceButton"..slot.."PushedTexture"]:SetTexCoord(coords[1], coords[2], coords[3], coords[4]);
 			button.raceIndex = realIndex;
 			button:Show();
+			_G["CharacterCreateRaceButton"..slot.."Text"]:SetPoint("CENTER", UIParent, "CENTER", -10000, -10000);
 			if ( enabled == 1 ) then
 				button.enable = true;
 				SetButtonDesaturated(button);
@@ -339,7 +392,7 @@ function SetCharacterRace(id)
 	for i=1, MAX_RACES, 1 do
 		local button = _G["CharacterCreateRaceButton"..i];
 		if ( button.raceIndex == id ) then
-			_G["CharacterCreateRaceButton"..i.."Text"]:SetText(button.name);
+			_G["CharacterCreateRaceButton"..i.."Text"]:SetText(button.name); -- _G["CharacterCreateRaceButton"..i.."Text"]:SetText(button.name);
 			button:SetChecked(1);
 			selectedButton = button;
 		else
@@ -405,7 +458,7 @@ function SetCharacterClass(id)
 			button:SetChecked(0);
 		end
 	end
-	
+
 	local className, classFileName, _, tank, healer, damage = GetSelectedClass();
 	local abilityIndex = 0;
 	local tempText = _G["CLASS_INFO_"..classFileName..abilityIndex];

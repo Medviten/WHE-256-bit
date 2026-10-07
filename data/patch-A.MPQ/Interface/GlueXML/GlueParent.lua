@@ -28,6 +28,7 @@ CharModelFogInfo["CHARACTERSELECT"] = { r=0.8, g=0.65, b=0.73, far=222 };
 
 CharModelGlowInfo = { };
 CharModelGlowInfo["WORGEN"] = 0.0;
+CharModelGlowInfo["GILNEAN"] = 0.0;
 CharModelGlowInfo["GOBLIN"] = 0.0;
 CharModelGlowInfo["HUMAN"] = 0.15;
 CharModelGlowInfo["DWARF"] = 0.15;
@@ -47,6 +48,7 @@ GlueAmbienceTracks["DEATHKNIGHT"] = "GlueScreenIntro";
 GlueAmbienceTracks["CHARACTERSELECT"] = "GlueScreenIntro";
 GlueAmbienceTracks["GOBLIN"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["WORGEN"] = "GlueScreenHuman";
+GlueAmbienceTracks["GILNEAN"] = "GlueScreenHuman";
 GlueAmbienceTracks["HIGHELF"] = "GlueScreenHuman";
 GlueAmbienceTracks["KULTIRAN"] = "GlueScreenTauren";
 GlueAmbienceTracks["MAGHAR"] = "GlueScreenOrcTroll";
@@ -56,7 +58,10 @@ GlueAmbienceTracks["ZANDALARITROLL"] = "GlueScreenTauren";
 GlueAmbienceTracks["VULPERA"] = "GlueScreenTauren";
 GlueAmbienceTracks["ALLIANCEPANDAREN"] = "GlueScreenNightElf";
 GlueAmbienceTracks["HORDEPANDAREN"] = "GlueScreenTauren";
--- GlueAmbienceTracks["LIGHTFORGEDDRAENEI"] = "GlueScreenDraenei";
+GlueAmbienceTracks["HIGHMOUNTAINTAUREN"] = "GlueScreenTauren";
+GlueAmbienceTracks["NAGA"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["BROKEN"] = "GlueScreenDraenei";
+GlueAmbienceTracks["LIGHTFORGEDDRAENEI"] = "GlueScreenDraenei";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -112,6 +117,11 @@ RaceLights = {
         {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
         {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
     },
+    GILNEAN = {
+		{1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
 	MAGHAR = {         
 		{1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.15000,    0.15000,    0.15000,    1.0,    0.00000,    0.00000,    0.00000},
 		{1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.44706,    0.54510,    0.73725},
@@ -149,11 +159,25 @@ RaceLights = {
         {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
         {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
     },
---    LIGHTFORGEDDRAENEI = {
---		{1,     0,  0.61185,        0.62942,        -0.47903,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.56941,    0.52000,    0.60000},
---        {1,     0,  -0.64345,       -0.31052,       -0.69968,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60941,    0.60392,    0.70000},
---        {1,     0,  -0.46481,       -0.14320,       0.87376,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.5835,     0.48941,    0.60000},
---    },
+    HIGHMOUNTAINTAUREN = {
+		{1,     0,  -0.48073,       0.71827,        -0.50297,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.65,       0.397645,   0.2727},
+        {1,     0,  -0.49767,       -0.78677,       0.36513,    1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60000,    0.47059,    0.32471},
+    },
+    NAGA = {
+		{1,     0,  -0.82249,       -0.54912,       -0.14822,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.581175,   0.50588,    0.42588},
+        {1,     0,  0.00000,        -0.00000,       -1.00000,   1.0,    0.60392,    0.61490,    0.70000,    1.0,    0.00000,    0.00000,    0.00000},
+        {1,     0,  0.02575,        0.86518,        -0.50081,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.59137,    0.51745,    0.63471},
+    },
+    BROKEN = {
+		{1,     0,  0.61185,        0.62942,        -0.47903,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.56941,    0.52000,    0.60000},
+        {1,     0,  -0.64345,       -0.31052,       -0.69968,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60941,    0.60392,    0.70000},
+        {1,     0,  -0.46481,       -0.14320,       0.87376,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.5835,     0.48941,    0.60000},
+    },
+    LIGHTFORGEDDRAENEI = {
+		{1,     0,  0.61185,        0.62942,        -0.47903,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.56941,    0.52000,    0.60000},
+        {1,     0,  -0.64345,       -0.31052,       -0.69968,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60941,    0.60392,    0.70000},
+        {1,     0,  -0.46481,       -0.14320,       0.87376,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.5835,     0.48941,    0.60000},
+    },
 }
 
 -- indicies for adding lights ModelFFX:Add*Light
@@ -455,6 +479,10 @@ function SetBackgroundModel(model, name)
 		name = "Human";
 	end
 
+	if (name == "Gilnean" or name == "GILNEAN") then
+		name = "Human";
+	end
+
 	if (name == "KulTiran" or name == "KULTIRAN" or name == "Kul Tiran" or name == "KUL TIRAN" or name == "KUL_TIRAN") then
 		name = "Human";
 	end
@@ -467,11 +495,19 @@ function SetBackgroundModel(model, name)
 		name = "Orc";
 	end
 
+	if (name == "Naga" or name == "NAGA") then
+		name = "BloodElf";
+	end
+
 	if (name == "Zandalari Troll" or name == "ZANDALARI TROLL" or name == "ZANDALARI_TROLL" or name == "ZandalariTroll") then
 		name = "Orc";
 	end
 
 	if (name == "Vulpera" or name == "VULPERA") then
+		name = "Tauren";
+	end
+
+	if (name == "Highmountain Tauren" or name == "HIGHMOUNTAIN TAUREN" or name == "HighmountainTauren" or name == "HIGHMOUNTAINTAUREN" or name == "Highmountain_Tauren" or name == "HIGHMOUNTAIN_TAUREN") then
 		name = "Tauren";
 	end
 
@@ -487,9 +523,13 @@ function SetBackgroundModel(model, name)
 		name = "Dwarf";
 	end
 
---	if (name == "LightforgedDraenei" or name == "Lightforged Draenei" or name == "Lightforged_Draenei" or name == "LIGHTFORGEDDRAENEI" or name == "LIGHTFORGED DRAENEI" or name == "LIGHTFORGED_DRAENEI") then
---		name = "Draenei";
---	end
+	if (name == "Broken" or name == "BROKEN") then
+		name = "Draenei";
+	end
+
+	if (name == "LightforgedDraenei" or name == "Lightforged Draenei" or name == "Lightforged_Draenei" or name == "LIGHTFORGEDDRAENEI" or name == "LIGHTFORGED DRAENEI" or name == "LIGHTFORGED_DRAENEI") then
+		name = "Draenei";
+	end
 
     local path = "Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2";
 	if ( model == CharacterCreate ) then

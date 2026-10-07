@@ -1,5 +1,5 @@
 -- Race ID
-SET @Goblin = 9; -- default: 9
+SET @Goblin = 9; -- default: 9 (doesn't autoincrement – to avoid conflicts)
 SET @GoblinMask = 1 << (@Goblin - 1); -- default: 256
 SET @GoblinHelmetMask = 1 << @Goblin; -- default: 512
 
