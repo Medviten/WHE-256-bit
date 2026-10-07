@@ -249,8 +249,6 @@ SET @WorgenMaleModel                                 =     3141; -- bipedal
 SET @WorgenFemaleModel                               =     3142; -- bipedal
 SET @WorgenWildMaleModel                             =     3626; -- quadrupedal
 SET @WorgenWildFemaleModel                           =     3627; -- quadrupedal
-SET @GoblinMaleModel                                 =      831;
-SET @GoblinFemaleModel                               =      832;
 SET @HighElfMaleModel                                =     2208; -- blood elf
 SET @HighElfFemaleModel                              =     2209; -- blood elf
 SET @MagharOrcMaleModel                              =       51; -- orc
@@ -281,10 +279,10 @@ SET @VoidElfMaleModel                                =    40017;
 SET @VoidElfFemaleModel                              =    40018;
 SET @LightforgedDraeneiMaleModel                     =    40019;
 SET @LightforgedDraeneiFemaleModel                   =    40020;
+SET @GoblinMaleModel                                 =    40021; -- 831
+SET @GoblinFemaleModel                               =    40022; -- 832
 
 -- Display IDs
-SET @GoblinMaleDisplay                               =     6894;
-SET @GoblinFemaleDisplay                             =     6895;
 SET @HobgoblinDisplay                                =    32385;
 SET @WorgenMaleDisplay                               =    29422;
 SET @WorgenFemaleDisplay                             =    29423;
@@ -322,8 +320,10 @@ SET @HighmountainTaurenMaleDisplay                   =    40017;
 SET @HighmountainTaurenFemaleDisplay                 =    40018;
 SET @KulTiranMaleDisplay                             =    40019; -- 40011;
 SET @KulTiranFemaleDisplay                           =    40020; -- 40012;
-SET @GilneanMaleDisplay                              =    40021;
-SET @GilneanFemaleDisplay                            =    40022;
+SET @GoblinMaleDisplay                               =    40021; -- 6894
+SET @GoblinFemaleDisplay                             =    40022; -- 6895
+SET @GilneanMaleDisplay                              =    40023;
+SET @GilneanFemaleDisplay                            =    40024;
 
 -- CreatureDisplayInfoExtra
 SET @LordHarfordDisplayExtra                         =    24081;
@@ -362,6 +362,8 @@ SET @VoidElfMaleDisplayExtra                         =    45462;
 SET @VoidElfFemaleDisplayExtra                       =    45463;
 SET @LightforgedDraeneiMaleDisplayExtra              =    45464;
 SET @LightforgedDraeneiFemaleDisplayExtra            =    45465;
+SET @GoblinMaleDisplayExtra                          =    45566;
+SET @GoblinFemaleDisplayExtra                        =    45567;
 
 -- creature_template
 SET @WorgenWildMaleTemplate                          =    55274;
@@ -1934,6 +1936,14 @@ SET @ThugPantsItem                                   =       120;
 SET @ThugBootsItem                                   =       121;
 SET @CrudeThrowingAxeItem                            =     25861;
 SET @WornDaggerItem                                  =      2092;
+SET @SquiresShirtItem2                               =      6117; -- dwarf paladin
+SET @SquiresPantsItem2                               =      6118; -- dwarf paladin
+SET @SquiresShirtItem3                               =     23476; -- draenei paladin
+SET @SquiresPantsItem3                               =     23477; -- draenei paladin
+SET @LightQuiverItem                                 =      2101;
+SET @WornShortbowItem                                =      2504;
+SET @RoughArrowItem                                  =      2512;
+SET @WeatheredCrossbowItem                           =     23347;
 
 SET @BentStaffItem                                   =        35;
 SET @WornMaceItem                                    =        36;
@@ -1973,6 +1983,9 @@ SET @BattlewornClaymoreItem                          =     23346;
 SET @UnadornedChainBootsItem                         =     20915;
 SET @UnadornedChainLeggingsItem                      =     20918;
 SET @UnadornedChainVestItem                          =     20919;
+SET @InitiatesShirtItem                              =     24143; -- blood elf paladin
+SET @InitiatesPantsItem                              =     24145; -- blood elf paladin
+SET @InitiatesBootsItem                              =     24146; -- blood elf paladin
 SET @LightThrowingKnifeItem                          =     28979;
 SET @AcherusKnightsHoodItem                          =     34652;
 SET @AcherusKnightsPauldronsItem                     =     34655;
@@ -1991,7 +2004,7 @@ SET @BlackMushroomItem                               =     41751;
 SET @ScourgestoneItem                                =     40582;
 SET @WornDirkItem                                    =     50055;
 
--- Common Item Display
+-- Item Display
 SET @NeophytesRobeItem2Display                       =     12680;
 SET @NeophytesPantsItemDisplay                       =      9944;
 SET @NeophytesShirtItemDisplay                       =      9945;
@@ -2014,6 +2027,17 @@ SET @ApprenticesPantsItemDisplay                     =      9924;
 SET @ApprenticesBootsItemDisplay                     =      9929;
 SET @ApprenticesShirtItemDisplay                     =      2163;
 SET @ApprenticesRobeItemDisplay                      =     12647;
+SET @SquiresShirtItem2Display                        =      9972; -- dwarf paladin
+SET @SquiresPantsItem2Display                        =      9974; -- dwarf paladin
+SET @SquiresShirtItem3Display                        =     36133; -- draenei paladin
+SET @SquiresPantsItem3Display                        =     36134; -- draenei paladin
+SET @InitiatesShirtItemDisplay                       =     36789;
+SET @InitiatesPantsItemDisplay                       =     36790;
+SET @InitiatesBootsItemDisplay                       =     36793;
+SET @LightQuiverItemDisplay                          =     21328;
+SET @WornShortbowItemDisplay                         =      8106;
+SET @RoughArrowItemDisplay                           =      5996;
+SET @WeatheredCrossbowItemDisplay                    =     10671;
 
 SET @UnadornedChainBootsItemDisplay                  =     33270;
 SET @UnadornedChainLeggingsItemDisplay               =     33263;
