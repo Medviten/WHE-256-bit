@@ -4,7 +4,7 @@
 DELETE FROM `spell` WHERE `id` IN (
 	@ApprenticeSkinning, @JourneymanSkinning, @ExpertSkinning,      @ArtisanSkinning,
 	@Skinning1,          @MasterSkinning,     @GrandMasterSkinning, @Skinning2,
-	@WorgenRacial1,      @WorgenRacial2,      @WorgenRacial3,       @WorgenRacial4,
+	@SpellViciousness,   @SpellAberration,    @SpellFlayer,         @SpellDarkflight,
 	@TwoFormsMale,       @TwoFormsFemale,     @HumanFormMale,       @HumanFormFemale,
 	@RunningWildMale60,  @RunningWildMale100, @RunningWildFemale60, @RunningWildFemale100,
 	@MountainHorse,      @SwiftMountainHorse
@@ -1911,7 +1911,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 /* Worgen racials */
 /* Viciousness (Worgen racial) */
 (
-	@WorgenRacial1, -- ID
+	@SpellViciousness, -- ID
 	0, -- Category
 	0, -- DispelType
 	0, -- Mechanic
@@ -2148,7 +2148,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 ),
 /* Aberration (Worgen racial) */
 (
-	@WorgenRacial2, -- ID
+	@SpellAberration, -- ID
 	0, -- Category
 	0, -- DispelType
 	0, -- Mechanic
@@ -2385,7 +2385,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 ),
 /* Flayer (Worgen racial) */
 (
-	@WorgenRacial3, -- ID
+	@SpellFlayer, -- ID
 	0, -- Category
 	0, -- DispelType
 	0, -- Mechanic
@@ -2622,7 +2622,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 ),
 /* Darkflight (Worgen racial) */
 (
-	@WorgenRacial4, -- ID
+	@SpellDarkflight, -- ID
 	44, -- Category
 	0, -- DispelType
 	0, -- Mechanic
@@ -2885,7 +2885,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	@WorgenRacial4, -- ExcludeCasterAuraSpell
+	@SpellDarkflight, -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -3122,7 +3122,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	@WorgenRacial4, -- ExcludeCasterAuraSpell
+	@SpellDarkflight, -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -3359,7 +3359,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	@WorgenRacial4, -- ExcludeCasterAuraSpell
+	@SpellDarkflight, -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -3596,7 +3596,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- ExcludeTargetAuraState
 	0, -- CasterAuraSpell
 	0, -- TargetAuraSpell
-	@WorgenRacial4, -- ExcludeCasterAuraSpell
+	@SpellDarkflight, -- ExcludeCasterAuraSpell
 	0, -- ExcludeTargetAuraSpell
 	1, -- CastingTimeIndex
 	1500, -- RecoveryTime
@@ -5235,7 +5235,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 );
 
 -- Separate recovery for Darkflight (shouldn't share cooldown with Sprint, etc.)
-UPDATE `spell` SET `category` = 0, `recovery_time` = 120000, `category_recovery_time` = 0 WHERE `id` = @WorgenRacial4;
+UPDATE `spell` SET `category` = 0, `recovery_time` = 120000, `category_recovery_time` = 0 WHERE `id` = @SpellDarkflight;
 
 -- Adjusts attributes for Two Forms
 UPDATE `spell` SET `attributes` = 402915584, `attributes_ex_1` = 268435456, `attributes_ex_3` = 537919488, `attributes_ex_6` = 135168, `excluded_caster_aura_spell` = 68992, `recovery_time` = 1500, `interrupt_flags` = 31, `aura_interrupt_flags` = 12288, `spell_level` = 1, `effect_die_sides_1` = 1, `effect_amplitude_3` = 0, `spell_visual_1` = 4228, `spell_visual_2` = 4228, `active_icon_id` = 122, `spell_subtext_flags` = 16712172, `spell_tooltip_enus` = 'Human form', `start_recovery_category` = 133, `spell_class_set` = 1, `spell_class_mask_3` = 64 WHERE `id` IN (@TwoFormsMale, @TwoFormsFemale);

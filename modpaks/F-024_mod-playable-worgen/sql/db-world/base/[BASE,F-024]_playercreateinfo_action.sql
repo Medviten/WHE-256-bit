@@ -34,10 +34,9 @@ INSERT IGNORE INTO `playercreateinfo_action` VALUES
 (@Worgen, @Druid, 72, 6603, 0), -- Auto Attack (SpecialA: Bear Form)
 (@Worgen, @Druid, 96, 6603,0), -- Auto Attack (SpecialB: Cat Form)
 (@Worgen, @Druid, 0, 5176, 0), -- Wrath
-(@Worgen, @Druid, 1, 5185, 0); -- Healing Touch
+(@Worgen, @Druid, 1, 5185, 0), -- Healing Touch
 
 -- ARAC
-INSERT IGNORE INTO `playercreateinfo_action` VALUES
 -- Worgen Paladin
 (@Worgen, @Paladin, 0, 6603, 0), -- Auto Attack
 (@Worgen, @Paladin, 1, 21084, 0), -- Seal of Righteousness

@@ -1,7 +1,7 @@
--- charsections: 1642 inserts, 0 updates, 0 deletes
+-- charsections: 614 inserts, 0 updates, 0 deletes
 
 -- New entries
-DELETE FROM `charsections` WHERE `race` = @Worgen; -- Worgen default
+DELETE FROM `charsections` WHERE `race` = @Worgen;
 SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);
 INSERT INTO `charsections` (`id`, `race`, `gender`, `base_section`, `texture_1`, `texture_2`, `texture_3`, `flags`, `type`, `color_index`) VALUES
 (@CharSectionsID := @CharSectionsID +1, @Worgen, @Male, @Skin, 'Character\\Worgen\\Male\\WorgenMaleSkin00_00.blp', 'Character\\Worgen\\Male\\WorgenMaleSkin00_00_Extra.blp', '', 17, 0, 0),

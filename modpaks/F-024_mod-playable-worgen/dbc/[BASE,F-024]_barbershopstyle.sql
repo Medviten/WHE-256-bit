@@ -1,4 +1,4 @@
--- barbershopstyle: 107 inserts, 0 updates, 0 deletes
+-- barbershopstyle: 49 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `barbershopstyle` WHERE `race` = @Worgen;

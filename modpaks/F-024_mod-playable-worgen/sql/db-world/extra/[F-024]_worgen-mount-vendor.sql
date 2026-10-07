@@ -1,4 +1,4 @@
-SET @PlaceholderDisplayID = 50; -- TODO: replace with a real human female CreatureDisplayID before running
+SET @PlaceholderDisplayID = 50; -- replace with a real human female CreatureDisplayID before running
 
 DELETE FROM `gossip_menu` WHERE `MenuID` = 12440 AND `TextID` IN (100002, 100003);
 INSERT INTO `gossip_menu` (`MenuID`, `TextID`) VALUES
