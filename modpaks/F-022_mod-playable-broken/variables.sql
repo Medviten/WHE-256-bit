@@ -3,10 +3,11 @@ SET @Broken := @NextRace := @NextRace +1;
 SET @BrokenMask = 1 << (@Broken - 1);
 SET @BrokenHelmetMask = 1 << @Broken;
 
--- Important variable update
+-- Important variable update (Alliance vs. Horde)
 SET @AllianceMask     = @AllianceMask    | @BrokenMask;
 SET @PlayableRaceMask = @AllianceMask    | @HordeMask;
 SET @CrossbowHunters  = @CrossbowHunters | @BrokenMask;
+SET @BrokenLanguage   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @BrokenAlliance   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 
 -- Miscellaneous
