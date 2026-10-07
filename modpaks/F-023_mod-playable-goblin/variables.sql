@@ -118,7 +118,7 @@ SET @GoblinFactionDescriptionitIT     = '';
 
 SET @GoblinAchievementenUS            = 'Realm First! Level 80 Goblin';
 SET @GoblinAchievementkoKR            = '서버 최초 80 레벨 고블린';
-SET @GoblinAchievementfrFR            =   'Gobelin « Prem\'s » au niveau 80 sur le royaume';
+SET @GoblinAchievementfrFR            = 'Gobelin « Prem\'s » au niveau 80 sur le royaume';
 SET @GoblinAchievementdeDE            = 'Erster Stufe-80-Goblin des Realms!';
 SET @GoblinAchievementzhCN            = '服务器第一！80级地精';
 SET @GoblinAchievementzhTW            = '伺服器首位!80級哥布林';
