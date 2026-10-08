@@ -1,4 +1,4 @@
--- charbaseinfo: 10 inserts, 0 updates, 0 deletes
+-- charbaseinfo: 9 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charbaseinfo` WHERE `race` = @DarkIronDwarf;
@@ -11,5 +11,4 @@ INSERT INTO `charbaseinfo` (`race`, `class`) VALUES
 (@DarkIronDwarf, @DeathKnight),
 (@DarkIronDwarf, @Shaman),
 (@DarkIronDwarf, @Mage),
-(@DarkIronDwarf, @Warlock),
-(@DarkIronDwarf, @Druid); -- ARAC
+(@DarkIronDwarf, @Warlock);

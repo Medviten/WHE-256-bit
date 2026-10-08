@@ -13,5 +13,3 @@ INSERT INTO `charbaseinfo` (`race`, `class`) VALUES
 (@ZandalariTroll, @Mage),
 (@ZandalariTroll, @Warlock),
 (@ZandalariTroll, @Druid);
-
--- No ARAC-specific classes at all. ^^

@@ -1,4 +1,4 @@
--- charsections: 0 inserts, 0 updates, 0 deletes
+-- charsections: 504 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charsections` WHERE `race` = @Vulpera;

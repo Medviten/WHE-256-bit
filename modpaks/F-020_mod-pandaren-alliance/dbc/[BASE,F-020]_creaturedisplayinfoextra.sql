@@ -1,4 +1,4 @@
--- [F-030] mod-worgoblin: creaturedisplayinfoextra: 2 inserts, 0 updates, 0 deletes
+-- [F-020] mod-worgoblin: creaturedisplayinfoextra: 2 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `creaturedisplayinfoextra` WHERE `id` IN (@AlliancePandarenMaleDisplayExtra, @AlliancePandarenFemaleDisplayExtra);

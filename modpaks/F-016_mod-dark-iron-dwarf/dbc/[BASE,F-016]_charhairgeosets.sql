@@ -1,4 +1,4 @@
--- charhairgeosets: 2 inserts, 0 updates, 0 deletes
+-- charhairgeosets: 19 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charhairgeosets` WHERE `race` = @DarkIronDwarf;

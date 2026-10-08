@@ -1,9 +1,8 @@
--- [F-032] mod-maghar: emotestextsound: 720 inserts, 0 updates, 0 deletes
+-- [F-007] mod-maghar: emotestextsound: 82 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @EmotesTextSoundID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`emotestextsound`);
-
 DELETE FROM `emotestextsound` WHERE `race_id` = @MagharOrc;
+SET @EmotesTextSoundID = (SELECT COALESCE(MAX(id), 0) FROM `emotestextsound`);
 INSERT INTO `emotestextsound` (`id`, `emotes_text_id`, `race_id`, `sex_id`, `sound_id`) VALUES
 (@EmotesTextSoundID := @EmotesTextSoundID +1, 14, @MagharOrc, @Female, 7955),
 (@EmotesTextSoundID := @EmotesTextSoundID +1, 14, @MagharOrc, @Male, 7956),

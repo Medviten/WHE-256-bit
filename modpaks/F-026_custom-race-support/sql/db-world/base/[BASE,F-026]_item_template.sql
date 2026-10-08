@@ -1,0 +1,5 @@
+SET @ExtendedHordeMask    = @HordeMask    & ~@BaseHordeMask;
+SET @ExtendedAllianceMask = @AllianceMask & ~@BaseAllianceMask;
+/* Ensures that faction-restricted items include custom races */
+UPDATE `item_template` SET `allowablerace` = `allowablerace` | @ExtendedAllianceMask WHERE `allowablerace` & @HumanMask AND `allowablerace` != -1; -- AND `allowablerace` != 2147483647 AND `allowablerace` != 2047 AND `allowablerace` != 4095 AND `allowablerace` != 16383 AND `allowablerace` != 32767 AND `allowablerace` != 65535 AND `allowablerace` != 131071 AND `allowablerace` != 262143 AND `allowablerace` != 524287 AND `allowablerace` != 1048575 AND `allowablerace` != 2097151;
+UPDATE `item_template` SET `allowablerace` = `allowablerace` | @ExtendedHordeMask    WHERE `allowablerace` & @OrcMask   AND `allowablerace` != -1; -- AND `allowablerace` != 2147483647 AND `allowablerace` != 2047 AND `allowablerace` != 4095 AND `allowablerace` != 16383 AND `allowablerace` != 32767 AND `allowablerace` != 65535 AND `allowablerace` != 131071 AND `allowablerace` != 262143 AND `allowablerace` != 524287 AND `allowablerace` != 1048575 AND `allowablerace` != 2097151;

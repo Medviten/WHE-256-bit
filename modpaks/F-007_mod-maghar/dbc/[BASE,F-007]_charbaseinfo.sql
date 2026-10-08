@@ -1,4 +1,4 @@
--- [F-032] mod-maghar: charbaseinfo: 8 inserts, 0 updates, 0 deletes
+-- [F-007] mod-maghar: charbaseinfo: 8 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charbaseinfo` WHERE `race` = @MagharOrc;

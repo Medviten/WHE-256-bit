@@ -1,20 +1,19 @@
--- [F-034] mod-dark-iron-dwarf: vocaluisounds: 66 inserts, 0 updates, 0 deletes
+-- [F-017] mod-dark-iron-dwarf: vocaluisounds: 66 inserts, 0 updates, 0 deletes
 
 -- New entries
+DELETE FROM `vocaluisounds` WHERE `race_id` = @ZandalariTroll; -- default: BETWEEN 2560 AND 2625; (copied from Troll)
 SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`vocaluisounds`);
-
--- DELETE FROM `vocaluisounds` WHERE `id` BETWEEN 2560 AND 2625; -- copied from Troll
 INSERT INTO `vocaluisounds` (`id`, `vocal_ui_enum`, `race_id`, `normal_sound_id_1`, `normal_sound_id_2`, `pissed_sound_id_1`, `pissed_sound_id_2`) VALUES
-(@VocalUISoundsID := @VocalUISoundsID +1, 0, @ZandalariTroll, 1820, 1930, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 1, @ZandalariTroll, 2609, 2973, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 2, @ZandalariTroll, 1821, 1931, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 3, @ZandalariTroll, 1822, 1932, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 4, @ZandalariTroll, 1823, 1933, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 5, @ZandalariTroll, 1824, 1934, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 6, @ZandalariTroll, 4294967295, 4294967295, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 7, @ZandalariTroll, 4294967295, 4294967295, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 8, @ZandalariTroll, 2987, 2975, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 9, @ZandalariTroll, 0, 4294967295, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 0,  @ZandalariTroll, 1820, 1930, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 1,  @ZandalariTroll, 2609, 2973, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 2,  @ZandalariTroll, 1821, 1931, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 3,  @ZandalariTroll, 1822, 1932, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 4,  @ZandalariTroll, 1823, 1933, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 5,  @ZandalariTroll, 1824, 1934, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 6,  @ZandalariTroll, 4294967295, 4294967295, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 7,  @ZandalariTroll, 4294967295, 4294967295, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 8,  @ZandalariTroll, 2987, 2975, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 9,  @ZandalariTroll, 0, 4294967295, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 10, @ZandalariTroll, 1826, 1936, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 11, @ZandalariTroll, 1827, 1937, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 12, @ZandalariTroll, 1828, 1938, 0, 0),

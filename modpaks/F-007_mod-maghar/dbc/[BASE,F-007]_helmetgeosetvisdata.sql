@@ -1,4 +1,4 @@
--- [F-032] mod-maghar: helmetgeosetvisdata: 0 inserts, 11 updates, 0 deletes
+-- [F-007] mod-maghar: helmetgeosetvisdata: 0 inserts, 11 updates, 0 deletes
 
 -- Changed values
 UPDATE `helmetgeosetvisdata` SET `hide_geoset_4` = `hide_geoset_4` | @MagharOrcHelmetMask WHERE `id` = 246; -- +mag'har orc

@@ -1,16 +1,15 @@
--- [F-033] mod-maghar: vocaluisounds: 66 inserts, 0 updates, 0 deletes
+-- [F-014] mod-playable-ogres: vocaluisounds: 66 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`vocaluisounds`);
-
-DELETE FROM `vocaluisounds` WHERE `id` BETWEEN 2494 AND 2559;
+SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `vocaluisounds`);
+DELETE FROM `vocaluisounds` WHERE `race_id` = @Ogre; -- default: BETWEEN 2494 AND 2559;
 INSERT INTO `vocaluisounds` (`id`, `vocal_ui_enum`, `race_id`, `normal_sound_id_1`, `normal_sound_id_2`, `pissed_sound_id_1`, `pissed_sound_id_2`) VALUES
-(@VocalUISoundsID := @VocalUISoundsID +1, 0, @Ogre, 2284, 2341, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 2, @Ogre, 2285, 2342, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 3, @Ogre, 2286, 2343, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 4, @Ogre, 2287, 2344, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 5, @Ogre, 2288, 2345, 0, 0),
-(@VocalUISoundsID := @VocalUISoundsID +1, 7, @Ogre, 4294967295, 4294967295, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 0,  @Ogre, 2284, 2341, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 2,  @Ogre, 2285, 2342, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 3,  @Ogre, 2286, 2343, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 4,  @Ogre, 2287, 2344, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 5,  @Ogre, 2288, 2345, 0, 0),
+(@VocalUISoundsID := @VocalUISoundsID +1, 7,  @Ogre, 4294967295, 4294967295, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 10, @Ogre, 2290, 2347, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 11, @Ogre, 2291, 2348, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1, 12, @Ogre, 2292, 2349, 0, 0),

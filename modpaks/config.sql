@@ -793,6 +793,11 @@ SET @LightforgedDraeneiSkillLineAbility3             =    31485;
 SET @LightforgedDraeneiSkillLineAbility4             =    31486;
 SET @LightforgedDraeneiSkillLineAbility5             =    31487;
 SET @LightforgedDraeneiSkillLineAbility6             =    31488;
+SET @ZandalariTrollSkillLineAbility1                 =    31489;
+SET @ZandalariTrollSkillLineAbility2                 =    31490;
+SET @ZandalariTrollSkillLineAbility3                 =    31491;
+SET @ZandalariTrollSkillLineAbility4                 =    31492;
+SET @ZandalariTrollSkillLineAbility5                 =    31493;
 
 -- Language SkillLineAbility
 SET @OrcishSkillLineAbilityHorde                     =      592;
@@ -862,6 +867,8 @@ SET @ActivateSecondarySpec                           =    20868;
 SET @WorgenRacialSkillRaceClass                      =      971;
 SET @GoblinRacialSkillRaceClass                      =      972;
 SET @HighElfRacialSkillRaceClass                     =     1140;
+SET @MagharOrcRacialSkillRaceClass                   =     1141;
+SET @OgreRacialSkillRaceClass                        =     1142;
 SET @DarkIronDwarfRacialSkillRaceClass               =     1143;
 SET @GilneanRacialSkillRaceClass                     =     1144; -- For completion's sake
 SET @HighmountainTaurenRacialSkillRaceClass          =     1145;
@@ -869,6 +876,10 @@ SET @NagaRacialSkillRaceClass                        =     1146;
 SET @TaunkaRacialSkillRaceClass                      =     1147;
 SET @VoidElfRacialSkillRaceClass                     =     1148;
 SET @LightforgedDraeneiRacialSkillRaceClass          =     1149;
+SET @ZandalariTrollRacialSkillRaceClass              =     1150;
+SET @VulperaRacialSkillRaceClass                     =     1151;
+SET @BrokenRacialSkillRaceClass                      =     1152;
+SET @PandarenRacialSkillRaceClass                    =     1153;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                       =      117; -- Hunter: Orc, Dwarf, Tauren, Troll

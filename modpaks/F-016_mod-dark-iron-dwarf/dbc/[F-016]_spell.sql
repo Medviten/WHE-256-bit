@@ -1,4 +1,4 @@
--- spell: 16 inserts, 0 updates, 0 deletes
+-- spell: 0 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `spell` WHERE `id` IN (

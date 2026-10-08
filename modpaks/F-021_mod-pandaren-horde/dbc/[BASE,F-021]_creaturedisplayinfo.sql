@@ -1,4 +1,4 @@
--- creaturedisplayinfo: 9 inserts, 0 updates, 0 deletes
+-- creaturedisplayinfo: 6 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `creaturedisplayinfo` WHERE `id` IN (

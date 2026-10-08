@@ -1,4 +1,4 @@
--- [F-032] mod-maghar: charhairtextures: 24 inserts, 2 updates, 0 deletes
+-- [F-007] mod-maghar: charhairtextures: 18 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charhairtextures` WHERE `race` = @MagharOrc;

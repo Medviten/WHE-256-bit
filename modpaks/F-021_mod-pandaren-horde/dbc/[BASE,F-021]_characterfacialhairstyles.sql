@@ -1,4 +1,4 @@
--- characterfacialhairstyles: 94 inserts, 0 updates, 0 deletes
+-- characterfacialhairstyles: 111 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `characterfacialhairstyles` WHERE `race` IN (@HordePandaren);

@@ -1,5 +1,4 @@
-SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`charsections`);
-
+SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);
 INSERT INTO `charsections` (`id`, `race`, `gender`, `base_section`, `texture_1`, `texture_2`, `texture_3`, `flags`, `type`, `color_index`) VALUES
 (@CharSectionsID := @CharSectionsID +1, @Ogre, @Male, @Face, 'Character\\Ogre\\Male\\OgrePCSkinBeigeFaceLower.blp', 'Character\\Ogre\\Male\\OgrePCSkinBeigeFaceUpper.blp', '', 1, 0, 0),
 (@CharSectionsID := @CharSectionsID +1, @Ogre, @Male, @Face, 'Character\\Ogre\\Male\\OgrePCSkinYellowFaceLower.blp', 'Character\\Ogre\\Male\\OgrePCSkinYellowFaceUpper.blp', '', 1, 0, 1),

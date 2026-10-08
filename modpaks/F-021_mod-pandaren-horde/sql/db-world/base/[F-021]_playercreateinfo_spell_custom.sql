@@ -1,3 +1,4 @@
+/*
 INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 -- Horde Pandaren Paladin
 (@HordePandarenMask, @PaladinMask, '68975', 'Viciousness'),
@@ -268,3 +269,4 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 (@HordePandarenMask, @DruidMask, '34123', 'Tree of Life(Passive)'),
 (@HordePandarenMask, @DruidMask, '40120', 'Swift Flight Form'),
 (@HordePandarenMask, @DruidMask, '40121', 'Swift Flight Form(Passive)');
+*/

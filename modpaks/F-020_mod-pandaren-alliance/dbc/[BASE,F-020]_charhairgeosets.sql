@@ -1,9 +1,8 @@
--- charhairgeosets: 62 inserts, 0 updates, 6 deletes
+-- charhairgeosets: 37 inserts, 0 updates, 6 deletes
 
 -- New entries
-SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `charhairgeosets`);
-
 DELETE FROM `charhairgeosets` WHERE `race` = @AlliancePandaren;
+SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `charhairgeosets`);
 INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `show_scalp`) VALUES
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @AlliancePandaren, @Male,    0,  0, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @AlliancePandaren, @Male,    1,  2, 0),

@@ -1,9 +1,8 @@
--- charsections: 1642 inserts, 0 updates, 0 deletes
+-- charsections: 1364 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);
-
 DELETE FROM `charsections` WHERE `id` = @AlliancePandaren;
+SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);
 INSERT INTO `charsections` (`id`, `race`, `gender`, `base_section`, `texture_1`, `texture_2`, `texture_3`, `flags`, `type`, `color_index`) VALUES
 (@CharSectionsID := @CharSectionsID +1, @AlliancePandaren, @Male,   @Skin,      'Character\\\\Pandaren\\\\male\\\\pandamaleskin00_00.blp', 'Character\\\\Pandaren\\\\male\\\\pandamaleskinextra00_00.blp', '', 17, 0, 0),
 (@CharSectionsID := @CharSectionsID +1, @AlliancePandaren, @Male,   @Skin,      'Character\\\\Pandaren\\\\male\\\\pandamaleskin00_01.blp', 'Character\\\\Pandaren\\\\male\\\\pandamaleskinextra00_01.blp', '', 17, 0, 1),

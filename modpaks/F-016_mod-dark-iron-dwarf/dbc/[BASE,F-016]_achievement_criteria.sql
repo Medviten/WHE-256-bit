@@ -1,4 +1,4 @@
--- achievement_criteria: 4 inserts, 2 updates, 0 deletes
+-- achievement_criteria: 4 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `achievement_criteria` WHERE `id` IN (@DarkIronDwarfCritera1, @DarkIronDwarfCritera2, @DarkIronDwarfCritera3, @DarkIronDwarfCritera4);

@@ -1,4 +1,4 @@
--- charbaseinfo: 10 inserts, 0 updates, 0 deletes
+-- charbaseinfo: 7 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charbaseinfo` WHERE `race` = @Broken;

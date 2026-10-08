@@ -1,10 +1,3 @@
-/*
--- All normal troll starting skills (languages, weapons, armor permissions, etc.)
--- are extended to Zandalari Troll without duplicating rows.
-UPDATE `playercreateinfo_skills` SET `raceMask` = `raceMask` | @ZandalariTrollMask
-WHERE (`raceMask` & @TrollMask) <> 0;
-*/
-
 -- Racial skills
 DELETE FROM `playercreateinfo_skills` WHERE `raceMask` = @ZandalariTrollMask AND `classMask` = 0 AND `skill` = @ZandalariTrollRacials;
 INSERT IGNORE INTO `playercreateinfo_skills` (`raceMask`,`classMask`,`skill`,`rank`,`comment`)

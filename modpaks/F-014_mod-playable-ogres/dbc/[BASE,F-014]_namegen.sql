@@ -1,9 +1,8 @@
 -- namegen: 24 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @NameGenID = (SELECT COALESCE(MAX(id), 0) FROM `namegen`);
-
 DELETE FROM `namegen` WHERE `race_id` = @Ogre;
+SET @NameGenID = (SELECT COALESCE(MAX(id), 0) FROM `namegen`);
 INSERT INTO `namegen` (`id`, `name`, `race_id`, `sex`) VALUES
 (@NameGenID := @NameGenID +1, 'Grok',    @Ogre, @Male),
 (@NameGenID := @NameGenID +1, 'Mogor',   @Ogre, @Male),

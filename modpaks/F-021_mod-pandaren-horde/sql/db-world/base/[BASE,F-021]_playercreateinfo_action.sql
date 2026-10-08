@@ -29,4 +29,18 @@ INSERT IGNORE INTO `playercreateinfo_action` VALUES
 (@HordePandaren, @Shaman, 2, 331, 0), -- Healing Wave
 -- Horde Pandaren Mage
 (@HordePandaren, @Mage, 0, 133, 0), -- Fireball
-(@HordePandaren, @Mage, 1, 168, 0); -- Frost Armor
+(@HordePandaren, @Mage, 1, 168, 0), -- Frost Armor
+
+-- ARAC
+-- Horde Pandaren Paladin
+(@HordePandaren, @Paladin, 0, 6603, 0), -- Auto Attack
+(@HordePandaren, @Paladin, 1, 21084, 0), -- Seal of Righteousness
+(@HordePandaren, @Paladin, 2, 635, 0), -- Holy Light
+-- Horde Pandaren Warlock
+(@HordePandaren, @Warlock, 0, 686, 0), -- Shadow Bolt
+(@HordePandaren, @Warlock, 1, 687, 0), -- Demon Skin
+-- Horde Pandaren Druid
+(@HordePandaren, @Druid, 72, 6603, 0), -- Auto Attack (SpecialA: Bear Form)
+(@HordePandaren, @Druid, 96, 6603,0), -- Auto Attack (SpecialB: Cat Form)
+(@HordePandaren, @Druid, 0, 5176, 0), -- Wrath
+(@HordePandaren, @Druid, 1, 5185, 0); -- Healing Touch

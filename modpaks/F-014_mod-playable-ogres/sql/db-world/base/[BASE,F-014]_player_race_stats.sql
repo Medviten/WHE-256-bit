@@ -1,4 +1,3 @@
-/* Ogres copy Tauren */
 INSERT INTO `player_race_stats` (`Race`, `Strength`, `Agility`, `Stamina`, `Intellect`, `Spirit`)
 SELECT
   @Ogre, `Strength`, `Agility`, `Stamina`, `Intellect`, `Spirit`
