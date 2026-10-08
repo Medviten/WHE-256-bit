@@ -1,4 +1,4 @@
--- factiontemplate: 0 inserts, 274 updates, 0 deletes
+-- factiontemplate: 0 inserts, 6 updates, 0 deletes
 
 -- Changed values
 UPDATE `factiontemplate` SET `enemy_group` = 0 WHERE `id` IN (101, 102, 151, 1034, 1274, 1275, 1414, 1415, 1621, 1622, 1685, 1803, 1804, 1920, 1926, 1927, 1928, 1929, 1978, 1979, 1980, 1981, 2023, 2024, 2034);

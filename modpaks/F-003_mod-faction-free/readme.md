@@ -3,7 +3,7 @@
 
 ### Features
 - Enables cross-faction questing
-- Opt-in
+- Opt-in mechanism
 
 ### Known Issues
 - Can't earn reputation from opposing factions
