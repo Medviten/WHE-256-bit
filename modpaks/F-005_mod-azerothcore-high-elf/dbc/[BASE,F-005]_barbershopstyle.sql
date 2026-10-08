@@ -1,9 +1,8 @@
--- [F-031] mod-azerothcore-high-elf: barbershopstyle: 56 inserts, 0 updates, 0 deletes
+-- [F-005] mod-azerothcore-high-elf: barbershopstyle: 56 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @BarbershopStyleID = (SELECT COALESCE(MAX(id), 0) FROM dbc.barbershopstyle);
-
--- DELETE FROM `barbershopstyle` WHERE `id` BETWEEN 1300 AND 1355; -- default
+DELETE FROM `barbershopstyle` WHERE `race` = @HighElf; -- default: BETWEEN 1300 AND 1355
+SET @BarbershopStyleID = (SELECT COALESCE(MAX(id), 0) FROM `barbershopstyle`);
 INSERT INTO `barbershopstyle` (`id`, `type`, `display_name_enus`, `display_name_kokr`, `display_name_frfr`, `display_name_dede`, `display_name_zhcn`, `display_name_zhtw`, `display_name_eses`, `display_name_esmx`, `display_name_ruru`, `display_name_jajp`, `display_name_ptpt`, `display_name_itit`, `display_name_unused_1`, `display_name_unused_2`, `display_name_unused_3`, `display_name_unused_4`, `display_name_flags`, `description_enus`, `description_kokr`, `description_frfr`, `description_dede`, `description_zhcn`, `description_zhtw`, `description_eses`, `description_esmx`, `description_ruru`, `description_jajp`, `description_ptpt`, `description_itit`, `description_unused_1`, `description_unused_2`, `description_unused_3`, `description_unused_4`, `description_flags`, `cost_modifier`, `race`, `gender`, `data`) VALUES
 (@BarbershopStyleID := @BarbershopStyleID +1, 0, 'High Tail', '하나로 올려 묶은 머리', 'Queue de cheval haute', 'Hoher Zopf', '高束发', '高馬尾', 'Coleta alta', 'Coleta alta', 'Высокий хвостик', '', '', '', '', '', '', '', 16712190, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712172, 1, @HighElf, @Female, 0),
 (@BarbershopStyleID := @BarbershopStyleID +1, 0, 'Parted Long', '옆 가르마 긴 머리', 'Longs, raie à droite', 'Gescheitelt und lang', '偏分长发', '分線長髮', 'Largo con raya', 'Largo con raya', 'Удлиненная прическа', '', '', '', '', '', '', '', 16712190, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712172, 1, @HighElf, @Female, 1),

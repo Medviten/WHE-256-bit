@@ -1,4 +1,4 @@
--- [F-031] mod-azerothcore-high-elf: characterfacialhairstyles: 19 inserts, 43 updates, 0 deletes
+-- [F-005] mod-azerothcore-high-elf: characterfacialhairstyles: 19 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `characterfacialhairstyles` WHERE `race` = @HighElf;

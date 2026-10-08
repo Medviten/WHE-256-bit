@@ -1,4 +1,4 @@
--- [F-031] mod-azerothcore-high-elf: helmetgeosetvisdata: 0 inserts, 8 updates, 0 deletes
+-- [F-005] mod-azerothcore-high-elf: helmetgeosetvisdata: 0 inserts, 8 updates, 0 deletes
 
 -- Changed values
 UPDATE `helmetgeosetvisdata` SET `hide_geoset_5` = `hide_geoset_5` & ~@HighElfHelmetMask WHERE `id` = 246; -- -high elf
@@ -9,3 +9,6 @@ UPDATE `helmetgeosetvisdata` SET `hide_geoset_1` = `hide_geoset_1` |  @HighElfHe
 UPDATE `helmetgeosetvisdata` SET `hide_geoset_1` = `hide_geoset_1` |  @HighElfHelmetMask WHERE `id` = 345; -- +high elf
 UPDATE `helmetgeosetvisdata` SET `hide_geoset_1` = `hide_geoset_1` |  @HighElfHelmetMask WHERE `id` = 366; -- +high elf
 UPDATE `helmetgeosetvisdata` SET `hide_geoset_1` = `hide_geoset_1` |  @HighElfHelmetMask WHERE `id` = 367; -- +high elf
+
+-- Mirroring blood elf, it looks like this bit should include high elf
+UPDATE `helmetgeosetvisdata` SET `hide_geoset_6` = `hide_geoset_6` | @HighElfHelmetMask WHERE `id` = 376; -- +high elf

@@ -1,9 +1,11 @@
--- [F-031] mod-azerothcore-high-elf: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
+-- [F-005] mod-azerothcore-high-elf: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
 
 -- New entries
+DELETE FROM `skillraceclassinfo` WHERE `id` = @HighElfRacialSkillRaceClass;
 INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES
-(1140, @HighElfRacials, @HighElfMask, @AllClassMask, 1170, 0, 0, 0) ON DUPLICATE KEY UPDATE `race_mask` = `race_mask` | @HighElfMask;
+(@HighElfRacialSkillRaceClass, @HighElfRacials, @HighElfMask, @AllClassMask, 1170, 0, 0, 0);
 
+/*
 -- Changed values
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 21;
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 24;
@@ -109,3 +111,4 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 866;
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 886;
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 899;
+*/

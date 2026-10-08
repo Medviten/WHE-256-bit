@@ -1,9 +1,8 @@
--- [F-031] mod-azerothcore-high-elf: vocaluisounds: 54 inserts, 0 updates, 0 deletes
+-- [F-005] mod-azerothcore-high-elf: vocaluisounds: 54 inserts, 0 updates, 0 deletes
 
 -- New entries
-SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `dbc`.`vocaluisounds`);
-
-DELETE FROM `vocaluisounds` WHERE `id` BETWEEN 2300 AND 2353;
+DELETE FROM `vocaluisounds` WHERE `race_id` = @HighElf; -- default: BETWEEN 2300 AND 2353;
+SET @VocalUISoundsID = (SELECT COALESCE(MAX(id), 0) FROM `vocaluisounds`);
 INSERT INTO `vocaluisounds` (`id`, `vocal_ui_enum`, `race_id`, `normal_sound_id_1`, `normal_sound_id_2`, `pissed_sound_id_1`, `pissed_sound_id_2`) VALUES
 (@VocalUISoundsID := @VocalUISoundsID +1,  9, @HighElf,     0,     0, 0, 0),
 (@VocalUISoundsID := @VocalUISoundsID +1,  0, @HighElf,  9549,  9550, 0, 0),
