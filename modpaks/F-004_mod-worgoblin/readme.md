@@ -8,8 +8,7 @@
             - Apprentice Riding –> 60% version
             - Journeyman Riding –> 100% version
         - Can get riding skills for free at levels 20 and/or 40 (configurable)
-    - Cataclysm + MoP druid forms
-    - ARAC additions: paladin, shaman
+    - Cataclysm druid forms
     - Cataclysm racial mounts:
         - Mountain Horse
         - Swift Mountain Horse
@@ -17,7 +16,6 @@
 - Playable Goblins
     - Cataclysm racial abilities
         - Best Deals Everywhere requires recompile
-    - ARAC additions: paladin, druid
     - Cataclysm racial mounts:
         - Goblin Trike
         - Goblin Turbo-Trike

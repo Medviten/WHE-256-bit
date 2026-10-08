@@ -1,5 +1,5 @@
 DELETE FROM `playercreateinfo` WHERE `race` IN (@Goblin, @Worgen);
-INSERT INTO `playercreateinfo` (`race`,`class`,`map`,`zone`,`position_x`,`position_y`,`position_z`,`orientation`) VALUES
+INSERT INTO `playercreateinfo` (`race`, `class`, `map`, `zone`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
 (@Goblin, @Warrior,     @Kalimdor,  @Durotar,        @OrcStartX,      @OrcStartY,      @OrcStartZ,      @OrcStartO),
 (@Goblin, @Paladin,     @Kalimdor,  @Durotar,        @OrcStartX,      @OrcStartY,      @OrcStartZ,      @OrcStartO), -- ARAC
 (@Goblin, @Hunter,      @Kalimdor,  @Durotar,        @OrcStartX,      @OrcStartY,      @OrcStartZ,      @OrcStartO),
