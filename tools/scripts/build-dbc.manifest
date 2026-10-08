@@ -13,14 +13,18 @@
 # build-dbc.conf) and list your modpaks in the order you want them
 # applied.
 #
-# Example:
-F-001_localization # Turn this off if you don't need it
-F-006_mod-fly-anywhere
+# INITIAL SETUP #
+#F-001_localization # Turn this on if you need it
+F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
 #F-018_squished_client # Off by default (most people don't use squished client)
-F-008_move-npc-races
+F-008_move-npc-races # Not strictly necessary if you increase race limit, but highly recommended to avoid conflicts
 F-009_morph-with-gear
-#F-004_mod-worgoblin # Legacy
-F-023_mod-playable-goblin
+# END INITIAL SETUP #
+
+# CUSTOM RACES #
+#F-004_mod-worgoblin # Legacy (requires recompile for some racials to function)
+F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocket Barrage
+F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
 F-005_mod-azerothcore-high-elf
 F-007_mod-maghar
 F-014_mod-playable-ogres
@@ -29,15 +33,18 @@ F-017_mod-zandalari-troll
 F-019_mod-vulpera
 F-020_mod-pandaren-alliance
 F-021_mod-pandaren-horde
-#F-022_mod-playable-broken # Off by default (WIP – not ready)
+F-022_mod-playable-broken
 #F-025_mod-kul-tiran # Off by default (WIP – not ready)
-F-024_mod-playable-worgen
-F-027_mod-gilnean
-#F-010_patch-open-azeroth # Off by default (most people don't use OA)
-#F-013_zep-goblin-start # Off (requires OA and is not compatible yet)
+#F-027_mod-gilnean # Off by default (WIP – not ready)
+# END CUSTOM RACES #
+
+# ADDITIONAL MODS #
+#F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended)
+#F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
 #F-011_mod-druid-forms # Off by default
 #F-012_mod-extra-models # Off by default
 #F-015_mod-instamount # Off by default
-F-026_custom_race_support
-F-002_mod-arac
+F-026_custom_race_support # required for any custom race to function correctly
+#F-002_mod-arac # Off by default
 #F-003_mod-faction-free # Off by default
+# END ADDITIONAL MODS #
