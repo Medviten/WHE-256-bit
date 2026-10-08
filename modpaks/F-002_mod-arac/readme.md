@@ -2,7 +2,7 @@
 ## F-002_mod-arac
 
 ### Features
-- Adds missing race/class combinations to stock races:
+- Adds missing race/class combinations so every race can be every race:
     - Human: hunter, shaman, druid
     - Orc: paladin, mage, priest, mage, druid
     - Dwarf: shaman, mage, warlock, druid
@@ -20,9 +20,7 @@
     - Shadow Resistance
 
 ### Known Issues
-- Blood Elf druids have two Arcane Torrent spells:
-    - Mana (unshapeshifts you if you are feral)
-    - Rage and energy (only usable in feral form)
+- None
 
 ### Considerations
 - This version doesn't give all hunters bows and guns at creation, but seeks to retain WotLK starting skills. ARAC combinations get those of similar races.

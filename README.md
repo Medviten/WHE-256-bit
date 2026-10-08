@@ -12,9 +12,9 @@
 >
 > **Please make backups before installing or updating the module.**
 
-This is designed to *replace* your DBCs and world DB! Back them up!
+The script is designed to *replace* your DBCs and world DB! **Back them up!**
 
-A highly modular approach to DBC-heavy mods, relying on DBCTool to bulk edit DBCs in MySQL before exporting them. First and foremost a custom race module for **AzerothCore 3.3.5a**.
+A highly modular approach to DBC-heavy mods, relying on DBCTool to bulk edit DBCs in MySQL before exporting them. First and foremost a custom playable race module for **AzerothCore 3.3.5a**.
 
 This project started as a merger of Worgoblin and AzerothCore High Elf (which are mutually exclusive out of the box), as well as ARAC, and has since been expanded with additional playable races and mods like Faction Free.
 
@@ -22,7 +22,7 @@ Early on, my focus was primarily on merging the DBCs into one functioning packag
 
 My SQL files make heavy use of variables for readability and editability. You're welcome. ;)
 
-> If you don't want to modify anything and just want to add more races, it can seem daunting to have them all separated into SQL modpaks like this, but the original, clean and cut approach is carried forward by [Baercraft](https://github.com/Baercraft/mod-worgoblin-high-elf)'s fork. This division of labour lets us cater to both preferences.
+> If you don't want to modify anything and just want to add more races, it can seem daunting to have them all separated into SQL modpaks like this, but the provided example DBC files should be usable. They were baked with the original mods in mind (before modularity was introduced).
 
 ---
 
@@ -30,7 +30,7 @@ My SQL files make heavy use of variables for readability and editability. You're
 
 Using several independent follow-up patches increases the possibility of mismatched files or installation-order problems because only the last of each DBC counts at runtime, with no automatic combination being possible.
 
-To solve that, this repository lets you prepare the DBCs in MySQL before exporting them with DBCTool. Blacklist the modpaks you don't need, point build-dbc.sh to a disposable MySQL database, and watch it merge the DBCs for you.
+To solve that, this repository lets you prepare the DBCs in MySQL before exporting them with DBCTool. Comment out the modpaks you don't need, point build-dbc.sh to a disposable MySQL database, and watch it merge the DBCs for you.
 
 If you want to change something, simply add or edit an SQL file and have it apply after the file it overrides.
 
@@ -48,6 +48,7 @@ The project currently includes the following custom playable races:
 * **Ogre**
 * **Dark Iron Dwarf**
 * **Zandalari Troll**
+* **Vulpera**
 
 More details are found in each modpak's own readme file.
 
@@ -65,28 +66,20 @@ Some unusual race/class combinations may still have missing abilities, incorrect
 
 The project uses **`patch-A.MPQ`** as its primary client patch, but you can of course rename it to something else.
 
-It contains the client-side files required by the custom races, including modified DBC files and other race-related client data.
+It contains the client-side files required by the custom races, including modified DBC files and other race-related client data. It also modifies the interface files to accept spaces in names (though you need the [mod-two-names] module to make use of it – remember to patch your core to get the hooks in place) and to accept more than 10 characters per realm (this requires a core patch as well as a client patch). To accommodate the latter, a scroll bar is added to the character selection frame (and the create new character button is moved outside of the frame so it's always visible).
 
-On the other hand, `patch-J.MPQ` is entirely optional. It is intended to reverse as many changes as possible, client-side only, for purist users who still want to play on their friends' modified servers.
+On the other hand, `patch-J.MPQ` is entirely optional. It is intended to reverse as many of my changes as possible, client-side only, for purist users who still want to play on their friends' modified servers.
 
 ---
 
 ## PlayerBots
 
-PlayerBots support is provided through whe-playerbots.patch. You can apply it to your playerbots root directory using Git:
-
-```text
- git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
-git add .
-git commit -m "Add whe-playerbots patch"
-```
-
-In the future, there may be modularity support for this as well.
+PlayerBots support is provided through whe-playerbots.patch. It currently comes with all the races I use on my own stable server. In the future, there may be modularity support for this as well, but for now, if you want to modify anything about it, you'll have to do so manually.
 
 ---
 
 ## Interface Files
-Currently, patch-A assumes you'll install all custom races. If you don't, it should still work, but the character selection screen may look weird. I hope to provide modular support for this as well.
+The current plan is to support any and all freely available custom races, so if someone donates the assets, I'll add the race. The character creation menu in the interface files reflects this: it's full of holes where planned races will go. You can move portraits around by editing the button list in CharacterCreate.lua (the simple one, not the complicated one). Horde begins where the orc is, so be careful with that one, but the rest should be flexible.
 
 ---
 
@@ -109,28 +102,28 @@ AzerothCore/
 Copy mod-worgoblin-high-elf/integration/whe-acore.patch into your AzerothCore root directory. Apply it like this:
 
 ```text
- git apply --ignore-space-change --ignore-whitespace whe-acore.patch
+git apply --ignore-space-change --ignore-whitespace whe-acore.patch
 git add .
 git commit -m "Add whe-acore patch"
 ```
 
-Similarly, copy mod-worgoblin-high-elf/integration/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
+If you want playerbots, also copy mod-worgoblin-high-elf/integration/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
 
 ```text
- git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
+git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
 git add .
 git commit -m "Add whe-playerbots patch"
 ```
 
 ## 3. Set up the DBC-SQL pipeline
 
-Edit the config file in worgoblin-high-elf/tools/dbctool/ and point it to a disposable database (default: dbc). It will drop and recreate it, which requires the proper permissions.
+Edit the config file in worgoblin-high-elf/tools/dbctool/ and point it to a disposable database (default: dbc). It will **drop and recreate** it, which requires the proper permissions, and backing up your DB first is a very good idea. SQL dumps are cheap.
 
 Import clean DBCs, make any modifications you want, and then dump the database. Point DBCTool at this dump – it's your save state.
 
-Edit the blacklist in worgoblin-high-elf/tools/scripts/ by uncommenting features to exclude. Edit build-dbc.conf with your paths and logins, then run build-dbc.sh.
+Edit the manifest in worgoblin-high-elf/tools/scripts/ by commenting out features to exclude. Edit build-dbc.conf with your paths and logins, **back up your DBC files**, then run build-dbc.sh.
 
-It should put the new DBCs straight into your server's data/dbc directory, overwriting whatever is already in there.
+It should put the new DBCs straight into your server's data/dbc directory, **overwriting whatever is already in there**.
 
 **Back up your existing DBC directory before running any scripts! It will overwrite them!**
 
@@ -162,10 +155,9 @@ You should also replace the DBCs with the ones from the pipeline to ensure compa
 
 ## 5. Compile AzerothCore
 
-After installing or updating the module, compile AzerothCore normally, if the modpaks you installed require it. Worgoblin does, but others don't – only C++ code requires recompilation, really.
+After installing or updating the module, recompile AzerothCore if the modpaks you installed require it. For example, Worgoblin spells do, but High Elf ones don't.
 
 See the official AzerothCore documentation for information about installing and compiling modules:
-
 https://www.azerothcore.org/wiki/installing-a-module
 
 ---
