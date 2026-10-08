@@ -1,6 +1,6 @@
-UPDATE `playercreateinfo_skills` SET `raceMask`  = @BowHunters                  WHERE `skill` = @BowSkill      AND `classMask` !=            0;
-UPDATE `playercreateinfo_skills` SET `raceMask`  = @GunHunters                  WHERE `skill` = @GunSkill      AND `classMask` !=            0;
-UPDATE `playercreateinfo_skills` SET `raceMask`  = @CrossbowHunters             WHERE `skill` = @CrossbowSkill AND `classMask` !=            0;
+UPDATE `playercreateinfo_skills` SET `raceMask`  = @BowHunters                  WHERE `skill` = @BowSkill      AND `classMask`                  != 0;
+UPDATE `playercreateinfo_skills` SET `raceMask`  = @GunHunters                  WHERE `skill` = @GunSkill      AND `classMask`                  != 0;
+UPDATE `playercreateinfo_skills` SET `raceMask`  = @CrossbowHunters             WHERE `skill` = @CrossbowSkill AND `classMask`                  != 0;
 UPDATE `playercreateinfo_skills` SET `classMask` = `classMask` & ~@RogueMask    WHERE `skill` = @DaggerSkill   AND (`classMask` & @RogueMask)   != 0;
 UPDATE `playercreateinfo_skills` SET `classMask` = `classMask` & ~@PaladinMask  WHERE `skill` = @2HMaceSkill   AND (`classMask` & @PaladinMask) != 0;
 

@@ -1,7 +1,7 @@
 -- [F-002] mod-arac: charstartoutfit: 0 inserts, 1 updates, 0 deletes
 
+-- Standard ARAC gives human and undead hunters guns instead of crossbows
 SET @CharStartOutfitID = (SELECT COALESCE(MAX(id), 0) FROM `charstartoutfit`);
--- New entries for stock races only (custom ones are in their modpaks)
 UPDATE `charstartoutfit` SET 
     `item_7`         = @LightQuiverItem,
     `item_8`         = @WeatheredCrossbowItem,

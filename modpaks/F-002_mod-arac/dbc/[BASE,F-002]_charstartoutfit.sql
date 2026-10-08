@@ -1,4 +1,4 @@
--- [F-029] mod-arac: charstartoutfit: 76 inserts, 0 updates, 0 deletes
+-- [F-002] mod-arac: charstartoutfit: 76 inserts, 0 updates, 0 deletes
 
 SET @CharStartOutfitID = (SELECT COALESCE(MAX(id), 0) FROM `charstartoutfit`);
 -- New entries for stock races only (custom ones are in their modpaks)

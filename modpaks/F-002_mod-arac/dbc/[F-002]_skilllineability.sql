@@ -1,4 +1,4 @@
--- [F-002] mod-arac: skilllineability: 9 inserts, 45 updates, 0 deletes
+-- [F-002] mod-arac: skilllineability: 8 inserts, 57 updates, 0 deletes
 
 -- New entries (Blood Elf and Draenei ARAC racials)
 DELETE FROM `skilllineability` WHERE `id` IN (
@@ -7,7 +7,7 @@ DELETE FROM `skilllineability` WHERE `id` IN (
     @ShadowResistanceDruidSkillLineAbility, @ShadowResistanceRogueSkillLineAbility,  @ShadowResistanceWarlockSkillLineAbility
 );
 INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`, `required_classes`, `excluded_races`, `excluded_classes`, `min_skill_value`, `spell_parent_id`, `acquire_method`, `skill_grey_level`, `skill_yellow_level`, `character_points_1`, `character_points_2`) VALUES
---    (@ArcaneTorrentFeralSkillLineAbility,      @BloodElfRacials, @BloodElfRacial1, @BloodElfMask, @DruidMask,   0, 0, 1, 0, 2, 0, 0, 0, 0), -- Arcane Torrent (Druid Feral)
+--    (@ArcaneTorrentFeralSkillLineAbility,      @BloodElfRacials, @BloodElfRacial1, @BloodElfMask, @DruidMask,   0, 0, 1, 0, 2, 0, 0, 0, 0), -- Arcane Torrent (Druid Feral, now a triggered spell only)
     (@ArcaneTorrentDruidManaSkillLineAbility,  @BloodElfRacials, @BloodElfRacial2, @BloodElfMask, @DruidMask,   0, 0, 1, 0, 2, 0, 0, 0, 0), -- Arcane Torrent (Druid Mana)
     (@ArcaneTorrentRageSkillLineAbility,       @BloodElfRacials, @BloodElfRacial3, @BloodElfMask, @WarriorMask, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- Arcane Torrent (Rage)
     (@GiftoftheNaaruDruidSkillLineAbility,     @DraeneiRacials,  @DraeneiRacial1,  @DraeneiMask,  @DruidMask,   0, 0, 1, 0, 2, 0, 0, 0, 0), -- Gift of the Naaru (Druid)
@@ -74,5 +74,5 @@ UPDATE `skilllineability` SET `required_races`   = `required_races`   | @HordeMa
 UPDATE `skilllineability` SET `required_races`   = `required_races`   | @HordeMask                     WHERE `id` = @PortalStonardSkillLineAbility;
 UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask              WHERE `id` = @ActivatePrimarySpec; -- Spell: 63645 (Activate Primary Spec)
 UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask              WHERE `id` = @ActivateSecondarySpec; -- Spell: 63644 (Activate Secondary Spec)
--- UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask              WHERE `id` = 21723; -- Spell: 75460 (N/A?)
 UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask              WHERE `id` = @FlameShockPassiveSkillLineAbility; -- Spell: 75461 (Flame Shock Passive)
+-- UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask              WHERE `id` = 21723; -- Spell: 75460 (N/A?)

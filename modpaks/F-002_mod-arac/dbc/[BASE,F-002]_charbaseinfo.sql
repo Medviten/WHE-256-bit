@@ -1,4 +1,4 @@
--- [F-029] mod-arac: charbaseinfo
+-- [F-002] mod-arac: charbaseinfo
 
 -- Clean slate + every non-NULL race/class combination
 DELETE FROM `charbaseinfo` WHERE `class` in (@Warrior, @Paladin, @Hunter, @Rogue, @Priest, @DeathKnight, @Shaman, @Mage, @Warlock, @Druid);

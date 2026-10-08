@@ -1,4 +1,4 @@
--- [F-002] mod-azerothcore-high-elf: skillraceclassinfo: 5 inserts, 104 updates, 0 deletes
+-- [F-002] mod-azerothcore-high-elf: skillraceclassinfo: 0 inserts, 104 updates, 0 deletes
 
 -- Changed values
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HighElfMask WHERE `id` = 21;

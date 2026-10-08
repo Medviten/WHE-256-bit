@@ -50,7 +50,7 @@ INSERT IGNORE INTO `playercreateinfo_spell_custom` VALUES
 (@OrcMask, @PaladinMask | @RogueMask  | @PriestMask | @MageMask   | @DruidMask,             21563, 'Command'),
 (@OrcMask, @HunterMask,                                                                     20576, 'Command'),
 (@OrcMask, @WarlockMask,                                                                    20575, 'Command'),
-(@OrcMask, @Warrior | @Paladin | @Hunter | @Rogue | @Priest | @Mage | @Druid,               21563, 'Command'), -- completely useless
+(@OrcMask, @Warrior | @Paladin | @Hunter | @Rogue | @Priest | @Mage | @Druid,               21563, 'Command'), -- completely useless?
 
 -- Dwarf Racials
 (@DwarfMask, 0,   672, 'Language Dwarven'),

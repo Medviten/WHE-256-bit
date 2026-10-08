@@ -1,4 +1,4 @@
-/*
+/* Probably not needed anymore because of F-026.
 -- Adds totems for races that don't have them.
 DELETE FROM `player_totem_model` WHERE `RaceID` IN (@Human, @NightElf, @Undead, @Gnome, @BloodElf);
 INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES 
