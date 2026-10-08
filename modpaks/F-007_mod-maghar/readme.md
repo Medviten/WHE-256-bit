@@ -4,9 +4,8 @@
 ### Features
 - Playable Mag'har Orcs
     - Racial abilities
-        - Stun resistance instead of Open Skies (for now)
-    - ARAC additions: paladin, druid
-- Racial faction: Mag'har of the Horde (for lack of a better idea)
+- Racial faction: Mag'har of the Horde
 
 ### Known Issues
 - Voice may not be working
+- Sympathetic Vigor not working

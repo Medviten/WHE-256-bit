@@ -4,9 +4,8 @@
 ### Features
 - Playable Zandalari Trolls
     - BfA druid forms
-    - BfA racial faction: Zuldazar
+    - BfA racial faction: Zandalari Empire
 
 ### Known Issues
-- No ears for males
-- Voice may not be working
+- Voice may not be working (Darkspear one as placeholder)
 - No racial abilities yet (Darkspear ones as placeholders)

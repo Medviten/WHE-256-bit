@@ -5,7 +5,6 @@
 - Playable Goblins
     - Cataclysm racial abilities
         - Best Deals Everywhere requires recompile
-    - ARAC additions: paladin, druid
     - Cataclysm racial mounts:
         - Goblin Trike
         - Goblin Turbo-Trike

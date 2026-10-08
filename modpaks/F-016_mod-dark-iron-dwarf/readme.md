@@ -7,6 +7,6 @@
     - BfA racial faction: Shadowforge City
 
 ### Known Issues
-- Voice may not be working
+- Voice may not be working (Dwarf ones as placeholders)
 - No racial abilities yet (Dwarf ones as placeholders)
 - Some shapeshifts mess up the regular form when you unshapeshift

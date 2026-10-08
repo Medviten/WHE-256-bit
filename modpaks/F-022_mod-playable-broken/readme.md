@@ -3,8 +3,7 @@
 
 ### Features
 - Playable Broken
-    - ARAC additions: rogue, warlock, druid
-    - Racial faction: Kurenai of the Alliance
+    - Racial faction: Broken of the Alliance
 
 ### Known Issues
 - Voice may not be working

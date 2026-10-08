@@ -7,6 +7,8 @@ SET @WorgenHelmetMask                 = 1 << @Worgen; -- default: 4096
 SET @AllianceMask                     = @AllianceMask     | @WorgenMask;
 SET @PlayableRaceMask                 = @PlayableRaceMask | @WorgenMask;
 SET @GunHunters                       = @GunHunters       | @WorgenMask;
+SET @WorgenLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @WorgenAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 
 -- Miscellaneous
 SET @WorgenExplorationSound           = @TaurenExplorationSound;
@@ -15,8 +17,8 @@ SET @WorgenBlood                      = 1;
 SET @WorgenWildBlood                  = @WorgenBlood;
 SET @WorgenMaleModelPath              = 'Character\\Worgen\\Male\\WorgenMale.mdx';
 SET @WorgenFemaleModelPath            = 'Character\\Worgen\\Female\\WorgenFemale.mdx';
-SET @WorgenWildMaleModelPath          = 'Character\\\\WorgenWild\\\\Male\\\\WorgenWildMale.mdx';
-SET @WorgenWildFemaleModelPath        = 'Character\\\\WorgenWild\\\\Female\\\\WorgenWildFemale.mdx';
+SET @WorgenWildMaleModelPath          = 'Character\\WorgenWild\\Male\\WorgenWildMale.mdx';
+SET @WorgenWildFemaleModelPath        = 'Character\\WorgenWild\\Female\\WorgenWildFemale.mdx';
 SET @WorgenMaleFootprint              = @FootprintPaw;
 SET @WorgenFemaleFootprint            = @FootprintPaw;
 SET @WorgenWildMaleFootprint          = @WorgenMaleFootprint;

@@ -6,4 +6,4 @@
 - Custom taxi paths between Auberdine and Exodar
 
 ### Known Issues
-- Flying under things may dismount you unless you disable automatic indoors check or otherwise allow mounts indoors
+- Flying under things may dismount you unless you disable automatic indoors check or otherwise allow mounts indoors (see modpak F-015)
