@@ -1,4 +1,4 @@
-/* Ensures that faction-restricted items include worgen and goblins */
+/* Ensures that faction-restricted items include worgen */
 UPDATE `item_template` SET `allowablerace` = `allowablerace` | @WorgenMask WHERE `allowablerace` & @HumanMask AND `allowablerace` != -1 AND `allowablerace` != 2147483647 AND `allowablerace` != 2047 AND `allowablerace` != 4095 AND `allowablerace` != 16383 AND `allowablerace` != 32767 AND `allowablerace` != 65535 AND `allowablerace` != 131071 AND `allowablerace` != 262143 AND `allowablerace` != 524287 AND `allowablerace` != 1048575 AND `allowablerace` != 2097151;
 
 /* Add racial mount items */

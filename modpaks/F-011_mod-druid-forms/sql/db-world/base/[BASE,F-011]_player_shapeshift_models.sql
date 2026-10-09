@@ -7,18 +7,6 @@ REPLACE INTO `player_shapeshift_model` (
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
 
-/* Human Druid forms */
-(@TravelForm,      @Human,     255,       2, 40816), -- ModelID: DruidTravelAlliance
-
-/* Orc Druid forms */
-(@TravelForm,      @Orc,       255,       2, 45339), -- ModelID: DruidTravelHorde
-
-/* Dwarf Druid forms */
-(@TravelForm,      @Dwarf,     255,       2, 40816), -- ModelID: DruidTravelAlliance
-
-/* Night Elf Druid forms */
-(@TravelForm,      @NightElf,  255,       2, 40816), -- ModelID: DruidTravelAlliance
-
 /* Undead Druid Forms */
 (@TreeForm,        @Undead,    255, @Male,   94144), -- ModelID: EntSkinDead
 (@TreeForm,        @Undead,    255, @Female, 94141), -- ModelID: EntSkinDiseased
@@ -28,9 +16,6 @@ REPLACE INTO `player_shapeshift_model` (
 (@FlightForm,      @Undead,    255,       2, 10007), -- ModelID: DragonWhelpSkinDiseased
 (@SwiftFlightForm, @Undead,    255,       2, 10007), -- ModelID: DragonWhelpSkinDiseased
 (@TravelForm,      @Undead,    255,       2, 45339), -- ModelID: DruidTravelHorde
-
-/* Tauren Druid forms */
-(@TravelForm,      @Tauren,   255,        2, 45339), -- ModelID: DruidTravelHorde
 
 /* Gnome Druid Forms */
 (@TreeForm,        @Gnome,      1,        2, 94146), -- brown hair: LasherOrchidSkinBrown
@@ -80,11 +65,62 @@ REPLACE INTO `player_shapeshift_model` (
 (@TreeForm,        @Troll,    255,        2, 37166), -- ModelID: DruidTreeFormOrange
 (@MoonkinForm,     @Troll,    255,        2, 37174), -- ModelID: DruidOwlBearRedSkin, DruidOwlBearRedSkin2
 (@FlightForm,      @Troll,    255,        2, 94216), -- ModelID: DruidFlightTroll1, DruidFlightTroll2
-(@SwiftFlightForm, @Troll,    255,        2, 37730), -- ModelID: EpicDruidFlightTroll1, EpicDruidFlightTroll2
-(@TravelForm,      @Troll,    255,        2, 45339), -- ModelID: DruidTravelHorde
+(@SwiftFlightForm, @Troll,    255,        2, 37730); -- ModelID: EpicDruidFlightTroll1, EpicDruidFlightTroll2
 
-/* Blood Elf Druid forms */
-(@TravelForm,      @BloodElf, 255,        2, 45339), -- ModelID: DruidTravelHorde
+-- Default Alliance travel form
+INSERT INTO `player_shapeshift_model` (
+    `ShapeshiftID`,
+    `RaceID`,
+    `CustomizationID`,
+    `GenderID`,
+    `ModelID`
+)
+SELECT
+    @TravelForm,
+    r.`race`,
+    255,
+    2,
+    @AllianceTravelForm
+FROM (
+    SELECT DISTINCT `race`
+    FROM `charbaseinfo`
+    WHERE `race` IS NOT NULL
+) AS r
+WHERE (@AllianceMask & (1 << (r.`race` - 1))) <> 0
+  AND NOT EXISTS (
+      SELECT 1
+      FROM `player_shapeshift_model` psm
+      WHERE psm.`ShapeshiftID` = @TravelForm
+        AND psm.`RaceID` = r.`race`
+        AND psm.`CustomizationID` = 255
+        AND psm.`GenderID` = 2
+  );
 
-/* Draenei Druid forms */
-(@TravelForm,      @Draenei,  255,        2, 40816); -- ModelID: DruidTravelAlliance
+-- Default Horde travel form
+INSERT INTO `player_shapeshift_model` (
+    `ShapeshiftID`,
+    `RaceID`,
+    `CustomizationID`,
+    `GenderID`,
+    `ModelID`
+)
+SELECT
+    @TravelForm,
+    r.`race`,
+    255,
+    2,
+    @HordeTravelForm
+FROM (
+    SELECT DISTINCT `race`
+    FROM `charbaseinfo`
+    WHERE `race` IS NOT NULL
+) AS r
+WHERE (@HordeMask & (1 << (r.`race` - 1))) <> 0
+  AND NOT EXISTS (
+      SELECT 1
+      FROM `player_shapeshift_model` psm
+      WHERE psm.`ShapeshiftID` = @TravelForm
+        AND psm.`RaceID` = r.`race`
+        AND psm.`CustomizationID` = 255
+        AND psm.`GenderID` = 2
+  );
