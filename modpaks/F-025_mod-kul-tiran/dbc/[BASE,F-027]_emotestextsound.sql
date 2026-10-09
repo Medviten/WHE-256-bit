@@ -1,4 +1,4 @@
--- emotestextsound: 81 inserts, 0 updates, 0 deletes
+-- emotestextsound: 82 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `emotestextsound` WHERE `race_id` = @KulTiran;

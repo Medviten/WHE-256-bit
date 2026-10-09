@@ -35,4 +35,13 @@ INSERT IGNORE INTO `playercreateinfo_action` VALUES
 (@KulTiran, @Druid, 72, 6603, 0), -- Auto Attack (SpecialA: Bear Form)
 (@KulTiran, @Druid, 96, 6603,0), -- Auto Attack (SpecialB: Cat Form)
 (@KulTiran, @Druid, 0, 5176, 0), -- Wrath
-(@KulTiran, @Druid, 1, 5185, 0); -- Healing Touch
+(@KulTiran, @Druid, 1, 5185, 0), -- Healing Touch
+
+-- ARAC
+-- Kul Tiran Paladin
+(@KulTiran, @Paladin, 0, 6603, 0), -- Auto Attack
+(@KulTiran, @Paladin, 1, 21084, 0), -- Seal of Righteousness
+(@KulTiran, @Paladin, 2, 635, 0), -- Holy Light
+-- Kul Tiran Warlock
+(@KulTiran, @Warlock, 0, 686, 0), -- Shadow Bolt
+(@KulTiran, @Warlock, 1, 687, 0); -- Demon Skin

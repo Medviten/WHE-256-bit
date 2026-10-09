@@ -1,4 +1,4 @@
--- [F-030] mod-worgoblin: creaturedisplayinfoextra
+-- [F-027] mod-gilnean: creaturedisplayinfoextra
 
 -- Unspecified versions of each
 DELETE FROM `creaturedisplayinfoextra` WHERE `id` IN (@GilneanMaleDisplayExtra, @GilneanFemaleDisplayExtra);

@@ -1,4 +1,4 @@
--- charsections: 1642 inserts, 0 updates, 0 deletes
+-- charsections: 160 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charsections` WHERE `race` = @KulTiran;

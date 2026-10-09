@@ -8,3 +8,4 @@
 
 ### Known Issues
 - Sound files may not be working while transformed
+- For some reason, Gilnean doesn't show up

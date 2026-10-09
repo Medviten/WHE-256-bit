@@ -116,7 +116,7 @@ SET @NagaFactionDescriptionjaJP     = '';
 SET @NagaFactionDescriptionptPT     = '';
 SET @NagaFactionDescriptionitIT     = '';
 
-SET @NagaAchievementenUS            = 'Realm First! Level 80 Zandalari Troll';
+SET @NagaAchievementenUS            = 'Realm First! Level 80 Naga';
 SET @NagaAchievementkoKR            = '';
 SET @NagaAchievementfrFR            = '';
 SET @NagaAchievementdeDE            = '';
@@ -129,7 +129,7 @@ SET @NagaAchievementjaJP            = '';
 SET @NagaAchievementptPT            = '';
 SET @NagaAchievementitIT            = '';
 
-SET @NagaAchievementDescriptionenUS = 'First Zandalari Troll on the realm to achieve level 80.';
+SET @NagaAchievementDescriptionenUS = 'First Naga on the realm to achieve level 80.';
 SET @NagaAchievementDescriptionkoKR = '';
 SET @NagaAchievementDescriptionfrFR = '';
 SET @NagaAchievementDescriptiondeDE = '';

@@ -370,10 +370,10 @@ SET @GoblinMaleDisplayExtra                          =    45566;
 SET @GoblinFemaleDisplayExtra                        =    45567;
 
 -- creature_template
-SET @WorgenWildMaleTemplate                          =    55274;
-SET @WorgenWildFemaleTemplate                        =    55275;
-SET @GilneanMaleTemplate                             =    55276;
-SET @GilneanFemaleTemplate                           =    55277;
+SET @WorgenWildMaleCreatureID                        =    55274;
+SET @WorgenWildFemaleCreatureID                      =    55275;
+SET @GilneanMaleCreatureID                           =    55276;
+SET @GilneanFemaleCreatureID                         =    55277;
 
 -- Exploration Sounds
 SET @HumanExplorationSound                           =     4140;
