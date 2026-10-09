@@ -3,13 +3,14 @@ SET @MagharOrc := @NextRace             := @NextRace +1; -- default: 14
 SET @MagharOrcMask                       = 1 << (@MagharOrc - 1);  -- race ID 14 → 8192
 SET @MagharOrcHelmetMask                 = 1 << @MagharOrc;  -- race ID 14 → 16384
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                           = @HordeMask    |  @MagharOrcMask;
-SET @BarrensBros                         = @HordeMask    & ~@UndercityMask;
+SET @BarrensBros                         = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                    = @AllianceMask |  @HordeMask;
 SET @BowHunters                          = @BowHunters   |  @MagharOrcMask;
 SET @MagharOrcLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @MagharOrcAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @MagharOrcKnowThyEnemy               = @KnowThyEnemyHorde;
 
 -- Miscellaneous
 SET @MagharOrcExplorationSound           = @OrcExplorationSound;
@@ -22,7 +23,7 @@ SET @MagharOrcFemaleFootprint            = @FootprintShoe;
 
 -- Strings
 SET @MagharOrcClientPrefix               = 'Or';
-SET @MagharOrcClientString               = 'MagharOrc';
+SET @MagharOrcClientString               = 'Maghar';
 
 -- Localization Strings
 SET @MagharOrcenUS                       = 'Mag\'har';

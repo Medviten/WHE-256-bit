@@ -3,12 +3,14 @@ SET @AlliancePandaren                          := @NextRace := @NextRace +1;    
 SET @AlliancePandarenMask                       = 1 << (@AlliancePandaren - 1); -- race ID 19 → 262144
 SET @AlliancePandarenHelmetMask                 = 1 << @AlliancePandaren;       -- race ID 19 → 524288
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                               = @AllianceMask    | @AlliancePandarenMask;
+SET @BarrensBros                                = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                           = @AllianceMask    | @HordeMask;
 SET @CrossbowHunters                            = @CrossbowHunters | @AlliancePandarenMask;
 SET @AlliancePandarenLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @AlliancePandarenAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @AlliancePandarenKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @AlliancePandarenExplorationSound           = @TaurenExplorationSound;
@@ -140,3 +142,121 @@ SET @AlliancePandarenAchievementDescriptionruRU = '';
 SET @AlliancePandarenAchievementDescriptionjaJP = '';
 SET @AlliancePandarenAchievementDescriptionptPT = '';
 SET @AlliancePandarenAchievementDescriptionitIT = '';
+
+
+-- Racial Mount
+SET @DragonTurtleBlueNameenUS                = 'Blue Dragon Turtle';
+SET @DragonTurtleBlueNamekoKR                = '';
+SET @DragonTurtleBlueNamefrFR                = '';
+SET @DragonTurtleBlueNamedeDE                = '';
+SET @DragonTurtleBlueNamezhCN                = '';
+SET @DragonTurtleBlueNamezhTW                = '';
+SET @DragonTurtleBlueNameesES                = '';
+SET @DragonTurtleBlueNameesMX                = '';
+SET @DragonTurtleBlueNameruRU                = '';
+SET @DragonTurtleBlueNamejaJP                = '';
+SET @DragonTurtleBlueNameptPT                = '';
+SET @DragonTurtleBlueNameitIT                = '';
+
+SET @DragonTurtleBlueSpellDescriptionenUS    = 'Summons and dismisses a rideable Blue Dragon Turtle.';
+SET @DragonTurtleBlueSpellDescriptionkoKR    = '';
+SET @DragonTurtleBlueSpellDescriptionfrFR    = '';
+SET @DragonTurtleBlueSpellDescriptiondeDE    = '';
+SET @DragonTurtleBlueSpellDescriptionzhCN    = '';
+SET @DragonTurtleBlueSpellDescriptionzhTW    = '';
+SET @DragonTurtleBlueSpellDescriptionesES    = '';
+SET @DragonTurtleBlueSpellDescriptionesMX    = '';
+SET @DragonTurtleBlueSpellDescriptionruRU    = '';
+SET @DragonTurtleBlueSpellDescriptionjaJP    = '';
+SET @DragonTurtleBlueSpellDescriptionptPT    = '';
+SET @DragonTurtleBlueSpellDescriptionitIT    = '';
+
+SET @DragonTurtleBlueItemNameenUS          = 'Reins of the Blue Dragon Turtle';
+SET @DragonTurtleBlueItemDescriptionenUS   = 'Teaches you how to summon this mount. Summons and dismisses a rideable Blue Dragon Turtle.';
+
+SET @DragonTurtlePurpleNameenUS              = 'Purple Dragon Turtle';
+SET @DragonTurtlePurpleNamekoKR              = '';
+SET @DragonTurtlePurpleNamefrFR              = '';
+SET @DragonTurtlePurpleNamedeDE              = '';
+SET @DragonTurtlePurpleNamezhCN              = '';
+SET @DragonTurtlePurpleNamezhTW              = '';
+SET @DragonTurtlePurpleNameesES              = '';
+SET @DragonTurtlePurpleNameesMX              = '';
+SET @DragonTurtlePurpleNameruRU              = '';
+SET @DragonTurtlePurpleNamejaJP              = '';
+SET @DragonTurtlePurpleNameptPT              = '';
+SET @DragonTurtlePurpleNameitIT              = '';
+
+SET @DragonTurtlePurpleSpellDescriptionenUS  = 'Summons and dismisses a rideable Purple Dragon Turtle.';
+SET @DragonTurtlePurpleSpellDescriptionkoKR  = '';
+SET @DragonTurtlePurpleSpellDescriptionfrFR  = '';
+SET @DragonTurtlePurpleSpellDescriptiondeDE  = '';
+SET @DragonTurtlePurpleSpellDescriptionzhCN  = '';
+SET @DragonTurtlePurpleSpellDescriptionzhTW  = '';
+SET @DragonTurtlePurpleSpellDescriptionesES  = '';
+SET @DragonTurtlePurpleSpellDescriptionesMX  = '';
+SET @DragonTurtlePurpleSpellDescriptionruRU  = '';
+SET @DragonTurtlePurpleSpellDescriptionjaJP  = '';
+SET @DragonTurtlePurpleSpellDescriptionptPT  = '';
+SET @DragonTurtlePurpleSpellDescriptionitIT  = '';
+
+SET @DragonTurtlePurpleItemNameenUS          = 'Reins of the Purple Dragon Turtle';
+SET @DragonTurtlePurpleItemDescriptionenUS   = 'Teaches you how to summon this mount. Summons and dismisses a rideable Purple Dragon Turtle.';
+
+SET @DragonTurtleGreenNameenUS              = 'Green Dragon Turtle';
+SET @DragonTurtleGreenNamekoKR              = '';
+SET @DragonTurtleGreenNamefrFR              = '';
+SET @DragonTurtleGreenNamedeDE              = '';
+SET @DragonTurtleGreenNamezhCN              = '';
+SET @DragonTurtleGreenNamezhTW              = '';
+SET @DragonTurtleGreenNameesES              = '';
+SET @DragonTurtleGreenNameesMX              = '';
+SET @DragonTurtleGreenNameruRU              = '';
+SET @DragonTurtleGreenNamejaJP              = '';
+SET @DragonTurtleGreenNameptPT              = '';
+SET @DragonTurtleGreenNameitIT              = '';
+
+SET @DragonTurtleGreenSpellDescriptionenUS  = 'Summons and dismisses a rideable Green Dragon Turtle.';
+SET @DragonTurtleGreenSpellDescriptionkoKR  = '';
+SET @DragonTurtleGreenSpellDescriptionfrFR  = '';
+SET @DragonTurtleGreenSpellDescriptiondeDE  = '';
+SET @DragonTurtleGreenSpellDescriptionzhCN  = '';
+SET @DragonTurtleGreenSpellDescriptionzhTW  = '';
+SET @DragonTurtleGreenSpellDescriptionesES  = '';
+SET @DragonTurtleGreenSpellDescriptionesMX  = '';
+SET @DragonTurtleGreenSpellDescriptionruRU  = '';
+SET @DragonTurtleGreenSpellDescriptionjaJP  = '';
+SET @DragonTurtleGreenSpellDescriptionptPT  = '';
+SET @DragonTurtleGreenSpellDescriptionitIT  = '';
+
+SET @DragonTurtleGreenItemNameenUS          = 'Reins of the Green Dragon Turtle';
+SET @DragonTurtleGreenItemDescriptionenUS   = 'Teaches you how to summon this mount. Summons and dismisses a rideable Green Dragon Turtle.';
+
+SET @DragonTurtleBlackNameenUS              = 'Black Dragon Turtle';
+SET @DragonTurtleBlackNamekoKR              = '';
+SET @DragonTurtleBlackNamefrFR              = '';
+SET @DragonTurtleBlackNamedeDE              = '';
+SET @DragonTurtleBlackNamezhCN              = '';
+SET @DragonTurtleBlackNamezhTW              = '';
+SET @DragonTurtleBlackNameesES              = '';
+SET @DragonTurtleBlackNameesMX              = '';
+SET @DragonTurtleBlackNameruRU              = '';
+SET @DragonTurtleBlackNamejaJP              = '';
+SET @DragonTurtleBlackNameptPT              = '';
+SET @DragonTurtleBlackNameitIT              = '';
+
+SET @DragonTurtleBlackSpellDescriptionenUS  = 'Summons and dismisses a rideable Black Dragon Turtle.';
+SET @DragonTurtleBlackSpellDescriptionkoKR  = '';
+SET @DragonTurtleBlackSpellDescriptionfrFR  = '';
+SET @DragonTurtleBlackSpellDescriptiondeDE  = '';
+SET @DragonTurtleBlackSpellDescriptionzhCN  = '';
+SET @DragonTurtleBlackSpellDescriptionzhTW  = '';
+SET @DragonTurtleBlackSpellDescriptionesES  = '';
+SET @DragonTurtleBlackSpellDescriptionesMX  = '';
+SET @DragonTurtleBlackSpellDescriptionruRU  = '';
+SET @DragonTurtleBlackSpellDescriptionjaJP  = '';
+SET @DragonTurtleBlackSpellDescriptionptPT  = '';
+SET @DragonTurtleBlackSpellDescriptionitIT  = '';
+
+SET @DragonTurtleBlackItemNameenUS          = 'Reins of the Black Dragon Turtle';
+SET @DragonTurtleBlackItemDescriptionenUS   = 'Teaches you how to summon this mount. Summons and dismisses a rideable Black Dragon Turtle.';

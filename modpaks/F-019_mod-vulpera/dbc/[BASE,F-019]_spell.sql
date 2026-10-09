@@ -143,18 +143,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconVulperaMount, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Caravan Hyena with canopy', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@CaravanHyena1NameenUS, -- Name_Lang_enUS
+	@CaravanHyena1NamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@CaravanHyena1NamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@CaravanHyena1NamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@CaravanHyena1NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@CaravanHyena1NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@CaravanHyena1NameesES, -- Name_Lang_zhCN \(actually esES\)
+	@CaravanHyena1NameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@CaravanHyena1NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@CaravanHyena1NamejaJP, -- Name_Lang_esES
+	@CaravanHyena1NameptPT, -- Name_Lang_esMX
+	@CaravanHyena1NameitIT, -- Name_Lang_ruRU
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -177,18 +177,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Caravan Hyena with a canopy.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@CaravanHyena1SpellDescriptionenUS, -- Description_Lang_enUS
+	@CaravanHyena1SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@CaravanHyena1SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@CaravanHyena1SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@CaravanHyena1SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@CaravanHyena1SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@CaravanHyena1SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@CaravanHyena1SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@CaravanHyena1SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@CaravanHyena1SpellDescriptionjaJP, -- Description_Lang_esES
+	@CaravanHyena1SpellDescriptionptPT, -- Description_Lang_esMX
+	@CaravanHyena1SpellDescriptionitIT, -- Description_Lang_ruRU
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
@@ -379,18 +379,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconVulperaMount, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Caravan Hyena without canopy', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@CaravanHyena2NameenUS, -- Name_Lang_enUS
+	@CaravanHyena2NamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@CaravanHyena2NamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@CaravanHyena2NamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@CaravanHyena2NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@CaravanHyena2NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@CaravanHyena2NameesES, -- Name_Lang_zhCN \(actually esES\)
+	@CaravanHyena2NameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@CaravanHyena2NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@CaravanHyena2NamejaJP, -- Name_Lang_esES
+	@CaravanHyena2NameptPT, -- Name_Lang_esMX
+	@CaravanHyena2NameitIT, -- Name_Lang_ruRU
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -413,18 +413,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Caravan Hyena without a canopy.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@CaravanHyena2SpellDescriptionenUS, -- Description_Lang_enUS
+	@CaravanHyena2SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@CaravanHyena2SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@CaravanHyena2SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@CaravanHyena2SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@CaravanHyena2SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@CaravanHyena2SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@CaravanHyena2SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@CaravanHyena2SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@CaravanHyena2SpellDescriptionjaJP, -- Description_Lang_esES
+	@CaravanHyena2SpellDescriptionptPT, -- Description_Lang_esMX
+	@CaravanHyena2SpellDescriptionitIT, -- Description_Lang_ruRU
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT

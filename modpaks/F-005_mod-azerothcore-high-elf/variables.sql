@@ -3,12 +3,14 @@ SET @HighElf                          := @NextRace := @NextRace +1; -- default: 
 SET @HighElfMask                       = 1 << (@HighElf - 1);       -- race ID 13 → 4096
 SET @HighElfHelmetMask                 = 1 << @HighElf;             -- race ID 13 → 8192
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                      = @AllianceMask | @HighElfMask;
+SET @BarrensBros                       = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                  = @AllianceMask | @HordeMask;
 SET @BowHunters                        = @BowHunters   | @HighElf;
 SET @HighElfLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @HighElfAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HighElfKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @HighElfExplorationSound           = @HumanExplorationSound;

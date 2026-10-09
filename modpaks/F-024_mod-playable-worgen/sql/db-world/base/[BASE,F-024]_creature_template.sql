@@ -1,5 +1,10 @@
 /* Add racial mount NPCs */
-DELETE FROM `creature_template` WHERE `entry` IN (@MountainHorseCreatureID, @SwiftMountainHorseCreatureID);
+DELETE FROM `creature_template` WHERE `entry` IN (
+    @WorgenWildMaleCreatureID, @WorgenWildFemaleCreatureID,
+    @MountainHorseCreatureID, @SwiftMountainHorseCreatureID
+);
 INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `CreatureImmunitiesId`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
-(@MountainHorseCreatureID,      0, 0, 0, 0, 0, 'Mountain Horse',       NULL, NULL, 0, 20, 20, 0, 35,  0,      1, 1.38571, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0,        2048, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 140, 1, 0, 0, '', 0),
-(@SwiftMountainHorseCreatureID, 0, 0, 0, 0, 0, 'Swift Mountain Horse', NULL, NULL, 0, 40, 40, 0, 35,  0,      1, 1.38571, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0,        2048, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 140, 1, 0, 0, '', 0);
+(@WorgenWildMaleCreatureID,     0, 0, 0, 0, 0, 'Running Wild Male',           '', NULL, 0,  1,  1, 0, 35,  0,    1.2, 1.14286, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0,        2048, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 0,   1, 0, 0, '', 0),
+(@WorgenWildFemaleCreatureID,   0, 0, 0, 0, 0, 'Running Wild Female',         '', NULL, 0,  1,  1, 0, 35,  0,    1.2, 1.14286, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0,        2048, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 0,   1, 0, 0, '', 0),
+(@MountainHorseCreatureID,      0, 0, 0, 0, 0, @MountainHorseNameenUS,      NULL, NULL, 0, 20, 20, 0, 35,  0,      1, 1.38571, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0,        2048, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 140, 1, 0, 0, '', 0),
+(@SwiftMountainHorseCreatureID, 0, 0, 0, 0, 0, @SwiftMountainHorseNameenUS, NULL, NULL, 0, 40, 40, 0, 35,  0,      1, 1.38571, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0,        2048, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 140, 1, 0, 0, '', 0);

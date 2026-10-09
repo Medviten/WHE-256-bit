@@ -143,18 +143,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconDragonTurtleBlue, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Blue Dragon Turtle', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@DragonTurtleBlueNameenUS, -- Name_Lang_enUS
+	@DragonTurtleBlueNamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@DragonTurtleBlueNamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@DragonTurtleBlueNamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@DragonTurtleBlueNamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@DragonTurtleBlueNamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@DragonTurtleBlueNameesES, -- Name_Lang_zhCN \(actually esES\)
+	@DragonTurtleBlueNameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@DragonTurtleBlueNameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@DragonTurtleBlueNamejaJP, -- Name_Lang_esES
+	@DragonTurtleBlueNameptPT, -- Name_Lang_esMX
+	@DragonTurtleBlueNameitIT, -- Name_Lang_ruRU
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -177,18 +177,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Blue Dragon Turtle.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@DragonTurtleBlueSpellDescriptionenUS, -- Description_Lang_enUS
+	@DragonTurtleBlueSpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@DragonTurtleBlueSpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@DragonTurtleBlueSpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@DragonTurtleBlueSpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@DragonTurtleBlueSpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@DragonTurtleBlueSpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@DragonTurtleBlueSpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@DragonTurtleBlueSpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@DragonTurtleBlueSpellDescriptionjaJP, -- Description_Lang_esES
+	@DragonTurtleBlueSpellDescriptionptPT, -- Description_Lang_esMX
+	@DragonTurtleBlueSpellDescriptionitIT, -- Description_Lang_ruRU
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
@@ -379,18 +379,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconDragonTurtlePurple, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Purple Dragon Turtle', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@DragonTurtlePurpleNameenUS, -- Name_Lang_enUS
+	@DragonTurtlePurpleNamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@DragonTurtlePurpleNamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@DragonTurtlePurpleNamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@DragonTurtlePurpleNamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@DragonTurtlePurpleNamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@DragonTurtlePurpleNameesES, -- Name_Lang_zhCN \(actually esES\)
+	@DragonTurtlePurpleNameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@DragonTurtlePurpleNameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@DragonTurtlePurpleNamejaJP, -- Name_Lang_esES
+	@DragonTurtlePurpleNameptPT, -- Name_Lang_esMX
+	@DragonTurtlePurpleNameitIT, -- Name_Lang_ruRU
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -413,18 +413,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Purple Dragon Turtle.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@DragonTurtlePurpleSpellDescriptionenUS, -- Description_Lang_enUS
+	@DragonTurtlePurpleSpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@DragonTurtlePurpleSpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@DragonTurtlePurpleSpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@DragonTurtlePurpleSpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@DragonTurtlePurpleSpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@DragonTurtlePurpleSpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@DragonTurtlePurpleSpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@DragonTurtlePurpleSpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@DragonTurtlePurpleSpellDescriptionjaJP, -- Description_Lang_esES
+	@DragonTurtlePurpleSpellDescriptionptPT, -- Description_Lang_esMX
+	@DragonTurtlePurpleSpellDescriptionitIT, -- Description_Lang_ruRU
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
@@ -615,18 +615,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconDragonTurtleGreen, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Green Dragon Turtle', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@DragonTurtleGreenNameenUS, -- Name_Lang_enUS
+	@DragonTurtleGreenNamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@DragonTurtleGreenNamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@DragonTurtleGreenNamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@DragonTurtleGreenNamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@DragonTurtleGreenNamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@DragonTurtleGreenNameesES, -- Name_Lang_zhCN \(actually esES\)
+	@DragonTurtleGreenNameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@DragonTurtleGreenNameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@DragonTurtleGreenNamejaJP, -- Name_Lang_esES
+	@DragonTurtleGreenNameptPT, -- Name_Lang_esMX
+	@DragonTurtleGreenNameitIT, -- Name_Lang_ruRU
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -649,18 +649,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Green Dragon Turtle.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@DragonTurtleGreenSpellDescriptionenUS, -- Description_Lang_enUS
+	@DragonTurtleGreenSpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@DragonTurtleGreenSpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@DragonTurtleGreenSpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@DragonTurtleGreenSpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@DragonTurtleGreenSpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@DragonTurtleGreenSpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@DragonTurtleGreenSpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@DragonTurtleGreenSpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@DragonTurtleGreenSpellDescriptionjaJP, -- Description_Lang_esES
+	@DragonTurtleGreenSpellDescriptionptPT, -- Description_Lang_esMX
+	@DragonTurtleGreenSpellDescriptionitIT, -- Description_Lang_ruRU
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
@@ -851,18 +851,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconDragonTurtleBlack, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Black Dragon Turtle', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@DragonTurtleBlackNameenUS, -- Name_Lang_enUS
+	@DragonTurtleBlackNamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@DragonTurtleBlackNamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@DragonTurtleBlackNamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@DragonTurtleBlackNamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@DragonTurtleBlackNamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@DragonTurtleBlackNameesES, -- Name_Lang_zhCN \(actually esES\)
+	@DragonTurtleBlackNameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@DragonTurtleBlackNameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@DragonTurtleBlackNamejaJP, -- Name_Lang_esES
+	@DragonTurtleBlackNameptPT, -- Name_Lang_esMX
+	@DragonTurtleBlackNameitIT, -- Name_Lang_ruRU
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -885,18 +885,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Black Dragon Turtle.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@DragonTurtleBlackSpellDescriptionenUS, -- Description_Lang_enUS
+	@DragonTurtleBlackSpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@DragonTurtleBlackSpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@DragonTurtleBlackSpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@DragonTurtleBlackSpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@DragonTurtleBlackSpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@DragonTurtleBlackSpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@DragonTurtleBlackSpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@DragonTurtleBlackSpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@DragonTurtleBlackSpellDescriptionjaJP, -- Description_Lang_esES
+	@DragonTurtleBlackSpellDescriptionptPT, -- Description_Lang_esMX
+	@DragonTurtleBlackSpellDescriptionitIT, -- Description_Lang_ruRU
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT

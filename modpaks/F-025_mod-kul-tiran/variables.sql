@@ -3,12 +3,14 @@ SET @KulTiran                          := @NextRace := @NextRace +1; -- default:
 SET @KulTiranMask                       = 1 << (@KulTiran - 1);      -- race ID 21 → 1048576
 SET @KulTiranHelmetMask                 = 1 << @KulTiran;            -- race ID 21 → 2097152
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                       = @AllianceMask    | @KulTiranMask;
+SET @BarrensBros                        = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                   = @AllianceMask    | @HordeMask;
 SET @CrossbowHunters                    = @CrossbowHunters | @KulTiranMask;
 SET @KulTiranLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @KulTiranAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @KulTiranKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @KulTiranExplorationSound           = @HumanExplorationSound;

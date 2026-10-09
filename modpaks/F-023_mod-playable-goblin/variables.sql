@@ -1,24 +1,25 @@
 -- Race ID
-SET @Goblin = 9; -- default: 9 (doesn't autoincrement – to avoid conflicts)
-SET @GoblinMask = 1 << (@Goblin - 1); -- default: 256
-SET @GoblinHelmetMask = 1 << @Goblin; -- default: 512
+SET @Goblin                           = 9;                  -- default: 9 (doesn't autoincrement – to avoid conflicts)
+SET @GoblinMask                       = 1 << (@Goblin - 1); -- default: 256
+SET @GoblinHelmetMask                 = 1 << @Goblin;       -- default: 512
 
--- Important variable update (Alliance vs. Horde)
-SET @HordeMask        = @HordeMask    | @GoblinMask;
-SET @BarrensBros      = @HordeMask    & ~@UndercityMask;
-SET @PlayableRaceMask = @AllianceMask | @HordeMask;
-SET @GunHunters       = @GunHunters   | @GoblinMask;
-SET @GoblinLanguage   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
-SET @GoblinAlliance   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                        = @HordeMask    | @GoblinMask;
+SET @BarrensBros                      = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @PlayableRaceMask                 = @AllianceMask | @HordeMask;
+SET @GunHunters                       = @GunHunters   | @GoblinMask;
+SET @GoblinLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @GoblinAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @GoblinKnowThyEnemy               = @KnowThyEnemyHorde;
 
 -- Miscellaneous
-SET @GoblinExplorationSound = @OrcExplorationSound;
-SET @GoblinCinematicSequence = @OrcCinematicSequence;
+SET @GoblinExplorationSound           = @OrcExplorationSound;
+SET @GoblinCinematicSequence          = @OrcCinematicSequence;
 SET @GoblinBlood                      = 1;
 SET @GoblinMaleModelPath              = 'Character\\GoblinPC\\Male\\GoblinPCMale.mdx';
 SET @GoblinFemaleModelPath            = 'Character\\GoblinPC\\Female\\GoblinPCFemale.mdx';
-SET @GoblinMaleFootprint              = 1;
-SET @GoblinFemaleFootprint            = 1;
+SET @GoblinMaleFootprint              = @FootprintShoe;
+SET @GoblinFemaleFootprint            = @FootprintShoe;
 
 -- Strings
 SET @GoblinClientPrefix               = 'Go';
@@ -118,11 +119,7 @@ SET @GoblinFactionDescriptionitIT     = '';
 
 SET @GoblinAchievementenUS            = 'Realm First! Level 80 Goblin';
 SET @GoblinAchievementkoKR            = '서버 최초 80 레벨 고블린';
-<<<<<<< HEAD
-SET @GoblinAchievementfrFR            =  'Gobelin « Prem\'s » au niveau 80 sur le royaume';
-=======
 SET @GoblinAchievementfrFR            = 'Gobelin « Prem\'s » au niveau 80 sur le royaume';
->>>>>>> b593baba9489fbd4379a0d9e1858f4924768ed15
 SET @GoblinAchievementdeDE            = 'Erster Stufe-80-Goblin des Realms!';
 SET @GoblinAchievementzhCN            = '服务器第一！80级地精';
 SET @GoblinAchievementzhTW            = '伺服器首位!80級哥布林';

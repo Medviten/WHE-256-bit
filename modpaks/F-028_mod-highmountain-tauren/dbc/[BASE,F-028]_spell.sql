@@ -141,18 +141,18 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	@IconHMMooseMount, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Highmountain Thunderhoof', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	@HighmountainThunderhoofNameenUS, -- Name_Lang_enUS
+	@HighmountainThunderhoofNamekoKR, -- Name_Lang_enGB (actually koKR)
+	@HighmountainThunderhoofNamefrFR, -- Name_Lang_koKR (actually frFR)
+	@HighmountainThunderhoofNamedeDE, -- Name_Lang_frFR (actually deDE)
+	@HighmountainThunderhoofNamezhCN, -- Name_Lang_deDE (actually zhCN)
+	@HighmountainThunderhoofNamezhTW, -- Name_Lang_enCN (actually zhTW)
+	@HighmountainThunderhoofNameesES, -- Name_Lang_zhCN (actually esES)
+	@HighmountainThunderhoofNameesMX, -- Name_Lang_enTW (actually esMX)
+	@HighmountainThunderhoofNameruRU, -- Name_Lang_zhTW (actually ruRU)
+	@HighmountainThunderhoofNamejaJP, -- Name_Lang_esES (actually ptPT)
+	@HighmountainThunderhoofNameptPT, -- Name_Lang_esMX (actually ptBR)
+	@HighmountainThunderhoofNameitIT, -- Name_Lang_ruRU (actually itIT)
 	'', -- Name_Lang_ptPT
 	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
@@ -167,26 +167,26 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_zhCN (actually esES)
 	'', -- NameSubtext_Lang_enTW (actually esMX)
 	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_esES (actually ptPT)
+	'', -- NameSubtext_Lang_esMX (actually ptBR)
+	'', -- NameSubtext_Lang_ruRU (actually itIT)
 	'', -- NameSubtext_Lang_ptPT
 	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses your Highmountain Thunderhoof.\n\n"A gift from the tauren who trained this sure-footed highland moose to safely traverse the paths and peaks of Highmountain."', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	@HighmountainThunderhoofSpellDescriptionenUS, -- Description_Lang_enUS
+	@HighmountainThunderhoofSpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@HighmountainThunderhoofSpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@HighmountainThunderhoofSpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@HighmountainThunderhoofSpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@HighmountainThunderhoofSpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@HighmountainThunderhoofSpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@HighmountainThunderhoofSpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@HighmountainThunderhoofSpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@HighmountainThunderhoofSpellDescriptionjaJP, -- Description_Lang_esES (actually ptPT)
+	@HighmountainThunderhoofSpellDescriptionptPT, -- Description_Lang_esMX (actually ptBR)
+	@HighmountainThunderhoofSpellDescriptionitIT, -- Description_Lang_ruRU (actually itIT)
 	'', -- Description_Lang_ptPT
 	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
@@ -201,9 +201,9 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN (actually esES)
 	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW (actually esMX)
 	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_esES (actually ptPT)
+	'', -- AuraDescription_Lang_esMX (actually ptBR)
+	'', -- AuraDescription_Lang_ruRU (actually itIT)
 	'', -- AuraDescription_Lang_ptPT
 	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT

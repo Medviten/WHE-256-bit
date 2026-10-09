@@ -3,12 +3,14 @@ SET @Gilnean                           := @NextRace := @NextRace +1; -- default:
 SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- default: 4194304
 SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- default: 8388608
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                      = @AllianceMask     | @GilneanMask;
+SET @BarrensBros                       = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                  = @PlayableRaceMask | @GilneanMask;
 SET @GunHunters                        = @GunHunters       | @GilneanMask;
 SET @GilneanLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @GilneanAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @GilneanKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @GilneanExplorationSound           = @HumanExplorationSound;

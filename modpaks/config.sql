@@ -270,8 +270,8 @@ SET @PandarenMaleModel                               =    40006;
 SET @PandarenFemaleModel                             =    40007;
 SET @BrokenMaleModel                                 =     2367;
 SET @BrokenFemaleModel                               =     2368;
-SET @KulTiranMaleModel                               =    40010; -- 40008;
-SET @KulTiranFemaleModel                             =    40011; -- 40009;
+SET @KulTiranMaleModel                               =    40008;
+SET @KulTiranFemaleModel                             =    40009;
 SET @GilneanMaleModel                                =    40010; -- human copy
 SET @GilneanFemaleModel                              =    40011; -- human copy
 SET @HighmountainTaurenMaleModel                     =    40012;
@@ -284,8 +284,8 @@ SET @VoidElfMaleModel                                =    40017;
 SET @VoidElfFemaleModel                              =    40018;
 SET @LightforgedDraeneiMaleModel                     =    40019;
 SET @LightforgedDraeneiFemaleModel                   =    40020;
-SET @GoblinMaleModel                                 =    40021; -- 831
-SET @GoblinFemaleModel                               =    40022; -- 832
+SET @GoblinMaleModel                                 =    40021; -- NPC: 831
+SET @GoblinFemaleModel                               =    40022; -- NPC: 832
 
 -- Display IDs
 SET @HobgoblinDisplay                                =    32385;
@@ -313,6 +313,8 @@ SET @HordePandarenMaleDisplay                        =    40008;
 SET @HordePandarenFemaleDisplay                      =    40009;
 SET @BrokenMaleDisplay                               =    17576; -- 21105; -- default 17576 (but no extended display)
 SET @BrokenFemaleDisplay                             =    17577; -- 40010; -- default 17577 (but no extended display)
+SET @KulTiranMaleDisplay                             =    40011;
+SET @KulTiranFemaleDisplay                           =    40012;
 SET @NagaMaleDisplay                                 =    40013;
 SET @NagaFemaleDisplay                               =    40014;
 SET @TaunkaMaleDisplay                               =    40015;
@@ -323,10 +325,8 @@ SET @LightforgedDraeneiMaleDisplay                   =    40015;
 SET @LightforgedDraeneiFemaleDisplay                 =    40016;
 SET @HighmountainTaurenMaleDisplay                   =    40017;
 SET @HighmountainTaurenFemaleDisplay                 =    40018;
-SET @KulTiranMaleDisplay                             =    40019; -- 40011;
-SET @KulTiranFemaleDisplay                           =    40020; -- 40012;
-SET @GoblinMaleDisplay                               =    40021; -- 6894
-SET @GoblinFemaleDisplay                             =    40022; -- 6895
+SET @GoblinMaleDisplay                               =    40021; -- NPC: 6894
+SET @GoblinFemaleDisplay                             =    40022; -- NPC: 6895
 SET @GilneanMaleDisplay                              =    40023;
 SET @GilneanFemaleDisplay                            =    40024;
 
@@ -1231,6 +1231,19 @@ SET @NagaAchievement                                 =    1443;
 SET @TaunkaAchievement                               =    1444;
 SET @VoidElfAchievement                              =    1445;
 SET @LightforgedDraeneiAchievement                   =    1446;
+
+SET @Level80AchievementDescriptionenUS               = 'Level to 80';
+SET @Level80AchievementDescriptionkoKR               = '80 레벨';
+SET @Level80AchievementDescriptionfrFR               = 'Atteindre le niveau 80';
+SET @Level80AchievementDescriptiondeDE               = 'Erreicht Stufe 80';
+SET @Level80AchievementDescriptionzhCN               = '升到80级';
+SET @Level80AchievementDescriptionzhTW               = '升至80級';
+SET @Level80AchievementDescriptionesES               = 'Alcanza el nivel 80';
+SET @Level80AchievementDescriptionesMX               = 'Alcanza el nivel 80';
+SET @Level80AchievementDescriptionruRU               = 'Достигнуть 80-го уровня';
+SET @Level80AchievementDescriptionptPT               = '';
+SET @Level80AchievementDescriptionptBR               = '';
+SET @Level80AchievementDescriptionitIT               = '';
 
 -- Achievement Criteria
 SET @GoblinCriteria1                                 =    13471; -- Achievement 1005: Know Thy Enemy

@@ -3,12 +3,14 @@ SET @DarkIronDwarf                          := @NextRace := @NextRace +1;    -- 
 SET @DarkIronDwarfMask                       = 1 << (@DarkIronDwarf - 1); -- race ID 16 → 32768
 SET @DarkIronDwarfHelmetMask                 = 1 << @DarkIronDwarf; -- race ID 16 → 65536
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                            = @AllianceMask | @DarkIronDwarfMask;
+SET @BarrensBros                             = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                        = @AllianceMask | @HordeMask;
 SET @GunHunters                              = @GunHunters   | @DarkIronDwarfMask;
 SET @DarkIronDwarfLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @DarkIronDwarfAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DarkIronDwarfKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @DarkIronDwarfExplorationSound           = @DwarfExplorationSound;

@@ -3,13 +3,14 @@ SET @ZandalariTroll                          := @NextRace := @NextRace +1;  -- d
 SET @ZandalariTrollMask                       = 1 << (@ZandalariTroll - 1); -- race ID 17 → 65536
 SET @ZandalariTrollHelmetMask                 = 1 << @ZandalariTroll;       -- race ID 17 → 131072
 
--- Important variable update
-SET @HordeMask                                = @HordeMask | @ZandalariTrollMask;
-SET @BarrensBros                              = @HordeMask & ~@UndercityMask;
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                                = @HordeMask    | @ZandalariTrollMask;
+SET @BarrensBros                              = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask                         = @AllianceMask | @HordeMask;
 SET @BowHunters                               = @BowHunters   | @ZandalariTrollMask;
 SET @ZandalariTrollLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @ZandalariTrollAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @ZandalariTrollKnowThyEnemy               = @KnowThyEnemyHorde;
 
 -- Miscellaneous
 SET @ZandalariTrollExplorationSound           = @TrollExplorationSound;

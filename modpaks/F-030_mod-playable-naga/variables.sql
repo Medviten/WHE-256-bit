@@ -3,13 +3,14 @@ SET @Naga                          := @NextRace := @NextRace +1;
 SET @NagaMask                       = 1 << (@Naga - 1);
 SET @NagaHelmetMask                 = 1 << @Naga;
 
--- Important variable update
+-- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                      = @HordeMask | @NagaMask;
-SET @BarrensBros                    = @HordeMask & ~@UndercityMask;
+SET @BarrensBros                    = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @PlayableRaceMask               = @AllianceMask | @HordeMask;
 SET @BowHunters                     = @BowHunters   | @NagaMask;
 SET @NagaLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @NagaAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @NagaKnowThyEnemy               = @KnowThyEnemyHorde;
 
 -- Miscellaneous
 SET @NagaExplorationSound           = @OrcExplorationSound;
