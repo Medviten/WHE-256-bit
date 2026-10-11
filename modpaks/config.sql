@@ -2442,14 +2442,21 @@ SET @SPELL_ATTR0_ALLOW_WHILE_SITTING                           =  134217728;
 SET @SPELL_ATTR0_NOT_IN_COMBAT_ONLY_PEACEFUL                   =  268435456;
 SET @SPELL_ATTR0_NO_IMMUNITIES                                 =  536870912;
 
+SET @SPELL_ATTR2_NO_SCHOOL_IMMUNITIES                          =   67108864;
+
+SET @SPELL_ATTR1_NO_REDIRECTION                                =          8;
 SET @SPELL_ATTR1_ALLOW_WHILE_STEALTHED                         =         32;
+SET @SPELL_ATTR1_NO_REFLECTION                                 =        128;
 SET @SPELL_ATTR1_NO_THREAT                                     =       1024;
 SET @SPELL_ATTR1_NO_AURA_ICON                                  =  268435456;
 SET @SPELL_ATTR1_CAST_WHEN_LEARNED                             = 2147483648;
-
 SET @SPELL_ATTR3_ALLOW_AURA_WHILE_DEAD                         =    1048576;
 SET @SPELL_ATTR3_IGNORE_CASTER_AND_TARGET_RESTRICTIONS         =  268435456;
 SET @SPELL_ATTR3_IGNORE_CASTER_MODIFIERS                       =  536870912;
+
+SET @SPELL_ATTR3_SUPPRESS_CASTER_PROCS                         =      65536;
+SET @SPELL_ATTR3_DO_NOT_DISPLAY_RANGE                          = 1073741824;
+
 
 SET @SPELL_ATTR4_FORCE_DISPLAY_CASTBAR                         =  134217728;
 
