@@ -174,4 +174,4 @@ SET @HighmountainThunderhoofSpellDescriptionptPT  = '';
 SET @HighmountainThunderhoofSpellDescriptionitIT  = '';
 
 SET @HighmountainThunderhoofItemNameenUS          = @HighmountainThunderhoofNameenUS;
-SET @HighmountainThunderhoofItemDescriptionenUS   = 'Summons and dismisses your Highmountain Thunderhoof.\n\n"A gift from the tauren who trained this sure-footed highland moose to safely traverse the paths and peaks of Highmountain."';
+SET @HighmountainThunderhoofItemDescriptionenUS   = 'Teaches you how to summon this mount.\n\nSummons and dismisses your Highmountain Thunderhoof.\n\n"A gift from the tauren who trained this sure-footed highland moose to safely traverse the paths and peaks of Highmountain."';

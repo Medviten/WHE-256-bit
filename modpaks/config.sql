@@ -2426,3 +2426,6 @@ SET @RacialPassiveNameruRU                           = 'Расовая, пасс
 SET @RacialPassiveNamejaJP                           =  '';
 SET @RacialPassiveNameptPT                           =  '';
 SET @RacialPassiveNameitIT                           =  '';
+
+-- Spell Attributes
+SET @SPELL_ATTR0_OUTDOORS_ONLY                       = 32768;
