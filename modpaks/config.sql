@@ -1006,6 +1006,31 @@ SET @CaravanHyena2Model                              =     @NextModelID := @Next
 SET @DragonTurtleModel                               =     @NextModelID := @NextModelID +1; -- 3630; -- Vacant slot
 SET @HighmountainThunderhoofModel                    =     @NextModelID := @NextModelID +1; -- 3631; -- Vacant slot
 SET @LightforgedFelcrusherModel                      =     @NextModelID := @NextModelID +1; -- 3632; -- Vacant slot
+SET @NightborneManasaberModel                        =     @NextModelID := @NextModelID +1;
+SET @StarcursedVoidstriderModel                      =     @NextModelID := @NextModelID +1;
+SET @MechagonMechanostriderModel                     =     @NextModelID := @NextModelID +1;
+SET @MagharDirewolfModel                             =     @NextModelID := @NextModelID +1;
+SET @KulTiranChargerModel                            =     @NextModelID := @NextModelID +1;
+SET @DarkIronCoreHoundModel                          =     @NextModelID := @NextModelID +1;
+SET @ZandalariDirehornModel                          =     @NextModelID := @NextModelID +1;
+SET @CrimsonVorquinModel                             =     @NextModelID := @NextModelID +1;
+SET @SapphireVorquinModel                            =     @NextModelID := @NextModelID +1;
+SET @ObsidianVorquinModel                            =     @NextModelID := @NextModelID +1;
+SET @BronzeVorquinModel                              =     @NextModelID := @NextModelID +1;
+SET @GuardianVorquinModel                            =     @NextModelID := @NextModelID +1;
+SET @ArmoredVorquinLeystriderModel                   =     @NextModelID := @NextModelID +1;
+SET @MajesticArmoredVorquinModel                     =     @NextModelID := @NextModelID +1;
+SET @SlatestoneRamolithModel                         =     @NextModelID := @NextModelID +1;
+SET @RootstalkerGrimlynxModel                        =     @NextModelID := @NextModelID +1;
+SET @DuskGrimlynxModel                               =     @NextModelID := @NextModelID +1;
+SET @IvoryGrimlynxModel                              =     @NextModelID := @NextModelID +1;
+SET @FierceGrimlynxModel                             =     @NextModelID := @NextModelID +1;
+SET @UmberGalestriderModel                           =     @NextModelID := @NextModelID +1;
+SET @StormyGalestriderModel                          =     @NextModelID := @NextModelID +1;
+SET @EmpyreanGalestriderModel                        =     @NextModelID := @NextModelID +1;
+SET @SwiftUmberGalestriderModel                      =     @NextModelID := @NextModelID +1;
+SET @SwiftStormyGalestriderModel                     =     @NextModelID := @NextModelID +1;
+SET @SwiftEmpyreanGalestriderModel                   =     @NextModelID := @NextModelID +1;
 
 -- Mount Display IDs
 SET @GoblinTrikeDisplay                              =    35249; -- Cataclysm ID?
@@ -1023,6 +1048,31 @@ SET @LightforgedFelcrusherPurpleDisplay              =    @NextModelID := @NextM
 SET @LightforgedFelcrusherBlueDisplay                =    @NextModelID := @NextModelID +1; -- 94234; -- vacant slot
 SET @LightforgedFelcrusherDarkDisplay                =    @NextModelID := @NextModelID +1; -- 94235; -- vacant slot
 SET @LightforgedFelcrusherHolyDisplay                =    @NextModelID := @NextModelID +1; -- 94236; -- vacant slot
+SET @NightborneManasaberDisplay                      =    @NextModelID := @NextModelID +1;
+SET @StarcursedVoidstriderDisplay                    =    @NextModelID := @NextModelID +1;
+SET @MechagonMechanostriderDisplay                   =    @NextModelID := @NextModelID +1;
+SET @MagharDirewolfDisplay                           =    @NextModelID := @NextModelID +1;
+SET @KulTiranChargerDisplay                          =    @NextModelID := @NextModelID +1;
+SET @DarkIronCoreHoundDisplay                        =    @NextModelID := @NextModelID +1;
+SET @ZandalariDirehornDisplay                        =    @NextModelID := @NextModelID +1;
+SET @CrimsonVorquinDisplay                           =    @NextModelID := @NextModelID +1;
+SET @SapphireVorquinDisplay                          =    @NextModelID := @NextModelID +1;
+SET @ObsidianVorquinDisplay                          =    @NextModelID := @NextModelID +1;
+SET @BronzeVorquinDisplay                            =    @NextModelID := @NextModelID +1;
+SET @GuardianVorquinDisplay                          =    @NextModelID := @NextModelID +1;
+SET @ArmoredVorquinLeystriderDisplay                 =    @NextModelID := @NextModelID +1;
+SET @MajesticArmoredVorquinDisplay                   =    @NextModelID := @NextModelID +1;
+SET @SlatestoneRamolithDisplay                       =    @NextModelID := @NextModelID +1;
+SET @RootstalkerGrimlynxDisplay                      =    @NextModelID := @NextModelID +1;
+SET @DuskGrimlynxDisplay                             =    @NextModelID := @NextModelID +1;
+SET @IvoryGrimlynxDisplay                            =    @NextModelID := @NextModelID +1;
+SET @FierceGrimlynxDisplay                           =    @NextModelID := @NextModelID +1;
+SET @UmberGalestriderDisplay                         =    @NextModelID := @NextModelID +1;
+SET @StormyGalestriderDisplay                        =    @NextModelID := @NextModelID +1;
+SET @EmpyreanGalestriderDisplay                      =    @NextModelID := @NextModelID +1;
+SET @SwiftUmberGalestriderDisplay                    =    @NextModelID := @NextModelID +1;
+SET @SwiftStormyGalestriderDisplay                   =    @NextModelID := @NextModelID +1;
+SET @SwiftEmpyreanGalestriderDisplay                 =    @NextModelID := @NextModelID +1;
 
 -- Creature IDs
 SET @GobberCreatureID                                =    36613; -- Cataclysm ID
@@ -1041,6 +1091,31 @@ SET @LightforgedFelcrusherPurpleCreatureID           =   @NextCreatureID := @Nex
 SET @LightforgedFelcrusherBlueCreatureID             =   @NextCreatureID := @NextCreatureID +1; -- 182789; -- vacant slot
 SET @LightforgedFelcrusherDarkCreatureID             =   @NextCreatureID := @NextCreatureID +1; -- 182790; -- vacant slot
 SET @LightforgedFelcrusherHolyCreatureID             =   @NextCreatureID := @NextCreatureID +1; -- 182791; -- vacant slot
+SET @NightborneManasaberCreatureID                   =   @NextCreatureID := @NextCreatureID +1;
+SET @StarcursedVoidstriderCreatureID                 =   @NextCreatureID := @NextCreatureID +1;
+SET @MechagonMechanostriderCreatureID                =   @NextCreatureID := @NextCreatureID +1;
+SET @MagharDirewolfCreatureID                        =   @NextCreatureID := @NextCreatureID +1;
+SET @KulTiranChargerCreatureID                       =   @NextCreatureID := @NextCreatureID +1;
+SET @DarkIronCoreHoundCreatureID                     =   @NextCreatureID := @NextCreatureID +1;
+SET @ZandalariDirehornCreatureID                     =   @NextCreatureID := @NextCreatureID +1;
+SET @CrimsonVorquinCreatureID                        =   @NextCreatureID := @NextCreatureID +1;
+SET @SapphireVorquinCreatureID                       =   @NextCreatureID := @NextCreatureID +1;
+SET @ObsidianVorquinCreatureID                       =   @NextCreatureID := @NextCreatureID +1;
+SET @BronzeVorquinCreatureID                         =   @NextCreatureID := @NextCreatureID +1;
+SET @GuardianVorquinCreatureID                       =   @NextCreatureID := @NextCreatureID +1;
+SET @ArmoredVorquinLeystriderCreatureID              =   @NextCreatureID := @NextCreatureID +1;
+SET @MajesticArmoredVorquinCreatureID                =   @NextCreatureID := @NextCreatureID +1;
+SET @SlatestoneRamolithCreatureID                    =   @NextCreatureID := @NextCreatureID +1;
+SET @RootstalkerGrimlynxCreatureID                   =   @NextCreatureID := @NextCreatureID +1;
+SET @DuskGrimlynxCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
+SET @IvoryGrimlynxCreatureID                         =   @NextCreatureID := @NextCreatureID +1;
+SET @FierceGrimlynxCreatureID                        =   @NextCreatureID := @NextCreatureID +1;
+SET @UmberGalestriderCreatureID                      =   @NextCreatureID := @NextCreatureID +1;
+SET @StormyGalestriderCreatureID                     =   @NextCreatureID := @NextCreatureID +1;
+SET @EmpyreanGalestriderCreatureID                   =   @NextCreatureID := @NextCreatureID +1;
+SET @SwiftUmberGalestriderCreatureID                 =   @NextCreatureID := @NextCreatureID +1;
+SET @SwiftStormyGalestriderCreatureID                =   @NextCreatureID := @NextCreatureID +1;
+SET @SwiftEmpyreanGalestriderCreatureID              =   @NextCreatureID := @NextCreatureID +1;
 
 -- Mount Items
 SET @GoblinTrikeItem                                 =    62461; -- Cataclysm ID
@@ -1053,11 +1128,36 @@ SET @DragonTurtleBlueItem                            =    91009; -- MoP ID
 SET @DragonTurtlePurpleItem                          =    91006; -- MoP ID
 SET @DragonTurtleGreenItem                           =    91004; -- MoP ID
 SET @DragonTurtleBlackItem                           =    91008; -- MoP ID
+SET @NightborneManasaberItem                         =   156487; -- Legion ID
 SET @HighmountainThunderhoofItem                     =   155662; -- Legion ID
 SET @LightforgedFelcrusherHolyItem                   =   155656; -- Legion ID
 SET @LightforgedFelcrusherPurpleItem                 =   174067; -- vacant slot
 SET @LightforgedFelcrusherBlueItem                   =   174068; -- vacant slot
 SET @LightforgedFelcrusherDarkItem                   =   174069; -- vacant slot
+SET @StarcursedVoidstriderItem                       =   156486; -- Legion ID
+SET @MagharDirewolfItem                              =   161330; -- BfA ID
+SET @DarkIronCoreHoundItem                           =   161331; -- BfA ID
+SET @KulTiranChargerItem                             =   164762; -- BfA ID
+SET @MechagonMechanostriderItem                      =   174067; -- BfA ID
+SET @ZandalariDirehornItem                           =   157870; -- BfA ID
+SET @CrimsonVorquinItem                              =   201702; -- Dragonflight ID
+SET @SapphireVorquinItem                             =   201704; -- Dragonflight ID
+SET @ObsidianVorquinItem                             =   201719; -- Dragonflight ID
+SET @BronzeVorquinItem                               =   201720; -- Dragonflight ID
+SET @GuardianVorquinItem                             =   198808; -- Dragonflight ID
+SET @ArmoredVorquinLeystriderItem                    =   198809; -- Dragonflight ID
+SET @MajesticArmoredVorquinItem                      =   198811; -- Dragonflight ID
+SET @SlatestoneRamolithItem                          =   223572; -- Dragonflight ID
+SET @IvoryGrimlynxItem                               =   246736; -- Midnight ID
+SET @FierceGrimlynxItem                              =   246734; -- Midnight ID
+SET @RootstalkerGrimlynxItem                         =   223572; -- Midnight ID
+SET @DuskGrimlynxItem                                =   246731; -- Midnight ID
+SET @UmberGalestriderItem                            =   274930; -- Forever ID
+SET @StormyGalestriderItem                           =   269683; -- Forever ID
+SET @EmpyreanGalestriderItem                         =   269681; -- Forever ID
+SET @SwiftUmberGalestriderItem                       =   274933; -- Forever ID
+SET @SwiftStormyGalestriderItem                      =   269678; -- Forever ID
+SET @SwiftEmpyreanGalestriderItem                    =   269671; -- Forever ID
 
 SET @NextItemDisplayID                               =   132261;
 -- Mount Item Display ID
@@ -1076,6 +1176,31 @@ SET @LightforgedFelcrusherHolyItemDisplay            =   @NextItemDisplayID := @
 SET @LightforgedFelcrusherPurpleItemDisplay          =   @LightforgedFelcrusherHolyItemDisplay;
 SET @LightforgedFelcrusherBlueItemDisplay            =   @LightforgedFelcrusherHolyItemDisplay;
 SET @LightforgedFelcrusherDarkItemDisplay            =   @LightforgedFelcrusherHolyItemDisplay;
+SET @NightborneManasaberItemDisplay                  =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @StarcursedVoidstriderItemDisplay                =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @MechagonMechanostriderItemDisplay               =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @MagharDirewolfItemDisplay                       =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @KulTiranChargerItemDisplay                      =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @DarkIronCoreHoundItemDisplay                    =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @ZandalariDirehornItemDisplay                    =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @CrimsonVorquinItemDisplay                       =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @SapphireVorquinItemDisplay                      =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @ObsidianVorquinItemDisplay                      =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @BronzeVorquinItemDisplay                        =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @GuardianVorquinItemDisplay                      =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @ArmoredVorquinLeystriderItemDisplay             =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @MajesticArmoredVorquinItemDisplay               =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @SlatestoneRamolithItemDisplay                   =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @RootstalkerGrimlynxItemDisplay                  =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @DuskGrimlynxItemDisplay                         =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @IvoryGrimlynxItemDisplay                        =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @FierceGrimlynxItemDisplay                       =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @UmberGalestriderItemDisplay                     =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @StormyGalestriderItemDisplay                    =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @EmpyreanGalestriderItemDisplay                  =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @SwiftUmberGalestriderItemDisplay                =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @SwiftStormyGalestriderItemDisplay               =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @SwiftEmpyreanGalestriderItemDisplay             =   @NextItemDisplayID := @NextItemDisplayID +1;
 
 -- Mount Spells
 SET @GoblinTrike                                     =    87090; -- Cataclysm ID
@@ -1093,6 +1218,31 @@ SET @LightforgedFelcrusherHoly                       =   258022; -- Legion ID
 SET @LightforgedFelcrusherPurple                     =   306425; -- vacant slot
 SET @LightforgedFelcrusherBlue                       =   306426; -- vacant slot
 SET @LightforgedFelcrusherDark                       =   306427; -- vacant slot
+SET @DarkIronCoreHound                               =   271646; -- BfA ID
+SET @NightborneManasaber                             =   258845; -- Legion ID
+SET @StarcursedVoidstrider                           =   259202; -- Legion ID
+SET @ZandalariDirehorn                               =   263707; -- BfA ID
+SET @MagharDirewolf                                  =   267274; -- BfA ID
+SET @KulTiranCharger                                 =   282682; -- BfA ID
+SET @MechagonMechanostrider                          =   305592; -- BfA ID
+SET @CrimsonVorquin                                  =   394216; -- Dragonflight ID
+SET @SapphireVorquin                                 =   394218; -- Dragonflight ID
+SET @ObsidianVorquin                                 =   394220; -- Dragonflight ID
+SET @BronzeVorquin                                   =   394219; -- Dragonflight ID
+SET @GuardianVorquin                                 =   384963; -- Dragonflight ID
+SET @ArmoredVorquinLeystrider                        =   385134; -- Dragonflight ID
+SET @MajesticArmoredVorquin                          =   385115; -- Dragonflight ID
+SET @SlatestoneRamolith                              =   449415; -- TWW ID
+SET @RootstalkerGrimlynx                             =  1243597; -- Midnight ID
+SET @DuskGrimlynx                                    =  1243582; -- Midnight ID
+SET @IvoryGrimlynx                                   =  1243598; -- Midnight ID
+SET @FierceGrimlynx                                  =  1243593; -- Midnight ID
+SET @UmberGalestrider                                =  1295678; -- Forever ID
+SET @StormyGalestrider                               =  1286026; -- Forever ID
+SET @EmpyreanGalestrider                             =  1286024; -- Forever ID
+SET @SwiftUmberGalestrider                           =  1295683; -- Forever ID
+SET @SwiftStormyGalestrider                          =  1286022; -- Forever ID
+SET @SwiftEmpyreanGalestrider                        =  1286011; -- Forever ID
 
 -- Faction Masks
 SET @VanillaAllianceMask                             = @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;

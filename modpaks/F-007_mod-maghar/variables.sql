@@ -145,3 +145,33 @@ SET @MagharOrcAchievementDescriptionruRU = 'Первый орк Маг\'хар �
 SET @MagharOrcAchievementDescriptionjaJP = '';
 SET @MagharOrcAchievementDescriptionptPT = '';
 SET @MagharOrcAchievementDescriptionitIT = '';
+
+-- Racial Mount Strings 
+SET @MagharDirewolfNameenUS              = 'Mag\'har Direwolf';
+SET @MagharDirewolfNamekoKR              = '';
+SET @MagharDirewolfNamefrFR              = '';
+SET @MagharDirewolfNamedeDE              = '';
+SET @MagharDirewolfNamezhCN              = '';
+SET @MagharDirewolfNamezhTW              = '';
+SET @MagharDirewolfNameesES              = '';
+SET @MagharDirewolfNameesMX              = '';
+SET @MagharDirewolfNameruRU              = '';
+SET @MagharDirewolfNamejaJP              = '';
+SET @MagharDirewolfNameptPT              = '';
+SET @MagharDirewolfNameitIT              = '';
+
+SET @MagharDirewolfSpellDescriptionenUS  = 'Summons and dismisses a rideable Mag\'har Direwolf.';
+SET @MagharDirewolfSpellDescriptionkoKR  = '';
+SET @MagharDirewolfSpellDescriptionfrFR  = '';
+SET @MagharDirewolfSpellDescriptiondeDE  = '';
+SET @MagharDirewolfSpellDescriptionzhCN  = '';
+SET @MagharDirewolfSpellDescriptionzhTW  = '';
+SET @MagharDirewolfSpellDescriptionesES  = '';
+SET @MagharDirewolfSpellDescriptionesMX  = '';
+SET @MagharDirewolfSpellDescriptionruRU  = '';
+SET @MagharDirewolfSpellDescriptionjaJP  = '';
+SET @MagharDirewolfSpellDescriptionptPT  = '';
+SET @MagharDirewolfSpellDescriptionitIT  = '';
+
+SET @MagharDirewolfItemNameenUS          = @MagharDirewolfNameenUS;
+SET @MagharDirewolfItemDescriptionenUS   = 'Teaches you how to summon this mount.\n\nSummons and dismisses a rideable Mag\'har Direwolf.';
