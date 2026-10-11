@@ -24,6 +24,9 @@ SET @HordePandarenFemaleFootprint            = @FootprintPaw;
 -- Strings
 SET @HordePandarenClientPrefix               = 'Pa';
 SET @HordePandarenClientString               = 'HordePandaren';
+SET @HordePandarenFacialHairCustomization1   = 'NORMAL';
+SET @HordePandarenFacialHairCustomization2   = 'EARRINGS';
+SET @HordePandarenHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @HordePandarenenUS                       = 'Pandaren';

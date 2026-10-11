@@ -29,6 +29,9 @@ SET @WorgenWildFemaleFootprint          = @WorgenFemaleFootprint;
 -- Strings
 SET @WorgenClientPrefix                 = 'Wo';
 SET @WorgenClientString                 = 'Worgen';
+SET @WorgenFacialHairCustomization1     = 'FEATURES';
+SET @WorgenFacialHairCustomization2     = 'EARS';
+SET @WorgenHairCustomization            = 'NORMAL';
 
 -- Localization Strings
 SET @WorgenenUS                         = 'Worgen';

@@ -24,6 +24,9 @@ SET @GoblinFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @GoblinClientPrefix               = 'Go';
 SET @GoblinClientString               = 'Goblin';
+SET @GoblinFacialHairCustomization1   = 'PIERCINGS';
+SET @GoblinFacialHairCustomization2   = 'PIERCINGS';
+SET @GoblinHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @GoblinenUS                       = 'Goblin';

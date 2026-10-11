@@ -24,6 +24,9 @@ SET @HighmountainTaurenFemaleFootprint            = @FootprintHoof;
 -- Strings
 SET @HighmountainTaurenClientPrefix               = 'Ta'; -- Copying Tauren
 SET @HighmountainTaurenClientString               = 'HighmountainTauren';
+SET @HighmountainTaurenFacialHairCustomization1   = 'NORMAL';
+SET @HighmountainTaurenFacialHairCustomization2   = 'HAIR';
+SET @HighmountainTaurenHairCustomization          = 'HORNS';
 
 -- Localization Strings
 SET @HighmountainTaurenenUS                       = 'Highmountain Tauren';

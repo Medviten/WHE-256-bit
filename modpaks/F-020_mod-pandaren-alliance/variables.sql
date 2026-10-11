@@ -24,6 +24,9 @@ SET @AlliancePandarenFemaleFootprint            = @FootprintPaw;
 -- Strings
 SET @AlliancePandarenClientPrefix               = 'Pa';
 SET @AlliancePandarenClientString               = 'AlliancePandaren';
+SET @AlliancePandarenFacialHairCustomization1   = 'NORMAL';
+SET @AlliancePandarenFacialHairCustomization2   = 'EARRINGS';
+SET @AlliancePandarenHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @AlliancePandarenenUS                       = 'Pandaren';

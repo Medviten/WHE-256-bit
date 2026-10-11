@@ -1,4 +1,4 @@
--- spell: 10 inserts, 1 updates, 0 deletes
+-- spell: 10 inserts, 3 updates, 0 deletes
 
 -- New entries
 DELETE FROM `spell` WHERE `id` IN (
@@ -11,7 +11,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
     'Racial', '종족 특성', 'Raciale', 'Volksfähigkeit', '种族特长', '種族特長', 'Racial', 'Racial', 'Расовая', '', '', '', '', '', '', '', 16712190, 
     'Silence all enemies within $a1 yards for $d and either restores $s2 of your Energy or generates ${$m3/10} Rage.  Non-player victim spellcasting is also interrupted for $32747d.', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 
     'Silenced.', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, '1.0000000000000000', '1.0000000000000000', '1.0000000000000000', 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, '1.0000000000000000', '0E-16', '1.0000000000000000', 0, 0),
--- This one restores nothing without a fix.
+-- This one restores nothing without the update below.
 (@SpellArcaneTorrentDruid2, 0, 1, 9, 0, 136, 0, 0, 0, 0, 0, 2048, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 120000, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 39, 0, 0, 0, 0, 0, 1, '0E-16', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 1, 1, '0E-16', '0E-16', '0E-16', 5, 14, 149, 0, 0, 0, 22, 1, 1, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0E-16', '0E-16', '0E-16', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0E-16', '0E-16', '0E-16', 0, 0, 0, 0, 0, 0, 0, 0, 0, 7346, 0, 87, 0, 0,
     'Arcane Torrent', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 16712190, 
     'Racial', '종족 특성', 'Raciale', 'Volksfähigkeit', '种族特长', '種族特長', 'Racial', 'Racial', 'Расовая', '', '', '', '', '', '', '', 16712190, 

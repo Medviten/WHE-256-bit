@@ -24,6 +24,9 @@ SET @ZandalariTrollFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @ZandalariTrollClientPrefix               = 'Tr';
 SET @ZandalariTrollClientString               = 'ZandalariTroll';
+SET @ZandalariTrollFacialHairCustomization1   = 'TUSKS';
+SET @ZandalariTrollFacialHairCustomization2   = 'TUSKS';
+SET @ZandalariTrollHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @ZandalariTrollenUS                       = 'Zandalari Troll';

@@ -24,6 +24,9 @@ SET @DarkIronDwarfFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @DarkIronDwarfClientPrefix               = 'Dw';
 SET @DarkIronDwarfClientString               = 'DarkIronDwarf';
+SET @DarkIronDwarfFacialHairCustomization1   = 'NORMAL';
+SET @DarkIronDwarfFacialHairCustomization2   = 'PIERCINGS';
+SET @DarkIronDwarfHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @DarkIronDwarfenUS                       = 'Dark Iron Dwarf';

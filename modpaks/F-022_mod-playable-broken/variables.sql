@@ -24,6 +24,9 @@ SET @BrokenFemaleFootprint            = @FootprintHoof;
 -- Strings
 SET @BrokenClientPrefix               = 'Br';
 SET @BrokenClientString               = 'Broken';
+SET @BrokenFacialHairCustomization1   = 'NORMAL';
+SET @BrokenFacialHairCustomization2   = 'HORNS';
+SET @BrokenHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @BrokenenUS                       = 'Broken';

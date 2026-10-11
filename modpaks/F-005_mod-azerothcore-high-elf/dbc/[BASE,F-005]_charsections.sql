@@ -1,4 +1,4 @@
--- [F-005] mod-azerothcore-high-elf: charsections: 3135 inserts, 88 updates, 0 deletes
+-- [F-005] mod-azerothcore-high-elf: charsections: 1067 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charsections` WHERE `race` = @HighElf;

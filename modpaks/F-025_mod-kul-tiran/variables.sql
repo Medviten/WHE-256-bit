@@ -24,6 +24,9 @@ SET @KulTiranFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @KulTiranClientPrefix               = 'Kt';
 SET @KulTiranClientString               = 'KulTiran';
+SET @KulTiranFacialHairCustomization1   = 'NORMAL';
+SET @KulTiranFacialHairCustomization2   = 'EARRINGS';
+SET @KulTiranHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @KulTiranenUS                       = 'Kul Tiran';

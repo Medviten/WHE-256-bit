@@ -1,69 +1,79 @@
 -- skillraceclassinfo: 0 inserts, 104 updates, 0 deletes
 
 -- Changed values
+-- Maybe this is sufficient?
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @AllianceMask WHERE `race_mask` & @BaseAllianceMask;
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HordeMask WHERE `race_mask` & @BaseHordeMask;
+
 -- Alliance
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @AllianceMask WHERE `id` = @CommonSkillRaceClassAlliance; -- Skill 98: Language: Common [Alliance]
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @AllianceMask WHERE `id` = @OrcishSkillRaceClassAlliance; -- Skill 109: Language: Orcish [Alliance]
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @AllianceMask WHERE `id` IN (
+    @CommonSkillRaceClassAlliance, -- Skill 98: Language: Common [Alliance]
+    @OrcishSkillRaceClassAlliance -- Skill 109: Language: Orcish [Alliance]
+);
 
 -- Horde
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HordeMask    WHERE `id` = @OrcishSkillRaceClassHorde; -- Skill 109: Language: Orcish [Horde]
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HordeMask    WHERE `id` = @CommonSkillRaceClassHorde; -- Skill 98: Language: Common [Horde]
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HordeMask    WHERE `id` IN (
+    @OrcishSkillRaceClassHorde, -- Skill 109: Language: Orcish [Horde]
+    @CommonSkillRaceClassHorde -- Skill 98: Language: Common [Horde]
+);
 
 -- Everyone
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @LeatherworkingSkillRaceClass; -- Skill 165: Leatherworking
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @PlateMailSkillRaceClass; -- Skill 293: Plate Mail
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @PlateMailDKSkillRaceClass; -- Skill 293: Plate Mail
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @FishingSkillRaceClass; -- Skill 356: Fishing
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @HerbalismSkillRaceClass; -- Skill 182: Herbalism
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @MiningSkillRaceClass; -- Skill 186: Mining
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @SkinningSkillRaceClass; -- Skill 393: Skinning
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DemonTongueSkillRaceClass; -- Skill 139: Language: Demon Tongue
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DraconicSkillRaceClass; -- Skill 138: Language: Draconic
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @OldTongueSkillRaceClass; -- Skill 141: Language: Old Tongue
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @TitanSkillRaceClass; -- Skill 140: Language: Titan
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @GunsNonHunterSkillRaceClass; -- Skill 46: Guns
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @Mail40SkillRaceClass; -- Skill 413: Mail
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @MailSkillRaceClass; -- Skill 413: Mail
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @LeatherSkillRaceClass; -- Skill 414: Leather
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @ClothSkillRaceClass; -- Skill 415: Cloth
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @AlchemySkillRaceClass; -- Skill 171: Alchemy
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @BlacksmithingSkillRaceClass; -- Skill 164: Blacksmithing
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @EngineeringSkillRaceClass; -- Skill 202: Engineering
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @ShieldSkillRaceClass; -- Skill 433: Shield
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @EnchantingSkillRaceClass; -- Skill 333: Enchanting
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @CookingSkillRaceClass; -- Skill 185: Cooking
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @TailoringSkillRaceClass; -- Skill 197: Tailoring
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @FistWeaponsSkillRaceClass; -- Skill 473: Fist Weapons
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @2HAxePaladinSkillRaceClass; -- Skill 172: Two-Handed Axes
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @2HAxeShamanSkillRaceClass; -- Skill 172: Two-Handed Axes
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @2HAxeDKSkillRaceClass; -- Skill 172: Two-Handed Axes
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @2HAxeHunterSkillRaceClass; -- Skill 172: Two-Handed Axes
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @AxesHunterSkillRaceClass2; -- Skill 44: Axes (this is the one that Blood Elves and Draenei were added to, so I'll add to it as well)
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @AxesWarriorSkillRaceClass2; -- Skill 44: Axes (this is the one that Draenei were added to, so I'll add to it as well)
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @AxesDKSkillRaceClass; -- Skill 44: Axes
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @AxesOtherSkillRaceClass; -- Skill 44: Axes (paladin, rogue, shaman)
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DaggersHunterSkillRaceClass2; -- Skill 173: Daggers (this is the one that Draenei were added to, so I'll add to it as well)
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DaggersWarriorSkillRaceClass2; -- Skill 173: Daggers (this is the one that Draenei were added to, so I'll add to it as well)
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @MacesWarriorSkillRaceClass2; -- Skill 54: Maces
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @MacesPaladinSkillRaceClass; -- Skill 54: Maces
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @MacesDKSkillRaceClass; -- Skill 54: Maces
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @MacesPriestShamanSkillRaceClass; -- Skill 54: Maces
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @SurvivalSkillRaceClass; -- Skill 142: Survival
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @JewelcraftingSkillRaceClass; -- Skill 755: Jewelcrafting
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @SwordsPaladinSkillRaceClass; -- Skill 43: Swords
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @SwordsRogueSkillRaceClass; -- Skill 43: Swords
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @SwordsMageWarlockSkillRaceClass; -- Skill 43: Swords
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DaggersRogueWarlockSkillRaceClass; -- Skill 173: Daggers
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DaggersCastersSkillRaceClass; -- Skill 173: Daggers
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @SwordsDKSkillRaceClass; -- Skill 43: Swords
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @StavesCastersSkillRaceClass; -- Skill 136: Staves
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @StavesWarriorHunterSkillRaceClass; -- Skill 136: Staves
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @PolearmsSkillRaceClass; -- Skill 229: Polearms
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @PolearmsDKSkillRaceClass; -- Skill 229: Polearms
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DualWieldRogueSkillRaceClass; -- Skill 118: Dual Wield
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DualWieldWarriorHunterSkillRaceClass; -- Skill 118: Dual Wield
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DualWieldShamanSkillRaceClass; -- Skill 118: Dual Wield
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` = @DualWieldDKSkillRaceClass; -- Skill 118: Dual Wield
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask WHERE `id` IN (
+    @LeatherworkingSkillRaceClass, -- Skill 165: Leatherworking
+    @PlateMailSkillRaceClass, -- Skill 293: Plate Mail
+    @PlateMailDKSkillRaceClass, -- Skill 293: Plate Mail
+    @FishingSkillRaceClass, -- Skill 356: Fishing
+    @HerbalismSkillRaceClass, -- Skill 182: Herbalism
+    @MiningSkillRaceClass, -- Skill 186: Mining
+    @SkinningSkillRaceClass, -- Skill 393: Skinning
+    @DemonTongueSkillRaceClass, -- Skill 139: Language: Demon Tongue
+    @DraconicSkillRaceClass, -- Skill 138: Language: Draconic
+    @OldTongueSkillRaceClass, -- Skill 141: Language: Old Tongue
+    @TitanSkillRaceClass, -- Skill 140: Language: Titan
+    @GunsNonHunterSkillRaceClass, -- Skill 46: Guns
+    @Mail40SkillRaceClass, -- Skill 413: Mail
+    @MailSkillRaceClass, -- Skill 413: Mail
+    @LeatherSkillRaceClass, -- Skill 414: Leather
+    @ClothSkillRaceClass, -- Skill 415: Cloth
+    @AlchemySkillRaceClass, -- Skill 171: Alchemy
+    @BlacksmithingSkillRaceClass, -- Skill 164: Blacksmithing
+    @EngineeringSkillRaceClass, -- Skill 202: Engineering
+    @ShieldSkillRaceClass, -- Skill 433: Shield
+    @EnchantingSkillRaceClass, -- Skill 333: Enchanting
+    @CookingSkillRaceClass, -- Skill 185: Cooking
+    @TailoringSkillRaceClass, -- Skill 197: Tailoring
+    @FistWeaponsSkillRaceClass, -- Skill 473: Fist Weapons
+    @2HAxePaladinSkillRaceClass, -- Skill 172: Two-Handed Axes
+    @2HAxeShamanSkillRaceClass, -- Skill 172: Two-Handed Axes
+    @2HAxeDKSkillRaceClass, -- Skill 172: Two-Handed Axes
+    @2HAxeHunterSkillRaceClass, -- Skill 172: Two-Handed Axes
+    @AxesHunterSkillRaceClass2, -- Skill 44: Axes (this is the one that Blood Elves and Draenei were added to, so I'll add to it as well)
+    @AxesWarriorSkillRaceClass2, -- Skill 44: Axes (this is the one that Draenei were added to, so I'll add to it as well)
+    @AxesDKSkillRaceClass, -- Skill 44: Axes
+    @AxesOtherSkillRaceClass, -- Skill 44: Axes (paladin, rogue, shaman)
+    @DaggersHunterSkillRaceClass2, -- Skill 173: Daggers (this is the one that Draenei were added to, so I'll add to it as well)
+    @DaggersWarriorSkillRaceClass2, -- Skill 173: Daggers (this is the one that Draenei were added to, so I'll add to it as well)
+    @MacesWarriorSkillRaceClass2, -- Skill 54: Maces
+    @MacesPaladinSkillRaceClass, -- Skill 54: Maces
+    @MacesDKSkillRaceClass, -- Skill 54: Maces
+    @MacesPriestShamanSkillRaceClass, -- Skill 54: Maces
+    @SurvivalSkillRaceClass, -- Skill 142: Survival
+    @JewelcraftingSkillRaceClass, -- Skill 755: Jewelcrafting
+    @SwordsPaladinSkillRaceClass, -- Skill 43: Swords
+    @SwordsRogueSkillRaceClass, -- Skill 43: Swords
+    @SwordsMageWarlockSkillRaceClass, -- Skill 43: Swords
+    @DaggersRogueWarlockSkillRaceClass, -- Skill 173: Daggers
+    @DaggersCastersSkillRaceClass, -- Skill 173: Daggers
+    @SwordsDKSkillRaceClass, -- Skill 43: Swords
+    @StavesCastersSkillRaceClass, -- Skill 136: Staves
+    @StavesWarriorHunterSkillRaceClass, -- Skill 136: Staves
+    @PolearmsSkillRaceClass, -- Skill 229: Polearms
+    @PolearmsDKSkillRaceClass, -- Skill 229: Polearms
+    @DualWieldRogueSkillRaceClass, -- Skill 118: Dual Wield
+    @DualWieldWarriorHunterSkillRaceClass, -- Skill 118: Dual Wield
+    @DualWieldShamanSkillRaceClass, -- Skill 118: Dual Wield
+    @DualWieldDKSkillRaceClass -- Skill 118: Dual Wield
+);
 
 -- Almost every race
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @PlayableRaceMask & ~(@DwarfMask  | @TaurenMask | @TrollMask)   WHERE `id` = @SwordsWarriorSkillRaceClass; -- Skill 43: Swords (the exempt are in 638 for some reason)

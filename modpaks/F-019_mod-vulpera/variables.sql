@@ -24,6 +24,9 @@ SET @VulperaFemaleFootprint             = @FootprintPaw;
 -- Strings
 SET @VulperaClientPrefix                = 'Vu';
 SET @VulperaClientString                = 'Vulpera';
+SET @VulperaFacialHairCustomization1    = 'NORMAL';
+SET @VulperaFacialHairCustomization2    = 'EARRINGS';
+SET @VulperaHairCustomization           = 'NORMAL';
 
 -- Localization Strings
 SET @VulperaenUS                        = 'Vulpera';

@@ -24,6 +24,9 @@ SET @GilneanFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @GilneanClientPrefix               = 'Hu';
 SET @GilneanClientString               = 'Gilnean';
+SET @GilneanFacialHairCustomization1   = 'NORMAL';
+SET @GilneanFacialHairCustomization2   = 'PIERCINGS';
+SET @GilneanHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @GilneanenUS                       = 'Gilnean';

@@ -1,4 +1,4 @@
--- [F-002] mod-arac: charstartoutfit: 0 inserts, 1 updates, 0 deletes
+-- [F-002] mod-arac: charstartoutfit: 0 inserts, 3 updates, 0 deletes
 
 -- Standard ARAC gives human and undead hunters guns instead of crossbows
 SET @CharStartOutfitID = (SELECT COALESCE(MAX(id), 0) FROM `charstartoutfit`);
@@ -9,4 +9,11 @@ UPDATE `charstartoutfit` SET
     `display_item_7` = @LightQuiverItemDisplay,
     `display_item_8` = @WeatheredCrossbowItemDisplay,
     `display_item_9` = @RoughArrowItemItemDisplay
-WHERE `race` IN (@Human, @NightElf, @Undead) AND `class` = @Hunter AND `display_item_8` = @OldBlunderbussItemDisplay;
+WHERE `race` IN (@Human, @Undead) AND `class` = @Hunter AND `display_item_8` = @OldBlunderbussItemDisplay;
+
+-- Fixes night elf display weapon issue
+UPDATE `charstartoutfit` SET 
+    `display_item_7` = @LightQuiverItemDisplay,
+    `display_item_8` = @WornShortbowItem,
+    `display_item_9` = @RoughArrowItemItemDisplay
+WHERE `race` IN (@NightElf) AND `class` = @Hunter AND `display_item_8` = @OldBlunderbussItemDisplay;

@@ -24,6 +24,9 @@ SET @OgreFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @OgreClientPrefix               = 'Og';
 SET @OgreClientString               = 'Ogre';
+SET @OgreFacialHairCustomization1   = 'NORMAL';
+SET @OgreFacialHairCustomization2   = 'PIERCINGS';
+SET @OgreHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @OgreenUS                       = 'Ogre';

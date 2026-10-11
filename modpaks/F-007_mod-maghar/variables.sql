@@ -24,6 +24,9 @@ SET @MagharOrcFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @MagharOrcClientPrefix               = 'Or';
 SET @MagharOrcClientString               = 'Maghar';
+SET @MagharOrcFacialHairCustomization1   = 'NORMAL';
+SET @MagharOrcFacialHairCustomization2   = 'PIERCINGS';
+SET @MagharOrcHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @MagharOrcenUS                       = 'Mag\'har';

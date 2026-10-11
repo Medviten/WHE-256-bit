@@ -24,6 +24,9 @@ SET @NagaFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @NagaClientPrefix               = 'Wo'; -- Copying Worgen
 SET @NagaClientString               = 'Naga';
+SET @NagaFacialHairCustomization1   = 'TENTS';
+SET @NagaFacialHairCustomization2   = 'TENTS_PIERCINGS';
+SET @NagaHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @NagaenUS                       = 'Naga';

@@ -24,6 +24,9 @@ SET @HighElfFemaleFootprint            = @FootprintShoe;
 -- Strings
 SET @HighElfClientPrefix               = 'Be';
 SET @HighElfClientString               = 'HighElf';
+SET @HighElfFacialHairCustomization1   = 'NORMAL';
+SET @HighElfFacialHairCustomization2   = 'EARRINGS';
+SET @HighElfHairCustomization          = 'NORMAL';
 
 -- Localization Strings
 SET @HighElfenUS                       = 'High Elf';
