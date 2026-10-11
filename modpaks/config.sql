@@ -248,6 +248,7 @@ SET @TrollHelmetMask                                 =      1 << @Troll;        
 SET @BloodElfHelmetMask                              =      1 << @BloodElf;         -- race ID 10 → 1024
 SET @DraeneiHelmetMask                               =      1 << @Draenei;          -- race ID 11 → 2048
 
+SET @NextModelID                                     =    39999;
 -- New Race Models
 SET @HobgoblinModel                                  =     3194; -- Gobber (bank guy)
 SET @WorgenMaleModel                                 =     3141; -- bipedal
@@ -260,121 +261,124 @@ SET @MagharOrcMaleModel                              =       51; -- orc
 SET @MagharOrcFemaleModel                            =       52; -- orc
 SET @OgreMaleModel                                   =     4892; -- one head (physical type)
 SET @OgreFemaleModel                                 =     4893; -- two heads (magic type)
-SET @DarkIronDwarfMaleModel                          =    40000; -- backport from
-SET @DarkIronDwarfFemaleModel                        =    40001; -- Shadowlands
-SET @ZandalariTrollMaleModel                         =    40002; -- backport from
-SET @ZandalariTrollFemaleModel                       =    40003; -- Shadowlands
-SET @VulperaMaleModel                                =    40004;
-SET @VulperaFemaleModel                              =    40005;
-SET @PandarenMaleModel                               =    40006;
-SET @PandarenFemaleModel                             =    40007;
+SET @DarkIronDwarfMaleModel                          =    @NextModelID := @NextModelID +1; -- 40000; -- backport from
+SET @DarkIronDwarfFemaleModel                        =    @NextModelID := @NextModelID +1; -- 40001; -- Shadowlands
+SET @ZandalariTrollMaleModel                         =    @NextModelID := @NextModelID +1; -- 40002; -- backport from
+SET @ZandalariTrollFemaleModel                       =    @NextModelID := @NextModelID +1; -- 40003; -- Shadowlands
+SET @VulperaMaleModel                                =    @NextModelID := @NextModelID +1; -- 40004;
+SET @VulperaFemaleModel                              =    @NextModelID := @NextModelID +1; -- 40005;
+SET @PandarenMaleModel                               =    @NextModelID := @NextModelID +1; -- 40006;
+SET @PandarenFemaleModel                             =    @NextModelID := @NextModelID +1; -- 40007;
 SET @BrokenMaleModel                                 =     2367;
 SET @BrokenFemaleModel                               =     2368;
-SET @KulTiranMaleModel                               =    40008;
-SET @KulTiranFemaleModel                             =    40009;
-SET @GilneanMaleModel                                =    40010; -- human copy
-SET @GilneanFemaleModel                              =    40011; -- human copy
-SET @HighmountainTaurenMaleModel                     =    40012;
-SET @HighmountainTaurenFemaleModel                   =    40013;
-SET @NagaMaleModel                                   =    40014;
-SET @NagaFemaleModel                                 =    40015;
-SET @TaunkaMaleModel                                 =    40016;
+SET @KulTiranMaleModel                               =    @NextModelID := @NextModelID +1; -- 40008;
+SET @KulTiranFemaleModel                             =    @NextModelID := @NextModelID +1; -- 40009;
+SET @GilneanMaleModel                                =    @NextModelID := @NextModelID +1; -- 40010; -- human copy
+SET @GilneanFemaleModel                              =    @NextModelID := @NextModelID +1; -- 40011; -- human copy
+SET @HighmountainTaurenMaleModel                     =    @NextModelID := @NextModelID +1; -- 40012;
+SET @HighmountainTaurenFemaleModel                   =    @NextModelID := @NextModelID +1; -- 40013;
+SET @NagaMaleModel                                   =    @NextModelID := @NextModelID +1; -- 40014;
+SET @NagaFemaleModel                                 =    @NextModelID := @NextModelID +1; -- 40015;
+SET @TaunkaMaleModel                                 =    @NextModelID := @NextModelID +1; -- 40016;
 SET @TaunkaFemaleModel                               =       60; -- Tauren female
-SET @VoidElfMaleModel                                =    40017;
-SET @VoidElfFemaleModel                              =    40018;
-SET @LightforgedDraeneiMaleModel                     =    40019;
-SET @LightforgedDraeneiFemaleModel                   =    40020;
-SET @GoblinMaleModel                                 =    40021; -- NPC: 831
-SET @GoblinFemaleModel                               =    40022; -- NPC: 832
+SET @VoidElfMaleModel                                =    @NextModelID := @NextModelID +1; -- 40017;
+SET @VoidElfFemaleModel                              =    @NextModelID := @NextModelID +1; -- 40018;
+SET @LightforgedDraeneiMaleModel                     =    @NextModelID := @NextModelID +1; -- 40019;
+SET @LightforgedDraeneiFemaleModel                   =    @NextModelID := @NextModelID +1; -- 40020;
+SET @GoblinMaleModel                                 =    @NextModelID := @NextModelID +1; -- 40021; -- NPC: 831
+SET @GoblinFemaleModel                               =    @NextModelID := @NextModelID +1; -- 40022; -- NPC: 832
 
+SET @NextDisplayID                                   =    40000;
 -- Display IDs
-SET @HobgoblinDisplay                                =    32385;
-SET @WorgenMaleDisplay                               =    29422;
-SET @WorgenFemaleDisplay                             =    29423;
-SET @WorgenWildMaleDisplay                           =    94133;
-SET @WorgenWildFemaleDisplay                         =    94134;
-SET @LordHarfordDisplay                              =    36445;
-SET @GallyLumpstainDisplay                           =    36446;
-SET @HighElfMaleDisplay                              =    94222;
-SET @HighElfFemaleDisplay                            =    94223;
-SET @MagharOrcMaleDisplay                            =    94226;
-SET @MagharOrcFemaleDisplay                          =    94227;
-SET @OgreMaleDisplay                                 =    62110;
-SET @OgreFemaleDisplay                               =    62111;
-SET @DarkIronDwarfMaleDisplay                        =    40000;
-SET @DarkIronDwarfFemaleDisplay                      =    40001;
-SET @ZandalariTrollMaleDisplay                       =    40002;
-SET @ZandalariTrollFemaleDisplay                     =    40003;
-SET @VulperaMaleDisplay                              =    40004;
-SET @VulperaFemaleDisplay                            =    40005;
-SET @AlliancePandarenMaleDisplay                     =    40006;
-SET @AlliancePandarenFemaleDisplay                   =    40007;
-SET @HordePandarenMaleDisplay                        =    40008;
-SET @HordePandarenFemaleDisplay                      =    40009;
+SET @HobgoblinDisplay                                =    32385; -- Cataclysm ID?
+SET @WorgenMaleDisplay                               =    29422; -- Cataclysm ID?
+SET @WorgenFemaleDisplay                             =    29423; -- Cataclysm ID?
+SET @WorgenWildMaleDisplay                           =    @NextDisplayID := @NextDisplayID +1; -- 94133;
+SET @WorgenWildFemaleDisplay                         =    @NextDisplayID := @NextDisplayID +1; -- 94134;
+SET @LordHarfordDisplay                              =    @NextDisplayID := @NextDisplayID +1; -- 36445;
+SET @GallyLumpstainDisplay                           =    @NextDisplayID := @NextDisplayID +1; -- 36446;
+SET @HighElfMaleDisplay                              =    @NextDisplayID := @NextDisplayID +1; -- 94222;
+SET @HighElfFemaleDisplay                            =    @NextDisplayID := @NextDisplayID +1; -- 94223;
+SET @MagharOrcMaleDisplay                            =    @NextDisplayID := @NextDisplayID +1; -- 94226;
+SET @MagharOrcFemaleDisplay                          =    @NextDisplayID := @NextDisplayID +1; -- 94227;
+SET @OgreMaleDisplay                                 =    @NextDisplayID := @NextDisplayID +1; -- 62110;
+SET @OgreFemaleDisplay                               =    @NextDisplayID := @NextDisplayID +1; -- 62111;
+SET @DarkIronDwarfMaleDisplay                        =    @NextDisplayID := @NextDisplayID +1; -- 40000;
+SET @DarkIronDwarfFemaleDisplay                      =    @NextDisplayID := @NextDisplayID +1; -- 40001;
+SET @ZandalariTrollMaleDisplay                       =    @NextDisplayID := @NextDisplayID +1; -- 40002;
+SET @ZandalariTrollFemaleDisplay                     =    @NextDisplayID := @NextDisplayID +1; -- 40003;
+SET @VulperaMaleDisplay                              =    @NextDisplayID := @NextDisplayID +1; -- 40004;
+SET @VulperaFemaleDisplay                            =    @NextDisplayID := @NextDisplayID +1; -- 40005;
+SET @AlliancePandarenMaleDisplay                     =    @NextDisplayID := @NextDisplayID +1; -- 40006;
+SET @AlliancePandarenFemaleDisplay                   =    @NextDisplayID := @NextDisplayID +1; -- 40007;
+SET @HordePandarenMaleDisplay                        =    @NextDisplayID := @NextDisplayID +1; -- 40008;
+SET @HordePandarenFemaleDisplay                      =    @NextDisplayID := @NextDisplayID +1; -- 40009;
 SET @BrokenMaleDisplay                               =    17576; -- 21105; -- default 17576 (but no extended display)
 SET @BrokenFemaleDisplay                             =    17577; -- 40010; -- default 17577 (but no extended display)
-SET @KulTiranMaleDisplay                             =    40011;
-SET @KulTiranFemaleDisplay                           =    40012;
-SET @NagaMaleDisplay                                 =    40013;
-SET @NagaFemaleDisplay                               =    40014;
-SET @TaunkaMaleDisplay                               =    40015;
-SET @TaunkaFemaleDisplay                             =    40016;
-SET @VoidElfMaleDisplay                              =    40015;
-SET @VoidElfFemaleDisplay                            =    40016;
-SET @LightforgedDraeneiMaleDisplay                   =    40015;
-SET @LightforgedDraeneiFemaleDisplay                 =    40016;
-SET @HighmountainTaurenMaleDisplay                   =    40017;
-SET @HighmountainTaurenFemaleDisplay                 =    40018;
-SET @GoblinMaleDisplay                               =    40021; -- NPC: 6894
-SET @GoblinFemaleDisplay                             =    40022; -- NPC: 6895
-SET @GilneanMaleDisplay                              =    40023;
-SET @GilneanFemaleDisplay                            =    40024;
+SET @KulTiranMaleDisplay                             =    @NextDisplayID := @NextDisplayID +1; -- 40011;
+SET @KulTiranFemaleDisplay                           =    @NextDisplayID := @NextDisplayID +1; -- 40012;
+SET @NagaMaleDisplay                                 =    @NextDisplayID := @NextDisplayID +1; -- 40013;
+SET @NagaFemaleDisplay                               =    @NextDisplayID := @NextDisplayID +1; -- 40014;
+SET @TaunkaMaleDisplay                               =    @NextDisplayID := @NextDisplayID +1; -- 40015;
+SET @TaunkaFemaleDisplay                             =    @NextDisplayID := @NextDisplayID +1; -- 40016;
+SET @VoidElfMaleDisplay                              =    @NextDisplayID := @NextDisplayID +1; -- 40015;
+SET @VoidElfFemaleDisplay                            =    @NextDisplayID := @NextDisplayID +1; -- 40016;
+SET @LightforgedDraeneiMaleDisplay                   =    @NextDisplayID := @NextDisplayID +1; -- 40015;
+SET @LightforgedDraeneiFemaleDisplay                 =    @NextDisplayID := @NextDisplayID +1; -- 40016;
+SET @HighmountainTaurenMaleDisplay                   =    @NextDisplayID := @NextDisplayID +1; -- 40017;
+SET @HighmountainTaurenFemaleDisplay                 =    @NextDisplayID := @NextDisplayID +1; -- 40018;
+SET @GoblinMaleDisplay                               =    @NextDisplayID := @NextDisplayID +1; -- 40021; -- NPC: 6894
+SET @GoblinFemaleDisplay                             =    @NextDisplayID := @NextDisplayID +1; -- 40022; -- NPC: 6895
+SET @GilneanMaleDisplay                              =    @NextDisplayID := @NextDisplayID +1; -- 40023;
+SET @GilneanFemaleDisplay                            =    @NextDisplayID := @NextDisplayID +1; -- 40024;
 
+SET @NextDisplayExtraID                              =    45424;
 -- CreatureDisplayInfoExtra
-SET @LordHarfordDisplayExtra                         =    24081;
-SET @GallyLumpstainDisplayExtra                      =    24082;
-SET @WorgenMaleDisplayExtra                          =    45424;
-SET @WorgenFemaleDisplayExtra                        =    45425;
-SET @HighElfMaleDisplayExtra                         =    45433;
-SET @HighElfFemaleDisplayExtra                       =    45434;
-SET @MagharOrcMaleDisplayExtra                       =    45437;
-SET @MagharOrcFemaleDisplayExtra                     =    45438;
-SET @OgreMaleDisplayExtra                            =    45439;
-SET @OgreFemaleDisplayExtra                          =    45440;
-SET @DarkIronDwarfMaleDisplayExtra                   =    45441;
-SET @DarkIronDwarfFemaleDisplayExtra                 =    45442;
-SET @ZandalariTrollMaleDisplayExtra                  =    45443;
-SET @ZandalariTrollFemaleDisplayExtra                =    45444;
-SET @VulperaMaleDisplayExtra                         =    45445;
-SET @VulperaFemaleDisplayExtra                       =    45446;
-SET @AlliancePandarenMaleDisplayExtra                =    45447;
-SET @AlliancePandarenFemaleDisplayExtra              =    45448;
-SET @HordePandarenMaleDisplayExtra                   =    45449;
-SET @HordePandarenFemaleDisplayExtra                 =    45450;
-SET @BrokenMaleDisplayExtra                          =    14150;
-SET @BrokenFemaleDisplayExtra                        =    45451;
-SET @KulTiranMaleDisplayExtra                        =    45452;
-SET @KulTiranFemaleDisplayExtra                      =    45453;
-SET @GilneanMaleDisplayExtra                         =    45454;
-SET @GilneanFemaleDisplayExtra                       =    45455;
-SET @HighmountainTaurenMaleDisplayExtra              =    45456;
-SET @HighmountainTaurenFemaleDisplayExtra            =    45457;
-SET @NagaMaleDisplayExtra                            =    45458;
-SET @NagaFemaleDisplayExtra                          =    45459;
-SET @TaunkaMaleDisplayExtra                          =    45460;
-SET @TaunkaFemaleDisplayExtra                        =    45461;
-SET @VoidElfMaleDisplayExtra                         =    45462;
-SET @VoidElfFemaleDisplayExtra                       =    45463;
-SET @LightforgedDraeneiMaleDisplayExtra              =    45464;
-SET @LightforgedDraeneiFemaleDisplayExtra            =    45465;
-SET @GoblinMaleDisplayExtra                          =    45566;
-SET @GoblinFemaleDisplayExtra                        =    45567;
+SET @LordHarfordDisplayExtra                         =    24081; -- Cataclysm ID?
+SET @GallyLumpstainDisplayExtra                      =    24082; -- Cataclysm ID?
+SET @WorgenMaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45424;
+SET @WorgenFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45425;
+SET @HighElfMaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45433;
+SET @HighElfFemaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45434;
+SET @MagharOrcMaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45437;
+SET @MagharOrcFemaleDisplayExtra                     =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45438;
+SET @OgreMaleDisplayExtra                            =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45439;
+SET @OgreFemaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45440;
+SET @DarkIronDwarfMaleDisplayExtra                   =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45441;
+SET @DarkIronDwarfFemaleDisplayExtra                 =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45442;
+SET @ZandalariTrollMaleDisplayExtra                  =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45443;
+SET @ZandalariTrollFemaleDisplayExtra                =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45444;
+SET @VulperaMaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45445;
+SET @VulperaFemaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45446;
+SET @AlliancePandarenMaleDisplayExtra                =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45447;
+SET @AlliancePandarenFemaleDisplayExtra              =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45448;
+SET @HordePandarenMaleDisplayExtra                   =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45449;
+SET @HordePandarenFemaleDisplayExtra                 =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45450;
+SET @BrokenMaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 14150;
+SET @BrokenFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45451;
+SET @KulTiranMaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45452;
+SET @KulTiranFemaleDisplayExtra                      =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45453;
+SET @GilneanMaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45454;
+SET @GilneanFemaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45455;
+SET @HighmountainTaurenMaleDisplayExtra              =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45456;
+SET @HighmountainTaurenFemaleDisplayExtra            =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45457;
+SET @NagaMaleDisplayExtra                            =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45458;
+SET @NagaFemaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45459;
+SET @TaunkaMaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45460;
+SET @TaunkaFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45461;
+SET @VoidElfMaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45462;
+SET @VoidElfFemaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45463;
+SET @LightforgedDraeneiMaleDisplayExtra              =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45464;
+SET @LightforgedDraeneiFemaleDisplayExtra            =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45465;
+SET @GoblinMaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45566;
+SET @GoblinFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45567;
 
+SET @NextCreatureID                                  =    55273;
 -- creature_template
-SET @WorgenWildMaleCreatureID                        =    55274;
-SET @WorgenWildFemaleCreatureID                      =    55275;
-SET @GilneanMaleCreatureID                           =    55276;
-SET @GilneanFemaleCreatureID                         =    55277;
+SET @WorgenWildMaleCreatureID                        =    @NextCreatureID := @NextCreatureID +1; -- 55274;
+SET @WorgenWildFemaleCreatureID                      =    @NextCreatureID := @NextCreatureID +1; -- 55275;
+SET @GilneanMaleCreatureID                           =    @NextCreatureID := @NextCreatureID +1; -- 55276;
+SET @GilneanFemaleCreatureID                         =    @NextCreatureID := @NextCreatureID +1; -- 55277;
 
 -- Exploration Sounds
 SET @HumanExplorationSound                           =     4140;
@@ -597,111 +601,111 @@ SET @DruidCatTrollModel                              =    3519; -- Cataclysm ID
 SET @DruidTreeFormModel                              =    3805; -- Cataclysm ID
 SET @DruidFlightWorgenModel                          =    3845; -- Cataclysm ID
 SET @DruidFlightTrollModel                           =    3846; -- Cataclysm ID
-SET @DruidTravelAllianceModel                        =    4870;
-SET @DruidTravelHordeModel                           =    4871;
-SET @DruidFlightHighmountainTaurenModel              =    4872;
-SET @DruidBearZandalariTrollModel                    =    4873;
-SET @DruidCatZandalariTrollModel                     =    4874;
-SET @DruidFlightZandalariTrollModel                  =    4875;
-SET @DruidMoonkinZandalariTrollModel                 =    4876;
-SET @DruidTravelZandalariTrollModel                  =    4877;
-SET @DruidAquaticZandalariTrollModel                 =    4878;
-SET @DruidBearHighmountainTaurenModel                =    4879;
-SET @DruidCatHighmountainTaurenModel                 =    4880;
-SET @DruidMoonkinHighmountainTaurenModel             =    4881;
-SET @DruidBearKulTiranModel                          =    4882;
-SET @DruidCatKulTiranModel                           =    4883;
-SET @DruidFlightKulTiranModel                        =    4884;
-SET @DruidMoonkinKulTiranModel                       =    4885;
-SET @DruidTravelKulTiranModel                        =    4886;
-SET @DruidAquaticKulTiranModel                       =    4887;
+SET @DruidTravelAllianceModel                        =    @NextModelID := @NextModelID +1; -- 4870;
+SET @DruidTravelHordeModel                           =    @NextModelID := @NextModelID +1; -- 4871;
+SET @DruidFlightHighmountainTaurenModel              =    @NextModelID := @NextModelID +1; -- 4872;
+SET @DruidBearZandalariTrollModel                    =    @NextModelID := @NextModelID +1; -- 4873;
+SET @DruidCatZandalariTrollModel                     =    @NextModelID := @NextModelID +1; -- 4874;
+SET @DruidFlightZandalariTrollModel                  =    @NextModelID := @NextModelID +1; -- 4875;
+SET @DruidMoonkinZandalariTrollModel                 =    @NextModelID := @NextModelID +1; -- 4876;
+SET @DruidTravelZandalariTrollModel                  =    @NextModelID := @NextModelID +1; -- 4877;
+SET @DruidAquaticZandalariTrollModel                 =    @NextModelID := @NextModelID +1; -- 4878;
+SET @DruidBearHighmountainTaurenModel                =    @NextModelID := @NextModelID +1; -- 4879;
+SET @DruidCatHighmountainTaurenModel                 =    @NextModelID := @NextModelID +1; -- 4880;
+SET @DruidMoonkinHighmountainTaurenModel             =    @NextModelID := @NextModelID +1; -- 4881;
+SET @DruidBearKulTiranModel                          =    @NextModelID := @NextModelID +1; -- 4882;
+SET @DruidCatKulTiranModel                           =    @NextModelID := @NextModelID +1; -- 4883;
+SET @DruidFlightKulTiranModel                        =    @NextModelID := @NextModelID +1; -- 4884;
+SET @DruidMoonkinKulTiranModel                       =    @NextModelID := @NextModelID +1; -- 4885;
+SET @DruidTravelKulTiranModel                        =    @NextModelID := @NextModelID +1; -- 4886;
+SET @DruidAquaticKulTiranModel                       =    @NextModelID := @NextModelID +1; -- 4887;
 
 -- Druid Form Display IDs
-SET @DruidBearWorgenDisplay                          =   33650;
-SET @DruidBearWorgenBlackDisplay                     =   33651;
-SET @DruidBearWorgenBrownDisplay                     =   33652;
-SET @DruidBearWorgenTanDisplay                       =   33653;
-SET @DruidBearWorgenWhiteDisplay                     =   33654;
-SET @DruidBearTrollBlueDisplay                       =   33655;
-SET @DruidBearTrollPurpleDisplay                     =   33656;
-SET @DruidBearTrollRedDisplay                        =   33657;
-SET @DruidBearTrollWhiteDisplay                      =   33658;
-SET @DruidBearTrollYellowDisplay                     =   33659;
-SET @DruidCatSkinWorgenDisplay                       =   33660;
-SET @DruidCatSkinWorgenBlackDisplay                  =   33661;
-SET @DruidCatSkinWorgenBrownDisplay                  =   33662;
-SET @DruidCatSkinWorgenWhiteDisplay                  =   33663;
-SET @DruidCatSkinWorgenYellowDisplay                 =   33664;
-SET @DruidCatTrollSkinBlackDisplay                   =   33665;
-SET @DruidCatTrollSkinBlueDisplay                    =   33666;
-SET @DruidCatTrollSkinGreenDisplay                   =   33667;
-SET @DruidCatTrollSkinRedDisplay                     =   33668;
-SET @DruidCatTrollSkinWhiteDisplay                   =   33669;
-SET @DruidCatSkinPurpleDisplay                       =   34521;
-SET @DruidTreeFormGreenDisplay                       =   37163;
-SET @DruidTreeFormRedDisplay                         =   37164;
-SET @DruidTreeFormPurpleDisplay                      =   37165;
-SET @DruidTreeFormOrangeDisplay                      =   37166;
-SET @DruidOwlBearBlackSkinDisplay                    =   37173;
-SET @DruidOwlBearRedSkinDisplay                      =   37174;
-SET @StormCrowDruidSkinDisplay                       =   37727;
-SET @EpicDruidFlightWorgenDisplay                    =   37729;
-SET @EpicDruidFlightTrollDisplay                     =   37730;
-SET @DruidFlightTrollDisplay                         =   94216;
-SET @DruidTravelAllianceDisplay                      =   40816;
-SET @DruidTravelHordeDisplay                         =   45339;
-SET @DruidFlightHighmountainTaurenDisplay            =   94160;
-SET @DruidBearZandalariTrollBlueDisplay              =   94161;
-SET @DruidBearZandalariTrollDarkDisplay              =   94162;
-SET @DruidBearZandalariTrollGreenDisplay             =   94163;
-SET @DruidBearZandalariTrollWhiteDisplay             =   94164;
-SET @DruidCatZandalariTrollBlackDisplay              =   94165;
-SET @DruidCatZandalariTrollBlueDisplay               =   94166;
-SET @DruidCatZandalariTrollGreenDisplay              =   94167;
-SET @DruidCatZandalariTrollWhiteDisplay              =   94168;
-SET @DruidFlightZandalariTrollDisplay                =   94169;
-SET @DruidMoonkinZandalariTrollDisplay               =   94170;
-SET @DruidTravelZandalariTrollDisplay                =   94171;
-SET @DruidTreeZandalariTrollDisplay                  =   94172;
-SET @DruidAquaticZandalariTrollTealDisplay           =   94173;
-SET @DruidAquaticZandalariTrollDarkDisplay           =   94174;
-SET @DruidAquaticZandalariTrollGreenDisplay          =   94175;
-SET @DruidAquaticZandalariTrollLightDisplay          =   94176;
-SET @DruidBearHighmountainTaurenBlackDisplay         =   94177;
-SET @DruidBearHighmountainTaurenBrownDisplay         =   94178;
-SET @DruidBearHighmountainTaurenSilverDisplay        =   94179;
-SET @DruidBearHighmountainTaurenWhiteDisplay         =   94180;
-SET @DruidBearHighmountainTaurenYellowDisplay        =   94181;
-SET @DruidCatHighmountainTaurenBlackDisplay          =   94182;
-SET @DruidCatHighmountainTaurenBrownDisplay          =   94183;
-SET @DruidCatHighmountainTaurenRedDisplay            =   94184;
-SET @DruidCatHighmountainTaurenWhiteDisplay          =   94185;
-SET @DruidMoonkinHighmountainTaurenDisplay           =   94186;
-SET @DruidBearKulTiranBrownDisplay                   =   94187;
-SET @DruidBearKulTiranDarkDisplay                    =   94188;
-SET @DruidBearKulTiranGreenDisplay                   =   94189;
-SET @DruidBearKulTiranLightDisplay                   =   94190;
-SET @DruidCatKulTiranBrownDisplay                    =   94191;
-SET @DruidCatKulTiranDarkDisplay                     =   94192;
-SET @DruidCatKulTiranGreenDisplay                    =   94193;
-SET @DruidCatKulTiranLightDisplay                    =   94194;
-SET @DruidFlightKulTiranBrownDisplay                 =   94195;
-SET @DruidFlightKulTiranDarkDisplay                  =   94196;
-SET @DruidFlightKulTiranGreenDisplay                 =   94197;
-SET @DruidFlightKulTiranLightDisplay                 =   94198;
-SET @DruidMoonkinKulTiranDisplay                     =   94199;
-SET @DruidMoonkinKulTiranBlackDisplay                =   94200;
-SET @DruidMoonkinKulTiranPaleDisplay                 =   94201;
-SET @DruidMoonkinKulTiranRedDisplay                  =   94202;
-SET @DruidTravelKulTiranBlueDisplay                  =   94203;
-SET @DruidTravelKulTiranBrownDisplay                 =   94204;
-SET @DruidTravelKulTiranGreenDisplay                 =   94205;
-SET @DruidTravelKulTiranWhiteDisplay                 =   94206;
-SET @DruidAquaticKulTiranBrownDisplay                =   94207;
-SET @DruidAquaticKulTiranDarkDisplay                 =   94208;
-SET @DruidAquaticKulTiranGreenDisplay                =   94209;
-SET @DruidAquaticKulTiranLightDisplay                =   94210;
-SET @DruidTreeKulTiranDisplay                        =   94214;
+SET @DruidBearWorgenDisplay                          =   @NextDisplayID := @NextDisplayID +1; -- 33650;
+SET @DruidBearWorgenBlackDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 33651;
+SET @DruidBearWorgenBrownDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 33652;
+SET @DruidBearWorgenTanDisplay                       =   @NextDisplayID := @NextDisplayID +1; -- 33653;
+SET @DruidBearWorgenWhiteDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 33654;
+SET @DruidBearTrollBlueDisplay                       =   @NextDisplayID := @NextDisplayID +1; -- 33655;
+SET @DruidBearTrollPurpleDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 33656;
+SET @DruidBearTrollRedDisplay                        =   @NextDisplayID := @NextDisplayID +1; -- 33657;
+SET @DruidBearTrollWhiteDisplay                      =   @NextDisplayID := @NextDisplayID +1; -- 33658;
+SET @DruidBearTrollYellowDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 33659;
+SET @DruidCatSkinWorgenDisplay                       =   @NextDisplayID := @NextDisplayID +1; -- 33660;
+SET @DruidCatSkinWorgenBlackDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 33661;
+SET @DruidCatSkinWorgenBrownDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 33662;
+SET @DruidCatSkinWorgenWhiteDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 33663;
+SET @DruidCatSkinWorgenYellowDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 33664;
+SET @DruidCatTrollSkinBlackDisplay                   =   @NextDisplayID := @NextDisplayID +1; -- 33665;
+SET @DruidCatTrollSkinBlueDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 33666;
+SET @DruidCatTrollSkinGreenDisplay                   =   @NextDisplayID := @NextDisplayID +1; -- 33667;
+SET @DruidCatTrollSkinRedDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 33668;
+SET @DruidCatTrollSkinWhiteDisplay                   =   @NextDisplayID := @NextDisplayID +1; -- 33669;
+SET @DruidCatSkinPurpleDisplay                       =   @NextDisplayID := @NextDisplayID +1; -- 34521;
+SET @DruidTreeFormGreenDisplay                       =   @NextDisplayID := @NextDisplayID +1; -- 37163;
+SET @DruidTreeFormRedDisplay                         =   @NextDisplayID := @NextDisplayID +1; -- 37164;
+SET @DruidTreeFormPurpleDisplay                      =   @NextDisplayID := @NextDisplayID +1; -- 37165;
+SET @DruidTreeFormOrangeDisplay                      =   @NextDisplayID := @NextDisplayID +1; -- 37166;
+SET @DruidOwlBearBlackSkinDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 37173;
+SET @DruidOwlBearRedSkinDisplay                      =   @NextDisplayID := @NextDisplayID +1; -- 37174;
+SET @StormCrowDruidSkinDisplay                       =   @NextDisplayID := @NextDisplayID +1; -- 37727;
+SET @EpicDruidFlightWorgenDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 37729;
+SET @EpicDruidFlightTrollDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 37730;
+SET @DruidFlightTrollDisplay                         =   @NextDisplayID := @NextDisplayID +1; -- 94216;
+SET @DruidTravelAllianceDisplay                      =   @NextDisplayID := @NextDisplayID +1; -- 40816;
+SET @DruidTravelHordeDisplay                         =   @NextDisplayID := @NextDisplayID +1; -- 45339;
+SET @DruidFlightHighmountainTaurenDisplay            =   @NextDisplayID := @NextDisplayID +1; -- 94160;
+SET @DruidBearZandalariTrollBlueDisplay              =   @NextDisplayID := @NextDisplayID +1; -- 94161;
+SET @DruidBearZandalariTrollDarkDisplay              =   @NextDisplayID := @NextDisplayID +1; -- 94162;
+SET @DruidBearZandalariTrollGreenDisplay             =   @NextDisplayID := @NextDisplayID +1; -- 94163;
+SET @DruidBearZandalariTrollWhiteDisplay             =   @NextDisplayID := @NextDisplayID +1; -- 94164;
+SET @DruidCatZandalariTrollBlackDisplay              =   @NextDisplayID := @NextDisplayID +1; -- 94165;
+SET @DruidCatZandalariTrollBlueDisplay               =   @NextDisplayID := @NextDisplayID +1; -- 94166;
+SET @DruidCatZandalariTrollGreenDisplay              =   @NextDisplayID := @NextDisplayID +1; -- 94167;
+SET @DruidCatZandalariTrollWhiteDisplay              =   @NextDisplayID := @NextDisplayID +1; -- 94168;
+SET @DruidFlightZandalariTrollDisplay                =   @NextDisplayID := @NextDisplayID +1; -- 94169;
+SET @DruidMoonkinZandalariTrollDisplay               =   @NextDisplayID := @NextDisplayID +1; -- 94170;
+SET @DruidTravelZandalariTrollDisplay                =   @NextDisplayID := @NextDisplayID +1; -- 94171;
+SET @DruidTreeZandalariTrollDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 94172;
+SET @DruidAquaticZandalariTrollTealDisplay           =   @NextDisplayID := @NextDisplayID +1; -- 94173;
+SET @DruidAquaticZandalariTrollDarkDisplay           =   @NextDisplayID := @NextDisplayID +1; -- 94174;
+SET @DruidAquaticZandalariTrollGreenDisplay          =   @NextDisplayID := @NextDisplayID +1; -- 94175;
+SET @DruidAquaticZandalariTrollLightDisplay          =   @NextDisplayID := @NextDisplayID +1; -- 94176;
+SET @DruidBearHighmountainTaurenBlackDisplay         =   @NextDisplayID := @NextDisplayID +1; -- 94177;
+SET @DruidBearHighmountainTaurenBrownDisplay         =   @NextDisplayID := @NextDisplayID +1; -- 94178;
+SET @DruidBearHighmountainTaurenSilverDisplay        =   @NextDisplayID := @NextDisplayID +1; -- 94179;
+SET @DruidBearHighmountainTaurenWhiteDisplay         =   @NextDisplayID := @NextDisplayID +1; -- 94180;
+SET @DruidBearHighmountainTaurenYellowDisplay        =   @NextDisplayID := @NextDisplayID +1; -- 94181;
+SET @DruidCatHighmountainTaurenBlackDisplay          =   @NextDisplayID := @NextDisplayID +1; -- 94182;
+SET @DruidCatHighmountainTaurenBrownDisplay          =   @NextDisplayID := @NextDisplayID +1; -- 94183;
+SET @DruidCatHighmountainTaurenRedDisplay            =   @NextDisplayID := @NextDisplayID +1; -- 94184;
+SET @DruidCatHighmountainTaurenWhiteDisplay          =   @NextDisplayID := @NextDisplayID +1; -- 94185;
+SET @DruidMoonkinHighmountainTaurenDisplay           =   @NextDisplayID := @NextDisplayID +1; -- 94186;
+SET @DruidBearKulTiranBrownDisplay                   =   @NextDisplayID := @NextDisplayID +1; -- 94187;
+SET @DruidBearKulTiranDarkDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 94188;
+SET @DruidBearKulTiranGreenDisplay                   =   @NextDisplayID := @NextDisplayID +1; -- 94189;
+SET @DruidBearKulTiranLightDisplay                   =   @NextDisplayID := @NextDisplayID +1; -- 94190;
+SET @DruidCatKulTiranBrownDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 94191;
+SET @DruidCatKulTiranDarkDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 94192;
+SET @DruidCatKulTiranGreenDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 94193;
+SET @DruidCatKulTiranLightDisplay                    =   @NextDisplayID := @NextDisplayID +1; -- 94194;
+SET @DruidFlightKulTiranBrownDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94195;
+SET @DruidFlightKulTiranDarkDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 94196;
+SET @DruidFlightKulTiranGreenDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94197;
+SET @DruidFlightKulTiranLightDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94198;
+SET @DruidMoonkinKulTiranDisplay                     =   @NextDisplayID := @NextDisplayID +1; -- 94199;
+SET @DruidMoonkinKulTiranBlackDisplay                =   @NextDisplayID := @NextDisplayID +1; -- 94200;
+SET @DruidMoonkinKulTiranPaleDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94201;
+SET @DruidMoonkinKulTiranRedDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 94202;
+SET @DruidTravelKulTiranBlueDisplay                  =   @NextDisplayID := @NextDisplayID +1; -- 94203;
+SET @DruidTravelKulTiranBrownDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94204;
+SET @DruidTravelKulTiranGreenDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94205;
+SET @DruidTravelKulTiranWhiteDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94206;
+SET @DruidAquaticKulTiranBrownDisplay                =   @NextDisplayID := @NextDisplayID +1; -- 94207;
+SET @DruidAquaticKulTiranDarkDisplay                 =   @NextDisplayID := @NextDisplayID +1; -- 94208;
+SET @DruidAquaticKulTiranGreenDisplay                =   @NextDisplayID := @NextDisplayID +1; -- 94209;
+SET @DruidAquaticKulTiranLightDisplay                =   @NextDisplayID := @NextDisplayID +1; -- 94210;
+SET @DruidTreeKulTiranDisplay                        =   @NextDisplayID := @NextDisplayID +1; -- 94214;
 
 -- Weapon Skills
 SET @SwordSkill                                      =       43;
@@ -997,46 +1001,46 @@ SET @MechanostriderPilotingDwarfSkillRaceClass       =      501; -- Dwarf
 SET @HorseModel                                      =       65;
 SET @GoblinTrikeModel                                =     3623;
 SET @GoblinTurboTrikeModel                           =     3624;
-SET @CaravanHyena1Model                              =     3628; -- Vacant slot
-SET @CaravanHyena2Model                              =     3629; -- Vacant slot
-SET @DragonTurtleModel                               =     3630; -- Vacant slot
-SET @HighmountainThunderhoofModel                    =     3631; -- Vacant slot
-SET @LightforgedFelcrusherModel                      =     3632; -- Vacant slot
+SET @CaravanHyena1Model                              =     @NextModelID := @NextModelID +1; -- 3628; -- Vacant slot
+SET @CaravanHyena2Model                              =     @NextModelID := @NextModelID +1; -- 3629; -- Vacant slot
+SET @DragonTurtleModel                               =     @NextModelID := @NextModelID +1; -- 3630; -- Vacant slot
+SET @HighmountainThunderhoofModel                    =     @NextModelID := @NextModelID +1; -- 3631; -- Vacant slot
+SET @LightforgedFelcrusherModel                      =     @NextModelID := @NextModelID +1; -- 3632; -- Vacant slot
 
 -- Mount Display IDs
-SET @GoblinTrikeDisplay                              =    35249;
-SET @GoblinTurboTrikeDisplay                         =    35250;
-SET @MountainHorseDisplay                            =    39095; -- black
-SET @SwiftMountainHorseDisplay                       =    39096; -- brown
-SET @CaravanHyena1Display                            =    94211; -- vacant slot
-SET @CaravanHyena2Display                            =    94212; -- vacant slot
-SET @DragonTurtleBlueDisplay                         =    94228; -- vacant slot
-SET @DragonTurtlePurpleDisplay                       =    94229; -- vacant slot
-SET @DragonTurtleGreenDisplay                        =    94230; -- vacant slot
-SET @DragonTurtleBlackDisplay                        =    94231; -- vacant slot
-SET @HighmountainThunderhoofDisplay                  =    94232; -- vacant slot
-SET @LightforgedFelcrusherPurpleDisplay              =    94233; -- vacant slot
-SET @LightforgedFelcrusherBlueDisplay                =    94234; -- vacant slot
-SET @LightforgedFelcrusherDarkDisplay                =    94235; -- vacant slot
-SET @LightforgedFelcrusherHolyDisplay                =    94236; -- vacant slot
+SET @GoblinTrikeDisplay                              =    35249; -- Cataclysm ID?
+SET @GoblinTurboTrikeDisplay                         =    35250; -- Cataclysm ID?
+SET @MountainHorseDisplay                            =    39095; -- black, Cataclysm ID?
+SET @SwiftMountainHorseDisplay                       =    39096; -- brown, Cataclysm ID?
+SET @CaravanHyena1Display                            =    @NextModelID := @NextModelID +1; -- 94211; -- vacant slot
+SET @CaravanHyena2Display                            =    @NextModelID := @NextModelID +1; -- 94212; -- vacant slot
+SET @DragonTurtleBlueDisplay                         =    @NextModelID := @NextModelID +1; -- 94228; -- vacant slot
+SET @DragonTurtlePurpleDisplay                       =    @NextModelID := @NextModelID +1; -- 94229; -- vacant slot
+SET @DragonTurtleGreenDisplay                        =    @NextModelID := @NextModelID +1; -- 94230; -- vacant slot
+SET @DragonTurtleBlackDisplay                        =    @NextModelID := @NextModelID +1; -- 94231; -- vacant slot
+SET @HighmountainThunderhoofDisplay                  =    @NextModelID := @NextModelID +1; -- 94232; -- vacant slot
+SET @LightforgedFelcrusherPurpleDisplay              =    @NextModelID := @NextModelID +1; -- 94233; -- vacant slot
+SET @LightforgedFelcrusherBlueDisplay                =    @NextModelID := @NextModelID +1; -- 94234; -- vacant slot
+SET @LightforgedFelcrusherDarkDisplay                =    @NextModelID := @NextModelID +1; -- 94235; -- vacant slot
+SET @LightforgedFelcrusherHolyDisplay                =    @NextModelID := @NextModelID +1; -- 94236; -- vacant slot
 
 -- Creature IDs
-SET @GobberCreatureID                                =    36613;
-SET @GoblinTrikeCreatureID                           =    46754;
-SET @GoblinTurboTrikeCreatureID                      =    46755;
-SET @MountainHorseCreatureID                         =    55272;
-SET @SwiftMountainHorseCreatureID                    =    55273;
-SET @CaravanHyena1CreatureID                         =   182781; -- vacant slot
-SET @CaravanHyena2CreatureID                         =   182782; -- vacant slot
-SET @DragonTurtleBlueCreatureID                      =   182783; -- vacant slot
-SET @DragonTurtlePurpleCreatureID                    =   182784; -- vacant slot
-SET @DragonTurtleGreenCreatureID                     =   182785; -- vacant slot
-SET @DragonTurtleBlackCreatureID                     =   182786; -- vacant slot
-SET @HighmountainThunderhoofCreatureID               =   182787; -- vacant slot
-SET @LightforgedFelcrusherPurpleCreatureID           =   182788; -- vacant slot
-SET @LightforgedFelcrusherBlueCreatureID             =   182789; -- vacant slot
-SET @LightforgedFelcrusherDarkCreatureID             =   182790; -- vacant slot
-SET @LightforgedFelcrusherHolyCreatureID             =   182791; -- vacant slot
+SET @GobberCreatureID                                =    36613; -- Cataclysm ID
+SET @GoblinTrikeCreatureID                           =    46754; -- Cataclysm ID
+SET @GoblinTurboTrikeCreatureID                      =    46755; -- Cataclysm ID
+SET @MountainHorseCreatureID                         =    55272; -- Cataclysm ID
+SET @SwiftMountainHorseCreatureID                    =    55273; -- Cataclysm ID
+SET @CaravanHyena1CreatureID                         =   @NextCreatureID := @NextCreatureID +1; -- 182781; -- vacant slot
+SET @CaravanHyena2CreatureID                         =   @NextCreatureID := @NextCreatureID +1; -- 182782; -- vacant slot
+SET @DragonTurtleBlueCreatureID                      =   @NextCreatureID := @NextCreatureID +1; -- 182783; -- vacant slot
+SET @DragonTurtlePurpleCreatureID                    =   @NextCreatureID := @NextCreatureID +1; -- 182784; -- vacant slot
+SET @DragonTurtleGreenCreatureID                     =   @NextCreatureID := @NextCreatureID +1; -- 182785; -- vacant slot
+SET @DragonTurtleBlackCreatureID                     =   @NextCreatureID := @NextCreatureID +1; -- 182786; -- vacant slot
+SET @HighmountainThunderhoofCreatureID               =   @NextCreatureID := @NextCreatureID +1; -- 182787; -- vacant slot
+SET @LightforgedFelcrusherPurpleCreatureID           =   @NextCreatureID := @NextCreatureID +1; -- 182788; -- vacant slot
+SET @LightforgedFelcrusherBlueCreatureID             =   @NextCreatureID := @NextCreatureID +1; -- 182789; -- vacant slot
+SET @LightforgedFelcrusherDarkCreatureID             =   @NextCreatureID := @NextCreatureID +1; -- 182790; -- vacant slot
+SET @LightforgedFelcrusherHolyCreatureID             =   @NextCreatureID := @NextCreatureID +1; -- 182791; -- vacant slot
 
 -- Mount Items
 SET @GoblinTrikeItem                                 =    62461; -- Cataclysm ID
@@ -1055,19 +1059,20 @@ SET @LightforgedFelcrusherPurpleItem                 =   174067; -- vacant slot
 SET @LightforgedFelcrusherBlueItem                   =   174068; -- vacant slot
 SET @LightforgedFelcrusherDarkItem                   =   174069; -- vacant slot
 
+SET @NextItemDisplayID                               =   132261;
 -- Mount Item Display ID
-SET @GoblinTrikeItemDisplay                          =   134237;
-SET @GoblinTurboTrikeItemDisplay                     =   134238;
-SET @MountainHorseItemDisplay                        =   132261;
+SET @GoblinTrikeItemDisplay                          =   134237; -- Cataclysm ID?
+SET @GoblinTurboTrikeItemDisplay                     =   134238; -- Cataclysm ID?
+SET @MountainHorseItemDisplay                        =   132261; -- Cataclysm ID?
 SET @SwiftMountainHorseItemDisplay                   =   @MountainHorseItemDisplay;
-SET @CaravanHyena1ItemDisplay                        =   132262; -- vacant slot
+SET @CaravanHyena1ItemDisplay                        =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132262; -- vacant slot
 SET @CaravanHyena2ItemDisplay                        =   @CaravanHyena1ItemDisplay;
-SET @DragonTurtleBlueItemDisplay                     =   132263; -- vacant slot
-SET @DragonTurtlePurpleItemDisplay                   =   132264; -- vacant slot
-SET @DragonTurtleGreenItemDisplay                    =   132265; -- vacant slot
-SET @DragonTurtleBlackItemDisplay                    =   132266; -- vacant slot
-SET @HighmountainThunderhoofItemDisplay              =   132267; -- vacant slot
-SET @LightforgedFelcrusherHolyItemDisplay            =   132268; -- vacant slot
+SET @DragonTurtleBlueItemDisplay                     =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132263; -- vacant slot
+SET @DragonTurtlePurpleItemDisplay                   =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132264; -- vacant slot
+SET @DragonTurtleGreenItemDisplay                    =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132265; -- vacant slot
+SET @DragonTurtleBlackItemDisplay                    =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132266; -- vacant slot
+SET @HighmountainThunderhoofItemDisplay              =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132267; -- vacant slot
+SET @LightforgedFelcrusherHolyItemDisplay            =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132268; -- vacant slot
 SET @LightforgedFelcrusherPurpleItemDisplay          =   @LightforgedFelcrusherHolyItemDisplay;
 SET @LightforgedFelcrusherBlueItemDisplay            =   @LightforgedFelcrusherHolyItemDisplay;
 SET @LightforgedFelcrusherDarkItemDisplay            =   @LightforgedFelcrusherHolyItemDisplay;
