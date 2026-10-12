@@ -83,7 +83,7 @@ SELECT
     @AllianceTravelForm
 FROM (
     SELECT DISTINCT `race`
-    FROM `charbaseinfo`
+    FROM `dbc_db`.`charbaseinfo`
     WHERE `race` IS NOT NULL
 ) AS r
 WHERE (@AllianceMask & (1 << (r.`race` - 1))) <> 0
@@ -112,7 +112,7 @@ SELECT
     @HordeTravelForm
 FROM (
     SELECT DISTINCT `race`
-    FROM `charbaseinfo`
+    FROM `dbc_db`.`charbaseinfo`
     WHERE `race` IS NOT NULL
 ) AS r
 WHERE (@HordeMask & (1 << (r.`race` - 1))) <> 0

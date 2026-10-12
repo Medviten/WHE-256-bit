@@ -10,4 +10,4 @@ REPLACE INTO `player_shapeshift_model` (
 (@BearForm, @Ogre, 255,	2, 2289), -- ModelID
 (@DireBearForm, @Ogre, 255, 2, 2289), -- ModelID
 (@SwiftFlightForm, @Ogre, 255, 2, 21244), -- ModelID
-(@FlightForm, @Ogre, 255, 2, 20872), -- ModelID
+(@FlightForm, @Ogre, 255, 2, 20872); -- ModelID
