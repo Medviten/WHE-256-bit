@@ -1,7 +1,6 @@
--- Race ID
-SET @ZandalariTroll                          := @NextRace := @NextRace +1;  -- default: 17
-SET @ZandalariTrollMask                       = 1 << (@ZandalariTroll - 1); -- race ID 17 → 65536
-SET @ZandalariTrollHelmetMask                 = 1 << @ZandalariTroll;       -- race ID 17 → 131072
+-- Race masks (race IDs are fixed in config.sql)
+SET @ZandalariTrollMask                       = 1 << (@ZandalariTroll - 1); -- race ID 31 → 1073741824
+SET @ZandalariTrollHelmetMask                 = 1 << @ZandalariTroll;       -- race ID 31 → 2147483648
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                                = @HordeMask    | @ZandalariTrollMask;
@@ -20,6 +19,18 @@ SET @ZandalariTrollMaleModelPath              = 'Character\\ZandalariTroll\\male
 SET @ZandalariTrollFemaleModelPath            = 'Character\\ZandalariTroll\\female\\ZandalariTrollFemale.M2';
 SET @ZandalariTrollMaleFootprint              = @FootprintShoe;
 SET @ZandalariTrollFemaleFootprint            = @FootprintShoe;
+
+-- Mounts (IDs are global, see config.sql)
+SET @ZandalariTrollMount1                    = @SpellZandalariDirehorn;
+SET @ZandalariTrollMount1Model               = @ZandalariDirehornModel;
+SET @ZandalariTrollMount1Display             = @ZandalariDirehornDisplay;
+SET @ZandalariTrollMount1CreatureID          = @ZandalariDirehornCreatureID;
+SET @ZandalariTrollMount1Item                = @ZandalariDirehornItem;
+SET @ZandalariTrollMount1ItemDisplay         = @ZandalariDirehornItemDisplay;
+SET @ZandalariTrollMount1IconID              = @IconZandalariDirehorn;
+SET @ZandalariTrollMount1IconName            = 'inv_triceratopszandalari';
+SET @ZandalariTrollMount1IconPath            = CONCAT('Interface\\Icons\\', @ZandalariTrollMount1IconName);
+SET @ZandalariTrollMount1ModelPath           = 'Creature\\triceratops\\triceratopsmount.m2';
 
 -- Strings
 SET @ZandalariTrollClientPrefix               = 'Tr';
@@ -41,6 +52,10 @@ SET @ZandalariTrollruRU                       = '';
 SET @ZandalariTrolljaJP                       = '';
 SET @ZandalariTrollptPT                       = '';
 SET @ZandalariTrollitIT                       = '';
+SET @ZandalariTrollUnk1                       = '';
+SET @ZandalariTrollUnk2                       = '';
+SET @ZandalariTrollUnk3                       = '';
+SET @ZandalariTrollUnk4                       = '';
 
 SET @ZandalariTrollFemaleenUS                 = '';
 SET @ZandalariTrollFemalekoKR                 = '';
@@ -54,6 +69,10 @@ SET @ZandalariTrollFemaleruRU                 = '';
 SET @ZandalariTrollFemalejaJP                 = '';
 SET @ZandalariTrollFemaleptPT                 = '';
 SET @ZandalariTrollFemaleitIT                 = '';
+SET @ZandalariTrollFemaleUnk1                 = '';
+SET @ZandalariTrollFemaleUnk2                 = '';
+SET @ZandalariTrollFemaleUnk3                 = '';
+SET @ZandalariTrollFemaleUnk4                 = '';
 
 SET @ZandalariTrollMaleenUS                   = '';
 SET @ZandalariTrollMalekoKR                   = '';
@@ -67,6 +86,10 @@ SET @ZandalariTrollMaleruRU                   = '';
 SET @ZandalariTrollMalejaJP                   = '';
 SET @ZandalariTrollMaleptPT                   = '';
 SET @ZandalariTrollMaleitIT                   = '';
+SET @ZandalariTrollMaleUnk1                   = '';
+SET @ZandalariTrollMaleUnk2                   = '';
+SET @ZandalariTrollMaleUnk3                   = '';
+SET @ZandalariTrollMaleUnk4                   = '';
 
 SET @ZandalariTrollRacialNameenUS             = 'Racial - Zandalari Troll';
 SET @ZandalariTrollRacialNamekoKR             = '';
@@ -80,6 +103,10 @@ SET @ZandalariTrollRacialNameruRU             = '';
 SET @ZandalariTrollRacialNamejaJP             = '';
 SET @ZandalariTrollRacialNameptPT             = '';
 SET @ZandalariTrollRacialNameitIT             = '';
+SET @ZandalariTrollRacialNameUnk1             = '';
+SET @ZandalariTrollRacialNameUnk2             = '';
+SET @ZandalariTrollRacialNameUnk3             = '';
+SET @ZandalariTrollRacialNameUnk4             = '';
 
 SET @ZandalariTrollPlayerenUS                 = '"PLAYER"," Zandalari Troll"';
 SET @ZandalariTrollPlayerkoKR                 = '';
@@ -93,6 +120,10 @@ SET @ZandalariTrollPlayerruRU                 = '';
 SET @ZandalariTrollPlayerjaJP                 = '';
 SET @ZandalariTrollPlayerptPT                 = '';
 SET @ZandalariTrollPlayeritIT                 = '';
+SET @ZandalariTrollPlayerUnk1                 = '';
+SET @ZandalariTrollPlayerUnk2                 = '';
+SET @ZandalariTrollPlayerUnk3                 = '';
+SET @ZandalariTrollPlayerUnk4                 = '';
 
 SET @ZandalariTrollFactionNameenUS            = 'Zandalari Empire';
 SET @ZandalariTrollFactionNamekoKR            = '';
@@ -106,6 +137,10 @@ SET @ZandalariTrollFactionNameruRU            = '';
 SET @ZandalariTrollFactionNamejaJP            = '';
 SET @ZandalariTrollFactionNameptPT            = '';
 SET @ZandalariTrollFactionNameitIT            = '';
+SET @ZandalariTrollFactionNameUnk1            = '';
+SET @ZandalariTrollFactionNameUnk2            = '';
+SET @ZandalariTrollFactionNameUnk3            = '';
+SET @ZandalariTrollFactionNameUnk4            = '';
 
 SET @ZandalariTrollFactionDescriptionenUS     = 'The oldest empire of Azeroth, the Zandalari are powerful trolls who bargain with fearsome loa and whose navy is unmatched on the Great Sea.';
 SET @ZandalariTrollFactionDescriptionkoKR     = '';
@@ -119,6 +154,10 @@ SET @ZandalariTrollFactionDescriptionruRU     = '';
 SET @ZandalariTrollFactionDescriptionjaJP     = '';
 SET @ZandalariTrollFactionDescriptionptPT     = '';
 SET @ZandalariTrollFactionDescriptionitIT     = '';
+SET @ZandalariTrollFactionDescriptionUnk1     = '';
+SET @ZandalariTrollFactionDescriptionUnk2     = '';
+SET @ZandalariTrollFactionDescriptionUnk3     = '';
+SET @ZandalariTrollFactionDescriptionUnk4     = '';
 
 SET @ZandalariTrollAchievementenUS            = 'Realm First! Level 80 Zandalari Troll';
 SET @ZandalariTrollAchievementkoKR            = '';
@@ -132,6 +171,10 @@ SET @ZandalariTrollAchievementruRU            = '';
 SET @ZandalariTrollAchievementjaJP            = '';
 SET @ZandalariTrollAchievementptPT            = '';
 SET @ZandalariTrollAchievementitIT            = '';
+SET @ZandalariTrollAchievementUnk1            = '';
+SET @ZandalariTrollAchievementUnk2            = '';
+SET @ZandalariTrollAchievementUnk3            = '';
+SET @ZandalariTrollAchievementUnk4            = '';
 
 SET @ZandalariTrollAchievementDescriptionenUS = 'First Zandalari Troll on the realm to achieve level 80.';
 SET @ZandalariTrollAchievementDescriptionkoKR = '';
@@ -145,3 +188,45 @@ SET @ZandalariTrollAchievementDescriptionruRU = '';
 SET @ZandalariTrollAchievementDescriptionjaJP = '';
 SET @ZandalariTrollAchievementDescriptionptPT = '';
 SET @ZandalariTrollAchievementDescriptionitIT = '';
+SET @ZandalariTrollAchievementDescriptionUnk1 = '';
+SET @ZandalariTrollAchievementDescriptionUnk2 = '';
+SET @ZandalariTrollAchievementDescriptionUnk3 = '';
+SET @ZandalariTrollAchievementDescriptionUnk4 = '';
+
+-- Racial Mount Strings
+SET @ZandalariTrollMount1NameenUS                    = 'Zandalari Direhorn';
+SET @ZandalariTrollMount1NamekoKR                    = '';
+SET @ZandalariTrollMount1NamefrFR                    = '';
+SET @ZandalariTrollMount1NamedeDE                    = '';
+SET @ZandalariTrollMount1NamezhCN                    = '';
+SET @ZandalariTrollMount1NamezhTW                    = '';
+SET @ZandalariTrollMount1NameesES                    = '';
+SET @ZandalariTrollMount1NameesMX                    = '';
+SET @ZandalariTrollMount1NameruRU                    = '';
+SET @ZandalariTrollMount1NamejaJP                    = '';
+SET @ZandalariTrollMount1NameptPT                    = '';
+SET @ZandalariTrollMount1NameitIT                    = '';
+SET @ZandalariTrollMount1NameUnk1                    = '';
+SET @ZandalariTrollMount1NameUnk2                    = '';
+SET @ZandalariTrollMount1NameUnk3                    = '';
+SET @ZandalariTrollMount1NameUnk4                    = '';
+
+SET @ZandalariTrollMount1SpellDescriptionenUS        = 'Summons and dismisses a rideable Zandalari Direhorn.';
+SET @ZandalariTrollMount1SpellDescriptionkoKR        = '';
+SET @ZandalariTrollMount1SpellDescriptionfrFR        = '';
+SET @ZandalariTrollMount1SpellDescriptiondeDE        = '';
+SET @ZandalariTrollMount1SpellDescriptionzhCN        = '';
+SET @ZandalariTrollMount1SpellDescriptionzhTW        = '';
+SET @ZandalariTrollMount1SpellDescriptionesES        = '';
+SET @ZandalariTrollMount1SpellDescriptionesMX        = '';
+SET @ZandalariTrollMount1SpellDescriptionruRU        = '';
+SET @ZandalariTrollMount1SpellDescriptionjaJP        = '';
+SET @ZandalariTrollMount1SpellDescriptionptPT        = '';
+SET @ZandalariTrollMount1SpellDescriptionitIT        = '';
+SET @ZandalariTrollMount1SpellDescriptionUnk1        = '';
+SET @ZandalariTrollMount1SpellDescriptionUnk2        = '';
+SET @ZandalariTrollMount1SpellDescriptionUnk3        = '';
+SET @ZandalariTrollMount1SpellDescriptionUnk4        = '';
+
+SET @ZandalariTrollMount1ItemNameenUS                = @ZandalariTrollMount1NameenUS;
+SET @ZandalariTrollMount1ItemDescriptionenUS         = 'Teaches you how to summon this mount.\n\nSummons and dismisses a rideable Zandalari Direhorn.';

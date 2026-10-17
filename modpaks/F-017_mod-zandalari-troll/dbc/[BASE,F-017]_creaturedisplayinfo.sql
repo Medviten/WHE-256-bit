@@ -30,3 +30,8 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidAquaticZandalariTrollDarkDisplay,  @DruidAquaticZandalariTrollModel,   0, 0, 0.5, 255, 'druidaquaticzandalari_dark', '', '', '', 0, 0, 0, 0, 0, 0),
 (@DruidAquaticZandalariTrollGreenDisplay, @DruidAquaticZandalariTrollModel,   0, 0, 0.5, 255, 'druidaquaticzandalari_green', '', '', '', 0, 0, 0, 0, 0, 0),
 (@DruidAquaticZandalariTrollLightDisplay, @DruidAquaticZandalariTrollModel,   0, 0, 0.5, 255, 'druidaquaticzandalari_light', '', '', '', 0, 0, 0, 0, 0, 0);
+
+-- Racial mount
+DELETE FROM `creaturedisplayinfo` WHERE `id` IN (@ZandalariTrollMount1Display);
+INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
+(@ZandalariTrollMount1Display, @ZandalariTrollMount1Model, 0, 0, '0.5', 255, 'triceratopszandalari', 'triceratopsmountzandalari', '', '', 1, 0, 0, 0, 0, 0);
