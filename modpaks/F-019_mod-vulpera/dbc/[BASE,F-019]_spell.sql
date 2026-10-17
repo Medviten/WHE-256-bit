@@ -2,12 +2,12 @@
 
 -- New entries
 DELETE FROM `spell` WHERE `id` IN (
-	@CaravanHyena1, @CaravanHyena2
+	@VulperaMount1, @VulperaMount2
 );
 INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attributes_ex_1`, `attributes_ex_2`, `attributes_ex_3`, `attributes_ex_4`, `attributes_ex_5`, `attributes_ex_6`, `attributes_ex_7`, `stances`, `unk_1`, `excluded_stances`, `unk_2`, `targets`, `target_creature_type`, `spell_focus_object`, `facing_caster_flags`, `caster_aura_state`, `target_aura_state`, `excluded_caster_aura_state`, `excluded_target_aura_state`, `caster_aura_spell`, `target_aura_spell`, `excluded_caster_aura_spell`, `excluded_target_aura_spell`, `cast_time_index`, `recovery_time`, `category_recovery_time`, `interrupt_flags`, `aura_interrupt_flags`, `channel_interrupt_flags`, `proc_flags`, `proc_chance`, `proc_charges`, `max_level`, `base_level`, `spell_level`, `duration_index`, `power_type`, `power_cost`, `power_cost_per_level`, `power_per_second`, `power_per_second_per_level`, `range_index`, `speed`, `modal_next_spell`, `stack_amount`, `totem_1`, `totem_2`, `reagent_1`, `reagent_2`, `reagent_3`, `reagent_4`, `reagent_5`, `reagent_6`, `reagent_7`, `reagent_8`, `reagent_count_1`, `reagent_count_2`, `reagent_count_3`, `reagent_count_4`, `reagent_count_5`, `reagent_count_6`, `reagent_count_7`, `reagent_count_8`, `equipped_item_class`, `equipped_item_subclass_mask`, `equipped_item_inventorytype_mask`, `effect_1`, `effect_2`, `effect_3`, `effect_die_sides_1`, `effect_die_sides_2`, `effect_die_sides_3`, `effect_real_points_per_level_1`, `effect_real_points_per_level_2`, `effect_real_points_per_level_3`, `effect_base_points_1`, `effect_base_points_2`, `effect_base_points_3`, `effect_mechanic_1`, `effect_mechanic_2`, `effect_mechanic_3`, `effect_implicit_target_a_1`, `effect_implicit_target_a_2`, `effect_implicit_target_a_3`, `effect_implicit_target_b_1`, `effect_implicit_target_b_2`, `effect_implicit_target_b_3`, `effect_radius_index_1`, `effect_radius_index_2`, `effect_radius_index_3`, `effect_apply_aura_name_1`, `effect_apply_aura_name_2`, `effect_apply_aura_name_3`, `effect_amplitude_1`, `effect_amplitude_2`, `effect_amplitude_3`, `effect_multiple_value_1`, `effect_multiple_value_2`, `effect_multiple_value_3`, `effect_chain_target_1`, `effect_chain_target_2`, `effect_chain_target_3`, `effect_item_type_1`, `effect_item_type_2`, `effect_item_type_3`, `effect_misc_value_a_1`, `effect_misc_value_a_2`, `effect_misc_value_a_3`, `effect_misc_value_b_1`, `effect_misc_value_b_2`, `effect_misc_value_b_3`, `effect_trigger_spell_1`, `effect_trigger_spell_2`, `effect_trigger_spell_3`, `effect_points_per_combo_point_1`, `effect_points_per_combo_point_2`, `effect_points_per_combo_point_3`, `effect_spell_class_mask_a_1`, `effect_spell_class_mask_a_2`, `effect_spell_class_mask_a_3`, `effect_spell_class_mask_b_1`, `effect_spell_class_mask_b_2`, `effect_spell_class_mask_b_3`, `effect_spell_class_mask_c_1`, `effect_spell_class_mask_c_2`, `effect_spell_class_mask_c_3`, `spell_visual_1`, `spell_visual_2`, `spell_icon_id`, `active_icon_id`, `spell_priority`, `spell_name_enus`, `spell_name_kokr`, `spell_name_frfr`, `spell_name_dede`, `spell_name_zhcn`, `spell_name_zhtw`, `spell_name_eses`, `spell_name_esmx`, `spell_name_ruru`, `spell_name_jajp`, `spell_name_ptpt`, `spell_name_itit`, `spell_name_unused_1`, `spell_name_unused_2`, `spell_name_unused_3`, `spell_name_unused_4`, `spell_name_flags`, `spell_subtext_enus`, `spell_subtext_kokr`, `spell_subtext_frfr`, `spell_subtext_dede`, `spell_subtext_zhcn`, `spell_subtext_zhtw`, `spell_subtext_eses`, `spell_subtext_esmx`, `spell_subtext_ruru`, `spell_subtext_jajp`, `spell_subtext_ptpt`, `spell_subtext_itit`, `spell_subtext_unused_1`, `spell_subtext_unused_2`, `spell_subtext_unused_3`, `spell_subtext_unused_4`, `spell_subtext_flags`, `spell_desc_enus`, `spell_desc_kokr`, `spell_desc_frfr`, `spell_desc_dede`, `spell_desc_zhcn`, `spell_desc_zhtw`, `spell_desc_eses`, `spell_desc_esmx`, `spell_desc_ruru`, `spell_desc_jajp`, `spell_desc_ptpt`, `spell_desc_itit`, `spell_desc_unused_1`, `spell_desc_unused_2`, `spell_desc_unused_3`, `spell_desc_unused_4`, `spell_desc_flags`, `spell_tooltip_enus`, `spell_tooltip_kokr`, `spell_tooltip_frfr`, `spell_tooltip_dede`, `spell_tooltip_zhcn`, `spell_tooltip_zhtw`, `spell_tooltip_eses`, `spell_tooltip_esmx`, `spell_tooltip_ruru`, `spell_tooltip_jajp`, `spell_tooltip_ptpt`, `spell_tooltip_itit`, `spell_tooltip_unused_1`, `spell_tooltip_unused_2`, `spell_tooltip_unused_3`, `spell_tooltip_unused_4`, `spell_tooltip_flags`, `power_cost_percentage`, `start_recovery_category`, `start_recovery_time`, `maximum_target_level`, `spell_class_set`, `spell_class_mask_1`, `spell_class_mask_2`, `spell_class_mask_3`, `max_affected_targets`, `damage_class`, `prevention_type`, `stance_bar_order`, `effect_damage_multiplier_1`, `effect_damage_multiplier_2`, `effect_damage_multiplier_3`, `min_faction_id`, `min_reputation`, `req_aura_vision`, `totem_category_1`, `totem_category_2`, `area_group_id`, `school_mask`, `rune_cost_id`, `spell_missile_id`, `power_display_id`, `effect_bonus_multiplier_1`, `effect_bonus_multiplier_2`, `effect_bonus_multiplier_3`, `spell_desc_variable_id`, `spell_difficulty_id`) VALUES
 /* Mounts */
 (
-	@CaravanHyena1, -- ID
+	@VulperaMount1, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -117,7 +117,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@CaravanHyena1CreatureID, -- EffectMiscValue_1
+	@VulperaMount1CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -140,76 +140,76 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconVulperaMount, -- SpellIconID
+	@VulperaMount1IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	@CaravanHyena1NameenUS, -- Name_Lang_enUS
-	@CaravanHyena1NamekoKR, -- Name_Lang_enGB \(actually koKR\)
-	@CaravanHyena1NamefrFR, -- Name_Lang_koKR \(actually frFR\)
-	@CaravanHyena1NamedeDE, -- Name_Lang_frFR \(actually deDE\)
-	@CaravanHyena1NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
-	@CaravanHyena1NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
-	@CaravanHyena1NameesES, -- Name_Lang_zhCN \(actually esES\)
-	@CaravanHyena1NameesMX, -- Name_Lang_enTW \(actually esMX\)
-	@CaravanHyena1NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
-	@CaravanHyena1NamejaJP, -- Name_Lang_esES
-	@CaravanHyena1NameptPT, -- Name_Lang_esMX
-	@CaravanHyena1NameitIT, -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@VulperaMount1NameenUS, -- Name_Lang_enUS
+	@VulperaMount1NamekoKR, -- Name_Lang_koKR
+	@VulperaMount1NamefrFR, -- Name_Lang_frFR
+	@VulperaMount1NamedeDE, -- Name_Lang_deDE
+	@VulperaMount1NamezhCN, -- Name_Lang_zhCN
+	@VulperaMount1NamezhTW, -- Name_Lang_zhTW
+	@VulperaMount1NameesES, -- Name_Lang_esES
+	@VulperaMount1NameesMX, -- Name_Lang_esMX
+	@VulperaMount1NameruRU, -- Name_Lang_ruRU
+	@VulperaMount1NamejaJP, -- Name_Lang_jaJP
+	@VulperaMount1NameptPT, -- Name_Lang_ptPT
+	@VulperaMount1NameitIT, -- Name_Lang_itIT
+	@VulperaMount1NameUnk1, -- Name_Lang_Unk1
+	@VulperaMount1NameUnk2, -- Name_Lang_Unk2
+	@VulperaMount1NameUnk3, -- Name_Lang_Unk3
+	@VulperaMount1NameUnk4, -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
+	'', -- NameSubtext_Lang_koKR
+	'', -- NameSubtext_Lang_frFR
+	'', -- NameSubtext_Lang_deDE
+	'', -- NameSubtext_Lang_zhCN
+	'', -- NameSubtext_Lang_zhTW
 	'', -- NameSubtext_Lang_esES
 	'', -- NameSubtext_Lang_esMX
 	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
-	@CaravanHyena1SpellDescriptionenUS, -- Description_Lang_enUS
-	@CaravanHyena1SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
-	@CaravanHyena1SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
-	@CaravanHyena1SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
-	@CaravanHyena1SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
-	@CaravanHyena1SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
-	@CaravanHyena1SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
-	@CaravanHyena1SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
-	@CaravanHyena1SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
-	@CaravanHyena1SpellDescriptionjaJP, -- Description_Lang_esES
-	@CaravanHyena1SpellDescriptionptPT, -- Description_Lang_esMX
-	@CaravanHyena1SpellDescriptionitIT, -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@VulperaMount1SpellDescriptionenUS, -- Description_Lang_enUS
+	@VulperaMount1SpellDescriptionkoKR, -- Description_Lang_koKR
+	@VulperaMount1SpellDescriptionfrFR, -- Description_Lang_frFR
+	@VulperaMount1SpellDescriptiondeDE, -- Description_Lang_deDE
+	@VulperaMount1SpellDescriptionzhCN, -- Description_Lang_zhCN
+	@VulperaMount1SpellDescriptionzhTW, -- Description_Lang_zhTW
+	@VulperaMount1SpellDescriptionesES, -- Description_Lang_esES
+	@VulperaMount1SpellDescriptionesMX, -- Description_Lang_esMX
+	@VulperaMount1SpellDescriptionruRU, -- Description_Lang_ruRU
+	@VulperaMount1SpellDescriptionjaJP, -- Description_Lang_jaJP
+	@VulperaMount1SpellDescriptionptPT, -- Description_Lang_ptPT
+	@VulperaMount1SpellDescriptionitIT, -- Description_Lang_itIT
+	@VulperaMount1SpellDescriptionUnk1, -- Description_Lang_Unk1
+	@VulperaMount1SpellDescriptionUnk2, -- Description_Lang_Unk2
+	@VulperaMount1SpellDescriptionUnk3, -- Description_Lang_Unk3
+	@VulperaMount1SpellDescriptionUnk4, -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
-	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'地面速度提高$s3%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'地面移動速度提高$s3%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_koKR
+	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_frFR
+	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_deDE
+	'地面速度提高$s3%。', -- AuraDescription_Lang_zhCN
+	'地面移動速度提高$s3%。', -- AuraDescription_Lang_zhTW
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esES
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esMX
+	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -243,7 +243,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0 -- SpellDifficultyID
 ),
 (
-	@CaravanHyena2, -- ID
+	@VulperaMount2, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -325,7 +325,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectRealPointsPerLevel_3
 	0, -- EffectBasePoints_1
 	309, -- EffectBasePoints_2
-	99, -- EffectBasePoints_3
+	59, -- EffectBasePoints_3
 	0, -- EffectMechanic_1
 	0, -- EffectMechanic_2
 	0, -- EffectMechanic_3
@@ -353,7 +353,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@CaravanHyena2CreatureID, -- EffectMiscValue_1
+	@VulperaMount2CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -376,76 +376,76 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconVulperaMount, -- SpellIconID
+	@VulperaMount2IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	@CaravanHyena2NameenUS, -- Name_Lang_enUS
-	@CaravanHyena2NamekoKR, -- Name_Lang_enGB \(actually koKR\)
-	@CaravanHyena2NamefrFR, -- Name_Lang_koKR \(actually frFR\)
-	@CaravanHyena2NamedeDE, -- Name_Lang_frFR \(actually deDE\)
-	@CaravanHyena2NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
-	@CaravanHyena2NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
-	@CaravanHyena2NameesES, -- Name_Lang_zhCN \(actually esES\)
-	@CaravanHyena2NameesMX, -- Name_Lang_enTW \(actually esMX\)
-	@CaravanHyena2NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
-	@CaravanHyena2NamejaJP, -- Name_Lang_esES
-	@CaravanHyena2NameptPT, -- Name_Lang_esMX
-	@CaravanHyena2NameitIT, -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@VulperaMount2NameenUS, -- Name_Lang_enUS
+	@VulperaMount2NamekoKR, -- Name_Lang_koKR
+	@VulperaMount2NamefrFR, -- Name_Lang_frFR
+	@VulperaMount2NamedeDE, -- Name_Lang_deDE
+	@VulperaMount2NamezhCN, -- Name_Lang_zhCN
+	@VulperaMount2NamezhTW, -- Name_Lang_zhTW
+	@VulperaMount2NameesES, -- Name_Lang_esES
+	@VulperaMount2NameesMX, -- Name_Lang_esMX
+	@VulperaMount2NameruRU, -- Name_Lang_ruRU
+	@VulperaMount2NamejaJP, -- Name_Lang_jaJP
+	@VulperaMount2NameptPT, -- Name_Lang_ptPT
+	@VulperaMount2NameitIT, -- Name_Lang_itIT
+	@VulperaMount2NameUnk1, -- Name_Lang_Unk1
+	@VulperaMount2NameUnk2, -- Name_Lang_Unk2
+	@VulperaMount2NameUnk3, -- Name_Lang_Unk3
+	@VulperaMount2NameUnk4, -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
+	'', -- NameSubtext_Lang_koKR
+	'', -- NameSubtext_Lang_frFR
+	'', -- NameSubtext_Lang_deDE
+	'', -- NameSubtext_Lang_zhCN
+	'', -- NameSubtext_Lang_zhTW
 	'', -- NameSubtext_Lang_esES
 	'', -- NameSubtext_Lang_esMX
 	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
-	@CaravanHyena2SpellDescriptionenUS, -- Description_Lang_enUS
-	@CaravanHyena2SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
-	@CaravanHyena2SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
-	@CaravanHyena2SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
-	@CaravanHyena2SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
-	@CaravanHyena2SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
-	@CaravanHyena2SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
-	@CaravanHyena2SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
-	@CaravanHyena2SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
-	@CaravanHyena2SpellDescriptionjaJP, -- Description_Lang_esES
-	@CaravanHyena2SpellDescriptionptPT, -- Description_Lang_esMX
-	@CaravanHyena2SpellDescriptionitIT, -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@VulperaMount2SpellDescriptionenUS, -- Description_Lang_enUS
+	@VulperaMount2SpellDescriptionkoKR, -- Description_Lang_koKR
+	@VulperaMount2SpellDescriptionfrFR, -- Description_Lang_frFR
+	@VulperaMount2SpellDescriptiondeDE, -- Description_Lang_deDE
+	@VulperaMount2SpellDescriptionzhCN, -- Description_Lang_zhCN
+	@VulperaMount2SpellDescriptionzhTW, -- Description_Lang_zhTW
+	@VulperaMount2SpellDescriptionesES, -- Description_Lang_esES
+	@VulperaMount2SpellDescriptionesMX, -- Description_Lang_esMX
+	@VulperaMount2SpellDescriptionruRU, -- Description_Lang_ruRU
+	@VulperaMount2SpellDescriptionjaJP, -- Description_Lang_jaJP
+	@VulperaMount2SpellDescriptionptPT, -- Description_Lang_ptPT
+	@VulperaMount2SpellDescriptionitIT, -- Description_Lang_itIT
+	@VulperaMount2SpellDescriptionUnk1, -- Description_Lang_Unk1
+	@VulperaMount2SpellDescriptionUnk2, -- Description_Lang_Unk2
+	@VulperaMount2SpellDescriptionUnk3, -- Description_Lang_Unk3
+	@VulperaMount2SpellDescriptionUnk4, -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
-	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'地面速度提高$s3%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'地面移動速度提高$s3%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_koKR
+	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_frFR
+	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_deDE
+	'地面速度提高$s3%。', -- AuraDescription_Lang_zhCN
+	'地面移動速度提高$s3%。', -- AuraDescription_Lang_zhTW
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esES
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esMX
+	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
