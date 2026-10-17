@@ -927,6 +927,7 @@ SET @EnchantingSkill                                           =      333;
 SET @FishingSkill                                              =      356;
 SET @SkinningSkill                                             =      393;
 SET @JewelcraftingSkill                                        =      755;
+SET @RidingSkill                                               =      762;
 
 -- Racial SkillLineAbility
 SET @BloodFuryWarlockSkillLineAbility                          =    15034; -- Orc Warlock
@@ -1055,6 +1056,7 @@ SET @MechanoHogSkillLineAbility1                               =    20110; -- Ho
 SET @MechanoHogSkillLineAbility2                               =    20290; -- Horde
 SET @ActivatePrimarySpec                                       =    20867;
 SET @ActivateSecondarySpec                                     =    20868;
+SET @RidingSkill100SkillLineAbility                            =    31494; -- F-015 (Journeyman Riding passive)
 
 -- Racial SkillRaceClass
 SET @WorgenRacialSkillRaceClass                                =      971;
