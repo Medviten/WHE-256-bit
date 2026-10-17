@@ -1,7 +1,6 @@
--- Race ID
-SET @Goblin                           = 9;                  -- default: 9 (doesn't autoincrement – to avoid conflicts)
-SET @GoblinMask                       = 1 << (@Goblin - 1); -- default: 256
-SET @GoblinHelmetMask                 = 1 << @Goblin;       -- default: 512
+-- Race masks (race IDs are fixed in config.sql)
+SET @GoblinMask                       = 1 << (@Goblin - 1); -- race ID 9 → 256
+SET @GoblinHelmetMask                 = 1 << @Goblin;       -- race ID 9 → 512
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                        = @HordeMask    | @GoblinMask;
@@ -20,6 +19,22 @@ SET @GoblinMaleModelPath              = 'Character\\GoblinPC\\Male\\GoblinPCMale
 SET @GoblinFemaleModelPath            = 'Character\\GoblinPC\\Female\\GoblinPCFemale.mdx';
 SET @GoblinMaleFootprint              = @FootprintShoe;
 SET @GoblinFemaleFootprint            = @FootprintShoe;
+SET @GobberCreatureID                                          =    36613; -- Cataclysm ID
+
+-- Mounts (IDs are global, see config.sql)
+SET @GoblinMount1                            = @SpellGoblinTrike;
+SET @GoblinMount1Model                       = @GoblinTrikeModel;
+SET @GoblinMount1Display                     = @GoblinTrikeDisplay;
+SET @GoblinMount1CreatureID                  = @GoblinTrikeCreatureID;
+SET @GoblinMount1Item                        = @GoblinTrikeItem;
+SET @GoblinMount1ItemDisplay                 = @GoblinTrikeItemDisplay;
+
+SET @GoblinMount2                            = @SpellGoblinTurboTrike;
+SET @GoblinMount2Model                       = @GoblinTurboTrikeModel;
+SET @GoblinMount2Display                     = @GoblinTurboTrikeDisplay;
+SET @GoblinMount2CreatureID                  = @GoblinTurboTrikeCreatureID;
+SET @GoblinMount2Item                        = @GoblinTurboTrikeItem;
+SET @GoblinMount2ItemDisplay                 = @GoblinTurboTrikeItemDisplay;
 
 -- Strings
 SET @GoblinClientPrefix               = 'Go';
@@ -41,6 +56,10 @@ SET @GoblinruRU                       = 'Гоблин';
 SET @GoblinjaJP                       = '';
 SET @GoblinptPT                       = '';
 SET @GoblinitIT                       = '';
+SET @GoblinUnk1                       = '';
+SET @GoblinUnk2                       = '';
+SET @GoblinUnk3                       = '';
+SET @GoblinUnk4                       = '';
 
 SET @GoblinFemaleenUS                 = '';
 SET @GoblinFemalekoKR                 = '';
@@ -54,6 +73,10 @@ SET @GoblinFemaleruRU                 = '';
 SET @GoblinFemalejaJP                 = '';
 SET @GoblinFemaleptPT                 = '';
 SET @GoblinFemaleitIT                 = '';
+SET @GoblinFemaleUnk1                 = '';
+SET @GoblinFemaleUnk2                 = '';
+SET @GoblinFemaleUnk3                 = '';
+SET @GoblinFemaleUnk4                 = '';
 
 SET @GoblinMaleenUS                   = '';
 SET @GoblinMalekoKR                   = '';
@@ -67,6 +90,10 @@ SET @GoblinMaleruRU                   = 'Гоблин';
 SET @GoblinMalejaJP                   = '';
 SET @GoblinMaleptPT                   = '';
 SET @GoblinMaleitIT                   = '';
+SET @GoblinMaleUnk1                   = '';
+SET @GoblinMaleUnk2                   = '';
+SET @GoblinMaleUnk3                   = '';
+SET @GoblinMaleUnk4                   = '';
 
 SET @GoblinRacialNameenUS             = 'Racial - Goblin';
 SET @GoblinRacialNamekoKR             = '고블린 종족 특성';
@@ -80,6 +107,10 @@ SET @GoblinRacialNameruRU             = 'Расовый навык гоблин�
 SET @GoblinRacialNamejaJP             = '';
 SET @GoblinRacialNameptPT             = '';
 SET @GoblinRacialNameitIT             = '';
+SET @GoblinRacialNameUnk1             = '';
+SET @GoblinRacialNameUnk2             = '';
+SET @GoblinRacialNameUnk3             = '';
+SET @GoblinRacialNameUnk4             = '';
 
 SET @GoblinPlayerenUS                 = '"PLAYER"," Goblin"';
 SET @GoblinPlayerkoKR                 = '플레이어 - 고블린';
@@ -93,6 +124,10 @@ SET @GoblinPlayerruRU                 = 'ИГРОК: гоблин';
 SET @GoblinPlayerjaJP                 = '';
 SET @GoblinPlayerptPT                 = '';
 SET @GoblinPlayeritIT                 = '';
+SET @GoblinPlayerUnk1                 = '';
+SET @GoblinPlayerUnk2                 = '';
+SET @GoblinPlayerUnk3                 = '';
+SET @GoblinPlayerUnk4                 = '';
 
 SET @GoblinFactionNameenUS            = 'Bilgewater Cartel';
 SET @GoblinFactionNamekoKR            = '빌지워터 무역회사';
@@ -106,6 +141,10 @@ SET @GoblinFactionNameruRU            = 'Торговая компания Тр�
 SET @GoblinFactionNamejaJP            = '';
 SET @GoblinFactionNameptPT            = '';
 SET @GoblinFactionNameitIT            = '';
+SET @GoblinFactionNameUnk1            = '';
+SET @GoblinFactionNameUnk2            = '';
+SET @GoblinFactionNameUnk3            = '';
+SET @GoblinFactionNameUnk4            = '';
 
 SET @GoblinFactionDescriptionenUS     = 'Goblins sworn to the Horde.';
 SET @GoblinFactionDescriptionkoKR     = '호드에 충성을 맹세한 고블린들입니다.';
@@ -119,6 +158,10 @@ SET @GoblinFactionDescriptionruRU     = 'Гоблины, присягнувши�
 SET @GoblinFactionDescriptionjaJP     = '';
 SET @GoblinFactionDescriptionptPT     = '';
 SET @GoblinFactionDescriptionitIT     = '';
+SET @GoblinFactionDescriptionUnk1     = '';
+SET @GoblinFactionDescriptionUnk2     = '';
+SET @GoblinFactionDescriptionUnk3     = '';
+SET @GoblinFactionDescriptionUnk4     = '';
 
 SET @GoblinAchievementenUS            = 'Realm First! Level 80 Goblin';
 SET @GoblinAchievementkoKR            = '서버 최초 80 레벨 고블린';
@@ -132,6 +175,10 @@ SET @GoblinAchievementruRU            = '1-й на сервере! Гоблин 
 SET @GoblinAchievementjaJP            = '';
 SET @GoblinAchievementptPT            = '';
 SET @GoblinAchievementitIT            = '';
+SET @GoblinAchievementUnk1            = '';
+SET @GoblinAchievementUnk2            = '';
+SET @GoblinAchievementUnk3            = '';
+SET @GoblinAchievementUnk4            = '';
 
 SET @GoblinAchievementDescriptionenUS = 'Realm First! Level 80 Goblin';
 SET @GoblinAchievementDescriptionkoKR = '서버 최초 80 레벨 고블린';
@@ -145,3 +192,7 @@ SET @GoblinAchievementDescriptionruRU = '1-й на сервере! Гоблин 
 SET @GoblinAchievementDescriptionjaJP = '';
 SET @GoblinAchievementDescriptionptPT = '';
 SET @GoblinAchievementDescriptionitIT = '';
+SET @GoblinAchievementDescriptionUnk1 = '';
+SET @GoblinAchievementDescriptionUnk2 = '';
+SET @GoblinAchievementDescriptionUnk3 = '';
+SET @GoblinAchievementDescriptionUnk4 = '';

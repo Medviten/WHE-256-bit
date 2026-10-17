@@ -2,11 +2,11 @@
 /*
 -- New entries
 DELETE FROM `spellicon` WHERE `id` IN (
-    @IconVulperaMount,
+    @IconCaravanHyena,
     @IconAlpacaSaddlebags, @IconBagOfTricks, @IconFireResistance, @IconMakeCamp, @IconNoseForTrouble, @IconReturnToCamp, @IconRummageYourBag
 );
 INSERT INTO `spellicon` (`id`, `name`) VALUES
-(@IconVulperaMount,     'Interface\\Icons\\inv_vulperamount'),
+(@IconCaravanHyena,     'Interface\\Icons\\inv_vulperamount'),
 (@IconAlpacaSaddlebags, 'Interface\\Icons\\ability_racial_rummageyourbag'),
 (@IconBagOfTricks,      'Interface\\Icons\\ability_racial_bagoftricks'),
 (@IconFireResistance,   'Interface\\Icons\\ability_racial_fireresist'),

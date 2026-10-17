@@ -2,12 +2,12 @@
 
 -- New entries
 DELETE FROM `spell` WHERE `id` IN (
-	@LightforgedFelcrusherHoly, @LightforgedFelcrusherPurple,
-	@LightforgedFelcrusherBlue, @LightforgedFelcrusherDark
+	@LightforgedDraeneiMount1, @LightforgedDraeneiMount2,
+	@LightforgedDraeneiMount3, @LightforgedDraeneiMount4
 );
 INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attributes_ex_1`, `attributes_ex_2`, `attributes_ex_3`, `attributes_ex_4`, `attributes_ex_5`, `attributes_ex_6`, `attributes_ex_7`, `stances`, `unk_1`, `excluded_stances`, `unk_2`, `targets`, `target_creature_type`, `spell_focus_object`, `facing_caster_flags`, `caster_aura_state`, `target_aura_state`, `excluded_caster_aura_state`, `excluded_target_aura_state`, `caster_aura_spell`, `target_aura_spell`, `excluded_caster_aura_spell`, `excluded_target_aura_spell`, `cast_time_index`, `recovery_time`, `category_recovery_time`, `interrupt_flags`, `aura_interrupt_flags`, `channel_interrupt_flags`, `proc_flags`, `proc_chance`, `proc_charges`, `max_level`, `base_level`, `spell_level`, `duration_index`, `power_type`, `power_cost`, `power_cost_per_level`, `power_per_second`, `power_per_second_per_level`, `range_index`, `speed`, `modal_next_spell`, `stack_amount`, `totem_1`, `totem_2`, `reagent_1`, `reagent_2`, `reagent_3`, `reagent_4`, `reagent_5`, `reagent_6`, `reagent_7`, `reagent_8`, `reagent_count_1`, `reagent_count_2`, `reagent_count_3`, `reagent_count_4`, `reagent_count_5`, `reagent_count_6`, `reagent_count_7`, `reagent_count_8`, `equipped_item_class`, `equipped_item_subclass_mask`, `equipped_item_inventorytype_mask`, `effect_1`, `effect_2`, `effect_3`, `effect_die_sides_1`, `effect_die_sides_2`, `effect_die_sides_3`, `effect_real_points_per_level_1`, `effect_real_points_per_level_2`, `effect_real_points_per_level_3`, `effect_base_points_1`, `effect_base_points_2`, `effect_base_points_3`, `effect_mechanic_1`, `effect_mechanic_2`, `effect_mechanic_3`, `effect_implicit_target_a_1`, `effect_implicit_target_a_2`, `effect_implicit_target_a_3`, `effect_implicit_target_b_1`, `effect_implicit_target_b_2`, `effect_implicit_target_b_3`, `effect_radius_index_1`, `effect_radius_index_2`, `effect_radius_index_3`, `effect_apply_aura_name_1`, `effect_apply_aura_name_2`, `effect_apply_aura_name_3`, `effect_amplitude_1`, `effect_amplitude_2`, `effect_amplitude_3`, `effect_multiple_value_1`, `effect_multiple_value_2`, `effect_multiple_value_3`, `effect_chain_target_1`, `effect_chain_target_2`, `effect_chain_target_3`, `effect_item_type_1`, `effect_item_type_2`, `effect_item_type_3`, `effect_misc_value_a_1`, `effect_misc_value_a_2`, `effect_misc_value_a_3`, `effect_misc_value_b_1`, `effect_misc_value_b_2`, `effect_misc_value_b_3`, `effect_trigger_spell_1`, `effect_trigger_spell_2`, `effect_trigger_spell_3`, `effect_points_per_combo_point_1`, `effect_points_per_combo_point_2`, `effect_points_per_combo_point_3`, `effect_spell_class_mask_a_1`, `effect_spell_class_mask_a_2`, `effect_spell_class_mask_a_3`, `effect_spell_class_mask_b_1`, `effect_spell_class_mask_b_2`, `effect_spell_class_mask_b_3`, `effect_spell_class_mask_c_1`, `effect_spell_class_mask_c_2`, `effect_spell_class_mask_c_3`, `spell_visual_1`, `spell_visual_2`, `spell_icon_id`, `active_icon_id`, `spell_priority`, `spell_name_enus`, `spell_name_kokr`, `spell_name_frfr`, `spell_name_dede`, `spell_name_zhcn`, `spell_name_zhtw`, `spell_name_eses`, `spell_name_esmx`, `spell_name_ruru`, `spell_name_jajp`, `spell_name_ptpt`, `spell_name_itit`, `spell_name_unused_1`, `spell_name_unused_2`, `spell_name_unused_3`, `spell_name_unused_4`, `spell_name_flags`, `spell_subtext_enus`, `spell_subtext_kokr`, `spell_subtext_frfr`, `spell_subtext_dede`, `spell_subtext_zhcn`, `spell_subtext_zhtw`, `spell_subtext_eses`, `spell_subtext_esmx`, `spell_subtext_ruru`, `spell_subtext_jajp`, `spell_subtext_ptpt`, `spell_subtext_itit`, `spell_subtext_unused_1`, `spell_subtext_unused_2`, `spell_subtext_unused_3`, `spell_subtext_unused_4`, `spell_subtext_flags`, `spell_desc_enus`, `spell_desc_kokr`, `spell_desc_frfr`, `spell_desc_dede`, `spell_desc_zhcn`, `spell_desc_zhtw`, `spell_desc_eses`, `spell_desc_esmx`, `spell_desc_ruru`, `spell_desc_jajp`, `spell_desc_ptpt`, `spell_desc_itit`, `spell_desc_unused_1`, `spell_desc_unused_2`, `spell_desc_unused_3`, `spell_desc_unused_4`, `spell_desc_flags`, `spell_tooltip_enus`, `spell_tooltip_kokr`, `spell_tooltip_frfr`, `spell_tooltip_dede`, `spell_tooltip_zhcn`, `spell_tooltip_zhtw`, `spell_tooltip_eses`, `spell_tooltip_esmx`, `spell_tooltip_ruru`, `spell_tooltip_jajp`, `spell_tooltip_ptpt`, `spell_tooltip_itit`, `spell_tooltip_unused_1`, `spell_tooltip_unused_2`, `spell_tooltip_unused_3`, `spell_tooltip_unused_4`, `spell_tooltip_flags`, `power_cost_percentage`, `start_recovery_category`, `start_recovery_time`, `maximum_target_level`, `spell_class_set`, `spell_class_mask_1`, `spell_class_mask_2`, `spell_class_mask_3`, `max_affected_targets`, `damage_class`, `prevention_type`, `stance_bar_order`, `effect_damage_multiplier_1`, `effect_damage_multiplier_2`, `effect_damage_multiplier_3`, `min_faction_id`, `min_reputation`, `req_aura_vision`, `totem_category_1`, `totem_category_2`, `area_group_id`, `school_mask`, `rune_cost_id`, `spell_missile_id`, `power_display_id`, `effect_bonus_multiplier_1`, `effect_bonus_multiplier_2`, `effect_bonus_multiplier_3`, `spell_desc_variable_id`, `spell_difficulty_id`) VALUES
 (
-	@LightforgedFelcrusherHoly, -- ID
+	@LightforgedDraeneiMount1, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -117,7 +117,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@LightforgedFelcrusherHolyCreatureID, -- EffectMiscValue_1
+	@LightforgedDraeneiMount1CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -140,25 +140,25 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconLightforgedElekk, -- SpellIconID
+	@LightforgedDraeneiMount1IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Lightforged Felcrusher', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@LightforgedDraeneiMount1NameenUS, -- Name_Lang_enUS
+	@LightforgedDraeneiMount1NamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@LightforgedDraeneiMount1NamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@LightforgedDraeneiMount1NamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@LightforgedDraeneiMount1NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@LightforgedDraeneiMount1NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@LightforgedDraeneiMount1NameesES, -- Name_Lang_zhCN \(actually esES\)
+	@LightforgedDraeneiMount1NameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@LightforgedDraeneiMount1NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@LightforgedDraeneiMount1NamejaJP, -- Name_Lang_esES
+	@LightforgedDraeneiMount1NameptPT, -- Name_Lang_esMX
+	@LightforgedDraeneiMount1NameitIT, -- Name_Lang_ruRU
+	@LightforgedDraeneiMount1NameUnk1, -- Name_Lang_ptPT
+	@LightforgedDraeneiMount1NameUnk2, -- Name_Lang_ptBR
+	@LightforgedDraeneiMount1NameUnk3, -- Name_Lang_itIT
+	@LightforgedDraeneiMount1NameUnk4, -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB (actually koKR)
@@ -177,22 +177,22 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Lightforged Felcrusher.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@LightforgedDraeneiMount1SpellDescriptionenUS, -- Description_Lang_enUS
+	@LightforgedDraeneiMount1SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@LightforgedDraeneiMount1SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@LightforgedDraeneiMount1SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@LightforgedDraeneiMount1SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@LightforgedDraeneiMount1SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@LightforgedDraeneiMount1SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@LightforgedDraeneiMount1SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@LightforgedDraeneiMount1SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@LightforgedDraeneiMount1SpellDescriptionjaJP, -- Description_Lang_esES
+	@LightforgedDraeneiMount1SpellDescriptionptPT, -- Description_Lang_esMX
+	@LightforgedDraeneiMount1SpellDescriptionitIT, -- Description_Lang_ruRU
+	@LightforgedDraeneiMount1SpellDescriptionUnk1, -- Description_Lang_ptPT
+	@LightforgedDraeneiMount1SpellDescriptionUnk2, -- Description_Lang_ptBR
+	@LightforgedDraeneiMount1SpellDescriptionUnk3, -- Description_Lang_itIT
+	@LightforgedDraeneiMount1SpellDescriptionUnk4, -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
 	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
@@ -243,7 +243,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0 -- SpellDifficultyID
 ),
 (
-	@LightforgedFelcrusherPurple, -- ID
+	@LightforgedDraeneiMount2, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -353,7 +353,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@LightforgedFelcrusherPurpleCreatureID, -- EffectMiscValue_1
+	@LightforgedDraeneiMount2CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -376,25 +376,25 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconLightforgedElekk, -- SpellIconID
+	@LightforgedDraeneiMount2IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Lightforged Felcrusher', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@LightforgedDraeneiMount2NameenUS, -- Name_Lang_enUS
+	@LightforgedDraeneiMount2NamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@LightforgedDraeneiMount2NamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@LightforgedDraeneiMount2NamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@LightforgedDraeneiMount2NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@LightforgedDraeneiMount2NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@LightforgedDraeneiMount2NameesES, -- Name_Lang_zhCN \(actually esES\)
+	@LightforgedDraeneiMount2NameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@LightforgedDraeneiMount2NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@LightforgedDraeneiMount2NamejaJP, -- Name_Lang_esES
+	@LightforgedDraeneiMount2NameptPT, -- Name_Lang_esMX
+	@LightforgedDraeneiMount2NameitIT, -- Name_Lang_ruRU
+	@LightforgedDraeneiMount2NameUnk1, -- Name_Lang_ptPT
+	@LightforgedDraeneiMount2NameUnk2, -- Name_Lang_ptBR
+	@LightforgedDraeneiMount2NameUnk3, -- Name_Lang_itIT
+	@LightforgedDraeneiMount2NameUnk4, -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB (actually koKR)
@@ -413,22 +413,22 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Lightforged Felcrusher.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@LightforgedDraeneiMount2SpellDescriptionenUS, -- Description_Lang_enUS
+	@LightforgedDraeneiMount2SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@LightforgedDraeneiMount2SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@LightforgedDraeneiMount2SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@LightforgedDraeneiMount2SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@LightforgedDraeneiMount2SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@LightforgedDraeneiMount2SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@LightforgedDraeneiMount2SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@LightforgedDraeneiMount2SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@LightforgedDraeneiMount2SpellDescriptionjaJP, -- Description_Lang_esES
+	@LightforgedDraeneiMount2SpellDescriptionptPT, -- Description_Lang_esMX
+	@LightforgedDraeneiMount2SpellDescriptionitIT, -- Description_Lang_ruRU
+	@LightforgedDraeneiMount2SpellDescriptionUnk1, -- Description_Lang_ptPT
+	@LightforgedDraeneiMount2SpellDescriptionUnk2, -- Description_Lang_ptBR
+	@LightforgedDraeneiMount2SpellDescriptionUnk3, -- Description_Lang_itIT
+	@LightforgedDraeneiMount2SpellDescriptionUnk4, -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
 	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
@@ -479,7 +479,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0 -- SpellDifficultyID
 ),
 (
-	@LightforgedFelcrusherBlue, -- ID
+	@LightforgedDraeneiMount3, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -589,7 +589,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@LightforgedFelcrusherBlueCreatureID, -- EffectMiscValue_1
+	@LightforgedDraeneiMount3CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -612,25 +612,25 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconLightforgedElekk, -- SpellIconID
+	@LightforgedDraeneiMount3IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Lightforged Felcrusher', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@LightforgedDraeneiMount3NameenUS, -- Name_Lang_enUS
+	@LightforgedDraeneiMount3NamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@LightforgedDraeneiMount3NamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@LightforgedDraeneiMount3NamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@LightforgedDraeneiMount3NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@LightforgedDraeneiMount3NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@LightforgedDraeneiMount3NameesES, -- Name_Lang_zhCN \(actually esES\)
+	@LightforgedDraeneiMount3NameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@LightforgedDraeneiMount3NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@LightforgedDraeneiMount3NamejaJP, -- Name_Lang_esES
+	@LightforgedDraeneiMount3NameptPT, -- Name_Lang_esMX
+	@LightforgedDraeneiMount3NameitIT, -- Name_Lang_ruRU
+	@LightforgedDraeneiMount3NameUnk1, -- Name_Lang_ptPT
+	@LightforgedDraeneiMount3NameUnk2, -- Name_Lang_ptBR
+	@LightforgedDraeneiMount3NameUnk3, -- Name_Lang_itIT
+	@LightforgedDraeneiMount3NameUnk4, -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB (actually koKR)
@@ -649,22 +649,22 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Lightforged Felcrusher.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@LightforgedDraeneiMount3SpellDescriptionenUS, -- Description_Lang_enUS
+	@LightforgedDraeneiMount3SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@LightforgedDraeneiMount3SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@LightforgedDraeneiMount3SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@LightforgedDraeneiMount3SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@LightforgedDraeneiMount3SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@LightforgedDraeneiMount3SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@LightforgedDraeneiMount3SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@LightforgedDraeneiMount3SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@LightforgedDraeneiMount3SpellDescriptionjaJP, -- Description_Lang_esES
+	@LightforgedDraeneiMount3SpellDescriptionptPT, -- Description_Lang_esMX
+	@LightforgedDraeneiMount3SpellDescriptionitIT, -- Description_Lang_ruRU
+	@LightforgedDraeneiMount3SpellDescriptionUnk1, -- Description_Lang_ptPT
+	@LightforgedDraeneiMount3SpellDescriptionUnk2, -- Description_Lang_ptBR
+	@LightforgedDraeneiMount3SpellDescriptionUnk3, -- Description_Lang_itIT
+	@LightforgedDraeneiMount3SpellDescriptionUnk4, -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
 	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
@@ -715,7 +715,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0 -- SpellDifficultyID
 ),
 (
-	@LightforgedFelcrusherDark, -- ID
+	@LightforgedDraeneiMount4, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -825,7 +825,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@LightforgedFelcrusherDarkCreatureID, -- EffectMiscValue_1
+	@LightforgedDraeneiMount4CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -848,25 +848,25 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconLightforgedElekk, -- SpellIconID
+	@LightforgedDraeneiMount4IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	'Lightforged Felcrusher', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB \(actually koKR\)
-	'', -- Name_Lang_koKR \(actually frFR\)
-	'', -- Name_Lang_frFR \(actually deDE\)
-	'', -- Name_Lang_deDE \(actually zhCN\)
-	'', -- Name_Lang_enCN \(actually zhTW\)
-	'', -- Name_Lang_zhCN \(actually esES\)
-	'', -- Name_Lang_enTW \(actually esMX\)
-	'', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@LightforgedDraeneiMount4NameenUS, -- Name_Lang_enUS
+	@LightforgedDraeneiMount4NamekoKR, -- Name_Lang_enGB \(actually koKR\)
+	@LightforgedDraeneiMount4NamefrFR, -- Name_Lang_koKR \(actually frFR\)
+	@LightforgedDraeneiMount4NamedeDE, -- Name_Lang_frFR \(actually deDE\)
+	@LightforgedDraeneiMount4NamezhCN, -- Name_Lang_deDE \(actually zhCN\)
+	@LightforgedDraeneiMount4NamezhTW, -- Name_Lang_enCN \(actually zhTW\)
+	@LightforgedDraeneiMount4NameesES, -- Name_Lang_zhCN \(actually esES\)
+	@LightforgedDraeneiMount4NameesMX, -- Name_Lang_enTW \(actually esMX\)
+	@LightforgedDraeneiMount4NameruRU, -- Name_Lang_zhTW \(actually ruRU\)
+	@LightforgedDraeneiMount4NamejaJP, -- Name_Lang_esES
+	@LightforgedDraeneiMount4NameptPT, -- Name_Lang_esMX
+	@LightforgedDraeneiMount4NameitIT, -- Name_Lang_ruRU
+	@LightforgedDraeneiMount4NameUnk1, -- Name_Lang_ptPT
+	@LightforgedDraeneiMount4NameUnk2, -- Name_Lang_ptBR
+	@LightforgedDraeneiMount4NameUnk3, -- Name_Lang_itIT
+	@LightforgedDraeneiMount4NameUnk4, -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB (actually koKR)
@@ -885,22 +885,22 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	'Summons and dismisses a rideable Lightforged Felcrusher.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@LightforgedDraeneiMount4SpellDescriptionenUS, -- Description_Lang_enUS
+	@LightforgedDraeneiMount4SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@LightforgedDraeneiMount4SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@LightforgedDraeneiMount4SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@LightforgedDraeneiMount4SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@LightforgedDraeneiMount4SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@LightforgedDraeneiMount4SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@LightforgedDraeneiMount4SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@LightforgedDraeneiMount4SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@LightforgedDraeneiMount4SpellDescriptionjaJP, -- Description_Lang_esES
+	@LightforgedDraeneiMount4SpellDescriptionptPT, -- Description_Lang_esMX
+	@LightforgedDraeneiMount4SpellDescriptionitIT, -- Description_Lang_ruRU
+	@LightforgedDraeneiMount4SpellDescriptionUnk1, -- Description_Lang_ptPT
+	@LightforgedDraeneiMount4SpellDescriptionUnk2, -- Description_Lang_ptBR
+	@LightforgedDraeneiMount4SpellDescriptionUnk3, -- Description_Lang_itIT
+	@LightforgedDraeneiMount4SpellDescriptionUnk4, -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
 	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)

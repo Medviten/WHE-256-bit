@@ -1,7 +1,6 @@
--- Race ID
-SET @Broken                          := @NextRace := @NextRace +1;
-SET @BrokenMask                       = 1 << (@Broken - 1);
-SET @BrokenHelmetMask                 = 1 << @Broken;
+-- Race masks (race IDs are fixed in config.sql)
+SET @BrokenMask                       = 1 << (@Broken - 1); -- race ID 14 → 8192
+SET @BrokenHelmetMask                 = 1 << @Broken; -- race ID 14 → 16384
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                     = @AllianceMask    | @BrokenMask;
@@ -41,6 +40,10 @@ SET @BrokenruRU                       = 'Падший';
 SET @BrokenjaJP                       = '';
 SET @BrokenptPT                       = '';
 SET @BrokenitIT                       = '';
+SET @BrokenUnk1                       = '';
+SET @BrokenUnk2                       = '';
+SET @BrokenUnk3                       = '';
+SET @BrokenUnk4                       = '';
 
 SET @BrokenFemaleenUS                 = '';
 SET @BrokenFemalekoKR                 = '';
@@ -54,6 +57,10 @@ SET @BrokenFemaleruRU                 = 'Падшая';
 SET @BrokenFemalejaJP                 = '';
 SET @BrokenFemaleptPT                 = '';
 SET @BrokenFemaleitIT                 = '';
+SET @BrokenFemaleUnk1                 = '';
+SET @BrokenFemaleUnk2                 = '';
+SET @BrokenFemaleUnk3                 = '';
+SET @BrokenFemaleUnk4                 = '';
 
 SET @BrokenMaleenUS                   = '';
 SET @BrokenMalekoKR                   = '';
@@ -67,6 +74,10 @@ SET @BrokenMaleruRU                   = 'Падший';
 SET @BrokenMalejaJP                   = '';
 SET @BrokenMaleptPT                   = '';
 SET @BrokenMaleitIT                   = '';
+SET @BrokenMaleUnk1                   = '';
+SET @BrokenMaleUnk2                   = '';
+SET @BrokenMaleUnk3                   = '';
+SET @BrokenMaleUnk4                   = '';
 
 SET @BrokenRacialNameenUS             = 'Racial - Broken';
 SET @BrokenRacialNamekoKR             = '';
@@ -80,6 +91,10 @@ SET @BrokenRacialNameruRU             = '';
 SET @BrokenRacialNamejaJP             = '';
 SET @BrokenRacialNameptPT             = '';
 SET @BrokenRacialNameitIT             = '';
+SET @BrokenRacialNameUnk1             = '';
+SET @BrokenRacialNameUnk2             = '';
+SET @BrokenRacialNameUnk3             = '';
+SET @BrokenRacialNameUnk4             = '';
 
 SET @BrokenPlayerenUS                 = '"PLAYER", " Broken"';
 SET @BrokenPlayerkoKR                 = '';
@@ -93,6 +108,10 @@ SET @BrokenPlayerruRU                 = '';
 SET @BrokenPlayerjaJP                 = '';
 SET @BrokenPlayerptPT                 = '';
 SET @BrokenPlayeritIT                 = '';
+SET @BrokenPlayerUnk1                 = '';
+SET @BrokenPlayerUnk2                 = '';
+SET @BrokenPlayerUnk3                 = '';
+SET @BrokenPlayerUnk4                 = '';
 
 SET @BrokenFactionNameenUS            = 'Broken of the Alliance';
 SET @BrokenFactionNamekoKR            = '';
@@ -106,6 +125,10 @@ SET @BrokenFactionNameruRU            = '';
 SET @BrokenFactionNamejaJP            = '';
 SET @BrokenFactionNameptPT            = '';
 SET @BrokenFactionNameitIT            = '';
+SET @BrokenFactionNameUnk1            = '';
+SET @BrokenFactionNameUnk2            = '';
+SET @BrokenFactionNameUnk3            = '';
+SET @BrokenFactionNameUnk4            = '';
 
 SET @BrokenFactionDescriptionenUS     = 'Broken who have joined the Alliance cause.';
 SET @BrokenFactionDescriptionkoKR     = '';
@@ -119,6 +142,10 @@ SET @BrokenFactionDescriptionruRU     = '';
 SET @BrokenFactionDescriptionjaJP     = '';
 SET @BrokenFactionDescriptionptPT     = '';
 SET @BrokenFactionDescriptionitIT     = '';
+SET @BrokenFactionDescriptionUnk1     = '';
+SET @BrokenFactionDescriptionUnk2     = '';
+SET @BrokenFactionDescriptionUnk3     = '';
+SET @BrokenFactionDescriptionUnk4     = '';
 
 SET @BrokenAchievementenUS            = 'Realm First! Level 80 Broken';
 SET @BrokenAchievementkoKR            = '';
@@ -132,6 +159,10 @@ SET @BrokenAchievementruRU            = '';
 SET @BrokenAchievementjaJP            = '';
 SET @BrokenAchievementptPT            = '';
 SET @BrokenAchievementitIT            = '';
+SET @BrokenAchievementUnk1            = '';
+SET @BrokenAchievementUnk2            = '';
+SET @BrokenAchievementUnk3            = '';
+SET @BrokenAchievementUnk4            = '';
 
 SET @BrokenAchievementDescriptionenUS = 'First Broken on the realm to achieve level 80.';
 SET @BrokenAchievementDescriptionkoKR = '';
@@ -145,3 +176,7 @@ SET @BrokenAchievementDescriptionruRU = '';
 SET @BrokenAchievementDescriptionjaJP = '';
 SET @BrokenAchievementDescriptionptPT = '';
 SET @BrokenAchievementDescriptionitIT = '';
+SET @BrokenAchievementDescriptionUnk1 = '';
+SET @BrokenAchievementDescriptionUnk2 = '';
+SET @BrokenAchievementDescriptionUnk3 = '';
+SET @BrokenAchievementDescriptionUnk4 = '';

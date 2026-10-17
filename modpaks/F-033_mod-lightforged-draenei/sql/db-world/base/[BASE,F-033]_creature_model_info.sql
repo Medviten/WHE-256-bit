@@ -1,10 +1,10 @@
 /* Add model info for mounts and other NPCs */
 DELETE FROM `creature_model_info` WHERE `DisplayID` IN (
-    @LightforgedFelcrusherHolyCreatureID, @LightforgedFelcrusherPurpleCreatureID,
-    @LightforgedFelcrusherBlueCreatureID, @LightforgedFelcrusherDarkCreatureID
+    @LightforgedDraeneiMount1Display, @LightforgedDraeneiMount2Display,
+    @LightforgedDraeneiMount3Display, @LightforgedDraeneiMount4Display
 );
 INSERT INTO `creature_model_info` (`DisplayID`, `BoundingRadius`, `CombatReach`, `Gender`, `DisplayID_Other_Gender`) VALUES
-(@LightforgedFelcrusherPurpleDisplay, 1, 1.5, 2, 0),
-(@LightforgedFelcrusherBlueDisplay,   1, 1.5, 2, 0),
-(@LightforgedFelcrusherDarkDisplay,   1, 1.5, 2, 0),
-(@LightforgedFelcrusherHolyDisplay,   1, 1.5, 2, 0);
+(@LightforgedDraeneiMount2Display, 1, 1.5, 2, 0),
+(@LightforgedDraeneiMount3Display,   1, 1.5, 2, 0),
+(@LightforgedDraeneiMount4Display,   1, 1.5, 2, 0),
+(@LightforgedDraeneiMount1Display,   1, 1.5, 2, 0);

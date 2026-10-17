@@ -6,5 +6,4 @@ REPLACE INTO `player_shapeshift_model` (
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
 /* Gilnean Druid forms */
-(@TreeForm, @Gilnean, 255, 2, 37164), -- ModelID: DruidTreeFormRed
-(@TravelForm, @Gilnean, 255, 2, @AllianceTravelForm); -- ModelID: 40816 (DruidTravelAlliance)
+(@TreeForm, @Gilnean, 255, 2, 37164); -- ModelID: DruidTreeFormRed

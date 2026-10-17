@@ -10,3 +10,8 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@IconHaymaker,                'Interface\\Icons\\ability_racial_haymaker'),
 (@IconJackOfAllTrades,         'Interface\\Icons\\ability_racial_jackofalltrades'),
 (@IconRimeOfTheAncientMariner, 'Interface\\Icons\\ability_racial_rimeoftheancientmariner');
+
+-- Racial mount
+DELETE FROM `spellicon` WHERE `id` IN (@KulTiranMount1IconID);
+INSERT INTO `spellicon` (`id`, `name`) VALUES
+(@KulTiranMount1IconID, @KulTiranMount1IconPath);

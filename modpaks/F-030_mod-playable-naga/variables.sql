@@ -1,7 +1,6 @@
--- Race ID
-SET @Naga                          := @NextRace := @NextRace +1;
-SET @NagaMask                       = 1 << (@Naga - 1);
-SET @NagaHelmetMask                 = 1 << @Naga;
+-- Race masks (race IDs are fixed in config.sql)
+SET @NagaMask                       = 1 << (@Naga - 1); -- race ID 13 → 4096
+SET @NagaHelmetMask                 = 1 << @Naga; -- race ID 13 → 8192
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                      = @HordeMask | @NagaMask;
@@ -41,6 +40,10 @@ SET @NagaruRU                       = 'Нага';
 SET @NagajaJP                       = '';
 SET @NagaptPT                       = '';
 SET @NagaitIT                       = '';
+SET @NagaUnk1                       = '';
+SET @NagaUnk2                       = '';
+SET @NagaUnk3                       = '';
+SET @NagaUnk4                       = '';
 
 SET @NagaFemaleenUS                 = '';
 SET @NagaFemalekoKR                 = '';
@@ -54,6 +57,10 @@ SET @NagaFemaleruRU                 = 'Нага';
 SET @NagaFemalejaJP                 = '';
 SET @NagaFemaleptPT                 = '';
 SET @NagaFemaleitIT                 = '';
+SET @NagaFemaleUnk1                 = '';
+SET @NagaFemaleUnk2                 = '';
+SET @NagaFemaleUnk3                 = '';
+SET @NagaFemaleUnk4                 = '';
 
 SET @NagaMaleenUS                   = '';
 SET @NagaMalekoKR                   = '';
@@ -67,6 +74,10 @@ SET @NagaMaleruRU                   = 'Наг';
 SET @NagaMalejaJP                   = '';
 SET @NagaMaleptPT                   = '';
 SET @NagaMaleitIT                   = '';
+SET @NagaMaleUnk1                   = '';
+SET @NagaMaleUnk2                   = '';
+SET @NagaMaleUnk3                   = '';
+SET @NagaMaleUnk4                   = '';
 
 SET @NagaRacialNameenUS             = 'Racial - Naga';
 SET @NagaRacialNamekoKR             = '';
@@ -80,6 +91,10 @@ SET @NagaRacialNameruRU             = '';
 SET @NagaRacialNamejaJP             = '';
 SET @NagaRacialNameptPT             = '';
 SET @NagaRacialNameitIT             = '';
+SET @NagaRacialNameUnk1             = '';
+SET @NagaRacialNameUnk2             = '';
+SET @NagaRacialNameUnk3             = '';
+SET @NagaRacialNameUnk4             = '';
 
 SET @NagaPlayerenUS                 = '"PLAYER", " Naga"';
 SET @NagaPlayerkoKR                 = '';
@@ -93,6 +108,10 @@ SET @NagaPlayerruRU                 = '';
 SET @NagaPlayerjaJP                 = '';
 SET @NagaPlayerptPT                 = '';
 SET @NagaPlayeritIT                 = '';
+SET @NagaPlayerUnk1                 = '';
+SET @NagaPlayerUnk2                 = '';
+SET @NagaPlayerUnk3                 = '';
+SET @NagaPlayerUnk4                 = '';
 
 SET @NagaFactionNameenUS            = 'Naga of the Horde';
 SET @NagaFactionNamekoKR            = '';
@@ -106,6 +125,10 @@ SET @NagaFactionNameruRU            = '';
 SET @NagaFactionNamejaJP            = '';
 SET @NagaFactionNameptPT            = '';
 SET @NagaFactionNameitIT            = '';
+SET @NagaFactionNameUnk1            = '';
+SET @NagaFactionNameUnk2            = '';
+SET @NagaFactionNameUnk3            = '';
+SET @NagaFactionNameUnk4            = '';
 
 SET @NagaFactionDescriptionenUS     = 'The naga of the Shimmering Expanse, chased from their native waters, have joined the Horde to survive.';
 SET @NagaFactionDescriptionkoKR     = '';
@@ -119,6 +142,10 @@ SET @NagaFactionDescriptionruRU     = '';
 SET @NagaFactionDescriptionjaJP     = '';
 SET @NagaFactionDescriptionptPT     = '';
 SET @NagaFactionDescriptionitIT     = '';
+SET @NagaFactionDescriptionUnk1     = '';
+SET @NagaFactionDescriptionUnk2     = '';
+SET @NagaFactionDescriptionUnk3     = '';
+SET @NagaFactionDescriptionUnk4     = '';
 
 SET @NagaAchievementenUS            = 'Realm First! Level 80 Naga';
 SET @NagaAchievementkoKR            = '';
@@ -132,6 +159,10 @@ SET @NagaAchievementruRU            = '';
 SET @NagaAchievementjaJP            = '';
 SET @NagaAchievementptPT            = '';
 SET @NagaAchievementitIT            = '';
+SET @NagaAchievementUnk1            = '';
+SET @NagaAchievementUnk2            = '';
+SET @NagaAchievementUnk3            = '';
+SET @NagaAchievementUnk4            = '';
 
 SET @NagaAchievementDescriptionenUS = 'First Naga on the realm to achieve level 80.';
 SET @NagaAchievementDescriptionkoKR = '';
@@ -145,3 +176,7 @@ SET @NagaAchievementDescriptionruRU = '';
 SET @NagaAchievementDescriptionjaJP = '';
 SET @NagaAchievementDescriptionptPT = '';
 SET @NagaAchievementDescriptionitIT = '';
+SET @NagaAchievementDescriptionUnk1 = '';
+SET @NagaAchievementDescriptionUnk2 = '';
+SET @NagaAchievementDescriptionUnk3 = '';
+SET @NagaAchievementDescriptionUnk4 = '';

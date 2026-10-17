@@ -22,5 +22,5 @@ INSERT INTO `itemdisplayinfo` (`id`, `left_model`, `right_model`, `left_model_te
 (@GoblinApprenticesRobeItemDisplay,   '', '', '', '', 'INV_Chest_Cloth_22', '', 0, 0, 1, 0, 0, 7, 0, 0, '', '', '', 'robe_goblin_b_01_blue_Chest_TU', 'robe_goblin_b_01_blue_chest_tl', 'robe_goblin_b_01_blue_robe_lu', 'robe_goblin_b_01_blue_robe_ll', '', 0, 0),
 (@GoblinApprenticesPantsItemDisplay,  '', '', '', '', 'INV_Pants_01', '', 0, 0, 0, 0, 0, 7, 0, 0, '', '', '', '', '', 'cloth_kezanslave_a_01 _pant_lu', 'cloth_kezanslave_a_01 _Pant_LL', '', 0, 0),
 (@GoblinAcolytesRobeItemDisplay,      '', '', '', '', 'INV_Chest_Cloth_16', '', 0, 0, 1, 0, 0, 7, 0, 0, '', '', '', 'robe_goblin_b_01_red_chest_tu', 'robe_goblin_b_01_red_Chest_TL', 'robe_goblin_b_01_red_robe_lu', 'robe_goblin_b_01_red_robe_ll', '', 0, 0),
-(@GoblinTrikeItemDisplay,             '', '', '', '', 'inv_misc_key_03', '', 0, 0, 0, 0, 0, 16, 0, 0, '', '', '', '', '', '', '', '', 0, 0),
-(@GoblinTurboTrikeItemDisplay,        '', '', '', '', 'inv_misc_key_04', '', 0, 0, 0, 0, 0, 16, 0, 0, '', '', '', '', '', '', '', '', 0, 0);
+(@GoblinMount1ItemDisplay,             '', '', '', '', 'inv_misc_key_03', '', 0, 0, 0, 0, 0, 16, 0, 0, '', '', '', '', '', '', '', '', 0, 0),
+(@GoblinMount2ItemDisplay,        '', '', '', '', 'inv_misc_key_04', '', 0, 0, 0, 0, 0, 16, 0, 0, '', '', '', '', '', '', '', '', 0, 0);

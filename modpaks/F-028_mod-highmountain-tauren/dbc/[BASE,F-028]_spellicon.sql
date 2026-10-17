@@ -2,11 +2,11 @@
 
 -- New entries
 DELETE FROM `spellicon` WHERE `id` IN (
-    @IconHMMooseMount,
+    @HighmountainTaurenMount1IconID,
     @IconBullRush, @IconMountaineer, @IconPrideOfIronhorn, @IconRuggedTenacity, @IconWasteNotWantNot
 );
 INSERT INTO `spellicon` (`id`, `name`) VALUES
-(@IconHMMooseMount,    'Interface\\Icons\\inv_hmmoosemount'),
+(@HighmountainTaurenMount1IconID,    'Interface\\Icons\\inv_hmmoosemount'),
 (@IconBullRush,        'Interface\\Icons\\ability_racial_bullrush'),
 (@IconMountaineer,     'Interface\\Icons\\ability_racial_mountaineer'),
 (@IconPrideOfIronhorn, 'Interface\\Icons\\ability_racial_prideofironhorn'),

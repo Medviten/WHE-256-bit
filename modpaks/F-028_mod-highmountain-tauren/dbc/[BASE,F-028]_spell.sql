@@ -1,11 +1,11 @@
 -- spell: 1 inserts, 0 updates, 0 deletes
 
 -- New entries
-DELETE FROM `spell` WHERE `id` = @HighmountainThunderhoof;
+DELETE FROM `spell` WHERE `id` = @HighmountainTaurenMount1;
 INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attributes_ex_1`, `attributes_ex_2`, `attributes_ex_3`, `attributes_ex_4`, `attributes_ex_5`, `attributes_ex_6`, `attributes_ex_7`, `stances`, `unk_1`, `excluded_stances`, `unk_2`, `targets`, `target_creature_type`, `spell_focus_object`, `facing_caster_flags`, `caster_aura_state`, `target_aura_state`, `excluded_caster_aura_state`, `excluded_target_aura_state`, `caster_aura_spell`, `target_aura_spell`, `excluded_caster_aura_spell`, `excluded_target_aura_spell`, `cast_time_index`, `recovery_time`, `category_recovery_time`, `interrupt_flags`, `aura_interrupt_flags`, `channel_interrupt_flags`, `proc_flags`, `proc_chance`, `proc_charges`, `max_level`, `base_level`, `spell_level`, `duration_index`, `power_type`, `power_cost`, `power_cost_per_level`, `power_per_second`, `power_per_second_per_level`, `range_index`, `speed`, `modal_next_spell`, `stack_amount`, `totem_1`, `totem_2`, `reagent_1`, `reagent_2`, `reagent_3`, `reagent_4`, `reagent_5`, `reagent_6`, `reagent_7`, `reagent_8`, `reagent_count_1`, `reagent_count_2`, `reagent_count_3`, `reagent_count_4`, `reagent_count_5`, `reagent_count_6`, `reagent_count_7`, `reagent_count_8`, `equipped_item_class`, `equipped_item_subclass_mask`, `equipped_item_inventorytype_mask`, `effect_1`, `effect_2`, `effect_3`, `effect_die_sides_1`, `effect_die_sides_2`, `effect_die_sides_3`, `effect_real_points_per_level_1`, `effect_real_points_per_level_2`, `effect_real_points_per_level_3`, `effect_base_points_1`, `effect_base_points_2`, `effect_base_points_3`, `effect_mechanic_1`, `effect_mechanic_2`, `effect_mechanic_3`, `effect_implicit_target_a_1`, `effect_implicit_target_a_2`, `effect_implicit_target_a_3`, `effect_implicit_target_b_1`, `effect_implicit_target_b_2`, `effect_implicit_target_b_3`, `effect_radius_index_1`, `effect_radius_index_2`, `effect_radius_index_3`, `effect_apply_aura_name_1`, `effect_apply_aura_name_2`, `effect_apply_aura_name_3`, `effect_amplitude_1`, `effect_amplitude_2`, `effect_amplitude_3`, `effect_multiple_value_1`, `effect_multiple_value_2`, `effect_multiple_value_3`, `effect_chain_target_1`, `effect_chain_target_2`, `effect_chain_target_3`, `effect_item_type_1`, `effect_item_type_2`, `effect_item_type_3`, `effect_misc_value_a_1`, `effect_misc_value_a_2`, `effect_misc_value_a_3`, `effect_misc_value_b_1`, `effect_misc_value_b_2`, `effect_misc_value_b_3`, `effect_trigger_spell_1`, `effect_trigger_spell_2`, `effect_trigger_spell_3`, `effect_points_per_combo_point_1`, `effect_points_per_combo_point_2`, `effect_points_per_combo_point_3`, `effect_spell_class_mask_a_1`, `effect_spell_class_mask_a_2`, `effect_spell_class_mask_a_3`, `effect_spell_class_mask_b_1`, `effect_spell_class_mask_b_2`, `effect_spell_class_mask_b_3`, `effect_spell_class_mask_c_1`, `effect_spell_class_mask_c_2`, `effect_spell_class_mask_c_3`, `spell_visual_1`, `spell_visual_2`, `spell_icon_id`, `active_icon_id`, `spell_priority`, `spell_name_enus`, `spell_name_kokr`, `spell_name_frfr`, `spell_name_dede`, `spell_name_zhcn`, `spell_name_zhtw`, `spell_name_eses`, `spell_name_esmx`, `spell_name_ruru`, `spell_name_jajp`, `spell_name_ptpt`, `spell_name_itit`, `spell_name_unused_1`, `spell_name_unused_2`, `spell_name_unused_3`, `spell_name_unused_4`, `spell_name_flags`, `spell_subtext_enus`, `spell_subtext_kokr`, `spell_subtext_frfr`, `spell_subtext_dede`, `spell_subtext_zhcn`, `spell_subtext_zhtw`, `spell_subtext_eses`, `spell_subtext_esmx`, `spell_subtext_ruru`, `spell_subtext_jajp`, `spell_subtext_ptpt`, `spell_subtext_itit`, `spell_subtext_unused_1`, `spell_subtext_unused_2`, `spell_subtext_unused_3`, `spell_subtext_unused_4`, `spell_subtext_flags`, `spell_desc_enus`, `spell_desc_kokr`, `spell_desc_frfr`, `spell_desc_dede`, `spell_desc_zhcn`, `spell_desc_zhtw`, `spell_desc_eses`, `spell_desc_esmx`, `spell_desc_ruru`, `spell_desc_jajp`, `spell_desc_ptpt`, `spell_desc_itit`, `spell_desc_unused_1`, `spell_desc_unused_2`, `spell_desc_unused_3`, `spell_desc_unused_4`, `spell_desc_flags`, `spell_tooltip_enus`, `spell_tooltip_kokr`, `spell_tooltip_frfr`, `spell_tooltip_dede`, `spell_tooltip_zhcn`, `spell_tooltip_zhtw`, `spell_tooltip_eses`, `spell_tooltip_esmx`, `spell_tooltip_ruru`, `spell_tooltip_jajp`, `spell_tooltip_ptpt`, `spell_tooltip_itit`, `spell_tooltip_unused_1`, `spell_tooltip_unused_2`, `spell_tooltip_unused_3`, `spell_tooltip_unused_4`, `spell_tooltip_flags`, `power_cost_percentage`, `start_recovery_category`, `start_recovery_time`, `maximum_target_level`, `spell_class_set`, `spell_class_mask_1`, `spell_class_mask_2`, `spell_class_mask_3`, `max_affected_targets`, `damage_class`, `prevention_type`, `stance_bar_order`, `effect_damage_multiplier_1`, `effect_damage_multiplier_2`, `effect_damage_multiplier_3`, `min_faction_id`, `min_reputation`, `req_aura_vision`, `totem_category_1`, `totem_category_2`, `area_group_id`, `school_mask`, `rune_cost_id`, `spell_missile_id`, `power_display_id`, `effect_bonus_multiplier_1`, `effect_bonus_multiplier_2`, `effect_bonus_multiplier_3`, `spell_desc_variable_id`, `spell_difficulty_id`) VALUES
 /* Mounts */
 (
-	@HighmountainThunderhoof, -- ID
+	@HighmountainTaurenMount1, -- ID
 	0, -- Category
 	0, -- DispelType
 	21, -- Mechanic
@@ -115,7 +115,7 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectItemType_1
 	0, -- EffectItemType_2
 	0, -- EffectItemType_3
-	@HighmountainThunderhoofCreatureID, -- EffectMiscValue_1
+	@HighmountainTaurenMount1CreatureID, -- EffectMiscValue_1
 	0, -- EffectMiscValue_2
 	0, -- EffectMiscValue_3
 	0, -- EffectMiscValueB_1
@@ -138,25 +138,25 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	0, -- EffectSpellClassMaskC_3
 	7644, -- SpellVisualID_1
 	0, -- SpellVisualID_2
-	@IconHMMooseMount, -- SpellIconID
+	@HighmountainTaurenMount1IconID, -- SpellIconID
 	0, -- ActiveIconID
 	0, -- SpellPriority
-	@HighmountainThunderhoofNameenUS, -- Name_Lang_enUS
-	@HighmountainThunderhoofNamekoKR, -- Name_Lang_enGB (actually koKR)
-	@HighmountainThunderhoofNamefrFR, -- Name_Lang_koKR (actually frFR)
-	@HighmountainThunderhoofNamedeDE, -- Name_Lang_frFR (actually deDE)
-	@HighmountainThunderhoofNamezhCN, -- Name_Lang_deDE (actually zhCN)
-	@HighmountainThunderhoofNamezhTW, -- Name_Lang_enCN (actually zhTW)
-	@HighmountainThunderhoofNameesES, -- Name_Lang_zhCN (actually esES)
-	@HighmountainThunderhoofNameesMX, -- Name_Lang_enTW (actually esMX)
-	@HighmountainThunderhoofNameruRU, -- Name_Lang_zhTW (actually ruRU)
-	@HighmountainThunderhoofNamejaJP, -- Name_Lang_esES (actually ptPT)
-	@HighmountainThunderhoofNameptPT, -- Name_Lang_esMX (actually ptBR)
-	@HighmountainThunderhoofNameitIT, -- Name_Lang_ruRU (actually itIT)
-	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
-	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	@HighmountainTaurenMount1NameenUS, -- Name_Lang_enUS
+	@HighmountainTaurenMount1NamekoKR, -- Name_Lang_enGB (actually koKR)
+	@HighmountainTaurenMount1NamefrFR, -- Name_Lang_koKR (actually frFR)
+	@HighmountainTaurenMount1NamedeDE, -- Name_Lang_frFR (actually deDE)
+	@HighmountainTaurenMount1NamezhCN, -- Name_Lang_deDE (actually zhCN)
+	@HighmountainTaurenMount1NamezhTW, -- Name_Lang_enCN (actually zhTW)
+	@HighmountainTaurenMount1NameesES, -- Name_Lang_zhCN (actually esES)
+	@HighmountainTaurenMount1NameesMX, -- Name_Lang_enTW (actually esMX)
+	@HighmountainTaurenMount1NameruRU, -- Name_Lang_zhTW (actually ruRU)
+	@HighmountainTaurenMount1NamejaJP, -- Name_Lang_esES (actually ptPT)
+	@HighmountainTaurenMount1NameptPT, -- Name_Lang_esMX (actually ptBR)
+	@HighmountainTaurenMount1NameitIT, -- Name_Lang_ruRU (actually itIT)
+	@HighmountainTaurenMount1NameUnk1, -- Name_Lang_ptPT
+	@HighmountainTaurenMount1NameUnk2, -- Name_Lang_ptBR
+	@HighmountainTaurenMount1NameUnk3, -- Name_Lang_itIT
+	@HighmountainTaurenMount1NameUnk4, -- Name_Lang_Unk
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
 	'', -- NameSubtext_Lang_enGB (actually koKR)
@@ -175,22 +175,22 @@ INSERT INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `attr
 	'', -- NameSubtext_Lang_itIT
 	'', -- NameSubtext_Lang_Unk
 	16712190, -- NameSubtext_Lang_Mask
-	@HighmountainThunderhoofSpellDescriptionenUS, -- Description_Lang_enUS
-	@HighmountainThunderhoofSpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
-	@HighmountainThunderhoofSpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
-	@HighmountainThunderhoofSpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
-	@HighmountainThunderhoofSpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
-	@HighmountainThunderhoofSpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
-	@HighmountainThunderhoofSpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
-	@HighmountainThunderhoofSpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
-	@HighmountainThunderhoofSpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
-	@HighmountainThunderhoofSpellDescriptionjaJP, -- Description_Lang_esES (actually ptPT)
-	@HighmountainThunderhoofSpellDescriptionptPT, -- Description_Lang_esMX (actually ptBR)
-	@HighmountainThunderhoofSpellDescriptionitIT, -- Description_Lang_ruRU (actually itIT)
-	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
-	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	@HighmountainTaurenMount1SpellDescriptionenUS, -- Description_Lang_enUS
+	@HighmountainTaurenMount1SpellDescriptionkoKR, -- Description_Lang_enGB (actually koKR)
+	@HighmountainTaurenMount1SpellDescriptionfrFR, -- Description_Lang_koKR (actually frFR)
+	@HighmountainTaurenMount1SpellDescriptiondeDE, -- Description_Lang_frFR (actually deDE)
+	@HighmountainTaurenMount1SpellDescriptionzhCN, -- Description_Lang_deDE (actually zhCN)
+	@HighmountainTaurenMount1SpellDescriptionzhTW, -- Description_Lang_enCN (actually zhTW)
+	@HighmountainTaurenMount1SpellDescriptionesES, -- Description_Lang_zhCN (actually esES)
+	@HighmountainTaurenMount1SpellDescriptionesMX, -- Description_Lang_enTW (actually esMX)
+	@HighmountainTaurenMount1SpellDescriptionruRU, -- Description_Lang_zhTW (actually ruRU)
+	@HighmountainTaurenMount1SpellDescriptionjaJP, -- Description_Lang_esES (actually ptPT)
+	@HighmountainTaurenMount1SpellDescriptionptPT, -- Description_Lang_esMX (actually ptBR)
+	@HighmountainTaurenMount1SpellDescriptionitIT, -- Description_Lang_ruRU (actually itIT)
+	@HighmountainTaurenMount1SpellDescriptionUnk1, -- Description_Lang_ptPT
+	@HighmountainTaurenMount1SpellDescriptionUnk2, -- Description_Lang_ptBR
+	@HighmountainTaurenMount1SpellDescriptionUnk3, -- Description_Lang_itIT
+	@HighmountainTaurenMount1SpellDescriptionUnk4, -- Description_Lang_Unk
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
 	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB (actually koKR)

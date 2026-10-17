@@ -2,10 +2,10 @@
 
 -- New entries
 DELETE FROM `item` WHERE `id` IN (
-    @DragonTurtleBlueItem, @DragonTurtlePurpleItem, @DragonTurtleGreenItem, @DragonTurtleBlackItem
+    @AlliancePandarenMount1Item, @AlliancePandarenMount2Item, @AlliancePandarenMount3Item, @AlliancePandarenMount4Item
 );
 INSERT INTO `item` (`id`, `class`, `subclass`, `sound_override_subclass`, `material`, `display_id`, `inventory_type`, `sheath`) VALUES
-(@DragonTurtleBlueItem,   15, 5, -1,  4, @DragonTurtleBlueItemDisplay,    0, 0),
-(@DragonTurtlePurpleItem, 15, 5, -1,  4, @DragonTurtlePurpleItemDisplay,  0, 0),
-(@DragonTurtleGreenItem,  15, 5, -1,  4, @DragonTurtleGreenItemDisplay,   0, 0),
-(@DragonTurtleBlackItem,  15, 5, -1,  4, @DragonTurtleBlackItemDisplay,   0, 0);
+(@AlliancePandarenMount1Item,   15, 5, -1,  4, @AlliancePandarenMount1ItemDisplay,    0, 0),
+(@AlliancePandarenMount2Item, 15, 5, -1,  4, @AlliancePandarenMount2ItemDisplay,  0, 0),
+(@AlliancePandarenMount3Item,  15, 5, -1,  4, @AlliancePandarenMount3ItemDisplay,   0, 0),
+(@AlliancePandarenMount4Item,  15, 5, -1,  4, @AlliancePandarenMount4ItemDisplay,   0, 0);

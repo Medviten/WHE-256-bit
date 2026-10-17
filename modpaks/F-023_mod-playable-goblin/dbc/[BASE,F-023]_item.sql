@@ -9,7 +9,7 @@ DELETE FROM `item` WHERE `id` IN (
     @PrimalShirtItem,           @PrimalPantsItem,            @PrimalBootsItem,
     @GoblinApprenticesRobeItem, @GoblinApprenticesPantsItem, @GoblinApprenticesBootsItem,
     @GoblinAcolytesRobeItem,    @GoblinAcolytesPantsItem,    @GoblinAcolytesShoesItem,
-    @GoblinTrikeItem,           @GoblinTurboTrikeItem,
+    @GoblinMount1Item,           @GoblinMount2Item,
     @WornWoodChopperItem,
     90000
 );
@@ -37,5 +37,5 @@ INSERT INTO `item` (`id`, `class`, `subclass`, `sound_override_subclass`, `mater
 (@GoblinAcolytesRobeItem,      4, 1, -1,   7,  @GoblinAcolytesRobeItemDisplay,      20, 0), -- Goblin Acolyte's Robe
 (@GoblinAcolytesPantsItem,     4, 1, -1,   7,  @GoblinAcolytesPantsItemDisplay,      7, 0), -- Goblin Acolyte's Pants
 (@GoblinAcolytesShoesItem,     4, 1, -1,   7,  @GoblinAcolytesShoesItemDisplay,      8, 0), -- Goblin Acolyte's Shoes
-(@GoblinTrikeItem,            15, 5, -1,   4,  @GoblinTrikeItemDisplay,              0, 0), -- Goblin Trike Key
-(@GoblinTurboTrikeItem,       15, 5, -1,   4,  @GoblinTurboTrikeItemDisplay,         0, 0); -- Goblin Turbo-Trike Key
+(@GoblinMount1Item,            15, 5, -1,   4,  @GoblinMount1ItemDisplay,              0, 0), -- Goblin Trike Key
+(@GoblinMount2Item,       15, 5, -1,   4,  @GoblinMount2ItemDisplay,         0, 0); -- Goblin Turbo-Trike Key

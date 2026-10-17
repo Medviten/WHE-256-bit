@@ -1,7 +1,6 @@
--- Race ID
-SET @Gilnean                           := @NextRace := @NextRace +1; -- default: 23
-SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- default: 4194304
-SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- default: 8388608
+-- Race masks (race IDs are fixed in config.sql)
+SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- race ID 23 → 4194304
+SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- race ID 23 → 8388608
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                      = @AllianceMask     | @GilneanMask;
@@ -41,6 +40,10 @@ SET @GilneanruRU                       = '';
 SET @GilneanjaJP                       = '';
 SET @GilneanptPT                       = '';
 SET @GilneanitIT                       = '';
+SET @GilneanUnk1                       = '';
+SET @GilneanUnk2                       = '';
+SET @GilneanUnk3                       = '';
+SET @GilneanUnk4                       = '';
 
 SET @GilneanFemaleenUS                 = '';
 SET @GilneanFemalekoKR                 = '';
@@ -54,6 +57,10 @@ SET @GilneanFemaleruRU                 = '';
 SET @GilneanFemalejaJP                 = '';
 SET @GilneanFemaleptPT                 = '';
 SET @GilneanFemaleitIT                 = '';
+SET @GilneanFemaleUnk1                 = '';
+SET @GilneanFemaleUnk2                 = '';
+SET @GilneanFemaleUnk3                 = '';
+SET @GilneanFemaleUnk4                 = '';
 
 SET @GilneanMaleenUS                   = '';
 SET @GilneanMalekoKR                   = '';
@@ -67,6 +74,10 @@ SET @GilneanMaleruRU                   = '';
 SET @GilneanMalejaJP                   = '';
 SET @GilneanMaleptPT                   = '';
 SET @GilneanMaleitIT                   = '';
+SET @GilneanMaleUnk1                   = '';
+SET @GilneanMaleUnk2                   = '';
+SET @GilneanMaleUnk3                   = '';
+SET @GilneanMaleUnk4                   = '';
 
 SET @GilneanRacialNameenUS             = 'Racial - Gilnean';
 SET @GilneanRacialNamekoKR             = '';
@@ -80,6 +91,10 @@ SET @GilneanRacialNameruRU             = '';
 SET @GilneanRacialNamejaJP             = '';
 SET @GilneanRacialNameptPT             = '';
 SET @GilneanRacialNameitIT             = '';
+SET @GilneanRacialNameUnk1             = '';
+SET @GilneanRacialNameUnk2             = '';
+SET @GilneanRacialNameUnk3             = '';
+SET @GilneanRacialNameUnk4             = '';
 
 SET @GilneanPlayerenUS                 = '"PLAYER", " Gilnean"';
 SET @GilneanPlayerkoKR                 = '';
@@ -93,6 +108,10 @@ SET @GilneanPlayerruRU                 = '';
 SET @GilneanPlayerjaJP                 = '';
 SET @GilneanPlayerptPT                 = '';
 SET @GilneanPlayeritIT                 = '';
+SET @GilneanPlayerUnk1                 = '';
+SET @GilneanPlayerUnk2                 = '';
+SET @GilneanPlayerUnk3                 = '';
+SET @GilneanPlayerUnk4                 = '';
 
 SET @GilneanFactionNameenUS            = 'Gilneas';
 SET @GilneanFactionNamekoKR            = '';
@@ -106,6 +125,10 @@ SET @GilneanFactionNameruRU            = '';
 SET @GilneanFactionNamejaJP            = '';
 SET @GilneanFactionNameptPT            = '';
 SET @GilneanFactionNameitIT            = '';
+SET @GilneanFactionNameUnk1            = '';
+SET @GilneanFactionNameUnk2            = '';
+SET @GilneanFactionNameUnk3            = '';
+SET @GilneanFactionNameUnk4            = '';
 
 SET @GilneanFactionDescriptionenUS     = 'The human kingdom of Gilneas';
 SET @GilneanFactionDescriptionkoKR     = '';
@@ -119,6 +142,10 @@ SET @GilneanFactionDescriptionruRU     = '';
 SET @GilneanFactionDescriptionjaJP     = '';
 SET @GilneanFactionDescriptionptPT     = '';
 SET @GilneanFactionDescriptionitIT     = '';
+SET @GilneanFactionDescriptionUnk1     = '';
+SET @GilneanFactionDescriptionUnk2     = '';
+SET @GilneanFactionDescriptionUnk3     = '';
+SET @GilneanFactionDescriptionUnk4     = '';
 
 SET @GilneanAchievementenUS            = 'Realm First! Level 80 Gilnean';
 SET @GilneanAchievementkoKR            = '';
@@ -132,6 +159,10 @@ SET @GilneanAchievementruRU            = '';
 SET @GilneanAchievementjaJP            = '';
 SET @GilneanAchievementptPT            = '';
 SET @GilneanAchievementitIT            = '';
+SET @GilneanAchievementUnk1            = '';
+SET @GilneanAchievementUnk2            = '';
+SET @GilneanAchievementUnk3            = '';
+SET @GilneanAchievementUnk4            = '';
 
 SET @GilneanAchievementDescriptionenUS = 'First Gilnean on the realm to achieve level 80.';
 SET @GilneanAchievementDescriptionkoKR = '';
@@ -145,3 +176,7 @@ SET @GilneanAchievementDescriptionruRU = '';
 SET @GilneanAchievementDescriptionjaJP = '';
 SET @GilneanAchievementDescriptionptPT = '';
 SET @GilneanAchievementDescriptionitIT = '';
+SET @GilneanAchievementDescriptionUnk1 = '';
+SET @GilneanAchievementDescriptionUnk2 = '';
+SET @GilneanAchievementDescriptionUnk3 = '';
+SET @GilneanAchievementDescriptionUnk4 = '';

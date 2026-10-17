@@ -7,5 +7,4 @@ REPLACE INTO `player_shapeshift_model` (
 ) VALUES
 /* Cataclysm Druid forms */
 /* Worgen Druid forms */
-(@TreeForm,   @Worgen, 255, 2, @DruidTreeFormRedDisplay), -- ModelID: DruidTreeFormRed
-(@TravelForm, @Worgen, 255, 2, @AllianceTravelForm); -- ModelID: 40816 (DruidTravelAlliance)
+(@TreeForm,   @Worgen, 255, 2, @DruidTreeFormRedDisplay); -- ModelID: DruidTreeFormRed
