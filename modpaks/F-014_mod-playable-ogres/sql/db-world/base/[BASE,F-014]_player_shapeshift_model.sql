@@ -6,8 +6,8 @@ REPLACE INTO `player_shapeshift_model` (
     `ModelID` -- ID from CreatureDisplayInfo.dbc or creaturedisplayinfo_dbc (*not* from CreatureModelData.dbc!)
 ) VALUES
 /* Ogres copy Tauren */
-(@CatForm, @Ogre, 255, 2, 8571), -- ModelID
-(@BearForm, @Ogre, 255,	2, 2289), -- ModelID
-(@DireBearForm, @Ogre, 255, 2, 2289), -- ModelID
-(@SwiftFlightForm, @Ogre, 255, 2, 21244), -- ModelID
-(@FlightForm, @Ogre, 255, 2, 20872); -- ModelID
+(@CatForm, @Ogre, 255, 2, @DruidCatTaurenDisplay), -- ModelID
+(@BearForm, @Ogre, 255,	2, @DruidBearTaurenDisplay), -- ModelID
+(@DireBearForm, @Ogre, 255, 2, @DruidBearTaurenDisplay), -- ModelID
+(@SwiftFlightForm, @Ogre, 255, 2, @DruidSwiftFlightFormTaurenDisplay), -- ModelID
+(@FlightForm, @Ogre, 255, 2, @DruidFlightFormTaurenDisplay); -- ModelID

@@ -1,7 +1,6 @@
--- Race ID
-SET @Ogre                          := @NextRace := @NextRace +1; -- default: 15
-SET @OgreMask                       = 1 << (@Ogre - 1);          -- race ID 15 → 16384
-SET @OgreHelmetMask                 = 1 << @Ogre;                -- race ID 15 → 32768
+-- Race masks (race IDs are fixed in config.sql)
+SET @OgreMask                       = 1 << (@Ogre - 1);          -- race ID 39 → 274877906944
+SET @OgreHelmetMask                 = 1 << @Ogre;                -- race ID 39 → 549755813888
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                      = @HordeMask    | @OgreMask;
@@ -41,6 +40,10 @@ SET @OgreruRU                       = 'огр';
 SET @OgrejaJP                       = '';
 SET @OgreptPT                       = '';
 SET @OgreitIT                       = '';
+SET @OgreUnk1                       = '';
+SET @OgreUnk2                       = '';
+SET @OgreUnk3                       = '';
+SET @OgreUnk4                       = '';
 
 SET @OgreFemaleenUS                 = '';
 SET @OgreFemalekoKR                 = '';
@@ -54,6 +57,10 @@ SET @OgreFemaleruRU                 = '';
 SET @OgreFemalejaJP                 = '';
 SET @OgreFemaleptPT                 = '';
 SET @OgreFemaleitIT                 = '';
+SET @OgreFemaleUnk1                 = '';
+SET @OgreFemaleUnk2                 = '';
+SET @OgreFemaleUnk3                 = '';
+SET @OgreFemaleUnk4                 = '';
 
 SET @OgreMaleenUS                   = '';
 SET @OgreMalekoKR                   = '';
@@ -67,6 +74,10 @@ SET @OgreMaleruRU                   = '';
 SET @OgreMalejaJP                   = '';
 SET @OgreMaleptPT                   = '';
 SET @OgreMaleitIT                   = '';
+SET @OgreMaleUnk1                   = '';
+SET @OgreMaleUnk2                   = '';
+SET @OgreMaleUnk3                   = '';
+SET @OgreMaleUnk4                   = '';
 
 SET @OgreRacialNameenUS             = 'Racial - Ogre';
 SET @OgreRacialNamekoKR             = '';
@@ -80,6 +91,10 @@ SET @OgreRacialNameruRU             = '';
 SET @OgreRacialNamejaJP             = '';
 SET @OgreRacialNameptPT             = '';
 SET @OgreRacialNameitIT             = '';
+SET @OgreRacialNameUnk1             = '';
+SET @OgreRacialNameUnk2             = '';
+SET @OgreRacialNameUnk3             = '';
+SET @OgreRacialNameUnk4             = '';
 
 SET @OgrePlayerenUS                 = '"PLAYER", Ogre';
 SET @OgrePlayerkoKR                 = '플레이어 - 오우거';
@@ -93,6 +108,10 @@ SET @OgrePlayerruRU                 = 'ИГРОК: огр';
 SET @OgrePlayerjaJP                 = '';
 SET @OgrePlayerptPT                 = '';
 SET @OgrePlayeritIT                 = '';
+SET @OgrePlayerUnk1                 = '';
+SET @OgrePlayerUnk2                 = '';
+SET @OgrePlayerUnk3                 = '';
+SET @OgrePlayerUnk4                 = '';
 
 SET @OgreFactionNameenUS            = 'Stonemaul Clan';
 SET @OgreFactionNamekoKR            = '돌망치 부족';
@@ -106,6 +125,10 @@ SET @OgreFactionNameruRU            = 'Клан Каменного Молота'
 SET @OgreFactionNamejaJP            = '';
 SET @OgreFactionNameptPT            = '';
 SET @OgreFactionNameitIT            = '';
+SET @OgreFactionNameUnk1            = '';
+SET @OgreFactionNameUnk2            = '';
+SET @OgreFactionNameUnk3            = '';
+SET @OgreFactionNameUnk4            = '';
 
 SET @OgreFactionDescriptionenUS     = 'Ogres of the Stonemaul clan, sworn to the Horde.';
 SET @OgreFactionDescriptionkoKR     = '호드에 충성을 맹세한 돌망치 부족 오우거입니다.';
@@ -119,6 +142,10 @@ SET @OgreFactionDescriptionruRU     = 'Огры клана Каменного М
 SET @OgreFactionDescriptionjaJP     = '';
 SET @OgreFactionDescriptionptPT     = '';
 SET @OgreFactionDescriptionitIT     = '';
+SET @OgreFactionDescriptionUnk1     = '';
+SET @OgreFactionDescriptionUnk2     = '';
+SET @OgreFactionDescriptionUnk3     = '';
+SET @OgreFactionDescriptionUnk4     = '';
 
 SET @OgreAchievementenUS            = 'Realm First! Level 80 Ogre';
 SET @OgreAchievementkoKR            = '';
@@ -132,6 +159,10 @@ SET @OgreAchievementruRU            = '';
 SET @OgreAchievementjaJP            = '';
 SET @OgreAchievementptPT            = '';
 SET @OgreAchievementitIT            = '';
+SET @OgreAchievementUnk1            = '';
+SET @OgreAchievementUnk2            = '';
+SET @OgreAchievementUnk3            = '';
+SET @OgreAchievementUnk4            = '';
 
 SET @OgreAchievementDescriptionenUS = 'First Ogre on the realm to achieve level 80.';
 SET @OgreAchievementDescriptionkoKR = '';
@@ -145,3 +176,7 @@ SET @OgreAchievementDescriptionruRU = '';
 SET @OgreAchievementDescriptionjaJP = '';
 SET @OgreAchievementDescriptionptPT = '';
 SET @OgreAchievementDescriptionitIT = '';
+SET @OgreAchievementDescriptionUnk1 = '';
+SET @OgreAchievementDescriptionUnk2 = '';
+SET @OgreAchievementDescriptionUnk3 = '';
+SET @OgreAchievementDescriptionUnk4 = '';
