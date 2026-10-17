@@ -1,7 +1,6 @@
--- Race ID
-SET @MagharOrc := @NextRace             := @NextRace +1; -- default: 14
-SET @MagharOrcMask                       = 1 << (@MagharOrc - 1);  -- race ID 14 → 8192
-SET @MagharOrcHelmetMask                 = 1 << @MagharOrc;  -- race ID 14 → 16384
+-- Race masks (race IDs are fixed in config.sql)
+SET @MagharOrcMask                       = 1 << (@MagharOrc - 1);  -- race ID 36 → 34359738368
+SET @MagharOrcHelmetMask                 = 1 << @MagharOrc;  -- race ID 36 → 68719476736
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                           = @HordeMask    |  @MagharOrcMask;
@@ -18,8 +17,44 @@ SET @MagharOrcCinematicSequence          = @OrcCinematicSequence;
 SET @MagharOrcBlood                      = 1;
 SET @MagharOrcMaleModelPath              = 'Character\\Orc\\Male\\OrcMale.mdx';
 SET @MagharOrcFemaleModelPath            = 'Character\\Orc\\Female\\OrcFemale.mdx';
+SET @MagharOrcMount1ModelPath             = 'Creature\\orcclanworg\\orcclanworg.m2';
 SET @MagharOrcMaleFootprint              = @FootprintShoe;
 SET @MagharOrcFemaleFootprint            = @FootprintShoe;
+
+-- Mounts (IDs are global, see config.sql)
+SET @MagharOrcMount1                         = @SpellMagharDirewolf;
+SET @MagharOrcMount1Model                    = @MagharDirewolfModel;
+SET @MagharOrcMount1Display                  = @MagharDirewolfDisplay;
+SET @MagharOrcMount1CreatureID               = @MagharDirewolfCreatureID;
+SET @MagharOrcMount1Item                     = @MagharDirewolfItem;
+SET @MagharOrcMount1ItemDisplay              = @MagharDirewolfItemDisplay;
+SET @MagharOrcMount1IconID                   = @IconMagharDirewolf;
+
+-- Spells
+SET @MagharOrcRacial1                    = @SpellAncestralCall;
+SET @MagharOrcRacial2                    = @SpellSavageBlood;
+SET @MagharOrcRacial3                    = @SpellSympatheticVigor;
+SET @MagharOrcRacial4                    = @SpellOpenSkies;
+
+-- Icons
+SET @MagharOrcRacialIcon1                = @IconAncestralCall;
+SET @MagharOrcRacialIcon2                = @IconSavageBlood;
+SET @MagharOrcRacialIcon3                = @IconSympatheticVigor;
+SET @MagharOrcRacialIcon4                = @IconOpenSkies;
+
+-- Icon name
+SET @MagharOrcMount1IconName             = 'inv_orcclanworg';
+SET @MagharOrcRacialIcon1Name            = 'ability_racial_ancestralcall';
+SET @MagharOrcRacialIcon2Name            = 'ability_racial_pureblood';
+SET @MagharOrcRacialIcon3Name            = 'ability_racial_sympatheticvigor';
+SET @MagharOrcRacialIcon4Name            = 'ability_racial_openskies';
+
+-- Icon paths
+SET @MagharOrcMount1IconPath             = 'Interface\\Icons\\inv_orcclanworg';
+SET @MagharOrcRacialIcon1Path            = 'Interface\\Icons\\ability_racial_ancestralcall';
+SET @MagharOrcRacialIcon2Path            = 'Interface\\Icons\\ability_racial_pureblood';
+SET @MagharOrcRacialIcon3Path            = 'Interface\\Icons\\ability_racial_sympatheticvigor';
+SET @MagharOrcRacialIcon4Path            = 'Interface\\Icons\\ability_racial_openskies';
 
 -- Strings
 SET @MagharOrcClientPrefix               = 'Or';
@@ -41,6 +76,10 @@ SET @MagharOrcruRU                       = 'Орк Маг\'хар';
 SET @MagharOrcjaJP                       = '';
 SET @MagharOrcptPT                       = '';
 SET @MagharOrcitIT                       = '';
+SET @MagharOrcUnk1                       = '';
+SET @MagharOrcUnk2                       = '';
+SET @MagharOrcUnk3                       = '';
+SET @MagharOrcUnk4                       = '';
 
 SET @MagharOrcFemaleenUS                 = '';
 SET @MagharOrcFemalekoKR                 = '';
@@ -54,6 +93,10 @@ SET @MagharOrcFemaleruRU                 = '';
 SET @MagharOrcFemalejaJP                 = '';
 SET @MagharOrcFemaleptPT                 = '';
 SET @MagharOrcFemaleitIT                 = '';
+SET @MagharOrcFemaleUnk1                 = '';
+SET @MagharOrcFemaleUnk2                 = '';
+SET @MagharOrcFemaleUnk3                 = '';
+SET @MagharOrcFemaleUnk4                 = '';
 
 SET @MagharOrcMaleenUS                   = '';
 SET @MagharOrcMalekoKR                   = '';
@@ -67,6 +110,10 @@ SET @MagharOrcMaleruRU                   = 'Орк Маг\'хар';
 SET @MagharOrcMalejaJP                   = '';
 SET @MagharOrcMaleptPT                   = '';
 SET @MagharOrcMaleitIT                   = '';
+SET @MagharOrcMaleUnk1                   = '';
+SET @MagharOrcMaleUnk2                   = '';
+SET @MagharOrcMaleUnk3                   = '';
+SET @MagharOrcMaleUnk4                   = '';
 
 SET @MagharOrcRacialNameenUS             = 'Racial - Mag\'har Orc';
 SET @MagharOrcRacialNamekoKR             = '';
@@ -80,6 +127,10 @@ SET @MagharOrcRacialNameruRU             = '';
 SET @MagharOrcRacialNamejaJP             = '';
 SET @MagharOrcRacialNameptPT             = '';
 SET @MagharOrcRacialNameitIT             = '';
+SET @MagharOrcRacialNameUnk1             = '';
+SET @MagharOrcRacialNameUnk2             = '';
+SET @MagharOrcRacialNameUnk3             = '';
+SET @MagharOrcRacialNameUnk4             = '';
 
 SET @MagharOrcPlayerenUS                 = '"PLAYER"," Maghar Orc"';
 SET @MagharOrcPlayerkoKR                 = '';
@@ -93,6 +144,10 @@ SET @MagharOrcPlayerruRU                 = '';
 SET @MagharOrcPlayerjaJP                 = '';
 SET @MagharOrcPlayerptPT                 = '';
 SET @MagharOrcPlayeritIT                 = '';
+SET @MagharOrcPlayerUnk1                 = '';
+SET @MagharOrcPlayerUnk2                 = '';
+SET @MagharOrcPlayerUnk3                 = '';
+SET @MagharOrcPlayerUnk4                 = '';
 
 SET @MagharOrcFactionNameenUS            = 'Mag\'har of the Horde';
 SET @MagharOrcFactionNamekoKR            = '호드의 마가르';
@@ -106,6 +161,10 @@ SET @MagharOrcFactionNameruRU            = 'Магхары Орды';
 SET @MagharOrcFactionNamejaJP            = '';
 SET @MagharOrcFactionNameptPT            = '';
 SET @MagharOrcFactionNameitIT            = '';
+SET @MagharOrcFactionNameUnk1            = '';
+SET @MagharOrcFactionNameUnk2            = '';
+SET @MagharOrcFactionNameUnk3            = '';
+SET @MagharOrcFactionNameUnk4            = '';
 
 SET @MagharOrcFactionDescriptionenUS     = 'Horde-aligned Mag\'har orcs.';
 SET @MagharOrcFactionDescriptionkoKR     = '호드에 합류한 마가르 오크입니다.';
@@ -119,6 +178,10 @@ SET @MagharOrcFactionDescriptionruRU     = 'Орки-магхары, присо�
 SET @MagharOrcFactionDescriptionjaJP     = '';
 SET @MagharOrcFactionDescriptionptPT     = '';
 SET @MagharOrcFactionDescriptionitIT     = '';
+SET @MagharOrcFactionDescriptionUnk1     = '';
+SET @MagharOrcFactionDescriptionUnk2     = '';
+SET @MagharOrcFactionDescriptionUnk3     = '';
+SET @MagharOrcFactionDescriptionUnk4     = '';
 
 SET @MagharOrcAchievementenUS            = 'Realm First! Level 80 Mag\'har';
 SET @MagharOrcAchievementkoKR            = '서버 최초 80 레벨 마그하르 오크';
@@ -132,6 +195,10 @@ SET @MagharOrcAchievementruRU            = '1-й на сервере! Орк М�
 SET @MagharOrcAchievementjaJP            = '';
 SET @MagharOrcAchievementptPT            = '';
 SET @MagharOrcAchievementitIT            = '';
+SET @MagharOrcAchievementUnk1            = '';
+SET @MagharOrcAchievementUnk2            = '';
+SET @MagharOrcAchievementUnk3            = '';
+SET @MagharOrcAchievementUnk4            = '';
 
 SET @MagharOrcAchievementDescriptionenUS = 'First mag\'har orc on the realm to achieve level 80.';
 SET @MagharOrcAchievementDescriptionkoKR = '서버 최초로 80 레벨 마그하르 오크 달성';
@@ -145,33 +212,45 @@ SET @MagharOrcAchievementDescriptionruRU = 'Первый орк Маг\'хар �
 SET @MagharOrcAchievementDescriptionjaJP = '';
 SET @MagharOrcAchievementDescriptionptPT = '';
 SET @MagharOrcAchievementDescriptionitIT = '';
+SET @MagharOrcAchievementDescriptionUnk1 = '';
+SET @MagharOrcAchievementDescriptionUnk2 = '';
+SET @MagharOrcAchievementDescriptionUnk3 = '';
+SET @MagharOrcAchievementDescriptionUnk4 = '';
 
 -- Racial Mount Strings 
-SET @MagharDirewolfNameenUS              = 'Mag\'har Direwolf';
-SET @MagharDirewolfNamekoKR              = '';
-SET @MagharDirewolfNamefrFR              = '';
-SET @MagharDirewolfNamedeDE              = '';
-SET @MagharDirewolfNamezhCN              = '';
-SET @MagharDirewolfNamezhTW              = '';
-SET @MagharDirewolfNameesES              = '';
-SET @MagharDirewolfNameesMX              = '';
-SET @MagharDirewolfNameruRU              = '';
-SET @MagharDirewolfNamejaJP              = '';
-SET @MagharDirewolfNameptPT              = '';
-SET @MagharDirewolfNameitIT              = '';
+SET @MagharOrcMount1NameenUS              = 'Mag\'har Direwolf';
+SET @MagharOrcMount1NamekoKR              = '';
+SET @MagharOrcMount1NamefrFR              = '';
+SET @MagharOrcMount1NamedeDE              = '';
+SET @MagharOrcMount1NamezhCN              = '';
+SET @MagharOrcMount1NamezhTW              = '';
+SET @MagharOrcMount1NameesES              = '';
+SET @MagharOrcMount1NameesMX              = '';
+SET @MagharOrcMount1NameruRU              = '';
+SET @MagharOrcMount1NamejaJP              = '';
+SET @MagharOrcMount1NameptPT              = '';
+SET @MagharOrcMount1NameitIT              = '';
+SET @MagharOrcMount1NameUnk1              = '';
+SET @MagharOrcMount1NameUnk2              = '';
+SET @MagharOrcMount1NameUnk3              = '';
+SET @MagharOrcMount1NameUnk4              = '';
 
-SET @MagharDirewolfSpellDescriptionenUS  = 'Summons and dismisses a rideable Mag\'har Direwolf.';
-SET @MagharDirewolfSpellDescriptionkoKR  = '';
-SET @MagharDirewolfSpellDescriptionfrFR  = '';
-SET @MagharDirewolfSpellDescriptiondeDE  = '';
-SET @MagharDirewolfSpellDescriptionzhCN  = '';
-SET @MagharDirewolfSpellDescriptionzhTW  = '';
-SET @MagharDirewolfSpellDescriptionesES  = '';
-SET @MagharDirewolfSpellDescriptionesMX  = '';
-SET @MagharDirewolfSpellDescriptionruRU  = '';
-SET @MagharDirewolfSpellDescriptionjaJP  = '';
-SET @MagharDirewolfSpellDescriptionptPT  = '';
-SET @MagharDirewolfSpellDescriptionitIT  = '';
+SET @MagharOrcMount1SpellDescriptionenUS  = 'Summons and dismisses a rideable Mag\'har Direwolf.\n\n"Native to Draenor, these wolves are preferred by the Mag\'har for their ferocity, loyalty, and for something to snuggle on those cool winter nights."';
+SET @MagharOrcMount1SpellDescriptionkoKR  = '';
+SET @MagharOrcMount1SpellDescriptionfrFR  = '';
+SET @MagharOrcMount1SpellDescriptiondeDE  = '';
+SET @MagharOrcMount1SpellDescriptionzhCN  = '';
+SET @MagharOrcMount1SpellDescriptionzhTW  = '';
+SET @MagharOrcMount1SpellDescriptionesES  = '';
+SET @MagharOrcMount1SpellDescriptionesMX  = '';
+SET @MagharOrcMount1SpellDescriptionruRU  = '';
+SET @MagharOrcMount1SpellDescriptionjaJP  = '';
+SET @MagharOrcMount1SpellDescriptionptPT  = '';
+SET @MagharOrcMount1SpellDescriptionitIT  = '';
+SET @MagharOrcMount1SpellDescriptionUnk1  = '';
+SET @MagharOrcMount1SpellDescriptionUnk2  = '';
+SET @MagharOrcMount1SpellDescriptionUnk3  = '';
+SET @MagharOrcMount1SpellDescriptionUnk4  = '';
 
-SET @MagharDirewolfItemNameenUS          = @MagharDirewolfNameenUS;
-SET @MagharDirewolfItemDescriptionenUS   = 'Teaches you how to summon this mount.\n\nSummons and dismisses a rideable Mag\'har Direwolf.';
+SET @MagharOrcMount1ItemNameenUS          = @MagharOrcMount1NameenUS;
+SET @MagharOrcMount1ItemDescriptionenUS   = 'Teaches you how to summon this mount.\n\nSummons and dismisses a rideable Mag\'har Direwolf.\n\n"Native to Draenor, these wolves are preferred by the Mag\'har for their ferocity, loyalty, and for something to snuggle on those cool winter nights."';

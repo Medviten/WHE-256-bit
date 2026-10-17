@@ -4,6 +4,7 @@
 ### Features
 - Playable Mag'har Orcs
     - Racial abilities
+    - Racial mount: Mag'har Direwolf
 - Racial faction: Mag'har of the Horde
 
 ### Known Issues

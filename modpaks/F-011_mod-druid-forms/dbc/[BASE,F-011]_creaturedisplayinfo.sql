@@ -131,15 +131,15 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 DELETE FROM `creaturedisplayinfo` WHERE `id` BETWEEN 94137 AND 94147;
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 94228;
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
-(94137, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBlackDiseased', '', '', '', 2, 0, 0, 0, 0, 0),
-(94138, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinDrkBrownDiseased', '', '', '', 2, 0, 0, 0, 0, 0),
-(94139, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBrownDiseased', '', '', '', 4, 0, 0, 0, 0, 0),
-(94140, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinWhiteDiseased', '', '', '', -1, 0, 0, 0, 0, 0),
-(94141, 141, 0, 0, '1.0000000000000000', 255, 'EntSkinDiseased', '', '', '', -1, 0, 0, 0, 0, 0),
-(94142, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBlackDiseased', '', '', '', 2, 0, 0, 0, 0, 0),
-(94143, 193, 0, 0, '0.8000000119209290', 255, 'SharkSkinPurple', '', '', '', 2, 0, 0, 0, 0, 0),
-(94144, 141, 0, 0, '1.0000000000000000', 255, 'EntSkinDead', '', '', '', 2, 0, 0, 0, 0, 0),
-(94145, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinGreen', '', '', '', -1, 0, 0, 0, 0, 0),
-(94146, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinBrown', '', '', '', -1, 0, 0, 0, 0, 0),
-(94147, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinPurple', '', '', '', -1, 0, 0, 0, 0, 0),
-(94228, 2298, 0, 14488, '1.0000000000000000', 255, '', '', '', '', 1, 0, 0, 0, 0, 0);
+(94137, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBlackDiseased', '', '', '', 2, 0, 0, 0, 0, 0), -- 94137
+(94138, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinDrkBrownDiseased', '', '', '', 2, 0, 0, 0, 0, 0), -- 94138
+(@DruidBearSkinBrownDiseased, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBrownDiseased', '', '', '', 4, 0, 0, 0, 0, 0), -- 94139
+(@DruidBearSkinWhiteDiseased, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinWhiteDiseased', '', '', '', -1, 0, 0, 0, 0, 0), -- 94140
+(@DruidEntSkinDiseased, 141, 0, 0, '1.0000000000000000', 255, 'EntSkinDiseased', '', '', '', -1, 0, 0, 0, 0, 0), -- 94141
+(94142, 83, 0, 0, '1.0000000000000000', 255, 'BearSkinBlackDiseased', '', '', '', 2, 0, 0, 0, 0, 0), -- 94142
+(@DruidSharkSkinPurple, 193, 0, 0, '0.8000000119209290', 255, 'SharkSkinPurple', '', '', '', 2, 0, 0, 0, 0, 0), -- 94143
+(@DruidEntSkinDead, 141, 0, 0, '1.0000000000000000', 255, 'EntSkinDead', '', '', '', 2, 0, 0, 0, 0, 0), -- 94144
+(94145, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinGreen', '', '', '', -1, 0, 0, 0, 0, 0), -- 94145
+(@DruidLasherOrchidSkinBrown, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinBrown', '', '', '', -1, 0, 0, 0, 0, 0), -- 94146
+(94147, 2380, 0, 0, '0.6000000238418579', 255, 'LasherOrchidSkinPurple', '', '', '', -1, 0, 0, 0, 0, 0), -- 94147
+(94228, 2298, 0, 14488, '1.0000000000000000', 255, '', '', '', '', 1, 0, 0, 0, 0, 0); -- 94228
