@@ -10,3 +10,8 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@IconForgedInFlames, 'Interface\\Icons\\ability_racial_foregedinflames'),
 (@IconMassProduction, 'Interface\\Icons\\ability_racial_massproduction'),
 (@IconMoleMachine,    'Interface\\Icons\\ability_racial_molemachine');
+
+-- Racial mount
+DELETE FROM `spellicon` WHERE `id` IN (@DarkIronDwarfMount1IconID);
+INSERT INTO `spellicon` (`id`, `name`) VALUES
+(@DarkIronDwarfMount1IconID, @DarkIronDwarfMount1IconPath);
