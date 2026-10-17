@@ -142,72 +142,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Apprentice', -- NameSubtext_Lang_enUS
-	'초급', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Apprenti', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Lehrling', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'初级', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'初級', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Aprendiz', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Aprendiz', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Ученик', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'초급', -- NameSubtext_Lang_koKR
+	'Apprenti', -- NameSubtext_Lang_frFR
+	'Lehrling', -- NameSubtext_Lang_deDE
+	'初级', -- NameSubtext_Lang_zhCN
+	'初級', -- NameSubtext_Lang_zhTW
+	'Aprendiz', -- NameSubtext_Lang_esES
+	'Aprendiz', -- NameSubtext_Lang_esMX
+	'Ученик', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'The basics of how to skin animals for their pelts and furs for use in Leatherworking.  Gives a potential skinning skill of 75.  Requires a Skinning Knife.', -- Description_Lang_enUS
-	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 75로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Les rudiments du Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 75. Nécessite un Couteau à dépecer.', -- Description_Lang_koKR \(actually frFR\)
-	'Grundlagen, wie man Tiere häutet und ihre Pelze und Felle für die Lederverarbeitung bearbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 75. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_frFR \(actually deDE\)
-	'基本的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得75点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_deDE \(actually zhCN\)
-	'基本的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得75點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_enCN \(actually zhTW\)
-	'Información básica sobre el desuello de animales para conseguir pelambres y pelajes para usarlos en peletería. Otorga una habilidad potencial para desollar de 75 p. Requiere un cuchillo para desollar.', -- Description_Lang_zhCN \(actually esES\)
-	'Información básica sobre el desuello de animales para conseguir pelambres y pelajes para usarlos en peletería. Otorga una habilidad potencial para desollar de 75 p. Requiere un cuchillo para desollar.', -- Description_Lang_enTW \(actually esMX\)
-	'Обучает способности снимать шкуры и мех с животных. Полученные материалы в дальнейшем используются в кожевничестве. Позволяет развить навык до уровня 75. Требуется нож для снятия шкур.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 75로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_koKR
+	'Les rudiments du Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 75. Nécessite un Couteau à dépecer.', -- Description_Lang_frFR
+	'Grundlagen, wie man Tiere häutet und ihre Pelze und Felle für die Lederverarbeitung bearbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 75. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_deDE
+	'基本的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得75点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_zhCN
+	'基本的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得75點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_zhTW
+	'Información básica sobre el desuello de animales para conseguir pelambres y pelajes para usarlos en peletería. Otorga una habilidad potencial para desollar de 75 p. Requiere un cuchillo para desollar.', -- Description_Lang_esES
+	'Información básica sobre el desuello de animales para conseguir pelambres y pelajes para usarlos en peletería. Otorga una habilidad potencial para desollar de 75 p. Requiere un cuchillo para desollar.', -- Description_Lang_esMX
+	'Обучает способности снимать шкуры и мех с животных. Полученные материалы в дальнейшем используются в кожевничестве. Позволяет развить навык до уровня 75. Требуется нож для снятия шкур.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -379,72 +379,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Journeyman', -- NameSubtext_Lang_enUS
-	'수습', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Compagnon', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Geselle', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'中级', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'中級', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Oficial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Oficial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Подмастерье', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'수습', -- NameSubtext_Lang_koKR
+	'Compagnon', -- NameSubtext_Lang_frFR
+	'Geselle', -- NameSubtext_Lang_deDE
+	'中级', -- NameSubtext_Lang_zhCN
+	'中級', -- NameSubtext_Lang_zhTW
+	'Oficial', -- NameSubtext_Lang_esES
+	'Oficial', -- NameSubtext_Lang_esMX
+	'Подмастерье', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Advanced skills in skinning the leather from beasts for use in Leatherworking.  Gives a potential skinning skill of 150. Requires a Skinning Knife.', -- Description_Lang_enUS
-	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 150으로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Spécialisation du talent Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 150. Nécessite un Couteau à dépecer.', -- Description_Lang_koKR \(actually frFR\)
-	'Erweiterte Fertigkeiten der Kürschnerei, wie man das Leder von Wildtieren für die Lederverarbeitung bearbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 150. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_frFR \(actually deDE\)
-	'高级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得150点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_deDE \(actually zhCN\)
-	'高級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得150點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidades avanzadas en desuello de animales para utilizar el cuero en peletería. Proporciona una habilidad potencial en desuello de 150 p. Requiere un cuchillo para desollar.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidades avanzadas en desuello de animales para utilizar el cuero en peletería. Proporciona una habilidad potencial en desuello de 150 p. Requiere un cuchillo para desollar.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык подмастерья в профессии снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 150. Требует наличия ножа для снятия шкур.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 150으로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_koKR
+	'Spécialisation du talent Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 150. Nécessite un Couteau à dépecer.', -- Description_Lang_frFR
+	'Erweiterte Fertigkeiten der Kürschnerei, wie man das Leder von Wildtieren für die Lederverarbeitung bearbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 150. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_deDE
+	'高级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得150点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_zhCN
+	'高級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得150點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_zhTW
+	'Habilidades avanzadas en desuello de animales para utilizar el cuero en peletería. Proporciona una habilidad potencial en desuello de 150 p. Requiere un cuchillo para desollar.', -- Description_Lang_esES
+	'Habilidades avanzadas en desuello de animales para utilizar el cuero en peletería. Proporciona una habilidad potencial en desuello de 150 p. Requiere un cuchillo para desollar.', -- Description_Lang_esMX
+	'Навык подмастерья в профессии снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 150. Требует наличия ножа для снятия шкур.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -616,72 +616,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Expert', -- NameSubtext_Lang_enUS
-	'숙련', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Expert', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Experte', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'高级', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'高級', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Experto', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Experto', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Умелец', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'숙련', -- NameSubtext_Lang_koKR
+	'Expert', -- NameSubtext_Lang_frFR
+	'Experte', -- NameSubtext_Lang_deDE
+	'高级', -- NameSubtext_Lang_zhCN
+	'高級', -- NameSubtext_Lang_zhTW
+	'Experto', -- NameSubtext_Lang_esES
+	'Experto', -- NameSubtext_Lang_esMX
+	'Умелец', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Expert skill in skinning the hides from beasts for use in Leatherworking.  Gives a potential skinning skill of 225.  Requires a Skinning Knife.', -- Description_Lang_enUS
-	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 225로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Expertise en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 225. Nécessite un Couteau à dépecer.', -- Description_Lang_koKR \(actually frFR\)
-	'Experten-Fertigkeiten der Kürschnerei, wie man Bälge von Wildtieren für die Lederverarbeitung verarbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 225. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_frFR \(actually deDE\)
-	'专家级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得225点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_deDE \(actually zhCN\)
-	'專家級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得225點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidad experta en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 225 p. Requiere un cuchillo para desollar.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidad experta en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 225 p. Requiere un cuchillo para desollar.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык умельца в деле снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 225. Требует наличия ножа для снятия шкур.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 225로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_koKR
+	'Expertise en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 225. Nécessite un Couteau à dépecer.', -- Description_Lang_frFR
+	'Experten-Fertigkeiten der Kürschnerei, wie man Bälge von Wildtieren für die Lederverarbeitung verarbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 225. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_deDE
+	'专家级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得225点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_zhCN
+	'專家級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得225點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_zhTW
+	'Habilidad experta en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 225 p. Requiere un cuchillo para desollar.', -- Description_Lang_esES
+	'Habilidad experta en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 225 p. Requiere un cuchillo para desollar.', -- Description_Lang_esMX
+	'Навык умельца в деле снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 225. Требует наличия ножа для снятия шкур.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -853,72 +853,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Artisan', -- NameSubtext_Lang_enUS
-	'전문', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Artisan', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Fachmann', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'专家级', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'專家級', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Artesano', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Artesano', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Искусник', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'전문', -- NameSubtext_Lang_koKR
+	'Artisan', -- NameSubtext_Lang_frFR
+	'Fachmann', -- NameSubtext_Lang_deDE
+	'专家级', -- NameSubtext_Lang_zhCN
+	'專家級', -- NameSubtext_Lang_zhTW
+	'Artesano', -- NameSubtext_Lang_esES
+	'Artesano', -- NameSubtext_Lang_esMX
+	'Искусник', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Artisan skill in skinning the hides from beasts for use in Leatherworking.  Gives a potential skinning skill of 300.  Requires a Skinning Knife.', -- Description_Lang_enUS
-	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 300으로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Compétence d\'artisan en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 300. Nécessite un Couteau à dépecer.', -- Description_Lang_koKR \(actually frFR\)
-	'Fachmannfertigkeit der Kürschnerei, wie man Bälge von Wildtieren für die Lederverarbeitung verarbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 300. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_frFR \(actually deDE\)
-	'专家级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得300点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_deDE \(actually zhCN\)
-	'專家級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得300點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidad artesana en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 300 p. Requiere un cuchillo para desollar.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidad artesana en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 300 p. Requiere un cuchillo para desollar.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык искусника в деле снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 300. Требует наличия ножа для снятия шкур.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 300으로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_koKR
+	'Compétence d\'artisan en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 300. Nécessite un Couteau à dépecer.', -- Description_Lang_frFR
+	'Fachmannfertigkeit der Kürschnerei, wie man Bälge von Wildtieren für die Lederverarbeitung verarbeitet. Verleiht eine potenzielle Kürschnereifertigkeit von 300. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_deDE
+	'专家级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得300点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_zhCN
+	'專家級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得300點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_zhTW
+	'Habilidad artesana en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 300 p. Requiere un cuchillo para desollar.', -- Description_Lang_esES
+	'Habilidad artesana en desuello de animales para utilizar los pellejos en peletería. Proporciona una habilidad potencial en desuello de 300 p. Requiere un cuchillo para desollar.', -- Description_Lang_esMX
+	'Навык искусника в деле снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 300. Требует наличия ножа для снятия шкур.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -1090,72 +1090,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712188, -- NameSubtext_Lang_Mask
 	'', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712188, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -1327,72 +1327,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Master', -- NameSubtext_Lang_enUS
-	'대가', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Maître', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Meister', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'大师级', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'大師級', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Maestro', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Maestro', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Мастер', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'대가', -- NameSubtext_Lang_koKR
+	'Maître', -- NameSubtext_Lang_frFR
+	'Meister', -- NameSubtext_Lang_deDE
+	'大师级', -- NameSubtext_Lang_zhCN
+	'大師級', -- NameSubtext_Lang_zhTW
+	'Maestro', -- NameSubtext_Lang_esES
+	'Maestro', -- NameSubtext_Lang_esMX
+	'Мастер', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Master skill in skinning the hides from beasts for use in Leatherworking.  Gives a potential skinning skill of 375.  Requires a Skinning Knife.', -- Description_Lang_enUS
-	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 375로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Compétence de maître en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 375. Nécessite un Couteau à dépecer.', -- Description_Lang_koKR \(actually frFR\)
-	'Meisterliche Fertigkeiten der Kürschnerei, der Vorbereitung von Häuten von Wildtieren für die Lederverarbeitung. Verleiht eine potenzielle Kürschnerfertigkeit von 375. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_frFR \(actually deDE\)
-	'大师级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得375点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_deDE \(actually zhCN\)
-	'大師級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得375點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 375 p. Requiere un cuchillo para desollar.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 375 p. Requiere un cuchillo para desollar.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык мастера в деле снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 375. Требует наличия ножа для снятия шкур.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 375로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_koKR
+	'Compétence de maître en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 375. Nécessite un Couteau à dépecer.', -- Description_Lang_frFR
+	'Meisterliche Fertigkeiten der Kürschnerei, der Vorbereitung von Häuten von Wildtieren für die Lederverarbeitung. Verleiht eine potenzielle Kürschnerfertigkeit von 375. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_deDE
+	'大师级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得375点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_zhCN
+	'大師級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得375點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_zhTW
+	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 375 p. Requiere un cuchillo para desollar.', -- Description_Lang_esES
+	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 375 p. Requiere un cuchillo para desollar.', -- Description_Lang_esMX
+	'Навык мастера в деле снятия шкур со зверей. Шкуры в дальнейшем используются в кожевничестве. Дает возможность развить навык до уровня 375. Требует наличия ножа для снятия шкур.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -1564,72 +1564,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Grand Master', -- NameSubtext_Lang_enUS
-	'거장', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Grand maître', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Großmeister', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'宗师级', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'宗師級', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Gran maestro', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Gran maestro', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Великий мастер', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'거장', -- NameSubtext_Lang_koKR
+	'Grand maître', -- NameSubtext_Lang_frFR
+	'Großmeister', -- NameSubtext_Lang_deDE
+	'宗师级', -- NameSubtext_Lang_zhCN
+	'宗師級', -- NameSubtext_Lang_zhTW
+	'Gran maestro', -- NameSubtext_Lang_esES
+	'Gran maestro', -- NameSubtext_Lang_esMX
+	'Великий мастер', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Master skill in skinning the hides from beasts for use in Leatherworking.  Gives a potential skinning skill of 450.  Requires a Skinning Knife.', -- Description_Lang_enUS
-	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 450로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Compétence de maîtrise en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 450. Nécessite un Couteau à dépecer.', -- Description_Lang_koKR \(actually frFR\)
-	'Meisterliche Fertigkeiten der Kürschnerei, der Vorbereitung von Häuten von Wildtieren für die Lederverarbeitung. Verleiht eine potenzielle Kürschnerfertigkeit von 450. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_frFR \(actually deDE\)
-	'宗师级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得450点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_deDE \(actually zhCN\)
-	'宗師級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得450點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 450 p. Requiere un cuchillo para desollar.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 450 p. Requiere un cuchillo para desollar.', -- Description_Lang_enTW \(actually esMX\)
-	'Отточенное умение снятия шкур для последующего использования в кожевничестве. Максимально доступный уровень навыка – 450. Требуется нож для снятия шкур.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'동물의 가죽을 벗겨 가죽세공에 사용할 수 있도록 가공합니다. 무두질의 최대 숙련도가 450로 증가합니다. 무두질용 손칼이 필요합니다.', -- Description_Lang_koKR
+	'Compétence de maîtrise en Dépeçage qui permet de récupérer des peaux et des fourrures utilisées en Travail du cuir. Permet d\'utiliser Dépeçage au niveau de compétence maximum de 450. Nécessite un Couteau à dépecer.', -- Description_Lang_frFR
+	'Meisterliche Fertigkeiten der Kürschnerei, der Vorbereitung von Häuten von Wildtieren für die Lederverarbeitung. Verleiht eine potenzielle Kürschnerfertigkeit von 450. Es wird ein Kürschnermesser benötigt.', -- Description_Lang_deDE
+	'宗师级的剥皮技能，让你可以从动物身上获取皮革和毛皮以用于制皮业。使你获得450点的剥皮技能上限。需要一把剥皮小刀。', -- Description_Lang_zhCN
+	'宗師級的剝皮技能，讓你可以從動物身上獲取皮革和毛皮以用於製皮技能。使你獲得450點的剝皮技能上限。需要一把剝皮小刀。', -- Description_Lang_zhTW
+	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 450 p. Requiere un cuchillo para desollar.', -- Description_Lang_esES
+	'Habilidad de maestro en desuello de pellejos de bestias para usarlas en peletería. Da una habilidad potencial de 450 p. Requiere un cuchillo para desollar.', -- Description_Lang_esMX
+	'Отточенное умение снятия шкур для последующего использования в кожевничестве. Максимально доступный уровень навыка – 450. Требуется нож для снятия шкур.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -1801,72 +1801,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Skinning', -- Name_Lang_enUS
-	'무두질', -- Name_Lang_enGB \(actually koKR\)
-	'Dépeçage', -- Name_Lang_koKR \(actually frFR\)
-	'Kürschnerei', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮', -- Name_Lang_enCN \(actually zhTW\)
-	'Desuello', -- Name_Lang_zhCN \(actually esES\)
-	'Desuello', -- Name_Lang_enTW \(actually esMX\)
-	'Снятие шкур', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'무두질', -- Name_Lang_koKR
+	'Dépeçage', -- Name_Lang_frFR
+	'Kürschnerei', -- Name_Lang_deDE
+	'剥皮', -- Name_Lang_zhCN
+	'剝皮', -- Name_Lang_zhTW
+	'Desuello', -- Name_Lang_esES
+	'Desuello', -- Name_Lang_esMX
+	'Снятие шкур', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712188, -- NameSubtext_Lang_Mask
 	'Increases your skill in Skinning to 300.', -- Description_Lang_enUS
-	'무두질 숙련도가 300으로 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Porte votre compétence en Dépeçage à 300.', -- Description_Lang_koKR \(actually frFR\)
-	'Erhöht Eure Kürschnereifertigkeit auf 300.', -- Description_Lang_frFR \(actually deDE\)
-	'使你的剥皮技能提高到300点。', -- Description_Lang_deDE \(actually zhCN\)
-	'使你的剝皮技能提升為300點。', -- Description_Lang_enCN \(actually zhTW\)
-	'Aumenta tu habilidad en desuello a 300 p.', -- Description_Lang_zhCN \(actually esES\)
-	'Aumenta tu habilidad en desuello a 300 p.', -- Description_Lang_enTW \(actually esMX\)
-	'Повышает ваш навык снятия шкур до 300.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'무두질 숙련도가 300으로 증가합니다.', -- Description_Lang_koKR
+	'Porte votre compétence en Dépeçage à 300.', -- Description_Lang_frFR
+	'Erhöht Eure Kürschnereifertigkeit auf 300.', -- Description_Lang_deDE
+	'使你的剥皮技能提高到300点。', -- Description_Lang_zhCN
+	'使你的剝皮技能提升為300點。', -- Description_Lang_zhTW
+	'Aumenta tu habilidad en desuello a 300 p.', -- Description_Lang_esES
+	'Aumenta tu habilidad en desuello a 300 p.', -- Description_Lang_esMX
+	'Повышает ваш навык снятия шкур до 300.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -2040,72 +2040,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Viciousness', -- Name_Lang_enUS
-	'포악함', -- Name_Lang_enGB \(actually koKR\)
-	'Acharnement', -- Name_Lang_koKR \(actually frFR\)
-	'Garstigkeit', -- Name_Lang_frFR \(actually deDE\)
-	'恶意', -- Name_Lang_deDE \(actually zhCN\)
-	'兇惡', -- Name_Lang_enCN \(actually zhTW\)
-	'Saña', -- Name_Lang_zhCN \(actually esES\)
-	'Saña', -- Name_Lang_enTW \(actually esMX\)
-	'Озлобленность', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'포악함', -- Name_Lang_koKR
+	'Acharnement', -- Name_Lang_frFR
+	'Garstigkeit', -- Name_Lang_deDE
+	'恶意', -- Name_Lang_zhCN
+	'兇惡', -- Name_Lang_zhTW
+	'Saña', -- Name_Lang_esES
+	'Saña', -- Name_Lang_esMX
+	'Озлобленность', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Passive Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長，被動', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Passive Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長，被動', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Increases critical strike chance by $s1%.', -- Description_Lang_enUS
-	'치명타율이 $s1%만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Augmente les chances de coup critique de $s1%.', -- Description_Lang_koKR \(actually frFR\)
-	'Erhöht die kritische Trefferchance um $s1%.', -- Description_Lang_frFR \(actually deDE\)
-	'使爆击几率提高$s1%。', -- Description_Lang_deDE \(actually zhCN\)
-	'致命一擊機率提高$s1%。', -- Description_Lang_enCN \(actually zhTW\)
-	'Aumenta la probabilidad de golpe crítico un $s1%.', -- Description_Lang_zhCN \(actually esES\)
-	'Aumenta la probabilidad de golpe crítico un $s1%.', -- Description_Lang_enTW \(actually esMX\)
-	'Повышает вероятность нанесения критического урона на $s1%.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'치명타율이 $s1%만큼 증가합니다.', -- Description_Lang_koKR
+	'Augmente les chances de coup critique de $s1%.', -- Description_Lang_frFR
+	'Erhöht die kritische Trefferchance um $s1%.', -- Description_Lang_deDE
+	'使爆击几率提高$s1%。', -- Description_Lang_zhCN
+	'致命一擊機率提高$s1%。', -- Description_Lang_zhTW
+	'Aumenta la probabilidad de golpe crítico un $s1%.', -- Description_Lang_esES
+	'Aumenta la probabilidad de golpe crítico un $s1%.', -- Description_Lang_esMX
+	'Повышает вероятность нанесения критического урона на $s1%.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Criticial strike chance increased by $s1%.', -- AuraDescription_Lang_enUS
-	'치명타율 $s1%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Chances de coup critique augmentées de $s1%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Kritische Trefferchance um $s1% erhöht.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'爆击几率提高$s1%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'致命一擊機率提高$s1%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Probabilidad de golpe crítico aumentada un $s1%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Probabilidad de golpe crítico aumentada un $s1%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Вероятность нанесения критического урона увеличена на $s1%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'치명타율 $s1%만큼 증가', -- AuraDescription_Lang_koKR
+	'Chances de coup critique augmentées de $s1%.', -- AuraDescription_Lang_frFR
+	'Kritische Trefferchance um $s1% erhöht.', -- AuraDescription_Lang_deDE
+	'爆击几率提高$s1%。', -- AuraDescription_Lang_zhCN
+	'致命一擊機率提高$s1%。', -- AuraDescription_Lang_zhTW
+	'Probabilidad de golpe crítico aumentada un $s1%.', -- AuraDescription_Lang_esES
+	'Probabilidad de golpe crítico aumentada un $s1%.', -- AuraDescription_Lang_esMX
+	'Вероятность нанесения критического урона увеличена на $s1%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -2277,72 +2277,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Aberration', -- Name_Lang_enUS
-	'돌연변이', -- Name_Lang_enGB \(actually koKR\)
-	'Aberration', -- Name_Lang_koKR \(actually frFR\)
-	'Anomalie', -- Name_Lang_frFR \(actually deDE\)
-	'畸变', -- Name_Lang_deDE \(actually zhCN\)
-	'變異', -- Name_Lang_enCN \(actually zhTW\)
-	'Desviación', -- Name_Lang_zhCN \(actually esES\)
-	'Aberración', -- Name_Lang_enTW \(actually esMX\)
-	'Аберрация', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'돌연변이', -- Name_Lang_koKR
+	'Aberration', -- Name_Lang_frFR
+	'Anomalie', -- Name_Lang_deDE
+	'畸变', -- Name_Lang_zhCN
+	'變異', -- Name_Lang_zhTW
+	'Desviación', -- Name_Lang_esES
+	'Aberración', -- Name_Lang_esMX
+	'Аберрация', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Passive Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長，被動', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Passive Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長，被動', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Reduces the chance you will be hit by Nature and Shadow spells by $s1%.', -- Description_Lang_enUS
-	'해로운 자연 및 암흑 마법 효과에 대한 저항력이 $s1만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Augmente votre résistance aux effets de Nature et d\'Ombre néfastes de $s1.', -- Description_Lang_koKR \(actually frFR\)
-	'Erhöht Euren Widerstand gegen schädliche Natur- und Schatteneffekte um $s1.', -- Description_Lang_frFR \(actually deDE\)
-	'使你对有害的自然和暗影效果抗性提高$s1。', -- Description_Lang_deDE \(actually zhCN\)
-	'使你對有害的暗影和自然效果的抗性提高$s1點。', -- Description_Lang_enCN \(actually zhTW\)
-	'Aumenta $s1 p. tu resistencia a los efectos dañinos de Naturaleza y de las sombras.', -- Description_Lang_zhCN \(actually esES\)
-	'Aumenta $s1 p. tu resistencia a los efectos dañinos de Naturaleza y de las sombras.', -- Description_Lang_enTW \(actually esMX\)
-	'Повышает сопротивляемость отрицательным эффектам сил природы и темной магии на $s1.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'해로운 자연 및 암흑 마법 효과에 대한 저항력이 $s1만큼 증가합니다.', -- Description_Lang_koKR
+	'Augmente votre résistance aux effets de Nature et d\'Ombre néfastes de $s1.', -- Description_Lang_frFR
+	'Erhöht Euren Widerstand gegen schädliche Natur- und Schatteneffekte um $s1.', -- Description_Lang_deDE
+	'使你对有害的自然和暗影效果抗性提高$s1。', -- Description_Lang_zhCN
+	'使你對有害的暗影和自然效果的抗性提高$s1點。', -- Description_Lang_zhTW
+	'Aumenta $s1 p. tu resistencia a los efectos dañinos de Naturaleza y de las sombras.', -- Description_Lang_esES
+	'Aumenta $s1 p. tu resistencia a los efectos dañinos de Naturaleza y de las sombras.', -- Description_Lang_esMX
+	'Повышает сопротивляемость отрицательным эффектам сил природы и темной магии на $s1.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -2514,72 +2514,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Flayer', -- Name_Lang_enUS
-	'갈퀴손', -- Name_Lang_enGB \(actually koKR\)
-	'Ecorcheur', -- Name_Lang_koKR \(actually frFR\)
-	'Schinder', -- Name_Lang_frFR \(actually deDE\)
-	'剥皮专家', -- Name_Lang_deDE \(actually zhCN\)
-	'剝皮者', -- Name_Lang_enCN \(actually zhTW\)
-	'Despellejador', -- Name_Lang_zhCN \(actually esES\)
-	'Despellejador', -- Name_Lang_enTW \(actually esMX\)
-	'Живодер', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'갈퀴손', -- Name_Lang_koKR
+	'Ecorcheur', -- Name_Lang_frFR
+	'Schinder', -- Name_Lang_deDE
+	'剥皮专家', -- Name_Lang_zhCN
+	'剝皮者', -- Name_Lang_zhTW
+	'Despellejador', -- Name_Lang_esES
+	'Despellejador', -- Name_Lang_esMX
+	'Живодер', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Passive Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長，被動', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Passive Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長，被動', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Skinning skill increased by $s1 and allows you to skin faster.', -- Description_Lang_enUS
-	'무두질 숙련도가 $s1만큼 증가하고 속도가 빨라집니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Compétence de dépeçage augmentée de $s1 et vitesse de dépeçage augmentée.', -- Description_Lang_koKR \(actually frFR\)
-	'Kürschnereifertigkeit um $s1 erhöht. Gestattet es Euch, schneller zu häuten.', -- Description_Lang_frFR \(actually deDE\)
-	'剥皮技能等级提高$s1，并加快你的剥皮速度。', -- Description_Lang_deDE \(actually zhCN\)
-	'剝皮技能提高$s1點，並使你的剝皮速度提高。', -- Description_Lang_enCN \(actually zhTW\)
-	'Tu habilidad en desuello aumenta $s1 p. y te permite desollar más rápido.', -- Description_Lang_zhCN \(actually esES\)
-	'Tu habilidad en desuello aumenta $s1 p. y te permite desollar más rápido.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык снятия шкур увеличен на $s1, вы снимаете шкуры быстрее.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'무두질 숙련도가 $s1만큼 증가하고 속도가 빨라집니다.', -- Description_Lang_koKR
+	'Compétence de dépeçage augmentée de $s1 et vitesse de dépeçage augmentée.', -- Description_Lang_frFR
+	'Kürschnereifertigkeit um $s1 erhöht. Gestattet es Euch, schneller zu häuten.', -- Description_Lang_deDE
+	'剥皮技能等级提高$s1，并加快你的剥皮速度。', -- Description_Lang_zhCN
+	'剝皮技能提高$s1點，並使你的剝皮速度提高。', -- Description_Lang_zhTW
+	'Tu habilidad en desuello aumenta $s1 p. y te permite desollar más rápido.', -- Description_Lang_esES
+	'Tu habilidad en desuello aumenta $s1 p. y te permite desollar más rápido.', -- Description_Lang_esMX
+	'Навык снятия шкур увеличен на $s1, вы снимаете шкуры быстрее.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -2751,72 +2751,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Darkflight', -- Name_Lang_enUS
-	'암흑질주', -- Name_Lang_enGB \(actually koKR\)
-	'Sombre course', -- Name_Lang_koKR \(actually frFR\)
-	'Finstere Pfade', -- Name_Lang_frFR \(actually deDE\)
-	'疾步夜行', -- Name_Lang_deDE \(actually zhCN\)
-	'暗月疾奔', -- Name_Lang_enCN \(actually zhTW\)
-	'Huida oscura', -- Name_Lang_zhCN \(actually esES\)
-	'Ímpetu oscuro', -- Name_Lang_enTW \(actually esMX\)
-	'Легкость тьмы', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'암흑질주', -- Name_Lang_koKR
+	'Sombre course', -- Name_Lang_frFR
+	'Finstere Pfade', -- Name_Lang_deDE
+	'疾步夜行', -- Name_Lang_zhCN
+	'暗月疾奔', -- Name_Lang_zhTW
+	'Huida oscura', -- Name_Lang_esES
+	'Ímpetu oscuro', -- Name_Lang_esMX
+	'Легкость тьмы', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'종족 특성', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 특성', -- NameSubtext_Lang_koKR
+	'Raciale', -- NameSubtext_Lang_frFR
+	'Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長', -- NameSubtext_Lang_zhTW
+	'Racial', -- NameSubtext_Lang_esES
+	'Racial', -- NameSubtext_Lang_esMX
+	'Расовая', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Activates your true form, increasing current movement speed by an additional $s1% for $d.', -- Description_Lang_enUS
-	'진정한 모습으로 변신하여 $d 동안 이동 속도가 추가로 $s1%만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Active votre forme véritable, ce qui augmente votre vitesse de déplacement actuelle de $s1% supplémentaires pendant $d.', -- Description_Lang_koKR \(actually frFR\)
-	'Aktiviert Eure wahre Form und erhöht Euer derzeitiges Bewegungstempo $d lang um zusätzlich $s1%.', -- Description_Lang_frFR \(actually deDE\)
-	'进入你的原形，使当前移动速度提高$s1%，持续$d。', -- Description_Lang_deDE \(actually zhCN\)
-	'現出原形，使當前移動速度額外提高$s1%，持續$d。', -- Description_Lang_enCN \(actually zhTW\)
-	'Activa tu forma verdadera, lo que aumenta tu velocidad de movimiento actual un $s1% durante $d.', -- Description_Lang_zhCN \(actually esES\)
-	'Activa tu forma verdadera, lo que aumenta tu velocidad de movimiento un $s1% durante $d.', -- Description_Lang_enTW \(actually esMX\)
-	'Ворген принимает свой истинный облик. Скорость его передвижения повышается на $s1% на $d.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'진정한 모습으로 변신하여 $d 동안 이동 속도가 추가로 $s1%만큼 증가합니다.', -- Description_Lang_koKR
+	'Active votre forme véritable, ce qui augmente votre vitesse de déplacement actuelle de $s1% supplémentaires pendant $d.', -- Description_Lang_frFR
+	'Aktiviert Eure wahre Form und erhöht Euer derzeitiges Bewegungstempo $d lang um zusätzlich $s1%.', -- Description_Lang_deDE
+	'进入你的原形，使当前移动速度提高$s1%，持续$d。', -- Description_Lang_zhCN
+	'現出原形，使當前移動速度額外提高$s1%，持續$d。', -- Description_Lang_zhTW
+	'Activa tu forma verdadera, lo que aumenta tu velocidad de movimiento actual un $s1% durante $d.', -- Description_Lang_esES
+	'Activa tu forma verdadera, lo que aumenta tu velocidad de movimiento un $s1% durante $d.', -- Description_Lang_esMX
+	'Ворген принимает свой истинный облик. Скорость его передвижения повышается на $s1% на $d.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'True form activated, movement speed increased by an additional $s1%.', -- AuraDescription_Lang_enUS
-	'진정한 모습으로 변신하여 이동 속도 추가로 $s1%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Forme véritable activée, vitesse de déplacement augmentée de $s1% supplémentaires.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Zeigt die wahre Gestalt. Bewegungstempo um zusätzlich $s1% erhöht.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'进入原形，移动速度额外提高$s1%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'現出原形，移動速度提高$s1%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Forma verdadera activada y velocidad de movimiento aumentada un $s1% extra.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Forma verdadera activada. Velocidad de movimiento aumentada un $s1%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Принят истинный облик, скорость передвижения повышена на $s1%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'진정한 모습으로 변신하여 이동 속도 추가로 $s1%만큼 증가', -- AuraDescription_Lang_koKR
+	'Forme véritable activée, vitesse de déplacement augmentée de $s1% supplémentaires.', -- AuraDescription_Lang_frFR
+	'Zeigt die wahre Gestalt. Bewegungstempo um zusätzlich $s1% erhöht.', -- AuraDescription_Lang_deDE
+	'进入原形，移动速度额外提高$s1%。', -- AuraDescription_Lang_zhCN
+	'現出原形，移動速度提高$s1%。', -- AuraDescription_Lang_zhTW
+	'Forma verdadera activada y velocidad de movimiento aumentada un $s1% extra.', -- AuraDescription_Lang_esES
+	'Forma verdadera activada. Velocidad de movimiento aumentada un $s1%.', -- AuraDescription_Lang_esMX
+	'Принят истинный облик, скорость передвижения повышена на $s1%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -2988,72 +2988,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Two Forms", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Turn into your currently inactive form.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Human form", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -3225,72 +3225,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Two Forms", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Turn into your currently inactive form.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Human form", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -3462,72 +3462,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Two Forms", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Turn into your currently inactive form.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Human form", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -3699,72 +3699,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Two Forms", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Turn into your currently inactive form.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Human form", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -3937,72 +3937,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Drop to all fours to run as fast as a wild animal.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -4175,72 +4175,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Drop to all fours to run as fast as a wild animal.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -4413,72 +4413,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Drop to all fours to run as fast as a wild animal.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -4651,72 +4651,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	122, -- ActiveIconID
 	0, -- SpellPriority
 	"Running Wild", -- Name_Lang_enUS
-	"", -- Name_Lang_enGB (actually koKR)
-	"", -- Name_Lang_koKR (actually frFR)
-	"", -- Name_Lang_frFR (actually deDE)
-	"", -- Name_Lang_deDE (actually zhCN)
-	"", -- Name_Lang_enCN (actually zhTW)
-	"", -- Name_Lang_zhCN (actually esES)
-	"", -- Name_Lang_enTW (actually esMX)
-	"", -- Name_Lang_zhTW (actually ruRU)
-	"", -- Name_Lang_esES
-	"", -- Name_Lang_esMX
-	"", -- Name_Lang_ruRU
+	"", -- Name_Lang_koKR (actually koKR)
+	"", -- Name_Lang_frFR (actually frFR)
+	"", -- Name_Lang_deDE (actually deDE)
+	"", -- Name_Lang_zhCN (actually zhCN)
+	"", -- Name_Lang_zhTW (actually zhTW)
+	"", -- Name_Lang_esES (actually esES)
+	"", -- Name_Lang_esMX (actually esMX)
+	"", -- Name_Lang_ruRU (actually ruRU)
+	"", -- Name_Lang_jaJP
 	"", -- Name_Lang_ptPT
-	"", -- Name_Lang_ptBR
 	"", -- Name_Lang_itIT
-	"", -- Name_Lang_Unk
+	"", -- Name_Lang_Unk1
+	"", -- Name_Lang_Unk2
+	"", -- Name_Lang_Unk3
+	"", -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	"Racial", -- NameSubtext_Lang_enUS
-	"", -- NameSubtext_Lang_enGB (actually koKR)
-	"", -- NameSubtext_Lang_koKR (actually frFR)
-	"", -- NameSubtext_Lang_frFR (actually deDE)
-	"", -- NameSubtext_Lang_deDE (actually zhCN)
-	"", -- NameSubtext_Lang_enCN (actually zhTW)
-	"", -- NameSubtext_Lang_zhCN (actually esES)
-	"", -- NameSubtext_Lang_enTW (actually esMX)
-	"", -- NameSubtext_Lang_zhTW (actually ruRU)
-	"", -- NameSubtext_Lang_esES
-	"", -- NameSubtext_Lang_esMX
-	"", -- NameSubtext_Lang_ruRU
+	"", -- NameSubtext_Lang_koKR (actually koKR)
+	"", -- NameSubtext_Lang_frFR (actually frFR)
+	"", -- NameSubtext_Lang_deDE (actually deDE)
+	"", -- NameSubtext_Lang_zhCN (actually zhCN)
+	"", -- NameSubtext_Lang_zhTW (actually zhTW)
+	"", -- NameSubtext_Lang_esES (actually esES)
+	"", -- NameSubtext_Lang_esMX (actually esMX)
+	"", -- NameSubtext_Lang_ruRU (actually ruRU)
+	"", -- NameSubtext_Lang_jaJP
 	"", -- NameSubtext_Lang_ptPT
-	"", -- NameSubtext_Lang_ptBR
 	"", -- NameSubtext_Lang_itIT
-	"", -- NameSubtext_Lang_Unk
+	"", -- NameSubtext_Lang_Unk1
+	"", -- NameSubtext_Lang_Unk2
+	"", -- NameSubtext_Lang_Unk3
+	"", -- NameSubtext_Lang_Unk4
 	16712172, -- NameSubtext_Lang_Mask
 	"Drop to all fours to run as fast as a wild animal.", -- Description_Lang_enUS
-	"", -- Description_Lang_enGB (actually koKR)
-	"", -- Description_Lang_koKR (actually frFR)
-	"", -- Description_Lang_frFR (actually deDE)
-	"", -- Description_Lang_deDE (actually zhCN)
-	"", -- Description_Lang_enCN (actually zhTW)
-	"", -- Description_Lang_zhCN (actually esES)
-	"", -- Description_Lang_enTW (actually esMX)
-	"", -- Description_Lang_zhTW (actually ruRU)
-	"", -- Description_Lang_esES
-	"", -- Description_Lang_esMX
-	"", -- Description_Lang_ruRU
+	"", -- Description_Lang_koKR (actually koKR)
+	"", -- Description_Lang_frFR (actually frFR)
+	"", -- Description_Lang_deDE (actually deDE)
+	"", -- Description_Lang_zhCN (actually zhCN)
+	"", -- Description_Lang_zhTW (actually zhTW)
+	"", -- Description_Lang_esES (actually esES)
+	"", -- Description_Lang_esMX (actually esMX)
+	"", -- Description_Lang_ruRU (actually ruRU)
+	"", -- Description_Lang_jaJP
 	"", -- Description_Lang_ptPT
-	"", -- Description_Lang_ptBR
 	"", -- Description_Lang_itIT
-	"", -- Description_Lang_Unk
+	"", -- Description_Lang_Unk1
+	"", -- Description_Lang_Unk2
+	"", -- Description_Lang_Unk3
+	"", -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	"Ground speed increased by $s2%.", -- AuraDescription_Lang_enUS
-	"", -- AuraDescription_Lang_enGB (actually koKR)
-	"", -- AuraDescription_Lang_koKR (actually frFR)
-	"", -- AuraDescription_Lang_frFR (actually deDE)
-	"", -- AuraDescription_Lang_deDE (actually zhCN)
-	"", -- AuraDescription_Lang_enCN (actually zhTW)
-	"", -- AuraDescription_Lang_zhCN (actually esES)
-	"", -- AuraDescription_Lang_enTW (actually esMX)
-	"", -- AuraDescription_Lang_zhTW (actually ruRU)
-	"", -- AuraDescription_Lang_esES
-	"", -- AuraDescription_Lang_esMX
-	"", -- AuraDescription_Lang_ruRU
+	"", -- AuraDescription_Lang_koKR (actually koKR)
+	"", -- AuraDescription_Lang_frFR (actually frFR)
+	"", -- AuraDescription_Lang_deDE (actually deDE)
+	"", -- AuraDescription_Lang_zhCN (actually zhCN)
+	"", -- AuraDescription_Lang_zhTW (actually zhTW)
+	"", -- AuraDescription_Lang_esES (actually esES)
+	"", -- AuraDescription_Lang_esMX (actually esMX)
+	"", -- AuraDescription_Lang_ruRU (actually ruRU)
+	"", -- AuraDescription_Lang_jaJP
 	"", -- AuraDescription_Lang_ptPT
-	"", -- AuraDescription_Lang_ptBR
 	"", -- AuraDescription_Lang_itIT
-	"", -- AuraDescription_Lang_Unk
+	"", -- AuraDescription_Lang_Unk1
+	"", -- AuraDescription_Lang_Unk2
+	"", -- AuraDescription_Lang_Unk3
+	"", -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -4890,72 +4890,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Rocket Barrage', -- Name_Lang_enUS
-	'로켓 연발탄', -- Name_Lang_enGB \(actually koKR\)
-	'Barrage de fusées', -- Name_Lang_koKR \(actually frFR\)
-	'Raketenbeschuss', -- Name_Lang_frFR \(actually deDE\)
-	'火箭弹幕', -- Name_Lang_deDE \(actually zhCN\)
-	'火箭彈', -- Name_Lang_enCN \(actually zhTW\)
-	'Tromba de cohetes', -- Name_Lang_zhCN \(actually esES\)
-	'Tromba de cohetes', -- Name_Lang_enTW \(actually esMX\)
-	'Ракетный обстрел', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'로켓 연발탄', -- Name_Lang_koKR
+	'Barrage de fusées', -- Name_Lang_frFR
+	'Raketenbeschuss', -- Name_Lang_deDE
+	'火箭弹幕', -- Name_Lang_zhCN
+	'火箭彈', -- Name_Lang_zhTW
+	'Tromba de cohetes', -- Name_Lang_esES
+	'Tromba de cohetes', -- Name_Lang_esMX
+	'Ракетный обстрел', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'종족 특성', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 특성', -- NameSubtext_Lang_koKR
+	'Raciale', -- NameSubtext_Lang_frFR
+	'Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長', -- NameSubtext_Lang_zhTW
+	'Racial', -- NameSubtext_Lang_esES
+	'Racial', -- NameSubtext_Lang_esMX
+	'Расовая', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Launches your belt rockets at an enemy, dealing $s1 fire damage.', -- Description_Lang_enUS
-	'적에게 허리띠 로켓을 발사하여 $s1의 화염 피해를 입힙니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Projette vos fusées de ceinture sur un ennemi et lui inflige $s1 points de dégâts de Feu.', -- Description_Lang_koKR \(actually frFR\)
-	'Feuert Eure Gürtelraketen auf einen Feind ab, die $s1 Feuerschaden verursachen.', -- Description_Lang_frFR \(actually deDE\)
-	'向一个敌人发射腰带上的火箭，造成$s1点火焰伤害。', -- Description_Lang_deDE \(actually zhCN\)
-	'向敵人發射火箭，對其造成$s1點火焰傷害。', -- Description_Lang_enCN \(actually zhTW\)
-	'Lanza a un enemigo los cohetes de tu cinturón, que infligen $s1 p. de daño de Fuego.', -- Description_Lang_zhCN \(actually esES\)
-	'Lanza a un enemigo los cohetes de tu cinturón, que infligen $s1 p. de daño de Fuego.', -- Description_Lang_enTW \(actually esMX\)
-	'Выстрел из закрепленного на поясе гранатомета, наносящий $s1 ед. урона от огня.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'적에게 허리띠 로켓을 발사하여 $s1의 화염 피해를 입힙니다.', -- Description_Lang_koKR
+	'Projette vos fusées de ceinture sur un ennemi et lui inflige $s1 points de dégâts de Feu.', -- Description_Lang_frFR
+	'Feuert Eure Gürtelraketen auf einen Feind ab, die $s1 Feuerschaden verursachen.', -- Description_Lang_deDE
+	'向一个敌人发射腰带上的火箭，造成$s1点火焰伤害。', -- Description_Lang_zhCN
+	'向敵人發射火箭，對其造成$s1點火焰傷害。', -- Description_Lang_zhTW
+	'Lanza a un enemigo los cohetes de tu cinturón, que infligen $s1 p. de daño de Fuego.', -- Description_Lang_esES
+	'Lanza a un enemigo los cohetes de tu cinturón, que infligen $s1 p. de daño de Fuego.', -- Description_Lang_esMX
+	'Выстрел из закрепленного на поясе гранатомета, наносящий $s1 ед. урона от огня.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -5127,72 +5127,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Time is Money', -- Name_Lang_enUS
-	'시간은 돈', -- Name_Lang_enGB \(actually koKR\)
-	'Le temps, c\'est de l\'argent', -- Name_Lang_koKR \(actually frFR\)
-	'Zeit ist Geld', -- Name_Lang_frFR \(actually deDE\)
-	'时间就是金钱', -- Name_Lang_deDE \(actually zhCN\)
-	'時間就是金錢', -- Name_Lang_enCN \(actually zhTW\)
-	'El tiempo es oro', -- Name_Lang_zhCN \(actually esES\)
-	'El tiempo es oro', -- Name_Lang_enTW \(actually esMX\)
-	'Время - деньги', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'시간은 돈', -- Name_Lang_koKR
+	'Le temps, c\'est de l\'argent', -- Name_Lang_frFR
+	'Zeit ist Geld', -- Name_Lang_deDE
+	'时间就是金钱', -- Name_Lang_zhCN
+	'時間就是金錢', -- Name_Lang_zhTW
+	'El tiempo es oro', -- Name_Lang_esES
+	'El tiempo es oro', -- Name_Lang_esMX
+	'Время - деньги', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Passive Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長，被動', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Passive Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長，被動', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Cash in on a 1% increase to attack and casting speed.', -- Description_Lang_enUS
-	'공격 및 시전 속도가 $s1%만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Encaisse une augmentation de $s1% des vitesses d\'attaque et d\'incantation.', -- Description_Lang_koKR \(actually frFR\)
-	'Lasst Euch eine Erhöhung von Angriffs- und Zaubertempo um $s1% auszahlen.', -- Description_Lang_frFR \(actually deDE\)
-	'趁机使攻击和施法速度提高$s1%。', -- Description_Lang_deDE \(actually zhCN\)
-	'攻擊和施法速度提高$s1%並從中牟利。', -- Description_Lang_enCN \(actually zhTW\)
-	'Cobra un $s1% de aumento de velocidad de ataque y de lanzamiento de hechizos.', -- Description_Lang_zhCN \(actually esES\)
-	'Cobra un $s1% de aumento de velocidad de ataque y de lanzamiento de hechizos.', -- Description_Lang_enTW \(actually esMX\)
-	'Скорость атаки и произнесения заклинаний повышена на $s1%, причем совершенно бесплатно!', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'공격 및 시전 속도가 $s1%만큼 증가합니다.', -- Description_Lang_koKR
+	'Encaisse une augmentation de $s1% des vitesses d\'attaque et d\'incantation.', -- Description_Lang_frFR
+	'Lasst Euch eine Erhöhung von Angriffs- und Zaubertempo um $s1% auszahlen.', -- Description_Lang_deDE
+	'趁机使攻击和施法速度提高$s1%。', -- Description_Lang_zhCN
+	'攻擊和施法速度提高$s1%並從中牟利。', -- Description_Lang_zhTW
+	'Cobra un $s1% de aumento de velocidad de ataque y de lanzamiento de hechizos.', -- Description_Lang_esES
+	'Cobra un $s1% de aumento de velocidad de ataque y de lanzamiento de hechizos.', -- Description_Lang_esMX
+	'Скорость атаки и произнесения заклинаний повышена на $s1%, причем совершенно бесплатно!', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -5364,72 +5364,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Best Deals Anywhere', -- Name_Lang_enUS
-	'거래의 달인', -- Name_Lang_enGB \(actually koKR\)
-	'Dur en affaires', -- Name_Lang_koKR \(actually frFR\)
-	'Schnäppchenjäger', -- Name_Lang_frFR \(actually deDE\)
-	'哪里都有好买卖', -- Name_Lang_deDE \(actually zhCN\)
-	'最佳折扣', -- Name_Lang_enCN \(actually zhTW\)
-	'Los mejores precios del mercado', -- Name_Lang_zhCN \(actually esES\)
-	'Los mejores precios del mercado', -- Name_Lang_enTW \(actually esMX\)
-	'Самые выгодные цены!', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'거래의 달인', -- Name_Lang_koKR
+	'Dur en affaires', -- Name_Lang_frFR
+	'Schnäppchenjäger', -- Name_Lang_deDE
+	'哪里都有好买卖', -- Name_Lang_zhCN
+	'最佳折扣', -- Name_Lang_zhTW
+	'Los mejores precios del mercado', -- Name_Lang_esES
+	'Los mejores precios del mercado', -- Name_Lang_esMX
+	'Самые выгодные цены!', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Passive Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長，被動', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Passive Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長，被動', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Always receive the best possible gold discount, regardless of faction.', -- Description_Lang_enUS
-	'평판에 관계없이 항상 최대 할인을 받습니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Vous bénéficiez toujours de la meilleure réduction de prix, quelle que soit votre réputation envers la faction.', -- Description_Lang_koKR \(actually frFR\)
-	'Bekommt immer den bestmöglichen Goldrabatt, egal bei welcher Fraktion.', -- Description_Lang_frFR \(actually deDE\)
-	'无论和哪个阵营进行交易都能获得最优惠的折扣。', -- Description_Lang_deDE \(actually zhCN\)
-	'不論陣營，永遠可獲得最佳的買賣折扣。', -- Description_Lang_enCN \(actually zhTW\)
-	'Al comerciar con oro, consigue siempre el mejor descuento con cualquier facción.', -- Description_Lang_zhCN \(actually esES\)
-	'Al comerciar con oro, consigue siempre el mejor descuento con cualquier facción.', -- Description_Lang_enTW \(actually esMX\)
-	'Максимальные скидки у всех фракций.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'평판에 관계없이 항상 최대 할인을 받습니다.', -- Description_Lang_koKR
+	'Vous bénéficiez toujours de la meilleure réduction de prix, quelle que soit votre réputation envers la faction.', -- Description_Lang_frFR
+	'Bekommt immer den bestmöglichen Goldrabatt, egal bei welcher Fraktion.', -- Description_Lang_deDE
+	'无论和哪个阵营进行交易都能获得最优惠的折扣。', -- Description_Lang_zhCN
+	'不論陣營，永遠可獲得最佳的買賣折扣。', -- Description_Lang_zhTW
+	'Al comerciar con oro, consigue siempre el mejor descuento con cualquier facción.', -- Description_Lang_esES
+	'Al comerciar con oro, consigue siempre el mejor descuento con cualquier facción.', -- Description_Lang_esMX
+	'Максимальные скидки у всех фракций.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -5601,72 +5601,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Better Living Through Chemistry', -- Name_Lang_enUS
-	'연금술로 나아지는 삶', -- Name_Lang_enGB \(actually koKR\)
-	'La chimie pour une vie meilleure', -- Name_Lang_koKR \(actually frFR\)
-	'Fortschritt durch Chemie', -- Name_Lang_frFR \(actually deDE\)
-	'化学让生活更美好', -- Name_Lang_deDE \(actually zhCN\)
-	'化學讓人生更精彩', -- Name_Lang_enCN \(actually zhTW\)
-	'Es cuestión de química', -- Name_Lang_zhCN \(actually esES\)
-	'Es cuestión de química', -- Name_Lang_enTW \(actually esMX\)
-	'Занимательная химия', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'연금술로 나아지는 삶', -- Name_Lang_koKR
+	'La chimie pour une vie meilleure', -- Name_Lang_frFR
+	'Fortschritt durch Chemie', -- Name_Lang_deDE
+	'化学让生活更美好', -- Name_Lang_zhCN
+	'化學讓人生更精彩', -- Name_Lang_zhTW
+	'Es cuestión de química', -- Name_Lang_esES
+	'Es cuestión de química', -- Name_Lang_esMX
+	'Занимательная химия', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Passive Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長，被動', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Passive Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長，被動', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Alchemy skill increased by $s1.', -- Description_Lang_enUS
-	'연금술 숙련도가 $s1만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Compétence en alchimie augmentée de $s1.', -- Description_Lang_koKR \(actually frFR\)
-	'Alchemiefertigkeit um $s1 erhöht.', -- Description_Lang_frFR \(actually deDE\)
-	'炼金术技能提高$s1点。', -- Description_Lang_deDE \(actually zhCN\)
-	'鍊金術技能提高$s1點。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidad en alquimia aumentada $s1 p.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidad en alquimia aumentada $s1 p.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык алхимии повышен на $s1.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'연금술 숙련도가 $s1만큼 증가합니다.', -- Description_Lang_koKR
+	'Compétence en alchimie augmentée de $s1.', -- Description_Lang_frFR
+	'Alchemiefertigkeit um $s1 erhöht.', -- Description_Lang_deDE
+	'炼金术技能提高$s1点。', -- Description_Lang_zhCN
+	'鍊金術技能提高$s1點。', -- Description_Lang_zhTW
+	'Habilidad en alquimia aumentada $s1 p.', -- Description_Lang_esES
+	'Habilidad en alquimia aumentada $s1 p.', -- Description_Lang_esMX
+	'Навык алхимии повышен на $s1.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -5838,72 +5838,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Pack Hobgoblin', -- Name_Lang_enUS
-	'짐꾼 밥통고블린', -- Name_Lang_enGB \(actually koKR\)
-	'Hobgobelin de bât', -- Name_Lang_koKR \(actually frFR\)
-	'Packhobgoblin', -- Name_Lang_frFR \(actually deDE\)
-	'呼叫大胖', -- Name_Lang_deDE \(actually zhCN\)
-	'攜帶大哥布林', -- Name_Lang_enCN \(actually zhTW\)
-	'Hobgoblin de bolsillo', -- Name_Lang_zhCN \(actually esES\)
-	'Hobgoblin de bolsillo', -- Name_Lang_enTW \(actually esMX\)
-	'Подручный хобгоблин', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'짐꾼 밥통고블린', -- Name_Lang_koKR
+	'Hobgobelin de bât', -- Name_Lang_frFR
+	'Packhobgoblin', -- Name_Lang_deDE
+	'呼叫大胖', -- Name_Lang_zhCN
+	'攜帶大哥布林', -- Name_Lang_zhTW
+	'Hobgoblin de bolsillo', -- Name_Lang_esES
+	'Hobgoblin de bolsillo', -- Name_Lang_esMX
+	'Подручный хобгоблин', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'종족 특성', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 특성', -- NameSubtext_Lang_koKR
+	'Raciale', -- NameSubtext_Lang_frFR
+	'Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長', -- NameSubtext_Lang_zhTW
+	'Racial', -- NameSubtext_Lang_esES
+	'Racial', -- NameSubtext_Lang_esMX
+	'Расовая', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Calls in your friend, Gobber, allowing you bank access for $d.', -- Description_Lang_enUS
-	'친구 고버를 불러 $d 동안 은행을 이용할 수 있습니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Appelle votre ami, Gobeur, ce qui vous donne accès à votre banque pendant $d.', -- Description_Lang_koKR \(actually frFR\)
-	'Ruft Euren Freund Gobber, der Euch $d lang Zugriff auf Euer Bankfach gewährt.', -- Description_Lang_frFR \(actually deDE\)
-	'召唤你的朋友大胖，让你能够在$d内使用银行。', -- Description_Lang_deDE \(actually zhCN\)
-	'呼喚你的朋友古柏，使你能夠使用銀行$d。', -- Description_Lang_enCN \(actually zhTW\)
-	'Llama a tu amigo Gargajo, que te permite acceder al banco durante $d.', -- Description_Lang_zhCN \(actually esES\)
-	'Llama a tu amigo Gargajo, que te permite acceder al banco durante $d.', -- Description_Lang_enTW \(actually esMX\)
-	'Вызов вашего приятеля Гоббера. Дает доступ к банку на $d.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'친구 고버를 불러 $d 동안 은행을 이용할 수 있습니다.', -- Description_Lang_koKR
+	'Appelle votre ami, Gobeur, ce qui vous donne accès à votre banque pendant $d.', -- Description_Lang_frFR
+	'Ruft Euren Freund Gobber, der Euch $d lang Zugriff auf Euer Bankfach gewährt.', -- Description_Lang_deDE
+	'召唤你的朋友大胖，让你能够在$d内使用银行。', -- Description_Lang_zhCN
+	'呼喚你的朋友古柏，使你能夠使用銀行$d。', -- Description_Lang_zhTW
+	'Llama a tu amigo Gargajo, que te permite acceder al banco durante $d.', -- Description_Lang_esES
+	'Llama a tu amigo Gargajo, que te permite acceder al banco durante $d.', -- Description_Lang_esMX
+	'Вызов вашего приятеля Гоббера. Дает доступ к банку на $d.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -6075,72 +6075,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Rocket Jump', -- Name_Lang_enUS
-	'로켓 도약', -- Name_Lang_enGB \(actually koKR\)
-	'Fusées de saut', -- Name_Lang_koKR \(actually frFR\)
-	'Raketensprung', -- Name_Lang_frFR \(actually deDE\)
-	'火箭跳', -- Name_Lang_deDE \(actually zhCN\)
-	'火箭跳躍', -- Name_Lang_enCN \(actually zhTW\)
-	'Salto con cohete', -- Name_Lang_zhCN \(actually esES\)
-	'Salto con cohete', -- Name_Lang_enTW \(actually esMX\)
-	'Реактивный прыжок', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'로켓 도약', -- Name_Lang_koKR
+	'Fusées de saut', -- Name_Lang_frFR
+	'Raketensprung', -- Name_Lang_deDE
+	'火箭跳', -- Name_Lang_zhCN
+	'火箭跳躍', -- Name_Lang_zhTW
+	'Salto con cohete', -- Name_Lang_esES
+	'Salto con cohete', -- Name_Lang_esMX
+	'Реактивный прыжок', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'종족 특성', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Volksfähigkeit', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 특성', -- NameSubtext_Lang_koKR
+	'Raciale', -- NameSubtext_Lang_frFR
+	'Volksfähigkeit', -- NameSubtext_Lang_deDE
+	'种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長', -- NameSubtext_Lang_zhTW
+	'Racial', -- NameSubtext_Lang_esES
+	'Racial', -- NameSubtext_Lang_esMX
+	'Расовая', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Activates your rocket belt to jump forward.', -- Description_Lang_enUS
-	'로켓 허리띠를 작동시켜 전방으로 도약합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Active votre ceinture de fusées pour vous faire sauter en avant.', -- Description_Lang_koKR \(actually frFR\)
-	'Aktiviert Euren Raketengürtel, um vorwärts zu springen.', -- Description_Lang_frFR \(actually deDE\)
-	'使用你的火箭腰带向前跳跃。', -- Description_Lang_deDE \(actually zhCN\)
-	'啟動你的火箭腰帶，往前跳躍。', -- Description_Lang_enCN \(actually zhTW\)
-	'Activa tu cinturón de cohetes para saltar hacia delante.', -- Description_Lang_zhCN \(actually esES\)
-	'Activa tu cinturón de cohetes para saltar hacia delante.', -- Description_Lang_enTW \(actually esMX\)
-	'Прыжок вперед на большое расстояние с помощью реактивного пояса.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'로켓 허리띠를 작동시켜 전방으로 도약합니다.', -- Description_Lang_koKR
+	'Active votre ceinture de fusées pour vous faire sauter en avant.', -- Description_Lang_frFR
+	'Aktiviert Euren Raketengürtel, um vorwärts zu springen.', -- Description_Lang_deDE
+	'使用你的火箭腰带向前跳跃。', -- Description_Lang_zhCN
+	'啟動你的火箭腰帶，往前跳躍。', -- Description_Lang_zhTW
+	'Activa tu cinturón de cohetes para saltar hacia delante.', -- Description_Lang_esES
+	'Activa tu cinturón de cohetes para saltar hacia delante.', -- Description_Lang_esMX
+	'Прыжок вперед на большое расстояние с помощью реактивного пояса.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -6314,73 +6314,73 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Goblin Trike', -- Name_Lang_enUS
-	'고블린 세발차', -- Name_Lang_enGB \(actually koKR\)
-	'Triklomoteur gobelin', -- Name_Lang_koKR \(actually frFR\)
-	'Goblinisches Trike', -- Name_Lang_frFR \(actually deDE\)
-	'地精三轮摩托', -- Name_Lang_deDE \(actually zhCN\)
-	'哥布林機動車', -- Name_Lang_enCN \(actually zhTW\)
-	'Triciclo goblin', -- Name_Lang_zhCN \(actually esES\)
-	'Triciclo goblin', -- Name_Lang_enTW \(actually esMX\)
-	'Гоблинский трицикл', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'고블린 세발차', -- Name_Lang_koKR
+	'Triklomoteur gobelin', -- Name_Lang_frFR
+	'Goblinisches Trike', -- Name_Lang_deDE
+	'地精三轮摩托', -- Name_Lang_zhCN
+	'哥布林機動車', -- Name_Lang_zhTW
+	'Triciclo goblin', -- Name_Lang_esES
+	'Triciclo goblin', -- Name_Lang_esMX
+	'Гоблинский трицикл', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	
 'Summons and dismisses a rideable Goblin Trike.', -- Description_Lang_enUS
-	'고블린 세발차에 올라타거나 내립니다.', -- Description_Lang_enGB (actually koKR)
-	'Invoque et renvoie un triklomoteur gobelin.', -- Description_Lang_koKR (actually frFR)
-	'Beschwört ein reitbares goblinisches Trike und gibt es wieder frei.', -- Description_Lang_frFR (actually deDE)
-	'召唤或解散一个可供骑乘的地精三轮摩托。', -- Description_Lang_deDE (actually zhCN)
-	'召喚或解散一臺可供騎乘的哥布林機動車。', -- Description_Lang_enCN (actually zhTW)
-	'Invoca y retira un triciclo goblin que se puede montar.', -- Description_Lang_zhCN (actually esES)
-	'Invoca y retira un triciclo goblin que se puede montar.', -- Description_Lang_enTW (actually esMX)
-	'Позволяет призывать и отпускать гоблинский трицикл.', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'고블린 세발차에 올라타거나 내립니다.', -- Description_Lang_koKR (actually koKR)
+	'Invoque et renvoie un triklomoteur gobelin.', -- Description_Lang_frFR (actually frFR)
+	'Beschwört ein reitbares goblinisches Trike und gibt es wieder frei.', -- Description_Lang_deDE (actually deDE)
+	'召唤或解散一个可供骑乘的地精三轮摩托。', -- Description_Lang_zhCN (actually zhCN)
+	'召喚或解散一臺可供騎乘的哥布林機動車。', -- Description_Lang_zhTW (actually zhTW)
+	'Invoca y retira un triciclo goblin que se puede montar.', -- Description_Lang_esES (actually esES)
+	'Invoca y retira un triciclo goblin que se puede montar.', -- Description_Lang_esMX (actually esMX)
+	'Позволяет призывать и отпускать гоблинский трицикл.', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
-	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'地面速度提高$s3%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'地面移動速度提高$s3%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_koKR
+	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_frFR
+	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_deDE
+	'地面速度提高$s3%。', -- AuraDescription_Lang_zhCN
+	'地面移動速度提高$s3%。', -- AuraDescription_Lang_zhTW
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esES
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esMX
+	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -6552,72 +6552,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Goblin Turbo-Trike', -- Name_Lang_enUS
-	'고블린 터보 세발차', -- Name_Lang_enGB \(actually koKR\)
-	'Triklomoteur turbo gobelin', -- Name_Lang_koKR \(actually frFR\)
-	'Goblinisches Turbotrike', -- Name_Lang_frFR \(actually deDE\)
-	'地精三轮摩托涡轮增压型', -- Name_Lang_deDE \(actually zhCN\)
-	'哥布林渦輪機動車', -- Name_Lang_enCN \(actually zhTW\)
-	'Turbo triciclo goblin', -- Name_Lang_zhCN \(actually esES\)
-	'Turbo triciclo goblin', -- Name_Lang_enTW \(actually esMX\)
-	'Гоблинский турботрицикл', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'고블린 터보 세발차', -- Name_Lang_koKR
+	'Triklomoteur turbo gobelin', -- Name_Lang_frFR
+	'Goblinisches Turbotrike', -- Name_Lang_deDE
+	'地精三轮摩托涡轮增压型', -- Name_Lang_zhCN
+	'哥布林渦輪機動車', -- Name_Lang_zhTW
+	'Turbo triciclo goblin', -- Name_Lang_esES
+	'Turbo triciclo goblin', -- Name_Lang_esMX
+	'Гоблинский турботрицикл', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Summons and dismisses a Goblin Turbo-Trike.', -- Description_Lang_enUS
-	'고블린 세발차에 올라타거나 내립니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Invoque et renvoie un Triklomoteur turbo gobelin.', -- Description_Lang_koKR \(actually frFR\)
-	'Beschwört ein reitbares goblinisches Turbotrike oder gibt es wieder frei.', -- Description_Lang_frFR \(actually deDE\)
-	'召唤或解散一辆地精三轮摩托涡轮增压型。', -- Description_Lang_deDE \(actually zhCN\)
-	'召喚或解散一臺可供騎乘的哥布林渦輪機動車。', -- Description_Lang_enCN \(actually zhTW\)
-	'Invoca y retira un turbo triciclo goblin.', -- Description_Lang_zhCN \(actually esES\)
-	'Invoca y retira un turbo triciclo goblin.', -- Description_Lang_enTW \(actually esMX\)
-	'Позволяет призывать и отпускать гоблинский турботрицикл.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'고블린 세발차에 올라타거나 내립니다.', -- Description_Lang_koKR
+	'Invoque et renvoie un Triklomoteur turbo gobelin.', -- Description_Lang_frFR
+	'Beschwört ein reitbares goblinisches Turbotrike oder gibt es wieder frei.', -- Description_Lang_deDE
+	'召唤或解散一辆地精三轮摩托涡轮增压型。', -- Description_Lang_zhCN
+	'召喚或解散一臺可供騎乘的哥布林渦輪機動車。', -- Description_Lang_zhTW
+	'Invoca y retira un turbo triciclo goblin.', -- Description_Lang_esES
+	'Invoca y retira un turbo triciclo goblin.', -- Description_Lang_esMX
+	'Позволяет призывать и отпускать гоблинский турботрицикл.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
-	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'地面速度提高$s3%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'地面移動速度提高$s3%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_koKR
+	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_frFR
+	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_deDE
+	'地面速度提高$s3%。', -- AuraDescription_Lang_zhCN
+	'地面移動速度提高$s3%。', -- AuraDescription_Lang_zhTW
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esES
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esMX
+	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -6789,73 +6789,73 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Mountain Horse', -- Name_Lang_enUS
-	'산악 야생마', -- Name_Lang_enGB \(actually koKR\)
-	'Cheval des montagnes', -- Name_Lang_koKR \(actually frFR\)
-	'Bergpferd', -- Name_Lang_frFR \(actually deDE\)
-	'高山马', -- Name_Lang_deDE \(actually zhCN\)
-	'高山馬', -- Name_Lang_enCN \(actually zhTW\)
-	'Caballo de montaña', -- Name_Lang_zhCN \(actually esES\)
-	'Caballo de montaña', -- Name_Lang_enTW \(actually esMX\)
-	'Горный конь', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'산악 야생마', -- Name_Lang_koKR
+	'Cheval des montagnes', -- Name_Lang_frFR
+	'Bergpferd', -- Name_Lang_deDE
+	'高山马', -- Name_Lang_zhCN
+	'高山馬', -- Name_Lang_zhTW
+	'Caballo de montaña', -- Name_Lang_esES
+	'Caballo de montaña', -- Name_Lang_esMX
+	'Горный конь', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	
 'Summons and dismisses a rideable Mountain Horse.', -- Description_Lang_enUS
-	'산악 야생마에 올라타거나 내립니다.', -- Description_Lang_enGB (actually koKR)
-	'Invoque et renvoie un cheval des montagnes.', -- Description_Lang_koKR (actually frFR)
-	'Beschwört ein reitbares Bergpferd oder gibt es wieder frei.', -- Description_Lang_frFR (actually deDE)
-	'召唤或解散一匹可供骑乘的高山马。', -- Description_Lang_deDE (actually zhCN)
-	'召喚或解散一隻可供騎乘的高山馬。', -- Description_Lang_enCN (actually zhTW)
-	'Invoca y retira a un caballo de montaña que se puede montar.', -- Description_Lang_zhCN (actually esES)
-	'Invoca y retira a un caballo de montaña que se puede montar.', -- Description_Lang_enTW (actually esMX)
-	'Призывает или отпускает горного коня.', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'산악 야생마에 올라타거나 내립니다.', -- Description_Lang_koKR (actually koKR)
+	'Invoque et renvoie un cheval des montagnes.', -- Description_Lang_frFR (actually frFR)
+	'Beschwört ein reitbares Bergpferd oder gibt es wieder frei.', -- Description_Lang_deDE (actually deDE)
+	'召唤或解散一匹可供骑乘的高山马。', -- Description_Lang_zhCN (actually zhCN)
+	'召喚或解散一隻可供騎乘的高山馬。', -- Description_Lang_zhTW (actually zhTW)
+	'Invoca y retira a un caballo de montaña que se puede montar.', -- Description_Lang_esES (actually esES)
+	'Invoca y retira a un caballo de montaña que se puede montar.', -- Description_Lang_esMX (actually esMX)
+	'Призывает или отпускает горного коня.', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
-	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'地面速度提高$s3%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'地面移動速度提高$s3%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_koKR
+	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_frFR
+	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_deDE
+	'地面速度提高$s3%。', -- AuraDescription_Lang_zhCN
+	'地面移動速度提高$s3%。', -- AuraDescription_Lang_zhTW
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esES
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esMX
+	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -7027,73 +7027,73 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Swift Mountain Horse', -- Name_Lang_enUS
-	'날쌘 산악 야생마', -- Name_Lang_enGB \(actually koKR\)
-	'Cheval des montagnes rapide', -- Name_Lang_koKR \(actually frFR\)
-	'Schnelles Bergpferd', -- Name_Lang_frFR \(actually deDE\)
-	'迅捷高山马', -- Name_Lang_deDE \(actually zhCN\)
-	'迅捷高山馬', -- Name_Lang_enCN \(actually zhTW\)
-	'Caballo de montaña presto', -- Name_Lang_zhCN \(actually esES\)
-	'Caballo de montaña presto', -- Name_Lang_enTW \(actually esMX\)
-	'Стремительный горный конь', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'날쌘 산악 야생마', -- Name_Lang_koKR
+	'Cheval des montagnes rapide', -- Name_Lang_frFR
+	'Schnelles Bergpferd', -- Name_Lang_deDE
+	'迅捷高山马', -- Name_Lang_zhCN
+	'迅捷高山馬', -- Name_Lang_zhTW
+	'Caballo de montaña presto', -- Name_Lang_esES
+	'Caballo de montaña presto', -- Name_Lang_esMX
+	'Стремительный горный конь', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	
 'Summons and dismisses a rideable Swift Mountain Horse.', -- Description_Lang_enUS
-	'날쌘 산악 야생마에 올라타거나 내립니다.', -- Description_Lang_enGB (actually koKR)
-	'Invoque et renvoie un cheval des montagnes rapide.', -- Description_Lang_koKR (actually frFR)
-	'Beschwört ein reitbares schnelles Bergpferd oder gibt es wieder frei.', -- Description_Lang_frFR (actually deDE)
-	'召唤或解散一匹可供骑乘的迅捷高山马。', -- Description_Lang_deDE (actually zhCN)
-	'召喚或解散一隻可供騎乘的迅捷高山馬。', -- Description_Lang_enCN (actually zhTW)
-	'Invoca y retira a un caballo de montaña presto que se puede montar.', -- Description_Lang_zhCN (actually esES)
-	'Invoca y retira a un caballo de montaña presto que se puede montar.', -- Description_Lang_enTW (actually esMX)
-	'Призывает или отпускает стремительного горного коня.', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'날쌘 산악 야생마에 올라타거나 내립니다.', -- Description_Lang_koKR (actually koKR)
+	'Invoque et renvoie un cheval des montagnes rapide.', -- Description_Lang_frFR (actually frFR)
+	'Beschwört ein reitbares schnelles Bergpferd oder gibt es wieder frei.', -- Description_Lang_deDE (actually deDE)
+	'召唤或解散一匹可供骑乘的迅捷高山马。', -- Description_Lang_zhCN (actually zhCN)
+	'召喚或解散一隻可供騎乘的迅捷高山馬。', -- Description_Lang_zhTW (actually zhTW)
+	'Invoca y retira a un caballo de montaña presto que se puede montar.', -- Description_Lang_esES (actually esES)
+	'Invoca y retira a un caballo de montaña presto que se puede montar.', -- Description_Lang_esMX (actually esMX)
+	'Призывает или отпускает стремительного горного коня.', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Increases ground speed by $s3%.', -- AuraDescription_Lang_enUS
-	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_enGB \(actually koKR\)
-	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_koKR \(actually frFR\)
-	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_frFR \(actually deDE\)
-	'地面速度提高$s3%。', -- AuraDescription_Lang_deDE \(actually zhCN\)
-	'地面移動速度提高$s3%。', -- AuraDescription_Lang_enCN \(actually zhTW\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_zhCN \(actually esES\)
-	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_enTW \(actually esMX\)
-	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_zhTW \(actually ruRU\)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'이동 속도 $s3%만큼 증가', -- AuraDescription_Lang_koKR
+	'Augmente la vitesse au sol de $s3%.', -- AuraDescription_Lang_frFR
+	'Erhöht Tempo am Boden um $s3%.', -- AuraDescription_Lang_deDE
+	'地面速度提高$s3%。', -- AuraDescription_Lang_zhCN
+	'地面移動速度提高$s3%。', -- AuraDescription_Lang_zhTW
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esES
+	'Aumenta la velocidad por tierra un $s3%.', -- AuraDescription_Lang_esMX
+	'Скорость бега повышена на $s3%.', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -7266,72 +7266,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Ancestral Call', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Calls upon the strength of your uncorrupted ancestors,  increasing your attack power by $s1 and your spell damage by $s2. Lasts $d.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Attack power and spell damage increased.', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -7502,72 +7502,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Savage Blood', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Your untainted blood grants a $s1% chance to resist Curse,  Disease and Poison effects.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -7738,72 +7738,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Sympathetic Vigor', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Your bond with the wilds of Draenor increases your pet’s maximum health by $s1%.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -7974,72 +7974,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Unwavering Will', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Your unbroken spirit reduces the duration of Stun effects by an additional $s1%.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -8212,72 +8212,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Quel’dorei Meditation', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Focus your mind in quiet meditation,  restoring 10% of your maximum mana,  20 rage,  or 50 energy over $d,  depending on your primary resource.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Meditating,  restoring mana,  rage,  or energy.', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -8448,72 +8448,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Swiftness of the Rangers', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Agility increased by $s1%.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -8684,72 +8684,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Quel’dorei Meditation', -- Name_Lang_enUS
-	'', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial', -- NameSubtext_Lang_enUS
-	'', -- NameSubtext_Lang_enGB (actually koKR)
-	'', -- NameSubtext_Lang_koKR (actually frFR)
-	'', -- NameSubtext_Lang_frFR (actually deDE)
-	'', -- NameSubtext_Lang_deDE (actually zhCN)
-	'', -- NameSubtext_Lang_enCN (actually zhTW)
-	'', -- NameSubtext_Lang_zhCN (actually esES)
-	'', -- NameSubtext_Lang_enTW (actually esMX)
-	'', -- NameSubtext_Lang_zhTW (actually ruRU)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_koKR (actually koKR)
+	'', -- NameSubtext_Lang_frFR (actually frFR)
+	'', -- NameSubtext_Lang_deDE (actually deDE)
+	'', -- NameSubtext_Lang_zhCN (actually zhCN)
+	'', -- NameSubtext_Lang_zhTW (actually zhTW)
+	'', -- NameSubtext_Lang_esES (actually esES)
+	'', -- NameSubtext_Lang_esMX (actually esMX)
+	'', -- NameSubtext_Lang_ruRU (actually ruRU)
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Focus your mind in quiet meditation,  generating 20 runic power over $d.', -- Description_Lang_enUS
-	'', -- Description_Lang_enGB (actually koKR)
-	'', -- Description_Lang_koKR (actually frFR)
-	'', -- Description_Lang_frFR (actually deDE)
-	'', -- Description_Lang_deDE (actually zhCN)
-	'', -- Description_Lang_enCN (actually zhTW)
-	'', -- Description_Lang_zhCN (actually esES)
-	'', -- Description_Lang_enTW (actually esMX)
-	'', -- Description_Lang_zhTW (actually ruRU)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'', -- Description_Lang_koKR (actually koKR)
+	'', -- Description_Lang_frFR (actually frFR)
+	'', -- Description_Lang_deDE (actually deDE)
+	'', -- Description_Lang_zhCN (actually zhCN)
+	'', -- Description_Lang_zhTW (actually zhTW)
+	'', -- Description_Lang_esES (actually esES)
+	'', -- Description_Lang_esMX (actually esMX)
+	'', -- Description_Lang_ruRU (actually ruRU)
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'Meditating,  generating runic power.', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712190, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	133, -- StartRecoveryCategory
@@ -8920,72 +8920,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Bow Specialization', -- Name_Lang_enUS
-	'활류 전문화', -- Name_Lang_enGB \(actually koKR\)
-	'Spécialisation Arc', -- Name_Lang_koKR \(actually frFR\)
-	'Bogen-Spezialisierung', -- Name_Lang_frFR \(actually deDE\)
-	'弓专精', -- Name_Lang_deDE \(actually zhCN\)
-	'弓箭專精', -- Name_Lang_enCN \(actually zhTW\)
-	'Especialización en arcos', -- Name_Lang_zhCN \(actually esES\)
-	'Especialización en arcos', -- Name_Lang_enTW \(actually esMX\)
-	'Специализация на владении луками', -- Name_Lang_zhTW \(actually ruRU\)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'활류 전문화', -- Name_Lang_koKR
+	'Spécialisation Arc', -- Name_Lang_frFR
+	'Bogen-Spezialisierung', -- Name_Lang_deDE
+	'弓专精', -- Name_Lang_zhCN
+	'弓箭專精', -- Name_Lang_zhTW
+	'Especialización en arcos', -- Name_Lang_esES
+	'Especialización en arcos', -- Name_Lang_esMX
+	'Специализация на владении луками', -- Name_Lang_ruRU
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Volk passiv', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая, пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Volk passiv', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая, пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Your chance to critically hit with Bows is increased by $s1%.', -- Description_Lang_enUS
-	'활로 치명타를 적중시킬 확률이 $s1%만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Vos chances de réussir un coup critique avec les Arcs sont augmentées de $s1%.', -- Description_Lang_koKR \(actually frFR\)
-	'Eure Chance, mit Bögen einen kritischen Treffer zu erzielen, wird um $s1% erhöht.', -- Description_Lang_frFR \(actually deDE\)
-	'弓类武器的爆击几率提高$s1%。', -- Description_Lang_deDE \(actually zhCN\)
-	'使弓類武器攻擊的致命一擊機率提高$s1%。', -- Description_Lang_enCN \(actually zhTW\)
-	'Aumenta tu probabilidad de asestar un golpe crítico con arcos un $s1%.', -- Description_Lang_zhCN \(actually esES\)
-	'Aumenta tu probabilidad de asestar un golpe crítico con arcos un $s1%.', -- Description_Lang_enTW \(actually esMX\)
-	'Увеличение вероятности нанесения критического урона при использовании луков на $s1%.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'활로 치명타를 적중시킬 확률이 $s1%만큼 증가합니다.', -- Description_Lang_koKR
+	'Vos chances de réussir un coup critique avec les Arcs sont augmentées de $s1%.', -- Description_Lang_frFR
+	'Eure Chance, mit Bögen einen kritischen Treffer zu erzielen, wird um $s1% erhöht.', -- Description_Lang_deDE
+	'弓类武器的爆击几率提高$s1%。', -- Description_Lang_zhCN
+	'使弓類武器攻擊的致命一擊機率提高$s1%。', -- Description_Lang_zhTW
+	'Aumenta tu probabilidad de asestar un golpe crítico con arcos un $s1%.', -- Description_Lang_esES
+	'Aumenta tu probabilidad de asestar un golpe crítico con arcos un $s1%.', -- Description_Lang_esMX
+	'Увеличение вероятности нанесения критического урона при использовании луков на $s1%.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
@@ -9156,72 +9156,72 @@ REPLACE INTO `spell` (`id`, `category`, `dispel`, `mechanic`, `attributes`, `att
 	0, -- ActiveIconID
 	0, -- SpellPriority
 	'Enchanting Specialization', -- Name_Lang_enUS
-	'비전 친화', -- Name_Lang_enGB (actually koKR)
-	'', -- Name_Lang_koKR (actually frFR)
-	'', -- Name_Lang_frFR (actually deDE)
-	'', -- Name_Lang_deDE (actually zhCN)
-	'', -- Name_Lang_enCN (actually zhTW)
-	'', -- Name_Lang_zhCN (actually esES)
-	'', -- Name_Lang_enTW (actually esMX)
-	'', -- Name_Lang_zhTW (actually ruRU)
-	'', -- Name_Lang_esES
-	'', -- Name_Lang_esMX
-	'', -- Name_Lang_ruRU
+	'비전 친화', -- Name_Lang_koKR (actually koKR)
+	'', -- Name_Lang_frFR (actually frFR)
+	'', -- Name_Lang_deDE (actually deDE)
+	'', -- Name_Lang_zhCN (actually zhCN)
+	'', -- Name_Lang_zhTW (actually zhTW)
+	'', -- Name_Lang_esES (actually esES)
+	'', -- Name_Lang_esMX (actually esMX)
+	'', -- Name_Lang_ruRU (actually ruRU)
+	'', -- Name_Lang_jaJP
 	'', -- Name_Lang_ptPT
-	'', -- Name_Lang_ptBR
 	'', -- Name_Lang_itIT
-	'', -- Name_Lang_Unk
+	'', -- Name_Lang_Unk1
+	'', -- Name_Lang_Unk2
+	'', -- Name_Lang_Unk3
+	'', -- Name_Lang_Unk4
 	16712190, -- Name_Lang_Mask
 	'Racial Passive', -- NameSubtext_Lang_enUS
-	'종족 지속효과', -- NameSubtext_Lang_enGB \(actually koKR\)
-	'Raciale passive', -- NameSubtext_Lang_koKR \(actually frFR\)
-	'Volk Passiv', -- NameSubtext_Lang_frFR \(actually deDE\)
-	'被动种族特长', -- NameSubtext_Lang_deDE \(actually zhCN\)
-	'種族特長', -- NameSubtext_Lang_enCN \(actually zhTW\)
-	'Pasivo racial', -- NameSubtext_Lang_zhCN \(actually esES\)
-	'Pasivo racial', -- NameSubtext_Lang_enTW \(actually esMX\)
-	'Расовая пассивная', -- NameSubtext_Lang_zhTW \(actually ruRU\)
-	'', -- NameSubtext_Lang_esES
-	'', -- NameSubtext_Lang_esMX
-	'', -- NameSubtext_Lang_ruRU
+	'종족 지속효과', -- NameSubtext_Lang_koKR
+	'Raciale passive', -- NameSubtext_Lang_frFR
+	'Volk Passiv', -- NameSubtext_Lang_deDE
+	'被动种族特长', -- NameSubtext_Lang_zhCN
+	'種族特長', -- NameSubtext_Lang_zhTW
+	'Pasivo racial', -- NameSubtext_Lang_esES
+	'Pasivo racial', -- NameSubtext_Lang_esMX
+	'Расовая пассивная', -- NameSubtext_Lang_ruRU
+	'', -- NameSubtext_Lang_jaJP
 	'', -- NameSubtext_Lang_ptPT
-	'', -- NameSubtext_Lang_ptBR
 	'', -- NameSubtext_Lang_itIT
-	'', -- NameSubtext_Lang_Unk
+	'', -- NameSubtext_Lang_Unk1
+	'', -- NameSubtext_Lang_Unk2
+	'', -- NameSubtext_Lang_Unk3
+	'', -- NameSubtext_Lang_Unk4
 	16712190, -- NameSubtext_Lang_Mask
 	'Enchanting skill increased by $s1.', -- Description_Lang_enUS
-	'마법부여 숙련도가 $s1만큼 증가합니다.', -- Description_Lang_enGB \(actually koKR\)
-	'Compétence en Enchantement augmentée de $s1.', -- Description_Lang_koKR \(actually frFR\)
-	'Fertigkeit in der Verzauberkunst um $s1 erhöht.', -- Description_Lang_frFR \(actually deDE\)
-	'附魔技能提高$s1点。', -- Description_Lang_deDE \(actually zhCN\)
-	'附魔技能提高$s1點。', -- Description_Lang_enCN \(actually zhTW\)
-	'Habilidad de encantamiento aumentada $s1 p.', -- Description_Lang_zhCN \(actually esES\)
-	'Habilidad de encantamiento aumentada $s1 p.', -- Description_Lang_enTW \(actually esMX\)
-	'Навык в профессии ""Наложение чар"" повышен на $s1.', -- Description_Lang_zhTW \(actually ruRU\)
-	'', -- Description_Lang_esES
-	'', -- Description_Lang_esMX
-	'', -- Description_Lang_ruRU
+	'마법부여 숙련도가 $s1만큼 증가합니다.', -- Description_Lang_koKR
+	'Compétence en Enchantement augmentée de $s1.', -- Description_Lang_frFR
+	'Fertigkeit in der Verzauberkunst um $s1 erhöht.', -- Description_Lang_deDE
+	'附魔技能提高$s1点。', -- Description_Lang_zhCN
+	'附魔技能提高$s1點。', -- Description_Lang_zhTW
+	'Habilidad de encantamiento aumentada $s1 p.', -- Description_Lang_esES
+	'Habilidad de encantamiento aumentada $s1 p.', -- Description_Lang_esMX
+	'Навык в профессии ""Наложение чар"" повышен на $s1.', -- Description_Lang_ruRU
+	'', -- Description_Lang_jaJP
 	'', -- Description_Lang_ptPT
-	'', -- Description_Lang_ptBR
 	'', -- Description_Lang_itIT
-	'', -- Description_Lang_Unk
+	'', -- Description_Lang_Unk1
+	'', -- Description_Lang_Unk2
+	'', -- Description_Lang_Unk3
+	'', -- Description_Lang_Unk4
 	16712190, -- Description_Lang_Mask
 	'', -- AuraDescription_Lang_enUS
-	'', -- AuraDescription_Lang_enGB (actually koKR)
-	'', -- AuraDescription_Lang_koKR (actually frFR)
-	'', -- AuraDescription_Lang_frFR (actually deDE)
-	'', -- AuraDescription_Lang_deDE (actually zhCN)
-	'', -- AuraDescription_Lang_enCN (actually zhTW)
-	'', -- AuraDescription_Lang_zhCN (actually esES)
-	'', -- AuraDescription_Lang_enTW (actually esMX)
-	'', -- AuraDescription_Lang_zhTW (actually ruRU)
-	'', -- AuraDescription_Lang_esES
-	'', -- AuraDescription_Lang_esMX
-	'', -- AuraDescription_Lang_ruRU
+	'', -- AuraDescription_Lang_koKR (actually koKR)
+	'', -- AuraDescription_Lang_frFR (actually frFR)
+	'', -- AuraDescription_Lang_deDE (actually deDE)
+	'', -- AuraDescription_Lang_zhCN (actually zhCN)
+	'', -- AuraDescription_Lang_zhTW (actually zhTW)
+	'', -- AuraDescription_Lang_esES (actually esES)
+	'', -- AuraDescription_Lang_esMX (actually esMX)
+	'', -- AuraDescription_Lang_ruRU (actually ruRU)
+	'', -- AuraDescription_Lang_jaJP
 	'', -- AuraDescription_Lang_ptPT
-	'', -- AuraDescription_Lang_ptBR
 	'', -- AuraDescription_Lang_itIT
-	'', -- AuraDescription_Lang_Unk
+	'', -- AuraDescription_Lang_Unk1
+	'', -- AuraDescription_Lang_Unk2
+	'', -- AuraDescription_Lang_Unk3
+	'', -- AuraDescription_Lang_Unk4
 	16712188, -- AuraDescription_Lang_Mask
 	0, -- ManaCostPct
 	0, -- StartRecoveryCategory
