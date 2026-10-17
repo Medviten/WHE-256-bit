@@ -172,6 +172,122 @@ SET @SpellRootwalker                                         =  1260715; -- Midn
 SET @SpellRootwalking                                        =  1238686; -- Midnight ID (Haranir racial)
 SET @SpellSubterraneanPredator                               =  1238677; -- Midnight ID (Haranir racial)
 SET @SpellThornBloom                                         =  1237885; -- Midnight ID (Haranir racial)
+SET @SpellApprenticeRiding                                   =    33388;
+SET @SpellJourneymanRiding                                   =    33391;
+SET @SpellExpertRiding                                       =    34090;
+SET @SpellArtisanRiding                                      =    34091;
+
+-- Spell Auras
+SET @SPELL_AURA_MOD_POSSESS                                    = 2; -- BasePoints: (+Die Points) Up to the level that can be charmed
+SET @SPELL_AURA_MOD_CHARM                                      = 6; -- BasePoints: (+Die Points) Up to the level that can be charmed
+SET @SPELL_AURA_MOD_THREAT                                     = 10; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_DAMAGE_DONE                                = 13; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_DAMAGE_TAKEN                               = 14; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_STEALTH                                    = 16; -- EffectMiscValueA: Stealth Type (0 = General, 1 = Trap)
+SET @SPELL_AURA_MOD_STEALTH_DETECT                             = 17; -- EffectMiscValueA: Stealth Type (0 = General, 1 = Trap)
+SET @SPELL_AURA_MOD_INVISIBILITY                               = 18; -- EffectMiscValueA: Invisibility Type
+SET @SPELL_AURA_MOD_INVISIBILITY_DETECT                        = 19; -- EffectMiscValueA: Invisibility Type
+SET @SPELL_AURA_OBS_MOD_POWER                                  = 21; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_RESISTANCE                                 = 22; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_PERIODIC_TRIGGER_SPELL                         = 23; -- TriggerSpell: Spell ID; Amplitude: The time in MS that the trigger will land.
+SET @SPELL_AURA_PERIODIC_ENERGIZE                              = 24; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_STAT                                       = 29; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_MOD_SKILL                                      = 30; -- EffectMiscValueA: Skill ID
+SET @SPELL_AURA_MOD_INCREASE_ENERGY                            = 35; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_SHAPESHIFT                                 = 36; -- EffectMiscValueA: ID from SpellShapeshiftForm.dbc
+SET @SPELL_AURA_EFFECT_IMMUNITY                                = 37; -- EffectMiscValueA: ID from Spell Effect to become immune to.
+SET @SPELL_AURA_STATE_IMMUNITY                                 = 38; -- EffectMiscValueA: ID from Spell Auras
+SET @SPELL_AURA_SCHOOL_IMMUNITY                                = 39; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_DAMAGE_IMMUNITY                                = 40; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_DISPEL_IMMUNITY                                = 41; -- EffectMiscValueA: Dispel Type
+SET @SPELL_AURA_TRACK_CREATURES                                = 44; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_TRACK_RESOURCES                                = 45; -- EffectMiscValueA: Lock Type
+SET @SPELL_AURA_TRANSFORM                                      = 56; -- EffectMiscValueA: Creature ID
+SET @SPELL_AURA_MOD_DAMAGE_DONE_CREATURE                       = 59; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_SCHOOL_ABSORB                                  = 69; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_SPELL_CRIT_CHANCE_SCHOOL                   = 71; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_POWER_COST_SCHOOL_PCT                      = 72; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_POWER_COST_SCHOOL                          = 73; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_REFLECT_SPELLS_SCHOOL                          = 74; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_LANGUAGE                                   = 75; -- EffectMiscValueA: Language ID
+SET @SPELL_AURA_MECHANIC_IMMUNITY                              = 77; -- EffectMiscValueA: Spell Mechanic
+SET @SPELL_AURA_MOUNTED                                        = 78; -- EffectMiscValueA: Creature ID
+SET @SPELL_AURA_MOD_DAMAGE_PERCENT_DONE                        = 79; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_PERCENT_STAT                               = 80; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_SPLIT_DAMAGE_PCT                               = 81; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_BASE_RESISTANCE                            = 83; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_POWER_REGEN                                = 85; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_DAMAGE_PERCENT_TAKEN                       = 87; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MANA_SHIELD                                    = 97; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_SKILL_TALENT                               = 98; -- EffectMiscValueA: Skill ID
+SET @SPELL_AURA_MOD_RESISTANCE_PCT                             = 101; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_MELEE_ATTACK_POWER_VERSUS                  = 102; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_ADD_FLAT_MODIFIER                              = 107; -- EffectMiscValueA: Modifier Type
+SET @SPELL_AURA_ADD_PCT_MODIFIER                               = 108; -- EffectMiscValueA: Modifier Type
+SET @SPELL_AURA_MOD_POWER_REGEN_PERCENT                        = 110; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_RANGED_DAMAGE_TAKEN                        = 113; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_RANGED_DAMAGE_TAKEN_PCT                    = 114; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_HEALING                                    = 115; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_MECHANIC_RESISTANCE                        = 117; -- EffectMiscValueA: Spell Mechanic
+SET @SPELL_AURA_MOD_HEALING_PCT                                = 118; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_RANGED_ATTACK_POWER_VERSUS                 = 131; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_MOD_INCREASE_ENERGY_PERCENT                    = 132; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_MOD_HEALING_DONE                               = 135; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_HEALING_DONE_PERCENT                       = 136; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_TOTAL_STAT_PERCENTAGE                      = 137; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_FORCE_REACTION                                 = 139; -- EffectMiscValueA: ID from faction.dbc
+SET @SPELL_AURA_MOD_BASE_RESISTANCE_PCT                        = 142; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_RESISTANCE_EXCLUSIVE                       = 143; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MECHANIC_IMMUNITY_MASK                         = 147; -- EffectMiscValueA: Creature Immunity
+SET @SPELL_AURA_SPLIT_DAMAGE_FLAT                              = 153; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_CRIT_DAMAGE_BONUS                          = 163; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_DAMAGE_DONE_VERSUS                         = 168; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_MOD_CRIT_PERCENT_VERSUS                        = 169; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_MOD_SPELL_DAMAGE_OF_STAT_PERCENT               = 174; -- EffectMiscValueA: School Mask; EffectMiscValueB: Stats Type
+SET @SPELL_AURA_MOD_SPELL_HEALING_OF_STAT_PERCENT              = 175; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_MOD_DEBUFF_RESISTANCE                          = 178; -- EffectMiscValueA: Dispel Type
+SET @SPELL_AURA_MOD_ATTACKER_SPELL_CRIT_CHANCE                 = 179; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_FLAT_SPELL_DAMAGE_VERSUS                   = 180; -- EffectMiscValueA: Creature Type
+SET @SPELL_AURA_MOD_CRITICAL_THREAT                            = 183; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_ATTACKER_SPELL_HIT_CHANCE                  = 186; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_RATING                                     = 189; -- EffectMiscValueA: Rating Type
+SET @SPELL_AURA_MOD_FACTION_REPUTATION_GAIN                    = 190; -- EffectMiscValueA: ID from faction.dbc
+SET @SPELL_AURA_MOD_TARGET_ABSORB_SCHOOL                       = 194; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_TARGET_ABILITY_ABSORB_SCHOOL               = 195; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_INCREASES_SPELL_PCT_TO_HIT                 = 199; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_SCHOOL_CRIT_DMG_TAKEN                      = 205; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_RANGED_ATTACK_POWER_OF_STAT_PERCENT        = 212; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_MOD_MANA_REGEN_FROM_STAT                       = 219; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_MOD_RATING_FROM_STAT                           = 220; -- EffectMiscValueA: Rating Type
+SET @SPELL_AURA_MOD_AOE_DAMAGE_AVOIDANCE                       = 229; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MECHANIC_DURATION_MOD                          = 232; -- EffectMiscValueA: Spell Mechanic
+SET @SPELL_AURA_CHANGE_MODEL_FOR_ALL_HUMANOIDS                 = 233; -- EffectMiscValueA: Creature ID
+SET @SPELL_AURA_MECHANIC_DURATION_MOD_NOT_STACK                = 234; -- EffectMiscValueA: Spell Mechanic
+SET @SPELL_AURA_MOD_FACTION                                    = 243; -- EffectMiscValueA: ID from faction.dbc
+SET @SPELL_AURA_COMPREHEND_LANGUAGE                            = 244; -- EffectMiscValueA: Language ID
+SET @SPELL_AURA_MOD_AURA_DURATION_BY_DISPEL                    = 245; -- EffectMiscValueA: Dispel Type
+SET @SPELL_AURA_MOD_AURA_DURATION_BY_DISPEL_NOT_STACK          = 246; -- EffectMiscValueA: Dispel Type
+SET @SPELL_AURA_CONVERT_RUNE                                   = 249; -- EffectMiscValueA: Rune Type to convert; EffectMiscValueB: The converted new Rune
+SET @SPELL_AURA_MOD_MECHANIC_DAMAGE_TAKEN_PERCENT              = 255; -- EffectMiscValueA: Spell Mechanic
+SET @SPELL_AURA_NO_REAGENT_USE                                 = 256; -- EffectMiscValueA: Some sort of a reagent type.
+SET @SPELL_AURA_MOD_HOT_PCT                                    = 259; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_SCREEN_EFFECT                                  = 260; -- EffectMiscValueA: ID from screen ScreenEffect.dbc
+SET @SPELL_AURA_PHASE                                          = 261; -- EffectMiscValueA: Phase Mask
+SET @SPELL_AURA_MOD_IMMUNE_AURA_APPLY_SCHOOL                   = 267; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_ATTACK_POWER_OF_STAT_PERCENT               = 268; -- EffectMiscValueA: Stats Type
+SET @SPELL_AURA_MOD_IGNORE_TARGET_RESIST_MODIFIERS             = 269; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_ABILITY_IGNORE_TARGET_RESIST               = 270; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_DAMAGE_FROM_CASTER                         = 271; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_X_RAY                                          = 273; -- EffectMiscValueA: Creature ID
+SET @SPELL_AURA_MOD_DAMAGE_DONE_FOR_MECHANIC                   = 276; -- EffectMiscValueA: Spell Mechanic
+SET @SPELL_AURA_OVERRIDE_SPELLS                                = 293; -- EffectMiscValueA: ID from screen OverrideSpellData.dbc
+SET @SPELL_AURA_PREVENT_REGENERATE_POWER                       = 294; -- EffectMiscValueA: Power Type
+SET @SPELL_AURA_SET_VEHICLE_ID                                 = 296; -- EffectMiscValueA: ID from Vehicle.dbc
+SET @SPELL_AURA_SHARE_DAMAGE_PCT                               = 300; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_SCHOOL_HEAL_ABSORB                             = 301; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_MOD_DAMAGE_DONE_VERSUS_AURASTATE               = 303; -- EffectMiscValueA: ID from AuraStateType (master/src/server/shared/SharedDefines.h)
+SET @SPELL_AURA_MOD_FAKE_INEBRIATE                             = 304; -- EffectMiscValueA: Creature ID
+SET @SPELL_AURA_MOD_CREATURE_AOE_DAMAGE_AVOIDANCE              = 310; -- EffectMiscValueA: School Mask
 
 -- Miscellaneous
 SET @Male                                                      =    0;
@@ -183,6 +299,7 @@ SET @Hair                                                      =    3;
 SET @Underwear                                                 =    4;
 SET @FootprintShoe                                             =    1;
 SET @FootprintHoof                                             =    3;
+SET @FootprintElephant                                         =    6;
 SET @FootprintPaw                                              =    7;
 
 -- CharSections
@@ -207,7 +324,32 @@ SET @Troll                                                     =    8;
 SET @Goblin                                                    =    9;
 SET @BloodElf                                                  =   10;
 SET @Draenei                                                   =   11;
-SET @NextRace                                                  =   12; -- Reserved for Worgen – increments before assignment
+
+-- New Playable Races
+-- Fixed IDs shared with retail ChrRaces, so C++/Lua scripts and core edits can rely on them no matter which
+-- modpaks are applied. Naga, Broken and Taunka use their retail NPC race IDs: F-008 moves the stock NPC rows away.
+SET @Naga                                                      =   13; -- retail NPC race (Naga_)
+SET @Broken                                                    =   14; -- retail NPC race
+SET @Taunka                                                    =   19; -- retail NPC race
+SET @Worgen                                                    =   22;
+SET @Gilnean                                                   =   23;
+-- Neutral Pandaren                                            =   24;
+SET @AlliancePandaren                                          =   25;
+SET @HordePandaren                                             =   26;
+SET @Nightborne                                                =   27;
+SET @HighmountainTauren                                        =   28;
+SET @VoidElf                                                   =   29;
+SET @LightforgedDraenei                                        =   30;
+SET @ZandalariTroll                                            =   31;
+SET @KulTiran                                                  =   32;
+-- Thin Human                                                  =   33;
+SET @DarkIronDwarf                                             =   34;
+SET @Vulpera                                                   =   35;
+SET @MagharOrc                                                 =   36;
+SET @Mechagnome                                                =   37;
+-- Not in retail (first free IDs after Mechagnome; retail continues with Dracthyr 52/70, Earthen 84/85, Haranir 86/91)
+SET @HighElf                                                   =   38;
+SET @Ogre                                                      =   39;
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;
@@ -248,8 +390,8 @@ SET @TrollHelmetMask                                           =      1 << @Trol
 SET @BloodElfHelmetMask                                        =      1 << @BloodElf;         -- race ID 10 → 1024
 SET @DraeneiHelmetMask                                         =      1 << @Draenei;          -- race ID 11 → 2048
 
-SET @NextModelID                                               =    39999;
 -- New Race Models
+SET @NextModelID                                               =    39999;
 SET @HobgoblinModel                                            =     3194; -- Gobber (bank guy)
 SET @WorgenMaleModel                                           =     3141; -- bipedal
 SET @WorgenFemaleModel                                         =     3142; -- bipedal
@@ -288,8 +430,8 @@ SET @LightforgedDraeneiFemaleModel                             =    @NextModelID
 SET @GoblinMaleModel                                           =    @NextModelID := @NextModelID +1; -- 40021; -- NPC: 831
 SET @GoblinFemaleModel                                         =    @NextModelID := @NextModelID +1; -- 40022; -- NPC: 832
 
-SET @NextDisplayID                                             =    40000;
 -- Display IDs
+SET @NextDisplayID                                             =    40000;
 SET @HobgoblinDisplay                                          =    32385; -- Cataclysm ID?
 SET @WorgenMaleDisplay                                         =    29422; -- Cataclysm ID?
 SET @WorgenFemaleDisplay                                       =    29423; -- Cataclysm ID?
@@ -332,8 +474,8 @@ SET @GoblinFemaleDisplay                                       =    @NextDisplay
 SET @GilneanMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1; -- 40023;
 SET @GilneanFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1; -- 40024;
 
-SET @NextDisplayExtraID                                        =    45424;
 -- CreatureDisplayInfoExtra
+SET @NextDisplayExtraID                                        =    45424;
 SET @LordHarfordDisplayExtra                                   =    24081; -- Cataclysm ID?
 SET @GallyLumpstainDisplayExtra                                =    24082; -- Cataclysm ID?
 SET @WorgenMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45424;
@@ -373,12 +515,29 @@ SET @LightforgedDraeneiFemaleDisplayExtra                      =    @NextDisplay
 SET @GoblinMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45566;
 SET @GoblinFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45567;
 
-SET @NextCreatureID                                            =    55273;
 -- creature_template
+SET @NextCreatureID                                            =    55273;
 SET @WorgenWildMaleCreatureID                                  =    @NextCreatureID := @NextCreatureID +1; -- 55274;
 SET @WorgenWildFemaleCreatureID                                =    @NextCreatureID := @NextCreatureID +1; -- 55275;
 SET @GilneanMaleCreatureID                                     =    @NextCreatureID := @NextCreatureID +1; -- 55276;
 SET @GilneanFemaleCreatureID                                   =    @NextCreatureID := @NextCreatureID +1; -- 55277;
+
+-- ChrRaces Flags
+SET @NPCOnlyFlag                                               =        1;
+SET @BarefootFlag                                              =        2;
+SET @CanMountFlag                                              =        4;
+SET @PlayableFlag                                              =        8;
+
+SET @HumanFlags                                                =                 @CanMountFlag | @PlayableFlag; -- 12
+SET @OrcFlags                                                  =                 @CanMountFlag | @PlayableFlag; -- 12
+SET @DwarfFlags                                                =                 @CanMountFlag | @PlayableFlag; -- 12
+SET @NightElfFlags                                             =                 @CanMountFlag;                 --  4 (no clue why Night Elf doesn't have the playable race flag)
+SET @UndeadFlags                                               =                 @CanMountFlag | @PlayableFlag; -- 12
+SET @TaurenFlags                                               = @BarefootFlag | @CanMountFlag | @PlayableFlag; -- 14
+SET @GnomeFlags                                                =                 @CanMountFlag | @PlayableFlag; -- 12
+SET @TrollFlags                                                = @BarefootFlag | @CanMountFlag | @PlayableFlag; -- 14
+SET @BloodElfFlags                                             =                 @CanMountFlag | @PlayableFlag; -- 12
+SET @DraeneiFlags                                              = @BarefootFlag | @CanMountFlag | @PlayableFlag; -- 14
 
 -- Exploration Sounds
 SET @HumanExplorationSound                                     =     4140;
@@ -503,17 +662,6 @@ SET @KulTiranRacial2                                           = @SpellJackOfAll
 SET @KulTiranRacial3                                           = @SpellBrushItOff;
 SET @KulTiranRacial4                                           = @SpellChildOfTheSea;
 SET @KulTiranRacial5                                           = @SpellRimeOfTheAncientMariner;
-SET @VoidElfRacial1                                            = @SpellChillOfNight;
-SET @VoidElfRacial2                                            = @SpellEntropicEmbrace;
-SET @VoidElfRacial3                                            = @SpellEtherealConnection;
-SET @VoidElfRacial4                                            = @SpellPreternaturalCalm;
-SET @VoidElfRacial5                                            = @SpellSpatialRift;
-SET @LightforgedDraeneiRacial1                                 = @SpellDemonbane;
-SET @LightforgedDraeneiRacial2                                 = @SpellForgeOfLight1;
-SET @LightforgedDraeneiRacial3                                 = @SpellForgeOfLight2;
-SET @LightforgedDraeneiRacial4                                 = @SpellHolyProvidence;
-SET @LightforgedDraeneiRacial5                                 = @SpellLightsJudgement;
-SET @LightforgedDraeneiRacial6                                 = @SpellLightsReckoning;
 -- SET @OgreRacial1
 -- SET @BrokenRacial1
 -- SET @NagaRacial1
@@ -529,10 +677,12 @@ SET @IconRocketJump                                             =  370769; -- Go
 SET @IconGoblinAchievement                                      =  463874; -- Goblin
 SET @IconWorgenAchievement                                      =  463876; -- Worgen
 SET @IconRunningWild                                            =  514641; -- Worgen
+SET @IconMagharDirewolf                                         = 1937816; -- Mag'har Orc
 SET @IconAncestralCall                                          = 2021574; -- Mag'har Orc
 SET @IconOpenSkies                                              = 2021575; -- Mag'har Orc
 SET @IconSavageBlood                                            = 2021576; -- Mag'har Orc
 SET @IconSympatheticVigor                                       = 2021577; -- Mag'har Orc
+SET @IconDarkIronCoreHound                                      =  236191; -- Dark Iron Dwarf
 SET @IconDungeonDelver                                          = 1786405; -- Dark Iron Dwarf
 SET @IconFireblood                                              = 1786406; -- Dark Iron Dwarf
 SET @IconForgedInFlames                                         = 1786407; -- Dark Iron Dwarf
@@ -542,7 +692,8 @@ SET @IconCityOfGold                                             = 1850547; -- Za
 SET @IconEmbraceTheLoa                                          = 1850548; -- Zandalari Troll
 SET @IconPterrodaxSwoop                                         = 1850549; -- Zandalari Troll
 SET @IconRegeneratin                                            = 1850550; -- Zandalari Troll
-SET @IconVulperaMount                                           = 3045400; -- Caravan Hyena
+SET @IconZandalariDirehorn                                      = 1869253; -- Zandalari Troll
+SET @IconCaravanHyena                                           = 3045400; -- Vulpera
 SET @IconAlpacaSaddlebags                                       = 3193421; -- Vulpera
 SET @IconBagOfTricks                                            = 3193416; -- Vulpera
 SET @IconFireResistance                                         = 3193417; -- Vulpera
@@ -550,33 +701,37 @@ SET @IconMakeCamp                                               = 3193418; -- Vu
 SET @IconNoseForTrouble                                         = 3193419; -- Vulpera
 SET @IconReturnToCamp                                           = 3193420; -- Vulpera
 SET @IconRummageYourBag                                         = 3193422; -- Vulpera
-SET @IconDragonTurtleBlue                                       =  656343; -- Dragon Turtle
-SET @IconDragonTurtlePurple                                     =  657918; -- Dragon Turtle
-SET @IconDragonTurtleGreen                                      =  657917; -- Dragon Turtle
-SET @IconDragonTurtleBlack                                      =  656342; -- Dragon Turtle
+SET @IconBlueDragonTurtle                                       =  656343; -- Pandaren
+SET @IconPurpleDragonTurtle                                     =  657918; -- Pandaren
+SET @IconGreenDragonTurtle                                      =  657917; -- Pandaren
+SET @IconBlackDragonTurtle                                      =  656342; -- Pandaren
 SET @IconBouncy                                                 =  572033; -- Pandaren
 SET @IconEpicurean                                              =  571692; -- Pandaren
 SET @IconGourmand                                               =  571693; -- Pandaren
 SET @IconInnerPeace                                             =  572034; -- Pandaren
 SET @IconQuakingPalm                                            =  572035; -- Pandaren
+SET @IconKulTiranCharger                                        = 2238243; -- Kul Tiran
 SET @IconBrushItOff                                             = 2447780; -- Kul Tiran
 SET @IconChildOfTheSea                                          = 2447781; -- Kul Tiran
 SET @IconHaymaker                                               = 2447782; -- Kul Tiran
 SET @IconJackOfAllTrades                                        = 2447783; -- Kul Tiran
 SET @IconRimeOfTheAncientMariner                                = 2447784; -- Kul Tiran
-SET @IconHMMooseMount                                           = 1757668; -- Highmountain Tauren
+SET @IconHighmountainThunderhoof                                = 1757668; -- Highmountain Tauren
 SET @IconBullRush                                               = 1723987; -- Highmountain Tauren
 SET @IconMountaineer                                            = 1723999; -- Highmountain Tauren
 SET @IconPrideOfIronhorn                                        = 1724002; -- Highmountain Tauren
 SET @IconRuggedTenacity                                         = 1724003; -- Highmountain Tauren
 SET @IconWasteNotWantNot                                        = 1724005; -- Highmountain Tauren
-SET @IconVoidElfStriderMount                                    =  156486; -- Void Elf
+SET @IconStarcursedVoidstrider                                  = 1786404; -- Void Elf
 SET @IconChillOfNight                                           = 1723989; -- Void Elf
 SET @IconEntropicEmbrace                                        = 1723992; -- Void Elf
 SET @IconEtherealConnection                                     = 1723993; -- Void Elf
 SET @IconPreternaturalCalm                                      = 1724001; -- Void Elf
 SET @IconSpatialRift                                            = 1724004; -- Void Elf
-SET @IconLightforgedElekk                                       = 1713157; -- Lightforged Draenei
+SET @IconLightforgedFelcrusher                                  = 1713157; -- Lightforged Draenei
+SET @IconBlessedFelcrusher                                      = 1715044; -- Lightforged Draenei
+SET @IconAvengingFelcrusher                                     = 1715045; -- Lightforged Draenei
+SET @IconGloriousFelcrusher                                     = @IconLightforgedFelcrusher; -- Lightforged Draenei
 SET @IconDemonbane                                              = 1723990; -- Lightforged Draenei
 SET @IconForgeOfLight                                           = 1723995; -- Lightforged Draenei
 SET @IconHolyProvidence                                         = 1723996; -- Lightforged Draenei
@@ -621,6 +776,10 @@ SET @DruidTravelKulTiranModel                                  =    @NextModelID
 SET @DruidAquaticKulTiranModel                                 =    @NextModelID := @NextModelID +1; -- 4887;
 
 -- Druid Form Display IDs
+SET @DruidCatTaurenDisplay                                     =   8571;
+SET @DruidBearTaurenDisplay                                    =   2289;
+SET @DruidFlightFormTaurenDisplay                              =   20872;
+SET @DruidSwiftFlightFormTaurenDisplay                         =   21244;
 SET @DruidBearWorgenDisplay                                    =   @NextDisplayID := @NextDisplayID +1; -- 33650;
 SET @DruidBearWorgenBlackDisplay                               =   @NextDisplayID := @NextDisplayID +1; -- 33651;
 SET @DruidBearWorgenBrownDisplay                               =   @NextDisplayID := @NextDisplayID +1; -- 33652;
@@ -706,6 +865,23 @@ SET @DruidAquaticKulTiranDarkDisplay                           =   @NextDisplayI
 SET @DruidAquaticKulTiranGreenDisplay                          =   @NextDisplayID := @NextDisplayID +1; -- 94209;
 SET @DruidAquaticKulTiranLightDisplay                          =   @NextDisplayID := @NextDisplayID +1; -- 94210;
 SET @DruidTreeKulTiranDisplay                                  =   @NextDisplayID := @NextDisplayID +1; -- 94214;
+
+-- Pseudo-druid Forms
+SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94137;
+SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94138;
+SET @DruidBearSkinBrownDiseased                                =   @NextDisplayID := @NextDisplayID +1; -- 94139;
+SET @DruidBearSkinWhiteDiseased                                =   @NextDisplayID := @NextDisplayID +1; -- 94140;
+SET @DruidEntSkinDiseased                                      =   @NextDisplayID := @NextDisplayID +1; -- 94141;
+SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94142;
+SET @DruidSharkSkinPurple                                      =   @NextDisplayID := @NextDisplayID +1; -- 94143;
+SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94144;
+SET @DruidLasherOrchidSkinGreen                                =   @NextDisplayID := @NextDisplayID +1; -- 94145;
+SET @DruidLasherOrchidSkinBrown                                =   @NextDisplayID := @NextDisplayID +1; -- 94146;
+SET @DruidLasherOrchidSkinPurple                               =   @NextDisplayID := @NextDisplayID +1; -- 94147;
+SET @DruidEntSkinDead                                          =   @NextDisplayID := @NextDisplayID +1; -- 94228;
+SET @DragonWhelpSkinDiseasedDisplay                            =    10007;
+SET @PolarBearCubSkinDisplay                                   =    23946;
+SET @NorthrendPenguin01Display                                 =    24978;
 
 -- Weapon Skills
 SET @SwordSkill                                                =       43;
@@ -999,20 +1175,7 @@ SET @MechanostriderPilotingDwarfSkillRaceClass                 =      501; -- Dw
 
 -- Mount Models
 SET @HorseModel                                                =       65;
-SET @GoblinTrikeModel                                          =     3623;
-SET @GoblinTurboTrikeModel                                     =     3624;
-SET @CaravanHyena1Model                                        =     @NextModelID := @NextModelID +1; -- 3628; -- Vacant slot
-SET @CaravanHyena2Model                                        =     @NextModelID := @NextModelID +1; -- 3629; -- Vacant slot
-SET @DragonTurtleModel                                         =     @NextModelID := @NextModelID +1; -- 3630; -- Vacant slot
-SET @HighmountainThunderhoofModel                              =     @NextModelID := @NextModelID +1; -- 3631; -- Vacant slot
-SET @LightforgedFelcrusherModel                                =     @NextModelID := @NextModelID +1; -- 3632; -- Vacant slot
-SET @NightborneManasaberModel                                  =     @NextModelID := @NextModelID +1;
-SET @StarcursedVoidstriderModel                                =     @NextModelID := @NextModelID +1;
 SET @MechagonMechanostriderModel                               =     @NextModelID := @NextModelID +1;
-SET @MagharDirewolfModel                                       =     @NextModelID := @NextModelID +1;
-SET @KulTiranChargerModel                                      =     @NextModelID := @NextModelID +1;
-SET @DarkIronCoreHoundModel                                    =     @NextModelID := @NextModelID +1;
-SET @ZandalariDirehornModel                                    =     @NextModelID := @NextModelID +1;
 SET @CrimsonVorquinModel                                       =     @NextModelID := @NextModelID +1;
 SET @SapphireVorquinModel                                      =     @NextModelID := @NextModelID +1;
 SET @ObsidianVorquinModel                                      =     @NextModelID := @NextModelID +1;
@@ -1031,73 +1194,64 @@ SET @EmpyreanGalestriderModel                                  =     @NextModelI
 SET @SwiftUmberGalestriderModel                                =     @NextModelID := @NextModelID +1;
 SET @SwiftStormyGalestriderModel                               =     @NextModelID := @NextModelID +1;
 SET @SwiftEmpyreanGalestriderModel                             =     @NextModelID := @NextModelID +1;
+SET @DragonTurtleModel                                         =     @NextModelID := @NextModelID +1;
+SET @CaravanHyenaModel                                         =     @NextModelID := @NextModelID +1;
+SET @CaravanHyenaNoCanopyModel                                 =     @NextModelID := @NextModelID +1;
+SET @GoblinTrikeModel                                          =     3623; -- Cataclysm ID?
+SET @GoblinTurboTrikeModel                                     =     3624; -- Cataclysm ID?
+SET @MagharDirewolfModel                                       =     @NextModelID := @NextModelID +1;
+SET @DarkIronCoreHoundModel                                    =     @NextModelID := @NextModelID +1;
+SET @ZandalariDirehornModel                                    =     @NextModelID := @NextModelID +1;
+SET @KulTiranChargerModel                                      =     @NextModelID := @NextModelID +1;
+SET @HighmountainThunderhoofModel                              =     @NextModelID := @NextModelID +1;
+SET @LightforgedFelcrusherModel                                =     @NextModelID := @NextModelID +1;
+SET @NightborneManasaberModel                                  =     @NextModelID := @NextModelID +1;
+SET @StarcursedVoidstriderModel                                =     @NextModelID := @NextModelID +1;
 
 -- Mount Display IDs
+SET @MechagonMechanostriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;
+SET @CrimsonVorquinDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @SapphireVorquinDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @ObsidianVorquinDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @BronzeVorquinDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @GuardianVorquinDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @ArmoredVorquinLeystriderDisplay                           =    @NextDisplayID := @NextDisplayID +1;
+SET @MajesticArmoredVorquinDisplay                             =    @NextDisplayID := @NextDisplayID +1;
+SET @SlatestoneRamolithDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
+SET @RootstalkerGrimlynxDisplay                                =    @NextDisplayID := @NextDisplayID +1;
+SET @DuskGrimlynxDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @IvoryGrimlynxDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @FierceGrimlynxDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @UmberGalestriderDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @StormyGalestriderDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @EmpyreanGalestriderDisplay                                =    @NextDisplayID := @NextDisplayID +1;
+SET @SwiftUmberGalestriderDisplay                              =    @NextDisplayID := @NextDisplayID +1;
+SET @SwiftStormyGalestriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;
+SET @SwiftEmpyreanGalestriderDisplay                           =    @NextDisplayID := @NextDisplayID +1;
+SET @BlueDragonTurtleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @PurpleDragonTurtleDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
+SET @GreenDragonTurtleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @BlackDragonTurtleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @CaravanHyenaDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @CaravanHyenaNoCanopyDisplay                               =    @NextDisplayID := @NextDisplayID +1;
 SET @GoblinTrikeDisplay                                        =    35249; -- Cataclysm ID?
 SET @GoblinTurboTrikeDisplay                                   =    35250; -- Cataclysm ID?
 SET @MountainHorseDisplay                                      =    39095; -- black, Cataclysm ID?
 SET @SwiftMountainHorseDisplay                                 =    39096; -- brown, Cataclysm ID?
-SET @CaravanHyena1Display                                      =    @NextModelID := @NextModelID +1; -- 94211; -- vacant slot
-SET @CaravanHyena2Display                                      =    @NextModelID := @NextModelID +1; -- 94212; -- vacant slot
-SET @DragonTurtleBlueDisplay                                   =    @NextModelID := @NextModelID +1; -- 94228; -- vacant slot
-SET @DragonTurtlePurpleDisplay                                 =    @NextModelID := @NextModelID +1; -- 94229; -- vacant slot
-SET @DragonTurtleGreenDisplay                                  =    @NextModelID := @NextModelID +1; -- 94230; -- vacant slot
-SET @DragonTurtleBlackDisplay                                  =    @NextModelID := @NextModelID +1; -- 94231; -- vacant slot
-SET @HighmountainThunderhoofDisplay                            =    @NextModelID := @NextModelID +1; -- 94232; -- vacant slot
-SET @LightforgedFelcrusherPurpleDisplay                        =    @NextModelID := @NextModelID +1; -- 94233; -- vacant slot
-SET @LightforgedFelcrusherBlueDisplay                          =    @NextModelID := @NextModelID +1; -- 94234; -- vacant slot
-SET @LightforgedFelcrusherDarkDisplay                          =    @NextModelID := @NextModelID +1; -- 94235; -- vacant slot
-SET @LightforgedFelcrusherHolyDisplay                          =    @NextModelID := @NextModelID +1; -- 94236; -- vacant slot
-SET @NightborneManasaberDisplay                                =    @NextModelID := @NextModelID +1;
-SET @StarcursedVoidstriderDisplay                              =    @NextModelID := @NextModelID +1;
-SET @MechagonMechanostriderDisplay                             =    @NextModelID := @NextModelID +1;
-SET @MagharDirewolfDisplay                                     =    @NextModelID := @NextModelID +1;
-SET @KulTiranChargerDisplay                                    =    @NextModelID := @NextModelID +1;
-SET @DarkIronCoreHoundDisplay                                  =    @NextModelID := @NextModelID +1;
-SET @ZandalariDirehornDisplay                                  =    @NextModelID := @NextModelID +1;
-SET @CrimsonVorquinDisplay                                     =    @NextModelID := @NextModelID +1;
-SET @SapphireVorquinDisplay                                    =    @NextModelID := @NextModelID +1;
-SET @ObsidianVorquinDisplay                                    =    @NextModelID := @NextModelID +1;
-SET @BronzeVorquinDisplay                                      =    @NextModelID := @NextModelID +1;
-SET @GuardianVorquinDisplay                                    =    @NextModelID := @NextModelID +1;
-SET @ArmoredVorquinLeystriderDisplay                           =    @NextModelID := @NextModelID +1;
-SET @MajesticArmoredVorquinDisplay                             =    @NextModelID := @NextModelID +1;
-SET @SlatestoneRamolithDisplay                                 =    @NextModelID := @NextModelID +1;
-SET @RootstalkerGrimlynxDisplay                                =    @NextModelID := @NextModelID +1;
-SET @DuskGrimlynxDisplay                                       =    @NextModelID := @NextModelID +1;
-SET @IvoryGrimlynxDisplay                                      =    @NextModelID := @NextModelID +1;
-SET @FierceGrimlynxDisplay                                     =    @NextModelID := @NextModelID +1;
-SET @UmberGalestriderDisplay                                   =    @NextModelID := @NextModelID +1;
-SET @StormyGalestriderDisplay                                  =    @NextModelID := @NextModelID +1;
-SET @EmpyreanGalestriderDisplay                                =    @NextModelID := @NextModelID +1;
-SET @SwiftUmberGalestriderDisplay                              =    @NextModelID := @NextModelID +1;
-SET @SwiftStormyGalestriderDisplay                             =    @NextModelID := @NextModelID +1;
-SET @SwiftEmpyreanGalestriderDisplay                           =    @NextModelID := @NextModelID +1;
+SET @MagharDirewolfDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @DarkIronCoreHoundDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @ZandalariDirehornDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @KulTiranChargerDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @HighmountainThunderhoofDisplay                            =    @NextDisplayID := @NextDisplayID +1;
+SET @LightforgedFelcrusherDisplay                              =    @NextDisplayID := @NextDisplayID +1;
+SET @BlessedFelcrusherDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @AvengingFelcrusherDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
+SET @GloriousFelcrusherDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
+SET @NightborneManasaberDisplay                                =    @NextDisplayID := @NextDisplayID +1;
+SET @StarcursedVoidstriderDisplay                              =    @NextDisplayID := @NextDisplayID +1;
 
 -- Creature IDs
-SET @GobberCreatureID                                          =    36613; -- Cataclysm ID
-SET @GoblinTrikeCreatureID                                     =    46754; -- Cataclysm ID
-SET @GoblinTurboTrikeCreatureID                                =    46755; -- Cataclysm ID
-SET @MountainHorseCreatureID                                   =    55272; -- Cataclysm ID
-SET @SwiftMountainHorseCreatureID                              =    55273; -- Cataclysm ID
-SET @CaravanHyena1CreatureID                                   =   @NextCreatureID := @NextCreatureID +1; -- 182781; -- vacant slot
-SET @CaravanHyena2CreatureID                                   =   @NextCreatureID := @NextCreatureID +1; -- 182782; -- vacant slot
-SET @DragonTurtleBlueCreatureID                                =   @NextCreatureID := @NextCreatureID +1; -- 182783; -- vacant slot
-SET @DragonTurtlePurpleCreatureID                              =   @NextCreatureID := @NextCreatureID +1; -- 182784; -- vacant slot
-SET @DragonTurtleGreenCreatureID                               =   @NextCreatureID := @NextCreatureID +1; -- 182785; -- vacant slot
-SET @DragonTurtleBlackCreatureID                               =   @NextCreatureID := @NextCreatureID +1; -- 182786; -- vacant slot
-SET @HighmountainThunderhoofCreatureID                         =   @NextCreatureID := @NextCreatureID +1; -- 182787; -- vacant slot
-SET @LightforgedFelcrusherPurpleCreatureID                     =   @NextCreatureID := @NextCreatureID +1; -- 182788; -- vacant slot
-SET @LightforgedFelcrusherBlueCreatureID                       =   @NextCreatureID := @NextCreatureID +1; -- 182789; -- vacant slot
-SET @LightforgedFelcrusherDarkCreatureID                       =   @NextCreatureID := @NextCreatureID +1; -- 182790; -- vacant slot
-SET @LightforgedFelcrusherHolyCreatureID                       =   @NextCreatureID := @NextCreatureID +1; -- 182791; -- vacant slot
-SET @NightborneManasaberCreatureID                             =   @NextCreatureID := @NextCreatureID +1;
-SET @StarcursedVoidstriderCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
-SET @MagharDirewolfCreatureID                                  =   @NextCreatureID := @NextCreatureID +1;
-SET @KulTiranChargerCreatureID                                 =   @NextCreatureID := @NextCreatureID +1;
-SET @DarkIronCoreHoundCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
-SET @ZandalariDirehornCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
 SET @CrimsonVorquinCreatureID                                  =   @NextCreatureID := @NextCreatureID +1;
 SET @SapphireVorquinCreatureID                                 =   @NextCreatureID := @NextCreatureID +1;
 SET @ObsidianVorquinCreatureID                                 =   @NextCreatureID := @NextCreatureID +1;
@@ -1116,30 +1270,30 @@ SET @EmpyreanGalestriderCreatureID                             =   @NextCreature
 SET @SwiftUmberGalestriderCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
 SET @SwiftStormyGalestriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
 SET @SwiftEmpyreanGalestriderCreatureID                        =   @NextCreatureID := @NextCreatureID +1;
+SET @BlueDragonTurtleCreatureID                                =   @NextCreatureID := @NextCreatureID +1;
+SET @PurpleDragonTurtleCreatureID                              =   @NextCreatureID := @NextCreatureID +1;
+SET @GreenDragonTurtleCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
+SET @BlackDragonTurtleCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
+SET @CaravanHyenaCreatureID                                    =   @NextCreatureID := @NextCreatureID +1;
+SET @CaravanHyenaNoCanopyCreatureID                            =   @NextCreatureID := @NextCreatureID +1;
+SET @GoblinTrikeCreatureID                                     =    46754; -- Cataclysm ID
+SET @GoblinTurboTrikeCreatureID                                =    46755; -- Cataclysm ID
+SET @MountainHorseCreatureID                                   =    55272; -- Cataclysm ID
+SET @SwiftMountainHorseCreatureID                              =    55273; -- Cataclysm ID
+SET @MagharDirewolfCreatureID                                  =   @NextCreatureID := @NextCreatureID +1;
+SET @DarkIronCoreHoundCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
+SET @ZandalariDirehornCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
+SET @KulTiranChargerCreatureID                                 =   @NextCreatureID := @NextCreatureID +1;
+SET @HighmountainThunderhoofCreatureID                         =   @NextCreatureID := @NextCreatureID +1;
+SET @LightforgedFelcrusherCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
+SET @BlessedFelcrusherCreatureID                               =   @NextCreatureID := @NextCreatureID +1;
+SET @AvengingFelcrusherCreatureID                              =   @NextCreatureID := @NextCreatureID +1;
+SET @GloriousFelcrusherCreatureID                              =   @NextCreatureID := @NextCreatureID +1;
+SET @NightborneManasaberCreatureID                             =   @NextCreatureID := @NextCreatureID +1;
+SET @StarcursedVoidstriderCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
 
 -- Mount Items
-SET @GoblinTrikeItem                                           =    62461; -- Cataclysm ID
-SET @GoblinTurboTrikeItem                                      =    62462; -- Cataclysm ID
-SET @MountainHorseItem                                         =    73838; -- Cataclysm ID
-SET @SwiftMountainHorseItem                                    =    73839; -- Cataclysm ID
-SET @CaravanHyena1Item                                         =   174066; -- BfA ID
-SET @CaravanHyena2Item                                         =   174065; -- Uses BfA ID of Titan Core
-SET @DragonTurtleBlueItem                                      =    91009; -- MoP ID
-SET @DragonTurtlePurpleItem                                    =    91006; -- MoP ID
-SET @DragonTurtleGreenItem                                     =    91004; -- MoP ID
-SET @DragonTurtleBlackItem                                     =    91008; -- MoP ID
-SET @NightborneManasaberItem                                   =   156487; -- Legion ID
-SET @HighmountainThunderhoofItem                               =   155662; -- Legion ID
-SET @LightforgedFelcrusherHolyItem                             =   155656; -- Legion ID
-SET @LightforgedFelcrusherPurpleItem                           =   174067; -- vacant slot
-SET @LightforgedFelcrusherBlueItem                             =   174068; -- vacant slot
-SET @LightforgedFelcrusherDarkItem                             =   174069; -- vacant slot
-SET @StarcursedVoidstriderItem                                 =   156486; -- Legion ID
-SET @MagharDirewolfItem                                        =   161330; -- BfA ID
-SET @DarkIronCoreHoundItem                                     =   161331; -- BfA ID
-SET @KulTiranChargerItem                                       =   164762; -- BfA ID
 SET @MechagonMechanostriderItem                                =   174067; -- BfA ID
-SET @ZandalariDirehornItem                                     =   157870; -- BfA ID
 SET @CrimsonVorquinItem                                        =   201702; -- Dragonflight ID
 SET @SapphireVorquinItem                                       =   201704; -- Dragonflight ID
 SET @ObsidianVorquinItem                                       =   201719; -- Dragonflight ID
@@ -1158,31 +1312,32 @@ SET @EmpyreanGalestriderItem                                   =   269681; -- Fo
 SET @SwiftUmberGalestriderItem                                 =   274933; -- Forever ID
 SET @SwiftStormyGalestriderItem                                =   269678; -- Forever ID
 SET @SwiftEmpyreanGalestriderItem                              =   269671; -- Forever ID
+SET @BlueDragonTurtleItem                                      =    91009; -- MoP ID
+SET @PurpleDragonTurtleItem                                    =    91006; -- MoP ID
+SET @GreenDragonTurtleItem                                     =    91004; -- MoP ID
+SET @BlackDragonTurtleItem                                     =    91008; -- MoP ID
+SET @CaravanHyenaItem                                          =   174066; -- BfA ID
+SET @CaravanHyenaNoCanopyItem                                  =   174065; -- Uses BfA ID of Titan Core
+SET @GoblinTrikeItem                                           =    62461; -- Cataclysm ID
+SET @GoblinTurboTrikeItem                                      =    62462; -- Cataclysm ID
+SET @MountainHorseItem                                         =    73838; -- Cataclysm ID
+SET @SwiftMountainHorseItem                                    =    73839; -- Cataclysm ID
+SET @MagharDirewolfItem                                        =   161330; -- BfA ID
+SET @DarkIronCoreHoundItem                                     =   161331; -- BfA ID
+SET @ZandalariDirehornItem                                     =   157870; -- BfA ID
+SET @PalehideDirehornItem                                      =   163589; -- BfA ID
+SET @KulTiranChargerItem                                       =   164762; -- BfA ID
+SET @HighmountainThunderhoofItem                               =   155662; -- Legion ID
+SET @LightforgedFelcrusherItem                                 =   155656; -- Legion ID
+SET @BlessedFelcrusherItem                                     =   153043; -- Legion ID
+SET @AvengingFelcrusherItem                                    =   153044; -- Legion ID
+SET @GloriousFelcrusherItem                                    =   153042; -- Legion ID
+SET @NightborneManasaberItem                                   =   156487; -- Legion ID
+SET @StarcursedVoidstriderItem                                 =   156486; -- Legion ID
 
-SET @NextItemDisplayID                                         =   132261;
 -- Mount Item Display ID
-SET @GoblinTrikeItemDisplay                                    =   134237; -- Cataclysm ID?
-SET @GoblinTurboTrikeItemDisplay                               =   134238; -- Cataclysm ID?
-SET @MountainHorseItemDisplay                                  =   132261; -- Cataclysm ID?
-SET @SwiftMountainHorseItemDisplay                             =   @MountainHorseItemDisplay;
-SET @CaravanHyena1ItemDisplay                                  =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132262; -- vacant slot
-SET @CaravanHyena2ItemDisplay                                  =   @CaravanHyena1ItemDisplay;
-SET @DragonTurtleBlueItemDisplay                               =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132263; -- vacant slot
-SET @DragonTurtlePurpleItemDisplay                             =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132264; -- vacant slot
-SET @DragonTurtleGreenItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132265; -- vacant slot
-SET @DragonTurtleBlackItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132266; -- vacant slot
-SET @HighmountainThunderhoofItemDisplay                        =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132267; -- vacant slot
-SET @LightforgedFelcrusherHolyItemDisplay                      =   @NextItemDisplayID := @NextItemDisplayID +1; -- 132268; -- vacant slot
-SET @LightforgedFelcrusherPurpleItemDisplay                    =   @LightforgedFelcrusherHolyItemDisplay;
-SET @LightforgedFelcrusherBlueItemDisplay                      =   @LightforgedFelcrusherHolyItemDisplay;
-SET @LightforgedFelcrusherDarkItemDisplay                      =   @LightforgedFelcrusherHolyItemDisplay;
-SET @NightborneManasaberItemDisplay                            =   @NextItemDisplayID := @NextItemDisplayID +1;
-SET @StarcursedVoidstriderItemDisplay                          =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @NextItemDisplayID                                         =   132261;
 SET @MechagonMechanostriderItemDisplay                         =   @NextItemDisplayID := @NextItemDisplayID +1;
-SET @MagharDirewolfItemDisplay                                 =   @NextItemDisplayID := @NextItemDisplayID +1;
-SET @KulTiranChargerItemDisplay                                =   @NextItemDisplayID := @NextItemDisplayID +1;
-SET @DarkIronCoreHoundItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
-SET @ZandalariDirehornItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
 SET @CrimsonVorquinItemDisplay                                 =   @NextItemDisplayID := @NextItemDisplayID +1;
 SET @SapphireVorquinItemDisplay                                =   @NextItemDisplayID := @NextItemDisplayID +1;
 SET @ObsidianVorquinItemDisplay                                =   @NextItemDisplayID := @NextItemDisplayID +1;
@@ -1201,48 +1356,70 @@ SET @EmpyreanGalestriderItemDisplay                            =   @NextItemDisp
 SET @SwiftUmberGalestriderItemDisplay                          =   @NextItemDisplayID := @NextItemDisplayID +1;
 SET @SwiftStormyGalestriderItemDisplay                         =   @NextItemDisplayID := @NextItemDisplayID +1;
 SET @SwiftEmpyreanGalestriderItemDisplay                       =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @BlueDragonTurtleItemDisplay                               =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @PurpleDragonTurtleItemDisplay                             =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @GreenDragonTurtleItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @BlackDragonTurtleItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @CaravanHyenaItemDisplay                                   =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @CaravanHyenaNoCanopyItemDisplay                           =   @CaravanHyenaItemDisplay; -- Same icon
+SET @GoblinTrikeItemDisplay                                    =   134237; -- Cataclysm ID?
+SET @GoblinTurboTrikeItemDisplay                               =   134238; -- Cataclysm ID?
+SET @MountainHorseItemDisplay                                  =   132261; -- Cataclysm ID?
+SET @SwiftMountainHorseItemDisplay                             =   @MountainHorseItemDisplay; -- Same icon
+SET @MagharDirewolfItemDisplay                                 =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @DarkIronCoreHoundItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @ZandalariDirehornItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @KulTiranChargerItemDisplay                                =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @HighmountainThunderhoofItemDisplay                        =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @LightforgedFelcrusherItemDisplay                          =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @BlessedFelcrusherItemDisplay                              =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @AvengingFelcrusherItemDisplay                             =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @GloriousFelcrusherItemDisplay                             =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @NightborneManasaberItemDisplay                            =   @NextItemDisplayID := @NextItemDisplayID +1;
+SET @StarcursedVoidstriderItemDisplay                          =   @NextItemDisplayID := @NextItemDisplayID +1;
 
 -- Mount Spells
-SET @GoblinTrike                                               =    87090; -- Cataclysm ID
-SET @GoblinTurboTrike                                          =    87091; -- Cataclysm ID
-SET @MountainHorse                                             =   103195; -- Cataclysm ID
-SET @SwiftMountainHorse                                        =   103196; -- Cataclysm ID
-SET @CaravanHyena1                                             =   306423; -- BfA ID
-SET @CaravanHyena2                                             =   306424; -- Uses BfA ID of Unlocking
-SET @DragonTurtleBlue                                          =   127287; -- MoP ID
-SET @DragonTurtlePurple                                        =   127289; -- MoP ID
-SET @DragonTurtleGreen                                         =   120395; -- MoP ID
-SET @DragonTurtleBlack                                         =   127286; -- MoP ID
-SET @HighmountainThunderhoof                                   =   258060; -- Legion ID
-SET @LightforgedFelcrusherHoly                                 =   258022; -- Legion ID
-SET @LightforgedFelcrusherPurple                               =   306425; -- vacant slot
-SET @LightforgedFelcrusherBlue                                 =   306426; -- vacant slot
-SET @LightforgedFelcrusherDark                                 =   306427; -- vacant slot
-SET @DarkIronCoreHound                                         =   271646; -- BfA ID
-SET @NightborneManasaber                                       =   258845; -- Legion ID
-SET @StarcursedVoidstrider                                     =   259202; -- Legion ID
-SET @ZandalariDirehorn                                         =   263707; -- BfA ID
-SET @MagharDirewolf                                            =   267274; -- BfA ID
-SET @KulTiranCharger                                           =   282682; -- BfA ID
-SET @MechagonMechanostrider                                    =   305592; -- BfA ID
-SET @CrimsonVorquin                                            =   394216; -- Dragonflight ID
-SET @SapphireVorquin                                           =   394218; -- Dragonflight ID
-SET @ObsidianVorquin                                           =   394220; -- Dragonflight ID
-SET @BronzeVorquin                                             =   394219; -- Dragonflight ID
-SET @GuardianVorquin                                           =   384963; -- Dragonflight ID
-SET @ArmoredVorquinLeystrider                                  =   385134; -- Dragonflight ID
-SET @MajesticArmoredVorquin                                    =   385115; -- Dragonflight ID
-SET @SlatestoneRamolith                                        =   449415; -- TWW ID
-SET @RootstalkerGrimlynx                                       =  1243597; -- Midnight ID
-SET @DuskGrimlynx                                              =  1243582; -- Midnight ID
-SET @IvoryGrimlynx                                             =  1243598; -- Midnight ID
-SET @FierceGrimlynx                                            =  1243593; -- Midnight ID
-SET @UmberGalestrider                                          =  1295678; -- Forever ID
-SET @StormyGalestrider                                         =  1286026; -- Forever ID
-SET @EmpyreanGalestrider                                       =  1286024; -- Forever ID
-SET @SwiftUmberGalestrider                                     =  1295683; -- Forever ID
-SET @SwiftStormyGalestrider                                    =  1286022; -- Forever ID
-SET @SwiftEmpyreanGalestrider                                  =  1286011; -- Forever ID
+SET @SpellMechagonMechanostrider                               =   305592; -- BfA spell ID
+SET @SpellCrimsonVorquin                                       =   394216; -- Dragonflight spell ID
+SET @SpellSapphireVorquin                                      =   394218; -- Dragonflight spell ID
+SET @SpellObsidianVorquin                                      =   394220; -- Dragonflight spell ID
+SET @SpellBronzeVorquin                                        =   394219; -- Dragonflight spell ID
+SET @SpellGuardianVorquin                                      =   384963; -- Dragonflight spell ID
+SET @SpellArmoredVorquinLeystrider                             =   385134; -- Dragonflight spell ID
+SET @SpellMajesticArmoredVorquin                               =   385115; -- Dragonflight spell ID
+SET @SpellSlatestoneRamolith                                   =   449415; -- TWW spell ID
+SET @SpellRootstalkerGrimlynx                                  =  1243597; -- Midnight spell ID
+SET @SpellDuskGrimlynx                                         =  1243582; -- Midnight spell ID
+SET @SpellIvoryGrimlynx                                        =  1243598; -- Midnight spell ID
+SET @SpellFierceGrimlynx                                       =  1243593; -- Midnight spell ID
+SET @SpellUmberGalestrider                                     =  1295678; -- Forever spell ID
+SET @SpellStormyGalestrider                                    =  1286026; -- Forever spell ID
+SET @SpellEmpyreanGalestrider                                  =  1286024; -- Forever spell ID
+SET @SpellSwiftUmberGalestrider                                =  1295683; -- Forever spell ID
+SET @SpellSwiftStormyGalestrider                               =  1286022; -- Forever spell ID
+SET @SpellSwiftEmpyreanGalestrider                             =  1286011; -- Forever spell ID
+SET @SpellBlueDragonTurtle                                     =   127287; -- MoP spell ID
+SET @SpellPurpleDragonTurtle                                   =   127289; -- MoP spell ID
+SET @SpellGreenDragonTurtle                                    =   120395; -- MoP spell ID
+SET @SpellBlackDragonTurtle                                    =   127286; -- MoP spell ID
+SET @SpellCaravanHyena                                         =   306423; -- BfA spell ID
+SET @SpellCaravanHyenaNoCanopy                                 =   306424; -- Uses BfA spell ID of Unlocking
+SET @SpellGoblinTrike                                          =    87090; -- Cataclysm spell ID
+SET @SpellGoblinTurboTrike                                     =    87091; -- Cataclysm spell ID
+SET @SpellMountainHorse                                        =   103195; -- Cataclysm spell ID
+SET @SpellSwiftMountainHorse                                   =   103196; -- Cataclysm spell ID
+SET @SpellMagharDirewolf                                       =   267274; -- BfA spell ID
+SET @SpellDarkIronCoreHound                                    =   271646; -- BfA spell ID
+SET @SpellZandalariDirehorn                                    =   263707; -- BfA spell ID
+SET @SpellPalehideDirehorn                                     =   279474; -- BfA spell ID
+SET @SpellKulTiranCharger                                      =   282682; -- BfA spell ID
+SET @SpellHighmountainThunderhoof                              =   258060; -- Legion spell ID
+SET @SpellLightforgedFelcrusher                                =   258022; -- Legion spell ID
+SET @SpellBlessedFelcrusher                                    =   254258; -- Legion spell ID
+SET @SpellAvengingFelcrusher                                   =   254259; -- Legion spell ID
+SET @SpellGloriousFelcrusher                                   =   254069; -- Legion spell ID
+SET @SpellNightborneManasaber                                  =   258845; -- Legion spell ID
+SET @SpellStarcursedVoidstrider                                =   259202; -- Legion spell ID
 
 -- Faction Masks
 SET @VanillaAllianceMask                                       = @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;
@@ -1290,14 +1467,10 @@ SET @AlliancePandarenFaction                                   =     1353; -- Tu
 SET @AlliancePandarenPlayer                                    =     1178; -- Vacant slot
 SET @HordePandarenFaction                                      =     1352; -- Huojin Pandaren (MoP ID)
 SET @HordePandarenPlayer                                       =     1180; -- Vacant slot
-SET @VoidElfFaction                                            =     2170; -- Argussion Reach (Legion ID)
-SET @VoidElfPlayer                                             =     2229; -- Legion ID
 SET @HighmountainTaurenFaction                                 =     1828; -- Highmountain Tribe (Legion ID)
 SET @HighmountainTaurenPlayer                                  =     2230; -- Legion ID
 SET @NightborneFaction                                         =     1859; -- The Nightfallen (Legion ID)
 SET @NightbornePlayer                                          =     2231; -- Legion ID
-SET @LightforgedDraeneiFaction                                 =     2165; -- Army of the Light (Legion ID)
-SET @LightforgedDraeneiPlayer                                  =     2232; -- Legion ID
 SET @ZandalariTrollFaction                                     =     2103; -- Zandalari Empire (BfA ID)
 SET @ZandalariTrollPlayer                                      =     1174; -- Vacant slot
 SET @KulTiranFaction                                           =     2160; -- Proudmoore Admiralty (BfA ID)
@@ -1399,6 +1572,10 @@ SET @Level80AchievementDescriptionruRU                         = 'Достигн
 SET @Level80AchievementDescriptionptPT                         = '';
 SET @Level80AchievementDescriptionptBR                         = '';
 SET @Level80AchievementDescriptionitIT                         = '';
+SET @Level80AchievementDescriptionUnk1                         = '';
+SET @Level80AchievementDescriptionUnk2                         = '';
+SET @Level80AchievementDescriptionUnk3                         = '';
+SET @Level80AchievementDescriptionUnk4                         = '';
 
 -- Achievement Criteria
 SET @GoblinCriteria1                                           =    13471; -- Achievement 1005: Know Thy Enemy
@@ -2413,6 +2590,10 @@ SET @RacialNameruRU                                            = 'Расовая
 SET @RacialNamejaJP                                            =  '';
 SET @RacialNameptPT                                            =  '';
 SET @RacialNameitIT                                            =  '';
+SET @RacialNameUnk1                                            =  '';
+SET @RacialNameUnk2                                            =  '';
+SET @RacialNameUnk3                                            =  '';
+SET @RacialNameUnk4                                            =  '';
 
 SET @RacialPassiveNameenUS                                     = 'Racial Passive';
 SET @RacialPassiveNamekoKR                                     = '종족 지속효과';
@@ -2426,6 +2607,223 @@ SET @RacialPassiveNameruRU                                     = 'Расовая
 SET @RacialPassiveNamejaJP                                     =  '';
 SET @RacialPassiveNameptPT                                     =  '';
 SET @RacialPassiveNameitIT                                     =  '';
+SET @RacialPassiveNameUnk1                                     =  '';
+SET @RacialPassiveNameUnk2                                     =  '';
+SET @RacialPassiveNameUnk3                                     =  '';
+SET @RacialPassiveNameUnk4                                     =  '';
+
+SET @MountSpeedNameenUS                                     = 'Increases ground speed by $s3%.';
+SET @MountSpeedNamekoKR                                     = '이동 속도 $s3%만큼 증가';
+SET @MountSpeedNamefrFR                                     = 'Augmente la vitesse au sol de $s3%.';
+SET @MountSpeedNamedeDE                                     = 'Erhöht Tempo am Boden um $s3%.';
+SET @MountSpeedNamezhCN                                     = '地面速度提高$s3%。';
+SET @MountSpeedNamezhTW                                     = '地面移動速度提高$s3%。';
+SET @MountSpeedNameesES                                     = 'Aumenta la velocidad por tierra un $s3%.';
+SET @MountSpeedNameesMX                                     = 'Aumenta la velocidad por tierra un $s3%.';
+SET @MountSpeedNameruRU                                     = 'Скорость бега повышена на $s3%.';
+SET @MountSpeedNamejaJP                                     = '';
+SET @MountSpeedNameptPT                                     = '';
+SET @MountSpeedNameitIT                                     = '';
+SET @MountSpeedNameUnk1                                     = '';
+SET @MountSpeedNameUnk2                                     = '';
+SET @MountSpeedNameUnk3                                     = '';
+SET @MountSpeedNameUnk4                                     = '';
+
+-- Emotes Text IDs
+SET @EmoteBored                                                =         14;
+SET @EmoteBye                                                  =         19;
+SET @EmoteCheer                                                =         21;
+SET @EmoteCongratulate                                         =         26;
+SET @EmoteHello                                                =         55;
+SET @EmoteNo                                                   =         66;
+SET @EmoteNod                                                  =         67;
+SET @EmoteSigh                                                 =         85;
+SET @EmoteThank                                                =         97;
+SET @EmoteWelcome                                              =        102;
+SET @EmoteWhistle                                              =        104;
+SET @EmoteYawn                                                 =        106;
+SET @EmoteRasp                                                 =        183;
+SET @EmoteTrain                                                =        264;
+SET @EmoteHelpme                                               =        303;
+SET @EmoteIncoming                                             =        304;
+SET @EmoteCharge                                               =        305;
+SET @EmoteFlee                                                 =        306;
+SET @EmoteAttackmytarget                                       =        307;
+SET @EmoteOom                                                  =        323;
+SET @EmoteFollow                                               =        324;
+SET @EmoteWait                                                 =        325;
+SET @EmoteHealme                                               =        326;
+SET @EmoteOpenfire                                             =        327;
+SET @EmoteFlirt                                                =        328;
+SET @EmoteJoke                                                 =        329;
+SET @EmoteYw                                                   =        453;
+SET @EmoteCackle                                               =         20;
+SET @EmoteChicken                                              =         22;
+SET @EmoteChuckle                                              =         23;
+SET @EmoteCry                                                  =         31;
+SET @EmoteGiggle                                               =         45;
+SET @EmoteGloat                                                =         47;
+SET @EmoteGuffaw                                               =         52;
+SET @EmoteKiss                                                 =         58;
+SET @EmoteLaugh                                                =         60;
+SET @EmoteMourn                                                =         65;
+SET @EmoteRoar                                                 =         75;
+SET @EmoteRofl                                                 =         76;
+SET @EmoteTaunt                                                =        136;
+SET @EmoteViolin                                               =        143;
+
+-- Vocal UI Sounds
+SET @VUI_INVENTORYFULL                                         =          0;
+SET @VUI_OUTOFAMMO                                             =          1;
+SET @VUI_NOEQUIP_LEVEL                                         =          2;
+SET @VUI_NOEQUIP_EVER                                          =          3;
+SET @VUI_BOUND_NODROP                                          =          4;
+SET @VUI_ITEMCOOLING                                           =          5;
+SET @VUI_CANTDRINKMORE                                         =          6;
+SET @VUI_CANTEATMORE                                           =          7;
+SET @VUI_CANTINVITE                                            =          8;
+SET @VUI_INVITEEBUSY                                           =          9;
+SET @VUI_TARGETTOOFAR                                          =         10;
+SET @VUI_INVALIDTARGET                                         =         11;
+SET @VUI_SPELLCOOLING                                          =         12;
+SET @VUI_CANTLEARN_LEVEL                                       =         13;
+SET @VUI_LOCKED                                                =         14;
+SET @VUI_NOMANA                                                =         15;
+SET @VUI_NOTWHILEDEAD                                          =         16;
+SET @VUI_CANTLOOT                                              =         17;
+SET @VUI_CANTCREATE                                            =         18;
+SET @VUI_DECLINEGROUP                                          =         19;
+SET @VUI_ALREADYINGROUP                                        =         20;
+SET @VUI_ALREADYINGUILD                                        =         21;
+SET @VUI_CANTAFFORDBANKSLOT                                    =         22;
+SET @VUI_TOOMANYBANKSLOTS                                      =         23;
+SET @VUI_CANTEAT_MOVING                                        =         24;
+SET @VUI_NOTABAG                                               =         25;
+SET @VUI_CANTPUTBAG                                            =         26;
+SET @VUI_WRONGSLOT                                             =         27;
+SET @VUI_AMMOONLYINBAG                                         =         28;
+SET @VUI_BAGFULL                                               =         29;
+SET @VUI_ITEMMAXCOUNT                                          =         30;
+SET @VUI_CANTLOOT_DIDNTKILL                                    =         31;
+SET @VUI_CANTLOOT_WRONGFACING                                  =         32;
+SET @VUI_CANTLOOT_LOCKED                                       =         33;
+SET @VUI_CANTLOOT_NOTSTANDING                                  =         34;
+SET @VUI_CANTLOOT_TOOFAR                                       =         35;
+SET @VUI_CANTATTACKRONGDIRECTION                               =         36;
+SET @VUI_CANTATTACK_NOTSTANDING                                =         37;
+SET @VUI_CANTATTACK_NOTARGET                                   =         38;
+SET @VUI_NOTENOUGHGOLD                                         =         39;
+SET @VUI_NOTENOUGHMONEY                                        =         40;
+SET @VUI_CANTEQUIP2H_SKILL                                     =         41;
+SET @VUI_CANTEQUIP_2HEQUIPPED                                  =         42;
+SET @VUI_CANTEQUIP2H_NOSKILL                                   =         43;
+SET @VUI_NOTEQUIPPABLE                                         =         44;
+SET @VUI_GENERICNOTARGET                                       =         45;
+SET @VUI_CANTCAST_OUTOFRANGE                                   =         46;
+SET @VUI_POTIONCOOLING                                         =         47;
+SET @VUI_PROFICIENCYNEEDED                                     =         48;
+SET @VUI_MUSTEQUIPPITEM                                        =         49;
+SET @VUI_ABILITYCOOLING                                        =         50;
+SET @VUI_CANTUSEITEM                                           =         51;
+SET @VUI_CHESTINUSE                                            =         52;
+SET @VUI_FOODCOOLING                                           =         53;
+SET @VUI_CANTTAXI_NOMONEY                                      =         54;
+SET @VUI_CANTUSELOCKED                                         =         55;
+SET @VUI_NOEQUIPSLOTAVAILABLE                                  =         56;
+SET @VUI_CANTUSETOOFAR                                         =         57;
+SET @VUI_CANTSWAP                                              =         58;
+SET @VUI_CANTTRADE_SOULBOUND                                   =         59;
+SET @VUI_NOTOWNER                                              =         60;
+SET @VUI_ITEMLOCKED                                            =         61;
+SET @VUI_GUILDPERMISSIONS                                      =         62;
+SET @VUI_NORAGE                                                =         63;
+SET @VUI_NOENERGY                                              =         64;
+SET @VUI_NOFOCUS                                               =         65;
+SET @VUI_NONE                                                  =         66;
+
+-- Sound Entries
+SET @BloodElfMale_InventoryFull                                =       9549;
+SET @BloodElfFemale_InventoryFull                              =       9550;
+SET @BloodElfMale_OutOfAmmo                                    =       9551;
+SET @BloodElfFemale_OutOfAmmo                                  =       9552;
+SET @BloodElfMale_CantDrinkMore                                =       9561;
+SET @BloodElfFemale_CantDrinkMore                              =       9562;
+SET @BloodElfMale_NoEquipLevel                                 =       9553;
+SET @BloodElfFemale_NoEquipLevel                               =       9554;
+SET @BloodElfMale_NoEquipEver                                  =       9555;
+SET @BloodElfFemale_NoEquipEver                                =       9556;
+SET @BloodElfMale_SoulboundNoDrop                              =       9557;
+SET @BloodElfFemale_SoulboundNoDrop                            =       9558;
+SET @BloodElfMale_CantUseItemCooling                           =       9559;
+SET @BloodElfFemale_CantUseItemCooling                         =       9560;
+SET @BloodElfMale_CantInvite                                   =       9563;
+SET @BloodElfFemale_CantInvite                                 =       9564;
+SET @BloodElfMale_TargetTooFar                                 =       9565;
+SET @BloodElfFemale_TargetTooFar                               =       9566;
+SET @BloodElfMale_InvalidTarget                                =       9567;
+SET @BloodElfFemale_InvalidTarget                              =       9568;
+SET @BloodElfMale_SpellCooling                                 =       9569;
+SET @BloodElfFemale_SpellCooling                               =       9570;
+SET @BloodElfMale_CantLearnSpell                               =       9571;
+SET @BloodElfFemale_CantLearnSpell                             =       9572;
+SET @BloodElfMale_Locked                                       =       9573;
+SET @BloodElfFemale_Locked                                     =       9574;
+SET @BloodElfMale_NoMana                                       =       9575;
+SET @BloodElfFemale_NoMana                                     =       9576;
+SET @BloodElfMale_CantLoot                                     =       9577;
+SET @BloodElfFemale_CantLoot                                   =       9578;
+SET @BloodElfMale_CantCreate                                   =       9579;
+SET @BloodElfFemale_CantCreate                                 =       9580;
+SET @BloodElfMale_AlreadyInGroup                               =       9581;
+SET @BloodElfFemale_AlreadyInGroup                             =       9582;
+SET @BloodElfMale_CantAfford                                   =       9583;
+SET @BloodElfFemale_CantAfford                                 =       9584;
+SET @BloodElfMale_NotABag                                      =       9585;
+SET @BloodElfFemale_NotABag                                    =       9586;
+SET @BloodElfMale_CantPut                                      =       9587;
+SET @BloodElfFemale_CantPut                                    =       9588;
+SET @BloodElfMale_BagFull                                      =       9589;
+SET @BloodElfFemale_BagFull                                    =       9590;
+SET @BloodElfMale_CantPutMaxCount                              =       9591;
+SET @BloodElfFemale_CantPutMaxCount                            =       9592;
+SET @BloodElfMale_CantLootNoKill                               =       9593;
+SET @BloodElfFemale_CantLootNoKill                             =       9594;
+SET @BloodElfFemale_CantLootNoKill                             =       9594;
+SET @BloodElfFemale_CantLootNoKill                             =       9594;
+SET @BloodElfMale_CantLootTooFar                               =       9595;
+SET @BloodElfFemale_CantLootTooFar                             =       9596;
+SET @BloodElfMale_NoTarget                                     =       9597;
+SET @BloodElfFemale_NoTarget                                   =       9598;
+SET @BloodElfMale_CantEquipNoSkill                             =       9599;
+SET @BloodElfFemale_CantEquipNoSkill                           =       9600;
+SET @BloodElfMale_CantEquip2HFull                              =       9601;
+SET @BloodElfFemale_CantEquip2HFull                            =       9602;
+SET @BloodElfMale_CantEquip2HNoSkill                           =       9603;
+SET @BloodElfFemale_CantEquip2HNoSkill                         =       9604;
+SET @BloodElfMale_CantEquipNoEquip                             =       9605;
+SET @BloodElfFemale_CantEquipNoEquip                           =       9606;
+SET @BloodElfMale_TargetTooFar                                 =       9565;
+SET @BloodElfFemale_TargetTooFar                               =       9566;
+SET @BloodElfMale_NoProficiency                                =       9607;
+SET @BloodElfFemale_NoProficiency                              =       9608;
+SET @BloodElfMale_CantUseMustEquip                             =       9609;
+SET @BloodElfFemale_CantUseMustEquip                           =       9610;
+SET @BloodElfMale_CantUseGeneric                               =       9611;
+SET @BloodElfFemale_CantUseGeneric                             =       9612;
+SET @BloodElfMale_CantUseChestInUse                            =       9613;
+SET @BloodElfFemale_CantUseChestInUse                          =       9614;
+SET @BloodElfMale_CantTradeSoulbound                           =       9615;
+SET @BloodElfFemale_CantTradeSoulbound                         =       9616;
+SET @BloodElfMale_GuildPermissions                             =       9617;
+SET @BloodElfFemale_GuildPermissions                           =       9618;
+SET @BloodElfMale_NoRage                                       =       9619;
+SET @BloodElfFemale_NoRage                                     =       9620;
+SET @BloodElfMale_NoEnergy                                     =       9621;
+SET @BloodElfFemale_NoEnergy                                   =       9622;
+SET @BloodElfMale_InvalidTarget                                =       9567;
+SET @BloodElfFemale_InvalidTarget                              =       9568;
+SET @BloodElfMale_CantUseAbilityCooling                        =      10658;
+SET @BloodElfFemale_CantUseAbilityCooling                      =      10657;
 
 -- Spell Attributes
 SET @SPELL_ATTR0_IS_ABILITY                                    =         16;
