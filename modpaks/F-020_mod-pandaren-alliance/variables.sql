@@ -1,6 +1,7 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @AlliancePandarenMask                       = 1 << (@AlliancePandaren - 1); -- race ID 25 → 16777216
-SET @AlliancePandarenHelmetMask                 = 1 << @AlliancePandaren;       -- race ID 25 → 33554432
+-- Race ID
+SET @AlliancePandaren                          := @NextRace := @NextRace +1;    -- default: 19
+SET @AlliancePandarenMask                       = 1 << (@AlliancePandaren - 1); -- race ID 19 → 262144
+SET @AlliancePandarenHelmetMask                 = 1 << @AlliancePandaren;       -- race ID 19 → 524288
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                               = @AllianceMask    | @AlliancePandarenMask;

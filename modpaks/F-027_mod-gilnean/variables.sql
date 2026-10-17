@@ -1,6 +1,7 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- race ID 23 → 4194304
-SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- race ID 23 → 8388608
+-- Race ID
+SET @Gilnean                           := @NextRace := @NextRace +1; -- default: 23
+SET @GilneanMask                       = 1 << (@Gilnean - 1);        -- default: 4194304
+SET @GilneanHelmetMask                 = 1 << @Gilnean;              -- default: 8388608
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                      = @AllianceMask     | @GilneanMask;

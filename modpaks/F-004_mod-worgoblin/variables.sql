@@ -1,10 +1,13 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @GoblinMask           = 1 << (@Goblin - 1);        -- race ID 9 → 256
-SET @GoblinHelmetMask     = 1 << @Goblin;              -- race ID 9 → 512
-SET @WorgenMask           = 1 << (@Worgen - 1);        -- race ID 22 → 2097152
-SET @WorgenHelmetMask     = 1 << @Worgen;              -- race ID 22 → 4194304
-SET @GilneanMask          = 1 << (@Gilnean - 1);       -- race ID 23 → 4194304
-SET @GilneanHelmetMask    = 1 << @Gilnean;             -- race ID 23 → 8388608
+-- Race ID
+SET @Goblin               = 9;                         -- default: 9
+SET @GoblinMask           = 1 << (@Goblin - 1);        -- default: 256
+SET @GoblinHelmetMask     = 1 << @Goblin;              -- default: 512
+SET @Worgen := @NextRace := @NextRace +1;              -- default: 12
+SET @WorgenMask           = 1 << (@Worgen - 1);        -- default: 2048
+SET @WorgenHelmetMask     = 1 << @Worgen;              -- default: 4096
+SET @Gilnean             := @NextRace := @NextRace +1; -- default: 23
+SET @GilneanMask          = 1 << (@Gilnean - 1);       -- default: 4194304
+SET @GilneanHelmetMask    = 1 << @Gilnean;             -- default: 8388608
 
 -- Important variable update
 SET @AllianceMask     = @AllianceMask |  @WorgenMask | @GilneanMask;

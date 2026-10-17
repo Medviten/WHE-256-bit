@@ -1,6 +1,7 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @TaunkaMask = 1 << (@Taunka - 1); -- race ID 19 → 262144
-SET @TaunkaHelmetMask = 1 << @Taunka; -- race ID 19 → 524288
+-- Race ID
+SET @Taunka := @NextRace := @NextRace +1;
+SET @TaunkaMask = 1 << (@Taunka - 1);
+SET @TaunkaHelmetMask = 1 << @Taunka;
 
 -- Important variable update
 SET @HordeMask = @HordeMask | @TaunkaMask;

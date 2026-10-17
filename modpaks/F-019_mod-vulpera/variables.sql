@@ -1,6 +1,7 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @VulperaMask                        = 1 << (@Vulpera - 1);       -- race ID 35 → 17179869184
-SET @VulperaHelmetMask                  = 1 << @Vulpera;             -- race ID 35 → 34359738368
+-- Race ID
+SET @Vulpera                           := @NextRace := @NextRace +1; -- default: 18
+SET @VulperaMask                        = 1 << (@Vulpera - 1);       -- race ID 18 → 131072
+SET @VulperaHelmetMask                  = 1 << @Vulpera;             -- race ID 18 → 262144
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                          = @HordeMask    | @VulperaMask;

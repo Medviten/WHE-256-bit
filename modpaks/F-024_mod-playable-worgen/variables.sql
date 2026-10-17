@@ -1,6 +1,7 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @WorgenMask                         = 1 << (@Worgen - 1); -- race ID 22 → 2097152
-SET @WorgenHelmetMask                   = 1 << @Worgen; -- race ID 22 → 4194304
+-- Race ID
+SET @Worgen                            := 12;
+SET @WorgenMask                         = 1 << (@Worgen - 1); -- default: 2048
+SET @WorgenHelmetMask                   = 1 << @Worgen; -- default: 4096
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                       = @AllianceMask     | @WorgenMask;

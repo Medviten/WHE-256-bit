@@ -33,7 +33,6 @@
 -- Loads after [AUTO,F-011]_creaturedisplayinfoextra.sql (I > A in filename sort).
 -- Requires: zep dbc edit modify <this file> + a PATCH-Z rebuild to reach the client.
 --
--- Update: Worgen now has the fixed retail race ID 22 (modpaks/config.sql), so the Cata id is correct again and
--- this override sets it back to 22. The generator's Cata -> client race remap (22 -> 12) must be dropped too.
+-- Uses @Worgen (dynamic, 12 by default) so it follows the modpak race allocation once F-013 runs in the pipeline.
 
 UPDATE creaturedisplayinfoextra SET race = @Worgen WHERE id = 20864;

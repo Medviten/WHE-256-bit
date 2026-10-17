@@ -324,32 +324,7 @@ SET @Troll                                                     =    8;
 SET @Goblin                                                    =    9;
 SET @BloodElf                                                  =   10;
 SET @Draenei                                                   =   11;
-
--- New Playable Races
--- Fixed IDs shared with retail ChrRaces, so C++/Lua scripts and core edits can rely on them no matter which
--- modpaks are applied. Naga, Broken and Taunka use their retail NPC race IDs: F-008 moves the stock NPC rows away.
-SET @Naga                                                      =   13; -- retail NPC race (Naga_)
-SET @Broken                                                    =   14; -- retail NPC race
-SET @Taunka                                                    =   19; -- retail NPC race
-SET @Worgen                                                    =   22;
-SET @Gilnean                                                   =   23;
--- Neutral Pandaren                                            =   24;
-SET @AlliancePandaren                                          =   25;
-SET @HordePandaren                                             =   26;
-SET @Nightborne                                                =   27;
-SET @HighmountainTauren                                        =   28;
-SET @VoidElf                                                   =   29;
-SET @LightforgedDraenei                                        =   30;
-SET @ZandalariTroll                                            =   31;
-SET @KulTiran                                                  =   32;
--- Thin Human                                                  =   33;
-SET @DarkIronDwarf                                             =   34;
-SET @Vulpera                                                   =   35;
-SET @MagharOrc                                                 =   36;
-SET @Mechagnome                                                =   37;
--- Not in retail (first free IDs after Mechagnome; retail continues with Dracthyr 52/70, Earthen 84/85, Haranir 86/91)
-SET @HighElf                                                   =   38;
-SET @Ogre                                                      =   39;
+SET @NextRace                                                  =   12; -- Reserved for Worgen – increments before assignment
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;

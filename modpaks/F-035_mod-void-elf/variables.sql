@@ -1,6 +1,7 @@
--- Race masks (race IDs are fixed in config.sql)
-SET @VoidElfMask                                = 1 << (@VoidElf - 1); -- race ID 29 → 268435456
-SET @VoidElfHelmetMask                          = 1 << @VoidElf; -- race ID 29 → 536870912
+-- Race ID
+SET @VoidElf                                   := @NextRace := @NextRace +1;
+SET @VoidElfMask                                = 1 << (@VoidElf - 1);
+SET @VoidElfHelmetMask                          = 1 << @VoidElf;
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                               = @AllianceMask     | @VoidElfMask;

@@ -20,7 +20,7 @@
     trainer UI shows.
 ]]
 
-local RACE_WORGEN = 22 -- retail ID, fixed in modpaks/config.sql
+local RACE_WORGEN = 12
 local CLASS_DEATH_KNIGHT = 6
 
 local RIDE_APPRENTICE_SPELL = 33388
