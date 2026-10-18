@@ -33,6 +33,8 @@ AudioOptionsPanels.xml
 OptionsSelect.xml
 ##CameraSelect.xml
 
-TwoNames_CharacterCreate.lua
+NameLength_CharacterCreate.lua
+AlteredForm_CharacterCreate.lua
+DruidForms_CharacterCreate.lua
 ## This Always Runs Last, Add New Items above it.
 GlueLocalizationPost.xml

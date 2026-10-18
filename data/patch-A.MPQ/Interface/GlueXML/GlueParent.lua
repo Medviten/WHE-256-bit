@@ -50,16 +50,16 @@ GlueAmbienceTracks["GOBLIN"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["WORGEN"] = "GlueScreenHuman";
 GlueAmbienceTracks["GILNEAN"] = "GlueScreenHuman";
 GlueAmbienceTracks["HIGHELF"] = "GlueScreenHuman";
-GlueAmbienceTracks["KULTIRAN"] = "GlueScreenTauren";
+GlueAmbienceTracks["KULTIRAN"] = "GlueScreenKulTiran";
 GlueAmbienceTracks["MAGHAR"] = "GlueScreenOrcTroll";
-GlueAmbienceTracks["OGRE"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["OGRE"] = "GlueScreenOgre";
 GlueAmbienceTracks["DARKIRONDWARF"] = "GlueScreenDwarfGnome";
-GlueAmbienceTracks["ZANDALARITROLL"] = "GlueScreenTauren";
+GlueAmbienceTracks["ZANDALARITROLL"] = "GlueScreenOgre";
 GlueAmbienceTracks["VULPERA"] = "GlueScreenTauren";
 GlueAmbienceTracks["ALLIANCEPANDAREN"] = "GlueScreenNightElf";
 GlueAmbienceTracks["HORDEPANDAREN"] = "GlueScreenTauren";
-GlueAmbienceTracks["HIGHMOUNTAINTAUREN"] = "GlueScreenTauren";
-GlueAmbienceTracks["NAGA"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["HIGHMOUNTAINTAUREN"] = "GlueScreenHighmountainTauren";
+GlueAmbienceTracks["NAGA"] = "GlueScreenNaga";
 GlueAmbienceTracks["BROKEN"] = "GlueScreenDraenei";
 GlueAmbienceTracks["LIGHTFORGEDDRAENEI"] = "GlueScreenDraenei";
 
@@ -484,7 +484,7 @@ function SetBackgroundModel(model, name)
 	end
 
 	if (name == "KulTiran" or name == "KULTIRAN" or name == "Kul Tiran" or name == "KUL TIRAN" or name == "KUL_TIRAN") then
-		name = "Human";
+		name = "KulTiran";
 	end
 
 	if (name == "Maghar" or name == "MAGHAR" or name == "Mag'har" or name == "MAG'HAR") then
@@ -492,15 +492,15 @@ function SetBackgroundModel(model, name)
 	end
 
 	if (name == "Ogre" or name == "OGRE") then
-		name = "Orc";
+		name = "Ogre";
 	end
 
 	if (name == "Naga" or name == "NAGA") then
-		name = "BloodElf";
+		name = "Naga";
 	end
 
 	if (name == "Zandalari Troll" or name == "ZANDALARI TROLL" or name == "ZANDALARI_TROLL" or name == "ZandalariTroll") then
-		name = "Orc";
+		name = "Ogre";
 	end
 
 	if (name == "Vulpera" or name == "VULPERA") then
@@ -508,7 +508,7 @@ function SetBackgroundModel(model, name)
 	end
 
 	if (name == "Highmountain Tauren" or name == "HIGHMOUNTAIN TAUREN" or name == "HighmountainTauren" or name == "HIGHMOUNTAINTAUREN" or name == "Highmountain_Tauren" or name == "HIGHMOUNTAIN_TAUREN") then
-		name = "Tauren";
+		name = "HighmountainTauren";
 	end
 
 	if (name == "AlliancePandaren" or name == "Alliance Pandaren" or name == "Alliance_Pandaren" or name == "ALLIANCEPANDAREN" or name == "ALLIANCE PANDAREN" or name == "ALLIANCE_PANDAREN") then
