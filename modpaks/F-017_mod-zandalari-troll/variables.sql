@@ -1,7 +1,6 @@
--- Race ID
-SET @ZandalariTroll                          := @NextRace := @NextRace +1;  -- default: 17
-SET @ZandalariTrollMask                       = 1 << (@ZandalariTroll - 1); -- race ID 17 → 65536
-SET @ZandalariTrollHelmetMask                 = 1 << @ZandalariTroll;       -- race ID 17 → 131072
+-- Race masks (race IDs are fixed in config.sql)
+SET @ZandalariTrollMask                       = 1 << (@ZandalariTroll - 1); -- race ID 31 → 1073741824
+SET @ZandalariTrollHelmetMask                 = 1 << @ZandalariTroll;       -- race ID 31 → 2147483648
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                                = @HordeMask    | @ZandalariTrollMask;

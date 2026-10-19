@@ -1,7 +1,6 @@
--- Race ID
-SET @Naga                          := @NextRace := @NextRace +1;
-SET @NagaMask                       = 1 << (@Naga - 1);
-SET @NagaHelmetMask                 = 1 << @Naga;
+-- Race masks (race IDs are fixed in config.sql)
+SET @NagaMask                       = 1 << (@Naga - 1); -- race ID 13 → 4096
+SET @NagaHelmetMask                 = 1 << @Naga; -- race ID 13 → 8192
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                      = @HordeMask | @NagaMask;

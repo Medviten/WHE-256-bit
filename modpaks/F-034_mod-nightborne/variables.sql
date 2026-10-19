@@ -1,7 +1,6 @@
--- Race ID
-SET @Nightborne                           := @NextRace := @NextRace +1; -- default: 18
-SET @NightborneMask                        = 1 << (@Nightborne - 1);       -- race ID 18 → 131072
-SET @NightborneHelmetMask                  = 1 << @Nightborne;             -- race ID 18 → 262144
+-- Race masks (race IDs are fixed in config.sql)
+SET @NightborneMask                        = 1 << (@Nightborne - 1);       -- race ID 27 → 67108864
+SET @NightborneHelmetMask                  = 1 << @Nightborne;             -- race ID 27 → 134217728
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                             = @HordeMask    | @NightborneMask;

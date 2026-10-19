@@ -1,7 +1,6 @@
--- Race ID
-SET @MagharOrc := @NextRace             := @NextRace +1; -- default: 14
-SET @MagharOrcMask                       = 1 << (@MagharOrc - 1);  -- race ID 14 → 8192
-SET @MagharOrcHelmetMask                 = 1 << @MagharOrc;  -- race ID 14 → 16384
+-- Race masks (race IDs are fixed in config.sql)
+SET @MagharOrcMask                       = 1 << (@MagharOrc - 1);  -- race ID 36 → 34359738368
+SET @MagharOrcHelmetMask                 = 1 << @MagharOrc;  -- race ID 36 → 68719476736
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                           = @HordeMask    |  @MagharOrcMask;

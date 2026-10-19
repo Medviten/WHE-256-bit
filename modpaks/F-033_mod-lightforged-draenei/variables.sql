@@ -1,7 +1,6 @@
--- Race ID
-SET @LightforgedDraenei                        := @NextRace := @NextRace +1;
-SET @LightforgedDraeneiMask                     = 1 << (@LightforgedDraenei - 1);
-SET @LightforgedDraeneiHelmetMask               = 1 << @LightforgedDraenei;
+-- Race masks (race IDs are fixed in config.sql)
+SET @LightforgedDraeneiMask                     = 1 << (@LightforgedDraenei - 1); -- race ID 30 → 536870912
+SET @LightforgedDraeneiHelmetMask               = 1 << @LightforgedDraenei; -- race ID 30 → 1073741824
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                               = @AllianceMask     | @LightforgedDraeneiMask;
