@@ -20,5 +20,12 @@ EXTRA_SQL_DUMPS=("/path/to/ac-worldserver.sql")
 LOCAL_SOURCE_DIR="/home/youruser/dev/wow-modpaks"
 REMOTE_SOURCE_DIR="/home/youruser/wow"
 
-# Clean baseline database dump instead of reimporting DBCs every time
-DBC_BASELINE="/path/to/dbc-baseline.sql"
+# Clean baseline DBC database dump to load instead of reimporting DBCs every
+# time (a fresh dbctool import of the stock DBCs, before any modpak SQL).
+# If unset, the only *.sql file directly inside ORIGINAL_DBC is used.
+DBC_DUMP="/path/to/dbc-baseline.sql"
+
+# Extra SQL databases with a dump in EXTRA_SQL_DUMPS are only rebuilt when
+# something that feeds them changed (dump, modpak SQL, variables, read DBC
+# data). Set to true (or pass --force-rebuild) to always rebuild them.
+FORCE_REBUILD=false

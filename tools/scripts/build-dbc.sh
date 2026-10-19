@@ -32,6 +32,12 @@ SKIP_DBC_BUILD="${SKIP_DBC_BUILD:-false}"
 # and exit -- no DBC build, no extra SQL targets, no mysql/dbctool needed.
 CORE_PATCH_MODE=false
 
+# Config-file default; --force-rebuild on the command line overrides this
+# to true. When false, an extra SQL database that is reset from a dump is
+# only rebuilt if its inputs changed since its last successful build (see
+# apply_extra_sql_database).
+FORCE_REBUILD="${FORCE_REBUILD:-false}"
+
 for arg in "$@"; do
     case "$arg" in
         --skip-dbc)
@@ -40,15 +46,25 @@ for arg in "$@"; do
         --core-patch)
             CORE_PATCH_MODE=true
             ;;
+        --force-rebuild)
+            FORCE_REBUILD=true
+            ;;
         -h|--help)
             cat << USAGE
-Usage: $(basename "$0") [--skip-dbc] [--core-patch]
+Usage: $(basename "$0") [--skip-dbc] [--force-rebuild] [--core-patch]
 
   --skip-dbc    Skip the DBC build entirely (no database recreate, dump
                 load, table detection, export, or deploy) and go straight
                 to the extra SQL targets (e.g. worldserver). Useful for
                 quickly testing world-only changes. Same effect as
                 setting SKIP_DBC_BUILD=true in $CONFIG_FILE.
+
+  --force-rebuild
+                Always drop and rebuild extra SQL databases that have a
+                dump in EXTRA_SQL_DUMPS. Without it, such a database is
+                skipped when nothing that feeds it changed since its last
+                successful build. Same effect as setting
+                FORCE_REBUILD=true in $CONFIG_FILE.
 
   --core-patch  For each name in CORE_PATCH_TARGETS, diff
                 integration/originals/<name>/ against
@@ -744,6 +760,136 @@ SQL
     apply_sql_file_list "$db" "$db" "$VARIABLES_SNAPSHOT" "${target_files[@]}"
 }
 
+# Table, created inside each rebuilt extra SQL database, that records the
+# fingerprint of the inputs it was last successfully built from.
+EXTRA_SQL_FINGERPRINT_TABLE="_whe_build_fingerprint"
+
+sha256_of() {
+    sha256sum -- "$1" | cut -d' ' -f1
+}
+
+# Prints CHECKSUM TABLE for every table of the DBC database (except
+# dbctool's own dbc_checksum bookkeeping), so a change in the DBC data that
+# an extra SQL file reads through $DBC_DB_PLACEHOLDER changes the
+# fingerprint too.
+dbc_database_checksum() {
+    local tables=()
+    local table
+    while IFS= read -r table; do
+        [[ "$table" == "dbc_checksum" ]] && continue
+        tables+=("\`$table\`")
+    done < <(mysql_cmd -N -B -e "SELECT table_name FROM information_schema.tables WHERE table_schema = '$DBC_DATABASE' ORDER BY table_name")
+
+    (( ${#tables[@]} > 0 )) || return 0
+
+    local list
+    list="$(IFS=,; printf '%s' "${tables[*]}")"
+    mysql_cmd -N -B "$DBC_DATABASE" -e "CHECKSUM TABLE $list"
+}
+
+# Prints a SHA-256 over everything that determines database $1's contents
+# after its extra SQL targets ran: this script, the database names
+# substituted into placeholders, the variables snapshot, and for each of
+# its targets (in order) the pattern, the dump (by content) and every
+# matching file (path and content, in apply order). If any of those files
+# reads the DBC database, a checksum of the DBC tables is included too.
+compute_extra_sql_fingerprint() {
+    local db="$1"
+    local i file reads_dbc=false
+
+    {
+        printf 'script\t%s\n' "$(sha256_of "${BASH_SOURCE[0]}")"
+        printf 'databases\t%s\t%s\t%s\n' "$db" "$DBC_DATABASE" "$WORLD_DATABASE"
+        printf 'snapshot\t%s\n' "$(sha256_of "$VARIABLES_SNAPSHOT")"
+
+        for i in "${!EXTRA_SQL_DATABASES[@]}"; do
+            [[ "${EXTRA_SQL_DATABASES[$i]}" == "$db" ]] || continue
+
+            printf 'pattern\t%s\n' "${EXTRA_SQL_PATTERNS[$i]}"
+
+            if [[ -n "${EXTRA_SQL_DUMPS[$i]:-}" ]]; then
+                printf 'dump\t%s\t%s\n' "${EXTRA_SQL_DUMPS[$i]}" "$(sha256_of "${EXTRA_SQL_DUMPS[$i]}")"
+            fi
+
+            while IFS= read -r file; do
+                printf 'file\t%s\t%s\n' "${file#"$MODPAKS"/}" "$(sha256_of "$file")"
+                if grep -qF "$DBC_DB_PLACEHOLDER" "$file"; then
+                    reads_dbc=true
+                fi
+            done < <(find_modpak_files "${EXTRA_SQL_PATTERNS[$i]}")
+        done
+
+        if [[ "$reads_dbc" == true ]]; then
+            printf 'dbc\n'
+            dbc_database_checksum
+        fi
+    } | sha256sum | cut -d' ' -f1
+}
+
+# Prints the fingerprint stored in database $1, or nothing if the database
+# or its fingerprint table doesn't exist.
+read_extra_sql_fingerprint() {
+    local db="$1"
+    mysql_cmd -N -B -e "SELECT fingerprint FROM \`$db\`.\`$EXTRA_SQL_FINGERPRINT_TABLE\` LIMIT 1" 2>/dev/null || true
+}
+
+# Runs every extra SQL target of database $1, in configuration order.
+#
+# If any of them resets the database from a dump, the whole database is
+# skipped when the fingerprint of its inputs matches the one stored by its
+# last successful build (unless FORCE_REBUILD is true). The stored
+# fingerprint is removed before rebuilding and only written back after
+# every target succeeded, so a failed or interrupted build is never
+# mistaken for an up-to-date one. Databases without a dump are applied on
+# top of their current state every run, as before.
+apply_extra_sql_database() {
+    local db="$1"
+    local i has_dump=false fingerprint=""
+
+    for i in "${!EXTRA_SQL_DATABASES[@]}"; do
+        if [[ "${EXTRA_SQL_DATABASES[$i]}" == "$db" && -n "${EXTRA_SQL_DUMPS[$i]:-}" ]]; then
+            has_dump=true
+        fi
+    done
+
+    if [[ "$has_dump" == true ]]; then
+        echo
+        echo "Checking whether database '$db' needs rebuilding..."
+
+        fingerprint="$(compute_extra_sql_fingerprint "$db")"
+
+        if [[ "$FORCE_REBUILD" != true && "$fingerprint" == "$(read_extra_sql_fingerprint "$db")" ]]; then
+            echo "  Inputs unchanged since its last successful build; skipping '$db'."
+            echo "  (Run with --force-rebuild to rebuild it anyway.)"
+            return 0
+        fi
+
+        mysql_cmd -e "DROP TABLE IF EXISTS \`$db\`.\`$EXTRA_SQL_FINGERPRINT_TABLE\`" 2>/dev/null || true
+    fi
+
+    for i in "${!EXTRA_SQL_DATABASES[@]}"; do
+        [[ "${EXTRA_SQL_DATABASES[$i]}" == "$db" ]] || continue
+
+        apply_extra_sql_target \
+            "${EXTRA_SQL_DATABASES[$i]}" \
+            "${EXTRA_SQL_PATTERNS[$i]}" \
+            "${EXTRA_SQL_DUMPS[$i]:-}"
+    done
+
+    if [[ "$has_dump" == true ]]; then
+        mysql_cmd "$db" <<SQL
+CREATE TABLE IF NOT EXISTS \`$EXTRA_SQL_FINGERPRINT_TABLE\` (
+    \`fingerprint\` CHAR(64) NOT NULL,
+    \`built_at\` DATETIME NOT NULL
+) ENGINE=InnoDB;
+DELETE FROM \`$EXTRA_SQL_FINGERPRINT_TABLE\`;
+INSERT INTO \`$EXTRA_SQL_FINGERPRINT_TABLE\` VALUES ('$fingerprint', NOW());
+SQL
+        echo
+        echo "  Recorded build fingerprint for '$db'."
+    fi
+}
+
 ###############################################################################
 # Sanity checks
 ###############################################################################
@@ -773,6 +919,9 @@ if [[ "$CORE_PATCH_MODE" != true ]]; then
 
     command -v mysql >/dev/null \
         || { echo "ERROR: mysql command not found." >&2; exit 1; }
+
+    command -v sha256sum >/dev/null \
+        || { echo "ERROR: sha256sum command not found." >&2; exit 1; }
 fi
 
 ###############################################################################
@@ -1044,12 +1193,16 @@ fi # end DBC build (skipped if no DBC SQL files this run)
 # Apply extra SQL targets (optional, independent of the DBC build above)
 ###############################################################################
 
+# Grouped by database, in order of first appearance, so the rebuild check
+# covers every target that feeds the same database.
 if (( ${#EXTRA_SQL_DATABASES[@]} > 0 )); then
+    declare -A EXTRA_SQL_DATABASE_DONE=()
     for i in "${!EXTRA_SQL_DATABASES[@]}"; do
-        apply_extra_sql_target \
-            "${EXTRA_SQL_DATABASES[$i]}" \
-            "${EXTRA_SQL_PATTERNS[$i]}" \
-            "${EXTRA_SQL_DUMPS[$i]:-}"
+        db="${EXTRA_SQL_DATABASES[$i]}"
+        [[ -z "${EXTRA_SQL_DATABASE_DONE[$db]:-}" ]] || continue
+        EXTRA_SQL_DATABASE_DONE["$db"]=1
+
+        apply_extra_sql_database "$db"
     done
 fi
 
