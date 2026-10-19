@@ -1,7 +1,6 @@
--- Race ID
-SET @KulTiran                          := @NextRace := @NextRace +1; -- default: 21
-SET @KulTiranMask                       = 1 << (@KulTiran - 1);      -- race ID 21 → 1048576
-SET @KulTiranHelmetMask                 = 1 << @KulTiran;            -- race ID 21 → 2097152
+-- Race masks (race IDs are fixed in config.sql)
+SET @KulTiranMask                       = 1 << (@KulTiran - 1);      -- race ID 32 → 2147483648
+SET @KulTiranHelmetMask                 = 1 << @KulTiran;            -- race ID 32 → 4294967296
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                       = @AllianceMask    | @KulTiranMask;

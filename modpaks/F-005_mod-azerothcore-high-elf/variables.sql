@@ -1,7 +1,6 @@
--- Race ID
-SET @HighElf                          := @NextRace := @NextRace +1; -- default: 13
-SET @HighElfMask                       = 1 << (@HighElf - 1);       -- race ID 13 → 4096
-SET @HighElfHelmetMask                 = 1 << @HighElf;             -- race ID 13 → 8192
+-- Race masks (race IDs are fixed in config.sql)
+SET @HighElfMask                       = 1 << (@HighElf - 1);       -- race ID 38 → 137438953472
+SET @HighElfHelmetMask                 = 1 << @HighElf;             -- race ID 38 → 274877906944
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                      = @AllianceMask | @HighElfMask;

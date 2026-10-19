@@ -1,7 +1,6 @@
--- Race ID
-SET @HighmountainTauren                          := @NextRace := @NextRace +1;
-SET @HighmountainTaurenMask                       = 1 << (@HighmountainTauren - 1);
-SET @HighmountainTaurenHelmetMask                 = 1 << @HighmountainTauren;
+-- Race masks (race IDs are fixed in config.sql)
+SET @HighmountainTaurenMask                       = 1 << (@HighmountainTauren - 1); -- race ID 28 → 134217728
+SET @HighmountainTaurenHelmetMask                 = 1 << @HighmountainTauren; -- race ID 28 → 268435456
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                                    = @HordeMask | @HighmountainTaurenMask;
