@@ -44,7 +44,7 @@ F-022_mod-playable-broken
 #F-011_mod-druid-forms # Off by default
 #F-012_mod-extra-models # Off by default
 #F-015_mod-instamount # Off by default
-F-026_custom_race_support # required for any custom race to function correctly
+F-026_custom-race-support # required for any custom race to function correctly
 #F-002_mod-arac # Off by default
 #F-003_mod-faction-free # Off by default
 # END ADDITIONAL MODS #
