@@ -22,7 +22,8 @@ DELETE FROM `reputation_spillover_faction` WHERE `faction` IN (
     @TrollFaction, @GoblinFaction, @BloodElfFaction, @DraeneiFaction, @NagaFaction, @BrokenFaction, @TaunkaFaction,
     @WorgenFaction, @GilneanFaction, @AlliancePandarenFaction, @HordePandarenFaction, @NightborneFaction,
     @HighmountainTaurenFaction, @VoidElfFaction, @LightforgedDraeneiFaction, @ZandalariTrollFaction,
-    @KulTiranFaction, @DarkIronDwarfFaction, @VulperaFaction, @MagharOrcFaction, @HighElfFaction, @OgreFaction
+    @KulTiranFaction, @DarkIronDwarfFaction, @VulperaFaction, @MagharOrcFaction, @HighElfFaction, @OgreFaction,
+    @VrykulFaction
 );
 
 INSERT INTO `reputation_spillover_faction` (`faction`, `spillover_faction`, `rate`, `max_rank`)
@@ -56,6 +57,7 @@ WITH `races` (`race`, `faction`) AS (
     UNION ALL SELECT @MagharOrc,          @MagharOrcFaction
     UNION ALL SELECT @HighElf,            @HighElfFaction
     UNION ALL SELECT @Ogre,               @OgreFaction
+    UNION ALL SELECT @Vrykul,             @VrykulFaction
 ),
 `capitals` AS (
     SELECT DISTINCT

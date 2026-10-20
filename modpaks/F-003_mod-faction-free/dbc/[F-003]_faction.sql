@@ -43,5 +43,5 @@ WHERE `id` IN (
     @HighElfFaction,            @OgreFaction,
     @BrokenFaction,             @NagaFaction,
     @FurbolgFaction,            @MurlocFaction,
-    @GilneanFaction
+    @GilneanFaction,            @VrykulFaction
 );
