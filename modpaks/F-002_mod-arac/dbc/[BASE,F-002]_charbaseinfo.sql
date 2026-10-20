@@ -44,6 +44,7 @@ FROM (
     UNION ALL SELECT @Murloc
     UNION ALL SELECT @Furbolg
     UNION ALL SELECT @Gilnean
+    UNION ALL SELECT @Vrykul
 ) AS `r`
 CROSS JOIN (
     SELECT @Warrior AS `class`
