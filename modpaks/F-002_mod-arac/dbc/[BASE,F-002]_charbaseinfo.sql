@@ -45,6 +45,9 @@ FROM (
     UNION ALL SELECT @Furbolg
     UNION ALL SELECT @Gilnean
     UNION ALL SELECT @Vrykul
+    UNION ALL SELECT @ThinHuman
+    UNION ALL SELECT @Tuskarr
+    UNION ALL SELECT @Darkfallen
 ) AS `r`
 CROSS JOIN (
     SELECT @Warrior AS `class`

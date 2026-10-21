@@ -4,15 +4,19 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @AllianceRaceMask 
 UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @HordeRaceMask    WHERE `race_mask` & @HordeRaceMask;
 
 -- Changed values
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @AllianceMask     WHERE `id` IN (
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @AllianceMask,
+    `race_mask_2` = `race_mask_2`   | @AllianceMask_2     WHERE `id` IN (
     40, -- Skill: 98 (Language: Common)
     49 -- Skill: 109 (Language: Orcish)
 );
 
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @HordeMask                                        WHERE `id` = 48; -- Skill: 109 (Language: Orcish)
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | (@HordeMask & ~@UndeadMask)                       WHERE `id` = 41; -- Skill: 98 (Language: Common)
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @HordeMask,
+    `race_mask_2` = `race_mask_2`   | @HordeMask_2                                        WHERE `id` = 48; -- Skill: 109 (Language: Orcish)
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | (@HordeMask & ~@UndeadMask),
+    `race_mask_2` = `race_mask_2`   | (@HordeMask_2 & ~@UndeadMask_2)                       WHERE `id` = 41; -- Skill: 98 (Language: Common)
 
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @PlayableRaceMask WHERE `id` IN (
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @PlayableRaceMask,
+    `race_mask_2` = `race_mask_2`   | @PlayableRaceMask_2 WHERE `id` IN (
     21, -- Skill: 293 (Plate Mail)
     24, -- Skill: 272 (N/A)
     26, -- Skill: 247 (N/A)
@@ -125,7 +129,8 @@ UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @TaurenMask       
 -- UPDATE `skillraceclassinfo` SET `class_mask` = 1                                                                WHERE `id` = 628; -- Skill: 44 (Axes [Rogue])
 UPDATE `skillraceclassinfo` SET `race_mask` = 1691                                                              WHERE `id` = 635; -- Skill: 46 (Guns [Rogue])
 UPDATE `skillraceclassinfo` SET `race_mask` = 2962                                                              WHERE `id` = 637; -- Skill: 54 (Maces [Warrior])
-UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @PlayableRaceMask & ~(@TaurenMask | @DraeneiMask) WHERE `id` = 642; -- Skill: 173 (Daggers [Druid])
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask`   | @PlayableRaceMask & ~(@TaurenMask | @DraeneiMask),
+    `race_mask_2` = `race_mask_2`   | @PlayableRaceMask_2 & ~(@TaurenMask_2 | @DraeneiMask_2) WHERE `id` = 642; -- Skill: 173 (Daggers [Druid])
 -- UPDATE `skillraceclassinfo` SET `skill_tier_id` = 41                                                            WHERE `id` = 742; -- Skill: 673 (Language: Gutterspeak)
 -- UPDATE `skillraceclassinfo` SET `flags` = 128, `skill_tier_id` = 0                                              WHERE `id` = 28; -- Skill: 182 (Herbalism)
 -- UPDATE `skillraceclassinfo` SET `flags` = 128, `skill_tier_id` = 0                                              WHERE `id` = 866; -- Skill: 755 (Jewelcrafting)

@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @BrokenMask                       = 1 << (@Broken - 1); -- race ID 14 → 8192
+SET @BrokenMask_2                     = IF(@Broken BETWEEN 65 AND 128, 1 << (@Broken - 65), 0); -- races 65-128
 SET @BrokenHelmetMask                 = 1 << @Broken; -- race ID 14 → 16384
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                     = @AllianceMask    | @BrokenMask;
+SET @AllianceMask_2                   = @AllianceMask_2    | @BrokenMask_2; -- races 65-128
 SET @BarrensBros                      = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                    = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                 = @AllianceMask    | @HordeMask;
+SET @PlayableRaceMask_2               = @AllianceMask_2    | @HordeMask_2; -- races 65-128
 SET @CrossbowHunters                  = @CrossbowHunters | @BrokenMask;
+SET @CrossbowHunters_2                = @CrossbowHunters_2 | @BrokenMask_2; -- races 65-128
 SET @BrokenLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @BrokenAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @BrokenKnowThyEnemy               = @KnowThyEnemyAlliance;

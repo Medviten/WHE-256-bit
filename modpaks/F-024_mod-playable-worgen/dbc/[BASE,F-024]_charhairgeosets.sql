@@ -1,4 +1,4 @@
--- charhairgeosets: 27 inserts, 0 updates, 0 deletes
+-- charhairgeosets: 28 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `charhairgeosets` WHERE `race` = @Worgen;
@@ -16,6 +16,7 @@ INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `s
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Male,    9, 11, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Male,   10, 12, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Male,   11, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Male,   12,  1, 0), -- Mane: no extra hair mesh
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Female,  0,  2, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Female,  1,  3, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Worgen, @Female,  2,  4, 0),

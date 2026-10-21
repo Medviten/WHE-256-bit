@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @NagaMask                       = 1 << (@Naga - 1); -- race ID 13 → 4096
+SET @NagaMask_2                     = IF(@Naga BETWEEN 65 AND 128, 1 << (@Naga - 65), 0); -- races 65-128
 SET @NagaHelmetMask                 = 1 << @Naga; -- race ID 13 → 8192
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                      = @HordeMask | @NagaMask;
+SET @HordeMask_2                    = @HordeMask_2 | @NagaMask_2; -- races 65-128
 SET @BarrensBros                    = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                  = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask               = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2             = @AllianceMask_2 | @HordeMask_2; -- races 65-128
 SET @BowHunters                     = @BowHunters   | @NagaMask;
+SET @BowHunters_2                   = @BowHunters_2   | @NagaMask_2; -- races 65-128
 SET @NagaLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @NagaAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @NagaKnowThyEnemy               = @KnowThyEnemyHorde;

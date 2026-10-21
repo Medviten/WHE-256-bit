@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @ZandalariTrollMask                       = 1 << (@ZandalariTroll - 1); -- race ID 31 → 1073741824
+SET @ZandalariTrollMask_2                     = IF(@ZandalariTroll BETWEEN 65 AND 128, 1 << (@ZandalariTroll - 65), 0); -- races 65-128
 SET @ZandalariTrollHelmetMask                 = 1 << @ZandalariTroll;       -- race ID 31 → 2147483648
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                                = @HordeMask    | @ZandalariTrollMask;
+SET @HordeMask_2                              = @HordeMask_2    | @ZandalariTrollMask_2; -- races 65-128
 SET @BarrensBros                              = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                            = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                         = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2                       = @AllianceMask_2 | @HordeMask_2; -- races 65-128
 SET @BowHunters                               = @BowHunters   | @ZandalariTrollMask;
+SET @BowHunters_2                             = @BowHunters_2   | @ZandalariTrollMask_2; -- races 65-128
 SET @ZandalariTrollLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @ZandalariTrollAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @ZandalariTrollKnowThyEnemy               = @KnowThyEnemyHorde;

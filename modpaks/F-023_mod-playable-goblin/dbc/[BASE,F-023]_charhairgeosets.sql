@@ -38,4 +38,5 @@ INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `s
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Goblin, @Male,   14, 15, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Goblin, @Male,   15, 16, 0),
 (@CharHairGeosetsID := @CharHairGeosetsID +1, @Goblin, @Male,   16, 17, 0),
-(@CharHairGeosetsID := @CharHairGeosetsID +1, @Goblin, @Male,   17, 18, 0);
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @Goblin, @Male,   17, 18, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @Goblin, @Male,   18,  1, 1); -- Bald (barber shop only): no hair mesh, scalp shown

@@ -23,7 +23,8 @@ UPDATE `faction` SET `reputation_flags_1`     = (`reputation_flags_1` & ~0x10),
                      `reputation_flags_4`     = (`reputation_flags_4` & ~0x10),
                      `reputation_base_2`      = 0,
                      `reputation_race_mask_1` = @PlayableRaceMask,
-                     `reputation_race_mask_2` = 0
+                     `reputation_race_mask_2` = 0,
+    `reputation_race_mask_1_2` = @PlayableRaceMask_2
 WHERE `id` IN (
     @HumanFaction,              @OrcFaction,
     @DwarfFaction,              @UndeadFaction,
@@ -43,5 +44,7 @@ WHERE `id` IN (
     @HighElfFaction,            @OgreFaction,
     @BrokenFaction,             @NagaFaction,
     @FurbolgFaction,            @MurlocFaction,
-    @GilneanFaction,            @VrykulFaction
+    @GilneanFaction,            @VrykulFaction,
+    @ThinHumanFaction,          @TuskarrFaction,
+    @DarkfallenFaction
 );

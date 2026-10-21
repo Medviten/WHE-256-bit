@@ -1,13 +1,21 @@
 -- faction: 0 inserts, 91 updates, 0 deletes
 
-UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @AllianceMask WHERE `reputation_race_mask_1` & @AllianceMask;
-UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @HordeMask    WHERE `reputation_race_mask_1` & @HordeMask;
-UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @AllianceMask WHERE `reputation_race_mask_2` & @AllianceMask;
-UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @HordeMask    WHERE `reputation_race_mask_2` & @HordeMask;
-UPDATE `faction` SET `reputation_race_mask_3` = `reputation_race_mask_3` | @AllianceMask WHERE `reputation_race_mask_3` & @AllianceMask;
-UPDATE `faction` SET `reputation_race_mask_3` = `reputation_race_mask_3` | @HordeMask    WHERE `reputation_race_mask_3` & @HordeMask;
-UPDATE `faction` SET `reputation_race_mask_4` = `reputation_race_mask_4` | @AllianceMask WHERE `reputation_race_mask_4` & @AllianceMask;
-UPDATE `faction` SET `reputation_race_mask_4` = `reputation_race_mask_4` | @HordeMask    WHERE `reputation_race_mask_4` & @HordeMask;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @AllianceMask,
+    `reputation_race_mask_1_2` = `reputation_race_mask_1_2` | @AllianceMask_2 WHERE `reputation_race_mask_1` & @AllianceMask;
+UPDATE `faction` SET `reputation_race_mask_1` = `reputation_race_mask_1` | @HordeMask,
+    `reputation_race_mask_1_2` = `reputation_race_mask_1_2` | @HordeMask_2    WHERE `reputation_race_mask_1` & @HordeMask;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @AllianceMask,
+    `reputation_race_mask_2_2` = `reputation_race_mask_2_2` | @AllianceMask_2 WHERE `reputation_race_mask_2` & @AllianceMask;
+UPDATE `faction` SET `reputation_race_mask_2` = `reputation_race_mask_2` | @HordeMask,
+    `reputation_race_mask_2_2` = `reputation_race_mask_2_2` | @HordeMask_2    WHERE `reputation_race_mask_2` & @HordeMask;
+UPDATE `faction` SET `reputation_race_mask_3` = `reputation_race_mask_3` | @AllianceMask,
+    `reputation_race_mask_3_2` = `reputation_race_mask_3_2` | @AllianceMask_2 WHERE `reputation_race_mask_3` & @AllianceMask;
+UPDATE `faction` SET `reputation_race_mask_3` = `reputation_race_mask_3` | @HordeMask,
+    `reputation_race_mask_3_2` = `reputation_race_mask_3_2` | @HordeMask_2    WHERE `reputation_race_mask_3` & @HordeMask;
+UPDATE `faction` SET `reputation_race_mask_4` = `reputation_race_mask_4` | @AllianceMask,
+    `reputation_race_mask_4_2` = `reputation_race_mask_4_2` | @AllianceMask_2 WHERE `reputation_race_mask_4` & @AllianceMask;
+UPDATE `faction` SET `reputation_race_mask_4` = `reputation_race_mask_4` | @HordeMask,
+    `reputation_race_mask_4_2` = `reputation_race_mask_4_2` | @HordeMask_2    WHERE `reputation_race_mask_4` & @HordeMask;
 
 /*
 -- Changed values

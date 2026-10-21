@@ -18,7 +18,8 @@ INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`
     (@ShadowResistanceWarlockSkillLineAbility, @DraeneiRacials,  @DraeneiRacial6,  @DraeneiMask,  @WarlockMask, 0, 0, 1, 0, 2, 0, 0, 0, 0); -- Shadow Resistance (Warlock)
 
 -- Changed values
-UPDATE `skilllineability` SET `required_races`   = `required_races`   | @AllianceMask                  WHERE `id` IN (
+UPDATE `skilllineability` SET `required_races`   = `required_races`   | @AllianceMask,
+    `required_races_2` = `required_races_2`   | @AllianceMask_2                  WHERE `id` IN (
     @CommonSkillLineAbilityAlliance, -- Spell: 668 (Language: Common)
     @TeleportDarnassusSkillLineAbility, -- Spell: 3565 (Teleport: Darnassus)
     @TeleportIronforgeSkillLineAbility, -- Spell: 3562 (Teleport: Ironforge)
@@ -45,7 +46,8 @@ UPDATE `skilllineability` SET `required_races`   = `required_races`   | @Allianc
     @MekgineersChopperSkillLineAbility2 -- Spell: 60867 (Mekgineer's Chopper)
 );
 
-UPDATE `skilllineability` SET `required_races`   = `required_races`   | @HordeMask                     WHERE `id` IN (
+UPDATE `skilllineability` SET `required_races`   = `required_races`   | @HordeMask,
+    `required_races_2` = `required_races_2`   | @HordeMask_2                     WHERE `id` IN (
     @OrcishSkillLineAbilityHorde, -- Spell: 669 (Language: Orcish)
     @BloodlustSkillLineAbility, -- Spell: 2825 (Bloodlust)
     @JudgementofBloodSkillLineAbility, -- Spell: 31898 (Judgement of Blood)
@@ -71,7 +73,8 @@ UPDATE `skilllineability` SET `required_races`   = `required_races`   | @HordeMa
     @PortalStonardSkillLineAbility
 );
 
-UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask              WHERE `id` IN (
+UPDATE `skilllineability` SET `required_races`   = `required_races`   | @PlayableRaceMask,
+    `required_races_2` = `required_races_2`   | @PlayableRaceMask_2              WHERE `id` IN (
 --    21723, -- Spell: 75460 (N/A?)
     @HolyVengeanceSkillLineAbility, -- Spell: 31803 (Holy Vengeance – proc of Seal of Vengeance)
     @ActivatePrimarySpec, -- Spell: 63645 (Activate Primary Spec)

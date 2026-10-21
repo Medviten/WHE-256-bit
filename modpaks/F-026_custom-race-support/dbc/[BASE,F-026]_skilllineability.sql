@@ -1,11 +1,14 @@
 -- skilllineability: 0 inserts, 42 updates, 0 deletes
 
 -- Changed values
-UPDATE `skilllineability` SET `required_races` = `required_races` | @PlayableRaceMask WHERE `required_races` & @BaseAllianceMask;
-UPDATE `skilllineability` SET `required_races` = `required_races` | @PlayableRaceMask WHERE `required_races` & @BaseHordeMask;
+UPDATE `skilllineability` SET `required_races` = `required_races` | @PlayableRaceMask,
+    `required_races_2` = `required_races_2` | @PlayableRaceMask_2 WHERE `required_races` & @BaseAllianceMask;
+UPDATE `skilllineability` SET `required_races` = `required_races` | @PlayableRaceMask,
+    `required_races_2` = `required_races_2` | @PlayableRaceMask_2 WHERE `required_races` & @BaseHordeMask;
 
 -- Alliance
-UPDATE `skilllineability` SET `required_races` = `required_races` | @AllianceMask WHERE `id` IN (
+UPDATE `skilllineability` SET `required_races` = `required_races` | @AllianceMask,
+    `required_races_2` = `required_races_2` | @AllianceMask_2 WHERE `id` IN (
     @CommonSkillLineAbilityAlliance, -- Spell: 668 (Language: Common)
     @TeleportDarnassusSkillLineAbility, -- Spell: 3565 (Teleport: Darnassus) [Mage]
     @TeleportIronforgeSkillLineAbility, -- Spell: 3562 (Teleport: Ironforge) [Mage]
@@ -33,7 +36,8 @@ UPDATE `skilllineability` SET `required_races` = `required_races` | @AllianceMas
 );
 
 -- Horde
-UPDATE `skilllineability` SET `required_races` = `required_races` | @HordeMask WHERE `id` IN (
+UPDATE `skilllineability` SET `required_races` = `required_races` | @HordeMask,
+    `required_races_2` = `required_races_2` | @HordeMask_2 WHERE `id` IN (
     @OrcishSkillLineAbilityHorde, -- Spell: 669 (Language: Orcish)
     @TeleportOrgrimmarSkillLineAbility, -- Spell: 3567 (Teleport: Orgrimmar) [Mage]
     @TeleportThunderBluffSkillLineAbility, -- Spell: 3566 (Teleport: Thunder Bluff) [Mage]
@@ -59,7 +63,8 @@ UPDATE `skilllineability` SET `required_races` = `required_races` | @HordeMask W
 );
 
 -- Everyone
-UPDATE `skilllineability` SET `required_races` = `required_races` | @PlayableRaceMask WHERE `id` IN (
+UPDATE `skilllineability` SET `required_races` = `required_races` | @PlayableRaceMask,
+    `required_races_2` = `required_races_2` | @PlayableRaceMask_2 WHERE `id` IN (
 --    21723; -- Spell: 75460 (N/A?)
     @FlameShockPassiveSkillLineAbility, -- Spell: 75461 (Flame Shock Passive) [Shaman]
     @ActivatePrimarySpec, -- Spell: 63645 (Activate Primary Spec)

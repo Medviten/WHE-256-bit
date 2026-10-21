@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @VulperaMask                        = 1 << (@Vulpera - 1);       -- race ID 35 → 17179869184
+SET @VulperaMask_2                      = IF(@Vulpera BETWEEN 65 AND 128, 1 << (@Vulpera - 65), 0); -- races 65-128
 SET @VulperaHelmetMask                  = 1 << @Vulpera;             -- race ID 35 → 34359738368
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                          = @HordeMask    | @VulperaMask;
+SET @HordeMask_2                        = @HordeMask_2    | @VulperaMask_2; -- races 65-128
 SET @BarrensBros                        = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                      = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                   = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2                 = @AllianceMask_2 | @HordeMask_2; -- races 65-128
 SET @BowHunters                         = @BowHunters   | @VulperaMask;
+SET @BowHunters_2                       = @BowHunters_2   | @VulperaMask_2; -- races 65-128
 SET @VulperaLanguage                    = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @VulperaAlliance                    = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @VulperaKnowThyEnemy                = @KnowThyEnemyHorde;

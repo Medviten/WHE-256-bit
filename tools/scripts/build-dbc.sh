@@ -608,34 +608,44 @@ compute_variable_snapshot() {
         } >> "$compute_file"
     done
 
-    {
-        printf 'SELECT '
-        local first=true
-        local name
-        for name in "${names[@]}"; do
-            if [[ "$first" == true ]]; then
-                first=false
-            else
-                printf ', '
-            fi
-            printf '@%s' "$name"
-        done
-        printf ';\n'
-    } >> "$compute_file"
+    # One SELECT per variable, each its own line of output, rather than
+    # one SELECT with all variables as columns on a single tab-separated
+    # line. This matters: bash's `IFS=$'\t' read -a` collapses runs of
+    # tabs (tab counts as IFS whitespace, same as space), so a single
+    # empty-string variable anywhere in the list would silently eat a
+    # field and shift every variable after it onto the wrong value --
+    # exactly the failure mode this caused with a file full of blank
+    # localization strings. Reading one value per line sidesteps that
+    # entirely, since consecutive newlines are never collapsed.
+    local name
+    for name in "${names[@]}"; do
+        printf 'SELECT @%s;\n' "$name" >> "$compute_file"
+    done
 
     CURRENT_SQL_FILE="$compute_file"
 
-    local values_line
-    values_line="$(mysql_cmd -N -B < "$compute_file")"
+    local values=()
+    while IFS= read -r line; do
+        values+=("$line")
+    done < <(mysql_cmd -N -B < "$compute_file")
 
     CURRENT_SQL_FILE=""
 
-    local values=()
-    IFS=$'\t' read -r -a values <<< "$values_line"
+    # A count mismatch means something went wrong upstream (a mysql
+    # error, or a value containing an embedded newline splitting into
+    # extra lines) -- fail loudly rather than silently misaligning
+    # names and values again.
+    if (( ${#values[@]} != ${#names[@]} )); then
+        echo "ERROR: expected ${#names[@]} variable value(s) but got ${#values[@]}." >&2
+        echo "       This usually means a mysql error occurred while computing" >&2
+        echo "       variables (check the output above), or a value contains an" >&2
+        echo "       embedded newline." >&2
+        exit 1
+    fi
 
     local i=0
     for name in "${names[@]}"; do
-        local value="${values[$i]:-NULL}"
+        local value="${values[$i]-NULL}"
         if [[ "$value" == "NULL" ]]; then
             printf 'SET @%s = NULL;\n' "$name" >> "$snapshot_file"
         else
@@ -1158,34 +1168,29 @@ done < "$DBC_TABLES_FILE"
 echo
 echo "Deploying DBCs..."
 
-for dbc in "$EXPORT_DIR"/*.dbc; do
-    [[ -e "$dbc" ]] || continue
+# Two rsync passes, both without --delete, so nothing already on the
+# server that we don't know about gets removed:
+#
+#   1. Restore a clean baseline from $ORIGINAL_DBC. This is what fixes
+#      DBCs lingering from a modpak that's no longer in the manifest --
+#      every run starts the server's DBC dir from the same known-clean
+#      state, rather than only ever overwriting what happens to be in
+#      $EXPORT_DIR this time.
+#   2. Overlay this run's newly exported DBCs on top. Since $EXPORT_DIR
+#      already holds the complete current set for every manifest-listed
+#      modpak (not just what changed), this alone brings the server back
+#      in sync with exactly what should exist.
+#
+# This also removes the old Spell.dbc special case entirely -- rsync's
+# own delta-transfer algorithm already does the "don't resend it if it's
+# basically unchanged" optimization for us, correctly, without needing
+# to hand-roll a same-content check that could (and did) get the wrong
+# answer if the server and client ever drifted apart.
+echo "  Restoring clean baseline from $ORIGINAL_DBC..."
+rsync -a --include='*.dbc' --include='*/' --exclude='*' "$ORIGINAL_DBC/" "$SERVER_DBC/"
 
-    filename="$(basename "$dbc")"
-    server_file="$SERVER_DBC/$filename"
-
-    echo
-    echo "DBC: $filename"
-
-    # Spell.dbc is the expensive transfer, so avoid rsync if the contents
-    # are identical to the currently deployed server version.
-    if [[ "$filename" == "Spell.dbc" ]]; then
-        if [[ -f "$server_file" ]] && cmp -s "$dbc" "$server_file"; then
-            echo "  Spell.dbc is unchanged; skipping client transfer."
-            echo "  Keeping existing server copy."
-
-            rm -f -- "$dbc"
-            continue
-        fi
-
-        echo "  Spell.dbc changed; transferring."
-    fi
-
-    # Update the server copy only after the client transfer succeeded.
-    cp -- "$dbc" "$server_file"
-
-    echo "  Deployed: $filename"
-done
+echo "  Overlaying newly built DBCs from $EXPORT_DIR..."
+rsync -av --include='*.dbc' --include='*/' --exclude='*' "$EXPORT_DIR/" "$SERVER_DBC/"
 
 fi # end DBC build (skipped if no DBC SQL files this run)
 
