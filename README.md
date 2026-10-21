@@ -1,5 +1,7 @@
 # mod-worgoblin-high-elf
 
+(This is the 256-bit racemask version. Use the [original](https://github.com/Medviten/WHE-32-bit) if you need the default 32-bit racemasks.)
+
 > [!WARNING]
 >
 > ## Work in Progress
@@ -14,7 +16,7 @@
 
 The script is designed to *replace* your DBCs and world DB! **Back them up!**
 
-A highly modular approach to DBC-heavy mods, relying on DBCTool to bulk edit DBCs in MySQL before exporting them. First and foremost a custom playable race module for **AzerothCore 3.3.5a**.
+A highly modular approach to DBC-heavy mods, relying on DBCTool to bulk edit DBCs in MySQL before exporting them. First and foremost a custom playable race module for **AzerothCore 3.3.5a**. Using a pseudo-256-bit approach to racemasks: four 64-bit columns. This requires both [core](https://github.com/Medviten/azerothcore-wotlk-256-bit) and [client](https://github.com/Medviten/wowdecomp-256-bit) edits to work, and separate [DBCTool](https://github.com/Medviten/DBCTool-256-bit) meta files for the DBC work.
 
 This project started as a merger of Worgoblin and AzerothCore High Elf (which are mutually exclusive out of the box), as well as ARAC, and has since been expanded with additional playable races and mods like Faction Free.
 
@@ -39,18 +41,9 @@ If you want to change something, simply add or edit an SQL file and have it appl
 # Features
 
 ## Playable Races
-The project currently includes the following custom playable races:
+The pipeline can add up to 255 playable races.
 
-* **Worgen**
-* **Goblin**
-* **High Elf**
-* **Mag'har Orc**
-* **Ogre**
-* **Dark Iron Dwarf**
-* **Zandalari Troll**
-* **Vulpera**
-
-More details are found in each modpak's own readme file.
+Details are found in each modpak's own readme file.
 
 ---
 
