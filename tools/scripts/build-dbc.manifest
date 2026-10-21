@@ -27,6 +27,7 @@ F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocke
 F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
 F-005_mod-azerothcore-high-elf
 F-007_mod-maghar
+#F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
 F-014_mod-playable-ogres
 F-016_mod-dark-iron-dwarf
 F-017_mod-zandalari-troll
@@ -36,7 +37,13 @@ F-021_mod-pandaren-horde
 F-022_mod-playable-broken
 #F-025_mod-kul-tiran # Off by default (WIP – not ready)
 #F-027_mod-gilnean # Off by default (WIP – not ready)
-#F-036_mod-vrykul # Off by default (WIP – not ready)
+#F-036_mod-playable-vrykul # Off by default (WIP – not ready)
+#F-038_mod-earthen-alliance # Off by default (WIP – not ready)
+#F-039_mod-earthen-horde # Off by default (WIP – not ready)
+#F-040_mod-mechagnome # Off by default (WIP – not ready)
+#F-041_mod-thin-human # Off by default (WIP – not ready)
+#F-042_mod-tuskarr # Off by default (WIP – not ready)
+#F-043_mod-darkfallen # Off by default (WIP – not ready)
 # END CUSTOM RACES #
 
 # ADDITIONAL MODS #

@@ -36,5 +36,6 @@ OptionsSelect.xml
 NameLength_CharacterCreate.lua
 AlteredForm_CharacterCreate.lua
 DruidForms_CharacterCreate.lua
+MaleOnly_CharacterCreate.lua
 ## This Always Runs Last, Add New Items above it.
 GlueLocalizationPost.xml

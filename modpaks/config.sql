@@ -327,10 +327,11 @@ SET @Draenei                                                   =   11;
 
 -- New Playable Races
 -- Fixed IDs shared with retail ChrRaces, so C++/Lua scripts and core edits can rely on them no matter which
--- modpaks are applied. Naga, Broken, Vrykul and Taunka use their retail NPC race IDs: F-008 moves the stock NPC rows away.
+-- modpaks are applied. Naga, Broken, Vrykul, Tuskarr and Taunka use their retail NPC race IDs: F-008 moves the stock NPC rows away.
 SET @Naga                                                      =   13; -- retail NPC race (Naga_)
 SET @Broken                                                    =   14; -- retail NPC race
 SET @Vrykul                                                    =   16; -- retail NPC race
+SET @Tuskarr                                                   =   17; -- retail NPC race
 SET @Taunka                                                    =   19; -- retail NPC race
 SET @Worgen                                                    =   22;
 SET @Gilnean                                                   =   23;
@@ -343,7 +344,7 @@ SET @VoidElf                                                   =   29;
 SET @LightforgedDraenei                                        =   30;
 SET @ZandalariTroll                                            =   31;
 SET @KulTiran                                                  =   32;
--- Thin Human                                                  =   33;
+SET @ThinHuman                                                 =   33;
 SET @DarkIronDwarf                                             =   34;
 SET @Vulpera                                                   =   35;
 SET @MagharOrc                                                 =   36;
@@ -351,6 +352,10 @@ SET @Mechagnome                                                =   37;
 -- Not in retail (first free IDs after Mechagnome; retail continues with Dracthyr 52/70, Earthen 84/85, Haranir 86/91)
 SET @HighElf                                                   =   38;
 SET @Ogre                                                      =   39;
+SET @Darkfallen                                                =   40;
+-- Retail races above 64 live in the second race-mask word (@<Race>Mask_2 and the `<column>_2` mask columns)
+SET @HordeEarthen                                              =   84;
+SET @AllianceEarthen                                           =   85;
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;
@@ -367,16 +372,26 @@ SET @NPCIceTroll                                               =   181;
 
 -- RaceMasks
 SET @HumanMask                                                 =   1 << (@Human            - 1);  -- race ID 1  → 1
+SET @HumanMask_2                                               = IF(@Human BETWEEN 65 AND 128, 1 << (@Human - 65), 0); -- races 65-128
 SET @OrcMask                                                   =   1 << (@Orc              - 1);  -- race ID 2  → 2
+SET @OrcMask_2                                                 = IF(@Orc BETWEEN 65 AND 128, 1 << (@Orc - 65), 0); -- races 65-128
 SET @DwarfMask                                                 =   1 << (@Dwarf            - 1);  -- race ID 3  → 4
+SET @DwarfMask_2                                               = IF(@Dwarf BETWEEN 65 AND 128, 1 << (@Dwarf - 65), 0); -- races 65-128
 SET @NightElfMask                                              =   1 << (@NightElf         - 1);  -- race ID 4  → 8
+SET @NightElfMask_2                                            = IF(@NightElf BETWEEN 65 AND 128, 1 << (@NightElf - 65), 0); -- races 65-128
 SET @UndeadMask                                                =   1 << (@Undead           - 1);  -- race ID 5  → 16
+SET @UndeadMask_2                                              = IF(@Undead BETWEEN 65 AND 128, 1 << (@Undead - 65), 0); -- races 65-128
 SET @TaurenMask                                                =   1 << (@Tauren           - 1);  -- race ID 6  → 32
+SET @TaurenMask_2                                              = IF(@Tauren BETWEEN 65 AND 128, 1 << (@Tauren - 65), 0); -- races 65-128
 SET @GnomeMask                                                 =   1 << (@Gnome            - 1);  -- race ID 7  → 64
+SET @GnomeMask_2                                               = IF(@Gnome BETWEEN 65 AND 128, 1 << (@Gnome - 65), 0); -- races 65-128
 SET @TrollMask                                                 =   1 << (@Troll            - 1);  -- race ID 8  → 128
+SET @TrollMask_2                                               = IF(@Troll BETWEEN 65 AND 128, 1 << (@Troll - 65), 0); -- races 65-128
 -- SET @GoblinMask                                                =   1 << (@Goblin           - 1);  -- race ID 9  → 256
 SET @BloodElfMask                                              =   1 << (@BloodElf         - 1);  -- race ID 10 → 512
+SET @BloodElfMask_2                                            = IF(@BloodElf BETWEEN 65 AND 128, 1 << (@BloodElf - 65), 0); -- races 65-128
 SET @DraeneiMask                                               =   1 << (@Draenei          - 1);  -- race ID 11 → 1024
+SET @DraeneiMask_2                                             = IF(@Draenei BETWEEN 65 AND 128, 1 << (@Draenei - 65), 0); -- races 65-128
 
 -- Helmet RaceMasks
 SET @HumanHelmetMask                                           =      1 << @Human;            -- race ID 1  → 2
@@ -423,7 +438,7 @@ SET @HighmountainTaurenFemaleModel                             =    @NextModelID
 SET @NagaMaleModel                                             =    @NextModelID := @NextModelID +1; -- 40014;
 SET @NagaFemaleModel                                           =    @NextModelID := @NextModelID +1; -- 40015;
 SET @TaunkaMaleModel                                           =    @NextModelID := @NextModelID +1; -- 40016;
-SET @TaunkaFemaleModel                                         =       60; -- Tauren female
+SET @TaunkaFemaleModel                                         =    @TaunkaMaleModel; -- male only
 SET @VoidElfMaleModel                                          =    @NextModelID := @NextModelID +1; -- 40017;
 SET @VoidElfFemaleModel                                        =    @NextModelID := @NextModelID +1; -- 40018;
 SET @LightforgedDraeneiMaleModel                               =    @NextModelID := @NextModelID +1; -- 40019;
@@ -432,6 +447,16 @@ SET @GoblinMaleModel                                           =    @NextModelID
 SET @GoblinFemaleModel                                         =    @NextModelID := @NextModelID +1; -- 40022; -- NPC: 832
 SET @VrykulMaleModel                                           =    @NextModelID := @NextModelID +1; -- 40023;
 SET @VrykulFemaleModel                                         =    @NextModelID := @NextModelID +1; -- 40024;
+SET @EarthenMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @EarthenFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @MechagnomeMaleModel                                       =    @NextModelID := @NextModelID +1;
+SET @MechagnomeFemaleModel                                     =    @NextModelID := @NextModelID +1;
+SET @ThinHumanMaleModel                                        =    @NextModelID := @NextModelID +1; -- male only
+SET @TuskarrMaleModel                                          =    @NextModelID := @NextModelID +1; -- male only
+SET @DarkfallenMaleModel                                       =    @NextModelID := @NextModelID +1;
+SET @DarkfallenFemaleModel                                     =    @NextModelID := @NextModelID +1;
+SET @NightborneMaleModel                                       =    @NextModelID := @NextModelID +1;
+SET @NightborneFemaleModel                                     =    @NextModelID := @NextModelID +1;
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -478,6 +503,20 @@ SET @GilneanMaleDisplay                                        =    @NextDisplay
 SET @GilneanFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1; -- 40024;
 SET @VrykulMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1; -- 40025;
 SET @VrykulFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1; -- 40026;
+SET @AllianceEarthenMaleDisplay                                =    @NextDisplayID := @NextDisplayID +1;
+SET @AllianceEarthenFemaleDisplay                              =    @NextDisplayID := @NextDisplayID +1;
+SET @HordeEarthenMaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @HordeEarthenFemaleDisplay                                 =    @NextDisplayID := @NextDisplayID +1;
+SET @MechagnomeMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @MechagnomeFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @ThinHumanMaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @ThinHumanFemaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @TuskarrMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @TuskarrFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @DarkfallenMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @DarkfallenFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @NightborneMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @NightborneFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -521,6 +560,20 @@ SET @GoblinMaleDisplayExtra                                    =    @NextDisplay
 SET @GoblinFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45567;
 SET @VrykulMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45568;
 SET @VrykulFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1; -- 45569;
+SET @AllianceEarthenMaleDisplayExtra                           =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceEarthenFemaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeEarthenMaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeEarthenFemaleDisplayExtra                            =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @MechagnomeMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @MechagnomeFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ThinHumanMaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ThinHumanFemaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @TuskarrMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @TuskarrFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @DarkfallenMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @DarkfallenFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @NightborneMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @NightborneFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -603,6 +656,12 @@ SET @TaunkaRacials                                             =      803;
 SET @VoidElfRacials                                            =      804;
 SET @LightforgedDraeneiRacials                                 =      805;
 SET @VrykulRacials                                             =      806;
+SET @EarthenRacials                                            =      807; -- shared by Alliance and Horde Earthen
+SET @MechagnomeRacials                                         =      808;
+SET @ThinHumanRacials                                          =      809;
+SET @TuskarrRacials                                            =      810;
+SET @DarkfallenRacials                                         =      811;
+SET @NightborneRacials                                         =      812;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1065,6 +1124,12 @@ SET @MechanoHogSkillLineAbility2                               =    20290; -- Ho
 SET @ActivatePrimarySpec                                       =    20867;
 SET @ActivateSecondarySpec                                     =    20868;
 SET @RidingSkill100SkillLineAbility                            =    31494; -- F-015 (Journeyman Riding passive)
+SET @NightborneSkillLineAbility1                               =    31495;
+SET @NightborneSkillLineAbility2                               =    31496;
+SET @NightborneSkillLineAbility3                               =    31497;
+SET @NightborneSkillLineAbility4                               =    31498;
+SET @NightborneSkillLineAbility5                               =    31499;
+SET @NightborneSkillLineAbility6                               =    31500;
 
 -- Racial SkillRaceClass
 SET @WorgenRacialSkillRaceClass                                =      971;
@@ -1083,6 +1148,7 @@ SET @ZandalariTrollRacialSkillRaceClass                        =     1150;
 SET @VulperaRacialSkillRaceClass                               =     1151;
 SET @BrokenRacialSkillRaceClass                                =     1152;
 SET @PandarenRacialSkillRaceClass                              =     1153;
+SET @DarkfallenRacialSkillRaceClass                            =     1154;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1433,17 +1499,29 @@ SET @SpellStarcursedVoidstrider                                =   259202; -- Le
 
 -- Faction Masks
 SET @VanillaAllianceMask                                       = @HumanMask           | @DwarfMask  | @NightElfMask  | @GnomeMask;
+SET @VanillaAllianceMask_2                                     = @HumanMask_2           | @DwarfMask_2  | @NightElfMask_2  | @GnomeMask_2; -- races 65-128
 SET @VanillaHordeMask                                          = @OrcMask             | @UndeadMask | @TaurenMask    | @TrollMask;
+SET @VanillaHordeMask_2                                        = @OrcMask_2             | @UndeadMask_2 | @TaurenMask_2    | @TrollMask_2; -- races 65-128
 SET @BaseAllianceMask                                          = @VanillaAllianceMask | @DraeneiMask;
+SET @BaseAllianceMask_2                                        = @VanillaAllianceMask_2 | @DraeneiMask_2; -- races 65-128
 SET @BaseHordeMask                                             = @VanillaHordeMask    | @BloodElfMask;
+SET @BaseHordeMask_2                                           = @VanillaHordeMask_2    | @BloodElfMask_2; -- races 65-128
 SET @AllianceMask                                              = @BaseAllianceMask; -- | @WorgenMask | @HighElfMask   | @DarkIronDwarfMask | @AlliancePandarenMask | @KulTiranMask;
+SET @AllianceMask_2                                            = @BaseAllianceMask_2; -- races 65-128
 SET @HordeMask                                                 = @BaseHordeMask;    -- | @GoblinMask | @MagharOrcMask | @OgreMask          | @ZandalariTrollMask | @VulperaMask;
+SET @HordeMask_2                                               = @BaseHordeMask_2; -- races 65-128
 SET @UndercityMask                                             = @UndeadMask          | @BloodElfMask; -- Mostly for easy reputation split
+SET @UndercityMask_2                                           = @UndeadMask_2          | @BloodElfMask_2; -- races 65-128
 SET @BarrensBros                                               = @HordeMask           & ~@UndercityMask; -- Mostly for easy reputation split
+SET @BarrensBros_2                                             = @HordeMask_2           & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                                          = @AllianceMask        | @HordeMask;
+SET @PlayableRaceMask_2                                        = @AllianceMask_2        | @HordeMask_2; -- races 65-128
 SET @GunHunters                                                = @DwarfMask           | @TaurenMask | @GnomeMask;
+SET @GunHunters_2                                              = @DwarfMask_2           | @TaurenMask_2 | @GnomeMask_2; -- races 65-128
 SET @CrossbowHunters                                           = @DraeneiMask         | @HumanMask  | @UndeadMask;
+SET @CrossbowHunters_2                                         = @DraeneiMask_2         | @HumanMask_2  | @UndeadMask_2; -- races 65-128
 SET @BowHunters                                                = @PlayableRaceMask    & ~(@GunHunters | @CrossbowHunters);
+SET @BowHunters_2                                              = @PlayableRaceMask_2    & ~(@GunHunters_2 | @CrossbowHunters_2); -- races 65-128
 SET @DaggersRogueOnly                                          = @TaurenMask          | @DraeneiMask;
 
 -- Race and PLAYER factions (stock races)
@@ -1526,6 +1604,13 @@ SET @TaunkaFactionTemplate                                     =     2252; -- Re
 SET @VoidElfFactionTemplate                                    =     2253; -- References @VoidElfPlayer
 SET @LightforgedDraeneiFactionTemplate                         =     2254; -- References @LightforgedDraeneiPlayer
 SET @VrykulFactionTemplate                                     =     2255; -- References @VrykulPlayer
+SET @AllianceEarthenFactionTemplate                            =     2256; -- References @AllianceEarthenPlayer
+SET @HordeEarthenFactionTemplate                               =     2257; -- References @HordeEarthenPlayer
+SET @MechagnomeFactionTemplate                                 =     2258; -- References @MechagnomePlayer
+SET @ThinHumanFactionTemplate                                  =     2259; -- References @ThinHumanPlayer
+SET @TuskarrFactionTemplate                                    =     2260; -- References @TuskarrPlayer
+SET @DarkfallenFactionTemplate                                 =     2261; -- References @DarkfallenPlayer
+SET @NightborneFactionTemplate                                 =     2262; -- References @NightbornePlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1547,6 +1632,13 @@ SET @TaunkaFactionRepIndex                                     =    120;
 SET @VoidElfFactionRepIndex                                    =    121;
 SET @LightforgedDraeneiFactionRepIndex                         =    122;
 SET @VrykulFactionRepIndex                                     =    123;
+SET @AllianceEarthenFactionRepIndex                            =    124;
+SET @HordeEarthenFactionRepIndex                               =    125;
+SET @MechagnomeFactionRepIndex                                 =    126;
+SET @ThinHumanFactionRepIndex                                  =    127;
+SET @TuskarrFactionRepIndex                                    =    128;
+SET @DarkfallenFactionRepIndex                                 =    129;
+SET @NightborneFactionRepIndex                                 =    130;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1572,6 +1664,13 @@ SET @TaunkaAchievement                                         =    1444;
 SET @VoidElfAchievement                                        =    1445;
 SET @LightforgedDraeneiAchievement                             =    1446;
 SET @VrykulAchievement                                         =    1447;
+SET @AllianceEarthenAchievement                                =    1448;
+SET @HordeEarthenAchievement                                   =    1449;
+SET @MechagnomeAchievement                                     =    1450;
+SET @ThinHumanAchievement                                      =    1451;
+SET @TuskarrAchievement                                        =    1452;
+SET @DarkfallenAchievement                                     =    1453;
+SET @NightborneAchievement                                     =    1454;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -1667,6 +1766,34 @@ SET @VrykulCriteria1                                           =    19274; -- Ac
 SET @VrykulCriteria2                                           =    19275; -- Achievement 2422: Shake Your Bunny-Maker
 SET @VrykulCriteria3                                           =    19276; -- Achievement 291: Check Your Head
 SET @VrykulCriteria4                                           =    19277; -- @VrykulAchievement: Realm First! Level 80 Vrykul
+SET @AllianceEarthenCriteria1                                  =    19278; -- Achievement 246: Know Thy Enemy
+SET @AllianceEarthenCriteria2                                  =    19279; -- Achievement 2422: Shake Your Bunny-Maker
+SET @AllianceEarthenCriteria3                                  =    19280; -- Achievement 291: Check Your Head
+SET @AllianceEarthenCriteria4                                  =    19281; -- @AllianceEarthenAchievement: Realm First! Level 80
+SET @HordeEarthenCriteria1                                     =    19282; -- Achievement 1005: Know Thy Enemy
+SET @HordeEarthenCriteria2                                     =    19283; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HordeEarthenCriteria3                                     =    19284; -- Achievement 291: Check Your Head
+SET @HordeEarthenCriteria4                                     =    19285; -- @HordeEarthenAchievement: Realm First! Level 80
+SET @MechagnomeCriteria1                                       =    19286; -- Achievement 246: Know Thy Enemy
+SET @MechagnomeCriteria2                                       =    19287; -- Achievement 2422: Shake Your Bunny-Maker
+SET @MechagnomeCriteria3                                       =    19288; -- Achievement 291: Check Your Head
+SET @MechagnomeCriteria4                                       =    19289; -- @MechagnomeAchievement: Realm First! Level 80
+SET @ThinHumanCriteria1                                        =    19290; -- Achievement 246: Know Thy Enemy
+SET @ThinHumanCriteria2                                        =    19291; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ThinHumanCriteria3                                        =    19292; -- Achievement 291: Check Your Head
+SET @ThinHumanCriteria4                                        =    19293; -- @ThinHumanAchievement: Realm First! Level 80
+SET @TuskarrCriteria1                                          =    19294; -- Achievement 246: Know Thy Enemy
+SET @TuskarrCriteria2                                          =    19295; -- Achievement 2422: Shake Your Bunny-Maker
+SET @TuskarrCriteria3                                          =    19296; -- Achievement 291: Check Your Head
+SET @TuskarrCriteria4                                          =    19297; -- @TuskarrAchievement: Realm First! Level 80
+SET @DarkfallenCriteria1                                       =    19298; -- Achievement 1005: Know Thy Enemy
+SET @DarkfallenCriteria2                                       =    19299; -- Achievement 2422: Shake Your Bunny-Maker
+SET @DarkfallenCriteria3                                       =    19300; -- Achievement 291: Check Your Head
+SET @DarkfallenCriteria4                                       =    19301; -- @DarkfallenAchievement: Realm First! Level 80
+SET @NightborneCriteria1                                       =    19302; -- Achievement 246: Know Thy Enemy
+SET @NightborneCriteria2                                       =    19303; -- Achievement 2422: Shake Your Bunny-Maker
+SET @NightborneCriteria3                                       =    19304; -- Achievement 291: Check Your Head
+SET @NightborneCriteria4                                       =    19305; -- @NightborneAchievement: Realm First! Level 80 Nightborne
 
 -- Classes
 SET @Warrior                                                   =      1;

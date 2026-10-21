@@ -2,6 +2,7 @@
 
 -- New entries
 DELETE FROM `characterfacialhairstyles` WHERE `race` = @KulTiran;
+-- Female: 1-6 earrings (geoset 101-106), 7-12 necklaces (geoset 201-206).
 INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES
 (@KulTiran, @Male,    0, 0, 0, 0, 0, 0),
 (@KulTiran, @Male,    1, 1, 0, 0, 0, 0),
@@ -18,14 +19,14 @@ INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geos
 (@KulTiran, @Male,   12, 3, 3, 0, 0, 0),
 (@KulTiran, @Female,  0, 0, 0, 0, 0, 0),
 (@KulTiran, @Female,  1, 1, 0, 0, 0, 0),
-(@KulTiran, @Female,  2, 1, 1, 0, 0, 0),
-(@KulTiran, @Female,  3, 1, 2, 0, 0, 0),
-(@KulTiran, @Female,  4, 1, 3, 0, 0, 0),
-(@KulTiran, @Female,  5, 2, 0, 0, 0, 0),
-(@KulTiran, @Female,  6, 2, 1, 0, 0, 0),
-(@KulTiran, @Female,  7, 2, 2, 0, 0, 0),
-(@KulTiran, @Female,  8, 2, 3, 0, 0, 0),
-(@KulTiran, @Female,  9, 3, 0, 0, 0, 0),
-(@KulTiran, @Female, 10, 3, 1, 0, 0, 0),
-(@KulTiran, @Female, 11, 3, 2, 0, 0, 0),
-(@KulTiran, @Female, 12, 3, 3, 0, 0, 0);
+(@KulTiran, @Female,  2, 2, 0, 0, 0, 0),
+(@KulTiran, @Female,  3, 3, 0, 0, 0, 0),
+(@KulTiran, @Female,  4, 4, 0, 0, 0, 0),
+(@KulTiran, @Female,  5, 5, 0, 0, 0, 0),
+(@KulTiran, @Female,  6, 6, 0, 0, 0, 0),
+(@KulTiran, @Female,  7, 0, 0, 1, 0, 0),
+(@KulTiran, @Female,  8, 0, 0, 2, 0, 0),
+(@KulTiran, @Female,  9, 0, 0, 3, 0, 0),
+(@KulTiran, @Female, 10, 0, 0, 4, 0, 0),
+(@KulTiran, @Female, 11, 0, 0, 5, 0, 0),
+(@KulTiran, @Female, 12, 0, 0, 6, 0, 0);

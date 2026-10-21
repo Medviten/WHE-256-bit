@@ -1,11 +1,15 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @TaunkaMask = 1 << (@Taunka - 1); -- race ID 19 → 262144
+SET @TaunkaMask_2= IF(@Taunka BETWEEN 65 AND 128, 1 << (@Taunka - 65), 0); -- races 65-128
 SET @TaunkaHelmetMask = 1 << @Taunka; -- race ID 19 → 524288
 
 -- Important variable update
 SET @HordeMask = @HordeMask | @TaunkaMask;
+SET @HordeMask_2= @HordeMask_2 | @TaunkaMask_2; -- races 65-128
 SET @BarrensBros = @HordeMask & ~@UndercityMask;
+SET @BarrensBros_2= @HordeMask_2 & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2= @AllianceMask_2 | @HordeMask_2; -- races 65-128
 
 -- Miscellaneous
 SET @TaunkaExplorationSound = @TaurenExplorationSound;

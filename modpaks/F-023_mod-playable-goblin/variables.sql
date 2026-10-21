@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @GoblinMask                       = 1 << (@Goblin - 1); -- race ID 9 → 256
+SET @GoblinMask_2                     = IF(@Goblin BETWEEN 65 AND 128, 1 << (@Goblin - 65), 0); -- races 65-128
 SET @GoblinHelmetMask                 = 1 << @Goblin;       -- race ID 9 → 512
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                        = @HordeMask    | @GoblinMask;
+SET @HordeMask_2                      = @HordeMask_2    | @GoblinMask_2; -- races 65-128
 SET @BarrensBros                      = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                    = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                 = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2               = @AllianceMask_2 | @HordeMask_2; -- races 65-128
 SET @GunHunters                       = @GunHunters   | @GoblinMask;
+SET @GunHunters_2                     = @GunHunters_2   | @GoblinMask_2; -- races 65-128
 SET @GoblinLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @GoblinAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @GoblinKnowThyEnemy               = @KnowThyEnemyHorde;

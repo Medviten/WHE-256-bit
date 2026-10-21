@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @KulTiranMask                       = 1 << (@KulTiran - 1);      -- race ID 32 → 2147483648
+SET @KulTiranMask_2                     = IF(@KulTiran BETWEEN 65 AND 128, 1 << (@KulTiran - 65), 0); -- races 65-128
 SET @KulTiranHelmetMask                 = 1 << @KulTiran;            -- race ID 32 → 4294967296
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                       = @AllianceMask    | @KulTiranMask;
+SET @AllianceMask_2                     = @AllianceMask_2    | @KulTiranMask_2; -- races 65-128
 SET @BarrensBros                        = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                      = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                   = @AllianceMask    | @HordeMask;
+SET @PlayableRaceMask_2                 = @AllianceMask_2    | @HordeMask_2; -- races 65-128
 SET @CrossbowHunters                    = @CrossbowHunters | @KulTiranMask;
+SET @CrossbowHunters_2                  = @CrossbowHunters_2 | @KulTiranMask_2; -- races 65-128
 SET @KulTiranLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @KulTiranAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @KulTiranKnowThyEnemy               = @KnowThyEnemyAlliance;

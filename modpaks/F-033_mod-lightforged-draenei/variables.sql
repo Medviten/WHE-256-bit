@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @LightforgedDraeneiMask                     = 1 << (@LightforgedDraenei - 1); -- race ID 30 → 536870912
+SET @LightforgedDraeneiMask_2                   = IF(@LightforgedDraenei BETWEEN 65 AND 128, 1 << (@LightforgedDraenei - 65), 0); -- races 65-128
 SET @LightforgedDraeneiHelmetMask               = 1 << @LightforgedDraenei; -- race ID 30 → 1073741824
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                               = @AllianceMask     | @LightforgedDraeneiMask;
+SET @AllianceMask_2                             = @AllianceMask_2     | @LightforgedDraeneiMask_2; -- races 65-128
 SET @BarrensBros                                = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                              = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                           = @PlayableRaceMask | @LightforgedDraeneiMask;
+SET @PlayableRaceMask_2                         = @PlayableRaceMask_2 | @LightforgedDraeneiMask_2; -- races 65-128
 SET @CrossbowHunters                            = @CrossbowHunters  | @LightforgedDraeneiMask;
+SET @CrossbowHunters_2                          = @CrossbowHunters_2  | @LightforgedDraeneiMask_2; -- races 65-128
 SET @LightforgedDraeneiLanguage                 = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @LightforgedDraeneiAlliance                 = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @LightforgedDraeneiKnowThyEnemy             = @KnowThyEnemyAlliance;

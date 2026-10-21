@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @DarkIronDwarfMask                       = 1 << (@DarkIronDwarf - 1); -- race ID 34 → 8589934592
+SET @DarkIronDwarfMask_2                     = IF(@DarkIronDwarf BETWEEN 65 AND 128, 1 << (@DarkIronDwarf - 65), 0); -- races 65-128
 SET @DarkIronDwarfHelmetMask                 = 1 << @DarkIronDwarf; -- race ID 34 → 17179869184
 
 -- Important variable updates (Alliance vs. Horde)
 SET @AllianceMask                            = @AllianceMask | @DarkIronDwarfMask;
+SET @AllianceMask_2                          = @AllianceMask_2 | @DarkIronDwarfMask_2; -- races 65-128
 SET @BarrensBros                             = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                           = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                        = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2                      = @AllianceMask_2 | @HordeMask_2; -- races 65-128
 SET @GunHunters                              = @GunHunters   | @DarkIronDwarfMask;
+SET @GunHunters_2                            = @GunHunters_2   | @DarkIronDwarfMask_2; -- races 65-128
 SET @DarkIronDwarfLanguage                   = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @DarkIronDwarfAlliance                   = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @DarkIronDwarfKnowThyEnemy               = @KnowThyEnemyAlliance;

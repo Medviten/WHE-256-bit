@@ -1,0 +1,42 @@
+-- [F-043] mod-darkfallen: charhairgeosets: 123 inserts, 6 updates, 0 deletes
+
+-- New entries
+DELETE FROM `charhairgeosets` WHERE `race` = @Darkfallen; 
+SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `charhairgeosets`);
+INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `show_scalp`) VALUES
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    0,  2, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  1,  3, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  2,  4, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    2,  4, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    1,  3, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    3,  5, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    4,  6, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    5,  7, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    6,  8, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    7,  9, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    8, 10, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,    9, 11, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,   10, 12, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  3,  5, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  4,  6, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  5,  7, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  6,  8, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  7,  9, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  8, 10, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  9, 11, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 10, 12, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 11, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 12, 14, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 13, 15, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 14, 16, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female,  0,  2, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 15, 17, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 16, 18, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 17, 19, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 18, 20, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Female, 19, 21, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,   11, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,   12, 14, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,   13, 15, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,   14, 16, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID + 1, @Darkfallen, @Male,   15, 17, 0);

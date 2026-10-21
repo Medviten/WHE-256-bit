@@ -1,12 +1,17 @@
 -- Race masks (race IDs are fixed in config.sql)
 SET @NightborneMask                        = 1 << (@Nightborne - 1);       -- race ID 27 → 67108864
+SET @NightborneMask_2                      = IF(@Nightborne BETWEEN 65 AND 128, 1 << (@Nightborne - 65), 0); -- races 65-128
 SET @NightborneHelmetMask                  = 1 << @Nightborne;             -- race ID 27 → 134217728
 
 -- Important variable updates (Alliance vs. Horde)
 SET @HordeMask                             = @HordeMask    | @NightborneMask;
+SET @HordeMask_2                           = @HordeMask_2    | @NightborneMask_2; -- races 65-128
 SET @BarrensBros                           = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                         = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                      = @AllianceMask | @HordeMask;
+SET @PlayableRaceMask_2                    = @AllianceMask_2 | @HordeMask_2; -- races 65-128
 SET @BowHunters                            = @BowHunters   | @NightborneMask;
+SET @BowHunters_2                          = @BowHunters_2   | @NightborneMask_2; -- races 65-128
 SET @NightborneLanguage                    = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @NightborneAlliance                    = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
 SET @NightborneKnowThyEnemy                = @KnowThyEnemyHorde;
