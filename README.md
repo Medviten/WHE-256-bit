@@ -1,5 +1,7 @@
 # mod-worgoblin-high-elf
 
+(This is the 256-bit racemask version. Use the [original](https://github.com/Medviten/WHE-32-bit) if you need the default 32-bit racemasks.)
+
 > [!WARNING]
 >
 > ## Work in Progress
