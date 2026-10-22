@@ -62,6 +62,17 @@ GlueAmbienceTracks["HIGHMOUNTAINTAUREN"] = "GlueScreenHighmountainTauren";
 GlueAmbienceTracks["NAGA"] = "GlueScreenNaga";
 GlueAmbienceTracks["BROKEN"] = "GlueScreenDraenei";
 GlueAmbienceTracks["LIGHTFORGEDDRAENEI"] = "GlueScreenDraenei";
+GlueAmbienceTracks["MURLOC"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["MECHAGNOME"] = "GlueScreenDwarfGnome";
+GlueAmbienceTracks["VOIDELF"] = "GlueScreenHuman";
+GlueAmbienceTracks["NIGHTBORNE"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["VRYKUL"] = "GlueScreenHuman";
+GlueAmbienceTracks["TUSKARR"] = "GlueScreenDwarfGnome";
+GlueAmbienceTracks["TAUNKA"] = "GlueScreenTauren";
+GlueAmbienceTracks["THINHUMAN"] = "GlueScreenHuman";
+GlueAmbienceTracks["DARKFALLEN"] = "GlueScreenUndead";
+GlueAmbienceTracks["ALLIANCEEARTHEN"] = "GlueScreenDwarfGnome";
+GlueAmbienceTracks["HORDEEARTHEN"] = "GlueScreenOrcTroll";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -466,9 +477,18 @@ end
 -- name (nameupper, captured before the swap below). x = toward/away from
 -- camera (more negative x = further away = appears smaller), z = up/down.
 -- Start with small values like these and tune per-race in-game.
+-- Background scenes for races that have none of their own (the stock race whose start area they share)
+GlueBackgroundFallback = {
+	["MECHAGNOME"] = "Dwarf", ["TUSKARR"] = "Dwarf", ["ALLIANCEEARTHEN"] = "Dwarf",
+	["VOIDELF"] = "Human", ["VRYKUL"] = "Human", ["THINHUMAN"] = "Human",
+	["NIGHTBORNE"] = "BloodElf", ["DARKFALLEN"] = "Scourge", ["TAUNKA"] = "Tauren",
+	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc",
+};
+
 BackgroundModelPositionOffset = {
 	["OGRE"]    = { x = -16, y = 0, z = 16 },   -- reuses Orc's camera; Ogre is taller
 	["VULPERA"] = { x = 0.3,  y = 0, z = -0.15 }, -- reuses Tauren's camera; Vulpera is smaller
+	["MURLOC"]  = { x = 0.3,  y = 0, z = -0.15 }, -- reuses Troll's camera; Murloc is smaller (untuned, Vulpera's values)
 };
 
 -- Function to set the background model for character select and create screens
@@ -527,9 +547,16 @@ function SetBackgroundModel(model, name)
 		name = "Draenei";
 	end
 
+	if (name == "Murloc" or name == "MURLOC") then
+		name = "Troll";
+	end
+
 	if (name == "LightforgedDraenei" or name == "Lightforged Draenei" or name == "Lightforged_Draenei" or name == "LIGHTFORGEDDRAENEI" or name == "LIGHTFORGED DRAENEI" or name == "LIGHTFORGED_DRAENEI") then
 		name = "Draenei";
 	end
+
+	-- races without a scene of their own use the scene of the stock race whose start area they share
+	name = GlueBackgroundFallback[strupper(name)] or name;
 
     local path = "Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2";
 	if ( model == CharacterCreate ) then
@@ -537,7 +564,8 @@ function SetBackgroundModel(model, name)
 	else
 		SetCharSelectBackground(path);
 	end
-	PlayGlueAmbience(GlueAmbienceTracks[nameupper], 4.0);
+	-- races without a track of their own fall back to the character select one
+	PlayGlueAmbience(GlueAmbienceTracks[nameupper] or GlueAmbienceTracks["CHARACTERSELECT"], 4.0);
 	SetLighting(model, nameupper)
 
 	-- Store which race's offset (if any) applies to this model, so the

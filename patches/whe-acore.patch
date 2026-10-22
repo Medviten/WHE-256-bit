@@ -1,5 +1,5 @@
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index ce570b134..3067a4f14 100644
+index ce570b134..1e0a88928 100644
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
 @@ -67,6 +67,7 @@
@@ -21,7 +21,7 @@ index ce570b134..3067a4f14 100644
      uint32 RaceClassGender = (createInfo->Race) | (createInfo->Class << 8) | (createInfo->Gender << 16);
  
      SetUInt32Value(UNIT_FIELD_BYTES_0, (RaceClassGender | (powertype << 24)));
-@@ -677,22 +682,56 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
+@@ -677,22 +682,57 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
              switch (createInfo->Race)
              {
                  case RACE_HUMAN:
@@ -56,6 +56,7 @@ index ce570b134..3067a4f14 100644
 +                case RACE_FORESTTROLL:
 +                case RACE_ICETROLL:
 +                case RACE_ZANDALARITROLL:
++                case RACE_MURLOC:
                      voucherId = 14649; break; // Razor Hill Gift Voucher
                  case RACE_TAUREN:
 +                case RACE_TAUNKA:
@@ -78,7 +79,7 @@ index ce570b134..3067a4f14 100644
                      voucherId = 22888; break; // Azure Watch Gift Voucher
                  default:
                      break;
-@@ -874,7 +913,7 @@ int32 Player::getMaxTimer(MirrorTimerType timer)
+@@ -874,7 +914,7 @@ int32 Player::getMaxTimer(MirrorTimerType timer)
      switch (timer)
      {
          case FATIGUE_TIMER:
@@ -87,7 +88,7 @@ index ce570b134..3067a4f14 100644
          case BREATH_TIMER:
              {
                  if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
-@@ -10805,23 +10844,32 @@ void Player::InitDataForForm(bool reapplyMods)
+@@ -10805,23 +10845,32 @@ void Player::InitDataForForm(bool reapplyMods)
  
  void Player::InitDisplayIds()
  {
@@ -127,10 +128,10 @@ index ce570b134..3067a4f14 100644
          default:
              LOG_ERROR("entities.player", "Invalid gender {} for player", gender);
 diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
-index 6cf62c95d..f9697d06f 100644
+index 6cf62c95d..fbc4e85c3 100644
 --- a/src/server/game/Entities/Player/PlayerTaxi.cpp
 +++ b/src/server/game/Entities/Player/PlayerTaxi.cpp
-@@ -34,37 +34,72 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
+@@ -34,37 +34,73 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
      }
  
      // race specific initial known nodes: capital and taxi hub masks
@@ -190,6 +191,7 @@ index 6cf62c95d..f9697d06f 100644
 +        case RACE_FORESTTROLL:
 +        case RACE_ICETROLL:
 +        case RACE_ZANDALARITROLL:
++        case RACE_MURLOC:
              SetTaximaskNode(23);
              break;     // Troll
          case RACE_BLOODELF:
@@ -489,10 +491,10 @@ index 630f99970..9a6392ce8 100644
          }
  
 diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
-index f6ad1b90b..d82e8f911 100644
+index f6ad1b90b..58fdd2afa 100644
 --- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
 +++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
-@@ -2304,42 +2304,76 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2304,42 +2304,77 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              {
                                  // Blood Elf
                                  case RACE_BLOODELF:
@@ -515,6 +517,7 @@ index f6ad1b90b..d82e8f911 100644
 +                                case RACE_FORESTTROLL:
 +                                case RACE_ICETROLL:
 +                                case RACE_ZANDALARITROLL:
++                                case RACE_MURLOC:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10135 : 10134);
                                      break;
                                  // Tauren
@@ -569,7 +572,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 10143 : 10144);
                                      break;
                                  default:
-@@ -2363,42 +2397,76 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2363,42 +2398,77 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              {
                                  // Blood Elf
                                  case RACE_BLOODELF:
@@ -592,6 +595,7 @@ index f6ad1b90b..d82e8f911 100644
 +                                case RACE_FORESTTROLL:
 +                                case RACE_ICETROLL:
 +                                case RACE_ZANDALARITROLL:
++                                case RACE_MURLOC:
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25041 : 25052);
                                      break;
                                  // Tauren
@@ -646,7 +650,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25038 : 25049);
                                      break;
                                  default:
-@@ -2421,54 +2489,83 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2421,54 +2491,83 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -730,7 +734,7 @@ index f6ad1b90b..d82e8f911 100644
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21859 : 21858);
                                      else
-@@ -2481,6 +2578,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2481,6 +2580,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21865 : 21864);
                                      break;
                                  case DisplayRace::Goblin:
@@ -738,7 +742,7 @@ index f6ad1b90b..d82e8f911 100644
                                      if (urand(0, 1))
                                          target->SetDisplayId(target->getGender() == GENDER_MALE ? 21854 : 21856);
                                      else
-@@ -2509,36 +2607,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2509,36 +2609,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -805,7 +809,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19342 : 19339);
                                  default:
                                      break;
-@@ -2551,36 +2679,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2551,36 +2681,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -872,7 +876,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 19343 : 19340);
                                  default:
                                      break;
-@@ -2593,36 +2751,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2593,36 +2753,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -939,7 +943,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 21067 : 19341);
                                  default:
                                      break;
-@@ -2635,36 +2823,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2635,36 +2825,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -1006,7 +1010,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 22369 : 22368);
                                  default:
                                      break;
-@@ -2677,36 +2895,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2677,36 +2897,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -1073,7 +1077,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 29243 : 16431);
                                  default:
                                      break;
-@@ -2719,36 +2967,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2719,36 +2969,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -1140,7 +1144,7 @@ index f6ad1b90b..d82e8f911 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 24512 : 24523);
                                  default:
                                      break;
-@@ -2761,36 +3039,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+@@ -2761,36 +3041,66 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
                              switch (target->GetDisplayRace())
                              {
                                  case DisplayRace::BloodElf:
@@ -1336,10 +1340,10 @@ index f7798b517..2abead39f 100644
  
          void OnCreatureCreate(Creature* creature) override
 diff --git a/src/server/scripts/Pet/pet_generic.cpp b/src/server/scripts/Pet/pet_generic.cpp
-index 5e0d938b0..7ed99f6e7 100644
+index 5e0d938b0..5f55779b0 100644
 --- a/src/server/scripts/Pet/pet_generic.cpp
 +++ b/src/server/scripts/Pet/pet_generic.cpp
-@@ -145,7 +145,42 @@ static std::unordered_map<uint8, argentPonyBanner> argentBanners = {
+@@ -145,7 +145,43 @@ static std::unordered_map<uint8, argentPonyBanner> argentBanners = {
      {RACE_GNOME,         {2779, 63396, "Gnomeregan Champion's Pennant"}},
      {RACE_TROLL,         {2784, 63399, "Darkspear Champion's Pennant"}},
      {RACE_BLOODELF,      {2785, 63403, "Silvermoon Champion's Pennant"}},
@@ -1376,6 +1380,7 @@ index 5e0d938b0..7ed99f6e7 100644
 +    {RACE_FORESTTROLL,   {2784, 63399, "Darkspear Champion's Pennant"}},
 +    {RACE_ICETROLL,      {2784, 63399, "Darkspear Champion's Pennant"}},
 +    {RACE_ZANDALARITROLL, {2784, 63399, "Darkspear Champion's Pennant"}},
++    {RACE_MURLOC,        {2784, 63399, "Darkspear Champion's Pennant"}},
 +    {RACE_NAGA,          {2785, 63403, "Silvermoon Champion's Pennant"}},
 +    {RACE_NIGHTBORNE,    {2785, 63403, "Silvermoon Champion's Pennant"}},
 +    {RACE_BROKEN,        {2778, 63423, "Exodar Champion's Pennant"}},
@@ -1384,17 +1389,17 @@ index 5e0d938b0..7ed99f6e7 100644
  
  struct npc_pet_gen_argent_pony_bridle : public ScriptedAI
 diff --git a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
-index 502a8a743..ed66027c5 100644
+index 502a8a743..8f8072b7a 100644
 --- a/src/server/shared/SharedDefines.h
 +++ b/src/server/shared/SharedDefines.h
-@@ -76,19 +76,45 @@ enum Races
+@@ -76,19 +76,46 @@ enum Races
      RACE_TAUREN             = 6,  // TITLE Tauren
      RACE_GNOME              = 7,  // TITLE Gnome
      RACE_TROLL              = 8,  // TITLE Troll
 -    //RACE_GOBLIN             = 9,
 +    // Custom: every playable race any modpak may add, at its fixed id. Retail ChrRaces ids where retail has the race;
 +    // the NPC races (12-21) are playable at their own ids (the NPC display races move to 160 + id, see DisplayRace);
-+    // High Elf, Ogre and Darkfallen take the first ids retail leaves free. Races without ChrRaces/playercreateinfo data stay unused.
++    // High Elf, Ogre, Darkfallen and Murloc take the first ids retail leaves free. Races without ChrRaces/playercreateinfo data stay unused.
 +    RACE_GOBLIN             = 9,  // TITLE Goblin
      RACE_BLOODELF           = 10, // TITLE Blood Elf
 -    RACE_DRAENEI            = 11 //, TITLE Draenei
@@ -1438,6 +1443,7 @@ index 502a8a743..ed66027c5 100644
 +    RACE_HIGHELF            = 38, // TITLE High Elf
 +    RACE_OGRE               = 39, // TITLE Ogre
 +    RACE_DARKFALLEN         = 40, // TITLE Darkfallen
++    RACE_MURLOC             = 41, // TITLE Murloc
 +    RACE_ALLIANCEDRACTHYR   = 52, // TITLE Dracthyr
 +    RACE_HORDEDRACTHYR      = 70, // TITLE Dracthyr
 +    RACE_HORDEEARTHEN       = 84, // TITLE Earthen
@@ -1445,7 +1451,7 @@ index 502a8a743..ed66027c5 100644
  };
  
  // DisplayRace values from CreatureDisplayInfoExtra.dbc
-@@ -106,6 +132,8 @@ enum class DisplayRace : uint8
+@@ -106,6 +133,8 @@ enum class DisplayRace : uint8
      Goblin            = 9,
      BloodElf          = 10,
      Draenei           = 11,
@@ -1454,7 +1460,7 @@ index 502a8a743..ed66027c5 100644
      FelOrc            = 12,
      Naga              = 13,
      Broken            = 14,
-@@ -115,7 +143,41 @@ enum class DisplayRace : uint8
+@@ -115,7 +144,42 @@ enum class DisplayRace : uint8
      ForestTroll       = 18,
      Taunka            = 19,
      NorthrendSkeleton = 20,
@@ -1479,6 +1485,7 @@ index 502a8a743..ed66027c5 100644
 +    HighElf           = 38,
 +    Ogre              = 39,
 +    Darkfallen        = 40,
++    Murloc            = 41,
 +    AllianceDracthyr  = 52,
 +    HordeDracthyr     = 70,
 +    HordeEarthen      = 84,
@@ -1498,13 +1505,191 @@ index 502a8a743..ed66027c5 100644
  
  // Class value is index in ChrClasses.dbc
 diff --git a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enuminfo_SharedDefines.cpp
-index bb68abfb0..56cd3907c 100644
+index bb68abfb0..f4ab72b56 100644
 --- a/src/server/shared/enuminfo_SharedDefines.cpp
 +++ b/src/server/shared/enuminfo_SharedDefines.cpp
-@@ -40,14 +40,48 @@ AC_API_EXPORT EnumText EnumUtils<Races>::ToString(Races value)
+@@ -40,14 +40,49 @@ AC_API_EXPORT EnumText EnumUtils<Races>::ToString(Races value)
          case RACE_TAUREN: return { "RACE_TAUREN", "Tauren", "" };
          case RACE_GNOME: return { "RACE_GNOME", "Gnome", "" };
          case RACE_TROLL: return { "RACE_TROLL", "Troll", "" };
 +        case RACE_GOBLIN: return { "RACE_GOBLIN", "Goblin", "" };
          case RACE_BLOODELF: return { "RACE_BLOODELF", "Blood Elf", "" };
-         case RACE_DRAENEI: r
+         case RACE_DRAENEI: return { "RACE_DRAENEI", "Draenei", "" };
++        case RACE_FELORC: return { "RACE_FELORC", "Fel Orc", "" };
++        case RACE_NAGA: return { "RACE_NAGA", "Naga", "" };
++        case RACE_BROKEN: return { "RACE_BROKEN", "Broken", "" };
++        case RACE_SKELETON: return { "RACE_SKELETON", "Skeleton", "" };
++        case RACE_VRYKUL: return { "RACE_VRYKUL", "Vrykul", "" };
++        case RACE_TUSKARR: return { "RACE_TUSKARR", "Tuskarr", "" };
++        case RACE_FORESTTROLL: return { "RACE_FORESTTROLL", "Forest Troll", "" };
++        case RACE_TAUNKA: return { "RACE_TAUNKA", "Taunka", "" };
++        case RACE_NORTHRENDSKELETON: return { "RACE_NORTHRENDSKELETON", "Northrend Skeleton", "" };
++        case RACE_ICETROLL: return { "RACE_ICETROLL", "Ice Troll", "" };
++        case RACE_WORGEN: return { "RACE_WORGEN", "Worgen", "" };
++        case RACE_GILNEAN: return { "RACE_GILNEAN", "Gilnean", "" };
++        case RACE_PANDAREN: return { "RACE_PANDAREN", "Pandaren", "" };
++        case RACE_ALLIANCEPANDAREN: return { "RACE_ALLIANCEPANDAREN", "Pandaren", "" };
++        case RACE_HORDEPANDAREN: return { "RACE_HORDEPANDAREN", "Pandaren", "" };
++        case RACE_NIGHTBORNE: return { "RACE_NIGHTBORNE", "Nightborne", "" };
++        case RACE_HIGHMOUNTAINTAUREN: return { "RACE_HIGHMOUNTAINTAUREN", "Highmountain Tauren", "" };
++        case RACE_VOIDELF: return { "RACE_VOIDELF", "Void Elf", "" };
++        case RACE_LIGHTFORGEDDRAENEI: return { "RACE_LIGHTFORGEDDRAENEI", "Lightforged Draenei", "" };
++        case RACE_ZANDALARITROLL: return { "RACE_ZANDALARITROLL", "Zandalari Troll", "" };
++        case RACE_KULTIRAN: return { "RACE_KULTIRAN", "Kul Tiran", "" };
++        case RACE_THINHUMAN: return { "RACE_THINHUMAN", "Thin Human", "" };
++        case RACE_DARKIRONDWARF: return { "RACE_DARKIRONDWARF", "Dark Iron Dwarf", "" };
++        case RACE_VULPERA: return { "RACE_VULPERA", "Vulpera", "" };
++        case RACE_MAGHARORC: return { "RACE_MAGHARORC", "Mag'har Orc", "" };
++        case RACE_MECHAGNOME: return { "RACE_MECHAGNOME", "Mechagnome", "" };
++        case RACE_HIGHELF: return { "RACE_HIGHELF", "High Elf", "" };
++        case RACE_OGRE: return { "RACE_OGRE", "Ogre", "" };
++        case RACE_DARKFALLEN: return { "RACE_DARKFALLEN", "Darkfallen", "" };
++        case RACE_MURLOC: return { "RACE_MURLOC", "Murloc", "" };
++        case RACE_ALLIANCEDRACTHYR: return { "RACE_ALLIANCEDRACTHYR", "Dracthyr", "" };
++        case RACE_HORDEDRACTHYR: return { "RACE_HORDEDRACTHYR", "Dracthyr", "" };
++        case RACE_HORDEEARTHEN: return { "RACE_HORDEEARTHEN", "Earthen", "" };
++        case RACE_ALLIANCEEARTHEN: return { "RACE_ALLIANCEEARTHEN", "Earthen", "" };
+         default: throw std::out_of_range("value");
+     }
+ }
+ 
+ template <>
+-AC_API_EXPORT std::size_t EnumUtils<Races>::Count() { return 10; }
++AC_API_EXPORT std::size_t EnumUtils<Races>::Count() { return 45; }
+ 
+ template <>
+ AC_API_EXPORT Races EnumUtils<Races>::FromIndex(std::size_t index)
+@@ -62,8 +97,43 @@ AC_API_EXPORT Races EnumUtils<Races>::FromIndex(std::size_t index)
+         case 5: return RACE_TAUREN;
+         case 6: return RACE_GNOME;
+         case 7: return RACE_TROLL;
+-        case 8: return RACE_BLOODELF;
+-        case 9: return RACE_DRAENEI;
++        case 8: return RACE_GOBLIN;
++        case 9: return RACE_BLOODELF;
++        case 10: return RACE_DRAENEI;
++        case 11: return RACE_FELORC;
++        case 12: return RACE_NAGA;
++        case 13: return RACE_BROKEN;
++        case 14: return RACE_SKELETON;
++        case 15: return RACE_VRYKUL;
++        case 16: return RACE_TUSKARR;
++        case 17: return RACE_FORESTTROLL;
++        case 18: return RACE_TAUNKA;
++        case 19: return RACE_NORTHRENDSKELETON;
++        case 20: return RACE_ICETROLL;
++        case 21: return RACE_WORGEN;
++        case 22: return RACE_GILNEAN;
++        case 23: return RACE_PANDAREN;
++        case 24: return RACE_ALLIANCEPANDAREN;
++        case 25: return RACE_HORDEPANDAREN;
++        case 26: return RACE_NIGHTBORNE;
++        case 27: return RACE_HIGHMOUNTAINTAUREN;
++        case 28: return RACE_VOIDELF;
++        case 29: return RACE_LIGHTFORGEDDRAENEI;
++        case 30: return RACE_ZANDALARITROLL;
++        case 31: return RACE_KULTIRAN;
++        case 32: return RACE_THINHUMAN;
++        case 33: return RACE_DARKIRONDWARF;
++        case 34: return RACE_VULPERA;
++        case 35: return RACE_MAGHARORC;
++        case 36: return RACE_MECHAGNOME;
++        case 37: return RACE_HIGHELF;
++        case 38: return RACE_OGRE;
++        case 39: return RACE_DARKFALLEN;
++        case 40: return RACE_MURLOC;
++        case 41: return RACE_ALLIANCEDRACTHYR;
++        case 42: return RACE_HORDEDRACTHYR;
++        case 43: return RACE_HORDEEARTHEN;
++        case 44: return RACE_ALLIANCEEARTHEN;
+         default: throw std::out_of_range("index");
+     }
+ }
+@@ -81,8 +151,43 @@ AC_API_EXPORT std::size_t EnumUtils<Races>::ToIndex(Races value)
+         case RACE_TAUREN: return 5;
+         case RACE_GNOME: return 6;
+         case RACE_TROLL: return 7;
+-        case RACE_BLOODELF: return 8;
+-        case RACE_DRAENEI: return 9;
++        case RACE_GOBLIN: return 8;
++        case RACE_BLOODELF: return 9;
++        case RACE_DRAENEI: return 10;
++        case RACE_FELORC: return 11;
++        case RACE_NAGA: return 12;
++        case RACE_BROKEN: return 13;
++        case RACE_SKELETON: return 14;
++        case RACE_VRYKUL: return 15;
++        case RACE_TUSKARR: return 16;
++        case RACE_FORESTTROLL: return 17;
++        case RACE_TAUNKA: return 18;
++        case RACE_NORTHRENDSKELETON: return 19;
++        case RACE_ICETROLL: return 20;
++        case RACE_WORGEN: return 21;
++        case RACE_GILNEAN: return 22;
++        case RACE_PANDAREN: return 23;
++        case RACE_ALLIANCEPANDAREN: return 24;
++        case RACE_HORDEPANDAREN: return 25;
++        case RACE_NIGHTBORNE: return 26;
++        case RACE_HIGHMOUNTAINTAUREN: return 27;
++        case RACE_VOIDELF: return 28;
++        case RACE_LIGHTFORGEDDRAENEI: return 29;
++        case RACE_ZANDALARITROLL: return 30;
++        case RACE_KULTIRAN: return 31;
++        case RACE_THINHUMAN: return 32;
++        case RACE_DARKIRONDWARF: return 33;
++        case RACE_VULPERA: return 34;
++        case RACE_MAGHARORC: return 35;
++        case RACE_MECHAGNOME: return 36;
++        case RACE_HIGHELF: return 37;
++        case RACE_OGRE: return 38;
++        case RACE_DARKFALLEN: return 39;
++        case RACE_MURLOC: return 40;
++        case RACE_ALLIANCEDRACTHYR: return 41;
++        case RACE_HORDEDRACTHYR: return 42;
++        case RACE_HORDEEARTHEN: return 43;
++        case RACE_ALLIANCEEARTHEN: return 44;
+         default: throw std::out_of_range("value");
+     }
+ }
+diff --git a/src/tools/mmaps_generator/MapBuilder.cpp b/src/tools/mmaps_generator/MapBuilder.cpp
+index ab82cd6e2..55485178a 100644
+--- a/src/tools/mmaps_generator/MapBuilder.cpp
++++ b/src/tools/mmaps_generator/MapBuilder.cpp
+@@ -124,7 +124,7 @@ namespace MMAP
+     {
+         std::vector<std::string> files;
+         uint32 mapID, tileX, tileY, tileID, count = 0, fsize = 0;
+-        char filter[12];
++        char filter[32];
+ 
+         printf("Discovering maps... ");
+         getDirContents(files, m_config->MapsPath());
+@@ -158,7 +158,7 @@ namespace MMAP
+             std::set<uint32>* tiles = m_tile.m_tiles;
+             mapID = m_tile.m_mapId;
+ 
+-            sprintf(filter, "%03u*.vmtile", mapID);
++            snprintf(filter, sizeof(filter), "%03u*.vmtile", mapID);
+             files.clear();
+             getDirContents(files, m_config->VMapsPath(), filter);
+             for (auto & file : files)
+@@ -173,7 +173,7 @@ namespace MMAP
+                 count++;
+             }
+ 
+-            sprintf(filter, "%03u*", mapID);
++            snprintf(filter, sizeof(filter), "%03u*", mapID);
+             files.clear();
+             getDirContents(files, m_config->MapsPath(), filter);
+             for (auto & file : files)
+@@ -615,8 +615,8 @@ namespace MMAP
+                                       dtNavMesh* navMesh)
+     {
+         // console output
+-        char tileString[20];
+-        sprintf(tileString, "[Map %03i] [%02i,%02i]: ", mapID, tileX, tileY);
++        char tileString[32];
++        snprintf(tileString, sizeof(tileString), "[Map %03i] [%02i,%02i]: ", mapID, tileX, tileY);
+         printf("%s Building movemap tiles...\n", tileString);
+ 
+         IntermediateValues iv;

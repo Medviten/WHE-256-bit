@@ -51,7 +51,7 @@ INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_displ
 (@DruidFlightTrollDisplay,      3846,   0, 0,   1, 255, 'DruidFlightTroll1',     'DruidFlightTroll2',      '', '',  1, 0, 0,   0, 0, 0); -- Different regular form.
 
 /* Mists of Pandaria Druid forms */
-DELETE FROM `creaturedisplayinfo` WHERE `id` IN (@DruidTravelAlliance, @DruidTravelHorde); -- New travel forms
+DELETE FROM `creaturedisplayinfo` WHERE `id` IN (@DruidTravelAllianceDisplay, @DruidTravelHordeDisplay); -- New travel forms
 INSERT INTO `creaturedisplayinfo` (`id`, `model_id`, `sound_id`, `extended_display_info_id`, `creature_model_scale`, `creature_model_alpha`, `texture_variation_1`, `texture_variation_2`, `texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`) VALUES
 (@DruidTravelAllianceDisplay, @DruidTravelAllianceModel, 0, 0, 1, 255, 'DruidTravelAlliance', 'DruidTravelAlliance', 'DruidTravelAlliance', '', 1, 0, 0, 0, 0, 0),
 (@DruidTravelHordeDisplay,    @DruidTravelHordeModel,    0, 0, 1, 255, 'DruidTravelHorde',    'DruidTravelHorde',    'DruidTravelHorde',    '', 1, 0, 0, 0, 0, 0);

@@ -1,0 +1,48 @@
+-- charsections: 40 inserts, 0 updates, 0 deletes
+-- Skin colours in the donor client's order. Both genders use the male textures (the models are identical). The face,
+-- underwear, hair and facial hair rows are empty: the model has none, but character creation expects the sections.
+
+-- New entries
+DELETE FROM `charsections` WHERE `race` = @Murloc;
+SET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);
+INSERT INTO `charsections` (`id`, `race`, `gender`, `base_section`, `texture_1`, `texture_2`, `texture_3`, `flags`, `type`, `color_index`) VALUES
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Skin,      'Character\\Murloc\\Male\\Sahauginskin.blp', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Face,      '', '', '', 1, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Underwear, '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Skin,      'Character\\Murloc\\Male\\SahauginskinBlue.blp', '', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Face,      '', '', '', 1, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Underwear, '', '', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Skin,      'Character\\Murloc\\Male\\SahauginskinGray.blp', '', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Face,      '', '', '', 1, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Underwear, '', '', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Skin,      'Character\\Murloc\\Male\\SahauginskinGreen.blp', '', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Face,      '', '', '', 1, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Underwear, '', '', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Skin,      'Character\\Murloc\\Male\\SahauginskinOrange.blp', '', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Face,      '', '', '', 1, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Underwear, '', '', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Skin,      'Character\\Murloc\\Male\\SahauginskinWhite.blp', '', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Face,      '', '', '', 1, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Underwear, '', '', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @FacialHair, '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Male,  @Hair,      '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Skin,      'Character\\Murloc\\Male\\Sahauginskin.blp', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Face,      '', '', '', 1, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Underwear, '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Skin,      'Character\\Murloc\\Male\\SahauginskinBlue.blp', '', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Face,      '', '', '', 1, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Underwear, '', '', '', 17, 0, 1),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Skin,      'Character\\Murloc\\Male\\SahauginskinGray.blp', '', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Face,      '', '', '', 1, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Underwear, '', '', '', 17, 0, 2),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Skin,      'Character\\Murloc\\Male\\SahauginskinGreen.blp', '', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Face,      '', '', '', 1, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Underwear, '', '', '', 17, 0, 3),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Skin,      'Character\\Murloc\\Male\\SahauginskinOrange.blp', '', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Face,      '', '', '', 1, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Underwear, '', '', '', 17, 0, 4),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Skin,      'Character\\Murloc\\Male\\SahauginskinWhite.blp', '', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Face,      '', '', '', 1, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Underwear, '', '', '', 17, 0, 5),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @FacialHair, '', '', '', 17, 0, 0),
+(@CharSectionsID := @CharSectionsID +1, @Murloc, @Female, @Hair,      '', '', '', 17, 0, 0);

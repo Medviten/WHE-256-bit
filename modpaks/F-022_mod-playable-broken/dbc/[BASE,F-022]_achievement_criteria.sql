@@ -1,7 +1,7 @@
 -- achievement_criteria: 4 inserts, 2 updates, 0 deletes
 
 -- New entries
-DELETE FROM `achievement_criteria` WHERE `id` IN (@BrokenCritera1, @BrokenCritera2, @BrokenCritera3, @BrokenCritera4);
+DELETE FROM `achievement_criteria` WHERE `id` IN (@BrokenCriteria1, @BrokenCriteria2, @BrokenCriteria3, @BrokenCriteria4);
 INSERT INTO `achievement_criteria` (`id`, `achievement_id`, `type`, `req_asset_id`, `req_asset_count`, `start_event`, `start_asset_id`, `fail_event`, `fail_asset_id`, `desc_enus`, `desc_kokr`, `desc_frfr`, `desc_dede`, `desc_zhcn`, `desc_zhtw`, `desc_eses`, `desc_esmx`, `desc_ruru`, `desc_jajp`, `desc_ptpt`, `desc_itit`, `desc_unused_1`, `desc_unused_2`, `desc_unused_3`, `desc_unused_4`, `desc_flags`, `flags`, `timer_start_event`, `timer_asset_id`, `timer_limit`, `ui_order`) VALUES
 (@BrokenCriteria1, @BrokenKnowThyEnemy, 53, @Broken, 1, 0, 0, 0, 0, @BrokenenUS, @BrokenkoKR, @BrokenfrFR, @BrokendeDE, @BrokenzhCN, @BrokenzhTW, @BrokenesES, @BrokenesMX, @BrokenruRU, @BrokenjaJP, @BrokenptPT, @BrokenitIT, @BrokenUnk1, @BrokenUnk2, @BrokenUnk3, @BrokenUnk4, 16712190, 0, 0, 0, 0, 6),
 (@BrokenCriteria2, @ShakeYourBunnyMaker, 110, 61815, 1, 0, 0, 0, 0, @BrokenenUS, @BrokenkoKR, @BrokenfrFR, @BrokendeDE, @BrokenzhCN, @BrokenzhTW, @BrokenesES, @BrokenesMX, @BrokenruRU, @BrokenjaJP, @BrokenptPT, @BrokenitIT, @BrokenUnk1, @BrokenUnk2, @BrokenUnk3, @BrokenUnk4, 16712190, 0, 0, 0, 0, 15),

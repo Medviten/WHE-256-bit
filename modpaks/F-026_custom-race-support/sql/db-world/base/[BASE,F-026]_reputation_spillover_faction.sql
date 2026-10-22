@@ -24,7 +24,7 @@ DELETE FROM `reputation_spillover_faction` WHERE `faction` IN (
     @HighmountainTaurenFaction, @VoidElfFaction, @LightforgedDraeneiFaction, @ZandalariTrollFaction,
     @KulTiranFaction, @DarkIronDwarfFaction, @VulperaFaction, @MagharOrcFaction, @HighElfFaction, @OgreFaction,
     @VrykulFaction, @MechagnomeFaction, @ThinHumanFaction, @TuskarrFaction,
-    @AllianceEarthenFaction, @HordeEarthenFaction, @DarkfallenFaction
+    @AllianceEarthenFaction, @HordeEarthenFaction, @DarkfallenFaction, @MurlocFaction
 );
 
 INSERT INTO `reputation_spillover_faction` (`faction`, `spillover_faction`, `rate`, `max_rank`)
@@ -65,6 +65,7 @@ WITH `races` (`race`, `faction`) AS (
     UNION ALL SELECT @AllianceEarthen,    @AllianceEarthenFaction
     UNION ALL SELECT @HordeEarthen,       @HordeEarthenFaction
     UNION ALL SELECT @Darkfallen,         @DarkfallenFaction
+    UNION ALL SELECT @Murloc,             @MurlocFaction
 ),
 `capitals` AS (
     SELECT DISTINCT
