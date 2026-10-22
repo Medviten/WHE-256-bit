@@ -1,8 +1,8 @@
 diff --git a/data/sql/world/base/0000_playerbots_rpg_races.sql b/data/sql/world/base/0000_playerbots_rpg_races.sql
-index 83817b39..4d710490 100644
+index 83817b39..2abb8f1d 100644
 --- a/data/sql/world/base/0000_playerbots_rpg_races.sql
 +++ b/data/sql/world/base/0000_playerbots_rpg_races.sql
-@@ -780,3 +780,45 @@ INSERT INTO `playerbots_rpg_races` VALUES
+@@ -780,3 +780,46 @@ INSERT INTO `playerbots_rpg_races` VALUES
  -- ENDING PLACEHOLDER
  (NULL, 6807, 15, 90, 90)
  ;
@@ -43,6 +43,7 @@ index 83817b39..4d710490 100644
 +    UNION ALL SELECT  38 AS race,  1 AS home -- HighElf: Human
 +    UNION ALL SELECT  39 AS race,  2 AS home -- Ogre: Orc
 +    UNION ALL SELECT  40 AS race,  5 AS home -- Darkfallen: Undead
++    UNION ALL SELECT  41 AS race,  8 AS home -- Murloc: Troll
 +    UNION ALL SELECT  52 AS race,  1 AS home -- AllianceDracthyr: Human
 +    UNION ALL SELECT  70 AS race,  2 AS home -- HordeDracthyr: Orc
 +    UNION ALL SELECT  84 AS race,  2 AS home -- HordeEarthen: Orc
@@ -1009,7 +1010,7 @@ index 9b3c5fbf..4ded573a 100644
      float graveDistance = -1;
  
 diff --git a/src/Bot/Factory/PlayerbotFactory.cpp b/src/Bot/Factory/PlayerbotFactory.cpp
-index 692b4605..48700612 100644
+index 692b4605..c5a62aa1 100644
 --- a/src/Bot/Factory/PlayerbotFactory.cpp
 +++ b/src/Bot/Factory/PlayerbotFactory.cpp
 @@ -2398,7 +2398,8 @@ void PlayerbotFactory::InitEquipment(bool incremental, bool second_chance)
@@ -1022,7 +1023,7 @@ index 692b4605..48700612 100644
      uint32 pvpTrinket1 = 0;
      if (isPvp && level >= 50 && !racialHasCcBreak)
      {
-@@ -4019,42 +4020,76 @@ void PlayerbotFactory::InitMounts()
+@@ -4019,42 +4020,77 @@ void PlayerbotFactory::InitMounts()
      switch (bot->getRace())
      {
          case RACE_HUMAN:
@@ -1084,6 +1085,7 @@ index 692b4605..48700612 100644
 +        case RACE_FORESTTROLL:
 +        case RACE_ICETROLL:
 +        case RACE_ZANDALARITROLL:
++        case RACE_MURLOC:
              slow = {10796, 10799, 8395};
              fast = {23241, 23242, 23243};
              break;
@@ -1099,7 +1101,7 @@ index 692b4605..48700612 100644
              slow = {33660, 35020, 35022, 35018};
              fast = {35025, 35025, 35027};
              break;
-@@ -4071,6 +4106,91 @@ void PlayerbotFactory::InitMounts()
+@@ -4071,6 +4107,91 @@ void PlayerbotFactory::InitMounts()
              }
      }
  
@@ -1311,4 +1313,21 @@ index 964d3ad1..c07bfe5a 100644
  
 -    switch (bot->getRace())
 -    {
--        case RACE_BLOO
+-        case RACE_BLOODELF:
+-            return dynamic_cast<CastArcaneTorrentAction*>(action);
+-
+-        case RACE_ORC:
+-            return dynamic_cast<CastBloodFuryAction*>(action);
+-
+-        case RACE_TROLL:
+-            return dynamic_cast<CastBerserkingAction*>(action);
+-
+-        default:
+-            return false;
+-    }
++    // by action rather than race, as custom races may get these racials too
++    return dynamic_cast<CastArcaneTorrentAction*>(action) || dynamic_cast<CastBloodFuryAction*>(action) ||
++           dynamic_cast<CastBerserkingAction*>(action);
+ }
+ 
+ bool IsTauntAction(Player* bot, Action* action)

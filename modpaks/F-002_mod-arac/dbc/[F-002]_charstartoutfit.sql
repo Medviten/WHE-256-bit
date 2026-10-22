@@ -8,12 +8,12 @@ UPDATE `charstartoutfit` SET
     `item_9`         = @RoughArrowItem,
     `display_item_7` = @LightQuiverItemDisplay,
     `display_item_8` = @WeatheredCrossbowItemDisplay,
-    `display_item_9` = @RoughArrowItemItemDisplay
+    `display_item_9` = @RoughArrowItemDisplay
 WHERE `race` IN (@Human, @Undead) AND `class` = @Hunter AND `display_item_8` = @OldBlunderbussItemDisplay;
 
 -- Fixes night elf display weapon issue
 UPDATE `charstartoutfit` SET 
     `display_item_7` = @LightQuiverItemDisplay,
     `display_item_8` = @WornShortbowItem,
-    `display_item_9` = @RoughArrowItemItemDisplay
+    `display_item_9` = @RoughArrowItemDisplay
 WHERE `race` IN (@NightElf) AND `class` = @Hunter AND `display_item_8` = @OldBlunderbussItemDisplay;

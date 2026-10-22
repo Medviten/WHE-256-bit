@@ -1,5 +1,5 @@
 -- skilllineability: 7 inserts, 0 updates, 0 deletes
-
+/*
 -- New entries
 DELETE FROM `skilllineability` WHERE `id` IN (
     @NightborneSkillLineAbility1, @NightborneSkillLineAbility2,
@@ -14,3 +14,4 @@ INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`
 -- (@NightborneSkillLineAbility5, @NightborneRacials, @NightborneRacial5, @NightborneMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0);
 -- (@NightborneSkillLineAbility6, @NightborneRacials, @NightborneRacial6, @NightborneMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0);
 -- (@NightborneSkillLineAbility7, @NightborneRacials, @NightborneRacial7, @NightborneMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0);
+*/

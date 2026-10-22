@@ -288,6 +288,7 @@ SET @SPELL_AURA_SCHOOL_HEAL_ABSORB                             = 301; -- EffectM
 SET @SPELL_AURA_MOD_DAMAGE_DONE_VERSUS_AURASTATE               = 303; -- EffectMiscValueA: ID from AuraStateType (master/src/server/shared/SharedDefines.h)
 SET @SPELL_AURA_MOD_FAKE_INEBRIATE                             = 304; -- EffectMiscValueA: Creature ID
 SET @SPELL_AURA_MOD_CREATURE_AOE_DAMAGE_AVOIDANCE              = 310; -- EffectMiscValueA: School Mask
+SET @SPELL_AURA_ALTERED_FORM                                   = 302; -- Custom (requires patched client): draws the player as their race's altered form (e.g. Worgen as Gilnean). Unused by 3.3.5 spells and ignored by AzerothCore
 
 -- Miscellaneous
 SET @Male                                                      =    0;
@@ -353,6 +354,7 @@ SET @Mechagnome                                                =   37;
 SET @HighElf                                                   =   38;
 SET @Ogre                                                      =   39;
 SET @Darkfallen                                                =   40;
+SET @Murloc                                                    =   41;
 -- Retail races above 64 live in the second race-mask word (@<Race>Mask_2 and the `<column>_2` mask columns)
 SET @HordeEarthen                                              =   84;
 SET @AllianceEarthen                                           =   85;
@@ -457,6 +459,8 @@ SET @DarkfallenMaleModel                                       =    @NextModelID
 SET @DarkfallenFemaleModel                                     =    @NextModelID := @NextModelID +1;
 SET @NightborneMaleModel                                       =    @NextModelID := @NextModelID +1;
 SET @NightborneFemaleModel                                     =    @NextModelID := @NextModelID +1;
+SET @MurlocMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @MurlocFemaleModel                                         =    @NextModelID := @NextModelID +1;
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -517,6 +521,8 @@ SET @DarkfallenMaleDisplay                                     =    @NextDisplay
 SET @DarkfallenFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
 SET @NightborneMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
 SET @NightborneFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @MurlocMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @MurlocFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -574,6 +580,8 @@ SET @DarkfallenMaleDisplayExtra                                =    @NextDisplay
 SET @DarkfallenFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @NightborneMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @NightborneFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @MurlocMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @MurlocFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -662,6 +670,7 @@ SET @ThinHumanRacials                                          =      809;
 SET @TuskarrRacials                                            =      810;
 SET @DarkfallenRacials                                         =      811;
 SET @NightborneRacials                                         =      812;
+SET @MurlocRacials                                             =      813;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1149,6 +1158,7 @@ SET @VulperaRacialSkillRaceClass                               =     1151;
 SET @BrokenRacialSkillRaceClass                                =     1152;
 SET @PandarenRacialSkillRaceClass                              =     1153;
 SET @DarkfallenRacialSkillRaceClass                            =     1154;
+SET @MurlocRacialSkillRaceClass                                =     1155;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1611,6 +1621,7 @@ SET @ThinHumanFactionTemplate                                  =     2259; -- Re
 SET @TuskarrFactionTemplate                                    =     2260; -- References @TuskarrPlayer
 SET @DarkfallenFactionTemplate                                 =     2261; -- References @DarkfallenPlayer
 SET @NightborneFactionTemplate                                 =     2262; -- References @NightbornePlayer
+SET @MurlocFactionTemplate                                     =     2263; -- References @MurlocPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1639,6 +1650,7 @@ SET @ThinHumanFactionRepIndex                                  =    127;
 SET @TuskarrFactionRepIndex                                    =    128;
 SET @DarkfallenFactionRepIndex                                 =    129;
 SET @NightborneFactionRepIndex                                 =    130;
+SET @MurlocFactionRepIndex                                     =    131;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1671,6 +1683,7 @@ SET @ThinHumanAchievement                                      =    1451;
 SET @TuskarrAchievement                                        =    1452;
 SET @DarkfallenAchievement                                     =    1453;
 SET @NightborneAchievement                                     =    1454;
+SET @MurlocAchievement                                         =    1455;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -1794,6 +1807,10 @@ SET @NightborneCriteria1                                       =    19302; -- Ac
 SET @NightborneCriteria2                                       =    19303; -- Achievement 2422: Shake Your Bunny-Maker
 SET @NightborneCriteria3                                       =    19304; -- Achievement 291: Check Your Head
 SET @NightborneCriteria4                                       =    19305; -- @NightborneAchievement: Realm First! Level 80 Nightborne
+SET @MurlocCriteria1                                           =    19306; -- Achievement 1005: Know Thy Enemy
+SET @MurlocCriteria2                                           =    19307; -- Achievement 2422: Shake Your Bunny-Maker
+SET @MurlocCriteria3                                           =    19308; -- Achievement 291: Check Your Head
+SET @MurlocCriteria4                                           =    19309; -- @MurlocAchievement: Realm First! Level 80 Murloc
 
 -- Classes
 SET @Warrior                                                   =      1;
