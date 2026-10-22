@@ -92,7 +92,7 @@ AzerothCore/
 
 ## 2. Apply whe-acore.patch (and optionally playerbots patch)
 
-Copy mod-worgoblin-high-elf/integration/whe-acore.patch into your AzerothCore root directory. Apply it like this:
+Copy mod-worgoblin-high-elf/patches/whe-acore.patch into your AzerothCore root directory. Apply it like this:
 
 ```text
 git apply --ignore-space-change --ignore-whitespace whe-acore.patch
@@ -100,7 +100,7 @@ git add .
 git commit -m "Add whe-acore patch"
 ```
 
-If you want playerbots, also copy mod-worgoblin-high-elf/integration/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
+If you want playerbots, also copy mod-worgoblin-high-elf/patches/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
 
 ```text
 git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
