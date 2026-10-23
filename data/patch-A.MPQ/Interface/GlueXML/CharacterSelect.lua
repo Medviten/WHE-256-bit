@@ -563,8 +563,9 @@ function CharacterSelect_SelectCharacter(id, noCreate)
 		if ( id > 0 ) then
 			CharacterSelect_ScrollToIndex(id);
 		end
-		CharacterSelect.currentModel = GetSelectBackgroundModel(id);
-		SetBackgroundModel(CharacterSelect,CharacterSelect.currentModel);
+		local backgroundRace;
+		CharacterSelect.currentModel, backgroundRace = GetSelectBackgroundModel(id);
+		SetBackgroundModel(CharacterSelect, CharacterSelect.currentModel, backgroundRace);
 
 		SelectCharacter(id);
 	end

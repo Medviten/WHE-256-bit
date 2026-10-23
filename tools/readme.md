@@ -14,3 +14,6 @@
   variables.sql and the modpak SQL. Run both with `report`, then `apply`, after adding a race above 64 (see word2.py).
 - `racemask/patch_edit.py`: helpers for editing the hand-maintained integration/*.patch files. Inserts or replaces
   `+` lines at exact anchors and recomputes every hunk header, so the patches stay valid (`check_headers()` verifies).
+
+- `models/slimegiant_prep.py`: turns the converted retail SlimeSkeleton model (F-046) into a player model: texture
+  types for the character code, the drip as geoset 102, the skeleton's shader. See the F-046 readme for the steps.

@@ -2,6 +2,7 @@
 #include "Chat.h"
 #include "Player.h"
 #include "ScriptMgr.h"
+#include "SpellAuraEffects.h"
 #include "SpellScript.h"
 #include "Config.h"
 
@@ -14,10 +15,10 @@ enum WorgenRiding
 {
     SPELL_APPRENTICE_RIDING  = 33388,
     SPELL_JOURNEYMAN_RIDING  = 33391,
-    SPELL_RW_APPR_MALE       = 87840,
-    SPELL_RW_APPR_FEMALE     = 87841,
-    SPELL_RW_JOURN_MALE      = 110010,
-    SPELL_RW_JOURN_FEMALE    = 110011,
+    SPELL_RUNNING_WILD       = 87840,
+
+    RUNNING_WILD_LEVEL       = 20,
+    RIDING_SKILL_JOURNEYMAN  = 150,
 };
 
 class worgoblin : public PlayerScript {
@@ -63,6 +64,45 @@ class spell_rocket_barrage : public SpellScript
     }
 };
 
+// Running Wild, as in Cataclysm: a mount on which the Worgen is its own mount. The spell's mounted aura names no
+// creature, so instead of mounting nothing (display 0), mount the player's own native display; the patched client
+// draws a mount display equal to the native display as the player running on all fours. Running Wild is taken in the
+// native form, so it drops the altered (human) form first. Speed follows riding skill, like Cataclysm's
+// MountCapability: +60%, or +100% from Journeyman Riding (150 skill).
+class spell_worgen_running_wild : public AuraScript
+{
+    PrepareAuraScript(spell_worgen_running_wild);
+
+    void HandleMount(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
+    {
+        PreventDefaultAction();
+
+        Unit* target = GetTarget();
+        target->RemoveAurasByType(SPELL_AURA_302);
+        target->Mount(target->GetNativeDisplayId());
+    }
+
+    void CalculateSpeed(AuraEffect const* /*aurEff*/, int32& amount, bool& /*canBeRecalculated*/)
+    {
+        Player* player = GetUnitOwner() ? GetUnitOwner()->ToPlayer() : nullptr;
+        if (!player)
+            return;
+
+        amount = player->GetSkillValue(SKILL_RIDING) >= RIDING_SKILL_JOURNEYMAN ? 100 : 60;
+    }
+
+    void Register() override
+    {
+        // Same modes as the default mounted aura handler, so it never runs for this spell
+        OnEffectApply += AuraEffectApplyFn(spell_worgen_running_wild::HandleMount, EFFECT_0, SPELL_AURA_MOUNTED, AURA_EFFECT_HANDLE_SEND_FOR_CLIENT_MASK);
+        DoEffectCalcAmount += AuraEffectCalcAmountFn(spell_worgen_running_wild::CalculateSpeed, EFFECT_1, SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED);
+    }
+};
+
+// Teaches every Worgen Running Wild at level 20, as in Cataclysm; its speed comes from riding skill when cast (see
+// spell_worgen_running_wild), so there is nothing to sync afterwards. Optionally hands out Apprentice and Journeyman
+// Riding for free. Death Knights are left out of that: they already start with 150 riding skill.
+// The previous gendered, per-tier version is in legacy/legacy_worgen_running_wild.cpp.
 class player_worgen_running_wild : public PlayerScript
 {
 public:
@@ -77,22 +117,13 @@ private:
         if (player->getRace() != RACE_WORGEN)
             return;
 
-        // riding-skill spells don't reliably show up on AC for DKs, so give them the fast RW at creation
-        if (player->getClass() == CLASS_DEATH_KNIGHT)
-        {
-            uint32 rwSpell    = GetRWSpell(player, true);
-            uint32 otherSpell = GetRWSpell(player, false);
-
-            if (player->HasSpell(otherSpell))
-                player->removeSpell(otherSpell, SPEC_MASK_ALL, false);
-
-            if (!player->HasSpell(rwSpell))
-                player->learnSpell(rwSpell);
-
-            return;
-        }
-
         uint8 level = player->GetLevel();
+
+        if (level >= RUNNING_WILD_LEVEL && !player->HasSpell(SPELL_RUNNING_WILD))
+            player->learnSpell(SPELL_RUNNING_WILD);
+
+        if (player->getClass() == CLASS_DEATH_KNIGHT)
+            return;
 
         if (sConfigMgr->GetOption<bool>("Worgoblin.RunningWild.FreeApprentice", true)
             && level >= 20 && !player->HasSpell(SPELL_APPRENTICE_RIDING))
@@ -101,38 +132,6 @@ private:
         if (sConfigMgr->GetOption<bool>("Worgoblin.RunningWild.FreeJourneyman", true)
             && level >= 40 && !player->HasSpell(SPELL_JOURNEYMAN_RIDING))
             player->learnSpell(SPELL_JOURNEYMAN_RIDING);
-
-        SyncRunningWild(player);
-    }
-
-    uint32 GetRWSpell(Player* player, bool journeyman) const
-    {
-        bool isMale = player->getGender() == GENDER_MALE;
-        if (journeyman)
-            return isMale ? SPELL_RW_JOURN_MALE : SPELL_RW_JOURN_FEMALE;
-        return isMale ? SPELL_RW_APPR_MALE : SPELL_RW_APPR_FEMALE;
-    }
-
-    void SyncRunningWild(Player* player)
-    {
-        // Only reached for non-DKs, so these HasSpell checks are trustworthy here.
-        bool hasJourneyman = player->HasSpell(SPELL_JOURNEYMAN_RIDING);
-        bool hasApprentice = player->HasSpell(SPELL_APPRENTICE_RIDING);
-
-        if (!hasJourneyman && !hasApprentice)
-            return; // no riding skill yet, nothing to sync
-
-        uint32 wantSpell  = GetRWSpell(player, hasJourneyman);
-        uint32 otherSpell = GetRWSpell(player, !hasJourneyman);
-
-        if (player->HasSpell(wantSpell) && !player->HasSpell(otherSpell))
-            return; // already correct
-
-        if (player->HasSpell(otherSpell))
-            player->removeSpell(otherSpell, SPEC_MASK_ALL, false);
-
-        if (!player->HasSpell(wantSpell))
-            player->learnSpell(wantSpell);
     }
 };
 
@@ -140,5 +139,6 @@ void Add_Worgoblin()
 {
     new worgoblin();
     RegisterSpellScript(spell_rocket_barrage);
+    RegisterSpellScript(spell_worgen_running_wild);
     new player_worgen_running_wild();
 }
