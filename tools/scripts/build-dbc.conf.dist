@@ -1,4 +1,4 @@
-MODPAKS="/path/to/mod-worgoblin-high-elf/modpaks"
+MODPAKS="/path/to/WHE-256-bit/modpaks"
 DBCTOOL="/path/to/dbctool"
 ORIGINAL_DBC="/path/to/dbctool/originaldbc"
 LOCAL_SERVER_DBC="/path/to/server/data/dbc"

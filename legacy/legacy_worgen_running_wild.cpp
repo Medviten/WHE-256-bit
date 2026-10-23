@@ -3,7 +3,7 @@
 // where one spell (87840) works for both genders and takes its speed from riding skill.
 //
 // Kept outside src/ so the module build does not compile it. To use it again, move it into src/, call
-// AddSC_legacy_worgen_running_wild() from Addmod_worgoblin_high_elfScripts() in worgoblin_loader.h, and remove the new
+// AddSC_legacy_worgen_running_wild() from AddWHE_256_bitScripts() in worgoblin_loader.h, and remove the new
 // player_worgen_running_wild, which would otherwise fight it over 87840.
 
 #include "Config.h"
