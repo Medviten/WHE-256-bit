@@ -63,6 +63,8 @@ GlueAmbienceTracks["NAGA"] = "GlueScreenNaga";
 GlueAmbienceTracks["BROKEN"] = "GlueScreenDraenei";
 GlueAmbienceTracks["LIGHTFORGEDDRAENEI"] = "GlueScreenDraenei";
 GlueAmbienceTracks["MURLOC"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["FURBOLG"] = "GlueScreenNightElf";
+GlueAmbienceTracks["SLIMEGIANT"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["MECHAGNOME"] = "GlueScreenDwarfGnome";
 GlueAmbienceTracks["VOIDELF"] = "GlueScreenHuman";
 GlueAmbienceTracks["NIGHTBORNE"] = "GlueScreenBloodElf";
@@ -188,6 +190,13 @@ RaceLights = {
 		{1,     0,  0.61185,        0.62942,        -0.47903,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.56941,    0.52000,    0.60000},
         {1,     0,  -0.64345,       -0.31052,       -0.69968,   1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60941,    0.60392,    0.70000},
         {1,     0,  -0.46481,       -0.14320,       0.87376,    1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.5835,     0.48941,    0.60000},
+    },
+    TAUNKA = {
+		{1,     0,  -0.48073,       0.71827,        -0.50297,   1.0,    0.00000,    0.00000,    0.00000,    2.0,    0.65,       0.397645,   0.2727},
+        {1,     0,  -0.49767,       -0.78677,       0.36513,    1.0,    0.00000,    0.00000,    0.00000,    1.0,    0.60000,    0.47059,    0.32471},
+    },
+    DARKFALLEN = {
+		{1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.20000,    0.20000,    0.20000,    1.0,    0.00000,    0.00000,    0.00000},
     },
 }
 
@@ -470,30 +479,32 @@ function SetLighting(model, race)
 	end
 end
 
--- Some added races reuse another race's background .m2 (see the name-swap
--- chain below), so the baked-in camera framing doesn't match their actual
--- proportions and can crop the face out of view. This nudges the model
--- relative to the fixed camera to compensate. Keyed by the ORIGINAL race
--- name (nameupper, captured before the swap below). x = toward/away from
--- camera (more negative x = further away = appears smaller), z = up/down.
--- Start with small values like these and tune per-race in-game.
 -- Background scenes for races that have none of their own (the stock race whose start area they share)
 GlueBackgroundFallback = {
 	["MECHAGNOME"] = "Dwarf", ["TUSKARR"] = "Dwarf", ["ALLIANCEEARTHEN"] = "Dwarf",
 	["VOIDELF"] = "Human", ["VRYKUL"] = "Human", ["THINHUMAN"] = "Human",
 	["NIGHTBORNE"] = "BloodElf", ["DARKFALLEN"] = "Scourge", ["TAUNKA"] = "Tauren",
-	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc",
+	["FURBOLG"] = "NightElf",
+	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc", ["SLIMEGIANT"] = "Ogre",
 };
 
-BackgroundModelPositionOffset = {
-	["OGRE"]    = { x = -16, y = 0, z = 16 },   -- reuses Orc's camera; Ogre is taller
-	["VULPERA"] = { x = 0.3,  y = 0, z = -0.15 }, -- reuses Tauren's camera; Vulpera is smaller
-	["MURLOC"]  = { x = 0.3,  y = 0, z = -0.15 }, -- reuses Troll's camera; Murloc is smaller (untuned, Vulpera's values)
+-- Death knights share one class scene; these races are too tall for its camera and get a copy with the
+-- camera pulled back (UI_DeathKnightTall, made with tools/patch_eyes/make_ui_scene.py at 1.45). The race
+-- file string is the second value of GetCreateBackgroundModel()/GetSelectBackgroundModel() (patched client).
+TallDeathKnightRaces = {
+	["OGRE"] = true, ["ZANDALARITROLL"] = true, ["KULTIRAN"] = true, ["HIGHMOUNTAINTAUREN"] = true,
+	["TAUNKA"] = true,
 };
 
 -- Function to set the background model for character select and create screens
-function SetBackgroundModel(model, name)
+-- race: the character's race file string, passed along for death knights (see TallDeathKnightRaces)
+function SetBackgroundModel(model, name, race)
     local nameupper = strupper(name);
+
+	-- only the scene changes: ambience and lighting stay the death knight ones (nameupper)
+	if ( nameupper == "DEATHKNIGHT" and race and TallDeathKnightRaces[strupper(race)] ) then
+		name = "DeathKnightTall";
+	end
     
 	if (name == "HighElf" or name == "HIGHELF" or name == "High Elf" or name == "HIGH ELF" or name == "HIGH_ELF") then
 		name = "Human";
@@ -531,6 +542,10 @@ function SetBackgroundModel(model, name)
 		name = "HighmountainTauren";
 	end
 
+	if (name == "Taunka" or name == "TAUNKA") then
+		name = "Tauren";
+	end
+
 	if (name == "AlliancePandaren" or name == "Alliance Pandaren" or name == "Alliance_Pandaren" or name == "ALLIANCEPANDAREN" or name == "ALLIANCE PANDAREN" or name == "ALLIANCE_PANDAREN") then
 		name = "NightElf";
 	end
@@ -548,11 +563,15 @@ function SetBackgroundModel(model, name)
 	end
 
 	if (name == "Murloc" or name == "MURLOC") then
-		name = "Troll";
+		name = "Orc";
 	end
 
 	if (name == "LightforgedDraenei" or name == "Lightforged Draenei" or name == "Lightforged_Draenei" or name == "LIGHTFORGEDDRAENEI" or name == "LIGHTFORGED DRAENEI" or name == "LIGHTFORGED_DRAENEI") then
 		name = "Draenei";
+	end
+
+	if (name == "Darkfallen" or name == "DARKFALLEN") then
+		name = "Scourge";
 	end
 
 	-- races without a scene of their own use the scene of the stock race whose start area they share
@@ -567,12 +586,6 @@ function SetBackgroundModel(model, name)
 	-- races without a track of their own fall back to the character select one
 	PlayGlueAmbience(GlueAmbienceTracks[nameupper] or GlueAmbienceTracks["CHARACTERSELECT"], 4.0);
 	SetLighting(model, nameupper)
-
-	-- Store which race's offset (if any) applies to this model, so the
-	-- per-frame OnUpdateModel handler can reapply it every frame — a single
-	-- SetPosition() call here gets stomped on the very next frame by
-	-- UpdateCustomizationScene(), which owns/resyncs the live camera.
-	model.backgroundRaceKey = nameupper;
 end
 
 function SecondsToTime(seconds, noSeconds)

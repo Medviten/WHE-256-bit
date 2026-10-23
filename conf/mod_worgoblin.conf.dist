@@ -12,18 +12,18 @@ Announce.enable = 1
 
 #
 #    Worgoblin.RunningWild.FreeApprentice (bool)
-#        Description: If enabled, Worgen auto-learn Apprentice Riding (and the slower Running Wild form) at level 20.
-#                     If disabled, Worgen must train Apprentice Riding normally, but Running Wild will still sync
-#                     to whatever riding skill they buy.
+#        Description: If enabled, Worgen auto-learn Apprentice Riding at level 20. Worgen learn Running Wild at level 20
+#                     either way; its speed follows riding skill (+60%, or +100% from Journeyman Riding).
+#                     Does not affect Death Knights, who start with Journeyman-level riding skill.
 #        Default:     1
 
 Worgoblin.RunningWild.FreeApprentice = 1
 
 #
 #    Worgoblin.RunningWild.FreeJourneyman (bool)
-#        Description: If enabled, Worgen auto-learn Journeyman Riding (and the faster Running Wild form) at level 40,
+#        Description: If enabled, Worgen auto-learn Journeyman Riding (which makes Running Wild +100%) at level 40,
 #                     in addition to whatever FreeApprentice does. If disabled, Worgen must train Journeyman normally.
-#                     Does not affect Death Knights, who always get the fast Running Wild form for free.
+#                     Does not affect Death Knights, who start with Journeyman-level riding skill.
 #        Default:     1
 
 Worgoblin.RunningWild.FreeJourneyman = 1

@@ -3627,6 +3627,7 @@ EXTEND_RAID_LOCK = "Extend Raid Lock";
 EXTRA_ATTACKS = "Extra Attacks";
 EYE_SEPARATION = "Depth Amount";
 English = "";
+FACIAL_HAIR_DRIP = "Slime Drip";
 FACIAL_HAIR_EARRINGS = "Earrings";
 FACIAL_HAIR_FEATURES = "Features";
 FACIAL_HAIR_HAIR = "Hair";

@@ -355,6 +355,8 @@ SET @HighElf                                                   =   38;
 SET @Ogre                                                      =   39;
 SET @Darkfallen                                                =   40;
 SET @Murloc                                                    =   41;
+SET @Furbolg                                                   =   42;
+SET @SlimeGiant                                                =   43;
 -- Retail races above 64 live in the second race-mask word (@<Race>Mask_2 and the `<column>_2` mask columns)
 SET @HordeEarthen                                              =   84;
 SET @AllianceEarthen                                           =   85;
@@ -461,6 +463,9 @@ SET @NightborneMaleModel                                       =    @NextModelID
 SET @NightborneFemaleModel                                     =    @NextModelID := @NextModelID +1;
 SET @MurlocMaleModel                                           =    @NextModelID := @NextModelID +1;
 SET @MurlocFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @FurbolgMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @FurbolgFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @SlimeGiantMaleModel                                       =    @NextModelID := @NextModelID +1; -- male only
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -523,6 +528,10 @@ SET @NightborneMaleDisplay                                     =    @NextDisplay
 SET @NightborneFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
 SET @MurlocMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
 SET @MurlocFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @FurbolgMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @FurbolgFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @SlimeGiantMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @SlimeGiantFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -582,6 +591,10 @@ SET @NightborneMaleDisplayExtra                                =    @NextDisplay
 SET @NightborneFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @MurlocMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @MurlocFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FurbolgMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FurbolgFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SlimeGiantMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SlimeGiantFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -671,6 +684,8 @@ SET @TuskarrRacials                                            =      810;
 SET @DarkfallenRacials                                         =      811;
 SET @NightborneRacials                                         =      812;
 SET @MurlocRacials                                             =      813;
+SET @FurbolgRacials                                            =      814;
+SET @SlimeGiantRacials                                         =      815;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1159,6 +1174,7 @@ SET @BrokenRacialSkillRaceClass                                =     1152;
 SET @PandarenRacialSkillRaceClass                              =     1153;
 SET @DarkfallenRacialSkillRaceClass                            =     1154;
 SET @MurlocRacialSkillRaceClass                                =     1155;
+SET @SlimeGiantRacialSkillRaceClass                            =     1156;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1622,6 +1638,8 @@ SET @TuskarrFactionTemplate                                    =     2260; -- Re
 SET @DarkfallenFactionTemplate                                 =     2261; -- References @DarkfallenPlayer
 SET @NightborneFactionTemplate                                 =     2262; -- References @NightbornePlayer
 SET @MurlocFactionTemplate                                     =     2263; -- References @MurlocPlayer
+SET @FurbolgFactionTemplate                                    =     2264; -- References @FurbolgPlayer
+SET @SlimeGiantFactionTemplate                                 =     2265; -- References @SlimeGiantPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1651,6 +1669,8 @@ SET @TuskarrFactionRepIndex                                    =    128;
 SET @DarkfallenFactionRepIndex                                 =    129;
 SET @NightborneFactionRepIndex                                 =    130;
 SET @MurlocFactionRepIndex                                     =    131;
+SET @FurbolgFactionRepIndex                                    =    132;
+SET @SlimeGiantFactionRepIndex                                 =    133;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1684,6 +1704,8 @@ SET @TuskarrAchievement                                        =    1452;
 SET @DarkfallenAchievement                                     =    1453;
 SET @NightborneAchievement                                     =    1454;
 SET @MurlocAchievement                                         =    1455;
+SET @FurbolgAchievement                                        =    1459; -- 1456-1458 are stock achievements
+SET @SlimeGiantAchievement                                     =    1460;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -1811,6 +1833,14 @@ SET @MurlocCriteria1                                           =    19306; -- Ac
 SET @MurlocCriteria2                                           =    19307; -- Achievement 2422: Shake Your Bunny-Maker
 SET @MurlocCriteria3                                           =    19308; -- Achievement 291: Check Your Head
 SET @MurlocCriteria4                                           =    19309; -- @MurlocAchievement: Realm First! Level 80 Murloc
+SET @FurbolgCriteria1                                          =    19310; -- Achievement 246: Know Thy Enemy
+SET @FurbolgCriteria2                                          =    19311; -- Achievement 2422: Shake Your Bunny-Maker
+SET @FurbolgCriteria3                                          =    19312; -- Achievement 291: Check Your Head
+SET @FurbolgCriteria4                                          =    19313; -- @FurbolgAchievement: Realm First! Level 80 Furbolg
+SET @SlimeGiantCriteria1                                       =    19314; -- Achievement 1005: Know Thy Enemy
+SET @SlimeGiantCriteria2                                       =    19315; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SlimeGiantCriteria3                                       =    19316; -- Achievement 291: Check Your Head
+SET @SlimeGiantCriteria4                                       =    19317; -- @SlimeGiantAchievement: Realm First! Level 80 Slime Giant
 
 -- Classes
 SET @Warrior                                                   =      1;

@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 39;
+MAX_RACES = 44;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -43,6 +43,8 @@ RACE_ICON_TCOORDS = {
 	["HIGHELF_MALE"]              = {0.5,     0.53125, 0,    0.25},
 	["BROKEN_MALE"]               = {0.53125, 0.5625,  0,    0.25},
 	["FURBOLG_MALE"]              = {0.5625,  0.59375, 0,    0.25},
+	["VRYKUL_MALE"]               = {0.59375, 0.625,   0,    0.25},
+	["TUSKARR_MALE"]              = {0.625,   0.65625, 0,    0.25},
 
 	["TAUREN_MALE"]               = {0,       0.03125, 0.25,  0.5},
 	["SCOURGE_MALE"]              = {0.03125, 0.0625,  0.25,  0.5},
@@ -56,13 +58,16 @@ RACE_ICON_TCOORDS = {
 	["ZANDALARITROLL_MALE"]       = {0.28125, 0.3125,  0.25,  0.5},
 	["VULPERA_MALE"]              = {0.3125,  0.34375, 0.25,  0.5},
 	["MAGHAR_MALE"]               = {0.34375, 0.375,   0.25,  0.5},
-	["HORDEDRACTHYR_MALE"]        = {0.34375, 0.375,   0.25,  0.5},
+	["HORDEDRACTHYR_MALE"]        = {0.375,   0.40625, 0.25,  0.5},
 	["HORDEEARTHEN_MALE"]         = {0.40625, 0.4375,  0.25,  0.5},
 	["HORDEHARANIR_MALE"]         = {0.4375,  0.46875, 0.25,  0.5},
 	["HORDESKYBORNE_MALE"]        = {0.46875, 0.5,     0.25,  0.5},
 	["OGRE_MALE"]                 = {0.5,     0.53125, 0.25,  0.5},
 	["NAGA_MALE"]                 = {0.53125, 0.5625,  0.25,  0.5},
 	["MURLOC_MALE"]               = {0.5625,  0.59375, 0.25,  0.5},
+	["TAUNKA_MALE"]               = {0.59375, 0.625,   0.25,  0.5},
+	["DARKFALLEN_MALE"]           = {0.625,   0.65625, 0.25,  0.5},
+	["SLIMEGIANT_MALE"]           = {0.03125, 0.0625,  0.25,  0.5}, -- placeholder: the Undead icon
 
 	["HUMAN_FEMALE"]              = {0,       0.03125, 0.5,  0.75},
 	["GILNEAN_FEMALE"]            = {0,       0.03125, 0.5,  0.75},
@@ -84,6 +89,8 @@ RACE_ICON_TCOORDS = {
 	["HIGHELF_FEMALE"]            = {0.5,     0.53125, 0.5,  0.75},
 	["BROKEN_FEMALE"]             = {0.53125, 0.5625,  0.5,  0.75},
 	["FURBOLG_FEMALE"]            = {0.5625,  0.59375, 0.5,  0.75},
+	["VRYKUL_FEMALE"]             = {0.59375, 0.625,   0.5,  0.75},
+	["TUSKARR_FEMALE"]            = {0.625,  0.65625,  0.5,  0.75},
 
 	["TAUREN_FEMALE"]             = {0,       0.03125, 0.75,  1.0},
 	["SCOURGE_FEMALE"]            = {0.03125, 0.0625,  0.75,  1.0},
@@ -104,6 +111,9 @@ RACE_ICON_TCOORDS = {
 	["OGRE_FEMALE"]               = {0.5,     0.53125, 0.75,  1.0},
 	["NAGA_FEMALE"]               = {0.53125, 0.5625,  0.75,  1.0},
 	["MURLOC_FEMALE"]             = {0.5625,  0.59375, 0.75,  1.0},
+	["TAUNKA_FEMALE"]             = {0.59375, 0.625,   0.75,  1.0},
+	["DARKFALLEN_FEMALE"]         = {0.625,   0.65625, 0.75,  1.0},
+	["SLIMEGIANT_FEMALE"]         = {0.03125, 0.0625,  0.25,  0.5}, -- male-only race: the male icon
 };
 
 -- Fixed button layout for every race, independent of whatever order (or
@@ -132,25 +142,30 @@ RACE_VISUAL_SLOTS = {
 	["BROKEN"]                             = 18,
 	["FURBOLG"]                            = 19,
 	["GILNEAN"]                            = 20,
-	["ORC"]                                = 21,
-	["SCOURGE"]                            = 22,
-	["TAUREN"]                             = 23,
-	["TROLL"]                              = 24,
-	["BLOODELF"]                           = 25,
-	["GOBLIN"]                             = 26,
-	["HORDEPANDAREN"]                      = 27,
-	["NIGHTBORNE"]                         = 28,
-	["HIGHMOUNTAINTAUREN"]                 = 29,
-	["ZANDALARITROLL"]                     = 30,
-	["VULPERA"]                            = 31,
-	["MAGHAR"]                             = 32,
-	["HORDEDRACTHYR"]                      = 33,
-	["HORDEEARTHEN"]                       = 34,
-	["HORDEHARANIR"]                       = 35,
-	["HORDESKYBORNE"]                      = 36,
-	["OGRE"]                               = 37,
-	["NAGA"]                               = 38,
-	["MURLOC"]                             = 39,
+	["VRYKUL"]                             = 21,
+	["TUSKARR"]                            = 22,
+	["ORC"]                                = 23,
+	["SCOURGE"]                            = 24,
+	["TAUREN"]                             = 25,
+	["TROLL"]                              = 26,
+	["BLOODELF"]                           = 27,
+	["GOBLIN"]                             = 28,
+	["HORDEPANDAREN"]                      = 29,
+	["NIGHTBORNE"]                         = 30,
+	["HIGHMOUNTAINTAUREN"]                 = 31,
+	["ZANDALARITROLL"]                     = 32,
+	["VULPERA"]                            = 33,
+	["MAGHAR"]                             = 34,
+	["HORDEDRACTHYR"]                      = 35,
+	["HORDEEARTHEN"]                       = 36,
+	["HORDEHARANIR"]                       = 37,
+	["HORDESKYBORNE"]                      = 38,
+	["OGRE"]                               = 39,
+	["NAGA"]                               = 40,
+	["MURLOC"]                             = 41,
+	["TAUNKA"]                             = 42,
+	["DARKFALLEN"]                         = 43,
+	["SLIMEGIANT"]                         = 44,
 };
 
 -- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead
@@ -443,8 +458,8 @@ function SetCharacterRace(id)
 	end
 	CharacterCreateConfigurationBackground:SetVertexColor(backdropColor[4], backdropColor[5], backdropColor[6]);
 
-	local backgroundFilename = GetCreateBackgroundModel();
-	SetBackgroundModel(CharacterCreate, backgroundFilename);
+	local backgroundFilename, backgroundRace = GetCreateBackgroundModel();
+	SetBackgroundModel(CharacterCreate, backgroundFilename, backgroundRace);
 end
 
 function SetCharacterClass(id)
@@ -491,16 +506,6 @@ end
 
 function CharacterCreate_UpdateModel(self)
 	UpdateCustomizationScene();
-
-	-- UpdateCustomizationScene() resyncs the live camera every frame, which
-	-- would silently overwrite any one-time SetPosition() call elsewhere.
-	-- Reapply our per-race framing fix (or the live /modeloffset debug
-	-- value) here, after the native reset, so it actually sticks.
-	local offset = CharacterCreateDebugOffset or BackgroundModelPositionOffset[self.backgroundRaceKey or ""];
-	if ( offset ) then
-		self:SetPosition(offset.x, offset.y, offset.z);
-	end
-
 	self:AdvanceTime();
 end
 
