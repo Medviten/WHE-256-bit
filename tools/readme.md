@@ -7,7 +7,9 @@
 # Tools
 - `checks/check_customization.py`: checks the customization data of race modpaks (CharSections, CharHairGeosets,
   CharacterFacialHairStyles, CharHairTextures, BarberShopStyle) for missing textures, textures from another race's
-  folder, duplicate rows, colour/type gaps and geosets the model lacks. No database needed:
+  folder, duplicate rows, colour/type gaps and geosets the model lacks. No database needed, but it reads the client
+  assets from a [WHE-common](https://github.com/Medviten/WHE-common) checkout (next to this repo by default, or
+  `--common PATH` / `$WHE_COMMON`):
   `python3 tools/checks/check_customization.py --stock-dbc /path/to/original/dbc [MODPAK ...]`
 
 - `racemask/word2vars.py`, `racemask/word2.py`: add second race-mask word handling (races 65-128) to config.sql,

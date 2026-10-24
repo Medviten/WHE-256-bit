@@ -4,7 +4,7 @@
 Reads each modpak's INSERT statements for charsections, charhairgeosets, characterfacialhairstyles,
 charhairtextures and barbershopstyle (no database needed) and reports, per race and gender:
 
-  - textures that exist neither in the client patch (data/patch-A.MPQ, case-insensitive like an MPQ) nor
+  - textures that exist neither in the client patch (WHE-common's patch-A.MPQ, case-insensitive like an MPQ) nor
     among the stock CharSections textures (when --stock-dbc points at the original client DBCs)
   - rows whose textures live in another race's folder (e.g. copy-paste leftovers)
   - duplicate rows (same gender, section, type and colour)
@@ -15,9 +15,10 @@ charhairtextures and barbershopstyle (no database needed) and reports, per race 
   - missing CharHairTextures rows
 
 Usage:
-    python3 check_customization.py [--repo PATH] [--stock-dbc DIR] [MODPAK ...]
+    python3 check_customization.py [--repo PATH] [--common PATH] [--stock-dbc DIR] [MODPAK ...]
 
-With no MODPAK arguments every modpak that inserts charsections rows is checked."""
+With no MODPAK arguments every modpak that inserts charsections rows is checked. The client assets live in a
+WHE-common checkout: --common, else $WHE_COMMON, else a WHE-common folder next to the repo."""
 import argparse, collections, os, re, struct, sys
 
 SECTION_NAMES = {0: "skin", 1: "face", 2: "facial hair", 3: "hair", 4: "underwear"}
@@ -374,11 +375,16 @@ def compress(line):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--repo", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+    ap.add_argument("--common", default=os.environ.get("WHE_COMMON"),
+                    help="WHE-common checkout with the client assets (default: $WHE_COMMON or ../WHE-common)")
     ap.add_argument("--stock-dbc", help="directory with the original client DBCs (for stock CharSections textures)")
     ap.add_argument("modpaks", nargs="*")
     a = ap.parse_args()
     modpaks_dir = os.path.join(a.repo, "modpaks")
-    data_dir = os.path.join(a.repo, "data", "patch-A.MPQ")
+    common = a.common or os.path.join(a.repo, "..", "WHE-common")
+    data_dir = os.path.join(common, "patch-A.MPQ")
+    if not os.path.isdir(data_dir):
+        sys.exit(f"client assets not found at {os.path.abspath(data_dir)}; pass --common or set WHE_COMMON")
     patch = index_patch(data_dir)
     stock = stock_textures(a.stock_dbc)
     exists = lambda t: t.lower() in patch or t.lower() in stock
