@@ -46,6 +46,14 @@ F-022_mod-playable-broken
 #F-043_mod-darkfallen # Off by default (WIP – not ready)
 #F-044_mod-playable-murloc # Off by default (WIP – not ready)
 #F-045_mod-playable-furbolg # Off by default (WIP – not ready)
+#F-047_mod-playable-fel-orc # Off by default (tentative, untested)
+#F-048_mod-playable-skeleton # Off by default (tentative, untested)
+#F-049_mod-playable-forest-troll # Off by default (tentative, untested)
+#F-050_mod-playable-northrend-skeleton # Off by default (tentative, untested)
+#F-051_mod-playable-ice-troll # Off by default (tentative, untested)
+#F-052_mod-playable-qiraji # Off by default (tentative, untested; needs client assets in patch-A)
+#F-053_mod-playable-eredar # Off by default (tentative, untested; needs client assets in patch-A)
+#F-054_mod-playable-arakkoa # Off by default (tentative, untested; needs client assets in patch-A)
 # END CUSTOM RACES #
 
 # ADDITIONAL MODS #

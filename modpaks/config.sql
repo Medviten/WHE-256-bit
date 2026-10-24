@@ -328,12 +328,17 @@ SET @Draenei                                                   =   11;
 
 -- New Playable Races
 -- Fixed IDs shared with retail ChrRaces, so C++/Lua scripts and core edits can rely on them no matter which
--- modpaks are applied. Naga, Broken, Vrykul, Tuskarr and Taunka use their retail NPC race IDs: F-008 moves the stock NPC rows away.
+-- modpaks are applied. Fel Orc, Naga, Broken, Skeleton, Vrykul, Tuskarr, Forest Troll, Taunka, Northrend Skeleton and Ice Troll use their retail NPC race IDs: F-008 moves the stock NPC rows away.
 SET @Naga                                                      =   13; -- retail NPC race (Naga_)
+SET @FelOrc                                                    =   12; -- retail NPC race
 SET @Broken                                                    =   14; -- retail NPC race
+SET @Skeleton                                                  =   15; -- retail NPC race
 SET @Vrykul                                                    =   16; -- retail NPC race
 SET @Tuskarr                                                   =   17; -- retail NPC race
+SET @ForestTroll                                               =   18; -- retail NPC race
 SET @Taunka                                                    =   19; -- retail NPC race
+SET @NorthrendSkeleton                                         =   20; -- retail NPC race
+SET @IceTroll                                                  =   21; -- retail NPC race
 SET @Worgen                                                    =   22;
 SET @Gilnean                                                   =   23;
 -- Neutral Pandaren                                            =   24;
@@ -357,6 +362,9 @@ SET @Darkfallen                                                =   40;
 SET @Murloc                                                    =   41;
 SET @Furbolg                                                   =   42;
 SET @SlimeGiant                                                =   43;
+SET @Qiraji                                                    =   44;
+SET @Eredar                                                    =   45;
+SET @Arakkoa                                                   =   46;
 -- Retail races above 64 live in the second race-mask word (@<Race>Mask_2 and the `<column>_2` mask columns)
 SET @HordeEarthen                                              =   84;
 SET @AllianceEarthen                                           =   85;
@@ -466,6 +474,18 @@ SET @MurlocFemaleModel                                         =    @NextModelID
 SET @FurbolgMaleModel                                          =    @NextModelID := @NextModelID +1;
 SET @FurbolgFemaleModel                                        =    @NextModelID := @NextModelID +1;
 SET @SlimeGiantMaleModel                                       =    @NextModelID := @NextModelID +1; -- male only
+SET @FelOrcMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @FelOrcFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @SkeletonMaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @SkeletonFemaleModel                                       =    @NextModelID := @NextModelID +1;
+SET @ForestTrollMaleModel                                      =    @NextModelID := @NextModelID +1; -- male only
+SET @NorthrendSkeletonMaleModel                                =    @NextModelID := @NextModelID +1; -- male only
+SET @IceTrollMaleModel                                         =    @NextModelID := @NextModelID +1; -- male only
+SET @QirajiMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @QirajiFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @EredarMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @EredarFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @ArakkoaMaleModel                                          =    @NextModelID := @NextModelID +1; -- male only
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -532,6 +552,22 @@ SET @FurbolgMaleDisplay                                        =    @NextDisplay
 SET @FurbolgFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
 SET @SlimeGiantMaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
 SET @SlimeGiantFemaleDisplay                                   =    @NextDisplayID := @NextDisplayID +1;
+SET @FelOrcMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @FelOrcFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @SkeletonMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @SkeletonFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @ForestTrollMaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @ForestTrollFemaleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @NorthrendSkeletonMaleDisplay                              =    @NextDisplayID := @NextDisplayID +1;
+SET @NorthrendSkeletonFemaleDisplay                            =    @NextDisplayID := @NextDisplayID +1;
+SET @IceTrollMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @IceTrollFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @QirajiMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @QirajiFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @EredarMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @EredarFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @ArakkoaMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @ArakkoaFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -595,6 +631,22 @@ SET @FurbolgMaleDisplayExtra                                   =    @NextDisplay
 SET @FurbolgFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @SlimeGiantMaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @SlimeGiantFemaleDisplayExtra                              =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelOrcMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelOrcFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SkeletonMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SkeletonFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ForestTrollMaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ForestTrollFemaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @NorthrendSkeletonMaleDisplayExtra                         =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @NorthrendSkeletonFemaleDisplayExtra                       =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @IceTrollMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @IceTrollFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QirajiMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QirajiFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @EredarMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @EredarFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ArakkoaMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ArakkoaFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -686,6 +738,14 @@ SET @NightborneRacials                                         =      812;
 SET @MurlocRacials                                             =      813;
 SET @FurbolgRacials                                            =      814;
 SET @SlimeGiantRacials                                         =      815;
+SET @FelOrcRacials                                             =      816;
+SET @SkeletonRacials                                           =      817;
+SET @ForestTrollRacials                                        =      818;
+SET @NorthrendSkeletonRacials                                  =      819;
+SET @IceTrollRacials                                           =      820;
+SET @QirajiRacials                                             =      821;
+SET @EredarRacials                                             =      822;
+SET @ArakkoaRacials                                            =      823;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1175,6 +1235,14 @@ SET @PandarenRacialSkillRaceClass                              =     1153;
 SET @DarkfallenRacialSkillRaceClass                            =     1154;
 SET @MurlocRacialSkillRaceClass                                =     1155;
 SET @SlimeGiantRacialSkillRaceClass                            =     1156;
+SET @FelOrcRacialSkillRaceClass                                =     1157;
+SET @SkeletonRacialSkillRaceClass                              =     1158;
+SET @ForestTrollRacialSkillRaceClass                           =     1159;
+SET @NorthrendSkeletonRacialSkillRaceClass                     =     1160;
+SET @IceTrollRacialSkillRaceClass                              =     1161;
+SET @QirajiRacialSkillRaceClass                                =     1162;
+SET @EredarRacialSkillRaceClass                                =     1163;
+SET @ArakkoaRacialSkillRaceClass                               =     1164;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1640,6 +1708,14 @@ SET @NightborneFactionTemplate                                 =     2262; -- Re
 SET @MurlocFactionTemplate                                     =     2263; -- References @MurlocPlayer
 SET @FurbolgFactionTemplate                                    =     2264; -- References @FurbolgPlayer
 SET @SlimeGiantFactionTemplate                                 =     2265; -- References @SlimeGiantPlayer
+SET @FelOrcFactionTemplate                                     =     2266; -- References @FelOrcPlayer
+SET @SkeletonFactionTemplate                                   =     2267; -- References @SkeletonPlayer
+SET @ForestTrollFactionTemplate                                =     2268; -- References @ForestTrollPlayer
+SET @NorthrendSkeletonFactionTemplate                          =     2269; -- References @NorthrendSkeletonPlayer
+SET @IceTrollFactionTemplate                                   =     2270; -- References @IceTrollPlayer
+SET @QirajiFactionTemplate                                     =     2271; -- References @QirajiPlayer
+SET @EredarFactionTemplate                                     =     2272; -- References @EredarPlayer
+SET @ArakkoaFactionTemplate                                    =     2273; -- References @ArakkoaPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1671,6 +1747,14 @@ SET @NightborneFactionRepIndex                                 =    130;
 SET @MurlocFactionRepIndex                                     =    131;
 SET @FurbolgFactionRepIndex                                    =    132;
 SET @SlimeGiantFactionRepIndex                                 =    133;
+SET @FelOrcFactionRepIndex                                     =    134;
+SET @SkeletonFactionRepIndex                                   =    135;
+SET @ForestTrollFactionRepIndex                                =    136;
+SET @NorthrendSkeletonFactionRepIndex                          =    137;
+SET @IceTrollFactionRepIndex                                   =    138;
+SET @QirajiFactionRepIndex                                     =    139;
+SET @EredarFactionRepIndex                                     =    140;
+SET @ArakkoaFactionRepIndex                                    =    141;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1706,6 +1790,14 @@ SET @NightborneAchievement                                     =    1454;
 SET @MurlocAchievement                                         =    1455;
 SET @FurbolgAchievement                                        =    1459; -- 1456-1458 are stock achievements
 SET @SlimeGiantAchievement                                     =    1460;
+SET @FelOrcAchievement                                         =    1461; -- 1462-1467 are stock achievements
+SET @SkeletonAchievement                                       =    1468;
+SET @ForestTrollAchievement                                    =    1469;
+SET @NorthrendSkeletonAchievement                              =    1470;
+SET @IceTrollAchievement                                       =    1471;
+SET @QirajiAchievement                                         =    1472;
+SET @EredarAchievement                                         =    1473;
+SET @ArakkoaAchievement                                        =    1474;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -1841,6 +1933,38 @@ SET @SlimeGiantCriteria1                                       =    19314; -- Ac
 SET @SlimeGiantCriteria2                                       =    19315; -- Achievement 2422: Shake Your Bunny-Maker
 SET @SlimeGiantCriteria3                                       =    19316; -- Achievement 291: Check Your Head
 SET @SlimeGiantCriteria4                                       =    19317; -- @SlimeGiantAchievement: Realm First! Level 80 Slime Giant
+SET @FelOrcCriteria1                                           =    19318; -- Achievement 1005: Know Thy Enemy
+SET @FelOrcCriteria2                                           =    19319; -- Achievement 2422: Shake Your Bunny-Maker
+SET @FelOrcCriteria3                                           =    19320; -- Achievement 291: Check Your Head
+SET @FelOrcCriteria4                                           =    19321; -- @FelOrcAchievement: Realm First! Level 80 Fel Orc
+SET @SkeletonCriteria1                                         =    19322; -- Achievement 1005: Know Thy Enemy
+SET @SkeletonCriteria2                                         =    19323; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SkeletonCriteria3                                         =    19324; -- Achievement 291: Check Your Head
+SET @SkeletonCriteria4                                         =    19325; -- @SkeletonAchievement: Realm First! Level 80 Skeleton
+SET @ForestTrollCriteria1                                      =    19326; -- Achievement 1005: Know Thy Enemy
+SET @ForestTrollCriteria2                                      =    19327; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ForestTrollCriteria3                                      =    19328; -- Achievement 291: Check Your Head
+SET @ForestTrollCriteria4                                      =    19329; -- @ForestTrollAchievement: Realm First! Level 80 Forest Troll
+SET @NorthrendSkeletonCriteria1                                =    19330; -- Achievement 1005: Know Thy Enemy
+SET @NorthrendSkeletonCriteria2                                =    19331; -- Achievement 2422: Shake Your Bunny-Maker
+SET @NorthrendSkeletonCriteria3                                =    19332; -- Achievement 291: Check Your Head
+SET @NorthrendSkeletonCriteria4                                =    19333; -- @NorthrendSkeletonAchievement: Realm First! Level 80 Northrend Skeleton
+SET @IceTrollCriteria1                                         =    19334; -- Achievement 1005: Know Thy Enemy
+SET @IceTrollCriteria2                                         =    19335; -- Achievement 2422: Shake Your Bunny-Maker
+SET @IceTrollCriteria3                                         =    19336; -- Achievement 291: Check Your Head
+SET @IceTrollCriteria4                                         =    19337; -- @IceTrollAchievement: Realm First! Level 80 Ice Troll
+SET @QirajiCriteria1                                           =    19338; -- Achievement 1005: Know Thy Enemy
+SET @QirajiCriteria2                                           =    19339; -- Achievement 2422: Shake Your Bunny-Maker
+SET @QirajiCriteria3                                           =    19340; -- Achievement 291: Check Your Head
+SET @QirajiCriteria4                                           =    19341; -- @QirajiAchievement: Realm First! Level 80 Qiraji
+SET @EredarCriteria1                                           =    19342; -- Achievement 246: Know Thy Enemy
+SET @EredarCriteria2                                           =    19343; -- Achievement 2422: Shake Your Bunny-Maker
+SET @EredarCriteria3                                           =    19344; -- Achievement 291: Check Your Head
+SET @EredarCriteria4                                           =    19345; -- @EredarAchievement: Realm First! Level 80 Eredar
+SET @ArakkoaCriteria1                                          =    19346; -- Achievement 246: Know Thy Enemy
+SET @ArakkoaCriteria2                                          =    19347; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ArakkoaCriteria3                                          =    19348; -- Achievement 291: Check Your Head
+SET @ArakkoaCriteria4                                          =    19349; -- @ArakkoaAchievement: Realm First! Level 80 Arakkoa
 
 -- Classes
 SET @Warrior                                                   =      1;

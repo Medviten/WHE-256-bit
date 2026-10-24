@@ -9,7 +9,7 @@
     (shipped as DBFilesClient\PlayerShapeshiftModel.csv in a patch MPQ), keyed by race, gender and hair color, or skin
     (fur) color for the races in the shapeshiftSkinColorRaces setting, falling back to SpellShapeshiftForm.dbc.
 
-    Client functions used: GetCharCustomizeShapeshiftDisplay(form), SetModelCreatureDisplay(frameName, displayID).
+    Client functions used: GetCharCustomizeShapeshiftDisplay(form), SetModelCreatureDisplay(frameName, displayID, zoom).
     (A plain Model frame on purpose: a ModelFFX clears the whole screen when it draws.) Left-drag the preview to turn it.
 --]]
 
@@ -25,8 +25,12 @@ DRUID_PREVIEW_FORMS = DRUID_PREVIEW_FORMS or {
     27, -- Swift Flight
 };
 
-local SCREEN_WIDTH, SCREEN_HEIGHT = 340, 400;
+local SCREEN_WIDTH, SCREEN_HEIGHT = 280, 320;
 local ROW_WIDTH = 260;
+
+-- The model's size on screen follows the frame's diagonal, so the camera moves in by as much as the screen shrank
+-- from its original 340x400 to keep the model as large as before
+local MODEL_ZOOM = math.sqrt(340 * 340 + 400 * 400) / math.sqrt(SCREEN_WIDTH * SCREEN_WIDTH + SCREEN_HEIGHT * SCREEN_HEIGHT);
 
 -- Everything sits in a container that is only shown while a druid is selected
 local container = CreateFrame("Frame", "CharacterCreateDruidFormFrame", CharacterCreateFrame);
@@ -130,7 +134,7 @@ local function UpdatePreview(force)
 
     if ( force or display ~= shownDisplay ) then
         shownDisplay = display;
-        SetModelCreatureDisplay(model:GetName(), display or 0);
+        SetModelCreatureDisplay(model:GetName(), display or 0, MODEL_ZOOM);
         model:SetFacing(model.facing or -0.5);
     end
 end

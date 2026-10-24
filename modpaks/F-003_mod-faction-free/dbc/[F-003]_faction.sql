@@ -46,5 +46,9 @@ WHERE `id` IN (
     @FurbolgFaction,            @MurlocFaction,
     @GilneanFaction,            @VrykulFaction,
     @ThinHumanFaction,          @TuskarrFaction,
-    @DarkfallenFaction
+    @DarkfallenFaction,
+    @FelOrcFaction,             @SkeletonFaction,
+    @ForestTrollFaction,        @NorthrendSkeletonFaction,
+    @IceTrollFaction,           @QirajiFaction,
+    @EredarFaction,             @ArakkoaFaction
 );

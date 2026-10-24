@@ -481,11 +481,13 @@ end
 
 -- Background scenes for races that have none of their own (the stock race whose start area they share)
 GlueBackgroundFallback = {
-	["MECHAGNOME"] = "Dwarf", ["TUSKARR"] = "Dwarf", ["ALLIANCEEARTHEN"] = "Dwarf",
+	["MECHAGNOME"] = "Dwarf", ["ALLIANCEEARTHEN"] = "Dwarf",
 	["VOIDELF"] = "Human", ["VRYKUL"] = "Human", ["THINHUMAN"] = "Human",
 	["NIGHTBORNE"] = "BloodElf", ["DARKFALLEN"] = "Scourge", ["TAUNKA"] = "Tauren",
 	["FURBOLG"] = "NightElf",
 	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc", ["SLIMEGIANT"] = "Ogre",
+	["FELORC"] = "Orc", ["SKELETON"] = "Scourge", ["FORESTTROLL"] = "Troll", ["NORTHRENDSKELETON"] = "Scourge",
+	["ICETROLL"] = "Troll", ["QIRAJI"] = "Orc", ["EREDAR"] = "Draenei", ["ARAKKOA"] = "Draenei",
 };
 
 -- Death knights share one class scene; these races are too tall for its camera and get a copy with the
@@ -493,7 +495,7 @@ GlueBackgroundFallback = {
 -- file string is the second value of GetCreateBackgroundModel()/GetSelectBackgroundModel() (patched client).
 TallDeathKnightRaces = {
 	["OGRE"] = true, ["ZANDALARITROLL"] = true, ["KULTIRAN"] = true, ["HIGHMOUNTAINTAUREN"] = true,
-	["TAUNKA"] = true,
+	["TUSKARR"] = true,
 };
 
 -- Function to set the background model for character select and create screens
@@ -545,6 +547,8 @@ function SetBackgroundModel(model, name, race)
 	if (name == "Taunka" or name == "TAUNKA") then
 		name = "Tauren";
 	end
+
+	-- Tuskarr are tall: UI_Tuskarr is the Dwarf scene with the camera pulled back (make_ui_scene.py at 1.45)
 
 	if (name == "AlliancePandaren" or name == "Alliance Pandaren" or name == "Alliance_Pandaren" or name == "ALLIANCEPANDAREN" or name == "ALLIANCE PANDAREN" or name == "ALLIANCE_PANDAREN") then
 		name = "NightElf";

@@ -24,7 +24,9 @@ DELETE FROM `reputation_spillover_faction` WHERE `faction` IN (
     @HighmountainTaurenFaction, @VoidElfFaction, @LightforgedDraeneiFaction, @ZandalariTrollFaction,
     @KulTiranFaction, @DarkIronDwarfFaction, @VulperaFaction, @MagharOrcFaction, @HighElfFaction, @OgreFaction,
     @VrykulFaction, @MechagnomeFaction, @ThinHumanFaction, @TuskarrFaction,
-    @AllianceEarthenFaction, @HordeEarthenFaction, @DarkfallenFaction, @MurlocFaction, @FurbolgFaction
+    @AllianceEarthenFaction, @HordeEarthenFaction, @DarkfallenFaction, @MurlocFaction, @FurbolgFaction,
+    @FelOrcFaction, @SkeletonFaction, @ForestTrollFaction, @NorthrendSkeletonFaction, @IceTrollFaction, @QirajiFaction,
+    @EredarFaction, @ArakkoaFaction
 );
 
 INSERT INTO `reputation_spillover_faction` (`faction`, `spillover_faction`, `rate`, `max_rank`)
@@ -67,6 +69,14 @@ WITH `races` (`race`, `faction`) AS (
     UNION ALL SELECT @Darkfallen,         @DarkfallenFaction
     UNION ALL SELECT @Murloc,             @MurlocFaction
     UNION ALL SELECT @Furbolg,            @FurbolgFaction
+    UNION ALL SELECT @FelOrc,            @FelOrcFaction
+    UNION ALL SELECT @Skeleton,          @SkeletonFaction
+    UNION ALL SELECT @ForestTroll,       @ForestTrollFaction
+    UNION ALL SELECT @NorthrendSkeleton, @NorthrendSkeletonFaction
+    UNION ALL SELECT @IceTroll,          @IceTrollFaction
+    UNION ALL SELECT @Qiraji,            @QirajiFaction
+    UNION ALL SELECT @Eredar,            @EredarFaction
+    UNION ALL SELECT @Arakkoa,           @ArakkoaFaction
 ),
 `capitals` AS (
     SELECT DISTINCT

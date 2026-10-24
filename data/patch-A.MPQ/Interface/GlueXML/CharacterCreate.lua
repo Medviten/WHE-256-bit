@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 44;
+MAX_RACES = 50;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -68,6 +68,14 @@ RACE_ICON_TCOORDS = {
 	["TAUNKA_MALE"]               = {0.59375, 0.625,   0.25,  0.5},
 	["DARKFALLEN_MALE"]           = {0.625,   0.65625, 0.25,  0.5},
 	["SLIMEGIANT_MALE"]           = {0.03125, 0.0625,  0.25,  0.5}, -- placeholder: the Undead icon
+	["FELORC_MALE"]               = {0.09375, 0.125,   0.25, 0.5}, -- placeholder: the Orc icon
+	["SKELETON_MALE"]             = {0.03125, 0.0625,  0.25, 0.5}, -- placeholder: the Scourge icon
+	["FORESTTROLL_MALE"]          = {0.0625,  0.09375, 0.25, 0.5}, -- placeholder: the Troll icon
+	["NORTHRENDSKELETON_MALE"]    = {0.03125, 0.0625,  0.25, 0.5}, -- placeholder: the Scourge icon
+	["ICETROLL_MALE"]             = {0.0625,  0.09375, 0.25, 0.5}, -- placeholder: the Troll icon
+	["QIRAJI_MALE"]               = {0.09375, 0.125,   0.25, 0.5}, -- placeholder: the Orc icon
+	["EREDAR_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["ARAKKOA_MALE"]              = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
 
 	["HUMAN_FEMALE"]              = {0,       0.03125, 0.5,  0.75},
 	["GILNEAN_FEMALE"]            = {0,       0.03125, 0.5,  0.75},
@@ -114,6 +122,14 @@ RACE_ICON_TCOORDS = {
 	["TAUNKA_FEMALE"]             = {0.59375, 0.625,   0.75,  1.0},
 	["DARKFALLEN_FEMALE"]         = {0.625,   0.65625, 0.75,  1.0},
 	["SLIMEGIANT_FEMALE"]         = {0.03125, 0.0625,  0.25,  0.5}, -- male-only race: the male icon
+	["FELORC_FEMALE"]             = {0.09375, 0.125,   0.75, 1}, -- placeholder: the Orc icon
+	["SKELETON_FEMALE"]           = {0.03125, 0.0625,  0.75, 1}, -- placeholder: the Scourge icon
+	["FORESTTROLL_FEMALE"]        = {0.0625,  0.09375, 0.25, 0.5}, -- male-only race: the male icon
+	["NORTHRENDSKELETON_FEMALE"]  = {0.03125, 0.0625,  0.25, 0.5}, -- male-only race: the male icon
+	["ICETROLL_FEMALE"]           = {0.0625,  0.09375, 0.25, 0.5}, -- male-only race: the male icon
+	["QIRAJI_FEMALE"]             = {0.09375, 0.125,   0.75, 1}, -- placeholder: the Orc icon
+	["EREDAR_FEMALE"]             = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
+	["ARAKKOA_FEMALE"]            = {0.125,   0.15625, 0,    0.25}, -- male-only race: the male icon
 };
 
 -- Fixed button layout for every race, independent of whatever order (or
@@ -159,13 +175,21 @@ RACE_VISUAL_SLOTS = {
 	["HORDEDRACTHYR"]                      = 35,
 	["HORDEEARTHEN"]                       = 36,
 	["HORDEHARANIR"]                       = 37,
+	["NORTHRENDSKELETON"]                  = 37, -- shares the slot of the Horde Haranir (not playable)
 	["HORDESKYBORNE"]                      = 38,
+	["QIRAJI"]                             = 38, -- shares the slot of the Horde Skyborne (not playable)
 	["OGRE"]                               = 39,
 	["NAGA"]                               = 40,
 	["MURLOC"]                             = 41,
 	["TAUNKA"]                             = 42,
 	["DARKFALLEN"]                         = 43,
 	["SLIMEGIANT"]                         = 44,
+	["EREDAR"]                             = 45, -- Alliance row 12
+	["ARAKKOA"]                            = 46,
+	["FELORC"]                             = 47, -- Horde rows 12-13
+	["SKELETON"]                           = 48,
+	["FORESTTROLL"]                        = 49,
+	["ICETROLL"]                           = 50,
 };
 
 -- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead
