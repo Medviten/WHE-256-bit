@@ -1,4 +1,4 @@
-# WHE-256-bit (formerly mod-worgoblin-high-elf)
+# Worgoblin High Elf (256-bit racemasks)
 
 (This is the 256-bit racemask version. Use the [original](https://github.com/Medviten/WHE-32-bit) if you need the default 32-bit racemasks.)
 
