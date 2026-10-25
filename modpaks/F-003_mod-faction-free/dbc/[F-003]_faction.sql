@@ -50,5 +50,9 @@ WHERE `id` IN (
     @FelOrcFaction,             @SkeletonFaction,
     @ForestTrollFaction,        @NorthrendSkeletonFaction,
     @IceTrollFaction,           @QirajiFaction,
-    @EredarFaction,             @ArakkoaFaction
+    @EredarFaction,             @ArakkoaFaction,
+    @FelElfFaction,             @QuillboarFaction,
+    @CentaurFaction,            @DemonFaction,
+    @SatyrFaction,              @GnollFaction,
+    @BeholderFaction,           @ShivanFaction
 );

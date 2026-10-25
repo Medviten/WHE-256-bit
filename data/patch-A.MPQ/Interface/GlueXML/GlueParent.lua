@@ -488,6 +488,8 @@ GlueBackgroundFallback = {
 	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc", ["SLIMEGIANT"] = "Ogre",
 	["FELORC"] = "Orc", ["SKELETON"] = "Scourge", ["FORESTTROLL"] = "Troll", ["NORTHRENDSKELETON"] = "Scourge",
 	["ICETROLL"] = "Troll", ["QIRAJI"] = "Orc", ["EREDAR"] = "Draenei", ["ARAKKOA"] = "Draenei",
+	["FELELF"] = "BloodElf", ["QUILLBOAR"] = "Tauren", ["CENTAUR"] = "Tauren", ["DEMON"] = "BloodElf",
+	["SATYR"] = "NightElf", ["GNOLL"] = "Human", ["BEHOLDER"] = "Dwarf", ["SHIVAN"] = "Draenei",
 };
 
 -- Death knights share one class scene; these races are too tall for its camera and get a copy with the

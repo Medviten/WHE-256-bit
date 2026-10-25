@@ -72,6 +72,9 @@
 			</Layer>
 		</Layers>
 		<Scripts>
+			<OnLoad>
+				self:SetScale(0.75); -- 75% size; anchor offsets scale with it, so the buttons also sit closer together
+			</OnLoad>
 			<OnClick>
 				if( self.enable ) then
 					CharacterRace_OnClick(self, self.raceIndex or self:GetID());
@@ -446,8 +449,8 @@
 <!--
                                 ALLIANCE RACE BUTTONS
 -->
-                            <CheckButton name="CharacterCreateRaceButton1" inherits="CharacterCreateRaceButtonTemplate" id="1"><Anchors><Anchor point="TOP" relativePoint="TOP" x="-72.5" y="-50"/></Anchors></CheckButton>
-                            <CheckButton name="CharacterCreateRaceButton2" inherits="CharacterCreateRaceButtonTemplate" id="2"><Anchors><Anchor point="TOP" relativePoint="TOP" x="-27.5" y="-50"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton1" inherits="CharacterCreateRaceButtonTemplate" id="1"><Anchors><Anchor point="TOP" relativePoint="TOP" x="-89.2" y="-66.7"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton2" inherits="CharacterCreateRaceButtonTemplate" id="2"><Anchors><Anchor point="TOP" relativePoint="TOP" x="-44.2" y="-66.7"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton3" inherits="CharacterCreateRaceButtonTemplate" id="3"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton1" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton4" inherits="CharacterCreateRaceButtonTemplate" id="4"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton2" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton5" inherits="CharacterCreateRaceButtonTemplate" id="5"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton3" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
@@ -471,11 +474,16 @@
                             <!-- Custom: row 12 (F-053 Eredar, F-054 Arakkoa) -->
                             <CheckButton name="CharacterCreateRaceButton45" inherits="CharacterCreateRaceButtonTemplate" id="45"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton21" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton46" inherits="CharacterCreateRaceButtonTemplate" id="46"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton22" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <!-- Custom: rows 13-14 (F-059 Satyr, F-060 Gnoll, F-061 Beholder, F-062 Shivan) -->
+                            <CheckButton name="CharacterCreateRaceButton51" inherits="CharacterCreateRaceButtonTemplate" id="51"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton45" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton52" inherits="CharacterCreateRaceButtonTemplate" id="52"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton46" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton53" inherits="CharacterCreateRaceButtonTemplate" id="53"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton51" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton54" inherits="CharacterCreateRaceButtonTemplate" id="54"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton52" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
 <!--
                                 HORDE RACE BUTTONS
 -->
-                            <CheckButton name="CharacterCreateRaceButton23" inherits="CharacterCreateRaceButtonTemplate" id="23"><Anchors><Anchor point="TOP" relativePoint="TOP" x="27.5" y="-50"/></Anchors></CheckButton>
-                            <CheckButton name="CharacterCreateRaceButton24" inherits="CharacterCreateRaceButtonTemplate" id="24"><Anchors><Anchor point="TOP" relativePoint="TOP" x="72.5" y="-50"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton23" inherits="CharacterCreateRaceButtonTemplate" id="23"><Anchors><Anchor point="TOP" relativePoint="TOP" x="44.2" y="-66.7"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton24" inherits="CharacterCreateRaceButtonTemplate" id="24"><Anchors><Anchor point="TOP" relativePoint="TOP" x="89.2" y="-66.7"/></Anchors></CheckButton>
 							<CheckButton name="CharacterCreateRaceButton25" inherits="CharacterCreateRaceButtonTemplate" id="25"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton23" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton26" inherits="CharacterCreateRaceButtonTemplate" id="26"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton24" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton27" inherits="CharacterCreateRaceButtonTemplate" id="27"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton25" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
@@ -501,6 +509,13 @@
                             <CheckButton name="CharacterCreateRaceButton48" inherits="CharacterCreateRaceButtonTemplate" id="48"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton44" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton49" inherits="CharacterCreateRaceButtonTemplate" id="49"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton47" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton50" inherits="CharacterCreateRaceButtonTemplate" id="50"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton48" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <!-- Custom: rows 14-16 (F-050 Northrend Skeleton, F-052 Qiraji, F-055 Fel Elf, F-056 Quillboar, F-057 Centaur, F-058 Demon) -->
+                            <CheckButton name="CharacterCreateRaceButton55" inherits="CharacterCreateRaceButtonTemplate" id="55"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton49" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton56" inherits="CharacterCreateRaceButtonTemplate" id="56"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton50" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton57" inherits="CharacterCreateRaceButtonTemplate" id="57"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton55" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton58" inherits="CharacterCreateRaceButtonTemplate" id="58"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton56" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton59" inherits="CharacterCreateRaceButtonTemplate" id="59"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton57" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton60" inherits="CharacterCreateRaceButtonTemplate" id="60"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton58" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
 							<CheckButton name="CharacterCreateGenderButtonMale" inherits="CharacterCreateGenderButtonTemplate">
 								<Anchors>
 									<Anchor point="CENTER" relativeTo="CharacterCreateFrame" relativePoint="BOTTOM" x="-67" y="27"/>

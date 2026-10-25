@@ -5239,19 +5239,3 @@ UPDATE `spell` SET `category` = 0, `recovery_time` = 120000, `category_recovery_
 
 -- Adjusts attributes for Two Forms
 UPDATE `spell` SET `attributes` = @SPELL_ATTR0_DO_NOT_LOG | @SPELL_ATTR0_DO_NOT_SHEATH | @SPELL_ATTR0_ALLOW_WHILE_SITTING | @SPELL_ATTR0_NOT_IN_COMBAT_ONLY_PEACEFUL, `attributes_ex_1` = @SPELL_ATTR1_NO_AURA_ICON, `attributes_ex_3` = @SPELL_ATTR3_ALLOW_AURA_WHILE_DEAD | @SPELL_ATTR3_IGNORE_CASTER_MODIFIERS, `attributes_ex_6` = @SPELL_ATTR6_ALLOW_WHILE_RIDING_VEHICLE | @SPELL_ATTR6_ALLOW_EQUIP_WHILE_CASTING, `excluded_caster_aura_spell` = @SpellDarkflight, `recovery_time` = 1500, `interrupt_flags` = 31, `aura_interrupt_flags` = 12288, `spell_level` = 1, `effect_die_sides_1` = 1, `effect_amplitude_3` = 0, `spell_visual_1` = 4228, `spell_visual_2` = 4228, `active_icon_id` = 122, `spell_subtext_flags` = 16712172, `spell_tooltip_enus` = 'Human form', `start_recovery_category` = 133, `spell_class_set` = 1, `spell_class_mask_3` = 64 WHERE `id` IN (@TwoFormsMale, @TwoFormsFemale);
-
--- Two Forms (male) applies the altered form aura instead of a transform; the patched client draws the player's own
--- character as the altered race while it is up, so the spell no longer depends on gender (testing; female still transforms)
-UPDATE `spell` SET `effect_apply_aura_name_1` = @SPELL_AURA_ALTERED_FORM, `effect_misc_value_a_1` = 0 WHERE `id` = @TwoFormsMale;
-
--- Running Wild (male, 60%) becomes a real mount on which the Worgen is its own mount, for both genders: a mounted aura
--- with no creature (spell_worgen_running_wild mounts the player's native display; requires patched client) and a
--- mounted speed aura whose amount the script sets from riding skill (60% or 100%). Flags as on ground mounts (e.g. 458).
-UPDATE `spell` SET
-    `mechanic` = 21, -- MECHANIC_MOUNT
-    `attributes` = @SPELL_ATTR0_IS_ABILITY | @SPELL_ATTR0_DO_NOT_LOG | @SPELL_ATTR0_OUTDOORS_ONLY | @SPELL_ATTR0_NOT_SHAPESHIFTED | @SPELL_ATTR0_DO_NOT_SHEATH | @SPELL_ATTR0_CANCELS_AUTO_ATTACK_COMBAT | @SPELL_ATTR0_NOT_IN_COMBAT_ONLY_PEACEFUL,
-    `aura_interrupt_flags` = 0,
-    `effect_apply_aura_name_1` = @SPELL_AURA_MOUNTED,
-    `effect_misc_value_a_1` = 0,
-    `effect_apply_aura_name_2` = 32 -- SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED
-WHERE `id` = @RunningWildMale60;

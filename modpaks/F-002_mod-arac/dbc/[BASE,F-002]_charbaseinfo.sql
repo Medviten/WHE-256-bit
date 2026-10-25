@@ -56,6 +56,14 @@ FROM (
     UNION ALL SELECT @Qiraji
     UNION ALL SELECT @Eredar
     UNION ALL SELECT @Arakkoa
+    UNION ALL SELECT @FelElf
+    UNION ALL SELECT @Quillboar
+    UNION ALL SELECT @Centaur
+    UNION ALL SELECT @Demon
+    UNION ALL SELECT @Satyr
+    UNION ALL SELECT @Gnoll
+    UNION ALL SELECT @Beholder
+    UNION ALL SELECT @Shivan
 ) AS `r`
 CROSS JOIN (
     SELECT @Warrior AS `class`

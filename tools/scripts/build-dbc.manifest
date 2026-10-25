@@ -25,6 +25,7 @@ F-009_morph-with-gear
 #F-004_mod-worgoblin # Legacy (requires recompile for some racials to function)
 F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocket Barrage
 F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
+F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched client: Running Wild as a mount on oneself, Two Forms as altered form
 F-005_mod-azerothcore-high-elf
 F-007_mod-maghar
 #F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
@@ -54,6 +55,14 @@ F-022_mod-playable-broken
 #F-052_mod-playable-qiraji # Off by default (tentative, untested; needs client assets in patch-A)
 #F-053_mod-playable-eredar # Off by default (tentative, untested; needs client assets in patch-A)
 #F-054_mod-playable-arakkoa # Off by default (tentative, untested; needs client assets in patch-A)
+#F-055_mod-playable-fel-elf # Off by default (tentative, untested; needs client assets in patch-A)
+#F-056_mod-playable-quillboar # Off by default (tentative, untested; needs client assets in patch-A)
+#F-057_mod-playable-centaur # Off by default (tentative, untested; needs client assets in patch-A)
+#F-058_mod-playable-demon # Off by default (tentative, untested; needs client assets in patch-A)
+#F-059_mod-playable-satyr # Off by default (tentative, untested; needs client assets in patch-A)
+#F-060_mod-playable-gnoll # Off by default (tentative, untested; needs client assets in patch-A)
+#F-061_mod-playable-beholder # Off by default (tentative, untested; needs client assets in patch-A)
+#F-062_mod-playable-shivan # Off by default (tentative, untested; needs client assets in patch-A)
 # END CUSTOM RACES #
 
 # ADDITIONAL MODS #

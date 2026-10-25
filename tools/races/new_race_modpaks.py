@@ -48,6 +48,58 @@ RACES = [
      'Arakkoa Outcasts', 'Arakkoa of Terokkar Forest who stand with the Alliance.',
      'The arakkoa are a race of bird-like humanoids from Draenor, steeped in arcane and shadow magic.'),
 ]
+
+# WallCraft's unregistered models (no race slot or customization rows): skins per gender as (texture_1, texture_2)
+def skins(folder, names, alpha=None):
+    return [('Character\\%s\\%s.blp' % (folder, n), ('Character\\%s\\%s%s.blp' % (folder, n, alpha)) if alpha else '') for n in names]
+
+RACES += [
+    ('FelElf', 'Fel Elf', 'Fel Elves', 55, 'fel-elf', 'Horde', 'BloodElf', 'BloodElf', False,
+     ('converted', 'Character\\\\FelElf\\\\Male\\\\FelElfWarriorMale.mdx', 'Character\\\\FelElf\\\\Female\\\\FelElfCasterFemale.mdx'),
+     ('skins', {0: skins('FelElf\\Male', ['FelElfWarriorMaleSkinPurple', 'FelElfWarriorMaleSkinRed', 'FelElfWarriorMaleSkinWhite', 'FelElfMaleSkin00_00']),
+                1: skins('FelElf\\Female', ['FelElfCasterFemaleSkinViolet', 'FelElfCasterFemaleSkinBlack', 'FelElfCasterFemaleSkinLightBlue', 'FelElfFemaleSkin00_00'])}), 'Be',
+     'Illidari Exiles', 'Fel elves who left Illidan\'s service and returned to their kin in the Horde.', ''),
+    ('Quillboar', 'Quillboar', 'Quillboar', 56, 'quillboar', 'Horde', 'Tauren', 'Tauren', False,
+     ('converted', 'Character\\\\Quillboar\\\\Male\\\\QuillBoar.mdx', 'Character\\\\Quillboar\\\\Female\\\\QuillBoarCaster.mdx'),
+     ('skins', {0: skins('Quillboar\\Male', ['QuilBoarSkin', 'QuilBoarSkinBlack', 'QuilBoarSkinGrey', 'QuilBoarSkinWhite', 'QuilBoarSkinDeathsHead', 'QuilBoarSkinZombie',
+                                             'QuilBoarSkinArmoredBlack', 'QuilBoarSkinArmoredBrown', 'QuilBoarSkinArmoredGrey', 'QuilBoarSkinArmoredWhite',
+                                             'QuilBoarSkinArmoredDeathsHead', 'QuilBoarSkinArmoredZombie'], '_Alpha'),
+                1: skins('Quillboar\\Female', ['QuilBoarCasterSkinBrown', 'QuilBoarCasterSkinBeige', 'QuilBoarCasterSkinBlack', 'QuilBoarCasterSkinPink'], '_Alpha')}), 'Ta',
+     'Bristleback Outcasts', 'Quillboar of the Barrens who broke with Agamaggan\'s war against the Horde.', ''),
+    ('Centaur', 'Centaur', 'Centaur', 57, 'centaur', 'Horde', 'Tauren', 'Tauren', False,
+     ('converted', 'Character\\\\Centaur\\\\Male\\\\Centaur.mdx', 'Character\\\\Centaur\\\\Female\\\\CentaurCaster.mdx'),
+     ('skins', {0: skins('Centaur\\Male', ['CentaurSkin', 'CentaurSkinBlack', 'CentaurSkinDarkgray', 'CentaurSkinGray', 'CentaurSkinWhite', 'CentaurSkinYellow']),
+                1: skins('Centaur\\Female', ['CentaurCasterSkinBrown', 'CentaurCasterSkinBlack', 'CentaurCasterSkinGray', 'CentaurCasterSkinWhite', 'CentaurCasterSkinYellow'], '_Alpha')}), 'Ta',
+     'Gelkis Clan', 'Centaur of Desolace who honour the earth and made peace with the tauren.', ''),
+    ('Demon', 'Demon', 'Demons', 58, 'demon', 'Horde', 'BloodElf', 'BloodElf', True,
+     ('converted', 'Character\\\\DemonForm\\\\DemonForm.mdx', None),
+     ('skins', {0: [('Creature\\DemonForm\\WarlockDemonForm1.blp', '')]}), 'Be',
+     'Illidari', 'Demonic followers of Illidan who fight the Legion alongside the Horde.', ''),
+    ('Satyr', 'Satyr', 'Satyrs', 59, 'satyr', 'Alliance', 'NightElf', 'NightElf', False,
+     ('converted', 'Character\\\\Satyr\\\\Male\\\\Satyr.mdx', 'Character\\\\Satyr\\\\Female\\\\CrystalSatyr.mdx'),
+     ('skins', {0: skins('Satyr\\Male', ['SatyrSkinGreen', 'SatyrSkinAlbino', 'SatyrSkinBlue', 'SatyrSkinCrimson', 'SatyrSkinPink', 'SatyrSkinRed', 'SatyrSkinTurquoise',
+                                         'SatyrSkinViolet', 'SatyrSkinYellow'], 'Alpha'),
+                1: [('Character\\Satyr\\Female\\CrystalSatyrPurple.blp', 'Character\\Satyr\\Female\\CrystalSatyrglow.blp'),
+                    ('Character\\Satyr\\Female\\CrystalSatyrWhite.blp', 'Character\\Satyr\\Female\\CrystalSatyrglow.blp')]}), 'Ni',
+     'Redeemed Satyrs', 'Satyrs who seek to undo their corruption under the eyes of the Cenarion Circle.', ''),
+    ('Gnoll', 'Gnoll', 'Gnolls', 60, 'gnoll', 'Alliance', 'Human', 'Human', False,
+     ('converted', 'Character\\\\Gnoll\\\\Male\\\\gnoll.mdx', 'Character\\\\Gnoll\\\\Male\\\\gnoll.mdx'),   # one model, two skin sets
+     ('skins', {0: skins('Gnoll\\Male', ['Gnollskin', 'GnollskinBlue', 'GnollskinGrey', 'GnollskinMagenta', 'GnollskinOrange', 'GnollskinRed']),
+                1: skins('Gnoll\\Female', ['RiverPawGnollWhelpSkin', 'MossHideGnollWhelpSkin', 'RedRidgeGnollWhelpSkin', 'RothideGnollWhelpSkin', 'ShadowHideGnollWhelpSkin'])}), 'Hu',
+     'Riverpaw Mercenaries', 'Gnolls who sell their spears to Stormwind instead of raiding its farms.', ''),
+    ('Beholder', 'Beholder', 'Beholders', 61, 'beholder', 'Alliance', 'Gnome', 'Gnome', True,
+     ('converted', 'Character\\\\Beholder\\\\Beholder.mdx', None),
+     ('skins', {0: skins('Beholder', ['BeholderGreen', 'BeholderBeige', 'BeholderBlack', 'BeholderBlue', 'BeholderGray', 'BeholderRed'])}), 'Gn',
+     'The All-Seeing', 'Beholders bound to the gnomes of Gnomeregan by an ancient pact.', ''),
+    ('Shivan', 'Shivan', 'Shivan', 62, 'shivan', 'Alliance', 'Draenei', 'Draenei', True,
+     ('converted', 'Character\\\\Shivan\\\\Shivan.mdx', None),
+     ('skins', {0: skins('Shivan', ['ShivanSkin', 'ShivanSkin_Black', 'ShivanSkin_Blue', 'ShivanSkin_Green', 'ShivanSkin_Red'])}), 'Dr',
+     'Shivarra Penitents', 'Shivarra who turned from the Burning Legion and serve the Naaru.', ''),
+]
+HOME_MODELS = {'Human': (49, 50), 'Orc': (51, 52), 'NightElf': (55, 56), 'Undead': (57, 58), 'Tauren': (59, 60), 'Gnome': (182, 183),
+               'Troll': (185, 186), 'BloodElf': (2208, 2209), 'Draenei': (2248, 2250)}
+HOME_DISPLAYS = {'Human': (49, 50), 'Orc': (51, 52), 'NightElf': (55, 56), 'Undead': (57, 58), 'Tauren': (59, 60), 'Gnome': (1563, 1564),
+                 'Troll': (1478, 1479), 'BloodElf': (15476, 15475), 'Draenei': (16125, 16126)}
 SECTIONS = {0: '@Skin', 1: '@Face', 2: '@FacialHair', 3: '@Hair', 4: '@Underwear'}
 # Skin textures shipped with a donor race but missing from its CharSections rows: extra skin colours (donor race, gender)
 EXTRA_SKINS = {(30, 0): ['Arakkoa_Blue', 'Arakkoa_Gray', 'Arakkoa_Green', 'Arakkoa_Yellow', 'ArakkoaGreen', 'ArakkoaPurple', 'ArakkoaYellow']}
@@ -75,8 +127,13 @@ def sql_str(s):
 
 
 def customization(source):
-    """(charsections, hair geosets, facial hair styles) rows of a stock NPC race or a WallCraft donor race."""
+    """(charsections, hair geosets, facial hair styles) rows of a stock NPC race, a WallCraft donor race or a skin list."""
     kind, race = source
+    if kind == 'skins':   # no rows: the skins, one bald hair style and one facial style; the other sections are filled below
+        sections = [(g, 0, 0, c, [t1, t2, '']) for g, ss in race.items() for c, (t1, t2) in enumerate(ss)]
+        hair = [(g, 0, 0, 0) for g in race]
+        facial = [(g, 0, 0, 0, 0, 0, 0) for g in race]
+        return fill(sorted(sections)), hair, facial
     folder = BUILT if kind == 'npc' else DONOR
     rows, strings, f = load_dbc(os.path.join(folder, 'CharSections.dbc'))
     sections = []
@@ -96,8 +153,20 @@ def customization(source):
             base = next(s for s in sections if s[0] == gender and s[1] == 0)[4][0]
             first = 1 + max(s[3] for s in sections if s[0] == gender and s[1] == 0)
             sections += [(gender, 0, 0, first + i, [base.rsplit('\\', 1)[0] + '\\' + n + '.blp', '', '']) for i, n in enumerate(skins)]
-    # Character creation expects every section: empty faces and underwear for each skin colour, one empty hair and facial
-    # hair row where a race has none (as F-044/F-046 do for models without them)
+    rows, _, _ = load_dbc(os.path.join(folder, 'CharHairGeosets.dbc'))
+    hair = sorted(struct.unpack_from('<6i', r)[2:] for r in rows if struct.unpack_from('<I', r, 4)[0] == race)
+    rows, _, f = load_dbc(os.path.join(folder, 'CharacterFacialHairStyles.dbc'))
+    facial = []
+    for r in rows:
+        v = struct.unpack_from('<%di' % f, r)
+        if v[0] == race:   # race, gender, variation, geosets (stock pads with 0xCCCCCCCC: keep the first 5, real ones only)
+            facial.append((v[1], v[2]) + tuple(g if g != -858993460 else 0 for g in v[3:8]))
+    return fill(sorted(sections)), hair, sorted(facial)
+
+
+def fill(sections):
+    """Character creation expects every section: empty faces and underwear for each skin colour, one empty hair and facial
+    hair row where a race has none (as F-044/F-046 do for models without them)."""
     for gender in sorted({s[0] for s in sections}):
         have = {(s[1], s[2], s[3]) for s in sections if s[0] == gender}
         colours = sorted({s[3] for s in sections if s[0] == gender and s[1] == 0}) or [0]
@@ -107,15 +176,7 @@ def customization(source):
         for section in (2, 3):
             if not any(h[0] == section for h in have):
                 sections.append((gender, section, 0, 0, ['', '', '']))
-    rows, _, _ = load_dbc(os.path.join(folder, 'CharHairGeosets.dbc'))
-    hair = sorted(struct.unpack_from('<6i', r)[2:] for r in rows if struct.unpack_from('<I', r, 4)[0] == race)
-    rows, _, f = load_dbc(os.path.join(folder, 'CharacterFacialHairStyles.dbc'))
-    facial = []
-    for r in rows:
-        v = struct.unpack_from('<%di' % f, r)
-        if v[0] == race:   # race, gender, variation, geosets (stock pads with 0xCCCCCCCC: keep the first 5, real ones only)
-            facial.append((v[1], v[2]) + tuple(g if g != -858993460 else 0 for g in v[3:8]))
-    return sorted(sections), hair, sorted(facial)
+    return sorted(sections)
 
 
 def from_template(side, fnum, key, name, plural, home, text):
@@ -165,7 +226,9 @@ def main():
                 flags = 1 if section == 1 else 17
                 lines.append("(@CharSectionsID := @CharSectionsID +1, @%s, %-7s %-12s %s, %s, %s, %d, %d, %d)" % (
                     key, g + ',', SECTIONS[section] + ',', sql_str(tex[0]), sql_str(tex[1]), sql_str(tex[2]), flags, var, colour))
-        origin = ('the stock NPC race rows (race %d after F-008)' % source[1]) if source[0] == 'npc' else ('WallCraft\'s donor rows (race %d)' % source[1])
+        origin = {'npc': lambda: 'the stock NPC race rows (race %d after F-008)' % source[1],
+                  'donor': lambda: 'WallCraft\'s donor rows (race %d)' % source[1],
+                  'skins': lambda: 'the skin textures shipped with the model (WallCraft has no rows for it)'}[source[0]]()
         write(os.path.join(out, 'dbc', tag + '_charsections.sql'),
               "-- charsections: %d inserts, 0 updates, 0 deletes\n-- From %s, flagged for character creation (17, faces 1)%s\n\n"
               "-- New entries\nDELETE FROM `charsections` WHERE `race` = @%s;\nSET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);\n"
@@ -212,7 +275,7 @@ def main():
                     '`footprint_particle_scale`', '`foley_material_id`', '`footstep_shake_size`', '`death_thud_shake_size`', '`sound_data`', '`collision_width`',
                     '`collision_height`', '`mount_height`', '`geo_box_min_x`', '`geo_box_min_y`', '`geo_box_min_z`', '`geo_box_max_x`', '`geo_box_max_y`', '`geo_box_max_z`',
                     '`world_effect_scale`', '`attached_effect_scale`', '`missile_collision_radius`', '`missile_collision_push`', '`missile_collision_raise`']
-        home_models = {'Orc': (51, 52), 'Undead': (57, 58), 'Troll': (185, 186), 'Draenei': (2248, 2250)}[home]
+        home_models = HOME_MODELS[home]
         parts = []
         for g, gi in (('Male', 0), ('Female', 1)):
             if male_only and gi:
@@ -240,7 +303,7 @@ def main():
               "(@{k}FemaleDisplay, {fm}, 0, @{k}FemaleDisplayExtra, '1.0000000000000000', 255, '', '', '', '', 3, 0, 0, 0, 0, 0);{c}".format(
                   k=key, fm=female_model, c=' -- male-only race' if male_only else ''))
 
-        home_displays = {'Orc': (51, 52), 'Undead': (57, 58), 'Troll': (1478, 1479), 'Draenei': (16125, 16126)}[home]
+        home_displays = HOME_DISPLAYS[home]
         write(os.path.join(out, 'sql', 'db-world', 'base', tag + '_creature_model_info.sql'),
               "/* Model info for the player displays: bounding radius and combat reach of the %s displays%s */\n"
               "DELETE FROM `creature_model_info` WHERE `DisplayID` IN (@{k}MaleDisplay, @{k}FemaleDisplay);\n".format(k=key) % (
@@ -315,8 +378,8 @@ def write_readme(out, key, name, plural, fnum, slug, side, home, kin, male_only,
     if model[0] == 'stock':
         look = '    - Stock 3.3.5 model and customization (the NPC race rows F-008 moves to %d)' % source[1]
     else:
-        look = ('    - WallCraft\'s playable %s model (Vanilla format, converted with m2_256_to_264.py) and its donor customization rows'
-                % name)
+        look = ('    - WallCraft\'s playable %s model (Vanilla format, converted with m2_256_to_264.py) and its %s'
+                % (name, 'donor customization rows' if source[0] == 'donor' else 'skin textures (no customization rows: skin colour only)'))
     lines = ['# mod-worgoblin-high-elf', '## F-0%d_mod-playable-%s' % (fnum, slug), '', '### Features',
              '- Playable %s (%s), race ID set in config.sql%s' % (plural, side, ', male only' if male_only else ''), look,
              '    - Home: %s (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted' % home,

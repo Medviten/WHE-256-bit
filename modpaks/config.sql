@@ -365,6 +365,14 @@ SET @SlimeGiant                                                =   43;
 SET @Qiraji                                                    =   44;
 SET @Eredar                                                    =   45;
 SET @Arakkoa                                                   =   46;
+SET @FelElf                                                    =   47;
+SET @Quillboar                                                 =   48;
+SET @Centaur                                                   =   49;
+SET @Demon                                                     =   50;
+SET @Satyr                                                     =   51;
+SET @Gnoll                                                     =   53; -- 52 is retail's Alliance Dracthyr
+SET @Beholder                                                  =   54;
+SET @Shivan                                                    =   55;
 -- Retail races above 64 live in the second race-mask word (@<Race>Mask_2 and the `<column>_2` mask columns)
 SET @HordeEarthen                                              =   84;
 SET @AllianceEarthen                                           =   85;
@@ -486,6 +494,19 @@ SET @QirajiFemaleModel                                         =    @NextModelID
 SET @EredarMaleModel                                           =    @NextModelID := @NextModelID +1;
 SET @EredarFemaleModel                                         =    @NextModelID := @NextModelID +1;
 SET @ArakkoaMaleModel                                          =    @NextModelID := @NextModelID +1; -- male only
+SET @FelElfMaleModel                                           =    @NextModelID := @NextModelID +1;
+SET @FelElfFemaleModel                                         =    @NextModelID := @NextModelID +1;
+SET @QuillboarMaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @QuillboarFemaleModel                                      =    @NextModelID := @NextModelID +1;
+SET @CentaurMaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @CentaurFemaleModel                                        =    @NextModelID := @NextModelID +1;
+SET @DemonMaleModel                                            =    @NextModelID := @NextModelID +1; -- male only
+SET @SatyrMaleModel                                            =    @NextModelID := @NextModelID +1;
+SET @SatyrFemaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @GnollMaleModel                                            =    @NextModelID := @NextModelID +1;
+SET @GnollFemaleModel                                          =    @NextModelID := @NextModelID +1;
+SET @BeholderMaleModel                                         =    @NextModelID := @NextModelID +1; -- male only
+SET @ShivanMaleModel                                           =    @NextModelID := @NextModelID +1; -- male only
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -568,6 +589,22 @@ SET @EredarMaleDisplay                                         =    @NextDisplay
 SET @EredarFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
 SET @ArakkoaMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
 SET @ArakkoaFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @FelElfMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @FelElfFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @QuillboarMaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @QuillboarFemaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
+SET @CentaurMaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @CentaurFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
+SET @DemonMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @DemonFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @SatyrMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @SatyrFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @GnollMaleDisplay                                          =    @NextDisplayID := @NextDisplayID +1;
+SET @GnollFemaleDisplay                                        =    @NextDisplayID := @NextDisplayID +1;
+SET @BeholderMaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
+SET @BeholderFemaleDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
+SET @ShivanMaleDisplay                                         =    @NextDisplayID := @NextDisplayID +1;
+SET @ShivanFemaleDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -647,6 +684,22 @@ SET @EredarMaleDisplayExtra                                    =    @NextDisplay
 SET @EredarFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @ArakkoaMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @ArakkoaFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelElfMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @FelElfFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QuillboarMaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @QuillboarFemaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @CentaurMaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @CentaurFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @DemonMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @DemonFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SatyrMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @SatyrFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @GnollMaleDisplayExtra                                     =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @GnollFemaleDisplayExtra                                   =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @BeholderMaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @BeholderFemaleDisplayExtra                                =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ShivanMaleDisplayExtra                                    =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @ShivanFemaleDisplayExtra                                  =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -746,6 +799,14 @@ SET @IceTrollRacials                                           =      820;
 SET @QirajiRacials                                             =      821;
 SET @EredarRacials                                             =      822;
 SET @ArakkoaRacials                                            =      823;
+SET @FelElfRacials                                             =      824;
+SET @QuillboarRacials                                          =      825;
+SET @CentaurRacials                                            =      826;
+SET @DemonRacials                                              =      827;
+SET @SatyrRacials                                              =      828;
+SET @GnollRacials                                              =      829;
+SET @BeholderRacials                                           =      830;
+SET @ShivanRacials                                             =      831;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1243,6 +1304,14 @@ SET @IceTrollRacialSkillRaceClass                              =     1161;
 SET @QirajiRacialSkillRaceClass                                =     1162;
 SET @EredarRacialSkillRaceClass                                =     1163;
 SET @ArakkoaRacialSkillRaceClass                               =     1164;
+SET @FelElfRacialSkillRaceClass                                =     1165;
+SET @QuillboarRacialSkillRaceClass                             =     1166;
+SET @CentaurRacialSkillRaceClass                               =     1167;
+SET @DemonRacialSkillRaceClass                                 =     1168;
+SET @SatyrRacialSkillRaceClass                                 =     1169;
+SET @GnollRacialSkillRaceClass                                 =     1170;
+SET @BeholderRacialSkillRaceClass                              =     1171;
+SET @ShivanRacialSkillRaceClass                                =     1172;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1716,6 +1785,14 @@ SET @IceTrollFactionTemplate                                   =     2270; -- Re
 SET @QirajiFactionTemplate                                     =     2271; -- References @QirajiPlayer
 SET @EredarFactionTemplate                                     =     2272; -- References @EredarPlayer
 SET @ArakkoaFactionTemplate                                    =     2273; -- References @ArakkoaPlayer
+SET @FelElfFactionTemplate                                     =     2274; -- References @FelElfPlayer
+SET @QuillboarFactionTemplate                                  =     2275; -- References @QuillboarPlayer
+SET @CentaurFactionTemplate                                    =     2276; -- References @CentaurPlayer
+SET @DemonFactionTemplate                                      =     2277; -- References @DemonPlayer
+SET @SatyrFactionTemplate                                      =     2278; -- References @SatyrPlayer
+SET @GnollFactionTemplate                                      =     2279; -- References @GnollPlayer
+SET @BeholderFactionTemplate                                   =     2280; -- References @BeholderPlayer
+SET @ShivanFactionTemplate                                     =     2281; -- References @ShivanPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1755,6 +1832,14 @@ SET @IceTrollFactionRepIndex                                   =    138;
 SET @QirajiFactionRepIndex                                     =    139;
 SET @EredarFactionRepIndex                                     =    140;
 SET @ArakkoaFactionRepIndex                                    =    141;
+SET @FelElfFactionRepIndex                                     =    142;
+SET @QuillboarFactionRepIndex                                  =    143;
+SET @CentaurFactionRepIndex                                    =    144;
+SET @DemonFactionRepIndex                                      =    145;
+SET @SatyrFactionRepIndex                                      =    146;
+SET @GnollFactionRepIndex                                      =    147;
+SET @BeholderFactionRepIndex                                   =    148;
+SET @ShivanFactionRepIndex                                     =    149;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1798,6 +1883,14 @@ SET @IceTrollAchievement                                       =    1471;
 SET @QirajiAchievement                                         =    1472;
 SET @EredarAchievement                                         =    1473;
 SET @ArakkoaAchievement                                        =    1474;
+SET @FelElfAchievement                                         =    1475;
+SET @QuillboarAchievement                                      =    1476;
+SET @CentaurAchievement                                        =    1477;
+SET @DemonAchievement                                          =    1478;
+SET @SatyrAchievement                                          =    1479;
+SET @GnollAchievement                                          =    1480;
+SET @BeholderAchievement                                       =    1481;
+SET @ShivanAchievement                                         =    1482;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -1965,6 +2058,38 @@ SET @ArakkoaCriteria1                                          =    19346; -- Ac
 SET @ArakkoaCriteria2                                          =    19347; -- Achievement 2422: Shake Your Bunny-Maker
 SET @ArakkoaCriteria3                                          =    19348; -- Achievement 291: Check Your Head
 SET @ArakkoaCriteria4                                          =    19349; -- @ArakkoaAchievement: Realm First! Level 80 Arakkoa
+SET @FelElfCriteria1                                           =    19350; -- Achievement 1005: Know Thy Enemy
+SET @FelElfCriteria2                                           =    19351; -- Achievement 2422: Shake Your Bunny-Maker
+SET @FelElfCriteria3                                           =    19352; -- Achievement 291: Check Your Head
+SET @FelElfCriteria4                                           =    19353; -- @FelElfAchievement: Realm First! Level 80 Fel Elf
+SET @QuillboarCriteria1                                        =    19354; -- Achievement 1005: Know Thy Enemy
+SET @QuillboarCriteria2                                        =    19355; -- Achievement 2422: Shake Your Bunny-Maker
+SET @QuillboarCriteria3                                        =    19356; -- Achievement 291: Check Your Head
+SET @QuillboarCriteria4                                        =    19357; -- @QuillboarAchievement: Realm First! Level 80 Quillboar
+SET @CentaurCriteria1                                          =    19358; -- Achievement 1005: Know Thy Enemy
+SET @CentaurCriteria2                                          =    19359; -- Achievement 2422: Shake Your Bunny-Maker
+SET @CentaurCriteria3                                          =    19360; -- Achievement 291: Check Your Head
+SET @CentaurCriteria4                                          =    19361; -- @CentaurAchievement: Realm First! Level 80 Centaur
+SET @DemonCriteria1                                            =    19362; -- Achievement 1005: Know Thy Enemy
+SET @DemonCriteria2                                            =    19363; -- Achievement 2422: Shake Your Bunny-Maker
+SET @DemonCriteria3                                            =    19364; -- Achievement 291: Check Your Head
+SET @DemonCriteria4                                            =    19365; -- @DemonAchievement: Realm First! Level 80 Demon
+SET @SatyrCriteria1                                            =    19366; -- Achievement 246: Know Thy Enemy
+SET @SatyrCriteria2                                            =    19367; -- Achievement 2422: Shake Your Bunny-Maker
+SET @SatyrCriteria3                                            =    19368; -- Achievement 291: Check Your Head
+SET @SatyrCriteria4                                            =    19369; -- @SatyrAchievement: Realm First! Level 80 Satyr
+SET @GnollCriteria1                                            =    19370; -- Achievement 246: Know Thy Enemy
+SET @GnollCriteria2                                            =    19371; -- Achievement 2422: Shake Your Bunny-Maker
+SET @GnollCriteria3                                            =    19372; -- Achievement 291: Check Your Head
+SET @GnollCriteria4                                            =    19373; -- @GnollAchievement: Realm First! Level 80 Gnoll
+SET @BeholderCriteria1                                         =    19374; -- Achievement 246: Know Thy Enemy
+SET @BeholderCriteria2                                         =    19375; -- Achievement 2422: Shake Your Bunny-Maker
+SET @BeholderCriteria3                                         =    19376; -- Achievement 291: Check Your Head
+SET @BeholderCriteria4                                         =    19377; -- @BeholderAchievement: Realm First! Level 80 Beholder
+SET @ShivanCriteria1                                           =    19378; -- Achievement 246: Know Thy Enemy
+SET @ShivanCriteria2                                           =    19379; -- Achievement 2422: Shake Your Bunny-Maker
+SET @ShivanCriteria3                                           =    19380; -- Achievement 291: Check Your Head
+SET @ShivanCriteria4                                           =    19381; -- @ShivanAchievement: Realm First! Level 80 Shivan
 
 -- Classes
 SET @Warrior                                                   =      1;

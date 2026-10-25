@@ -26,7 +26,8 @@ DELETE FROM `reputation_spillover_faction` WHERE `faction` IN (
     @VrykulFaction, @MechagnomeFaction, @ThinHumanFaction, @TuskarrFaction,
     @AllianceEarthenFaction, @HordeEarthenFaction, @DarkfallenFaction, @MurlocFaction, @FurbolgFaction,
     @FelOrcFaction, @SkeletonFaction, @ForestTrollFaction, @NorthrendSkeletonFaction, @IceTrollFaction, @QirajiFaction,
-    @EredarFaction, @ArakkoaFaction
+    @EredarFaction, @ArakkoaFaction, @FelElfFaction, @QuillboarFaction, @CentaurFaction, @DemonFaction, @SatyrFaction,
+    @GnollFaction, @BeholderFaction, @ShivanFaction
 );
 
 INSERT INTO `reputation_spillover_faction` (`faction`, `spillover_faction`, `rate`, `max_rank`)
@@ -69,14 +70,22 @@ WITH `races` (`race`, `faction`) AS (
     UNION ALL SELECT @Darkfallen,         @DarkfallenFaction
     UNION ALL SELECT @Murloc,             @MurlocFaction
     UNION ALL SELECT @Furbolg,            @FurbolgFaction
-    UNION ALL SELECT @FelOrc,            @FelOrcFaction
-    UNION ALL SELECT @Skeleton,          @SkeletonFaction
-    UNION ALL SELECT @ForestTroll,       @ForestTrollFaction
-    UNION ALL SELECT @NorthrendSkeleton, @NorthrendSkeletonFaction
-    UNION ALL SELECT @IceTroll,          @IceTrollFaction
-    UNION ALL SELECT @Qiraji,            @QirajiFaction
-    UNION ALL SELECT @Eredar,            @EredarFaction
-    UNION ALL SELECT @Arakkoa,           @ArakkoaFaction
+    UNION ALL SELECT @FelOrc,             @FelOrcFaction
+    UNION ALL SELECT @Skeleton,           @SkeletonFaction
+    UNION ALL SELECT @ForestTroll,        @ForestTrollFaction
+    UNION ALL SELECT @NorthrendSkeleton,  @NorthrendSkeletonFaction
+    UNION ALL SELECT @IceTroll,           @IceTrollFaction
+    UNION ALL SELECT @Qiraji,             @QirajiFaction
+    UNION ALL SELECT @Eredar,             @EredarFaction
+    UNION ALL SELECT @Arakkoa,            @ArakkoaFaction
+    UNION ALL SELECT @FelElf,             @FelElfFaction
+    UNION ALL SELECT @Quillboar,          @QuillboarFaction
+    UNION ALL SELECT @Centaur,            @CentaurFaction
+    UNION ALL SELECT @Demon,              @DemonFaction
+    UNION ALL SELECT @Satyr,              @SatyrFaction
+    UNION ALL SELECT @Gnoll,              @GnollFaction
+    UNION ALL SELECT @Beholder,           @BeholderFaction
+    UNION ALL SELECT @Shivan,             @ShivanFaction
 ),
 `capitals` AS (
     SELECT DISTINCT
