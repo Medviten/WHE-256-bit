@@ -18,7 +18,7 @@ SET @GilneanKnowThyEnemy               = @KnowThyEnemyAlliance;
 
 -- Miscellaneous
 SET @GilneanExplorationSound           = @HumanExplorationSound;
-SET @GilneanCinematicSequence          = @HumanCinematicSequence;
+SET @GilneanCinematicSequence          = @NightElfCinematicSequence;
 SET @GilneanBlood                      = 1;
 SET @GilneanMaleModelPath              = 'Character\\Gilnean\\Male\\GilneanMale.M2'; -- copied from 'Character\\Human\\Male\\HumanMale.mdx'
 SET @GilneanFemaleModelPath            = 'Character\\Gilnean\\Female\\GilneanFemale.M2'; -- copied from 'Character\\Human\\Female\\HumanFemale.mdx'

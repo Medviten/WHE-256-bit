@@ -19,4 +19,4 @@ DELETE FROM `spell` WHERE `id` IN (
 	@RunningWildMale100,
 	@RunningWildFemale60,
 	@RunningWildFemale100
-);
+); 
