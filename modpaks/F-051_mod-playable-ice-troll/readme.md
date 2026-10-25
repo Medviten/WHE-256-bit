@@ -15,9 +15,16 @@
 
 ### Known Issues
 - Tentative: not tested in game yet
-- No racial abilities yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - Male only: female characters use the male model and customization
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 25 (Ice Troll), renumbered; blocks at the end of `[BASE,F-051]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Frostmane Frenzy: Increases your attack and casting speed by $s1% for $d. Does not stack with other similar cast speed increasing effects.
+    - Winter's Blood: Reduces the damage taken by Frost spells by $s1%.
+    - Troll Regeneration: Health regeneration rate increased by $s1%. $s2% of total Health regeneration may continue during combat.
+    - Ice Hunter: Damage dealt versus Beasts increased by $s1%.

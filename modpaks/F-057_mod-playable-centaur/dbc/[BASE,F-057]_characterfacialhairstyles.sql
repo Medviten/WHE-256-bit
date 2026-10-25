@@ -1,4 +1,4 @@
--- characterfacialhairstyles: 2 inserts, 0 updates, 0 deletes (from the skin textures shipped with the model (WallCraft has no rows for it))
+-- characterfacialhairstyles: 2 inserts, 0 updates, 0 deletes (from the skin colours (option 0) of CoA's appearance catalog EsteriaCentaur.bin)
 
 -- New entries
 DELETE FROM `characterfacialhairstyles` WHERE `race` = @Centaur;

@@ -15,9 +15,16 @@
 
 ### Known Issues
 - Tentative: not tested in game yet
-- No racial abilities yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - Converted Vanilla model: armour may composite oddly (try adding the race to `creatureSkinRaces`)
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 60 (Illidari Blood Elf), renumbered; blocks at the end of `[BASE,F-055]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Spectral Sight: Dramatically increases stealth detection for $d.
+    - Fel Rush: Escape the effects of any immobilization or movement speed reduction effect and become immune to them for $81001d.
+    - Demon Hunter's Resolve: Duration of Stun effects reduced by an additional $s1%.
+    - Felblood: Reduces the damage taken by Shadow spells by $s1%.

@@ -15,8 +15,15 @@
 
 ### Known Issues
 - Tentative: not tested in game yet
-- No racial abilities yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 26 (Skeleton), renumbered; blocks at the end of `[BASE,F-048]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Bone Shield: Shares a 30 second cooldown with PvP trinkets.
+    - Bone Pile: Activate to slip into the shadows, reducing the chance for enemies to detect your presence.  Lasts until cancelled or upon moving.  Any threat is restored versus enemies still in combat upon cancellation of this effect. Removes invulnerabilities when used.
+    - Unliving: Reduces the damage taken by Shadow spells by $s1%.
+    - No Lungs: Underwater breath lasts $s1% longer than normal.

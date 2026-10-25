@@ -15,9 +15,16 @@
 
 ### Known Issues
 - Tentative: not tested in game yet
-- No racial abilities yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - Converted Vanilla model: armour may composite oddly (try adding the race to `creatureSkinRaces`)
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 83 (Gnoll), renumbered; blocks at the end of `[BASE,F-060]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Pack Howl: Increases your attack and casting speed by $s1% for $d. Does not stack with other similar cast speed increasing effects.
+    - Bone Gnaw: When activated, regenerates $20578s1% of total health every $20578t1 sec for $20578d.  Only works on Humanoid or Undead corpses within $a1 yds.  Any movement, action, or damage taken while Cannibalizing will cancel the effect.
+    - Scavenger: Allows the dwarf to sense nearby treasure, making it appear on the minimap.  Lasts $d.
+    - Thick Hide: Base Health increased by $s1%.

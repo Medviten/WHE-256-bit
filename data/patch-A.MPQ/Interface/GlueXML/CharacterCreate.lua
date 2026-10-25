@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 60;
+MAX_RACES = 68;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -84,6 +84,14 @@ RACE_ICON_TCOORDS = {
 	["GNOLL_MALE"]                = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
 	["BEHOLDER_MALE"]             = {0.0625,  0.09375, 0,    0.25}, -- placeholder: the Gnome icon
 	["SHIVAN_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["HOZEN_MALE"]                = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
+	["SYLVARI_MALE"]              = {0.09375, 0.125,   0,    0.25}, -- placeholder: the NightElf icon
+	["ETHEREAL_MALE"]             = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["KYRIAN_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["MANTID_MALE"]               = {0,       0.03125, 0.25, 0.5}, -- placeholder: the Tauren icon
+	["VENTHYR_MALE"]              = {0.03125, 0.0625,  0.25, 0.5}, -- placeholder: the Undead icon
+	["BANSHEE_MALE"]              = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the female Undead icon (one female body)
+	["FACELESSONE_MALE"]          = {0.09375, 0.125,   0.25, 0.5}, -- placeholder: the Orc icon
 
 	["HUMAN_FEMALE"]              = {0,       0.03125, 0.5,  0.75},
 	["GILNEAN_FEMALE"]            = {0,       0.03125, 0.5,  0.75},
@@ -146,6 +154,14 @@ RACE_ICON_TCOORDS = {
 	["GNOLL_FEMALE"]              = {0,       0.03125, 0.5,  0.75}, -- placeholder: the Human icon
 	["BEHOLDER_FEMALE"]           = {0.0625,  0.09375, 0,    0.25}, -- male-only race: the male icon
 	["SHIVAN_FEMALE"]             = {0.125,   0.15625, 0,    0.25}, -- male-only race: the male icon
+	["HOZEN_FEMALE"]              = {0,       0.03125, 0,    0.25}, -- male-only race: the male icon
+	["SYLVARI_FEMALE"]            = {0.09375, 0.125,   0.5,  0.75}, -- placeholder: the NightElf icon
+	["ETHEREAL_FEMALE"]           = {0.125,   0.15625, 0,    0.25}, -- male-only race: the male icon
+	["KYRIAN_FEMALE"]             = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
+	["MANTID_FEMALE"]             = {0,       0.03125, 0.25, 0.5}, -- male-only race: the male icon
+	["VENTHYR_FEMALE"]            = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the Undead icon
+	["BANSHEE_FEMALE"]            = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the Undead icon
+	["FACELESSONE_FEMALE"]        = {0.09375, 0.125,   0.25, 0.5}, -- male-only race: the male icon
 };
 
 -- Fixed button layout for every race, independent of whatever order (or
@@ -214,6 +230,14 @@ RACE_VISUAL_SLOTS = {
 	["QUILLBOAR"]                          = 58,
 	["CENTAUR"]                            = 59,
 	["DEMON"]                              = 60,
+	["HOZEN"]                              = 61, -- Alliance rows 15-16 (CoA Custom 1.9 races)
+	["SYLVARI"]                            = 62,
+	["ETHEREAL"]                           = 63,
+	["KYRIAN"]                             = 64,
+	["MANTID"]                             = 65, -- Horde rows 17-18 (CoA Custom 1.9 races)
+	["VENTHYR"]                            = 66,
+	["BANSHEE"]                            = 67,
+	["FACELESSONE"]                        = 68,
 };
 
 -- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead

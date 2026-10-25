@@ -125,6 +125,26 @@ It should put the new DBCs straight into your server's data/dbc directory, **ove
 
 It can also reset your world database before running the modpak SQL files against it, so make a dump as backup!
 
+### Modpak patches
+
+Some modpaks also need code changes outside this module, e.g. F-063 (Running Wild and Two Forms) needs a patched client. Such a modpak ships them as `patches/<target>/*.patch`, where `<target>` is the repo they apply to:
+
+| Folder | Applies to (from its root) |
+| --- | --- |
+| `patches/core/` | AzerothCore |
+| `patches/playerbots/` | mod-playerbots |
+| `patches/client/` | wowdecomp-256-bit |
+
+Every run of build-dbc.sh collects the patches of the modpaks in the manifest, in manifest order, into one `combined-<target>.patch` per target in tools/scripts/ (or `PATCH_OUTPUT_DIR`). `build-dbc.sh --patches-only` does just that, without touching any database. Apply them after whe-acore.patch, the same way:
+
+```text
+git apply --ignore-space-change --ignore-whitespace combined-core.patch
+```
+
+The script warns when two modpaks patch the same file, since patches made separately can conflict there.
+
+To add patches to a modpak, make the change in the target repo and save `git diff` from its root, e.g. `git diff > modpaks/F-063_worgen_racial_spells/patches/client/running-wild.patch`.
+
 ---
 
 ## 4. Install patch-A.MPQ

@@ -479,6 +479,11 @@
                             <CheckButton name="CharacterCreateRaceButton52" inherits="CharacterCreateRaceButtonTemplate" id="52"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton46" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton53" inherits="CharacterCreateRaceButtonTemplate" id="53"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton51" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton54" inherits="CharacterCreateRaceButtonTemplate" id="54"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton52" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <!-- Custom: rows 15-16 (CoA races: F-064 Hozen, F-065 Sylvari, F-067 Ethereal, F-068 Kyrian) -->
+                            <CheckButton name="CharacterCreateRaceButton61" inherits="CharacterCreateRaceButtonTemplate" id="61"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton53" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton62" inherits="CharacterCreateRaceButtonTemplate" id="62"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton54" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton63" inherits="CharacterCreateRaceButtonTemplate" id="63"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton61" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton64" inherits="CharacterCreateRaceButtonTemplate" id="64"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton62" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
 <!--
                                 HORDE RACE BUTTONS
 -->
@@ -516,6 +521,11 @@
                             <CheckButton name="CharacterCreateRaceButton58" inherits="CharacterCreateRaceButtonTemplate" id="58"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton56" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton59" inherits="CharacterCreateRaceButtonTemplate" id="59"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton57" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton60" inherits="CharacterCreateRaceButtonTemplate" id="60"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton58" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <!-- Custom: rows 17-18 (CoA races: F-066 Mantid, F-069 Venthyr, F-070 Banshee, F-071 Faceless One) -->
+                            <CheckButton name="CharacterCreateRaceButton65" inherits="CharacterCreateRaceButtonTemplate" id="65"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton59" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton66" inherits="CharacterCreateRaceButtonTemplate" id="66"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton60" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton67" inherits="CharacterCreateRaceButtonTemplate" id="67"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton65" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton68" inherits="CharacterCreateRaceButtonTemplate" id="68"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton66" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
 							<CheckButton name="CharacterCreateGenderButtonMale" inherits="CharacterCreateGenderButtonTemplate">
 								<Anchors>
 									<Anchor point="CENTER" relativeTo="CharacterCreateFrame" relativePoint="BOTTOM" x="-67" y="27"/>

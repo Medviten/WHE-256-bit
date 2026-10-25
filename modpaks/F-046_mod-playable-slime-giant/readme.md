@@ -32,7 +32,6 @@
 4. Rename the colour textures to `SlimeGiantSkin<Colour>.blp` / `SlimeGiantGoo<Colour>.blp`
 
 ### Known Issues
-- No racial abilities yet
 - No racial mount
 - No armour textures on the body (creature-style skin); no cloak model
 - The goo batches use the 3.3.5 default combiner (Mod_Opaque), not the retail Mod_Mod / Opaque_Mod (those need
@@ -41,3 +40,8 @@
 - Retail animations without a 3.3.5 counterpart (IDs above 505) are never played
 - Placeholder race icon (Undead) and racial faction name and description
 - Character creation camera is not tuned for the model's size
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 104 (Slime Giant), renumbered; blocks at the end of `[BASE,F-046]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Gooey Slam: Slams the ground, stunning all enemies within 8 yards for 2 sec.

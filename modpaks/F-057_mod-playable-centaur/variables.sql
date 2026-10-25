@@ -23,8 +23,8 @@ SET @CentaurFlags = @TaurenFlags;
 SET @CentaurExplorationSound = @TaurenExplorationSound;
 SET @CentaurCinematicSequence = @TaurenCinematicSequence;
 SET @CentaurBlood = 1;
-SET @CentaurMaleModelPath = 'Character\\Centaur\\Male\\Centaur.mdx'; -- WallCraft model, converted to the 3.3.5 format
-SET @CentaurFemaleModelPath = 'Character\\Centaur\\Female\\CentaurCaster.mdx';
+SET @CentaurMaleModelPath = 'custom\\centaur\\unknown\\4036647.m2'; -- CoA Custom 1.9 model (retail, prepared by coa_race_prep.py)
+SET @CentaurFemaleModelPath = 'custom\\centaur\\unknown\\4081379.m2';
 SET @CentaurFaction = 1229; -- vacant slot
 SET @CentaurPlayer = 1230; -- vacant slot
 

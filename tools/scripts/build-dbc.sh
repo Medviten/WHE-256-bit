@@ -28,9 +28,10 @@ source "$CONFIG_FILE"
 # true for a one-off run without editing build-dbc.conf.
 SKIP_DBC_BUILD="${SKIP_DBC_BUILD:-false}"
 
-# When true, the script does nothing except generate the core patch(es)
-# and exit -- no DBC build, no extra SQL targets, no mysql/dbctool needed.
-CORE_PATCH_MODE=false
+# When true, the script does nothing except collect the modpaks' patches
+# (see collect_modpak_patches) and exit -- no DBC build, no extra SQL
+# targets, no mysql/dbctool needed.
+PATCHES_ONLY=false
 
 # Config-file default; --force-rebuild on the command line overrides this
 # to true. When false, an extra SQL database that is reset from a dump is
@@ -43,15 +44,15 @@ for arg in "$@"; do
         --skip-dbc)
             SKIP_DBC_BUILD=true
             ;;
-        --core-patch)
-            CORE_PATCH_MODE=true
+        --patches-only)
+            PATCHES_ONLY=true
             ;;
         --force-rebuild)
             FORCE_REBUILD=true
             ;;
         -h|--help)
             cat << USAGE
-Usage: $(basename "$0") [--skip-dbc] [--force-rebuild] [--core-patch]
+Usage: $(basename "$0") [--skip-dbc] [--force-rebuild] [--patches-only]
 
   --skip-dbc    Skip the DBC build entirely (no database recreate, dump
                 load, table detection, export, or deploy) and go straight
@@ -66,13 +67,13 @@ Usage: $(basename "$0") [--skip-dbc] [--force-rebuild] [--core-patch]
                 successful build. Same effect as setting
                 FORCE_REBUILD=true in $CONFIG_FILE.
 
-  --core-patch  For each name in CORE_PATCH_TARGETS, diff
-                integration/originals/<name>/ against
-                integration/merged/<name>/ and write
-                combined-core-<name>.patch, ready to apply with
-                `git apply` or `patch -p1` from that target's own repo
-                root. Does nothing else -- no database work, no modpak
-                scanning, no dbctool/mysql required.
+  --patches-only
+                Only collect the patches that the modpaks in the
+                manifest ship in patches/<target>/ (e.g. patches/core/,
+                patches/client/) into combined-<target>.patch in
+                PATCH_OUTPUT_DIR, then stop. Every build does this too;
+                this flag skips the rest -- no database work, no
+                dbctool/mysql required.
 USAGE
             exit 0
             ;;
@@ -103,29 +104,10 @@ DBC_DUMP="${DBC_DUMP:-}"
 # skipped.
 MANIFEST_FILE="${MANIFEST_FILE:-$SCRIPT_DIR/build-dbc.manifest}"
 
-# --core-patch: relative find -path glob (same syntax as EXTRA_SQL_PATTERNS)
-# for locating core-patch files inside each modpak, and where to write the
-# combined result.
-# --core-patch: integration/ is expected as a sister folder to $MODPAKS,
-# containing originals/<target>/ (pristine copies of only the files that
-# get edited, at their real relative path) and merged/<target>/ (the
-# edited versions, same relative paths). Every file under
-# originals/<target>/ is diffed against merged/<target>/, using a/ and b/
-# path prefixes (not the integration/originals/... prefix), so the result
-# applies with `patch -p1` or `git apply` from that target's own repo
-# root. One patch file is written per target (they're typically separate
-# repos with different roots, e.g. azerothcore-wotlk vs mod-playerbots),
-# named combined-core-<target>.patch next to this script.
-#
-# Empty by default (disabled) -- list the target subdirectory names you
-# actually have, e.g.:
-#
-#   CORE_PATCH_TARGETS=("azerothcore-wotlk")
-#
-INTEGRATION_DIR="${INTEGRATION_DIR:-$(dirname "$MODPAKS")/integration}"
-if ! declare -p CORE_PATCH_TARGETS &>/dev/null; then
-    CORE_PATCH_TARGETS=()
-fi
+# Where collect_modpak_patches writes combined-<target>.patch: one file
+# per patch target found in the modpaks (e.g. combined-core.patch,
+# combined-client.patch). Defaults to this script's directory.
+PATCH_OUTPUT_DIR="${PATCH_OUTPUT_DIR:-$SCRIPT_DIR}"
 
 # Optional file of session variables (e.g. SET @Goblin = ...), expected
 # directly inside $MODPAKS (not inside any modpak folder). If present,
@@ -428,85 +410,113 @@ load_modpak_manifest() {
     done < "$MANIFEST_FILE"
 }
 
-# For one core-patch target: diffs every file under
-# integration/originals/<target>/ against the file at the same relative
-# path under integration/merged/<target>/, using a/<relpath> and
-# b/<relpath> labels, and writes the result to
-# $SCRIPT_DIR/combined-core-<target>.patch.
-#
-# This works by symlinking the two roots as literal "a" and "b" inside a
-# scratch dir and running one recursive `diff -ruN a b` -- that's what
-# produces a/<relpath> and b/<relpath> headers (rather than the
-# integration/originals/... path) and gets new-file handling for free
-# (via -N, a file that only exists on the merged side is diffed against
-# an empty file, producing a proper "new file" hunk).
-generate_core_patch_for_target() {
-    local target="$1"
-    local originals_root="$INTEGRATION_DIR/originals/$target"
-    local merged_root="$INTEGRATION_DIR/merged/$target"
-    local output="$SCRIPT_DIR/combined-core-$target.patch"
-
-    echo
-    echo "============================================================"
-    echo "Core patch target: $target"
-    echo "============================================================"
-
-    if [[ ! -d "$originals_root" ]]; then
-        echo "ERROR: originals dir not found: $originals_root" >&2
-        return 1
-    fi
-    if [[ ! -d "$merged_root" ]]; then
-        echo "ERROR: merged dir not found: $merged_root" >&2
-        return 1
-    fi
-
-    local pair_dir="$TMP_DIR/corepatch-$target"
-    mkdir -p "$pair_dir"
-    ln -s "$originals_root" "$pair_dir/a"
-    ln -s "$merged_root" "$pair_dir/b"
-
-    local status
-    if (cd "$pair_dir" && diff -ruN a b) > "$output"; then
-        status=0
-    else
-        status=$?
-    fi
-
-    if (( status > 1 )); then
-        echo "ERROR: diff failed for target '$target' (exit $status)." >&2
-        echo "       See above for diff's own error output." >&2
-        rm -f "$output"
-        return 1
-    fi
-
-    if (( status == 0 )); then
-        echo "No differences found between originals and merged. Nothing to do."
-        rm -f "$output"
-        return 0
-    fi
-
-    echo "Combined patch written to: $output"
-    echo
-    echo "Apply it from the $target repo root with one of:"
-    echo "  git apply '$output'"
-    echo "  patch -p1 < '$output'"
+# Prints the repo-relative path of every file a patch touches, one per
+# line: the "+++ b/<path>" side, or the "--- a/<path>" side for a deleted
+# file. Works for `git diff` and `diff -u` output alike.
+patch_touched_files() {
+    awk '
+        /^--- / { old = $2; next }
+        /^\+\+\+ / {
+            path = ($2 == "/dev/null") ? old : $2
+            sub(/^[ab]\//, "", path)
+            print path
+        }
+    ' "$1" | sort -u
 }
 
-# Runs generate_core_patch_for_target for every entry in
-# $CORE_PATCH_TARGETS. Empty CORE_PATCH_TARGETS is not an error -- it just
-# means the feature isn't configured.
-generate_core_patch() {
-    if (( ${#CORE_PATCH_TARGETS[@]} == 0 )); then
-        echo
-        echo "CORE_PATCH_TARGETS is empty in $CONFIG_FILE -- nothing to do."
-        echo "Add target names, e.g.: CORE_PATCH_TARGETS=(\"azerothcore-wotlk\")"
+# Collects the patches the modpaks in the manifest ship for other repos.
+# A modpak puts them in patches/<target>/*.patch, where <target> names
+# the repo they apply to (core = azerothcore-wotlk, client = wowdecomp,
+# playerbots = mod-playerbots, ...; any folder name works), each made
+# with `git diff` from that repo's root. For every target, the patches
+# are concatenated in manifest order (then by filename within a modpak)
+# into $PATCH_OUTPUT_DIR/combined-<target>.patch, each one preceded by a
+# "# <modpak>/<file>" line, which git apply and patch skip as text
+# between patches.
+#
+# Patches made separately against the same base can conflict when they
+# touch the same file, so any file touched by more than one modpak is
+# reported. Old combined-*.patch files are removed first, so a target no
+# modpak ships anymore doesn't leave a stale patch behind.
+collect_modpak_patches() {
+    echo
+    echo "============================================================"
+    echo "Collecting modpak patches"
+    echo "============================================================"
+
+    mkdir -p "$PATCH_OUTPUT_DIR"
+    rm -f "$PATCH_OUTPUT_DIR"/combined-*.patch
+
+    local -a targets=()
+    local -A seen=()
+    local dir target_dir target
+    for dir in "${MODPAK_DIRS[@]}"; do
+        [[ -d "$dir/patches" ]] || continue
+        while IFS= read -r -d '' target_dir; do
+            target="$(basename "$target_dir")"
+            if [[ -z "${seen[$target]:-}" ]]; then
+                seen["$target"]=1
+                targets+=("$target")
+            fi
+        done < <(find "$dir/patches" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
+    done
+
+    if (( ${#targets[@]} == 0 )); then
+        echo "No modpak in the manifest ships patches. Nothing to do."
         return 0
     fi
 
-    local target
-    for target in "${CORE_PATCH_TARGETS[@]}"; do
-        generate_core_patch_for_target "$target"
+    local output patch modpak count file
+    for target in "${targets[@]}"; do
+        output="$PATCH_OUTPUT_DIR/combined-$target.patch"
+        count=0
+        local -A touched_by=()
+
+        {
+            echo "# Combined '$target' patch, collected by $(basename "$0") from the"
+            echo "# modpaks in $(basename "$MANIFEST_FILE"), in manifest order."
+        } > "$output"
+
+        for dir in "${MODPAK_DIRS[@]}"; do
+            [[ -d "$dir/patches/$target" ]] || continue
+            modpak="$(basename "$dir")"
+
+            while IFS= read -r -d '' patch; do
+                {
+                    echo
+                    echo "# $modpak/$(basename "$patch")"
+                    cat "$patch"
+                    # Keep the next "# ..." line from joining a last line
+                    # that has no newline
+                    [[ -z "$(tail -c 1 "$patch")" ]] || echo
+                } >> "$output"
+                count=$((count + 1))
+                echo "  $target: $modpak/$(basename "$patch")"
+
+                while IFS= read -r file; do
+                    if [[ -z "${touched_by[$file]:-}" ]]; then
+                        touched_by["$file"]="$modpak"
+                    elif [[ " ${touched_by[$file]} " != *" $modpak "* ]]; then
+                        touched_by["$file"]+=" $modpak"
+                    fi
+                done < <(patch_touched_files "$patch")
+            done < <(find "$dir/patches/$target" -maxdepth 1 -type f -name '*.patch' -print0 | sort -z)
+        done
+
+        for file in "${!touched_by[@]}"; do
+            if [[ "${touched_by[$file]}" == *" "* ]]; then
+                echo "  WARNING: $file is patched by several modpaks (${touched_by[$file]})." >&2
+                echo "           Check that their combined-$target.patch hunks still apply in order." >&2
+            fi
+        done
+        unset touched_by
+
+        echo "Wrote $count patch(es) to: $output"
     done
+
+    echo
+    echo "Apply each combined patch from its repo's root, e.g.:"
+    echo "  git apply --ignore-space-change --ignore-whitespace combined-core.patch"
 }
 
 # Prints $1's content with every occurrence of $DBC_DB_PLACEHOLDER, and
@@ -906,10 +916,10 @@ SQL
 
 echo "Checking configuration..."
 
-if [[ "$CORE_PATCH_MODE" != true ]]; then
-    [[ -d "$MODPAKS" ]] \
-        || { echo "ERROR: MODPAKS does not exist: $MODPAKS" >&2; exit 1; }
+[[ -d "$MODPAKS" ]] \
+    || { echo "ERROR: MODPAKS does not exist: $MODPAKS" >&2; exit 1; }
 
+if [[ "$PATCHES_ONLY" != true ]]; then
     if [[ "$SKIP_DBC_BUILD" != true ]]; then
         [[ -d "$DBCTOOL" ]] \
             || { echo "ERROR: DBCTOOL does not exist: $DBCTOOL" >&2; exit 1; }
@@ -932,17 +942,6 @@ if [[ "$CORE_PATCH_MODE" != true ]]; then
 
     command -v sha256sum >/dev/null \
         || { echo "ERROR: sha256sum command not found." >&2; exit 1; }
-fi
-
-###############################################################################
-# --core-patch mode: generate the combined patch(es) and stop here. Doesn't
-# touch modpaks/ or the manifest at all -- it only diffs
-# integration/originals/<target>/ against integration/merged/<target>/.
-###############################################################################
-
-if [[ "$CORE_PATCH_MODE" == true ]]; then
-    generate_core_patch
-    exit 0
 fi
 
 ###############################################################################
@@ -977,6 +976,16 @@ while IFS= read -r -d '' dir; do
         echo "  (not in manifest, skipping: $name)"
     fi
 done < <(find "$MODPAKS" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
+
+###############################################################################
+# Collect modpak patches (core, client, ...); --patches-only stops here
+###############################################################################
+
+collect_modpak_patches
+
+if [[ "$PATCHES_ONLY" == true ]]; then
+    exit 0
+fi
 
 ###############################################################################
 # Recreate DBC database and load dump

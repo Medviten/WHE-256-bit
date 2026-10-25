@@ -15,9 +15,17 @@
 
 ### Known Issues
 - Tentative: not tested in game yet
-- No racial abilities yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - Converted Vanilla model: armour may composite oddly (try adding the race to `creatureSkinRaces`)
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 123 (Qiraji (shelved in CoA 1.9)), renumbered; blocks at the end of `[BASE,F-052]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Chitin Plate: The hive hardens you. Reduces Nature and Fire damage taken by 3%.
+    - Burrower: Sand parts before the swarm. Increases your movement speed by 3%.
+    - Hive Reflexes: A thousand eyes see the blow. Increases your chance to dodge by 3%.
+    - Swarm Frenzy: The hive drives you into a frenzy, increasing your attack power for 15 sec.
+    - Wings of the Swarm: Your wings slow your fall and cleanse snares for 8 sec while hardening your carapace.

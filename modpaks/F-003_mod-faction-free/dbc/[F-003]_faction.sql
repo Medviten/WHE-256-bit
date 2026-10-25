@@ -54,5 +54,9 @@ WHERE `id` IN (
     @FelElfFaction,             @QuillboarFaction,
     @CentaurFaction,            @DemonFaction,
     @SatyrFaction,              @GnollFaction,
-    @BeholderFaction,           @ShivanFaction
+    @BeholderFaction,           @ShivanFaction,
+    @HozenFaction,              @SylvariFaction,
+    @MantidFaction,             @EtherealFaction,
+    @KyrianFaction,             @VenthyrFaction,
+    @BansheeFaction,            @FacelessOneFaction
 );

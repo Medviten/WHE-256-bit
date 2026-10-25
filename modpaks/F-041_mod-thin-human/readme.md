@@ -10,8 +10,15 @@
 
 ### Known Issues
 - Male only: female characters use the male model and customization
-- No racial abilities yet
 - No racial mount
 - No sound yet
 - Racial faction name and description are placeholders
 - Uses Human helmet models (client prefix 'Hu'); helmet geosets are not adjusted
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 32 (Forgotten (thin human)), renumbered; blocks at the end of `[BASE,F-041]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Survivor's Will: Shares a 30 second cooldown with PvP trinkets.
+    - Light Step: Increases your dodge chance by $s1%.
+    - Human Spirit: Spirit increased by $s1%.
+    - Diplomacy: Reputation gains from kills and quests increased by $s1%.

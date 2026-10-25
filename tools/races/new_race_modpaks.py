@@ -9,12 +9,12 @@ emotes, names) as variables. Customization rows are generated:
 - Qiraji, Eredar and Arakkoa use WallCraft's Vanilla models (converted with m2_256_to_264.py) and its donor rows, read
   from its Shared\\DBC folder.
 
-usage: new_race_modpaks.py <built DBFilesClient> <WallCraft Shared/DBC/Assets/DBFilesClient> [modpaks dir] [output dir]"""
+usage: new_race_modpaks.py <built DBFilesClient> <WallCraft Shared/DBC/Assets/DBFilesClient> [modpaks dir] [output dir]
+
+coa_race_modpaks.py imports this module and sets BUILT, DONOR, MODPAKS and OUTPUT itself."""
 import os, re, struct, sys
 
-BUILT, DONOR = sys.argv[1], sys.argv[2]
-MODPAKS = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(__file__), '..', '..', 'modpaks')
-OUTPUT = sys.argv[4] if len(sys.argv) > 4 else MODPAKS   # where the new modpaks go (the templates are read from MODPAKS)
+BUILT = DONOR = MODPAKS = OUTPUT = None
 TEMPLATE = {'Horde': ('F-046', 'SlimeGiant', 'Slime Giant'), 'Alliance': ('F-045', 'Furbolg', 'Furbolg')}
 
 # key, name, plural, F number, folder slug, side, home, kin, male only, model source, customization source, client
@@ -286,7 +286,7 @@ def main():
             else:
                 src, path = home_models[gi], "@%s%sModelPath" % (key, g)
                 note = '%s %s model %d' % (home, g.lower(), src)
-            parts.append("SELECT @%s%sModel, 2052, %s, %s FROM `creaturemodeldata` WHERE `id` = %d -- %s" % (key, g, path, ', '.join(cmd_cols), src, note))
+            parts.append("SELECT @%s%sModel, 2052, %s, %s FROM `creaturemodeldata` WHERE `id` = %d /* %s */" % (key, g, path, ', '.join(cmd_cols), src, note))
         ids = '@%sMaleModel' % key + ('' if male_only else ', @%sFemaleModel' % key)
         write(os.path.join(out, 'dbc', tag + '_creaturemodeldata.sql'),
               "-- creaturemodeldata: %d inserts, 0 updates, 0 deletes\n-- %s, with the player model flags (0x804)%s\n\n"
@@ -396,4 +396,8 @@ def write_readme(out, key, name, plural, fnum, slug, side, home, kin, male_only,
     write(os.path.join(out, 'readme.md'), '\n'.join(lines))
 
 
-main()
+if __name__ == '__main__':
+    BUILT, DONOR = sys.argv[1], sys.argv[2]
+    MODPAKS = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(__file__), '..', '..', 'modpaks')
+    OUTPUT = sys.argv[4] if len(sys.argv) > 4 else MODPAKS   # where the new modpaks go (the templates are read from MODPAKS)
+    main()

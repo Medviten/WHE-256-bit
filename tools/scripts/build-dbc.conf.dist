@@ -29,3 +29,8 @@ DBC_DUMP="/path/to/dbc-baseline.sql"
 # something that feeds them changed (dump, modpak SQL, variables, read DBC
 # data). Set to true (or pass --force-rebuild) to always rebuild them.
 FORCE_REBUILD=false
+
+# Where build-dbc.sh writes combined-<target>.patch, collected from the
+# patches/<target>/ folders of the modpaks in the manifest (see README).
+# Defaults to this directory.
+#PATCH_OUTPUT_DIR="/path/to/combined/patches"

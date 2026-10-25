@@ -64,6 +64,14 @@ FROM (
     UNION ALL SELECT @Gnoll
     UNION ALL SELECT @Beholder
     UNION ALL SELECT @Shivan
+    UNION ALL SELECT @Hozen
+    UNION ALL SELECT @Sylvari
+    UNION ALL SELECT @Mantid
+    UNION ALL SELECT @Ethereal
+    UNION ALL SELECT @Kyrian
+    UNION ALL SELECT @Venthyr
+    UNION ALL SELECT @Banshee
+    UNION ALL SELECT @FacelessOne
 ) AS `r`
 CROSS JOIN (
     SELECT @Warrior AS `class`

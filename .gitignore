@@ -63,3 +63,6 @@ dbctool
 # Generated artifact (superseded by Zeppelin-Craft cli/lib/spell_editor_views.py)
 spell_editor_views.sql
 tools/dbctool
+
+# Combined modpak patches written by build-dbc.sh (collect_modpak_patches)
+tools/scripts/combined-*.patch

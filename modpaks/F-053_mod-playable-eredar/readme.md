@@ -15,9 +15,16 @@
 
 ### Known Issues
 - Tentative: not tested in game yet
-- No racial abilities yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - Converted Vanilla model: armour may composite oddly (try adding the race to `creatureSkinRaces`)
+
+### CoA Custom 1.9 racials
+- Active: learned with the racial skill line
+- From CoA race 55 (Eredar), renumbered; blocks at the end of `[BASE,F-053]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
+    - Fel Torrent: Silence all enemies within $a1 yards for $d and restores $81002s3% of your Mana, ${$81002m2/10)} Rage$?s805000[, $81002s1 Focus,][] and $81002s1 Energy. Non-player victim spellcasting is also interrupted for $32747d.
+    - Sargeras' Gift: Increases your attack power by $s1 and your spell power by $s2. Lasts $d. Cannot be used while offensive effects from trinkets are active.
+    - Man'ari Mind: Intellect increased by $s1%.
+    - Demonic Hide: Reduces the damage taken by Shadow spells by $s1%.
