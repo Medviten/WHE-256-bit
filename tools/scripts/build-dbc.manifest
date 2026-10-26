@@ -29,25 +29,30 @@ F-027_mod-gilnean # requires F-024
 F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched 64-bit client: Running Wild as a mount on oneself, Two Forms as altered form
 F-020_mod-pandaren-alliance
 F-021_mod-pandaren-horde
+#F-034_mod-nightborne # Off by default (WIP – not ready)
+F-028_mod-highmountain-tauren
+#F-035_mod-void-elf # Off by default (WIP – not ready)
+#F-033_mod-lightforged-draenei # Off by default (WIP – not ready)
 F-017_mod-zandalari-troll
 F-025_mod-kul-tiran
+#F-041_mod-thin-human # Off by default (WIP – not ready)
 F-019_mod-vulpera
 F-016_mod-dark-iron-dwarf
 F-007_mod-maghar
 #F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
-F-005_mod-azerothcore-high-elf
-F-014_mod-playable-ogres
-F-022_mod-playable-broken
-#F-036_mod-playable-vrykul # Off by default (WIP – not ready)
+#F-040_mod-mechagnome # Off by default (WIP – not ready)
 #F-038_mod-earthen-alliance # Off by default (WIP – not ready)
 #F-039_mod-earthen-horde # Off by default (WIP – not ready)
-#F-040_mod-mechagnome # Off by default (WIP – not ready)
-#F-041_mod-thin-human # Off by default (WIP – not ready)
+#F-047_mod-playable-fel-orc # Off by default (tentative, untested)
+F-030_mod-playable-naga
+F-022_mod-playable-broken
+#F-036_mod-playable-vrykul # Off by default (WIP – not ready)
 #F-042_mod-playable-tuskarr # Off by default (WIP – not ready)
-#F-043_mod-darkfallen # Off by default (WIP – not ready)
+F-005_mod-azerothcore-high-elf
+F-014_mod-playable-ogres
+F-043_mod-darkfallen
 #F-044_mod-playable-murloc # Off by default (WIP – not ready)
 #F-045_mod-playable-furbolg # Off by default (WIP – not ready)
-#F-047_mod-playable-fel-orc # Off by default (tentative, untested)
 #F-048_mod-playable-skeleton # Off by default (tentative, untested)
 #F-049_mod-playable-forest-troll # Off by default (tentative, untested)
 #F-050_mod-playable-northrend-skeleton # Off by default (tentative, untested)
