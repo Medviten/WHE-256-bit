@@ -12,9 +12,10 @@
 # build-dbc.manifest (or point MANIFEST_FILE at your own path in
 # build-dbc.conf) and list your modpaks in the order you want them
 # applied.
-#
+
 # INITIAL SETUP #
 #F-001_localization # Turn this on if you need it
+#F-072_patch-reforged-a-hd # Off by default (enable only if you use that patch – rename patches so these DBCs load after it)
 F-006_mod-fly-anywhere # Redundant if you use Open Azeroth
 #F-018_squished_client # Off by default (most people don't use squished client)
 F-008_move-npc-races # Not strictly necessary if you increase race limit, but highly recommended to avoid conflicts
