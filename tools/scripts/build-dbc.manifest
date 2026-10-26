@@ -74,7 +74,7 @@ F-022_mod-playable-broken
 # END CUSTOM RACES #
 
 # ADDITIONAL MODS #
-#F-029_all-trainers # Off by default (WIP – not ready). Must stay above F-010, whose move scripts relocate its Exodar/Silvermoon spawns
+#F-029_all-trainers # Off by default. Must run before F-010, whose move scripts relocate its Exodar/Silvermoon spawns
 #F-010_patch-open-azeroth # Off by default (requires OA map/camera/vmap files, mmaps recommended, core patch + recompile recommended)
 #F-013_zep-goblin-start # Off (requires OA, not compatible yet, requires core patch + recompile)
 #F-011_mod-druid-forms # Off by default
