@@ -415,7 +415,7 @@ SET @GnomeMask                                                 =   1 << (@Gnome 
 SET @GnomeMask_2                                               = IF(@Gnome BETWEEN 65 AND 128, 1 << (@Gnome - 65), 0); -- races 65-128
 SET @TrollMask                                                 =   1 << (@Troll            - 1);  -- race ID 8  → 128
 SET @TrollMask_2                                               = IF(@Troll BETWEEN 65 AND 128, 1 << (@Troll - 65), 0); -- races 65-128
--- SET @GoblinMask                                                =   1 << (@Goblin           - 1);  -- race ID 9  → 256
+SET @GoblinMask                                                =   1 << (@Goblin           - 1);  -- race ID 9  → 256
 SET @BloodElfMask                                              =   1 << (@BloodElf         - 1);  -- race ID 10 → 512
 SET @BloodElfMask_2                                            = IF(@BloodElf BETWEEN 65 AND 128, 1 << (@BloodElf - 65), 0); -- races 65-128
 SET @DraeneiMask                                               =   1 << (@Draenei          - 1);  -- race ID 11 → 1024
@@ -430,7 +430,7 @@ SET @UndeadHelmetMask                                          =      1 << @Unde
 SET @TaurenHelmetMask                                          =      1 << @Tauren;           -- race ID 6  → 64
 SET @GnomeHelmetMask                                           =      1 << @Gnome;            -- race ID 7  → 128
 SET @TrollHelmetMask                                           =      1 << @Troll;            -- race ID 8  → 256
--- SET @GoblinHelmetMask                                          =      1 << @Goblin;           -- race ID 9  → 512
+SET @GoblinHelmetMask                                          =      1 << @Goblin;           -- race ID 9  → 512
 SET @BloodElfHelmetMask                                        =      1 << @BloodElf;         -- race ID 10 → 1024
 SET @DraeneiHelmetMask                                         =      1 << @Draenei;          -- race ID 11 → 2048
 
