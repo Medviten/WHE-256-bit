@@ -25,7 +25,8 @@ F-009_morph-with-gear
 #F-004_mod-worgoblin # Legacy (requires recompile for some racials to function)
 F-023_mod-playable-goblin # requires recompile for Best Deals Anywhere and Rocket Barrage
 F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be bypassed using ALE (see lua_scripts)
-F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched client: Running Wild as a mount on oneself, Two Forms as altered form
+F-027_mod-gilnean # requires F-024
+F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched 64-bit client: Running Wild as a mount on oneself, Two Forms as altered form
 F-005_mod-azerothcore-high-elf
 F-007_mod-maghar
 #F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
@@ -36,8 +37,7 @@ F-019_mod-vulpera
 F-020_mod-pandaren-alliance
 F-021_mod-pandaren-horde
 F-022_mod-playable-broken
-#F-025_mod-kul-tiran # Off by default (WIP – not ready)
-#F-027_mod-gilnean # Off by default (WIP – not ready)
+F-025_mod-kul-tiran
 #F-036_mod-playable-vrykul # Off by default (WIP – not ready)
 #F-038_mod-earthen-alliance # Off by default (WIP – not ready)
 #F-039_mod-earthen-horde # Off by default (WIP – not ready)
