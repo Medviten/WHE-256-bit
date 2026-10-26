@@ -97,7 +97,8 @@ end
 -- Show the selector only for a race with an altered form; keep portraits and the gold ring current
 local driver = CreateFrame("Frame", nil, CharacterCreateFrame);
 driver:SetScript("OnUpdate", function(self)
-    if ( not HasAlteredForm or not HasAlteredForm() ) then
+    -- A Retail race (RetailRace_CharacterCreate.lua) has its own form tabs
+    if ( not HasAlteredForm or not HasAlteredForm() or (RetailCharacterCreate_Active and RetailCharacterCreate_Active()) ) then
         selector:Hide();
         return;
     end
