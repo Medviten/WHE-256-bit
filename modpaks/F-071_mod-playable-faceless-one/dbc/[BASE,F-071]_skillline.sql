@@ -1,4 +1,4 @@
--- [F-071] mod-playable-slime-giant: skillline: 1 inserts, 0 updates, 0 deletes
+-- [F-071] mod-playable-faceless-one: skillline: 1 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `skillline` WHERE `id` = @FacelessOneRacials;

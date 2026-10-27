@@ -77,6 +77,8 @@ F-043_mod-darkfallen
 #F-069_mod-playable-venthyr # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
 #F-070_mod-playable-banshee # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
 #F-071_mod-playable-faceless-one # Off by default (CoA Custom 1.9 race; tentative, untested; needs client assets in patch-A)
+#F-073_mod-playable-dracthyr-alliance # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
+#F-074_mod-playable-dracthyr-horde # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
 # END CUSTOM RACES #
 
 # ADDITIONAL MODS #

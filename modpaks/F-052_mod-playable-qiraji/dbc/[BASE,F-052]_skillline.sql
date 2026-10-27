@@ -1,4 +1,4 @@
--- [F-052] mod-playable-slime-giant: skillline: 1 inserts, 0 updates, 0 deletes
+-- [F-052] mod-playable-qiraji: skillline: 1 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `skillline` WHERE `id` = @QirajiRacials;

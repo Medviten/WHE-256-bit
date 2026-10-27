@@ -370,7 +370,8 @@ SET @Quillboar                                                 =   48;
 SET @Centaur                                                   =   49;
 SET @Demon                                                     =   50;
 SET @Satyr                                                     =   51;
-SET @Gnoll                                                     =   53; -- 52 is retail's Alliance Dracthyr
+SET @AllianceDracthyr                                          =   52; -- retail race (F-073); the wowdecomp-256-bit client shows its Retail model
+SET @Gnoll                                                     =   53;
 SET @Beholder                                                  =   54;
 SET @Shivan                                                    =   55;
 SET @Hozen                                                     =   56; -- CoA Custom 1.9 race (F-064)
@@ -384,6 +385,7 @@ SET @FacelessOne                                               =   63; -- CoA Cu
 -- Retail races above 64 live in the second race-mask word (@<Race>Mask_2 and the `<column>_2` mask columns)
 SET @HordeEarthen                                              =   84;
 SET @AllianceEarthen                                           =   85;
+SET @HordeDracthyr                                             =   70; -- retail race (F-074); the wowdecomp-256-bit client shows its Retail model
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;
@@ -527,6 +529,10 @@ SET @VenthyrFemaleModel                                        =    @NextModelID
 SET @BansheeMaleModel                                          =    @NextModelID := @NextModelID +1;
 SET @BansheeFemaleModel                                        =    @NextModelID := @NextModelID +1;
 SET @FacelessOneMaleModel                                      =    @NextModelID := @NextModelID +1; -- male only
+SET @AllianceDracthyrMaleModel                                 =    @NextModelID := @NextModelID +1;
+SET @AllianceDracthyrFemaleModel                               =    @NextModelID := @NextModelID +1;
+SET @HordeDracthyrMaleModel                                    =    @NextModelID := @NextModelID +1;
+SET @HordeDracthyrFemaleModel                                  =    @NextModelID := @NextModelID +1;
 
 -- Display IDs
 SET @NextDisplayID                                             =    40000;
@@ -641,6 +647,10 @@ SET @BansheeMaleDisplay                                        =    @NextDisplay
 SET @BansheeFemaleDisplay                                      =    @NextDisplayID := @NextDisplayID +1;
 SET @FacelessOneMaleDisplay                                    =    @NextDisplayID := @NextDisplayID +1;
 SET @FacelessOneFemaleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @AllianceDracthyrMaleDisplay                               =    @NextDisplayID := @NextDisplayID +1;
+SET @AllianceDracthyrFemaleDisplay                             =    @NextDisplayID := @NextDisplayID +1;
+SET @HordeDracthyrMaleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
+SET @HordeDracthyrFemaleDisplay                                =    @NextDisplayID := @NextDisplayID +1;
 
 -- CreatureDisplayInfoExtra
 SET @NextDisplayExtraID                                        =    45424;
@@ -752,6 +762,10 @@ SET @BansheeMaleDisplayExtra                                   =    @NextDisplay
 SET @BansheeFemaleDisplayExtra                                 =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @FacelessOneMaleDisplayExtra                               =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @FacelessOneFemaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceDracthyrMaleDisplayExtra                          =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceDracthyrFemaleDisplayExtra                        =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeDracthyrMaleDisplayExtra                             =    @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeDracthyrFemaleDisplayExtra                           =    @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -867,6 +881,8 @@ SET @KyrianRacials                                             =      836;
 SET @VenthyrRacials                                            =      837;
 SET @BansheeRacials                                            =      838;
 SET @FacelessOneRacials                                        =      839;
+SET @AllianceDracthyrRacials                                   =      840;
+SET @HordeDracthyrRacials                                      =      841;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1380,6 +1396,8 @@ SET @KyrianRacialSkillRaceClass                                =     1177;
 SET @VenthyrRacialSkillRaceClass                               =     1178;
 SET @BansheeRacialSkillRaceClass                               =     1179;
 SET @FacelessOneRacialSkillRaceClass                           =     1180;
+SET @AllianceDracthyrRacialSkillRaceClass                      =     1183;
+SET @HordeDracthyrRacialSkillRaceClass                         =     1189; -- 1184-1188 are taken
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1869,6 +1887,8 @@ SET @KyrianFactionTemplate                                     =     2286; -- Re
 SET @VenthyrFactionTemplate                                    =     2287; -- References @VenthyrPlayer
 SET @BansheeFactionTemplate                                    =     2288; -- References @BansheePlayer
 SET @FacelessOneFactionTemplate                                =     2289; -- References @FacelessOnePlayer
+SET @AllianceDracthyrFactionTemplate                           =     2290; -- References @AllianceDracthyrPlayer
+SET @HordeDracthyrFactionTemplate                              =     2291; -- References @HordeDracthyrPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -1924,6 +1944,8 @@ SET @KyrianFactionRepIndex                                     =    154;
 SET @VenthyrFactionRepIndex                                    =    155;
 SET @BansheeFactionRepIndex                                    =    156;
 SET @FacelessOneFactionRepIndex                                =    157;
+SET @AllianceDracthyrFactionRepIndex                           =    158;
+SET @HordeDracthyrFactionRepIndex                              =    159;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -1983,6 +2005,8 @@ SET @KyrianAchievement                                         =    1521;
 SET @VenthyrAchievement                                        =    1522;
 SET @BansheeAchievement                                        =    1523;
 SET @FacelessOneAchievement                                    =    1528;
+SET @AllianceDracthyrAchievement                               =     1529;
+SET @HordeDracthyrAchievement                                  =     1530;
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -2214,6 +2238,14 @@ SET @FacelessOneCriteria1                                      =    19410; -- Ac
 SET @FacelessOneCriteria2                                      =    19411; -- Achievement 2422: Shake Your Bunny-Maker
 SET @FacelessOneCriteria3                                      =    19412; -- Achievement 291: Check Your Head
 SET @FacelessOneCriteria4                                      =    19413; -- @FacelessOneAchievement: Realm First! Level 80 Faceless One
+SET @AllianceDracthyrCriteria1                                 =    19414; -- Achievement 246: Know Thy Enemy
+SET @AllianceDracthyrCriteria2                                 =    19415; -- Achievement 2422: Shake Your Bunny-Maker
+SET @AllianceDracthyrCriteria3                                 =    19416; -- Achievement 291: Check Your Head
+SET @AllianceDracthyrCriteria4                                 =    19417; -- @AllianceDracthyrAchievement: Realm First! Level 80 Dracthyr
+SET @HordeDracthyrCriteria1                                    =    19418; -- Achievement 1005: Know Thy Enemy
+SET @HordeDracthyrCriteria2                                    =    19419; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HordeDracthyrCriteria3                                    =    19420; -- Achievement 291: Check Your Head
+SET @HordeDracthyrCriteria4                                    =    19421; -- @HordeDracthyrAchievement: Realm First! Level 80 Dracthyr
 
 -- Classes
 SET @Warrior                                                   =      1;
@@ -3603,6 +3635,14 @@ SET @CoAQirajiRacial2                                          =    81171; -- Bu
 SET @CoAQirajiRacial3                                          =    81172; -- Hive Reflexes (CoA 14001233)
 SET @CoAQirajiRacial4                                          =    81173; -- Swarm Frenzy (CoA 14001234)
 SET @CoAQirajiRacial5                                          =    81174; -- Wings of the Swarm (CoA 14001235)
+SET @CoAAllianceDracthyrRacial1                                =    81175; -- Wing Buffet (CoA 14000541)
+SET @CoAAllianceDracthyrRacial2                                =    81176; -- Soar (CoA 14000542)
+SET @CoAAllianceDracthyrRacial3                                =    81177; -- Draconic Mind (CoA 14000543)
+SET @CoAAllianceDracthyrRacial4                                =    81178; -- Scales of the Aspects (CoA 14000544)
+SET @CoAHordeDracthyrRacial1                                   =    81179; -- Wing Buffet (CoA 14000581)
+SET @CoAHordeDracthyrRacial2                                   =    81180; -- Soar (CoA 14000582)
+SET @CoAHordeDracthyrRacial3                                   =    81181; -- Draconic Mind (CoA 14000583)
+SET @CoAHordeDracthyrRacial4                                   =    81182; -- Scales of the Aspects (CoA 14000584)
 SET @CoAZandalariTrollSkillLineAbility1                        =    31600; -- Embrace of the Loa
 SET @CoAZandalariTrollSkillLineAbility2                        =    31601; -- Pterrordax Swoop
 SET @CoAZandalariTrollSkillLineAbility3                        =    31602; -- City of Gold
@@ -3775,6 +3815,14 @@ SET @CoAQirajiSkillLineAbility2                                =    31768; -- Bu
 SET @CoAQirajiSkillLineAbility3                                =    31769; -- Hive Reflexes
 SET @CoAQirajiSkillLineAbility4                                =    31770; -- Swarm Frenzy
 SET @CoAQirajiSkillLineAbility5                                =    31771; -- Wings of the Swarm
+SET @CoAAllianceDracthyrSkillLineAbility1                      =    31772; -- Wing Buffet
+SET @CoAAllianceDracthyrSkillLineAbility2                      =    31773; -- Soar
+SET @CoAAllianceDracthyrSkillLineAbility3                      =    31774; -- Draconic Mind
+SET @CoAAllianceDracthyrSkillLineAbility4                      =    31775; -- Scales of the Aspects
+SET @CoAHordeDracthyrSkillLineAbility1                         =    31776; -- Wing Buffet
+SET @CoAHordeDracthyrSkillLineAbility2                         =    31777; -- Soar
+SET @CoAHordeDracthyrSkillLineAbility3                         =    31778; -- Draconic Mind
+SET @CoAHordeDracthyrSkillLineAbility4                         =    31779; -- Scales of the Aspects
 SET @IconCoAAbilityRacialAncestralcall                         =     4400; -- Interface\Icons\ability_racial_ancestralcall
 SET @IconCoAAbilityRacialBestdealsanywhere                     =     4401; -- Interface\Icons\ability_racial_bestdealsanywhere
 SET @IconCoAAbilityRacialBetterlivingthroughchemistry          =     4402; -- Interface\Icons\ability_racial_betterlivingthroughchemistry

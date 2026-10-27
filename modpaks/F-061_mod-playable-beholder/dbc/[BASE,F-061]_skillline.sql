@@ -1,4 +1,4 @@
--- [F-061] mod-playable-slime-giant: skillline: 1 inserts, 0 updates, 0 deletes
+-- [F-061] mod-playable-beholder: skillline: 1 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `skillline` WHERE `id` = @BeholderRacials;

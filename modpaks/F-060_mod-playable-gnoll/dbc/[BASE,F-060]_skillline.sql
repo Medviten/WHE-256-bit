@@ -1,4 +1,4 @@
--- [F-060] mod-playable-slime-giant: skillline: 1 inserts, 0 updates, 0 deletes
+-- [F-060] mod-playable-gnoll: skillline: 1 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `skillline` WHERE `id` = @GnollRacials;

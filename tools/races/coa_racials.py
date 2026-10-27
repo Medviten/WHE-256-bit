@@ -78,7 +78,12 @@ TARGETS = [
     (120, 'F-070', 'Banshee', True, 'Banshee', ''),
     (122, 'F-071', 'FacelessOne', True, 'Faceless One', ''),
     (123, 'F-052', 'Qiraji', True, 'Qiraji (shelved in CoA 1.9)', ''),
+    (54, 'F-073', 'AllianceDracthyr', True, 'Dracthyr (Alliance)', ''),
+    (58, 'F-074', 'HordeDracthyr', True, 'Dracthyr (Horde)', ''),
 ]
+# CoA races added after the first run: their spells and SkillLineAbility rows are numbered after everyone else's, so
+# the spell ids characters may already have learned stay put
+APPENDED = (54, 58)
 HELPERS = {801044: 'SlowAndRootDispel', 820589: 'EscapeArtist', 828730: 'ArcaneTorrent'}
 NOTES = {14001006: 'CoA drives it with the C++ scripts spell_centaur_gallop/_aura, which WHE does not have: '
                    'without them it is a plain speed buff'}
@@ -227,13 +232,14 @@ class Plan:
         keys = {}
         for race, fnum, key, active, name, why in TARGETS:
             keys.setdefault(race, key)
-        for race in sorted(self.racials):
+        order = sorted(self.racials, key=lambda r: (r in APPENDED, APPENDED.index(r) if r in APPENDED else r))
+        for race in order:
             for sid in self.racials[race]:
                 self.new_id[sid], self.var[sid] = next_id, '@CoA%sRacial%d' % (keys[race], sid % 10)
                 next_id += 1
         self.sla = {}
         next_sla = SLA_BASE
-        for race in sorted(self.racials):
+        for race in order:
             for sid in self.racials[race]:
                 self.sla[sid] = (next_sla, '@CoA%sSkillLineAbility%d' % (keys[race], sid % 10))
                 next_sla += 1

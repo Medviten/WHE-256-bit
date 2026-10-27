@@ -75,6 +75,8 @@ GlueAmbienceTracks["THINHUMAN"] = "GlueScreenHuman";
 GlueAmbienceTracks["DARKFALLEN"] = "GlueScreenUndead";
 GlueAmbienceTracks["ALLIANCEEARTHEN"] = "GlueScreenDwarfGnome";
 GlueAmbienceTracks["HORDEEARTHEN"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["ALLIANCEDRACTHYR"] = "GlueScreenHuman";
+GlueAmbienceTracks["HORDEDRACTHYR"] = "GlueScreenOrcTroll";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -486,12 +488,13 @@ GlueBackgroundFallback = {
 	["NIGHTBORNE"] = "BloodElf", ["DARKFALLEN"] = "Scourge", ["TAUNKA"] = "Tauren",
 	["FURBOLG"] = "NightElf",
 	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc", ["SLIMEGIANT"] = "Ogre",
-	["FELORC"] = "Orc", ["SKELETON"] = "Scourge", ["FORESTTROLL"] = "Troll", ["NORTHRENDSKELETON"] = "Scourge",
-	["ICETROLL"] = "Troll", ["QIRAJI"] = "Orc", ["EREDAR"] = "Draenei", ["ARAKKOA"] = "Draenei",
+	["FELORC"] = "Orc", ["SKELETON"] = "Scourge", ["FORESTTROLL"] = "Orc", ["NORTHRENDSKELETON"] = "Scourge",
+	["ICETROLL"] = "Orc", ["QIRAJI"] = "Orc", ["EREDAR"] = "Draenei", ["ARAKKOA"] = "Draenei",
 	["FELELF"] = "BloodElf", ["QUILLBOAR"] = "Tauren", ["CENTAUR"] = "Tauren", ["DEMON"] = "BloodElf",
 	["SATYR"] = "NightElf", ["GNOLL"] = "Human", ["BEHOLDER"] = "Dwarf", ["SHIVAN"] = "Draenei",
 	["HOZEN"] = "Human", ["SYLVARI"] = "NightElf", ["MANTID"] = "Tauren", ["ETHEREAL"] = "NightElf",
 	["KYRIAN"] = "NightElf", ["VENTHYR"] = "Scourge", ["BANSHEE"] = "Scourge", ["FACELESSONE"] = "Orc",
+	["ALLIANCEDRACTHYR"] = "Human", ["HORDEDRACTHYR"] = "Orc",
 };
 
 -- Death knights share one class scene; these races are too tall for its camera and get a copy with the

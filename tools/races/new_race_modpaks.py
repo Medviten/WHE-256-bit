@@ -12,7 +12,7 @@ emotes, names) as variables. Customization rows are generated:
 usage: new_race_modpaks.py <built DBFilesClient> <WallCraft Shared/DBC/Assets/DBFilesClient> [modpaks dir] [output dir]
 
 coa_race_modpaks.py imports this module and sets BUILT, DONOR, MODPAKS and OUTPUT itself."""
-import os, re, struct, sys
+import glob, os, re, struct, sys
 
 BUILT = DONOR = MODPAKS = OUTPUT = None
 TEMPLATE = {'Horde': ('F-046', 'SlimeGiant', 'Slime Giant'), 'Alliance': ('F-045', 'Furbolg', 'Furbolg')}
@@ -326,6 +326,11 @@ def main():
         text = re.sub(r'-- @%s: .*' % key, '-- @%s: the outfits of @%sHome; classes it lacks come from %s' % (key, key, ', '.join(fb.split(', ')[1:])), text)
         write(os.path.join(out, 'dbc', tag + '_charstartoutfit.sql'), text)
 
+        # the template's own modpak name survives in some file headers
+        for f in glob.glob(os.path.join(out, '**', '*.sql'), recursive=True):
+            text = open(f, encoding='utf-8').read()
+            if 'mod-playable-slime-giant' in text:
+                write(f, text.replace('mod-playable-slime-giant', 'mod-playable-' + slug))
         write_variables(out, key, name, plural, fnum, side, home, kin, male_only, model, prefix, fname, fdesc, source)
         write_readme(out, key, name, plural, fnum, slug, side, home, kin, male_only, model, source, prefix)
         print('wrote', out)

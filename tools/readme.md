@@ -29,3 +29,5 @@
       and F-057's retail centaur with `new_race_modpaks.py`'s templates
     - `races/coa_racials.py <CoA server sql> <CoA Spell.dbc> <Ascension SpellIcon.dbc> <stock DBFilesClient> [icon folder ...]`:
       adds CoA's racial spells to the race modpaks (commented out where a race already has racials) and their ids to config.sql
+    - `races/dracthyr_modpaks.py <built DBFilesClient>`: generates F-073/F-074 (Dracthyr, races 52/70) with the same templates;
+      the wowdecomp-256-bit client shows them with their Retail model. Rerun `coa_racials.py` afterwards for their racials
