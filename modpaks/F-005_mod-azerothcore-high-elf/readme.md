@@ -7,8 +7,16 @@
         - Enchanting bonus nerfed (identical to Blood Elf bonus)
     - Racial faction: High Elven Loyalists
 
+### Optional
+- `[F-005]_soundentries.sql`: High Elf voices from Turtle WoW (combat, emote and error sounds) instead of the Blood Elf ones
+    - Needs Turtle's `Sound\Character\HighElf\` files in the client patch (WHE-common `patch-A.MPQ`)
+    - Delete the file to keep the Blood Elf voices
+- `[F-005]_emotestextsound.sql`: the emotes with those voices, plus Turtle's extra voiced emotes (agree, greet, hail,
+  introduce, tired, victory, roar); needs `[F-005]_soundentries.sql`
+
 ### Known Issues
-- Blood Elf voices reference things like going to Undercity and flying bats
+- Blood Elf voices reference things like going to Undercity and flying bats (see `[F-005]_soundentries.sql`)
+- Laugh, cry, chicken and kiss sounds come from the shared Blood Elf model and stay Blood Elf
 - Racials have no animation
 
 ### CoA Custom 1.9 racials

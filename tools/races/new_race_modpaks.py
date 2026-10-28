@@ -126,6 +126,9 @@ def sql_str(s):
     return "'" + s.replace('\\', '\\\\').replace("'", "\\'") + "'"
 
 
+PLAYER_FLAGS = {}   # (gender, section, type, colour) -> flags of the source rows that are already player rows
+
+
 def customization(source):
     """(charsections, hair geosets, facial hair styles) rows of a stock NPC race, a WallCraft donor race or a skin list."""
     kind, race = source
@@ -137,12 +140,15 @@ def customization(source):
     folder = BUILT if kind == 'npc' else DONOR
     rows, strings, f = load_dbc(os.path.join(folder, 'CharSections.dbc'))
     sections = []
+    PLAYER_FLAGS.clear()
     for r in rows:
         v = struct.unpack_from('<10I', r)
         if v[1] != race:
             continue
         if kind == 'npc':   # 3.3.5: id, race, gender, section, texture 1-3, flags, type, colour
             gender, section, tex, var, colour = v[2], v[3], v[4:7], v[8], v[9]
+            if v[7] & 1:   # a playable race's rows (a Home race copy): keep its flags (NPC-only skins, Death Knight skins)
+                PLAYER_FLAGS[(gender, section, var, colour)] = v[7]
         else:               # WallCraft (Vanilla): id, race, gender, section, type, colour, texture 1-3, flags
             gender, section, var, colour, tex = v[2], v[3], v[4], v[5], v[6:9]
         tex = [string(strings, o).strip() for o in tex]
@@ -223,7 +229,7 @@ def main():
         lines = []
         for gi, g in enumerate(genders if not male_only else ['@Male', '@Female']):
             for gender, section, var, colour, tex in rows_for(gi):
-                flags = 1 if section == 1 else 17
+                flags = PLAYER_FLAGS.get((gender, section, var, colour), 1 if section == 1 else 17)
                 lines.append("(@CharSectionsID := @CharSectionsID +1, @%s, %-7s %-12s %s, %s, %s, %d, %d, %d)" % (
                     key, g + ',', SECTIONS[section] + ',', sql_str(tex[0]), sql_str(tex[1]), sql_str(tex[2]), flags, var, colour))
         origin = {'npc': lambda: 'the stock NPC race rows (race %d after F-008)' % source[1],

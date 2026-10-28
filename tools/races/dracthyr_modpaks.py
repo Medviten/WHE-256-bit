@@ -70,8 +70,10 @@ def fix_wording(out, home, race):
     for name in ('charsections', 'charhairgeosets', 'characterfacialhairstyles'):
         for path in glob.glob(os.path.join(out, 'dbc', '*_%s.sql' % name)):
             text = open(path, encoding='utf-8').read()
-            nrm.write(path, text.replace('the stock NPC race rows (race %d after F-008)' % race,
-                                         'the %s rows (race %d), which the Retail client only reads at row 0' % (home, race)))
+            text = text.replace('the stock NPC race rows (race %d after F-008)' % race,
+                                'the %s rows (race %d), which the Retail client only reads at row 0' % (home, race))
+            nrm.write(path, text.replace(', flagged for character creation (17, faces 1)',
+                                         ', with their flags (NPC-only and Death Knight skins stay so)'))
 
 
 if __name__ == '__main__':

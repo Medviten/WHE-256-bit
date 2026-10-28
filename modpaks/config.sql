@@ -3266,6 +3266,12 @@ SET @EmoteMourn                                                =         65;
 SET @EmoteRoar                                                 =         75;
 SET @EmoteRofl                                                 =         76;
 SET @EmoteTaunt                                                =        136;
+SET @EmoteAgree                                                =          1;
+SET @EmoteGreet                                                =         48;
+SET @EmoteHail                                                 =         53;
+SET @EmoteTired                                                =         99;
+SET @EmoteVictory                                              =        100;
+SET @EmoteIntroduce                                            =        114;
 SET @EmoteViolin                                               =        143;
 
 -- Vocal UI Sounds
