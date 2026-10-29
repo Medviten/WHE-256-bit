@@ -3,8 +3,8 @@
 
 ### Features
 - Playable Kyrian (Alliance), race ID set in config.sql
-    - CoA Custom 1.9 model and textures (Ilusixn's CoA race files, CoA race 107), prepared by `tools/models/coa_race_prep.py`
-    - Customization: the 3/2 skin colours of CoA's appearance catalog (`EsteriaKyrian.bin`); its other options (EsteriaAppearance.dll) are fixed at their first choice
+    - Aetheria's model and textures (Kyrian/Venthyr package kyrian-venthyr-20261027-1, newer than CoA Custom 1.9's), prepared by `tools/models/coa_race_prep.py`
+    - Customization: the 19/23 skin colours of Aetheria's appearance catalog (`EsteriaKyrian.bin`); its other options (EsteriaAppearance.dll) are fixed at their first choice
     - Home: NightElf (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted
       quests and items)
     - Kin: Draenei (voice, emotes and names, copied at build time)
@@ -24,9 +24,22 @@
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - CoA's extra appearance options (EsteriaAppearance.dll) are not available
-- The DLL's baked armour (Kyrian/Venthyr armour geosets 200xx, texture type 15) is hidden; wing/armour colours are fixed at CoA's first choice
+- The DLL's baked armour (Kyrian/Venthyr armour geosets 200xx, texture type 15) is hidden; wing/armour colours are fixed at the catalog's first choice
 
 ### CoA Custom 1.9 racials
-- Active: learned with the racial skill line
+- Commented out (Aetheria's racials replace them); remove the comment markers in the CoA blocks to use them
 - From CoA race 107 (Kyrian), renumbered; blocks at the end of `[BASE,F-068]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
     - Steward's Resolve: Removes all fear, charm and sleep effects and grants a brief immunity to them.
+
+### Aetheria racials
+- Active, in place of CoA's: learned with the racial skill line; from Aetheria's Kyrian/Venthyr package (kyrian-venthyr-20261027-1, Aetheria race 60) with its spell ids
+- Blocks at the end of `[BASE,F-068]_spell.sql` and `_skilllineability.sql`; `sql/db-world/base/[BASE,F-068]_spell_script_names.sql` and `_spell_bonus_data.sql`; C++ scripts in `src/`
+    - Ascended Hover: Spread your wings and take flight. Use normal flight controls to ascend and descend. Flight lasts indefinitely outside combat and grants up to 15 total seconds in combat per activation. Activating Hover from the ground while in combat grants immunity to Stun effects for 3 seconds. A successful stun ends Hover. When Hover ends, descend safely to the ground and begin a 2-minute cooldown. Activate again to land.
+    - Ascended Wings: Reduces falling damage by 50%.
+    - Purity of Bastion: Disease, Poison, and Curse effects last 10% less time.
+    - Virtue of Courage: Increases critical strike chance by 1%.
+    - Soul Guide: Move 40% faster as a released spirit.
+    - Steward's Craft: Increases Jewelcrafting skill by 5.
+    - Ascendant Charge: Draw your weapon and leap to an enemy within 25 yards, dealing Holy impact damage and slowing nearby enemies by 30% for 3 seconds. While hovering, dive instead for 20% more impact damage; Hover ends after the dive. Interrupted dives end Hover safely, and its cooldown starts on landing. The impact creates a 5-yard Consecration for 3 seconds, dealing Holy damage each second. Damage scales with your higher attack power or spell power. 2-minute cooldown.
+- Ascended Wings also halves fall damage (patches/whe-acore.patch)
+- The wowdecomp-256-bit client does not have Aetheria's takeoff and landing animations for Ascended Hover yet

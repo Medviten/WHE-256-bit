@@ -7,3 +7,10 @@ DELETE FROM `soundentries` WHERE `id` IN (@AlteredFormSound, @AlteredFormAnimati
 INSERT INTO `soundentries` (`id`, `sound_type`, `name`, `file_1`, `file_2`, `file_3`, `file_4`, `file_5`, `file_6`, `file_7`, `file_8`, `file_9`, `file_10`, `frequency_1`, `frequency_2`, `frequency_3`, `frequency_4`, `frequency_5`, `frequency_6`, `frequency_7`, `frequency_8`, `frequency_9`, `frequency_10`, `base_dir`, `volume`, `flags`, `min_distance`, `distance_cutoff`, `eax_def`, `advanced_id`) VALUES
 (@AlteredFormSound,          1, '(DONOTRENAME)Altered Form Transform',          'worgen_transform_human_01.ogg', 'worgen_transform_human_02.ogg', 'worgen_transform_human_03.ogg', '', '', '', '', '', '', '', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'sound\\spells', 0.8, 0, 8.0, 45.0, 0, 0),
 (@AlteredFormAnimationSound, 1, '(DONOTRENAME)Altered Form Transform Animated', 'worgen_transform_worgen_01.ogg', 'worgen_transform_worgen_02.ogg', 'worgen_transform_worgen_03.ogg', 'worgen_transform_worgen_04.ogg', 'worgen_transform_worgen_05.ogg', '', '', '', '', '', 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 'sound\\spells', 0.8, 0, 8.0, 45.0, 0, 0);
+
+-- Cataclysm's WorgenMale_MountSpecial, played by the $CSD event of both Worgen models' MountSelfSpecial (Running Wild's
+-- jump while standing). The models name the id, so it is Cataclysm's own; the files are in patch-A
+-- (Sound\Creature\WorgenMale)
+DELETE FROM `soundentries` WHERE `id` = @WorgenMountSpecialSound;
+INSERT INTO `soundentries` (`id`, `sound_type`, `name`, `file_1`, `file_2`, `file_3`, `file_4`, `file_5`, `file_6`, `file_7`, `file_8`, `file_9`, `file_10`, `frequency_1`, `frequency_2`, `frequency_3`, `frequency_4`, `frequency_5`, `frequency_6`, `frequency_7`, `frequency_8`, `frequency_9`, `frequency_10`, `base_dir`, `volume`, `flags`, `min_distance`, `distance_cutoff`, `eax_def`, `advanced_id`) VALUES
+(@WorgenMountSpecialSound, 10, 'WorgenMale_MountSpecial', 'worgenmale_preagro_01.ogg', 'worgenmale_preagro_02.ogg', 'worgenmale_preagro_03.ogg', 'worgenmale_preagro_04.ogg', 'worgenmale_preagro_05.ogg', '', '', '', '', '', 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 'sound\creature\worgenmale', 0.4, 0, 8.0, 45.0, 0, 0);

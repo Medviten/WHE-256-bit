@@ -1,5 +1,5 @@
 -- charsections: 43 inserts, 0 updates, 0 deletes
--- From the skin colours (option 0) of CoA's appearance catalog EsteriaVenthyr.bin, flagged for character creation (17, faces 1)
+-- From the skin colours (option 0) of Aetheria's appearance catalog EsteriaVenthyr.bin, flagged for character creation (17, faces 1)
 
 -- New entries
 DELETE FROM `charsections` WHERE `race` = @Venthyr;

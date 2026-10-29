@@ -11,7 +11,8 @@ UPDATE `spell` SET
     `aura_interrupt_flags` = 0,
     `effect_apply_aura_name_1` = @SPELL_AURA_MOUNTED,
     `effect_misc_value_a_1` = 0,
-    `effect_apply_aura_name_2` = 32 -- SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED
+    `effect_apply_aura_name_2` = 32, -- SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED
+    `spell_visual_1` = @RunningWildVisual -- MountSelfStart while casting, instead of the mounts' UseStandingLoop
 WHERE `id` = @RunningWildMale60;
 
 -- Remove superfluous spells

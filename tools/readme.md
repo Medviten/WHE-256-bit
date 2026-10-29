@@ -24,10 +24,19 @@
   stock customization only, see `races/coa_races.py`):
     - `models/coa_race_prep.py <CoA client\Work> <CoA client_root> <WHE-common>/patch-A.MPQ`: copies the race models from the
       extracted CoA MPQs and makes them player models (skin colour texture as the CharSections skin, the DLL's other
-      options fixed at their first choice, unused geosets hidden)
+      options fixed at their first choice, unused geosets hidden; models over 50 MB get .anim files)
     - `races/coa_race_modpaks.py <built DBFilesClient> <CoA DBFilesClient> <CoA client_root>`: generates F-064..F-071
       and F-057's retail centaur with `new_race_modpaks.py`'s templates
     - `races/coa_racials.py <CoA server sql> <CoA Spell.dbc> <Ascension SpellIcon.dbc> <stock DBFilesClient> [icon folder ...]`:
       adds CoA's racial spells to the race modpaks (commented out where a race already has racials) and their ids to config.sql
+    - Kyrian and Venthyr (F-068/F-069) come from Aetheria's newer Kyrian/Venthyr package
+      ([aetheria-client](https://github.com/Shotboom12/aetheria-client), [aetheria-server](https://github.com/Shotboom12/aetheria-server)):
+      unpack its assets with its `tools/unpack-assets.py --output <folder>`, then pass `--aetheria <aetheria-client> <folder>`
+      to `coa_race_prep.py` and `--aetheria <aetheria-client>` to `coa_race_modpaks.py`. Only the files the prepared models
+      use are copied (the package also has palettes for the options fixed here)
+    - `races/aetheria_racials.py <aetheria-client> <aetheria-server>`: adds Aetheria's Kyrian and Venthyr racials to
+      F-068/F-069 at Aetheria's spell ids (their C++ scripts are in `src/`, two core hunks in `patches/whe-acore.patch`)
+- `models/m2_anim_split.py <model.m2> [output folder]`: moves a 3.3.5 model's animations into per-sequence .anim files,
+  as Blizzard's character models keep them (a sequence loads the first time it plays); checks the result against the original
     - `races/dracthyr_modpaks.py <built DBFilesClient>`: generates F-073/F-074 (Dracthyr, races 52/70) with the same templates;
       the wowdecomp-256-bit client shows them with their Retail model. Rerun `coa_racials.py` afterwards for their racials

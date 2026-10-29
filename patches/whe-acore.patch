@@ -1,5 +1,5 @@
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index ce570b134..1e0a88928 100644
+index 004a5a481..f13c92525 100644
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
 @@ -67,6 +67,7 @@
@@ -88,7 +88,7 @@ index ce570b134..1e0a88928 100644
          case BREATH_TIMER:
              {
                  if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
-@@ -10805,23 +10845,32 @@ void Player::InitDataForForm(bool reapplyMods)
+@@ -10813,23 +10853,32 @@ void Player::InitDataForForm(bool reapplyMods)
  
  void Player::InitDisplayIds()
  {
@@ -127,6 +127,17 @@ index ce570b134..1e0a88928 100644
              break;
          default:
              LOG_ERROR("entities.player", "Invalid gender {} for player", gender);
+@@ -14247,6 +14296,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
+                 if (HasAura(SPELL_DIVINE_PROTECTION))
+                     damage /= 2;
+ 
++                // Kyrian racial Ascended Wings (spell 111104, WHE's F-068 from Aetheria's package) halves fall damage
++                if (HasAura(111104))
++                    damage /= 2;
++
+                 final_damage = EnvironmentalDamage(DAMAGE_FALL, damage);
+             }
+ 
 diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
 index 6cf62c95d..fbc4e85c3 100644
 --- a/src/server/game/Entities/Player/PlayerTaxi.cpp
@@ -206,7 +217,7 @@ index 6cf62c95d..fbc4e85c3 100644
              break;     // Draenei
      }
 diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
-index 0f6e26625..dcec9af7f 100644
+index a0529ad54..7e2ead2c0 100644
 --- a/src/server/game/Entities/Player/PlayerUpdates.cpp
 +++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
 @@ -1327,6 +1327,8 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
@@ -399,10 +410,10 @@ index 6f82eb7f3..981c01985 100644
  
                  // skip expansion classes if not playing with expansion
 diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
-index 630f99970..9a6392ce8 100644
+index 8a43e20de..218a80695 100644
 --- a/src/server/game/Handlers/CharacterHandler.cpp
 +++ b/src/server/game/Handlers/CharacterHandler.cpp
-@@ -2192,40 +2192,56 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
+@@ -2378,40 +2378,56 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
  
          trans->Append(stmt);
  
@@ -491,7 +502,7 @@ index 630f99970..9a6392ce8 100644
          }
  
 diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
-index f6ad1b90b..58fdd2afa 100644
+index f6ad1b90b..57e4cfee5 100644
 --- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
 +++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
 @@ -2304,42 +2304,77 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
@@ -1211,6 +1222,37 @@ index f6ad1b90b..58fdd2afa 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25036 : 25047);
                                  default:
                                      break;
+@@ -6526,7 +6836,17 @@ void AuraEffect::HandlePeriodicHealthLeechAuraTick(Unit* target, Unit* caster) c
+ 
+     float gainMultiplier = GetSpellInfo()->Effects[GetEffIndex()].CalcValueMultiplier(caster);
+ 
+-    uint32 heal = uint32(caster->SpellHealingBonusDone(caster, GetSpellInfo(), uint32(new_damage * gainMultiplier), DOT, GetEffIndex(), 0.0f, GetBase()->GetStackAmount()));
++    uint32 baseHeal = uint32(new_damage * gainMultiplier);
++    // Venthyr racial Crimson Feast (spell 111200, WHE's F-069 from Aetheria's package) heals half its damage: keep
++    // the fraction between ticks, or one-damage ticks at low level would never heal
++    if (GetId() == 111200)
++    {
++        double const exactHeal = double(new_damage) * gainMultiplier + m_leechRemainder;
++        baseHeal = uint32(exactHeal);
++        m_leechRemainder = exactHeal - baseHeal;
++    }
++
++    uint32 heal = uint32(caster->SpellHealingBonusDone(caster, GetSpellInfo(), baseHeal, DOT, GetEffIndex(), 0.0f, GetBase()->GetStackAmount()));
+     heal = uint32(caster->SpellHealingBonusTaken(caster, GetSpellInfo(), heal, DOT, GetBase()->GetStackAmount()));
+ 
+     HealInfo healInfo(caster, caster, heal, GetSpellInfo(), GetSpellInfo()->GetSchoolMask());
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.h b/src/server/game/Spells/Auras/SpellAuraEffects.h
+index 0a419e5d4..5f0b56124 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.h
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.h
+@@ -141,6 +141,7 @@ private:
+     int32 m_periodicTimer;
+     int32 m_amplitude;
+     uint32 m_tickNumber;
++    mutable double m_leechRemainder = 0.0; // heal fraction carried between periodic leech ticks (Crimson Feast)
+ 
+     uint8 const m_effIndex;
+     bool m_canBeRecalculated;
 diff --git a/src/server/scripts/Commands/cs_lookup.cpp b/src/server/scripts/Commands/cs_lookup.cpp
 index 4fb3c66ab..fe68d66da 100644
 --- a/src/server/scripts/Commands/cs_lookup.cpp

@@ -1,4 +1,4 @@
--- characterfacialhairstyles: 2 inserts, 0 updates, 0 deletes (from the skin colours (option 0) of CoA's appearance catalog EsteriaKyrian.bin)
+-- characterfacialhairstyles: 2 inserts, 0 updates, 0 deletes (from the skin colours (option 0) of Aetheria's appearance catalog EsteriaKyrian.bin)
 
 -- New entries
 DELETE FROM `characterfacialhairstyles` WHERE `race` = @Kyrian;

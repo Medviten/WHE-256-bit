@@ -9,20 +9,27 @@ For each model of a race (patched in place in the output, no layout change excep
 - geosets above 2000 (the character code only hides 0-2000) that the catalog does not keep move to geoset 1999,
   which is never shown; so do geosets drawn only with creature textures nobody fills (Kyrian/Venthyr armour,
   200xx and 1302: type 15, the DLL's baked armour)
+- models over 50 MB keep their animations in .anim files (m2_anim_split.py)
 
-usage: python -I coa_race_prep.py <CoA client Work folder> <CoA client_root folder> <output folder> [race key ...]"""
+usage: python -I coa_race_prep.py <CoA client Work folder> <CoA client_root folder> <output folder> [race key ...]
+           [--aetheria <aetheria-client> <its unpacked assets>]
+       --aetheria takes coa_races.AETHERIA's races (Kyrian, Venthyr) from Aetheria's newer package instead, copying only
+       the files the prepared models use (the package also has palettes for the options fixed here)"""
 import os
 import shutil
 import struct
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'races'))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import coa_races   # noqa: E402
+import m2_anim_split   # noqa: E402
 
 TEXTURES = 0x50            # M2Array<M2Texture>, 16 bytes each
 REPLACEABLE_LOOKUP = 0x68  # M2Array<int16>, indexed by texture type
 TEXTURE_LOOKUP = 0x80      # M2Array<int16>, texture combos
 NUM_SKINS = 0x44
+SPLIT_SIZE = 50 << 20      # larger models get .anim files (Aetheria's Venthyr: 160 MB, GitHub takes 100 MB at most)
 
 
 def patch_model(data, look):
@@ -93,13 +100,48 @@ def patch_skin(data, look, model):
     return bytes(b), sorted(set(hidden)), shown, used
 
 
-def prepare(work, catalogs, out, race):
+def texture_names(model):
+    count, offset = struct.unpack_from('<II', model, TEXTURES)
+    names = []
+    for i in range(count):
+        typ, _, length, name = struct.unpack_from('<IIII', model, offset + 16 * i)
+        if typ == 0 and length:
+            names.append(model[name:name + length].split(b'\0')[0].decode('latin1'))
+    return names
+
+
+def copy_file(work, out, path):
+    src = os.path.join(work, *path.replace('\\', '/').split('/'))
+    dst = os.path.join(out, *path.replace('\\', '/').split('/'))
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    shutil.copyfile(src, dst)
+
+
+def copy_used(work, out, path, look):
+    """Copy what a model uses: the model, its skins, the .anim files of its external sequences, the textures it names
+    and the catalog's skin colours. Packages such as Aetheria's also carry palettes for the options fixed here."""
+    data = open(os.path.join(work, *path.split('\\')), 'rb').read()
+    base = path[:-3]
+    files = [path] + ['%s%02d.skin' % (base, n) for n in range(struct.unpack_from('<I', data, NUM_SKINS)[0])]
+    table = m2_anim_split.sequences(data)
+    files += sorted({base + m2_anim_split.anim_name(table, '', s) for s in range(len(table))
+                     if not table[s][2] & m2_anim_split.HAS_DATA})
+    files += texture_names(data) + list(look.fixed.values()) + [p for skin in look.skins for p in skin]
+    for f in dict.fromkeys(files):
+        copy_file(work, out, f)
+
+
+def prepare(work, catalogs, out, race, used_only=False):
     key, catalog_name, folders, male, female = race[0], race[10], race[12], race[13], race[14]
-    for folder in folders:
-        src, dst = os.path.join(work, folder), os.path.join(out, folder)
-        shutil.copytree(src, dst, dirs_exist_ok=True)
     looks = coa_races.catalog(os.path.join(catalogs, 'Esteria%s.bin' % catalog_name))
     models = [(0, male)] + ([(1, female)] if female and female != male else [])
+    if used_only:
+        for gender, path in models:
+            copy_used(work, out, path, looks.get(gender, looks[0]))
+    else:
+        for folder in folders:
+            src, dst = os.path.join(work, folder), os.path.join(out, folder)
+            shutil.copytree(src, dst, dirs_exist_ok=True)
     for gender, path in models:
         look = looks.get(gender, looks[0])
         m2 = os.path.join(out, *path.split('\\'))
@@ -117,11 +159,23 @@ def prepare(work, catalogs, out, race):
                 missing = [t for t in used if t >= 11]
                 if missing:
                     print('    WARNING: shown batches use replaceable types without a texture: %s' % missing)
+        if len(model) > SPLIT_SIZE:
+            before, after, anims = m2_anim_split.split_file(m2)
+            print('    animations moved to %d .anim files: %d -> %d bytes' % (len(anims), before, after))
 
 
 if __name__ == '__main__':
-    work, catalogs, out = sys.argv[1:4]
-    wanted = set(sys.argv[4:])
+    args = sys.argv[1:]
+    aetheria = None
+    if '--aetheria' in args:
+        i = args.index('--aetheria')
+        aetheria = (args[i + 2], os.path.join(args[i + 1], coa_races.AETHERIA_CATALOGS))
+        del args[i:i + 3]
+    work, catalogs, out = args[:3]
+    wanted = set(args[3:])
     for race in coa_races.RACES + [coa_races.CENTAUR]:
         if not wanted or race[0] in wanted:
-            prepare(work, catalogs, out, race)
+            if aetheria and race[0] in coa_races.AETHERIA:
+                prepare(aetheria[0], aetheria[1], out, race, used_only=True)
+            else:
+                prepare(work, catalogs, out, race)

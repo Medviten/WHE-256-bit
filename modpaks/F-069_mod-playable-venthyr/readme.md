@@ -3,8 +3,8 @@
 
 ### Features
 - Playable Venthyr (Horde), race ID set in config.sql
-    - CoA Custom 1.9 model and textures (Ilusixn's CoA race files, CoA race 101), prepared by `tools/models/coa_race_prep.py`
-    - Customization: the 7/6 skin colours of CoA's appearance catalog (`EsteriaVenthyr.bin`); its other options (EsteriaAppearance.dll) are fixed at their first choice
+    - Aetheria's model and textures (Kyrian/Venthyr package kyrian-venthyr-20261027-1, newer than CoA Custom 1.9's), prepared by `tools/models/coa_race_prep.py`
+    - Customization: the 7/6 skin colours of Aetheria's appearance catalog (`EsteriaVenthyr.bin`); its other options (EsteriaAppearance.dll) are fixed at their first choice
     - Home: Undead (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted
       quests and items)
     - Kin: Undead (voice, emotes and names, copied at build time)
@@ -24,9 +24,22 @@
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
 - CoA's extra appearance options (EsteriaAppearance.dll) are not available
-- The DLL's baked armour (Kyrian/Venthyr armour geosets 200xx, texture type 15) is hidden; wing/armour colours are fixed at CoA's first choice
+- The DLL's baked armour (Kyrian/Venthyr armour geosets 200xx, texture type 15) is hidden; wing/armour colours are fixed at the catalog's first choice
 
 ### CoA Custom 1.9 racials
-- Active: learned with the racial skill line
+- Commented out (Aetheria's racials replace them); remove the comment markers in the CoA blocks to use them
 - From CoA race 101 (Venthyr), renumbered; blocks at the end of `[BASE,F-069]_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`
     - Anima Frenzy: Feeds on the anima around you, increasing your attack power for 15 sec.
+
+### Aetheria racials
+- Active, in place of CoA's: learned with the racial skill line; from Aetheria's Kyrian/Venthyr package (kyrian-venthyr-20261027-1, Aetheria race 61) with its spell ids
+- Blocks at the end of `[BASE,F-069]_spell.sql` and `_skilllineability.sql`; `sql/db-world/base/[BASE,F-069]_spell_script_names.sql` and `_spell_bonus_data.sql`; C++ scripts in `src/`
+    - Crimson Feast: Wound enemies within 8 yards, causing them to bleed for 8 seconds. Heals you for 50% of damage dealt. Total base damage is 2 per level plus 15% of the higher of attack power or spell power, divided over four ticks. Healing modifiers apply.
+    - Blood Scent: Increases stealth detection by 20.
+    - Children of Revendreth: Reduces Shadow damage taken by 2%.
+    - Anima Hunger: Killing an enemy eligible for experience or honor restores 3% of maximum health.
+    - Courtly Artifice: Increases Enchanting skill by 5.
+    - Sanguine Hover: Hover just above the ground without free flight. Lasts indefinitely outside combat and up to 15 total seconds in combat per activation. Activating from the ground while in combat grants Stun immunity for 3 seconds. A successful stun ends Hover. Ending Hover starts a 2-minute cooldown. Activate again to land.
+    - Vampire Bat Form: Become a vampire bat, increasing flight speed by 60% and ground speed by 40%. Requires Expert Riding and a normally flyable outdoor area. Cold Weather Flying is required in Northrend. Only usable outside combat. Ends on combat, damage, casting, mounting or changing maps; ending while airborne grants safe descent until landing. Activate again to return to your Venthyr form.
+- Crimson Feast keeps fractional healing between ticks (patches/whe-acore.patch)
+- Vampire Bat Form turns you into creature 16175 (Vampiric Shadowbat, set in config.sql as @VenthyrBatCreature; Aetheria uses its own bat) and flies only where flying mounts may, with 225 riding skill

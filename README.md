@@ -245,6 +245,7 @@ Special thanks to:
 * **Nehyren** – [retroported](https://github.com/tbcstar/Nehyren) Shadowlands models
 * The **Open Azeroth** team – Open Azeroth map edits
 * **gitdalisar** – [Faction Free]([url](https://github.com/gitdalisar/mod-Faction-Free)) module
+* **Shotboom12** – [Aetheria](https://github.com/Shotboom12/aetheria-client)'s Kyrian and Venthyr models, customization catalogs and [racials](https://github.com/Shotboom12/aetheria-server)
 * The AzerothCore community
 * Everyone else who has helped test, debug, translate and improve the project
 

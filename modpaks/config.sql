@@ -3865,3 +3865,22 @@ SET @IconCoAAbilityRacialSpatialrift                           =     4432; -- In
 SET @IconCoAAbilityRacialTimeismoney                           =     4433; -- Interface\Icons\ability_racial_timeismoney
 SET @IconCoAAbilityWorgenDarkflight                            =     4434; -- Interface\Icons\ability_worgen_darkflight
 -- <<< CoA Custom 1.9 racials <<<
+
+-- >>> Aetheria racials (tools/races/aetheria_racials.py) >>>
+-- Aetheria racials (Kyrian/Venthyr package kyrian-venthyr-20261027-1): spells at Aetheria's ids 111100-111113 and 111200-111212 (fixed: the C++ scripts use them), SkillLineAbility from 31780
+SET @AetheriaKyrianSkillLineAbility1                           =    31780; -- Ascended Hover
+SET @AetheriaKyrianSkillLineAbility2                           =    31781; -- Ascended Wings
+SET @AetheriaKyrianSkillLineAbility3                           =    31782; -- Purity of Bastion
+SET @AetheriaKyrianSkillLineAbility4                           =    31783; -- Virtue of Courage
+SET @AetheriaKyrianSkillLineAbility5                           =    31784; -- Soul Guide
+SET @AetheriaKyrianSkillLineAbility6                           =    31785; -- Steward's Craft
+SET @AetheriaKyrianSkillLineAbility7                           =    31786; -- Ascendant Charge
+SET @AetheriaVenthyrSkillLineAbility1                          =    31787; -- Crimson Feast
+SET @AetheriaVenthyrSkillLineAbility2                          =    31788; -- Blood Scent
+SET @AetheriaVenthyrSkillLineAbility3                          =    31789; -- Children of Revendreth
+SET @AetheriaVenthyrSkillLineAbility4                          =    31790; -- Anima Hunger
+SET @AetheriaVenthyrSkillLineAbility5                          =    31791; -- Courtly Artifice
+SET @AetheriaVenthyrSkillLineAbility6                          =    31792; -- Sanguine Hover
+SET @AetheriaVenthyrSkillLineAbility7                          =    31793; -- Vampire Bat Form
+SET @VenthyrBatCreature                                        =    16175; -- Vampiric Shadowbat, Vampire Bat Form's creature (any creature with a bat model)
+-- <<< Aetheria racials <<<

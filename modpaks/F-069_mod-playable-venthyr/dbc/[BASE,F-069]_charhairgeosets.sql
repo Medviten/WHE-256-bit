@@ -1,4 +1,4 @@
--- charhairgeosets: 2 inserts, 0 updates, 0 deletes (from the skin colours (option 0) of CoA's appearance catalog EsteriaVenthyr.bin)
+-- charhairgeosets: 2 inserts, 0 updates, 0 deletes (from the skin colours (option 0) of Aetheria's appearance catalog EsteriaVenthyr.bin)
 
 -- New entries
 DELETE FROM `charhairgeosets` WHERE `race` = @Venthyr;

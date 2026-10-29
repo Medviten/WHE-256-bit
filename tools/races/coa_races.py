@@ -56,6 +56,13 @@ RACES = [
 ]
 RACE_IDS = {'Hozen': 56, 'Sylvari': 57, 'Mantid': 58, 'Ethereal': 59, 'Kyrian': 60, 'Venthyr': 61, 'Banshee': 62, 'FacelessOne': 63}
 
+# Races with a newer release in Aetheria's Kyrian/Venthyr package (https://github.com/Shotboom12/aetheria-client,
+# kyrian-venthyr-20261027-1): same folders and catalog format, models with more animations, more skin colours. Its
+# assets come unpacked by the package's tools/unpack-assets.py, its catalogs from AETHERIA_CATALOGS in the package.
+AETHERIA = ('Kyrian', 'Venthyr')
+AETHERIA_VERSION = 'kyrian-venthyr-20261027-1'
+AETHERIA_CATALOGS = os.path.join('client-files', 'Data', 'Retail')
+
 # F-057's Centaur switches from WallCraft's converted Vanilla model to CoA's retail one (Horde centaur, CoA race 102)
 CENTAUR = ('Centaur', 'Centaur', 'Centaur', 57, 'centaur', 'Horde', 'Tauren', 'Tauren', False, 102, 'Centaur', 'Ta',
            ['custom/centaur'], 'custom\\centaur\\unknown\\4036647.m2', 'custom\\centaur\\unknown\\4081379.m2', 1.6,
