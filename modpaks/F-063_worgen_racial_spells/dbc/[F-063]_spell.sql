@@ -12,7 +12,9 @@ UPDATE `spell` SET
     `effect_apply_aura_name_1` = @SPELL_AURA_MOUNTED,
     `effect_misc_value_a_1` = 0,
     `effect_apply_aura_name_2` = 32, -- SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED
-    `spell_visual_1` = @RunningWildVisual -- MountSelfStart while casting, instead of the mounts' UseStandingLoop
+    `spell_visual_1` = @RunningWildVisual, -- MountSelfStart while casting, instead of the mounts' UseStandingLoop
+    -- The client fills $s2 from the spell's own 60, not from the speed the script sets, so the aura states both
+    `spell_tooltip_enus` = 'Ground speed increased according to riding skill.'
 WHERE `id` = @RunningWildMale60;
 
 -- Remove superfluous spells
