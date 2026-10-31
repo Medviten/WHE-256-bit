@@ -1,3 +1,23 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 396d80180..635835fe7 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -2005,6 +2005,15 @@ CharacterCreating.Disabled = 0
+ 
+ CharacterCreating.Disabled.RaceMask = 0
+ 
++#
++#    Shapeshift.SkinColorRaces
++#        Description: Races whose shapeshift forms (player_shapeshift_model) follow skin (fur) color
++#                     instead of hair color, as a comma-separated list of race IDs. Should match the
++#                     client's shapeshiftSkinColorRaces CVar. Needs a restart to change.
++#        Default:     "6,24,25,26,28,35" - (Tauren, Pandaren (neutral, Alliance, Horde), Highmountain Tauren, Vulpera)
++
++Shapeshift.SkinColorRaces = "6,24,25,26,28,35"
++
+ #
+ #    CharacterCreating.Disabled.ClassMask
+ #        Description: Mask of classes which cannot be created by players.
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
 index 004a5a481..f13c92525 100644
 --- a/src/server/game/Entities/Player/Player.cpp
@@ -349,36 +369,49 @@ index ce188c543..d52175d82 100644
  
      if (IsMounted())
 diff --git a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
-index 6f82eb7f3..981c01985 100644
+index 6f82eb7f3..487ca6863 100644
 --- a/src/server/game/Globals/ObjectMgr.cpp
 +++ b/src/server/game/Globals/ObjectMgr.cpp
-@@ -1891,10 +1891,21 @@ uint32 ObjectMgr::GetModelForShapeshift(ShapeshiftForm form, Player* player) con
+@@ -55,6 +55,7 @@
+ #include <boost/algorithm/string.hpp>
+ #include <limits>
+ #include <numeric>
++#include <unordered_set>
+ 
+ #include "ItemEnchantmentMgr.h"
+ 
+@@ -1889,12 +1890,25 @@ void ObjectMgr::LoadPlayerShapeshiftModels()
+ 
+ uint32 ObjectMgr::GetModelForShapeshift(ShapeshiftForm form, Player* player) const
  {
-     uint8 customizationID;
+-    uint8 customizationID;
++    // Races whose forms follow fur (skin) color rather than hair color (Shapeshift.SkinColorRaces, to match the
++    // client's shapeshiftSkinColorRaces)
++    static std::unordered_set<uint8> const skinColorRaces = []
++    {
++        std::unordered_set<uint8> races;
++        std::string const list = sConfigMgr->GetOption<std::string>("Shapeshift.SkinColorRaces", "6,24,25,26,28,35");
++        for (std::string_view race : Acore::Tokenize(list, ',', false))
++        {
++            if (Optional<uint8> raceId = Acore::StringTo<uint8>(race))
++                races.insert(*raceId);
++            else
++                LOG_ERROR("server.loading", "Shapeshift.SkinColorRaces: ignoring '{}' (expected a race ID)", race);
++        }
++        return races;
++    }();
  
 -    if (player->GetTeamId() == TEAM_ALLIANCE)
 -        customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
 -    else
 -        customizationID = player->GetByteValue(PLAYER_BYTES, 0); // Use Skin Color
-+    // Races whose forms follow fur (skin) color; matches the client's shapeshiftSkinColorRaces default
-+    switch (player->getRace())
-+    {
-+        case RACE_TAUREN:
-+        case RACE_PANDAREN:
-+        case RACE_ALLIANCEPANDAREN:
-+        case RACE_HORDEPANDAREN:
-+        case RACE_HIGHMOUNTAINTAUREN:
-+        case RACE_VULPERA:
-+            customizationID = player->GetByteValue(PLAYER_BYTES, 0); // Use Skin Color
-+            break;
-+        default:
-+            customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
-+            break;
-+    }
++    uint8 const customizationID = skinColorRaces.count(player->getRace())
++        ? player->GetByteValue(PLAYER_BYTES, 0)  // Use Skin Color
++        : player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
  
      // getGender() tracks the active display model; real gender lives in PLAYER_BYTES_3
      uint8 gender = player->GetByteValue(PLAYER_BYTES_3, PLAYER_BYTES_3_OFFSET_GENDER);
-@@ -4870,7 +4881,7 @@ void ObjectMgr::LoadPlayerInfo()
+@@ -4870,7 +4884,7 @@ void ObjectMgr::LoadPlayerInfo()
                      continue;
  
                  // skip expansion races if not playing with expansion
