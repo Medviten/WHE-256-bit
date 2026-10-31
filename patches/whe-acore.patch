@@ -1,5 +1,26 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index d5b599d8c..bf7eea71a 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -4563,6 +4563,16 @@ AllowTwoSide.Interaction.Arena = 0
+ 
+ AllowTwoSide.Interaction.Auction = 0
+ 
++#
++#    AllowTwoSide.EnemyTerritory
++#        Description: Faction Free: do not treat the other faction's zones as hostile territory,
++#                     so entering an enemy capital (or, on PvP realms, any enemy zone) does not
++#                     flag players for PvP.
++#        Default:     0 - (Disabled, stock behaviour)
++#                     1 - (Enabled)
++
++AllowTwoSide.EnemyTerritory = 0
++
+ #
+ #    TalentsInspecting
+ #        Description: Allow inspecting characters from the opposing faction.
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index 004a5a481..f13c92525 100644
+index ce570b134..fc25ad0a6 100644
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
 @@ -67,6 +67,7 @@
@@ -88,7 +109,7 @@ index 004a5a481..f13c92525 100644
          case BREATH_TIMER:
              {
                  if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
-@@ -10813,23 +10853,32 @@ void Player::InitDataForForm(bool reapplyMods)
+@@ -10805,23 +10845,32 @@ void Player::InitDataForForm(bool reapplyMods)
  
  void Player::InitDisplayIds()
  {
@@ -127,7 +148,7 @@ index 004a5a481..f13c92525 100644
              break;
          default:
              LOG_ERROR("entities.player", "Invalid gender {} for player", gender);
-@@ -14247,6 +14296,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
+@@ -14238,6 +14287,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
                  if (HasAura(SPELL_DIVINE_PROTECTION))
                      damage /= 2;
  
@@ -217,27 +238,26 @@ index 6cf62c95d..fbc4e85c3 100644
              break;     // Draenei
      }
 diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
-index a0529ad54..7e2ead2c0 100644
+index 0f6e26625..156d2cfbb 100644
 --- a/src/server/game/Entities/Player/PlayerUpdates.cpp
 +++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
-@@ -1327,6 +1327,8 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
+@@ -1327,13 +1327,16 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
      // in PvE, only opposition team capital
      switch (zone->team)
      {
-+    /* FACTION FREE MOD by GITDALISAR
-+    ---- START COMMENTING OUT FACTIONAL CHECK FOR CITIES ----
++    // Faction Free (by Gitdalisar): with AllowTwoSide.EnemyTerritory, faction zones are never hostile
      case AREATEAM_ALLY:
          pvpInfo.IsInHostileArea =
++            !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY) &&
              GetTeamId(true) != TEAM_ALLIANCE &&
-@@ -1337,6 +1339,8 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
+             (sWorld->IsPvPRealm() || zone->flags & AREA_FLAG_CAPITAL);
+         break;
+     case AREATEAM_HORDE:
+         pvpInfo.IsInHostileArea =
++            !sWorld->getBoolConfig(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY) &&
              GetTeamId(true) != TEAM_HORDE &&
              (sWorld->IsPvPRealm() || zone->flags & AREA_FLAG_CAPITAL);
          break;
-+    ---- STOP COMMENTING OUT FACTIONAL CHECK FOR CITITES ----
-+    END CHANGES FOR FACTION FREE MOD by GITDALISAR */
-     case AREATEAM_NONE:
-         // overwrite for battlegrounds, maybe batter some zone flags but current
-         // known not 100% fit to this
 diff --git a/src/server/game/Entities/Player/RaceMgr.cpp b/src/server/game/Entities/Player/RaceMgr.cpp
 index 347ef0f24..e2b5ab2bf 100644
 --- a/src/server/game/Entities/Player/RaceMgr.cpp
@@ -410,10 +430,10 @@ index 6f82eb7f3..981c01985 100644
  
                  // skip expansion classes if not playing with expansion
 diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
-index 8a43e20de..218a80695 100644
+index 630f99970..9a6392ce8 100644
 --- a/src/server/game/Handlers/CharacterHandler.cpp
 +++ b/src/server/game/Handlers/CharacterHandler.cpp
-@@ -2378,40 +2378,56 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
+@@ -2192,40 +2192,56 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
  
          trans->Append(stmt);
  
@@ -1253,6 +1273,30 @@ index 0a419e5d4..5f0b56124 100644
  
      uint8 const m_effIndex;
      bool m_canBeRecalculated;
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index a39e23b37..a9f40fe88 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -210,6 +210,7 @@ void WorldConfig::BuildConfigCache()
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_GUILD, "AllowTwoSide.Interaction.Guild", false);
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA, "AllowTwoSide.Interaction.Arena", false);
+     SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION, "AllowTwoSide.Interaction.Auction", false);
++    SetConfigValue<bool>(CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY, "AllowTwoSide.EnemyTerritory", false);
+ 
+     SetConfigValue<uint32>(CONFIG_MIN_PLAYER_NAME, "MinPlayerName", 2, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= MAX_PLAYER_NAME; }, "> 0 && <= MAX_PLAYER_NAME");
+     SetConfigValue<uint32>(CONFIG_MIN_CHARTER_NAME, "MinCharterName", 2, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value > 0 && value <= MAX_CHARTER_NAME; }, "> 0 && <= MAX_CHARTER_NAME");
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 4b6bf0075..94066d518 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -36,6 +36,7 @@ enum ServerConfigs
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_GUILD,
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_ARENA,
+     CONFIG_ALLOW_TWO_SIDE_INTERACTION_AUCTION,
++    CONFIG_ALLOW_TWO_SIDE_ENEMY_TERRITORY,
+     CONFIG_ALL_TAXI_PATHS,
+     CONFIG_TAXI_FLIGHT_SPEED,
+     CONFIG_INSTANCE_IGNORE_LEVEL,
 diff --git a/src/server/scripts/Commands/cs_lookup.cpp b/src/server/scripts/Commands/cs_lookup.cpp
 index 4fb3c66ab..fe68d66da 100644
 --- a/src/server/scripts/Commands/cs_lookup.cpp
