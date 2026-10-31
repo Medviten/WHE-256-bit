@@ -1,8 +1,8 @@
 diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
-index d5b599d8c..bf7eea71a 100644
+index 396d80180..d5f4d174a 100644
 --- a/src/server/apps/worldserver/worldserver.conf.dist
 +++ b/src/server/apps/worldserver/worldserver.conf.dist
-@@ -4563,6 +4563,16 @@ AllowTwoSide.Interaction.Arena = 0
+@@ -4572,6 +4572,16 @@ AllowTwoSide.Interaction.Arena = 0
  
  AllowTwoSide.Interaction.Auction = 0
  
@@ -20,7 +20,7 @@ index d5b599d8c..bf7eea71a 100644
  #    TalentsInspecting
  #        Description: Allow inspecting characters from the opposing faction.
 diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
-index ce570b134..fc25ad0a6 100644
+index 004a5a481..f13c92525 100644
 --- a/src/server/game/Entities/Player/Player.cpp
 +++ b/src/server/game/Entities/Player/Player.cpp
 @@ -67,6 +67,7 @@
@@ -109,7 +109,7 @@ index ce570b134..fc25ad0a6 100644
          case BREATH_TIMER:
              {
                  if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
-@@ -10805,23 +10845,32 @@ void Player::InitDataForForm(bool reapplyMods)
+@@ -10813,23 +10853,32 @@ void Player::InitDataForForm(bool reapplyMods)
  
  void Player::InitDisplayIds()
  {
@@ -148,7 +148,7 @@ index ce570b134..fc25ad0a6 100644
              break;
          default:
              LOG_ERROR("entities.player", "Invalid gender {} for player", gender);
-@@ -14238,6 +14287,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
+@@ -14247,6 +14296,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
                  if (HasAura(SPELL_DIVINE_PROTECTION))
                      damage /= 2;
  
@@ -238,7 +238,7 @@ index 6cf62c95d..fbc4e85c3 100644
              break;     // Draenei
      }
 diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
-index 0f6e26625..156d2cfbb 100644
+index a0529ad54..55b0f5008 100644
 --- a/src/server/game/Entities/Player/PlayerUpdates.cpp
 +++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
 @@ -1327,13 +1327,16 @@ void Player::UpdateZone(uint32 newZone, uint32 newArea, bool force)
@@ -430,10 +430,10 @@ index 6f82eb7f3..981c01985 100644
  
                  // skip expansion classes if not playing with expansion
 diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
-index 630f99970..9a6392ce8 100644
+index 8a43e20de..218a80695 100644
 --- a/src/server/game/Handlers/CharacterHandler.cpp
 +++ b/src/server/game/Handlers/CharacterHandler.cpp
-@@ -2192,40 +2192,56 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
+@@ -2378,40 +2378,56 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
  
          trans->Append(stmt);
  
