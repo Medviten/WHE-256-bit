@@ -7,6 +7,10 @@
         - Lightforged Felcrusher
     - Legion racial faction: Army of the Light
 
+### Appearance
+- Models, textures and customization (CharSections, hair geosets, facial styles) from Kalibro's races package
+  (Kalibros_Races_20261012, its race 21), imported with `tools/races/kalibro_races.py`
+
 ### Known Issues
 - Doesn't look right
 

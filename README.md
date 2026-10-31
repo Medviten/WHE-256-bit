@@ -111,6 +111,8 @@ git add .
 git commit -m "Add whe-playerbots patch"
 ```
 
+Some modpaks ship patches of their own, in `modpaks/<modpak>/patches/<target>/` (e.g. `individual-progression` for mod-individual-progression). `tools/scripts/build-dbc.sh --patches-only` combines those of the modpaks in your manifest into `combined-<target>.patch`; apply them the same way, from that repository's root.
+
 ## 3. Set up the DBC-SQL pipeline
 
 Edit the config file in [DBCTool](https://github.com/Medviten/DBCTool-256-bit) and point it to a disposable database (e.g. `dbc`). It will **drop and recreate** it, which requires the proper permissions, and backing up your DB first is a very good idea. SQL dumps are cheap.
@@ -245,6 +247,7 @@ Special thanks to:
 * **Nehyren** – [retroported](https://github.com/tbcstar/Nehyren) Shadowlands models
 * The **Open Azeroth** team – Open Azeroth map edits
 * **gitdalisar** – [Faction Free]([url](https://github.com/gitdalisar/mod-Faction-Free)) module
+* **Kalibro** – Lightforged Draenei, Nightborne and Void Elf models, textures and customization data from his races package
 * **Shotboom12** – [Aetheria](https://github.com/Shotboom12/aetheria-client)'s Kyrian and Venthyr models, customization catalogs and [racials](https://github.com/Shotboom12/aetheria-server)
 * The AzerothCore community
 * Everyone else who has helped test, debug, translate and improve the project

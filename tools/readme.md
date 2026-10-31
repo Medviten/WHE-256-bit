@@ -14,6 +14,11 @@
 
 - `racemask/word2vars.py`, `racemask/word2.py`: add second race-mask word handling (races 65-128) to config.sql,
   variables.sql and the modpak SQL. Run both with `report`, then `apply`, after adding a race above 64 (see word2.py).
+- `racemask/port_32bit.py <modpaks> <WHE-32-bit modpaks> [MODPAK ...]` (then again with `--config`): ports modpaks
+  to the [32-bit version](https://github.com/Medviten/WHE-32-bit): drops the second race-mask word, turns the fixed
+  race IDs into its auto-incremented ones and keeps what the 32-bit files do differently on purpose (their race ID
+  lines, the KEEP_FILES/KEEP_VARS lists, lines only they have). Reports what 32-bit masks cannot hold. Files a modpak
+  no longer has are not deleted there
 - `racemask/patch_edit.py`: helpers for editing the hand-maintained integration/*.patch files. Inserts or replaces
   `+` lines at exact anchors and recomputes every hunk header, so the patches stay valid (`check_headers()` verifies).
 
@@ -36,6 +41,9 @@
       use are copied (the package also has palettes for the options fixed here)
     - `races/aetheria_racials.py <aetheria-client> <aetheria-server>`: adds Aetheria's Kyrian and Venthyr racials to
       F-068/F-069 at Aetheria's spell ids (their C++ scripts are in `src/`, two core hunks in `patches/whe-acore.patch`)
+- `races/kalibro_races.py <Kalibros_Races folder> [modpaks] [WHE-common patch-A.MPQ] [more modpaks dirs]`: takes Lightforged
+  Draenei, Nightborne and Void Elf (F-033..F-035) from Kalibro's races package: rewrites their customization SQL from its
+  DBCs and replaces their WHE-common folders with the model and texture files used
 - `models/m2_anim_split.py <model.m2> [output folder]`: moves a 3.3.5 model's animations into per-sequence .anim files,
   as Blizzard's character models keep them (a sequence loads the first time it plays); checks the result against the original
     - `races/dracthyr_modpaks.py <built DBFilesClient>`: generates F-073/F-074 (Dracthyr, races 52/70) with the same templates;

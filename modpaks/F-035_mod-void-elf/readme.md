@@ -7,6 +7,10 @@
         - Starcursed Voidstrider
     - Legion racial faction: Argussian Reach
 
+### Appearance
+- Models, textures and customization (CharSections, hair geosets, facial styles) from Kalibro's races package
+  (Kalibros_Races_20261012, its race 19), imported with `tools/races/kalibro_races.py`
+
 ### Known Issues
 - No sound yet
 
