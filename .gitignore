@@ -64,5 +64,5 @@ dbctool
 spell_editor_views.sql
 tools/dbctool
 
-# Combined modpak patches written by build-dbc.sh (collect_modpak_patches)
+# Combined patches written by build-patch.sh
 tools/scripts/combined-*.patch

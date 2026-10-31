@@ -28,11 +28,6 @@ source "$CONFIG_FILE"
 # true for a one-off run without editing build-dbc.conf.
 SKIP_DBC_BUILD="${SKIP_DBC_BUILD:-false}"
 
-# When true, the script does nothing except collect the modpaks' patches
-# (see collect_modpak_patches) and exit -- no DBC build, no extra SQL
-# targets, no mysql/dbctool needed.
-PATCHES_ONLY=false
-
 # Config-file default; --force-rebuild on the command line overrides this
 # to true. When false, an extra SQL database that is reset from a dump is
 # only rebuilt if its inputs changed since its last successful build (see
@@ -44,15 +39,12 @@ for arg in "$@"; do
         --skip-dbc)
             SKIP_DBC_BUILD=true
             ;;
-        --patches-only)
-            PATCHES_ONLY=true
-            ;;
         --force-rebuild)
             FORCE_REBUILD=true
             ;;
         -h|--help)
             cat << USAGE
-Usage: $(basename "$0") [--skip-dbc] [--force-rebuild] [--patches-only]
+Usage: $(basename "$0") [--skip-dbc] [--force-rebuild]
 
   --skip-dbc    Skip the DBC build entirely (no database recreate, dump
                 load, table detection, export, or deploy) and go straight
@@ -67,13 +59,8 @@ Usage: $(basename "$0") [--skip-dbc] [--force-rebuild] [--patches-only]
                 successful build. Same effect as setting
                 FORCE_REBUILD=true in $CONFIG_FILE.
 
-  --patches-only
-                Only collect the patches that the modpaks in the
-                manifest ship in patches/<target>/ (e.g. patches/core/,
-                patches/client/) into combined-<target>.patch in
-                PATCH_OUTPUT_DIR, then stop. Every build does this too;
-                this flag skips the rest -- no database work, no
-                dbctool/mysql required.
+Patches for AzerothCore, mod-playerbots, the client etc. are combined by
+build-patch.sh instead.
 USAGE
             exit 0
             ;;
@@ -103,11 +90,6 @@ DBC_DUMP="${DBC_DUMP:-}"
 # -- anything else under $MODPAKS is left alone and just noted as
 # skipped.
 MANIFEST_FILE="${MANIFEST_FILE:-$SCRIPT_DIR/build-dbc.manifest}"
-
-# Where collect_modpak_patches writes combined-<target>.patch: one file
-# per patch target found in the modpaks (e.g. combined-core.patch,
-# combined-client.patch). Defaults to this script's directory.
-PATCH_OUTPUT_DIR="${PATCH_OUTPUT_DIR:-$SCRIPT_DIR}"
 
 # Optional file of session variables (e.g. SET @Goblin = ...), expected
 # directly inside $MODPAKS (not inside any modpak folder). If present,
@@ -415,115 +397,6 @@ load_modpak_manifest() {
 
         MODPAK_DIRS+=("$modpak_dir")
     done < "$MANIFEST_FILE"
-}
-
-# Prints the repo-relative path of every file a patch touches, one per
-# line: the "+++ b/<path>" side, or the "--- a/<path>" side for a deleted
-# file. Works for `git diff` and `diff -u` output alike.
-patch_touched_files() {
-    awk '
-        /^--- / { old = $2; next }
-        /^\+\+\+ / {
-            path = ($2 == "/dev/null") ? old : $2
-            sub(/^[ab]\//, "", path)
-            print path
-        }
-    ' "$1" | sort -u
-}
-
-# Collects the patches the modpaks in the manifest ship for other repos.
-# A modpak puts them in patches/<target>/*.patch, where <target> names
-# the repo they apply to (core = azerothcore-wotlk, client = wowdecomp,
-# playerbots = mod-playerbots, ...; any folder name works), each made
-# with `git diff` from that repo's root. For every target, the patches
-# are concatenated in manifest order (then by filename within a modpak)
-# into $PATCH_OUTPUT_DIR/combined-<target>.patch, each one preceded by a
-# "# <modpak>/<file>" line, which git apply and patch skip as text
-# between patches.
-#
-# Patches made separately against the same base can conflict when they
-# touch the same file, so any file touched by more than one modpak is
-# reported. Old combined-*.patch files are removed first, so a target no
-# modpak ships anymore doesn't leave a stale patch behind.
-collect_modpak_patches() {
-    echo
-    echo "============================================================"
-    echo "Collecting modpak patches"
-    echo "============================================================"
-
-    mkdir -p "$PATCH_OUTPUT_DIR"
-    rm -f "$PATCH_OUTPUT_DIR"/combined-*.patch
-
-    local -a targets=()
-    local -A seen=()
-    local dir target_dir target
-    for dir in "${MODPAK_DIRS[@]}"; do
-        [[ -d "$dir/patches" ]] || continue
-        while IFS= read -r -d '' target_dir; do
-            target="$(basename "$target_dir")"
-            if [[ -z "${seen[$target]:-}" ]]; then
-                seen["$target"]=1
-                targets+=("$target")
-            fi
-        done < <(find "$dir/patches" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
-    done
-
-    if (( ${#targets[@]} == 0 )); then
-        echo "No modpak in the manifest ships patches. Nothing to do."
-        return 0
-    fi
-
-    local output patch modpak count file
-    for target in "${targets[@]}"; do
-        output="$PATCH_OUTPUT_DIR/combined-$target.patch"
-        count=0
-        local -A touched_by=()
-
-        {
-            echo "# Combined '$target' patch, collected by $(basename "$0") from the"
-            echo "# modpaks in $(basename "$MANIFEST_FILE"), in manifest order."
-        } > "$output"
-
-        for dir in "${MODPAK_DIRS[@]}"; do
-            [[ -d "$dir/patches/$target" ]] || continue
-            modpak="$(basename "$dir")"
-
-            while IFS= read -r -d '' patch; do
-                {
-                    echo
-                    echo "# $modpak/$(basename "$patch")"
-                    cat "$patch"
-                    # Keep the next "# ..." line from joining a last line
-                    # that has no newline
-                    [[ -z "$(tail -c 1 "$patch")" ]] || echo
-                } >> "$output"
-                count=$((count + 1))
-                echo "  $target: $modpak/$(basename "$patch")"
-
-                while IFS= read -r file; do
-                    if [[ -z "${touched_by[$file]:-}" ]]; then
-                        touched_by["$file"]="$modpak"
-                    elif [[ " ${touched_by[$file]} " != *" $modpak "* ]]; then
-                        touched_by["$file"]+=" $modpak"
-                    fi
-                done < <(patch_touched_files "$patch")
-            done < <(find "$dir/patches/$target" -maxdepth 1 -type f -name '*.patch' -print0 | sort -z)
-        done
-
-        for file in "${!touched_by[@]}"; do
-            if [[ "${touched_by[$file]}" == *" "* ]]; then
-                echo "  WARNING: $file is patched by several modpaks (${touched_by[$file]})." >&2
-                echo "           Check that their combined-$target.patch hunks still apply in order." >&2
-            fi
-        done
-        unset touched_by
-
-        echo "Wrote $count patch(es) to: $output"
-    done
-
-    echo
-    echo "Apply each combined patch from its repo's root, e.g.:"
-    echo "  git apply --ignore-space-change --ignore-whitespace combined-core.patch"
 }
 
 # Prints $1's content with every occurrence of $DBC_DB_PLACEHOLDER, and
@@ -926,30 +799,28 @@ echo "Checking configuration..."
 [[ -d "$MODPAKS" ]] \
     || { echo "ERROR: MODPAKS does not exist: $MODPAKS" >&2; exit 1; }
 
-if [[ "$PATCHES_ONLY" != true ]]; then
-    if [[ "$SKIP_DBC_BUILD" != true ]]; then
-        [[ -d "$DBCTOOL" ]] \
-            || { echo "ERROR: DBCTOOL does not exist: $DBCTOOL" >&2; exit 1; }
+if [[ "$SKIP_DBC_BUILD" != true ]]; then
+    [[ -d "$DBCTOOL" ]] \
+        || { echo "ERROR: DBCTOOL does not exist: $DBCTOOL" >&2; exit 1; }
 
-        [[ -x "$DBCTOOL/dbctool" ]] \
-            || { echo "ERROR: dbctool executable not found: $DBCTOOL/dbctool" >&2; exit 1; }
+    [[ -x "$DBCTOOL/dbctool" ]] \
+        || { echo "ERROR: dbctool executable not found: $DBCTOOL/dbctool" >&2; exit 1; }
 
-        [[ -d "$ORIGINAL_DBC" ]] \
-            || { echo "ERROR: ORIGINAL_DBC does not exist: $ORIGINAL_DBC" >&2; exit 1; }
+    [[ -d "$ORIGINAL_DBC" ]] \
+        || { echo "ERROR: ORIGINAL_DBC does not exist: $ORIGINAL_DBC" >&2; exit 1; }
 
-        [[ -d "$SERVER_DBC" ]] \
-            || { echo "ERROR: SERVER_DBC does not exist: $SERVER_DBC" >&2; exit 1; }
+    [[ -d "$SERVER_DBC" ]] \
+        || { echo "ERROR: SERVER_DBC does not exist: $SERVER_DBC" >&2; exit 1; }
 
-        command -v rsync >/dev/null \
-            || { echo "ERROR: rsync command not found." >&2; exit 1; }
-    fi
-
-    command -v mysql >/dev/null \
-        || { echo "ERROR: mysql command not found." >&2; exit 1; }
-
-    command -v sha256sum >/dev/null \
-        || { echo "ERROR: sha256sum command not found." >&2; exit 1; }
+    command -v rsync >/dev/null \
+        || { echo "ERROR: rsync command not found." >&2; exit 1; }
 fi
+
+command -v mysql >/dev/null \
+    || { echo "ERROR: mysql command not found." >&2; exit 1; }
+
+command -v sha256sum >/dev/null \
+    || { echo "ERROR: sha256sum command not found." >&2; exit 1; }
 
 ###############################################################################
 # Load modpak manifest (definitive whitelist + processing order)
@@ -983,16 +854,6 @@ while IFS= read -r -d '' dir; do
         echo "  (not in manifest, skipping: $name)"
     fi
 done < <(find "$MODPAKS" -mindepth 1 -maxdepth 1 -type d -print0 | sort -z)
-
-###############################################################################
-# Collect modpak patches (core, client, ...); --patches-only stops here
-###############################################################################
-
-collect_modpak_patches
-
-if [[ "$PATCHES_ONLY" == true ]]; then
-    exit 0
-fi
 
 ###############################################################################
 # Recreate DBC database and load dump

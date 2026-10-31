@@ -93,25 +93,33 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ---
 
-## 2. Apply whe-acore.patch (and optionally playerbots patch)
+## 2. Apply the core patch (and optionally the playerbots patch)
 
-Copy WHE-256-bit/patches/whe-acore.patch into your AzerothCore root directory. Apply it like this:
+Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines WHE's own patches in `patches/` with the patches of the modpaks in your manifest (see [Modpak patches](#modpak-patches)), in manifest order, into one file per repo in tools/scripts/:
+
+| File | Contains | Apply from |
+| --- | --- | --- |
+| `combined-core.patch` | whe-acore.patch + modpak `patches/core/` | AzerothCore root |
+| `combined-playerbots.patch` | whe-playerbots.patch + modpak `patches/playerbots/` | AzerothCore/modules/mod-playerbots/ |
+| `combined-<target>.patch` | any other modpak `patches/<target>/`, e.g. `individual-progression` | that repo's root |
+
+Copy combined-core.patch into your AzerothCore root directory. Apply it like this:
 
 ```text
-git apply --ignore-space-change --ignore-whitespace whe-acore.patch
+git apply --ignore-space-change --ignore-whitespace combined-core.patch
 git add .
-git commit -m "Add whe-acore patch"
+git commit -m "Add WHE core patch"
 ```
 
-If you want playerbots, also copy WHE-256-bit/patches/whe-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
+If you want playerbots, also copy combined-playerbots.patch into your AzerothCore/modules/mod-playerbots/ directory and apply:
 
 ```text
-git apply --ignore-space-change --ignore-whitespace whe-playerbots.patch
+git apply --ignore-space-change --ignore-whitespace combined-playerbots.patch
 git add .
-git commit -m "Add whe-playerbots patch"
+git commit -m "Add WHE playerbots patch"
 ```
 
-Some modpaks ship patches of their own, in `modpaks/<modpak>/patches/<target>/` (e.g. `individual-progression` for mod-individual-progression). `tools/scripts/build-dbc.sh --patches-only` combines those of the modpaks in your manifest into `combined-<target>.patch`; apply them the same way, from that repository's root.
+Without the script, WHE-256-bit/patches/whe-acore.patch and whe-playerbots.patch apply the same way, just without any modpak patches.
 
 ## 3. Set up the DBC-SQL pipeline
 
@@ -137,13 +145,9 @@ Some modpaks also need code changes outside this module, e.g. F-063 (Running Wil
 | `patches/playerbots/` | mod-playerbots |
 | `patches/client/` | wowdecomp-256-bit |
 
-Every run of build-dbc.sh collects the patches of the modpaks in the manifest, in manifest order, into one `combined-<target>.patch` per target in tools/scripts/ (or `PATCH_OUTPUT_DIR`). `build-dbc.sh --patches-only` does just that, without touching any database. Apply them after whe-acore.patch, the same way:
+build-patch.sh adds them to the combined patches described in step 2, after whe-acore.patch/whe-playerbots.patch, in manifest order.
 
-```text
-git apply --ignore-space-change --ignore-whitespace combined-core.patch
-```
-
-The script warns when two modpaks patch the same file, since patches made separately can conflict there.
+The script notes every file that several of these patches touch, since patches made separately can conflict there.
 
 To add patches to a modpak, make the change in the target repo and save `git diff` from its root, e.g. `git diff > modpaks/F-063_worgen_racial_spells/patches/client/running-wild.patch`.
 
