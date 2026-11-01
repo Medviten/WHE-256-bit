@@ -10,7 +10,8 @@
     (fur) color for the races in the shapeshiftSkinColorRaces setting, falling back to SpellShapeshiftForm.dbc.
 
     Client functions used: GetCharCustomizeShapeshiftDisplay(form), SetModelCreatureDisplay(frameName, displayID, zoom).
-    (A plain Model frame on purpose: a ModelFFX clears the whole screen when it draws.) Left-drag the preview to turn it.
+    (A plain Model frame on purpose: a ModelFFX clears the whole screen when it draws.) Left-drag the preview to turn it,
+    scroll over it to zoom in or out.
 --]]
 
 -- Forms in order (SpellShapeshiftForm IDs). The first one is shown by default.
@@ -31,6 +32,10 @@ local ROW_WIDTH = 260;
 -- The model's size on screen follows the frame's diagonal, so the camera moves in by as much as the screen shrank
 -- from its original 340x400 to keep the model as large as before
 local MODEL_ZOOM = math.sqrt(340 * 340 + 400 * 400) / math.sqrt(SCREEN_WIDTH * SCREEN_WIDTH + SCREEN_HEIGHT * SCREEN_HEIGHT);
+
+-- Mouse-wheel zoom on top of that: each notch scales by ZOOM_STEP, kept between ZOOM_MIN and ZOOM_MAX
+local ZOOM_STEP, ZOOM_MIN, ZOOM_MAX = 1.15, 0.5, 2.5;
+local userZoom = 1;
 
 -- Everything sits in a container that is only shown while a druid is selected
 local container = CreateFrame("Frame", "CharacterCreateDruidFormFrame", CharacterCreateFrame);
@@ -57,6 +62,7 @@ local model = CreateFrame("Model", "CharacterCreateDruidFormPreview", screen);
 model:SetPoint("TOPLEFT", screen, "TOPLEFT", 6, -6);
 model:SetPoint("BOTTOMRIGHT", screen, "BOTTOMRIGHT", -6, 6);
 model:EnableMouse(true);
+model:EnableMouseWheel(true);
 
 -- "< Cat Form >" row, styled like the appearance rows
 local row = CreateFrame("Frame", "CharacterCreateDruidFormRow", screen);
@@ -134,7 +140,7 @@ local function UpdatePreview(force)
 
     if ( force or display ~= shownDisplay ) then
         shownDisplay = display;
-        SetModelCreatureDisplay(model:GetName(), display or 0, MODEL_ZOOM);
+        SetModelCreatureDisplay(model:GetName(), display or 0, MODEL_ZOOM * userZoom);
         model:SetFacing(model.facing or -0.5);
     end
 end
@@ -182,6 +188,16 @@ end);
 model:SetScript("OnMouseUp", function(self, button)
     if ( button == "LeftButton" ) then
         self.dragX = nil;
+    end
+end);
+
+-- The zoom is part of the camera the client sets up with the model, so zooming reloads it (the form stays the same)
+model:SetScript("OnMouseWheel", function(self, delta)
+    local zoom = math.max(ZOOM_MIN, math.min(ZOOM_MAX, userZoom * ZOOM_STEP ^ delta));
+
+    if ( zoom ~= userZoom ) then
+        userZoom = zoom;
+        UpdatePreview(true);
     end
 end);
 
