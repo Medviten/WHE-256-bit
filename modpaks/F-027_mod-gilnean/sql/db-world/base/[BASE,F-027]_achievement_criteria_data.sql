@@ -10,4 +10,4 @@ REPLACE INTO `achievement_criteria_data` (
 (@GilneanCriteria2,  9, 18,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@GilneanCriteria2, 10,  1,       0, ''), -- Achievement 2422 (Shake Your Bunny-Maker)
 (@GilneanCriteria3,  2,  0, @Gilnean, ''), -- Achievement  291 (Check Your Head)
-(@GilneanCriteria4,  2,  0, @Gilnean, ''); -- Achievement 1441* (Realm First! Level 80 Gilnean)
+(@GilneanCriteria4, 21,  0, @Gilnean, ''); -- Achievement 1441* (Realm First! Level 80 Gilnean)
