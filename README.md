@@ -95,6 +95,14 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply the core patch (and optionally the playerbots patch)
 
+The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include whe-acore.patch and whe-playerbots.patch. **If you use them, skip this step.** They also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches. Patches for other repositories, such as `combined-individual-progression.patch`, are not affected.
+
+To apply the patches yourself instead, start from the `whe-patch-base` tag in both repositories, which is the code without the WHE changes:
+
+```text
+git switch -c whe-patched whe-patch-base
+```
+
 Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines WHE's own patches in `patches/` with the patches of the modpaks in your manifest (see [Modpak patches](#modpak-patches)), in manifest order, into one file per repo in tools/scripts/:
 
 | File | Contains | Apply from |
