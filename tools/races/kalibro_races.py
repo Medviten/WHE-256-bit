@@ -76,8 +76,9 @@ def customization(package, race, kfolder):
     for v in dbc_rows(package, 'CharacterFacialHairStyles')[0]:   # race, gender, variation, geosets
         if v[0] == race:
             row = (v[1], v[2]) + tuple(g if g != 0xCCCCCCCC else 0 for g in v[3:8])
-            # geoset columns 1-5 are groups 1xx, 3xx, 2xx, 16xx and 17xx (eyes)
-            score = missing_geosets(geosets.get(row[0], ()), zip((1, 3, 2, 16, 17), row[2:7]))
+            # geoset columns 1-5 are groups 1xx, 3xx, 2xx, 16xx and 17xx (eyes). Value 1 means "none" in the complete
+            # set and the models have no x01 geoset, so it doesn't count as missing: stray rows would win otherwise
+            score = missing_geosets(geosets.get(row[0], ()), [p for p in zip((1, 3, 2, 16, 17), row[2:7]) if p[1] != 1])
             if row[:2] not in facial or score < facial[row[:2]][0]:
                 facial[row[:2]] = (score, row)
     return sections, sorted(r for _, r in hair.values()), sorted(r for _, r in facial.values())

@@ -27,13 +27,32 @@ KEEP_FILES = {
     "F-024_mod-playable-worgen/sql/db-world/base/[F-024]_spell_script_names.sql",
     "F-026_custom-race-support/readme.md",                              # no spillover table (256-bit core only)
     "F-026_custom-race-support/variables.sql",
+    "F-027_mod-gilnean/readme.md",                                      # Gilnean is an altered form only (race 213)
+    "F-027_mod-gilnean/variables.sql",
+    "F-027_mod-gilnean/sql/db-world/extra/[BASE,F-027]_cataclysm-starting-gear.sql",
     "F-032_mod-taunka/dbc/[BASE,F-032]_creaturemodeldata.sql",          # Taunka keep the Tauren female
     "F-063_worgen_racial_spells/dbc/[F-063]_spell.sql",
 }
 SKIP_FILES = {
     "F-026_custom-race-support/sql/db-world/base/[BASE,F-026]_reputation_spillover_faction.sql",  # 256-bit core table
+    # Gilnean is an altered form only in 32-bit (race 213, no mask bit), so it has no playable data
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_achievement.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_achievement_criteria.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_charbaseinfo.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_charstartoutfit.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_faction.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_factiontemplate.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_helmetgeosetvisdata.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_namegen.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_skillline.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_skilllineability.sql",
+    "F-027_mod-gilnean/dbc/[BASE,F-027]_skillraceclassinfo.sql",
+    "F-027_mod-gilnean/sql/db-world/base/[BASE,F-027]_achievement_criteria_data.sql",
+    "F-027_mod-gilnean/sql/db-world/base/[BASE,F-027]_player_race_stats.sql",
+    "F-027_mod-gilnean/sql/db-world/base/[BASE,F-027]_playercreateinfo.sql",
+    "F-027_mod-gilnean/sql/db-world/base/[BASE,F-027]_playercreateinfo_action.sql",
 }
-KEEP_VARS = {"GoblinMask", "GoblinHelmetMask", "TaunkaFemaleModel"}  # config.sql
+KEEP_VARS = {"GoblinMask", "GoblinHelmetMask", "TaunkaFemaleModel", "GilneanMask", "GilneanFaction", "GilneanFactionTemplate"}  # config.sql
 SET_VAR = re.compile(r"^(?:--\s*)?SET @(\w+)\s*:?=")
 
 MASK_COLS = {"reputation_race_mask_1", "reputation_race_mask_2", "reputation_race_mask_3", "reputation_race_mask_4",

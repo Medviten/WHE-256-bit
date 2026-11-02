@@ -58,5 +58,6 @@ WHERE `id` IN (
     @HozenFaction,              @SylvariFaction,
     @MantidFaction,             @EtherealFaction,
     @KyrianFaction,             @VenthyrFaction,
-    @BansheeFaction,            @FacelessOneFaction
+    @BansheeFaction,            @FacelessOneFaction,
+    @TaunkaFaction,             @SlimeGiantFaction
 );
