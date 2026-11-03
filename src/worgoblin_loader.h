@@ -8,7 +8,6 @@ void AddSC_venthyr_racials();
 void AddWHE_256_bitScripts()
 {
     Add_Worgoblin();
-    AddSC_mod_race_costumes();
     AddSC_kyrian_hover();
     AddSC_kyrian_racials();
     AddSC_venthyr_racials();
