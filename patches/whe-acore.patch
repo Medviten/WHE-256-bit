@@ -99,15 +99,6 @@ index 004a5a481..f13c92525 100644
                      voucherId = 22888; break; // Azure Watch Gift Voucher
                  default:
                      break;
-@@ -874,7 +914,7 @@ int32 Player::getMaxTimer(MirrorTimerType timer)
-     switch (timer)
-     {
-         case FATIGUE_TIMER:
--            return MINUTE * IN_MILLISECONDS;
-+            return DISABLED_MIRROR_TIMER; // MINUTE * IN_MILLISECONDS;
-         case BREATH_TIMER:
-             {
-                 if (!IsAlive() || HasWaterBreathingAura() || GetSession()->GetSecurity() >= AccountTypes(sWorld->getIntConfig(CONFIG_DISABLE_BREATHING)))
 @@ -10813,23 +10853,32 @@ void Player::InitDataForForm(bool reapplyMods)
  
  void Player::InitDisplayIds()
@@ -147,17 +138,6 @@ index 004a5a481..f13c92525 100644
              break;
          default:
              LOG_ERROR("entities.player", "Invalid gender {} for player", gender);
-@@ -14247,6 +14296,10 @@ void Player::HandleFall(MovementInfo const& movementInfo)
-                 if (HasAura(SPELL_DIVINE_PROTECTION))
-                     damage /= 2;
- 
-+                // Kyrian racial Ascended Wings (spell 111104, WHE's F-068 from Aetheria's package) halves fall damage
-+                if (HasAura(111104))
-+                    damage /= 2;
-+
-                 final_damage = EnvironmentalDamage(DAMAGE_FALL, damage);
-             }
- 
 diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
 index 6cf62c95d..fbc4e85c3 100644
 --- a/src/server/game/Entities/Player/PlayerTaxi.cpp
@@ -1233,37 +1213,6 @@ index f6ad1b90b..57e4cfee5 100644
                                      target->SetDisplayId(target->getGender() == GENDER_MALE ? 25036 : 25047);
                                  default:
                                      break;
-@@ -6526,7 +6836,17 @@ void AuraEffect::HandlePeriodicHealthLeechAuraTick(Unit* target, Unit* caster) c
- 
-     float gainMultiplier = GetSpellInfo()->Effects[GetEffIndex()].CalcValueMultiplier(caster);
- 
--    uint32 heal = uint32(caster->SpellHealingBonusDone(caster, GetSpellInfo(), uint32(new_damage * gainMultiplier), DOT, GetEffIndex(), 0.0f, GetBase()->GetStackAmount()));
-+    uint32 baseHeal = uint32(new_damage * gainMultiplier);
-+    // Venthyr racial Crimson Feast (spell 111200, WHE's F-069 from Aetheria's package) heals half its damage: keep
-+    // the fraction between ticks, or one-damage ticks at low level would never heal
-+    if (GetId() == 111200)
-+    {
-+        double const exactHeal = double(new_damage) * gainMultiplier + m_leechRemainder;
-+        baseHeal = uint32(exactHeal);
-+        m_leechRemainder = exactHeal - baseHeal;
-+    }
-+
-+    uint32 heal = uint32(caster->SpellHealingBonusDone(caster, GetSpellInfo(), baseHeal, DOT, GetEffIndex(), 0.0f, GetBase()->GetStackAmount()));
-     heal = uint32(caster->SpellHealingBonusTaken(caster, GetSpellInfo(), heal, DOT, GetBase()->GetStackAmount()));
- 
-     HealInfo healInfo(caster, caster, heal, GetSpellInfo(), GetSpellInfo()->GetSchoolMask());
-diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.h b/src/server/game/Spells/Auras/SpellAuraEffects.h
-index 0a419e5d4..5f0b56124 100644
---- a/src/server/game/Spells/Auras/SpellAuraEffects.h
-+++ b/src/server/game/Spells/Auras/SpellAuraEffects.h
-@@ -141,6 +141,7 @@ private:
-     int32 m_periodicTimer;
-     int32 m_amplitude;
-     uint32 m_tickNumber;
-+    mutable double m_leechRemainder = 0.0; // heal fraction carried between periodic leech ticks (Crimson Feast)
- 
-     uint8 const m_effIndex;
-     bool m_canBeRecalculated;
 diff --git a/src/server/scripts/Commands/cs_lookup.cpp b/src/server/scripts/Commands/cs_lookup.cpp
 index 4fb3c66ab..fe68d66da 100644
 --- a/src/server/scripts/Commands/cs_lookup.cpp
@@ -1292,73 +1241,6 @@ index 647a38069..afc8c0b5b 100644
          }
  
          switch (classid)
-diff --git a/src/server/scripts/Commands/cs_modify.cpp b/src/server/scripts/Commands/cs_modify.cpp
-index 058ca793e..a293959a5 100644
---- a/src/server/scripts/Commands/cs_modify.cpp
-+++ b/src/server/scripts/Commands/cs_modify.cpp
-@@ -415,7 +415,7 @@ public:
-     static bool HandleModifyASpeedCommand(ChatHandler* handler, float allSpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, allSpeed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_ASPEED, LANG_YOURS_ASPEED_CHANGED, allSpeed);
-             target->SetSpeed(MOVE_WALK, allSpeed, true);
-@@ -432,7 +432,7 @@ public:
-     static bool HandleModifySpeedCommand(ChatHandler* handler, float speed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, speed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, speed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_SPEED, LANG_YOURS_SPEED_CHANGED, speed);
-             target->SetSpeedRate(MOVE_RUN, speed);
-@@ -446,7 +446,7 @@ public:
-     static bool HandleModifySwimCommand(ChatHandler* handler, float swimSpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, swimSpeed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_SWIM_SPEED, LANG_YOURS_SWIM_SPEED_CHANGED, swimSpeed);
-             target->SetSpeedRate(MOVE_SWIM, swimSpeed);
-@@ -460,7 +460,7 @@ public:
-     static bool HandleModifyBWalkCommand(ChatHandler* handler, float backSpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 50.0f))
-+        if (CheckModifySpeed(handler, target, backSpeed, 0.1f, 100.0f))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_BACK_SPEED, LANG_YOURS_BACK_SPEED_CHANGED, backSpeed);
-             target->SetSpeedRate(MOVE_RUN_BACK, backSpeed);
-@@ -474,7 +474,7 @@ public:
-     static bool HandleModifyFlyCommand(ChatHandler* handler, float flySpeed)
-     {
-         Player* target = handler->getSelectedPlayerOrSelf();
--        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 50.0f, false))
-+        if (CheckModifySpeed(handler, target, flySpeed, 0.1f, 100.0f, false))
-         {
-             NotifyModification(handler, target, LANG_YOU_CHANGE_FLY_SPEED, LANG_YOURS_FLY_SPEED_CHANGED, flySpeed);
-             target->SetSpeedRate(MOVE_FLIGHT, flySpeed);
-@@ -487,7 +487,7 @@ public:
-     //Edit Player or Creature Scale
-     static bool HandleModifyScaleCommand(ChatHandler* handler, float scale)
-     {
--        if (scale > 10.0f || scale < 0.1f)
-+        if (scale > 1000.0f || scale < 0.001f)
-         {
-             handler->SendErrorMessage(LANG_BAD_VALUE);
-             return false;
-@@ -540,7 +540,7 @@ public:
- 
-         float _speed = speed ? *speed : 1.0f;
- 
--        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 50.0f))
-+        if (!CheckModifySpeed(handler, target, _speed, 0.1f, 100.0f))
-         {
-             return false;
-         }
 diff --git a/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp b/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
 index f7798b517..2abead39f 100644
 --- a/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp

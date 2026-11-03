@@ -41,5 +41,5 @@
     - Soul Guide: Move 40% faster as a released spirit.
     - Steward's Craft: Increases Jewelcrafting skill by 5.
     - Ascendant Charge: Draw your weapon and leap to an enemy within 25 yards, dealing Holy impact damage and slowing nearby enemies by 30% for 3 seconds. While hovering, dive instead for 20% more impact damage; Hover ends after the dive. Interrupted dives end Hover safely, and its cooldown starts on landing. The impact creates a 5-yard Consecration for 3 seconds, dealing Holy damage each second. Damage scales with your higher attack power or spell power. 2-minute cooldown.
-- Ascended Wings also halves fall damage (patches/whe-acore.patch)
+- Ascended Wings also halves fall damage (`patches/core/` in this modpak)
 - The wowdecomp-256-bit client does not have Aetheria's takeoff and landing animations for Ascended Hover yet

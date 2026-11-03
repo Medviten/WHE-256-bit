@@ -41,5 +41,5 @@
     - Courtly Artifice: Increases Enchanting skill by 5.
     - Sanguine Hover: Hover just above the ground without free flight. Lasts indefinitely outside combat and up to 15 total seconds in combat per activation. Activating from the ground while in combat grants Stun immunity for 3 seconds. A successful stun ends Hover. Ending Hover starts a 2-minute cooldown. Activate again to land.
     - Vampire Bat Form: Become a vampire bat, increasing flight speed by 60% and ground speed by 40%. Requires Expert Riding and a normally flyable outdoor area. Cold Weather Flying is required in Northrend. Only usable outside combat. Ends on combat, damage, casting, mounting or changing maps; ending while airborne grants safe descent until landing. Activate again to return to your Venthyr form.
-- Crimson Feast keeps fractional healing between ticks (patches/whe-acore.patch)
+- Crimson Feast keeps fractional healing between ticks (`patches/core/` in this modpak)
 - Vampire Bat Form turns you into creature 16175 (Vampiric Shadowbat, set in config.sql as @VenthyrBatCreature; Aetheria uses its own bat) and flies only where flying mounts may, with 225 riding skill

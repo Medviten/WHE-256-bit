@@ -152,6 +152,7 @@ Some modpaks also need code changes outside this module, e.g. F-063 (Running Wil
 | `patches/core/` | AzerothCore |
 | `patches/playerbots/` | mod-playerbots |
 | `patches/client/` | wowdecomp-256-bit |
+| `patches/interface/` | a folder holding the stock interface file (see the modpak's readme) |
 
 build-patch.sh adds them to the combined patches described in step 2, after whe-acore.patch/whe-playerbots.patch, in manifest order.
 
