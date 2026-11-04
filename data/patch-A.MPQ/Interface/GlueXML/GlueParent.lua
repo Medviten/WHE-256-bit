@@ -495,6 +495,7 @@ GlueBackgroundFallback = {
 	["HOZEN"] = "Human", ["SYLVARI"] = "NightElf", ["MANTID"] = "Tauren", ["ETHEREAL"] = "NightElf",
 	["KYRIAN"] = "NightElf", ["VENTHYR"] = "Scourge", ["BANSHEE"] = "Scourge", ["FACELESSONE"] = "Orc",
 	["ALLIANCEDRACTHYR"] = "Human", ["HORDEDRACTHYR"] = "Orc",
+	["CULTIST"] = "Scourge", ["MANARI"] = "BloodElf",
 };
 
 -- Death knights share one class scene; these races are too tall for its camera and get a copy with the

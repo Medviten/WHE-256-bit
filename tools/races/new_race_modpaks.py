@@ -131,7 +131,11 @@ PLAYER_FLAGS = {}   # (gender, section, type, colour) -> flags of the source row
 
 def customization(source):
     """(charsections, hair geosets, facial hair styles) rows of a stock NPC race, a WallCraft donor race or a skin list."""
-    kind, race = source
+    kind, race = source[:2]
+    if kind == 'package':   # alpha_race_modpaks.py: rows made there, with their own flags
+        PLAYER_FLAGS.clear()
+        PLAYER_FLAGS.update(source[5])
+        return fill(sorted(source[2])), source[3], source[4]
     if kind == 'skins':   # no rows: the skins, one bald hair style and one facial style; the other sections are filled below
         sections = [(g, 0, 0, c, [t1, t2, '']) for g, ss in race.items() for c, (t1, t2) in enumerate(ss)]
         hair = [(g, 0, 0, 0) for g in race]
@@ -234,7 +238,8 @@ def main():
                     key, g + ',', SECTIONS[section] + ',', sql_str(tex[0]), sql_str(tex[1]), sql_str(tex[2]), flags, var, colour))
         origin = {'npc': lambda: 'the stock NPC race rows (race %d after F-008)' % source[1],
                   'donor': lambda: 'WallCraft\'s donor rows (race %d)' % source[1],
-                  'skins': lambda: 'the skin textures shipped with the model (WallCraft has no rows for it)'}[source[0]]()
+                  'skins': lambda: 'the skin textures shipped with the model (WallCraft has no rows for it)',
+                  'package': lambda: "the Alpha-Worgen package's rows for race %d" % source[1]}[source[0]]()
         write(os.path.join(out, 'dbc', tag + '_charsections.sql'),
               "-- charsections: %d inserts, 0 updates, 0 deletes\n-- From %s, flagged for character creation (17, faces 1)%s\n\n"
               "-- New entries\nDELETE FROM `charsections` WHERE `race` = @%s;\nSET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);\n"
@@ -364,9 +369,9 @@ def write_variables(out, key, name, plural, fnum, side, home, kin, male_only, mo
     misc += ["SET @%sFaction = %d; -- vacant slot" % (key, faction), "SET @%sPlayer = %d; -- vacant slot" % (key, faction + 1)]
     text = re.sub(r'-- Miscellaneous\n(?:SET [^\n]*\n)+', lambda m: '-- Miscellaneous\n' + '\n'.join(misc) + '\n', text)
     # strings: prefix, client string and customization labels from the race's own ChrRaces row
-    rows, strings, f = load_dbc(os.path.join(BUILT if source[0] == 'npc' else DONOR, 'ChrRaces.dbc'))
+    rows, strings, f = load_dbc(os.path.join(BUILT if source[0] in ('npc', 'package') else DONOR, 'ChrRaces.dbc'))
     custom = ('NORMAL', 'NORMAL', 'NORMAL')
-    if source[0] == 'npc':
+    if source[0] in ('npc', 'package'):
         row = next(r for r in rows if struct.unpack_from('<I', r)[0] == source[1])
         custom = tuple(string(strings, struct.unpack_from('<I', row, 4 * i)[0]) or 'NORMAL' for i in (65, 66, 67))
     text = re.sub(r'(SET @%sClientPrefix\s*= )[^;]*;.*' % key, r"\g<1>'%s'; -- helmet models of this prefix" % prefix, text)

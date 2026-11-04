@@ -18,7 +18,7 @@ AGGREGATES = ["VanillaAllianceMask", "VanillaHordeMask", "BaseAllianceMask", "Ba
               "ExtendedAllianceMask", "ExtendedHordeMask"]
 MASK_COLS = {"reputation_race_mask_1", "reputation_race_mask_2", "reputation_race_mask_3", "reputation_race_mask_4",
              "required_races", "race_mask", "racemask", "allowableraces", "allowablerace"}
-WORD2_RACES = {"AllianceEarthen", "HordeEarthen"}
+WORD2_RACES = {"AllianceEarthen", "HordeEarthen", "HordeDracthyr", "Cultist", "Manari"}
 
 
 def races():

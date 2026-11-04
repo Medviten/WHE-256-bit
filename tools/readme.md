@@ -16,6 +16,12 @@
   that neither the unpacked patch-A nor the archives have. No MPQ library needed.
 - `races/zep_goblin_port.py <zep-goblin-start> <F-013 folder>`: ports Zeppelin-Craft's Goblin starting zone to F-013.
 
+- `races/alpha_race_modpaks.py <package> <stock DBFilesClient> <WHE-common patch-A.MPQ>`: makes F-094..F-097 from the Alpha-Worgen
+  package (alpha Worgen and Goblin looks, Cultist and Man'ari races), with its files moved out of the paths they would overwrite.
+
+- `models/m2_retarget_mountself.py <source.m2> <target.m2> [check]`: adds the MountSelf animations of one Worgen model to another with
+  a different rig (F-094). `alpha_race_modpaks.py` runs it after copying the models.
+
 - `racemask/word2vars.py`, `racemask/word2.py`: add second race-mask word handling (races 65-128) to config.sql,
   variables.sql and the modpak SQL. Run both with `report`, then `apply`, after adding a race above 64 (see word2.py).
 - `racemask/port_32bit.py <modpaks> <WHE-32-bit modpaks> [MODPAK ...]` (then again with `--config`): ports modpaks

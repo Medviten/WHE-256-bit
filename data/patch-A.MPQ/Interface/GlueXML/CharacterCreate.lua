@@ -1,5 +1,5 @@
 CHARACTER_FACING_INCREMENT = 2;
-MAX_RACES = 68;
+MAX_RACES = 70;
 MAX_CLASSES_PER_RACE = 10;
 NUM_CHAR_CUSTOMIZATIONS = 5;
 MIN_CHAR_NAME_LENGTH = 2;
@@ -92,6 +92,8 @@ RACE_ICON_TCOORDS = {
 	["VENTHYR_MALE"]              = {0.03125, 0.0625,  0.25, 0.5}, -- placeholder: the Undead icon
 	["BANSHEE_MALE"]              = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the female Undead icon (one female body)
 	["FACELESSONE_MALE"]          = {0.09375, 0.125,   0.25, 0.5}, -- placeholder: the Orc icon
+	["CULTIST_MALE"]               = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
+	["MANARI_MALE"]                = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
 
 	["HUMAN_FEMALE"]              = {0,       0.03125, 0.5,  0.75},
 	["GILNEAN_FEMALE"]            = {0,       0.03125, 0.5,  0.75},
@@ -162,6 +164,8 @@ RACE_ICON_TCOORDS = {
 	["VENTHYR_FEMALE"]            = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the Undead icon
 	["BANSHEE_FEMALE"]            = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the Undead icon
 	["FACELESSONE_FEMALE"]        = {0.09375, 0.125,   0.25, 0.5}, -- male-only race: the male icon
+	["CULTIST_FEMALE"]             = {0,       0.03125, 0.5,  0.75}, -- placeholder: the Human icon
+	["MANARI_FEMALE"]              = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
 };
 
 -- Fixed button layout for every race, independent of whatever order (or
@@ -238,6 +242,8 @@ RACE_VISUAL_SLOTS = {
 	["VENTHYR"]                            = 66,
 	["BANSHEE"]                            = 67,
 	["FACELESSONE"]                        = 68,
+	["CULTIST"]                            = 69, -- Horde row 19 (Alpha-Worgen package races)
+	["MANARI"]                             = 70,
 };
 
 -- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead

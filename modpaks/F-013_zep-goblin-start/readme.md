@@ -15,12 +15,7 @@
 ### Client assets
 Zeppelin-Craft doesn't keep its models and textures in git, so these come from its client patches and are in [WHE-common](https://github.com/Medviten/WHE-common). To see which files your client still lacks, list the files in the DBC SQL and run `tools/checks/check_f013_assets.py`.
 
-Still missing:
-- `Cameras\FlyByGoblin.m2`, the intro camera. Don't enable this modpak without it: new Goblin characters play that cinematic on their first login
-- `Creature\FireElementalDraenor\FireElementalDraenor.m2`
-- `Creature\Mechachicken\Mechachicken.m2`
-- `world\expansion03\doodads\twilighthammer\banners\twilighthammer_orb_01.m2`
-- `CREATURE\FACELESSONEAQUATIC\FacelessOneAquatic2Green.blp`
+New Goblin characters play the intro cinematic on their first login, so the client needs `Cameras\FlyByGoblin.m2`. The server also needs it, as `Cameras/FlyByGoblin.m2` in its data directory, to load the area around the camera. Older clients crash without the file, while clients with the camera guard skip the cinematic.
 
 ### Updating
 `tools/races/zep_goblin_port.py <zep-goblin-start> <this folder>` regenerates `dbc/` and `sql/`, so make changes in that script, `variables.sql` or `patches/` rather than in the SQL. To rebuild the patch, apply these patches from Zeppelin-Craft's `zpaks/core-azerothcore/patches` to `whe-patch-base` in order and save the diff: 0031, 0032, 0034-0044, 0047-0050, 0052, 0053.

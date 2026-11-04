@@ -526,6 +526,9 @@
                             <CheckButton name="CharacterCreateRaceButton66" inherits="CharacterCreateRaceButtonTemplate" id="66"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton60" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton67" inherits="CharacterCreateRaceButtonTemplate" id="67"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton65" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
                             <CheckButton name="CharacterCreateRaceButton68" inherits="CharacterCreateRaceButtonTemplate" id="68"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton66" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <!-- Custom: row 19 (F-096 Cultist, F-097 Man'ari) -->
+                            <CheckButton name="CharacterCreateRaceButton69" inherits="CharacterCreateRaceButtonTemplate" id="69"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton67" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
+                            <CheckButton name="CharacterCreateRaceButton70" inherits="CharacterCreateRaceButtonTemplate" id="70"><Anchors><Anchor point="TOPLEFT" relativeTo="CharacterCreateRaceButton68" relativePoint="BOTTOMLEFT" x="0" y="-1"/></Anchors></CheckButton>
 							<CheckButton name="CharacterCreateGenderButtonMale" inherits="CharacterCreateGenderButtonTemplate">
 								<Anchors>
 									<Anchor point="CENTER" relativeTo="CharacterCreateFrame" relativePoint="BOTTOM" x="-67" y="27"/>
