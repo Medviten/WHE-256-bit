@@ -59,7 +59,7 @@ Some unusual race/class combinations may still have missing abilities, incorrect
 
 The project uses **`patch-A.MPQ`** as its primary client patch, but you can of course rename it to something else.
 
-It contains the client-side files required by the custom races, including modified DBC files and other race-related client data. It also modifies the interface files to accept spaces in names (though you need the [mod-two-names] module to make use of it – remember to patch your core to get the hooks in place) and to accept more than 10 characters per realm (this requires a core patch as well as a client patch). To accommodate the latter, a scroll bar is added to the character selection frame (and the create new character button is moved outside of the frame so it's always visible).
+It contains the client-side files required by the custom races, including modified DBC files and other race-related client data. It also modifies the interface files to accept spaces in names (though you need the [mod-two-names] module to make use of it, along with F-088_mod-two-names) and to accept more than 10 characters per realm (set `CharactersPerRealm` and `CharactersPerAccount` in worldserver.conf; the 256-bit core and client both allow it). To accommodate the latter, a scroll bar is added to the character selection frame (and the create new character button is moved outside of the frame so it's always visible).
 
 On the other hand, `patch-J.MPQ` is entirely optional. It is intended to reverse as many of my changes as possible, client-side only, for purist users who still want to play on their friends' modified servers.
 
@@ -95,7 +95,7 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply the core patch (and optionally the playerbots patch)
 
-The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include the patches for custom races. **If you use them, skip this step.** They also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088), and the client fork already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches. Patches for other repositories, such as `combined-individual-progression.patch`, are not affected.
+The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include the patches for custom races. **If you use them, skip step 2.** The forks also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088) and F-089's and F-090's changes, and the client fork already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches. Patches for other repositories, such as `combined-individual-progression.patch`, are not affected.
 
 To apply the patches yourself instead, start from the `whe-patch-base` tag in both repositories, which has the 256-bit race masks but not the WHE changes:
 
@@ -135,7 +135,9 @@ Edit the config file in [DBCTool](https://github.com/Medviten/DBCTool-256-bit) a
 
 Import clean DBCs, make any modifications you want, and then dump the database. Point [DBCTool](https://github.com/Medviten/DBCTool-256-bit) at this dump – it's your save state.
 
-Edit the manifest in worgoblin-high-elf/tools/scripts/ by commenting out features to exclude. Edit build-dbc.conf with your paths and logins, **back up your DBC files**, then run build-dbc.sh.
+Edit `tools/scripts/build-dbc.manifest` by commenting out features to exclude. `F-091_race-setup` has to stay first, and `F-026_custom-race-support` is required for any custom race. Copy `build-dbc.conf.dist` to `build-dbc.conf` and fill in your paths and logins, **back up your DBC files**, then run build-dbc.sh.
+
+Each race keeps its settings in the world database (`player_race_template`, see F-091_race-setup), so the modpaks' world SQL has to reach it. In build-dbc.conf, point `EXTRA_SQL_DATABASES` and `EXTRA_SQL_PATTERNS` at your world database with the pattern `sql/db-world/base/*.sql`, and set `WORLD_DATABASE` to it so that the files the client needs (step 4) are exported too. Without these rows, a custom race gets no starting taxi nodes or Collector's Edition voucher, and no language or bot mounts from the stock race it copies.
 
 It should put the new DBCs straight into your server's data/dbc directory, **overwriting whatever is already in there**.
 
@@ -180,13 +182,17 @@ World of Warcraft/
     └── patch-A.MPQ
 ```
 
-You should also replace the DBCs with the ones from the pipeline to ensure compatibility with the server.
+The models, textures and interface files are in [WHE-common](https://github.com/Medviten/WHE-common), which both versions of this project share.
+
+Then copy what the pipeline exported into `patch-A.MPQ/DBFilesClient/`, so the client matches the server: the DBCs, `PlayerShapeshiftModel.csv` and `ShapeshiftSkinColorRaces.csv`.
 
 ---
 
 ## 5. Compile AzerothCore
 
-After installing or updating the module, recompile AzerothCore if the modpaks you installed require it. For example, Worgoblin spells do, but High Elf ones don't.
+Compile AzerothCore after installing the module and applying the patches. The new world tables are created when the server starts.
+
+After that, adding or removing a race doesn't need a recompile: races are data, so running build-dbc.sh and restarting is enough. You only need to recompile when a patch or the module's own code changes, including when you turn on a modpak that has `patches/core/` or `patches/playerbots/` (apply those first).
 
 See the official AzerothCore documentation for information about installing and compiling modules:
 https://www.azerothcore.org/wiki/installing-a-module
@@ -195,17 +201,7 @@ https://www.azerothcore.org/wiki/installing-a-module
 
 ## 6. Client Executable
 
-Custom races require a WoW 3.3.5a client that allows modified client files.
-
-You may therefore need a patched WoW executable with signature checks disabled.
-
-A commonly used patcher is available here:
-
-https://github.com/anzz1/WoWPatcher335
-
-Always keep a backup of your original executable.
-
-Some [clients](https://drive.google.com/file/d/1M7QVeIaXHV5ru9s7mvo52P-eOjQedSkS/view?usp=sharing) are also downloadable with such checks already disabled.
+You need the [wowdecomp-256-bit](https://github.com/Medviten/wowdecomp-256-bit) client, built as its readme describes. The DBCs and packets use 256-bit race masks, which a stock WoW 3.3.5a executable can't read, patched or not. Signature checks are off by default in this client, so it accepts the modified client files.
 
 ---
 
@@ -237,6 +233,8 @@ Before updating:
 
 * Back up your world database
 * Back up your working DBCs
+
+After updating, recompile if patches or the module's code changed, run build-dbc.sh again, and copy the new DBCs and CSV files to your client.
 
 Do not assume that characters created with one development version will always behave identically after a future update.
 

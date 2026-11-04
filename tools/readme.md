@@ -19,7 +19,7 @@
   race IDs into its auto-incremented ones and keeps what the 32-bit files do differently on purpose (their race ID
   lines, the KEEP_FILES/KEEP_VARS lists, lines only they have). Reports what 32-bit masks cannot hold. Files a modpak
   no longer has are not deleted there
-- `racemask/patch_edit.py`: helpers for editing the hand-maintained integration/*.patch files. Inserts or replaces
+- `racemask/patch_edit.py`: helpers for editing hand-maintained patch files. Inserts or replaces
   `+` lines at exact anchors and recomputes every hunk header, so the patches stay valid (`check_headers()` verifies).
 
 - `models/slimegiant_prep.py`: turns the converted retail SlimeSkeleton model (F-046) into a player model: texture
