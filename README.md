@@ -95,7 +95,9 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply the core patch (and optionally the playerbots patch)
 
-The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include the patches for custom races. **If you use them, skip step 2.** The forks also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088) and F-089's and F-090's changes, and the client fork already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches. Patches for other repositories, such as `combined-individual-progression.patch`, are not affected.
+The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include the patches for custom races. **If you use them, skip step 2.** The forks also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088) and F-089's and F-090's changes, and the client fork already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches.
+
+The forks don't include [mod-individual-progression](https://github.com/ZhengPeiRu21/mod-individual-progression). If you want it, install it separately, turn on F-075_mod-individual-progression in the manifest, and apply `combined-individual-progression.patch` to it.
 
 To apply the patches yourself instead, start from the `whe-patch-base` tag in both repositories, which has the 256-bit race masks but not the WHE changes:
 
