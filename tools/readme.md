@@ -12,6 +12,10 @@
   `--common PATH` / `$WHE_COMMON`):
   `python3 tools/checks/check_customization.py --stock-dbc /path/to/original/dbc [MODPAK ...]`
 
+- `checks/check_f013_assets.py <paths file> <patch-A.MPQ> <archive.mpq> ...`: lists the client files from a list of paths
+  that neither the unpacked patch-A nor the archives have. No MPQ library needed.
+- `races/zep_goblin_port.py <zep-goblin-start> <F-013 folder>`: ports Zeppelin-Craft's Goblin starting zone to F-013.
+
 - `racemask/word2vars.py`, `racemask/word2.py`: add second race-mask word handling (races 65-128) to config.sql,
   variables.sql and the modpak SQL. Run both with `report`, then `apply`, after adding a race above 64 (see word2.py).
 - `racemask/port_32bit.py <modpaks> <WHE-32-bit modpaks> [MODPAK ...]` (then again with `--config`): ports modpaks
