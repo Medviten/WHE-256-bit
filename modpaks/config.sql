@@ -439,10 +439,10 @@ SET @DraeneiHelmetMask                                         =      1 << @Drae
 
 -- Custom race masks: 0 unless the race's modpak is built (its variables.sql sets the real values), so SQL
 -- naming a race whose modpak is left out adds no bits instead of failing on a NULL mask
-SET @WorgenMask                                                =   0; -- F-004, F-024
+SET @WorgenMask                                                =   0; -- F-024
 SET @WorgenMask_2                                              =   0; -- races 65-128
 SET @WorgenHelmetMask                                          =   0;
-SET @GilneanMask                                               =   0; -- F-004, F-027
+SET @GilneanMask                                               =   0; -- F-027
 SET @GilneanMask_2                                             =   0; -- races 65-128
 SET @GilneanHelmetMask                                         =   0;
 SET @HighElfMask                                               =   0; -- F-005
@@ -1727,8 +1727,8 @@ SET @GreenDragonTurtleDisplay                                  =    @NextDisplay
 SET @BlackDragonTurtleDisplay                                  =    @NextDisplayID := @NextDisplayID +1;
 SET @CaravanHyenaDisplay                                       =    @NextDisplayID := @NextDisplayID +1;
 SET @CaravanHyenaNoCanopyDisplay                               =    @NextDisplayID := @NextDisplayID +1;
-SET @GoblinTrikeDisplay                                        =    35249; -- Cataclysm ID?
-SET @GoblinTurboTrikeDisplay                                   =    35250; -- Cataclysm ID?
+SET @GoblinTrikeDisplay                                        =    35250; -- Cataclysm ID?
+SET @GoblinTurboTrikeDisplay                                   =    35249; -- Cataclysm ID?
 SET @MountainHorseDisplay                                      =    39095; -- black, Cataclysm ID?
 SET @SwiftMountainHorseDisplay                                 =    39096; -- brown, Cataclysm ID?
 SET @MagharDirewolfDisplay                                     =    @NextDisplayID := @NextDisplayID +1;
