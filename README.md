@@ -67,7 +67,7 @@ On the other hand, `patch-J.MPQ` is entirely optional. It is intended to reverse
 
 ## PlayerBots
 
-PlayerBots support is provided through whe-playerbots.patch. It currently comes with all the races I use on my own stable server. In the future, there may be modularity support for this as well, but for now, if you want to modify anything about it, you'll have to do so manually.
+PlayerBots support is provided through `patches/playerbots/` in F-026_custom-race-support. Bots work with any race without further changes: a race's row in `player_race_template` sets the mounts and names they use, and `playerbots_race_template` can override those (see F-091_race-setup).
 
 ---
 
@@ -95,20 +95,20 @@ name, the default when cloning) or `mod-worgoblin-high-elf` (the module's former
 
 ## 2. Apply the core patch (and optionally the playerbots patch)
 
-The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include whe-acore.patch and whe-playerbots.patch. **If you use them, skip this step.** They also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088), and the client fork already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches. Patches for other repositories, such as `combined-individual-progression.patch`, are not affected.
+The default branches of [azerothcore-wotlk-256-bit](https://github.com/Medviten/azerothcore-wotlk-256-bit) (`Playerbot`) and [mod-playerbots-256-bit](https://github.com/Medviten/mod-playerbots-256-bit) (`master`) already include the patches for custom races. **If you use them, skip this step.** They also include Faction Free (F-003), off by default: turn it on with the `AllowTwoSide.*` settings in worldserver.conf. The core fork also includes the hooks for mod-two-names (F-088), and the client fork already allows spaces in names. `combined-core.patch` and `combined-playerbots.patch` will not apply to these branches. Patches for other repositories, such as `combined-individual-progression.patch`, are not affected.
 
-To apply the patches yourself instead, start from the `whe-patch-base` tag in both repositories, which is the code without the WHE changes:
+To apply the patches yourself instead, start from the `whe-patch-base` tag in both repositories, which has the 256-bit race masks but not the WHE changes:
 
 ```text
 git switch -c whe-patched whe-patch-base
 ```
 
-Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines WHE's own patches in `patches/` with the patches of the modpaks in your manifest (see [Modpak patches](#modpak-patches)), in manifest order, into one file per repo in tools/scripts/:
+Run `tools/scripts/build-patch.sh`. It needs no database and no build-dbc.conf: it combines the patches of the modpaks in your manifest (see [Modpak patches](#modpak-patches)), in manifest order, into one file per repo in tools/scripts/:
 
 | File | Contains | Apply from |
 | --- | --- | --- |
-| `combined-core.patch` | whe-acore.patch + modpak `patches/core/` | AzerothCore root |
-| `combined-playerbots.patch` | whe-playerbots.patch + modpak `patches/playerbots/` | AzerothCore/modules/mod-playerbots/ |
+| `combined-core.patch` | modpak `patches/core/` | AzerothCore root |
+| `combined-playerbots.patch` | modpak `patches/playerbots/` | AzerothCore/modules/mod-playerbots/ |
 | `combined-<target>.patch` | any other modpak `patches/<target>/`, e.g. `individual-progression` | that repo's root |
 
 Copy combined-core.patch into your AzerothCore root directory. Apply it like this:
@@ -127,7 +127,7 @@ git add .
 git commit -m "Add WHE playerbots patch"
 ```
 
-Without the script, WHE-256-bit/patches/whe-acore.patch and whe-playerbots.patch apply the same way, just without any modpak patches.
+Without the script, apply each modpak's `patches/core/` and `patches/playerbots/` files the same way, in manifest order.
 
 ## 3. Set up the DBC-SQL pipeline
 
@@ -154,7 +154,7 @@ Some modpaks also need code changes outside this module, e.g. F-063 (Running Wil
 | `patches/client/` | wowdecomp-256-bit |
 | `patches/interface/` | a folder holding the stock interface file (see the modpak's readme) |
 
-build-patch.sh adds them to the combined patches described in step 2, after whe-acore.patch/whe-playerbots.patch, in manifest order.
+build-patch.sh adds them to the combined patches described in step 2, in manifest order.
 
 The script notes every file that several of these patches touch, since patches made separately can conflict there.
 

@@ -1,0 +1,671 @@
+diff --git a/data/sql/updates/pending_db_world/rev_1793750400000000000.sql b/data/sql/updates/pending_db_world/rev_1793750400000000000.sql
+new file mode 100644
+index 000000000..48eaca42d
+--- /dev/null
++++ b/data/sql/updates/pending_db_world/rev_1793750400000000000.sql
+@@ -0,0 +1,10 @@
++CREATE TABLE IF NOT EXISTS `player_race_template` (
++  `race` tinyint unsigned NOT NULL,
++  `home_race` tinyint unsigned NOT NULL COMMENT 'Stock race whose start area this race shares: taxi nodes, Collector''s Edition voucher',
++  `kin_race` tinyint unsigned NOT NULL COMMENT 'Race whose looks and language this race shares: holiday costumes, race change language. 0 for none',
++  `shapeshift_skin_color` tinyint unsigned NOT NULL DEFAULT 0 COMMENT 'Shapeshift forms follow skin (fur) color instead of hair color',
++  PRIMARY KEY (`race`)
++) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='What custom races copy from the stock races. A race without a row is its own home and kin';
++
++REPLACE INTO `player_race_template` (`race`, `home_race`, `kin_race`, `shapeshift_skin_color`) VALUES
++(6, 6, 6, 1); -- Tauren
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 004a5a481..2c7770d31 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -66,6 +66,7 @@
+ #include "Pet.h"
+ #include "PetitionMgr.h"
+ #include "QuestDef.h"
++#include "RaceMgr.h"
+ #include "RBAC.h"
+ #include "Realm.h"
+ #include "ReputationMgr.h"
+@@ -532,6 +533,10 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
+         return false;
+     }
+ 
++    // races without a female model are always created male (bots pick a random gender too)
++    if (createInfo->Gender == GENDER_FEMALE && sRaceMgr->IsMaleOnlyRace(createInfo->Race))
++        createInfo->Gender = GENDER_MALE;
++
+     uint32 RaceClassGender = (createInfo->Race) | (createInfo->Class << 8) | (createInfo->Gender << 16);
+ 
+     SetUInt32Value(UNIT_FIELD_BYTES_0, (RaceClassGender | (powertype << 24)));
+@@ -674,7 +679,7 @@ bool Player::Create(ObjectGuid::LowType guidlow, CharacterCreateInfo* createInfo
+             voucherId = 39713; // Ebon Hold Gift Voucher
+         else
+         {
+-            switch (createInfo->Race)
++            switch (sRaceMgr->GetHomeRace(createInfo->Race))
+             {
+                 case RACE_HUMAN:
+                     voucherId = 14646; break; // Goldshire Gift Voucher
+@@ -10813,23 +10818,32 @@ void Player::InitDataForForm(bool reapplyMods)
+ 
+ void Player::InitDisplayIds()
+ {
++    // The displays come from ChrRaces either way; reading them from there when the race/class pair has no
++    // playercreateinfo (e.g. a modpak's start data was removed) keeps the character from having display 0, which
++    // the collision code cannot handle.
+     PlayerInfo const* info = sObjectMgr->GetPlayerInfo(getRace(true), getClass());
++    ChrRacesEntry const* raceEntry = sChrRacesStore.LookupEntry(getRace(true));
+     if (!info)
+     {
+-        LOG_ERROR("entities.player", "Player {} has incorrect race/class pair. Can't init display ids.", GetGUID().ToString());
+-        return;
++        LOG_ERROR("entities.player", "Player {} has incorrect race/class pair.{}", GetGUID().ToString(),
++            raceEntry ? " Using the ChrRaces displays." : " Can't init display ids.");
++        if (!raceEntry)
++            return;
+     }
+ 
++    uint32 const displayMale = info ? info->displayId_m : raceEntry->model_m;
++    uint32 const displayFemale = info ? info->displayId_f : raceEntry->model_f;
++
+     uint8 gender = getGender();
+     switch (gender)
+     {
+         case GENDER_FEMALE:
+-            SetDisplayId(info->displayId_f);
+-            SetNativeDisplayId(info->displayId_f);
++            SetDisplayId(displayFemale);
++            SetNativeDisplayId(displayFemale);
+             break;
+         case GENDER_MALE:
+-            SetDisplayId(info->displayId_m);
+-            SetNativeDisplayId(info->displayId_m);
++            SetDisplayId(displayMale);
++            SetNativeDisplayId(displayMale);
+             break;
+         default:
+             LOG_ERROR("entities.player", "Invalid gender {} for player", gender);
+diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
+index 6cf62c95d..27af1d152 100644
+--- a/src/server/game/Entities/Player/PlayerTaxi.cpp
++++ b/src/server/game/Entities/Player/PlayerTaxi.cpp
+@@ -17,6 +17,7 @@
+ 
+ #include "ObjectMgr.h"
+ #include "Player.h"
++#include "RaceMgr.h"
+ #include "StringConvert.h"
+ #include "Tokenize.h"
+ 
+@@ -34,7 +35,7 @@ void PlayerTaxi::InitTaxiNodesForLevel(uint32 race, uint32 chrClass, uint8 level
+     }
+ 
+     // race specific initial known nodes: capital and taxi hub masks
+-    switch (race)
++    switch (sRaceMgr->GetHomeRace(race))
+     {
+         case RACE_HUMAN:
+             SetTaximaskNode(2);
+diff --git a/src/server/game/Entities/Player/RaceMgr.cpp b/src/server/game/Entities/Player/RaceMgr.cpp
+index 347ef0f24..4d48a7c32 100644
+--- a/src/server/game/Entities/Player/RaceMgr.cpp
++++ b/src/server/game/Entities/Player/RaceMgr.cpp
+@@ -19,6 +19,7 @@
+ #include "AccountMgr.h"
+ #include "StringConvert.h"
+ #include "DatabaseEnv.h"
++#include "Log.h"
+ #include "ObjectMgr.h"
+ #include "Player.h"
+ #include "Util.h"
+@@ -31,6 +32,8 @@ uint16 RaceMgr::_maxRaces = 0;
+ RaceMask RaceMgr::_playableRaceMask;
+ RaceMask RaceMgr::_allianceRaceMask;
+ RaceMask RaceMgr::_hordeRaceMask;
++RaceMask RaceMgr::_maleOnlyRaceMask;
++std::unordered_map<uint8, RaceMgr::RaceTemplate> RaceMgr::_raceTemplates;
+ 
+ RaceMgr::RaceMgr()
+ {
+@@ -52,6 +55,7 @@ void RaceMgr::LoadRaces()
+     _playableRaceMask = RaceMask();
+     _hordeRaceMask    = RaceMask();
+     _allianceRaceMask = RaceMask();
++    _maleOnlyRaceMask = RaceMask();
+ 
+     for (auto const& raceEntry : sChrRacesStore)
+     {
+@@ -75,7 +79,59 @@ void RaceMgr::LoadRaces()
+             _hordeRaceMask |= raceBit;
+         else if (alliance == ALLIANCE_ALLIANCE)
+             _allianceRaceMask |= raceBit;
++
++        // no female model: the female display shows the male model
++        CreatureDisplayInfoEntry const* maleDisplay = sCreatureDisplayInfoStore.LookupEntry(raceEntry->model_m);
++        CreatureDisplayInfoEntry const* femaleDisplay = sCreatureDisplayInfoStore.LookupEntry(raceEntry->model_f);
++        if (maleDisplay && femaleDisplay && maleDisplay->ModelId == femaleDisplay->ModelId)
++            _maleOnlyRaceMask |= raceBit;
++    }
++
++    LoadRaceTemplates();
++}
++
++void RaceMgr::LoadRaceTemplates()
++{
++    _raceTemplates.clear();
++
++    QueryResult result = WorldDatabase.Query("SELECT race, home_race, kin_race, shapeshift_skin_color FROM player_race_template");
++    if (!result)
++    {
++        LOG_INFO("server.loading", ">> Loaded 0 race templates. DB table `player_race_template` is empty.");
++        return;
+     }
++
++    do
++    {
++        Field* fields = result->Fetch();
++        _raceTemplates[fields[0].Get<uint8>()] = { fields[1].Get<uint8>(), fields[2].Get<uint8>(), fields[3].Get<uint8>() != 0 };
++    } while (result->NextRow());
++
++    LOG_INFO("server.loading", ">> Loaded {} race templates", _raceTemplates.size());
++}
++
++uint8 RaceMgr::GetHomeRace(uint8 race)
++{
++    auto itr = _raceTemplates.find(race);
++    return itr != _raceTemplates.end() ? itr->second.homeRace : race;
++}
++
++uint8 RaceMgr::GetKinRace(uint8 race)
++{
++    auto itr = _raceTemplates.find(race);
++    return itr != _raceTemplates.end() ? itr->second.kinRace : race;
++}
++
++uint8 RaceMgr::GetLookalikeRace(uint8 race)
++{
++    uint8 const kin = GetKinRace(race);
++    return kin && kin != uint8(DisplayRace::Goblin) ? kin : GetHomeRace(race);
++}
++
++bool RaceMgr::UsesSkinColorForms(uint8 race)
++{
++    auto itr = _raceTemplates.find(race);
++    return itr != _raceTemplates.end() && itr->second.shapeshiftSkinColor;
+ }
+ 
+ RaceMask RaceMgr::ReadRaceMask(Field const* fields, uint32 lowIndex, uint32 highIndex)
+diff --git a/src/server/game/Entities/Player/RaceMgr.h b/src/server/game/Entities/Player/RaceMgr.h
+index 0fb7ec126..08dc4a423 100644
+--- a/src/server/game/Entities/Player/RaceMgr.h
++++ b/src/server/game/Entities/Player/RaceMgr.h
+@@ -23,6 +23,7 @@
+ #include "RaceMask.h"
+ #include "SharedDefines.h"
+ #include <map>
++#include <unordered_map>
+ 
+ class Player;
+ class WorldPacket;
+@@ -43,6 +44,10 @@ public:
+     static RaceMask const& GetAllianceRaceMask() { return _allianceRaceMask; }
+     static RaceMask const& GetHordeRaceMask() { return _hordeRaceMask; }
+ 
++    /// Races without a female model: ChrRaces gives them a female display that uses the male display's model.
++    /// Characters of these races are always created male.
++    static bool IsMaleOnlyRace(uint8 race) { return _maleOnlyRaceMask.HasRace(race); }
++
+     /**
+      * @brief Reads a race mask stored as four BIGINT columns (see RaceMask::FromWords64()).
+      * @param lowIndex Column of races 1-64: the original race mask column, so SQL bitwise math on it keeps working.
+@@ -52,12 +57,32 @@ public:
+ 
+     /// Races players cannot create or change to, from CharacterCreating.Disabled.RaceMask.
+     static RaceMask GetCreationDisabledRaceMask();
++
++    /// Loads player_race_template, which the race modpaks fill, so adding a race needs no code.
++    static void LoadRaceTemplates();
++    /// The stock race whose start area a race shares. A race without a template is its own home.
++    static uint8 GetHomeRace(uint8 race);
++    /// The race whose looks and language a race shares, or 0 for none. A race without a template is its own kin.
++    static uint8 GetKinRace(uint8 race);
++    /// The stock race a race can pass for: its kin, or its home if its kin is none or has no stock player model.
++    static uint8 GetLookalikeRace(uint8 race);
++    /// Whether a race's shapeshift forms follow skin (fur) color instead of hair color.
++    static bool UsesSkinColorForms(uint8 race);
+ private:
++    struct RaceTemplate
++    {
++        uint8 homeRace;
++        uint8 kinRace;
++        bool shapeshiftSkinColor;
++    };
++
+     static uint16 _maxRaces; // Max playable race + 1
+ 
+     static RaceMask _playableRaceMask;
+     static RaceMask _allianceRaceMask;
+     static RaceMask _hordeRaceMask;
++    static RaceMask _maleOnlyRaceMask;
++    static std::unordered_map<uint8, RaceTemplate> _raceTemplates;
+ };
+ 
+ #define sRaceMgr RaceMgr::instance()
+diff --git a/src/server/game/Entities/Unit/Unit.cpp b/src/server/game/Entities/Unit/Unit.cpp
+index ce188c543..d52175d82 100644
+--- a/src/server/game/Entities/Unit/Unit.cpp
++++ b/src/server/game/Entities/Unit/Unit.cpp
+@@ -76,6 +76,8 @@
+ #include <algorithm>
+ #include <cmath>
+ #include <limits>
++#include <mutex>
++#include <unordered_set>
+ 
+ float baseMoveSpeed[MAX_MOVE_TYPE] =
+ {
+@@ -16726,6 +16728,35 @@ bool Unit::IsThreatened() const
+     return !m_threatManager.IsThreatListEmpty();
+ }
+ 
++/**
++ * @brief The unit's native display and its model, or false when the DBCs lack either. Bad display data (a modpak
++ * deleting a stock model, say) is logged once per display instead of asserting: the collision callers fall back
++ * to default sizes.
++ */
++static bool GetNativeDisplayModel(Unit const* unit, CreatureDisplayInfoEntry const*& displayInfo, CreatureModelDataEntry const*& modelData)
++{
++    uint32 const displayId = unit->GetNativeDisplayId();
++    displayInfo = sCreatureDisplayInfoStore.LookupEntry(displayId);
++    modelData = displayInfo ? sCreatureModelDataStore.LookupEntry(displayInfo->ModelId) : nullptr;
++    if (modelData)
++        return true;
++
++    static std::mutex reportedLock; // maps update in parallel
++    static std::unordered_set<uint32> reported;
++    std::lock_guard<std::mutex> guard(reportedLock);
++    if (reported.insert(displayId).second)
++    {
++        if (displayInfo)
++            LOG_ERROR("entities.unit", "{} uses display {}, whose model {} is not in CreatureModelData.dbc. Using default collision sizes.",
++                unit->GetGUID().ToString(), displayId, displayInfo->ModelId);
++        else
++            LOG_ERROR("entities.unit", "{} uses display {}, which is not in CreatureDisplayInfo.dbc. Using default collision sizes.",
++                unit->GetGUID().ToString(), displayId);
++    }
++
++    return false;
++}
++
+ /**
+  * @brief this method gets the diameter of a Unit by DB if any value is defined, otherwise it gets the value by the DBC
+  *
+@@ -16743,8 +16774,10 @@ float Unit::GetCollisionWidth() const
+     float defaultSize = DEFAULT_WORLD_OBJECT_SIZE * scaleMod;
+ 
+     //! Dismounting case - use basic default model data
+-    CreatureDisplayInfoEntry const* displayInfo = sCreatureDisplayInfoStore.AssertEntry(GetNativeDisplayId());
+-    CreatureModelDataEntry const* modelData = sCreatureModelDataStore.AssertEntry(displayInfo->ModelId);
++    CreatureDisplayInfoEntry const* displayInfo = nullptr;
++    CreatureModelDataEntry const* modelData = nullptr;
++    if (!GetNativeDisplayModel(this, displayInfo, modelData))
++        return objectSize;
+ 
+     if (IsMounted())
+     {
+@@ -16781,8 +16814,11 @@ float Unit::GetCollisionHeight() const
+     float scaleMod = GetObjectScale(); // 99% sure about this
+     float defaultHeight = DEFAULT_COLLISION_HEIGHT * scaleMod;
+ 
+-    CreatureDisplayInfoEntry const* displayInfo = sCreatureDisplayInfoStore.AssertEntry(GetNativeDisplayId());
+-    CreatureModelDataEntry const* modelData = sCreatureModelDataStore.AssertEntry(displayInfo->ModelId);
++    CreatureDisplayInfoEntry const* displayInfo = nullptr;
++    CreatureModelDataEntry const* modelData = nullptr;
++    if (!GetNativeDisplayModel(this, displayInfo, modelData))
++        return defaultHeight;
++
+     float collisionHeight = 0.0f;
+ 
+     if (IsMounted())
+diff --git a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
+index 6f82eb7f3..4f9d43747 100644
+--- a/src/server/game/Globals/ObjectMgr.cpp
++++ b/src/server/game/Globals/ObjectMgr.cpp
+@@ -1889,12 +1889,9 @@ void ObjectMgr::LoadPlayerShapeshiftModels()
+ 
+ uint32 ObjectMgr::GetModelForShapeshift(ShapeshiftForm form, Player* player) const
+ {
+-    uint8 customizationID;
+-
+-    if (player->GetTeamId() == TEAM_ALLIANCE)
+-        customizationID = player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
+-    else
+-        customizationID = player->GetByteValue(PLAYER_BYTES, 0); // Use Skin Color
++    uint8 const customizationID = sRaceMgr->UsesSkinColorForms(player->getRace())
++        ? player->GetByteValue(PLAYER_BYTES, 0)  // Use Skin Color
++        : player->GetByteValue(PLAYER_BYTES, 3); // Use Hair Color
+ 
+     // getGender() tracks the active display model; real gender lives in PLAYER_BYTES_3
+     uint8 gender = player->GetByteValue(PLAYER_BYTES_3, PLAYER_BYTES_3_OFFSET_GENDER);
+@@ -4870,7 +4867,7 @@ void ObjectMgr::LoadPlayerInfo()
+                     continue;
+ 
+                 // skip expansion races if not playing with expansion
+-                if (sWorld->getIntConfig(CONFIG_EXPANSION) < EXPANSION_THE_BURNING_CRUSADE && (race == RACE_BLOODELF || race == RACE_DRAENEI))
++                if (sChrRacesStore.LookupEntry(race)->expansion > sWorld->getIntConfig(CONFIG_EXPANSION))
+                     continue;
+ 
+                 // skip expansion classes if not playing with expansion
+diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
+index 8a43e20de..01e07f37e 100644
+--- a/src/server/game/Handlers/CharacterHandler.cpp
++++ b/src/server/game/Handlers/CharacterHandler.cpp
+@@ -2378,40 +2378,41 @@ void WorldSession::HandleCharFactionOrRaceChangeCallback(std::shared_ptr<Charact
+ 
+         trans->Append(stmt);
+ 
+-        // Race specific languages
+-        if (factionChangeInfo->Race != RACE_ORC && factionChangeInfo->Race != RACE_HUMAN)
++        // Race specific languages (new races speak the language of their kin, if it has one)
++        uint32 raceLanguage = 0;
++        switch (sRaceMgr->GetKinRace(factionChangeInfo->Race))
++        {
++        case RACE_DWARF:
++            raceLanguage = 111;
++            break;
++        case RACE_DRAENEI:
++            raceLanguage = 759;
++            break;
++        case RACE_GNOME:
++            raceLanguage = 313;
++            break;
++        case RACE_NIGHTELF:
++            raceLanguage = 113;
++            break;
++        case RACE_UNDEAD_PLAYER:
++            raceLanguage = 673;
++            break;
++        case RACE_TAUREN:
++            raceLanguage = 115;
++            break;
++        case RACE_TROLL:
++            raceLanguage = 315;
++            break;
++        case RACE_BLOODELF:
++            raceLanguage = 137;
++            break;
++        }
++
++        if (raceLanguage)
+         {
+             stmt = CharacterDatabase.GetPreparedStatement(CHAR_INS_CHAR_SKILL_LANGUAGE);
+             stmt->SetData(0, lowGuid);
+-
+-            switch (factionChangeInfo->Race)
+-            {
+-            case RACE_DWARF:
+-                stmt->SetData(1, 111);
+-                break;
+-            case RACE_DRAENEI:
+-                stmt->SetData(1, 759);
+-                break;
+-            case RACE_GNOME:
+-                stmt->SetData(1, 313);
+-                break;
+-            case RACE_NIGHTELF:
+-                stmt->SetData(1, 113);
+-                break;
+-            case RACE_UNDEAD_PLAYER:
+-                stmt->SetData(1, 673);
+-                break;
+-            case RACE_TAUREN:
+-                stmt->SetData(1, 115);
+-                break;
+-            case RACE_TROLL:
+-                stmt->SetData(1, 315);
+-                break;
+-            case RACE_BLOODELF:
+-                stmt->SetData(1, 137);
+-                break;
+-            }
+-
++            stmt->SetData(1, raceLanguage);
+             trans->Append(stmt);
+         }
+ 
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+index f6ad1b90b..32b1b806c 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+@@ -15,6 +15,7 @@
+  * with this program. If not, see <http://www.gnu.org/licenses/>.
+  */
+ 
++#include "RaceMgr.h"
+ #include "SpellAuraEffects.h"
+ #include "AreaDefines.h"
+ #include "BattlefieldMgr.h"
+@@ -2300,7 +2301,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                             if (!target->IsPlayer())
+                                 return;
+ 
+-                            switch (target->getRace())
++                            switch (sRaceMgr->GetLookalikeRace(target->getRace()))
+                             {
+                                 // Blood Elf
+                                 case RACE_BLOODELF:
+@@ -2359,7 +2360,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                             if (!target->IsPlayer())
+                                 return;
+ 
+-                            switch (target->getRace())
++                            switch (sRaceMgr->GetLookalikeRace(target->getRace()))
+                             {
+                                 // Blood Elf
+                                 case RACE_BLOODELF:
+@@ -2418,7 +2419,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Brewfest
+                     case 65511:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     if (urand(0, 1))
+@@ -2481,6 +2482,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                         target->SetDisplayId(target->getGender() == GENDER_MALE ? 21865 : 21864);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     if (urand(0, 1))
+                                         target->SetDisplayId(target->getGender() == GENDER_MALE ? 21854 : 21856);
+                                     else
+@@ -2506,7 +2508,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Winter Veil
+                     case 65522:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 18793 : 18785);
+@@ -2539,6 +2541,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 18803 : 18802);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 19342 : 19339);
+                                 default:
+                                     break;
+@@ -2548,7 +2551,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Default
+                     case 65523:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 19170 : 19169);
+@@ -2581,6 +2584,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 19180 : 19179);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 19343 : 19340);
+                                 default:
+                                     break;
+@@ -2590,7 +2594,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Lunar Festival
+                     case 65524:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 18841 : 18840);
+@@ -2623,6 +2627,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 18868 : 18867);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 21067 : 19341);
+                                 default:
+                                     break;
+@@ -2632,7 +2637,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Hallow's End
+                     case 65525:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 22361 : 22360);
+@@ -2665,6 +2670,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 22373 : 22372);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 22369 : 22368);
+                                 default:
+                                     break;
+@@ -2674,7 +2680,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Midsummer
+                     case 65526:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 21086 : 21085);
+@@ -2707,6 +2713,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 16435 : 16414);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 29243 : 16431);
+                                 default:
+                                     break;
+@@ -2716,7 +2723,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Spirit of Competition
+                     case 65527:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 24508 : 24519);
+@@ -2749,6 +2756,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 24514 : 24525);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 24512 : 24523);
+                                 default:
+                                     break;
+@@ -2758,7 +2766,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                     // Gossip NPC Appearance - Pirates' Day
+                     case 65528:
+                         {
+-                            switch (target->GetDisplayRace())
++                            switch (DisplayRace(sRaceMgr->GetKinRace(uint8(target->GetDisplayRace()))))
+                             {
+                                 case DisplayRace::BloodElf:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 25032 : 25043);
+@@ -2791,6 +2799,7 @@ void AuraEffect::HandleAuraTransform(AuraApplication const* aurApp, uint8 mode,
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 25038 : 25049);
+                                     break;
+                                 case DisplayRace::Goblin:
++                                case DisplayRace::NpcGoblin:
+                                     target->SetDisplayId(target->getGender() == GENDER_MALE ? 25036 : 25047);
+                                 default:
+                                     break;
+diff --git a/src/server/scripts/Commands/cs_lookup.cpp b/src/server/scripts/Commands/cs_lookup.cpp
+index 4fb3c66ab..c5c9005b0 100644
+--- a/src/server/scripts/Commands/cs_lookup.cpp
++++ b/src/server/scripts/Commands/cs_lookup.cpp
+@@ -1672,9 +1672,10 @@ public:
+                         pclass = gpd->Class;
+                     }
+ 
+-                    if (plevel > 0 && prace > 0 && prace <= RACE_DRAENEI && pclass > 0 && pclass <= CLASS_DRUID)
++                    ChrRacesEntry const* raceEntry = sChrRacesStore.LookupEntry(prace);
++                    if (plevel > 0 && raceEntry && pclass > 0 && pclass <= CLASS_DRUID)
+                     {
+-                        handler->PSendSysMessage("  {} (GUID {}) - {} - {} - {}{}", name, guid, EnumUtils::ToTitle(Races(prace)), EnumUtils::ToTitle(Classes(pclass)), plevel, (online ? " - [ONLINE]" : ""));
++                        handler->PSendSysMessage("  {} (GUID {}) - {} - {} - {}{}", name, guid, raceEntry->name[handler->GetSessionDbcLocale()], EnumUtils::ToTitle(Classes(pclass)), plevel, (online ? " - [ONLINE]" : ""));
+                     }
+                     else
+                     {
+diff --git a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Commands/cs_misc.cpp
+index 647a38069..afc8c0b5b 100644
+--- a/src/server/scripts/Commands/cs_misc.cpp
++++ b/src/server/scripts/Commands/cs_misc.cpp
+@@ -2407,6 +2407,10 @@ public:
+             case RACE_DRAENEI:
+                 raceStr = "Draenei";
+                 break;
++            default: // races beyond the stock ones: the ChrRaces.dbc name
++                if (ChrRacesEntry const* raceEntry = sChrRacesStore.LookupEntry(raceid))
++                    raceStr = raceEntry->name[handler->GetSessionDbcLocale()];
++                break;
+         }
+ 
+         switch (classid)
+diff --git a/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp b/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
+index f7798b517..992ad65fb 100644
+--- a/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
++++ b/src/server/scripts/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp
+@@ -19,6 +19,7 @@
+ #include "CreatureTextMgr.h"
+ #include "InstanceMapScript.h"
+ #include "Player.h"
++#include "RaceMgr.h"
+ #include "ScriptedCreature.h"
+ #include "SpellInfo.h"
+ #include "TemporarySummon.h"
+@@ -66,7 +67,9 @@ public:
+             if (instance->GetPlayersCountExceptGMs() == 1)
+                 SetData(DATA_ARTHAS_REPOSITION, 2);
+ 
+-            if (plr->getRace() != RACE_HUMAN && plr->getRace() != RACE_DWARF && plr->getRace() != RACE_GNOME)
++            // Human, Dwarf and Gnome kin keep their own appearance; everyone else is disguised as a human
++            uint8 const kin = sRaceMgr->GetKinRace(plr->getRace());
++            if (kin != RACE_HUMAN && kin != RACE_DWARF && kin != RACE_GNOME)
+                 plr->CastSpell(plr, ((plr->getGender() == GENDER_MALE) ? SPELL_HUMAN_MALE : SPELL_HUMAN_FEMALE), true);
+         }
+ 
+diff --git a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
+index 502a8a743..a46e43824 100644
+--- a/src/server/shared/SharedDefines.h
++++ b/src/server/shared/SharedDefines.h
+@@ -115,7 +115,9 @@ enum class DisplayRace : uint8
+     ForestTroll       = 18,
+     Taunka            = 19,
+     NorthrendSkeleton = 20,
+-    IceTroll          = 21
++    IceTroll          = 21,
++    // F-008_move-npc-races moves the NPC goblin display race here, as playable Goblins take race 9
++    NpcGoblin         = 169
+ };
+ 
+ // Class value is index in ChrClasses.dbc

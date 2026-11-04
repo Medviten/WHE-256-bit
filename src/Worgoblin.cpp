@@ -126,6 +126,8 @@ class spell_worgen_running_wild_aura : public AuraScript
 // spell_worgen_running_wild), so there is nothing to sync afterwards. Optionally hands out Apprentice and Journeyman
 // Riding for free. Death Knights are left out of that: they already start with 150 riding skill.
 // The previous gendered, per-tier version is in legacy/legacy_worgen_running_wild.cpp.
+constexpr uint8 RACE_ID_WORGEN = 22; // @Worgen in config.sql; the core's race enum only has the stock races
+
 class player_worgen_running_wild : public PlayerScript
 {
 public:
@@ -137,7 +139,7 @@ public:
 private:
     void HandleWorgen(Player* player)
     {
-        if (player->getRace() != RACE_WORGEN)
+        if (player->getRace() != RACE_ID_WORGEN)
             return;
 
         uint8 level = player->GetLevel();

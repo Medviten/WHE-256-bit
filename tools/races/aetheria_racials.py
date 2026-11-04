@@ -33,10 +33,10 @@ BAT_CREATURE = (9501110, '@VenthyrBatCreature', 16175, 'Vampiric Shadowbat')
 # racial skill line), notes for the readme
 RACES = [
     ('Kyrian', 'F-068', 60, range(111100, 111114), [111100, 111104, 111105, 111106, 111107, 111108, 111110],
-     ['Ascended Wings also halves fall damage (patches/whe-acore.patch)',
+     ['Ascended Wings also halves fall damage (patches/core/ascended-wings.patch)',
       'The wowdecomp-256-bit client does not have Aetheria\'s takeoff and landing animations for Ascended Hover yet']),
     ('Venthyr', 'F-069', 61, range(111200, 111213), [111200, 111201, 111202, 111203, 111204, 111206, 111209],
-     ['Crimson Feast keeps fractional healing between ticks (patches/whe-acore.patch)',
+     ['Crimson Feast keeps fractional healing between ticks (patches/core/crimson-feast.patch)',
       'Vampire Bat Form turns you into creature %d (%s, set in config.sql as %s; Aetheria uses its own bat) and '
       'flies only where flying mounts may, with 225 riding skill' % (BAT_CREATURE[2], BAT_CREATURE[3], BAT_CREATURE[1])]),
 ]

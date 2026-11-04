@@ -3,7 +3,7 @@
 
 // Kyrian racials from Aetheria's Kyrian/Venthyr package (https://github.com/Shotboom12/aetheria-server,
 // kyrian-venthyr-20261027-1). WHE: the race is the one whose racial skill line teaches Ascended Wings (F-068);
-// the fall damage reduction is in patches/whe-acore.patch (Player.cpp).
+// the fall damage reduction is in F-068's patches/core/ascended-wings.patch (Player.cpp).
 
 #include <cstdint>
 

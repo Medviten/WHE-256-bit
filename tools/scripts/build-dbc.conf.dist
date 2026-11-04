@@ -30,6 +30,10 @@ DBC_DUMP="/path/to/dbc-baseline.sql"
 # data). Set to true (or pass --force-rebuild) to always rebuild them.
 FORCE_REBUILD=false
 
+# Exported from player_race_template when WORLD_DATABASE is set, for the client's
+# shapeshiftSkinColorRaces.
+#SKIN_COLOR_RACES_CSV="/path/to/server/data/dbc/ShapeshiftSkinColorRaces.csv"
+
 # Where build-patch.sh writes combined-<target>.patch: whe-*.patch plus the
 # patches/<target>/ folders of the modpaks in the manifest (see README).
 # Defaults to this directory.

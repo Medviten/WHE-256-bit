@@ -26,6 +26,9 @@ KEEP_FILES = {
     "F-024_mod-playable-worgen/dbc/[BASE,F-024]_skilllineability.sql",  # Running Wild row (src/modpaks/F-024...)
     "F-024_mod-playable-worgen/sql/db-world/base/[F-024]_spell_script_names.sql",
     "F-026_custom-race-support/readme.md",                              # no spillover table (256-bit core only)
+    "F-026_custom-race-support/patches/core/race-templates.patch",      # each flavour's own core and race masks
+    "F-026_custom-race-support/patches/playerbots/race-templates.patch",
+    "F-091_race-setup/readme.md",                                       # 32-bit has its race limit
     "F-026_custom-race-support/variables.sql",
     "F-027_mod-gilnean/readme.md",                                      # Gilnean is an altered form only (race 213)
     "F-027_mod-gilnean/variables.sql",

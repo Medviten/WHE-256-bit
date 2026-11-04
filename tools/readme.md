@@ -40,7 +40,7 @@
       to `coa_race_prep.py` and `--aetheria <aetheria-client>` to `coa_race_modpaks.py`. Only the files the prepared models
       use are copied (the package also has palettes for the options fixed here)
     - `races/aetheria_racials.py <aetheria-client> <aetheria-server>`: adds Aetheria's Kyrian and Venthyr racials to
-      F-068/F-069 at Aetheria's spell ids (their C++ scripts are in `src/`, two core hunks in `patches/whe-acore.patch`)
+      F-068/F-069 at Aetheria's spell ids (their C++ scripts are in `src/`, two core hunks in each modpak's `patches/core/`)
 - `races/kalibro_races.py <Kalibros_Races folder> [modpaks] [WHE-common patch-A.MPQ] [more modpaks dirs]`: takes Lightforged
   Draenei, Nightborne and Void Elf (F-033..F-035) from Kalibro's races package: rewrites their customization SQL from its
   DBCs and replaces their WHE-common folders with the model and texture files used

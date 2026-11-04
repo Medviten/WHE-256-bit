@@ -4,7 +4,7 @@
 // Venthyr racials from Aetheria's Kyrian/Venthyr package (https://github.com/Shotboom12/aetheria-server,
 // kyrian-venthyr-20261027-1). WHE: the race is the one whose racial skill line teaches Crimson Feast (F-069); Bat
 // Form's creature is the one its spell transforms into (@VenthyrBatCreature in config.sql), and Crimson Feast's
-// fractional healing is in patches/whe-acore.patch (SpellAuraEffects.cpp).
+// fractional healing is in F-069's patches/core/crimson-feast.patch (SpellAuraEffects.cpp).
 
 #include <cstdint>
 
