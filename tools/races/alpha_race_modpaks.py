@@ -40,10 +40,12 @@ BARBER_LANGS = ('enus', 'kokr', 'frfr', 'dede', 'zhcn', 'zhtw', 'eses', 'esmx', 
 # Rows the appearance modpaks replace, and what they call the race
 APPEARANCE = [
     (94, 'alpha-worgen-assets', 'AlphaWorgen', 'Worgen', 12, 'worgen', 'Alpha Worgen', 'F-024_mod-playable-worgen',
-     ['- MountSelf animations for Running Wild (F-063) are retargeted from F-024's models by `tools/models/m2_retarget_mountself.py`; hair and ear bones without a match stay in their Stand pose',
-      '- Without F-063, Running Wild uses F-024's quadrupedal models, and the druid forms keep their own models: neither follows the alpha look',
-      '- Its hair colours are matched to the druid forms by number, as in F-024']),
-    (95, 'alpha-goblin-assets', 'AlphaGoblin', 'Goblin', 9, 'goblin', 'Alpha Goblin', 'F-023_mod-playable-goblin', []),
+     ["- MountSelf animations for Running Wild (F-063) are retargeted from F-024's models by `tools/models/m2_retarget_mountself.py`; hair and ear bones without a match stay in their Stand pose",
+      "- Without F-063, Running Wild uses F-024's quadrupedal models, and the druid forms keep their own models: neither follows the alpha look",
+      '- Its hair colours are matched to the druid forms by number, as in F-024',
+      "- Two Forms: the female model lacked the anims and arm meshes, so `tools/models/m2_alpha_fixes.py` retargets the anims from F-024's model and copies its arm meshes and their bones; it also fixes the male's"]),
+    (95, 'alpha-goblin-assets', 'AlphaGoblin', 'Goblin', 9, 'goblin', 'Alpha Goblin', 'F-023_mod-playable-goblin',
+     ["- No blinking: the model's blink hid the eyes (a bare skin mesh, and the eye glow turning off), so `tools/models/m2_alpha_fixes.py` removes it"]),
 ]
 MODELS = {'worgen': ('Worgen', 'WorgenMale', 'WorgenFemale'), 'goblin': ('Goblin', 'goblinmale', 'goblinfemale')}
 
@@ -281,11 +283,13 @@ def copy_assets():
     print('copied', len(COPIES), 'files')
     # Running Wild plays the model's own MountSelf anims (F-063), which the alpha models don't have
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'models'))
+    import m2_alpha_fixes
     import m2_retarget_mountself
     character = os.path.join(COMMON, 'Character')
     for lower, gender in (('male', 'Male'), ('female', 'Female')):
         m2_retarget_mountself.retarget(os.path.join(character, 'Worgen', lower, 'worgen%s.m2' % lower),
                                        os.path.join(character, 'AlphaWorgen', gender, 'AlphaWorgen%s.m2' % gender))
+    m2_alpha_fixes.fix_all(character)
 
 
 def race_readme(out, key, name, plural, fnum, slug, side, home, kin, male_only, model, source, prefix):

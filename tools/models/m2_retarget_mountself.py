@@ -458,13 +458,15 @@ def write(src, tgt, mapping, new_seqs):
         fh.write(w.data)
     print('  wrote %d sequences (%d event ids added, %d event tracks copied), model %d -> %d bytes'
           % (len(new_seqs), added, copied, len(tgt.data), len(w.data)))
+    return old_seqs
 
 
-def retarget(source, target, check_only=False):
+def retarget(source, target, check_only=False, ids=MOUNT_SELF):
+    """Adds the source's sequences with these ids (default MountSelf; m2_alpha_fixes.py uses it for Two Forms' anims)."""
     src, tgt = Model(source), Model(target)
-    if any(s['id'] in MOUNT_SELF for s in tgt.seqs):
-        raise SystemExit('%s already has MountSelf sequences' % target)
-    new_seqs = sorted((s for s in src.seqs if s['id'] in MOUNT_SELF and s['var'] == 0), key=lambda s: s['id'])
+    if any(s['id'] in ids for s in tgt.seqs):
+        raise SystemExit('%s already has some of these sequences' % target)
+    new_seqs = sorted((s for s in src.seqs if s['id'] in ids and s['var'] == 0), key=lambda s: s['id'])
     mapping, poor, moved = match(src, tgt)
     print('%s: %d bones, %d mapped (%d move in the shared animations), %d movers without a match: %s'
           % (os.path.basename(target), len(tgt.bones), len(mapping), len(moved), len(poor), poor[:12]))

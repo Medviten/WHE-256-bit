@@ -19,6 +19,7 @@
 - `races/alpha_race_modpaks.py <package> <stock DBFilesClient> <WHE-common patch-A.MPQ>`: makes F-094..F-097 from the Alpha-Worgen
   package (alpha Worgen and Goblin looks, Cultist and Man'ari races), with its files moved out of the paths they would overwrite.
 
+- `models/m2_alpha_fixes.py <patch-A.MPQ>/Character`: fixes the alpha Worgen models for Two Forms (including copying arm meshes to the female) and removes the alpha Goblin blink, once, after MountSelf (F-094, F-095). `alpha_race_modpaks.py` runs it too.
 - `models/m2_retarget_mountself.py <source.m2> <target.m2> [check]`: adds the MountSelf animations of one Worgen model to another with
   a different rig (F-094). `alpha_race_modpaks.py` runs it after copying the models.
 
@@ -58,4 +59,4 @@
   as Blizzard's character models keep them (a sequence loads the first time it plays); checks the result against the original
     - `races/dracthyr_modpaks.py <built DBFilesClient>`: generates F-073/F-074 (Dracthyr, races 52/70) with the same templates;
       the wowdecomp-256-bit client shows them with their Retail model. Rerun `coa_racials.py` afterwards for their racials
-    - `races/haranir_modpaks.py <built DBFilesClient>`: generates F-098/F-099 (Haranir, races 86/91) the same way; no racials to add
+    - `races/haranir_modpaks.py <built DBFilesClient>`: generates F-098/F-099 (Haranir, races 86/91) the same way; no racials to add. It ends with `races/haranir_native.py <modpaks>`, which points them at the native look baked by `models/haranir_native_prep.py` (needs a `WOWDECOMP_RETAIL_ASSETS` build's probes and the Retail files)
