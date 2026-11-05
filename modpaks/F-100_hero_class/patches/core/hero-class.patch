@@ -1,0 +1,642 @@
+diff --git a/src/server/game/Entities/Creature/Trainer.cpp b/src/server/game/Entities/Creature/Trainer.cpp
+index 3f1a0ddb5..e5bafaba9 100644
+--- a/src/server/game/Entities/Creature/Trainer.cpp
++++ b/src/server/game/Entities/Creature/Trainer.cpp
+@@ -18,6 +18,7 @@
+ #include "Trainer.h"
+ #include "Creature.h"
+ #include "NPCPackets.h"
++#include "ObjectMgr.h"
+ #include "Player.h"
+ #include "ScriptMgr.h"
+ #include "SpellInfo.h"
+@@ -43,9 +44,22 @@ namespace Trainer
+         trainerList.TrainerGUID = npc->GetGUID();
+         trainerList.TrainerType = AsUnderlyingType(_type);
+         trainerList.Greeting = GetGreeting(locale);
+-        trainerList.Spells.reserve(_spells.size());
++
++        // Custom: WHE F-100, a Hero also sees the spells other classes start with or get from quests
++        std::vector<Spell const*> spells;
++        spells.reserve(_spells.size());
+         for (Spell const& trainerSpell : _spells)
++            spells.push_back(&trainerSpell);
++
++        if (Trainer const* heroSpells = GetHeroSpells(player))
++            for (Spell const& trainerSpell : heroSpells->_spells)
++                spells.push_back(&trainerSpell);
++
++        trainerList.Spells.reserve(spells.size());
++        for (Spell const* trainerSpellPtr : spells)
+         {
++            Spell const& trainerSpell = *trainerSpellPtr;
++
+             if (!player->IsSpellFitByClassAndRace(trainerSpell.SpellId))
+                 continue;
+ 
+@@ -86,6 +100,11 @@ namespace Trainer
+             return;
+ 
+         Spell const* trainerSpell = GetSpell(spellId);
++
++        // Custom: WHE F-100
++        if (Trainer const* heroSpells = !trainerSpell ? GetHeroSpells(player) : nullptr)
++            trainerSpell = heroSpells->GetSpell(spellId);
++
+         if (!trainerSpell)
+         {
+             SendTeachFailure(npc, player, spellId, FailReason::Unavailable);
+@@ -230,7 +249,8 @@ namespace Trainer
+             case Type::Class:
+             case Type::Pet:
+                 // check class for class trainers
+-                return player->getClass() == GetTrainerRequirement();
++                // Custom: WHE F-100, a Hero can use any of them
++                return player->getClass() == GetTrainerRequirement() || player->getClass() == CLASS_HERO;
+             case Type::Mount:
+                 // check race for mount trainers
+                 return player->getRace() == GetTrainerRequirement();
+@@ -244,6 +264,15 @@ namespace Trainer
+         return true;
+     }
+ 
++    Trainer const* Trainer::GetHeroSpells(Player const* player) const
++    {
++        if (player->getClass() != CLASS_HERO || GetTrainerType() != Type::Class || !GetTrainerRequirement())
++            return nullptr;
++
++        // `trainer` rows HERO_SPELLS_TRAINER_BASE + class. They need no creature: the modpak's SQL fills them.
++        return sObjectMgr->GetTrainerById(HERO_SPELLS_TRAINER_BASE + GetTrainerRequirement());
++    }
++
+     void Trainer::SendTeachFailure(Creature const* npc, Player const* player, uint32 spellId, FailReason reason) const
+     {
+         WorldPackets::NPC::TrainerBuyFailed trainerBuyFailed;
+diff --git a/src/server/game/Entities/Creature/Trainer.h b/src/server/game/Entities/Creature/Trainer.h
+index 377274403..05206d8d1 100644
+--- a/src/server/game/Entities/Creature/Trainer.h
++++ b/src/server/game/Entities/Creature/Trainer.h
+@@ -28,6 +28,9 @@ class Player;
+ 
+ namespace Trainer
+ {
++    // Custom: WHE F-100, see Trainer::GetHeroSpells
++    constexpr uint32 HERO_SPELLS_TRAINER_BASE = 190000;
++
+     enum class Type : uint32
+     {
+         Class = 0,
+@@ -76,6 +79,8 @@ namespace Trainer
+             [[nodiscard]] Type GetTrainerType() const { return _type; }
+             [[nodiscard]] uint32 GetTrainerRequirement() const { return _requirement; }
+             bool IsTrainerValidForPlayer(Player const* player) const;
++            // Custom: WHE F-100, the extra spells only a Hero gets from this class's trainers
++            Trainer const* GetHeroSpells(Player const* player) const;
+ 
+             private:
+             SpellState GetSpellState(Player const* player, Spell const* trainerSpell) const;
+diff --git a/src/server/game/Entities/Pet/Pet.cpp b/src/server/game/Entities/Pet/Pet.cpp
+index c58f4cc10..35d8477e3 100644
+--- a/src/server/game/Entities/Pet/Pet.cpp
++++ b/src/server/game/Entities/Pet/Pet.cpp
+@@ -1061,6 +1061,10 @@ bool Guardian::InitStatsForLevel(uint8 petlevel)
+ 
+         if (IsPet())
+         {
++            // Custom: WHE F-100, a Hero's pet type comes from the pet, since it can be any class's
++            if (petType == MAX_PET_TYPE && owner->getClass() == CLASS_HERO)
++                petType = cinfo->type == CREATURE_TYPE_BEAST ? HUNTER_PET : SUMMON_PET;
++
+             if (petType == MAX_PET_TYPE)
+             {
+                 // The petType was not overwritten by the hook, continue with default initialization
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 1ef7c39c7..08fd9cf0b 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -1357,8 +1357,83 @@ bool Player::IsClass(Classes unitClass, ClassContext context) const
+     Optional<bool> scriptResult = sScriptMgr->OnPlayerIsClass(this, unitClass, context);
+     if (scriptResult != std::nullopt)
+         return *scriptResult;
+-    else
+-        return (getClass() == unitClass);
++
++    // Custom: WHE F-100, a Hero answers per context rather than as one class
++    if (getClass() == CLASS_HERO)
++        if (Optional<bool> heroResult = IsClassAsHero(unitClass, context))
++            return *heroResult;
++
++    return (getClass() == unitClass);
++}
++
++// Custom: WHE F-100. A Hero can learn every class's spells, but the core's class checks mostly choose one branch out of
++// several, so "yes to everything" would be wrong: answer per context. Modelled on mod-classless-wildcard's OnPlayerIsClass.
++Optional<bool> Player::IsClassAsHero(Classes unitClass, ClassContext context) const
++{
++    switch (context)
++    {
++        // any relic and shields, and need rolls judge armor as a plate wearer's
++        case CLASS_CONTEXT_EQUIP_RELIC:
++        case CLASS_CONTEXT_EQUIP_SHIELDS:
++            return true;
++        case CLASS_CONTEXT_EQUIP_ARMOR_CLASS:
++            return unitClass == CLASS_PALADIN;
++        // The first match of each formula decides: melee is Paladin's, ranged Hunter's, and only feral weapon attack
++        // power reads Druid, because StatSystem's melee chain tests Paladin first and never reaches it.
++        case CLASS_CONTEXT_STATS:
++            return unitClass == CLASS_PALADIN || unitClass == CLASS_HUNTER || unitClass == CLASS_DRUID;
++        // Runes, pick pocket, totem enchants, Righteous Fury and Spirit of Redemption: each is gated again on what the
++        // Hero actually has. Answered for all of them; InitRunes and the rune update must agree on the Death Knight one.
++        case CLASS_CONTEXT_ABILITY:
++            return true;
++        // These pick between aura states that exclude each other (Unit.cpp), so answer from the spells the Hero knows
++        case CLASS_CONTEXT_ABILITY_REACTIVE:
++            switch (unitClass)
++            {
++                case CLASS_ROGUE:
++                    return false;
++                case CLASS_HUNTER:
++                    for (uint32 spellId : { 19306, 20909, 20910, 27067, 48998, 48999 }) // Counterattack
++                        if (HasSpell(spellId))
++                            return true;
++                    return false;
++                case CLASS_WARRIOR:
++                    for (uint32 spellId : { 7384, 7887, 11584, 11585 }) // Overpower
++                        if (HasSpell(spellId))
++                            return true;
++                    return false;
++                default:
++                    return std::nullopt;
++            }
++        // Answered from the pet itself. Without a pet the Death Knight answer has to stay no: LoadPetFromDB refuses
++        // Death Knights without Master of Ghouls, and this is exactly when it asks.
++        case CLASS_CONTEXT_PET:
++        {
++            Pet* pet = GetPet();
++            if (!pet || !pet->GetCreatureTemplate())
++                return unitClass != CLASS_DEATH_KNIGHT;
++
++            uint32 const creatureType = pet->GetCreatureTemplate()->type;
++            switch (unitClass)
++            {
++                case CLASS_WARLOCK:
++                    return creatureType == CREATURE_TYPE_DEMON;
++                case CLASS_DEATH_KNIGHT:
++                    return creatureType == CREATURE_TYPE_UNDEAD;
++                case CLASS_MAGE:
++                    return creatureType == CREATURE_TYPE_ELEMENTAL;
++                case CLASS_HUNTER:
++                    return creatureType == CREATURE_TYPE_BEAST;
++                default:
++                    return std::nullopt;
++            }
++        }
++        // Enslave Demon's AI and class byte fix-up
++        case CLASS_CONTEXT_PET_CHARM:
++            return unitClass == CLASS_WARLOCK;
++        default:
++            return std::nullopt;
++    }
+ }
+ 
+ void Player::ToggleAFK()
+@@ -2784,8 +2859,12 @@ bool Player::HasActivePowerType(Powers power)
+ {
+     if (sScriptMgr->OnPlayerHasActivePowerType(this, power))
+         return true;
+-    else
+-        return (getPowerType() == power);
++
++    // Custom: WHE F-100, a Hero keeps every pool its spells can spend alive, not only the one on its power bar
++    if (getClass() == CLASS_HERO && (power == POWER_MANA || power == POWER_RAGE || power == POWER_ENERGY || power == POWER_RUNIC_POWER))
++        return true;
++
++    return (getPowerType() == power);
+ }
+ 
+ void Player::SendInitialSpells()
+@@ -5311,7 +5390,7 @@ void Player::GetDodgeFromAgility(float& diminishing, float& nondiminishing)
+         0.021080f, // Shaman
+         0.036587f, // Mage
+         0.024211f, // Warlock
+-        0.0f,      // ??
++        0.034943f, // Custom: WHE F-100, Hero (Paladin's)
+         0.056097f  // Druid
+     };
+     // Crit/agility to dodge/agility coefficient multipliers; 3.2.0 increased required agility by 15%
+@@ -5326,7 +5405,7 @@ void Player::GetDodgeFromAgility(float& diminishing, float& nondiminishing)
+         1.60f / 1.15f,  // Shaman
+         1.00f / 1.15f,  // Mage
+         0.97f / 1.15f,  // Warlock (?)
+-        0.0f,           // ??
++        1.00f / 1.15f,  // Custom: WHE F-100, Hero (Paladin's)
+         2.00f / 1.15f   // Druid
+     };
+ 
+@@ -10121,11 +10200,23 @@ template AC_GAME_API void Player::ApplySpellMod(uint32 spellId, SpellModOp op, i
+ template AC_GAME_API void Player::ApplySpellMod(uint32 spellId, SpellModOp op, uint32& basevalue, Spell* spell, bool temporaryPet);
+ template AC_GAME_API void Player::ApplySpellMod(uint32 spellId, SpellModOp op, float& basevalue, Spell* spell, bool temporaryPet);
+ 
++// Custom: WHE F-100, the spell family a modifier belongs to
++uint32 Player::GetSpellModFamily(uint32 spellId)
++{
++    SpellInfo const* spellInfo = sSpellMgr->GetSpellInfo(spellId);
++    return spellInfo ? spellInfo->SpellFamilyName : 0;
++}
++
+ void Player::AddSpellMod(SpellModifier* mod, bool apply)
+ {
+     LOG_DEBUG("spells.aura", "Player::AddSpellMod {}", mod->spellId);
+     uint16 Opcode = (mod->type == SPELLMOD_FLAT) ? SMSG_SET_FLAT_SPELL_MODIFIER : SMSG_SET_PCT_SPELL_MODIFIER;
+ 
++    // Custom: WHE F-100. A mask bit only means something within a spell family, and a Hero holds modifiers from all of
++    // them: keep one total per family and tell the client which one, in a field the packet doesn't otherwise have.
++    bool const familyAware = getClass() == CLASS_HERO;
++    uint32 const family = familyAware ? GetSpellModFamily(mod->spellId) : 0;
++
+     int i = 0;
+     flag96 _mask = 0;
+     for (int eff = 0; eff < 96; ++eff)
+@@ -10139,14 +10230,16 @@ void Player::AddSpellMod(SpellModifier* mod, bool apply)
+             int32 val = 0;
+             for (SpellModContainer::iterator itr = m_spellMods[mod->op].begin(); itr != m_spellMods[mod->op].end(); ++itr)
+             {
+-                if ((*itr)->type == mod->type && (*itr)->mask & _mask)
++                if ((*itr)->type == mod->type && (*itr)->mask & _mask && (!familyAware || GetSpellModFamily((*itr)->spellId) == family))
+                     val += (*itr)->value;
+             }
+             val += apply ? mod->value : -(mod->value);
+-            WorldPacket data(Opcode, (1 + 1 + 4));
++            WorldPacket data(Opcode, (1 + 1 + 4 + 4));
+             data << uint8(eff);
+             data << uint8(mod->op);
+             data << int32(val);
++            if (familyAware)
++                data << uint32(family);
+             SendDirectMessage(&data);
+         }
+     }
+@@ -10947,7 +11040,7 @@ bool Player::BuyItemFromVendorSlot(ObjectGuid vendorguid, uint32 vendorslot, uin
+         return false;
+     }
+ 
+-    if (!(pProto->AllowableClass & getClassMask()) && pProto->Bonding == BIND_WHEN_PICKED_UP && !IsGameMaster())
++    if (getClass() != CLASS_HERO && !(pProto->AllowableClass & getClassMask()) && pProto->Bonding == BIND_WHEN_PICKED_UP && !IsGameMaster()) // Custom: WHE F-100
+     {
+         SendBuyError(BUY_ERR_CANT_FIND_ITEM, nullptr, item, 0);
+         return false;
+@@ -16438,6 +16531,34 @@ uint32 Player::GetSpec(int8 spec)
+             specIdx = m_activeSpec;
+         else
+             specIdx = spec;
++
++        // Custom: WHE F-100, a Hero's talents can be in every class's tabs, so there are no three to walk
++        if (getClass() == CLASS_HERO)
++        {
++            std::unordered_map<uint32, uint32> tabCounts;
++            for (uint32 talentId = 0; talentId < sTalentStore.GetNumRows(); ++talentId)
++            {
++                TalentEntry const* talentInfo = sTalentStore.LookupEntry(talentId);
++                if (!talentInfo)
++                    continue;
++
++                for (int8 rank = MAX_TALENT_RANK - 1; rank >= 0; --rank)
++                {
++                    if (talentInfo->RankID[rank] && HasTalent(talentInfo->RankID[rank], specIdx))
++                    {
++                        uint32 const count = (tabCounts[talentInfo->TalentTab] += rank + 1);
++                        if (count > mostTalentCount)
++                        {
++                            mostTalentCount = count;
++                            mostTalentTabId = talentInfo->TalentTab;
++                        }
++                        break;
++                    }
++                }
++            }
++            return mostTalentTabId;
++        }
++
+         // find class talent tabs (all players have 3 talent tabs)
+         uint32 const* talentTabIds = GetTalentTabPages(getClass());
+ 
+@@ -16743,6 +16864,7 @@ std::string Player::GetPlayerName()
+         case CLASS_SHAMAN:       color = "|cff0070DE"; break;
+         case CLASS_WARLOCK:      color = "|cff9482C9"; break;
+         case CLASS_WARRIOR:      color = "|cffC79C6E"; break;
++        case CLASS_HERO:         color = "|cffE6CC80"; break; // Custom: WHE F-100
+     }
+ 
+     return "|Hplayer:" + name + "|h" + color + name + "|h|r";
+diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
+index cc1f42b1f..2d75a0a85 100644
+--- a/src/server/game/Entities/Player/Player.h
++++ b/src/server/game/Entities/Player/Player.h
+@@ -1132,6 +1132,8 @@ public:
+     static bool BuildEnumData(PreparedQueryResult result, WorldPacket* data);
+ 
+     [[nodiscard]] bool IsClass(Classes playerClass, ClassContext context = CLASS_CONTEXT_NONE) const override;
++    // Custom: WHE F-100. Whether a Hero (class 10) counts as playerClass in this context; nullopt = it doesn't
++    [[nodiscard]] Optional<bool> IsClassAsHero(Classes playerClass, ClassContext context) const;
+ 
+     void SetInWater(bool apply);
+ 
+@@ -1823,6 +1825,7 @@ public:
+     SkillStatusMap& GetSkillStatusMap() { return mSkillStatus; }
+ 
+     void AddSpellMod(SpellModifier* mod, bool apply);
++    [[nodiscard]] static uint32 GetSpellModFamily(uint32 spellId); // Custom: WHE F-100
+     bool IsAffectedBySpellmod(SpellInfo const* spellInfo, SpellModifier* mod, Spell* spell = nullptr);
+     bool HasSpellMod(SpellModifier* mod, Spell* spell);
+     template <class T>
+diff --git a/src/server/game/Entities/Player/PlayerQuest.cpp b/src/server/game/Entities/Player/PlayerQuest.cpp
+index b3228c1ef..81a0d05f2 100644
+--- a/src/server/game/Entities/Player/PlayerQuest.cpp
++++ b/src/server/game/Entities/Player/PlayerQuest.cpp
+@@ -1129,6 +1129,11 @@ bool Player::SatisfyQuestClass(Quest const* qInfo, bool msg) const
+     if (reqClass == 0)
+         return true;
+ 
++    // Custom: WHE F-100. A quest for several classes restricts by gear or role, which doesn't stop a Hero. One for a
++    // single class is that class's own chain, and a Hero buys what it teaches from the trainer instead.
++    if (getClass() == CLASS_HERO && (reqClass & (reqClass - 1)) != 0)
++        return true;
++
+     if ((reqClass & getClassMask()) == 0)
+     {
+         if (msg)
+diff --git a/src/server/game/Entities/Player/PlayerStorage.cpp b/src/server/game/Entities/Player/PlayerStorage.cpp
+index fb173c903..b942567fe 100644
+--- a/src/server/game/Entities/Player/PlayerStorage.cpp
++++ b/src/server/game/Entities/Player/PlayerStorage.cpp
+@@ -2369,7 +2369,8 @@ InventoryResult Player::CanUseItem(ItemTemplate const* proto) const
+         return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
+     }
+ 
+-    if ((proto->AllowableClass & getClassMask()) == 0 || !(proto->AllowableRace & getRaceMask()))
++    // Custom: WHE F-100, class-restricted items are open to a Hero
++    if ((getClass() != CLASS_HERO && (proto->AllowableClass & getClassMask()) == 0) || !(proto->AllowableRace & getRaceMask()))
+     {
+         return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
+     }
+@@ -2468,7 +2469,8 @@ InventoryResult Player::CanRollForItemInLFG(ItemTemplate const* proto, WorldObje
+     if (proto->HasFlag2(ITEM_FLAG2_EVERYONE_CAN_ROLL_NEED))
+         return EQUIP_ERR_OK;
+ 
+-    if ((proto->AllowableClass & getClassMask()) == 0 || !(proto->AllowableRace & getRaceMask()))
++    // Custom: WHE F-100, class-restricted items are open to a Hero
++    if ((getClass() != CLASS_HERO && (proto->AllowableClass & getClassMask()) == 0) || !(proto->AllowableRace & getRaceMask()))
+         return EQUIP_ERR_YOU_CAN_NEVER_USE_THAT_ITEM;
+ 
+     if (proto->RequiredSpell != 0 && !HasSpell(proto->RequiredSpell))
+diff --git a/src/server/game/Entities/Unit/StatSystem.cpp b/src/server/game/Entities/Unit/StatSystem.cpp
+index 24c025ac6..f38c0fdfc 100644
+--- a/src/server/game/Entities/Unit/StatSystem.cpp
++++ b/src/server/game/Entities/Unit/StatSystem.cpp
+@@ -395,6 +395,10 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
+         if (IsClass(CLASS_PALADIN, CLASS_CONTEXT_STATS) || IsClass(CLASS_DEATH_KNIGHT, CLASS_CONTEXT_STATS) || IsClass(CLASS_WARRIOR, CLASS_CONTEXT_STATS))
+         {
+             val2 = level * 3.0f + GetStat(STAT_STRENGTH) * 2.0f - 20.0f;
++
++            // Custom: WHE F-100, Agility is worth attack power too, or a rogue or hunter build gets nothing from it
++            if (getClass() == CLASS_HERO)
++                val2 += GetStat(STAT_AGILITY);
+         }
+         else if (IsClass(CLASS_HUNTER, CLASS_CONTEXT_STATS) || IsClass(CLASS_SHAMAN, CLASS_CONTEXT_STATS) || IsClass(CLASS_ROGUE, CLASS_CONTEXT_STATS))
+         {
+@@ -719,7 +723,7 @@ const float m_diminishing_k[MAX_CLASSES] =
+     0.9880f,  // Shaman
+     0.9830f,  // Mage
+     0.9830f,  // Warlock
+-    0.0f,     // ??
++    0.9560f,  // Custom: WHE F-100, Hero (Paladin's)
+     0.9720f   // Druid
+ };
+ 
+@@ -736,7 +740,7 @@ float Player::GetMissPercentageFromDefence() const
+         16.00f,     // Shaman  //?
+         16.00f,     // Mage    //?
+         16.00f,     // Warlock //?
+-        0.0f,       // ??
++        16.00f,     // Custom: WHE F-100, Hero
+         16.00f      // Druid   //?
+     };
+ 
+@@ -763,7 +767,7 @@ void Player::UpdateParryPercentage()
+         145.560408f,    // Shaman
+         0.0f,           // Mage
+         0.0f,           // Warlock
+-        0.0f,           // ??
++        47.003525f,     // Custom: WHE F-100, Hero (Paladin's)
+         0.0f            // Druid
+     };
+ 
+@@ -809,7 +813,7 @@ void Player::UpdateDodgePercentage()
+         145.560408f,    // Shaman
+         150.375940f,    // Mage
+         150.375940f,    // Warlock
+-        0.0f,           // ??
++        88.129021f,     // Custom: WHE F-100, Hero (Paladin's)
+         116.890707f     // Druid
+     };
+ 
+diff --git a/src/server/game/Globals/ObjectMgr.cpp b/src/server/game/Globals/ObjectMgr.cpp
+index fa73753f7..31701cb39 100644
+--- a/src/server/game/Globals/ObjectMgr.cpp
++++ b/src/server/game/Globals/ObjectMgr.cpp
+@@ -10119,6 +10119,13 @@ void ObjectMgr::LoadCreatureDefaultTrainers()
+     LOG_INFO("server.loading", ">> Loaded {} default trainers in {} ms", _creatureDefaultTrainers.size(), GetMSTimeDiffToNow(oldMSTime));
+ }
+ 
++// Custom: WHE F-100
++Trainer::Trainer const* ObjectMgr::GetTrainerById(uint32 trainerId) const
++{
++    auto itr = _trainers.find(trainerId);
++    return itr != _trainers.end() ? &itr->second : nullptr;
++}
++
+ Trainer::Trainer* ObjectMgr::GetTrainer(uint32 creatureId)
+ {
+     auto itr = _creatureDefaultTrainers.find(creatureId);
+diff --git a/src/server/game/Globals/ObjectMgr.h b/src/server/game/Globals/ObjectMgr.h
+index ea6b56867..8edb2b3c6 100644
+--- a/src/server/game/Globals/ObjectMgr.h
++++ b/src/server/game/Globals/ObjectMgr.h
+@@ -1450,6 +1450,7 @@ public:
+     bool DeleteGameTele(std::string_view name);
+ 
+     Trainer::Trainer* GetTrainer(uint32 creatureId);
++    Trainer::Trainer const* GetTrainerById(uint32 trainerId) const; // Custom: WHE F-100
+     std::vector<Trainer::Trainer const*> const& GetClassTrainers(uint8 classId) const { return _classTrainers.at(classId); }
+ 
+     [[nodiscard]] VendorItemData const* GetNpcVendorItemList(uint32 entry) const
+diff --git a/src/server/game/Handlers/AuctionHouseHandler.cpp b/src/server/game/Handlers/AuctionHouseHandler.cpp
+index bba72f7ff..f5e5e6916 100644
+--- a/src/server/game/Handlers/AuctionHouseHandler.cpp
++++ b/src/server/game/Handlers/AuctionHouseHandler.cpp
+@@ -826,7 +826,7 @@ void WorldSession::HandleAuctionListItems(WorldPacket& recvData)
+     if (usable)
+     {
+         AuctionHouseUsablePlayerInfo usablePlayerInfo;
+-        usablePlayerInfo.classMask = GetPlayer()->getClassMask();
++        usablePlayerInfo.classMask = GetPlayer()->getClass() == CLASS_HERO ? 0xFFFFFFFFu : GetPlayer()->getClassMask(); // Custom: WHE F-100
+         usablePlayerInfo.raceMask = GetPlayer()->getRaceMask();
+         usablePlayerInfo.level = GetPlayer()->GetLevel();
+ 
+diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
+index 01e07f37e..c426fa1ec 100644
+--- a/src/server/game/Handlers/CharacterHandler.cpp
++++ b/src/server/game/Handlers/CharacterHandler.cpp
+@@ -1314,6 +1314,31 @@ void WorldSession::HandlePlayerLoginToCharInWorld(Player* pCurrChar)
+                     _mask[i++] = 0;
+ 
+                 _mask[i] = uint32(1) << (eff - (32 * i));
++
++                // Custom: WHE F-100, a Hero gets one total per spell family (see Player::AddSpellMod)
++                if (pCurrChar->getClass() == CLASS_HERO)
++                {
++                    std::map<uint32, int32> familyTotals;
++                    for (auto const& spellMod : spellMods)
++                        if (spellMod->type == modType && spellMod->mask & _mask)
++                            familyTotals[Player::GetSpellModFamily(spellMod->spellId)] += spellMod->value;
++
++                    for (auto const& [family, total] : familyTotals)
++                    {
++                        if (total == 0)
++                            continue;
++
++                        WorldPacket data(Opcode, (1 + 1 + 4 + 4));
++                        data << uint8(eff);
++                        data << uint8(opType);
++                        data << int32(total);
++                        data << uint32(family);
++                        SendPacket(&data);
++                    }
++
++                    continue;
++                }
++
+                 int32 val = 0;
+                 for (auto const& spellMod : spellMods)
+                     if (spellMod->type == modType && spellMod->mask & _mask)
+diff --git a/src/server/game/Handlers/ItemHandler.cpp b/src/server/game/Handlers/ItemHandler.cpp
+index e158d1180..4204c247c 100644
+--- a/src/server/game/Handlers/ItemHandler.cpp
++++ b/src/server/game/Handlers/ItemHandler.cpp
+@@ -910,7 +910,7 @@ void WorldSession::SendListInventory(ObjectGuid vendorGuid, uint32 vendorEntry)
+         {
+             if (ItemTemplate const* itemTemplate = sObjectMgr->GetItemTemplate(item->item))
+             {
+-                if (!(itemTemplate->AllowableClass & _player->getClassMask()) && itemTemplate->Bonding == BIND_WHEN_PICKED_UP && !_player->IsGameMaster())
++                if (_player->getClass() != CLASS_HERO && !(itemTemplate->AllowableClass & _player->getClassMask()) && itemTemplate->Bonding == BIND_WHEN_PICKED_UP && !_player->IsGameMaster())
+                 {
+                     continue;
+                 }
+diff --git a/src/server/game/Reputation/ReputationMgr.cpp b/src/server/game/Reputation/ReputationMgr.cpp
+index 8ea431588..0452720ae 100644
+--- a/src/server/game/Reputation/ReputationMgr.cpp
++++ b/src/server/game/Reputation/ReputationMgr.cpp
+@@ -94,7 +94,7 @@ int32 ReputationMgr::GetBaseReputation(FactionEntry const* factionEntry) const
+         return 0;
+ 
+     RaceMask raceMask = _player->getRaceMask();
+-    uint32 classMask = _player->getClassMask();
++    uint32 classMask = _player->getClass() == CLASS_HERO ? uint32(1 << (CLASS_PALADIN - 1)) : _player->getClassMask(); // Custom: WHE F-100, the DBC's rows don't name class 10
+     for (int i = 0; i < 4; i++)
+     {
+         if ((factionEntry->BaseRepRaceMask[i] & raceMask  ||
+@@ -148,7 +148,7 @@ uint32 ReputationMgr::GetDefaultStateFlags(FactionEntry const* factionEntry) con
+         return 0;
+ 
+     RaceMask raceMask = _player->getRaceMask();
+-    uint32 classMask = _player->getClassMask();
++    uint32 classMask = _player->getClass() == CLASS_HERO ? uint32(1 << (CLASS_PALADIN - 1)) : _player->getClassMask(); // Custom: WHE F-100, the DBC's rows don't name class 10
+     for (int i = 0; i < 4; i++)
+     {
+         if ((factionEntry->BaseRepRaceMask[i] & raceMask  ||
+diff --git a/src/server/game/Spells/Spell.cpp b/src/server/game/Spells/Spell.cpp
+index 80a2fe8e4..c8f61490b 100644
+--- a/src/server/game/Spells/Spell.cpp
++++ b/src/server/game/Spells/Spell.cpp
+@@ -652,7 +652,8 @@ Spell::Spell(WorldObject* caster, SpellInfo const* info, TriggerCastFlags trigge
+     {
+         // wand case
+         if (m_attackType == RANGED_ATTACK)
+-            if ((playerCaster->getClassMask() & CLASSMASK_WAND_USERS) != 0)
++            // Custom: WHE F-100, a Hero shoots any ranged weapon, so test the wand itself
++            if ((playerCaster->getClassMask() & CLASSMASK_WAND_USERS) != 0 || (playerCaster->getClass() == CLASS_HERO && playerCaster->GetWeaponForAttack(RANGED_ATTACK) && playerCaster->GetWeaponForAttack(RANGED_ATTACK)->GetTemplate()->SubClass == ITEM_SUBCLASS_WEAPON_WAND))
+                 if (Item* pItem = playerCaster->GetWeaponForAttack(RANGED_ATTACK))
+                     m_spellSchoolMask = SpellSchoolMask(1 << pItem->GetTemplate()->Damage[0].DamageType);
+     }
+@@ -7637,7 +7638,8 @@ SpellCastResult Spell::CheckItems(uint32* param1, uint32* param2)
+         {
+             if (m_spellInfo->TotemCategory[i] != 0)
+             {
+-                if (player->HasItemTotemCategory(m_spellInfo->TotemCategory[i]))
++                // Custom: WHE F-100, a Hero has no quest chain to get the shaman's four totems from
++                if (player->HasItemTotemCategory(m_spellInfo->TotemCategory[i]) || (player->getClass() == CLASS_HERO && m_spellInfo->TotemCategory[i] >= 2 && m_spellInfo->TotemCategory[i] <= 5))
+                 {
+                     TotemCategory -= 1;
+                     continue;
+diff --git a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
+index a46e43824..e94e5f4d1 100644
+--- a/src/server/shared/SharedDefines.h
++++ b/src/server/shared/SharedDefines.h
+@@ -134,7 +134,7 @@ enum Classes
+     CLASS_SHAMAN        = 7, // TITLE Shaman
+     CLASS_MAGE          = 8, // TITLE Mage
+     CLASS_WARLOCK       = 9, // TITLE Warlock
+-    //CLASS_UNK           = 10,
++    CLASS_HERO          = 10, // TITLE Hero
+     CLASS_DRUID         = 11 // TITLE Druid
+ };
+ 
+@@ -145,7 +145,7 @@ enum Classes
+     ((1<<(CLASS_WARRIOR-1))|(1<<(CLASS_PALADIN-1))|(1<<(CLASS_HUNTER-1))| \
+     (1<<(CLASS_ROGUE-1))  |(1<<(CLASS_PRIEST-1)) |(1<<(CLASS_SHAMAN-1))| \
+     (1<<(CLASS_MAGE-1))   |(1<<(CLASS_WARLOCK-1))|(1<<(CLASS_DRUID-1)) | \
+-    (1<<(CLASS_DEATH_KNIGHT-1)))
++    (1<<(CLASS_DEATH_KNIGHT-1))|(1<<(CLASS_HERO-1))) // Custom: WHE F-100, the class that can learn from any trainer
+ 
+ // valid classes for creature_template.unit_class
+ #define CLASSMASK_ALL_CREATURES ((1<<(CLASS_WARRIOR-1)) | (1<<(CLASS_PALADIN-1)) | (1<<(CLASS_ROGUE-1)) | (1<<(CLASS_MAGE-1)))
+diff --git a/src/server/shared/enuminfo_SharedDefines.cpp b/src/server/shared/enuminfo_SharedDefines.cpp
+index bb68abfb0..fa387e1f8 100644
+--- a/src/server/shared/enuminfo_SharedDefines.cpp
++++ b/src/server/shared/enuminfo_SharedDefines.cpp
+@@ -104,13 +104,14 @@ AC_API_EXPORT EnumText EnumUtils<Classes>::ToString(Classes value)
+         case CLASS_SHAMAN: return { "CLASS_SHAMAN", "Shaman", "" };
+         case CLASS_MAGE: return { "CLASS_MAGE", "Mage", "" };
+         case CLASS_WARLOCK: return { "CLASS_WARLOCK", "Warlock", "" };
++        case CLASS_HERO: return { "CLASS_HERO", "Hero", "" };
+         case CLASS_DRUID: return { "CLASS_DRUID", "Druid", "" };
+         default: throw std::out_of_range("value");
+     }
+ }
+ 
+ template <>
+-AC_API_EXPORT std::size_t EnumUtils<Classes>::Count() { return 10; }
++AC_API_EXPORT std::size_t EnumUtils<Classes>::Count() { return 11; }
+ 
+ template <>
+ AC_API_EXPORT Classes EnumUtils<Classes>::FromIndex(std::size_t index)
+@@ -126,7 +127,8 @@ AC_API_EXPORT Classes EnumUtils<Classes>::FromIndex(std::size_t index)
+         case 6: return CLASS_SHAMAN;
+         case 7: return CLASS_MAGE;
+         case 8: return CLASS_WARLOCK;
+-        case 9: return CLASS_DRUID;
++        case 9: return CLASS_HERO;
++        case 10: return CLASS_DRUID;
+         default: throw std::out_of_range("index");
+     }
+ }
+@@ -145,7 +147,8 @@ AC_API_EXPORT std::size_t EnumUtils<Classes>::ToIndex(Classes value)
+         case CLASS_SHAMAN: return 6;
+         case CLASS_MAGE: return 7;
+         case CLASS_WARLOCK: return 8;
+-        case CLASS_DRUID: return 9;
++        case CLASS_HERO: return 9;
++        case CLASS_DRUID: return 10;
+         default: throw std::out_of_range("value");
+     }
+ }

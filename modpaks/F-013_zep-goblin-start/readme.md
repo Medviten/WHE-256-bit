@@ -22,6 +22,7 @@ New Goblin characters play the intro cinematic on their first login, so the clie
 
 ### Known Issues
 - No terrain changes between phases: the town and the burning island need `zep-lost-isles-terrain`, core patch 0055 and a client change, none of which are ported. The server keeps using the base island
+- `FacelessOneAquatic.m2` expects three external animations (sequences 60, 74 and 84) that Zeppelin-Craft's patches don't include either, so those won't play
 - Only tested as SQL so far, on the default modpaks plus F-010: not compiled and not played. Off-by-default modpaks' SQL wasn't tried with it, but their core patches combine with this one
 - Other than the Goblin starts, the only existing rows it changes are 25 stock class quests, which Goblins lose because they get their own versions, and display 26556, whose zero bounding radius and combat reach it fixes. That also affects the stock aircraft sharing the display
 - Stock NPCs spawned in the zones (Spirit Healer, rats, frogs, crabs...) keep their stock templates instead of Zeppelin's, so anything Zeppelin's zones expected from its versions is missing

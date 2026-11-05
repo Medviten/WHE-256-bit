@@ -2,9 +2,10 @@
 ## F-027_mod-gilnean
 
 ### Features
-- Playable Gilnean
+- Gilnean as the altered form of Worgen (requires F-024), not a playable race
     - Human with Gilnean voice (British accent)
-    - Updates Two Forms and Human Form spells to use Gilnean instead of Stormwind humans
+    - Race ID 23, not playable (ChrRaces flag 1), so it takes no race mask bit, achievements, reputation, racials or starting data. Only its HelmetGeosetVisData bit remains, so helmets hide hair and ears as on a human
+    - The client's `alteredFormRaces` default `22=23` selects it
 
 ### Known Issues
 - Sound files may not be working while transformed

@@ -58,3 +58,4 @@
   as Blizzard's character models keep them (a sequence loads the first time it plays); checks the result against the original
     - `races/dracthyr_modpaks.py <built DBFilesClient>`: generates F-073/F-074 (Dracthyr, races 52/70) with the same templates;
       the wowdecomp-256-bit client shows them with their Retail model. Rerun `coa_racials.py` afterwards for their racials
+    - `races/haranir_modpaks.py <built DBFilesClient>`: generates F-098/F-099 (Haranir, races 86/91) the same way; no racials to add

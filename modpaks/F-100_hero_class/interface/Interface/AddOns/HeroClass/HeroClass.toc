@@ -1,0 +1,5 @@
+## Interface: 30300
+## Title: Hero Class
+## Notes: UI for the Hero class (WHE F-100): talent trees per class, spellbook tab pages, extra resource bars and runes
+## Author: Medviten
+HeroClass.lua

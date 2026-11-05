@@ -38,7 +38,8 @@ KEEP_FILES = {
 }
 SKIP_FILES = {
     "F-026_custom-race-support/sql/db-world/base/[BASE,F-026]_reputation_spillover_faction.sql",  # 256-bit core table
-    # Gilnean is an altered form only in 32-bit (race 213, no mask bit), so it has no playable data
+    # Gilnean is an altered form only (32-bit: race 213, no mask bit). The 256-bit modpak no longer has most of these; its
+    # helmet row stays, as only the 32-bit client has helmetRaces
     "F-027_mod-gilnean/dbc/[BASE,F-027]_achievement.sql",
     "F-027_mod-gilnean/dbc/[BASE,F-027]_achievement_criteria.sql",
     "F-027_mod-gilnean/dbc/[BASE,F-027]_charbaseinfo.sql",

@@ -388,6 +388,8 @@ SET @AllianceEarthen                                           =   85;
 SET @HordeDracthyr                                             =   70; -- retail race (F-074); the wowdecomp-256-bit client shows its Retail model
 SET @Cultist                                                    =   65; -- not in retail (F-096)
 SET @Manari                                                     =   66; -- not in retail (F-097)
+SET @AllianceHaranir                                            =   86; -- retail race (F-098); the wowdecomp-256-bit client shows its Retail model
+SET @HordeHaranir                                               =   91; -- retail race (F-099); the wowdecomp-256-bit client shows its Retail model
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;
@@ -444,7 +446,7 @@ SET @DraeneiHelmetMask                                         =      1 << @Drae
 SET @WorgenMask                                                =   0; -- F-024
 SET @WorgenMask_2                                              =   0; -- races 65-128
 SET @WorgenHelmetMask                                          =   0;
-SET @GilneanMask                                               =   0; -- F-027
+SET @GilneanMask                                               =   0; -- (F-027's Gilnean is an altered form, it has no mask)
 SET @GilneanMask_2                                             =   0; -- races 65-128
 SET @GilneanHelmetMask                                         =   0;
 SET @HighElfMask                                               =   0; -- F-005
@@ -609,6 +611,12 @@ SET @CultistHelmetMask                                          =   0;
 SET @ManariMask                                                 =   0; -- F-097
 SET @ManariMask_2                                               =   0; -- races 65-128
 SET @ManariHelmetMask                                           =   0;
+SET @AllianceHaranirMask                                        =   0; -- F-098
+SET @AllianceHaranirMask_2                                      =   0; -- races 65-128
+SET @AllianceHaranirHelmetMask                                  =   0;
+SET @HordeHaranirMask                                           =   0; -- F-099
+SET @HordeHaranirMask_2                                         =   0; -- races 65-128
+SET @HordeHaranirHelmetMask                                     =   0;
 
 -- New Race Models
 SET @NextModelID                                               =    39999;
@@ -944,6 +952,10 @@ SET @CultistMaleDisplayExtra                                    =   @NextDisplay
 SET @CultistFemaleDisplayExtra                                  =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @ManariMaleDisplayExtra                                     =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @ManariFemaleDisplayExtra                                   =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceHaranirMaleDisplayExtra                            =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceHaranirFemaleDisplayExtra                          =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeHaranirMaleDisplayExtra                               =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeHaranirFemaleDisplayExtra                             =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -1063,6 +1075,8 @@ SET @AllianceDracthyrRacials                                   =      840;
 SET @HordeDracthyrRacials                                      =      841;
 SET @CultistRacials                                             =   842;
 SET @ManariRacials                                              =   843;
+SET @AllianceHaranirRacials                                     =   844;
+SET @HordeHaranirRacials                                        =   845;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1580,6 +1594,8 @@ SET @AllianceDracthyrRacialSkillRaceClass                      =     1183;
 SET @HordeDracthyrRacialSkillRaceClass                         =     1189; -- 1184-1188 are taken
 SET @CultistRacialSkillRaceClass                                =   1190;
 SET @ManariRacialSkillRaceClass                                 =   1191;
+SET @AllianceHaranirRacialSkillRaceClass                        =   1192;
+SET @HordeHaranirRacialSkillRaceClass                           =   1193;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1721,6 +1737,10 @@ SET @CultistMaleModel                                           =   @NextModelID
 SET @CultistFemaleModel                                         =   @NextModelID := @NextModelID +1;
 SET @ManariMaleModel                                            =   @NextModelID := @NextModelID +1;
 SET @ManariFemaleModel                                          =   @NextModelID := @NextModelID +1;
+SET @AllianceHaranirMaleModel                                   =   @NextModelID := @NextModelID +1;
+SET @AllianceHaranirFemaleModel                                 =   @NextModelID := @NextModelID +1;
+SET @HordeHaranirMaleModel                                      =   @NextModelID := @NextModelID +1;
+SET @HordeHaranirFemaleModel                                    =   @NextModelID := @NextModelID +1;
 
 -- Mount Display IDs
 SET @MechagonMechanostriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;
@@ -1773,6 +1793,10 @@ SET @CultistMaleDisplay                                         =   @NextDisplay
 SET @CultistFemaleDisplay                                       =   @NextDisplayID := @NextDisplayID +1;
 SET @ManariMaleDisplay                                          =   @NextDisplayID := @NextDisplayID +1;
 SET @ManariFemaleDisplay                                        =   @NextDisplayID := @NextDisplayID +1;
+SET @AllianceHaranirMaleDisplay                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @AllianceHaranirFemaleDisplay                               =   @NextDisplayID := @NextDisplayID +1;
+SET @HordeHaranirMaleDisplay                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @HordeHaranirFemaleDisplay                                  =   @NextDisplayID := @NextDisplayID +1;
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
@@ -2030,7 +2054,7 @@ SET @BrokenFaction                                             =     1181;
 SET @BrokenPlayer                                              =     1182; -- Broken of the Alliance
 SET @OgreFaction                                               =     1170; -- Stonemaul Clan
 SET @OgrePlayer                                                =     1169;
-SET @GilneanFaction                                            =     1185;
+SET @GilneanFaction                                            =     @WorgenFaction; -- 1185
 SET @GilneanPlayer                                             =     1186;
 SET @NagaFaction                                               =     1187;
 SET @NagaPlayer                                                =     1188;
@@ -2050,7 +2074,7 @@ SET @AlliancePandarenFactionTemplate                           =     2245; -- Re
 SET @HordePandarenFactionTemplate                              =     2246; -- References @HordePandarenPlayer
 SET @BrokenFactionTemplate                                     =     2247; -- References @BrokenPlayer
 SET @KulTiranFactionTemplate                                   =     2248; -- References @KulTiranPlayer
-SET @GilneanFactionTemplate                                    =     2249; -- References @GilneanPlayer
+SET @GilneanFactionTemplate                                    =     @WorgenFactionTemplate; -- 2249; ChrRaces needs one, but Gilnean is only Worgen's altered form
 SET @HighmountainTaurenFactionTemplate                         =     2250; -- References @HighmountainTaurenPlayer
 SET @NagaFactionTemplate                                       =     2251; -- References @NagaPlayer
 SET @TaunkaFactionTemplate                                     =     2252; -- References @TaunkaPlayer
@@ -2095,6 +2119,8 @@ SET @AllianceDracthyrFactionTemplate                           =     2290; -- Re
 SET @HordeDracthyrFactionTemplate                              =     2291; -- References @HordeDracthyrPlayer
 SET @CultistFactionTemplate                                     =   2292; -- References @CultistPlayer
 SET @ManariFactionTemplate                                      =   2293; -- References @ManariPlayer
+SET @AllianceHaranirFactionTemplate                             =   2294; -- References @AllianceHaranirPlayer
+SET @HordeHaranirFactionTemplate                                =   2295; -- References @HordeHaranirPlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -2154,6 +2180,8 @@ SET @AllianceDracthyrFactionRepIndex                           =    158;
 SET @HordeDracthyrFactionRepIndex                              =    159;
 SET @CultistFactionRepIndex                                     =   160;
 SET @ManariFactionRepIndex                                      =   161;
+SET @AllianceHaranirFactionRepIndex                             =   162;
+SET @HordeHaranirFactionRepIndex                                =   163;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -2217,6 +2245,8 @@ SET @AllianceDracthyrAchievement                               =     1529;
 SET @HordeDracthyrAchievement                                  =     1530;
 SET @CultistAchievement                                         =   1531;
 SET @ManariAchievement                                          =   1533;
+SET @AllianceHaranirAchievement                                 =   1534;
+SET @HordeHaranirAchievement                                    =   1543; -- 1535-1542 are taken
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -2464,6 +2494,14 @@ SET @ManariCriteria1                                            =   19426; -- Ac
 SET @ManariCriteria2                                            =   19427; -- Achievement 2422: Shake Your Bunny-Maker
 SET @ManariCriteria3                                            =   19428; -- Achievement 291: Check Your Head
 SET @ManariCriteria4                                            =   19429; -- @ManariAchievement: Realm First! Level 80 Man'ari
+SET @AllianceHaranirCriteria1                                   =   19430; -- Achievement 246: Know Thy Enemy
+SET @AllianceHaranirCriteria2                                   =   19431; -- Achievement 2422: Shake Your Bunny-Maker
+SET @AllianceHaranirCriteria3                                   =   19432; -- Achievement 291: Check Your Head
+SET @AllianceHaranirCriteria4                                   =   19433; -- @AllianceHaranirAchievement: Realm First! Level 80 Haranir
+SET @HordeHaranirCriteria1                                      =   19434; -- Achievement 1005: Know Thy Enemy
+SET @HordeHaranirCriteria2                                      =   19435; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HordeHaranirCriteria3                                      =   19436; -- Achievement 291: Check Your Head
+SET @HordeHaranirCriteria4                                      =   19437; -- @HordeHaranirAchievement: Realm First! Level 80 Haranir
 
 -- Classes
 SET @Warrior                                                   =      1;

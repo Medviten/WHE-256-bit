@@ -29,7 +29,7 @@ DELETE FROM `reputation_spillover_faction` WHERE `faction` IN (
     @EredarFaction, @ArakkoaFaction, @FelElfFaction, @QuillboarFaction, @CentaurFaction, @DemonFaction, @SatyrFaction,
     @GnollFaction, @BeholderFaction, @ShivanFaction, @HozenFaction, @SylvariFaction, @MantidFaction, @EtherealFaction,
     @KyrianFaction, @VenthyrFaction, @BansheeFaction, @FacelessOneFaction, @AllianceDracthyrFaction,
-    @HordeDracthyrFaction
+    @HordeDracthyrFaction, @AllianceHaranirFaction, @HordeHaranirFaction
 );
 
 INSERT INTO `reputation_spillover_faction` (`faction`, `spillover_faction`, `rate`, `max_rank`)
@@ -98,6 +98,8 @@ WITH `races` (`race`, `faction`) AS (
     UNION ALL SELECT @FacelessOne,        @FacelessOneFaction
     UNION ALL SELECT @AllianceDracthyr,   @AllianceDracthyrFaction
     UNION ALL SELECT @HordeDracthyr,      @HordeDracthyrFaction
+    UNION ALL SELECT @AllianceHaranir,    @AllianceHaranirFaction
+    UNION ALL SELECT @HordeHaranir,       @HordeHaranirFaction
 ),
 `capitals` AS (
     SELECT DISTINCT

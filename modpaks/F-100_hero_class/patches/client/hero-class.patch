@@ -1,0 +1,603 @@
+diff --git a/WoW/Source/Magic/MagicClient/Spell_C.cpp b/WoW/Source/Magic/MagicClient/Spell_C.cpp
+index 6ae7065b..50f54f24 100644
+--- a/WoW/Source/Magic/MagicClient/Spell_C.cpp
++++ b/WoW/Source/Magic/MagicClient/Spell_C.cpp
+@@ -148,6 +148,14 @@ static int32_t s_spellPctModifiers[96][31];
+ // STATIC: 0x00D3C658
+ static int32_t s_spellFlatModifiers[96][31];
+ 
++// Custom: WHE F-100. A Hero (class 10) holds modifiers from every class's talents, but a mask bit only means something
++// within one spell family, so its totals are kept per family. Its packets carry the family in a trailing field.
++static const int32_t HERO_CLASS_ID = 10;
++static const uint32_t HERO_MOD_FAMILIES = 40;
++static bool s_heroModifiers;
++static int32_t s_heroPctModifiers[HERO_MOD_FAMILIES][96][31];
++static int32_t s_heroFlatModifiers[HERO_MOD_FAMILIES][96][31];
++
+ // STATIC: 0x00AF524C
+ static TSList<PendingSpellCast, TSGetLink<PendingSpellCast> > s_pendingSpellCasts;
+ 
+@@ -739,6 +747,10 @@ void Spell_C_Initialize() {
+     s_lastFailedSpellId = 0;
+     s_feedPetSpell = 0;
+     s_spellClassSet = 0;
++    // Custom: WHE F-100, the login resend only sends non-zero totals
++    s_heroModifiers = false;
++    memset(s_heroPctModifiers, 0, sizeof(s_heroPctModifiers));
++    memset(s_heroFlatModifiers, 0, sizeof(s_heroFlatModifiers));
+     s_delayedTrajectoryCast = nullptr;
+     s_enableErrorSpeechCVar = CVar::Lookup("Sound_EnableErrorSpeech");
+ }
+@@ -1174,6 +1186,39 @@ void CGUnit_C::ReleaseMissiles() {
+ // VERIFY: 936f6df8 manual
+ // OFFSET: 0x007FD970
+ bool Spell_C_GetSpellModifiers(const SpellRec* spell, int32_t modifier, int32_t& flat, int32_t& pct) {
++    // Custom: WHE F-100, a Hero's modifiers aren't limited to one family
++    if (s_heroModifiers) {
++        uint32_t family = static_cast<uint32_t>(spell->m_spellClassSet);
++
++        if (!family || family >= HERO_MOD_FAMILIES || (spell->m_attributesExC & 0x20000000)) {
++            flat = 0;
++            pct = 100;
++            return false;
++        }
++
++        pct = 0;
++        flat = 0;
++
++        for (uint32_t i = 0; i < sizeof(spell->m_spellClassMask) * 8; i++) {
++            if ((1 << (i & 31)) & spell->m_spellClassMask[i >> 5]) {
++                flat += s_heroFlatModifiers[family][i][modifier];
++                pct += s_heroPctModifiers[family][i][modifier];
++            }
++        }
++
++        if (!flat && !pct) {
++            return false;
++        }
++
++        pct += 100;
++
++        if (pct < 0) {
++            pct = 0;
++        }
++
++        return true;
++    }
++
+     if (!spell->m_spellClassSet || spell->m_spellClassSet != s_spellClassSet) {
+         flat = 0;
+         pct = 100;
+@@ -2873,6 +2918,8 @@ void Spell_C_SetPlayerClass(int32_t classId) {
+     if (rec) {
+         s_spellClassSet = rec->m_spellClassSet;
+     }
++
++    s_heroModifiers = classId == HERO_CLASS_ID; // Custom: WHE F-100
+ }
+ 
+ // VERIFY: 28235946 manual
+@@ -2899,6 +2946,22 @@ int32_t Packet_Group_32(void* param, NETMESSAGE msgId, uint32_t time, CDataStore
+     msg->Get(op);
+     msg->Get(value);
+ 
++    // Custom: WHE F-100, the family a Hero's modifier belongs to
++    if (msg->m_read < msg->m_size) {
++        uint32_t family;
++        msg->Get(family);
++
++        if (family < HERO_MOD_FAMILIES && group < 96 && op < 31) {
++            if (msgId == SMSG_SET_PCT_SPELL_MODIFIER) {
++                s_heroPctModifiers[family][group][op] = value;
++            } else {
++                s_heroFlatModifiers[family][group][op] = value;
++            }
++        }
++
++        return 1;
++    }
++
+     if (msgId == SMSG_SET_PCT_SPELL_MODIFIER) {
+         s_spellPctModifiers[group][op] = value;
+     } else {
+@@ -3776,7 +3839,8 @@ bool Spell_C_HasNoReagentCost(CGPlayer_C* player, const SpellRec* spell) {
+         return true;
+     }
+ 
+-    if (!spell->m_spellClassSet || spell->m_spellClassSet != s_spellClassSet) {
++    // Custom: WHE F-100, this field has no family either; the server has the last word on a Hero's reagents
++    if (!spell->m_spellClassSet || (!s_heroModifiers && spell->m_spellClassSet != s_spellClassSet)) {
+         return false;
+     }
+ 
+@@ -6885,6 +6949,11 @@ bool Spell_C_HaveSpellTokens(CGUnit_C* unit, const SpellRec* spell, bool report,
+     }
+ 
+     for (uint32_t i = 0; i < sizeof(spell->m_requiredTotemCategoryID) / sizeof(spell->m_requiredTotemCategoryID[0]); i++) {
++        // Custom: WHE F-100, a Hero doesn't need the shaman's four totems (see Spell::CheckItems on the server)
++        if (s_heroModifiers && spell->m_requiredTotemCategoryID[i] >= 2 && spell->m_requiredTotemCategoryID[i] <= 5) {
++            continue;
++        }
++
+         if (spell->m_requiredTotemCategoryID[i] && !player->m_bag.FindTotemCategory(spell->m_requiredTotemCategoryID[i], 0)) {
+             if (report) {
+                 Spell_C_SpellFailed(cast, spell, 130, spell->m_requiredTotemCategoryID[i], -1, false);
+diff --git a/WoW/Source/Object/ObjectClient/Player_C.cpp b/WoW/Source/Object/ObjectClient/Player_C.cpp
+index 69cb1d11..46f4bcf4 100644
+--- a/WoW/Source/Object/ObjectClient/Player_C.cpp
++++ b/WoW/Source/Object/ObjectClient/Player_C.cpp
+@@ -6890,7 +6890,7 @@ int32_t CGPlayer_C::CanUseItem(const ItemStats_C* stats, int32_t& error) {
+ 
+     CGUnitData* unit = this->m_unit;
+ 
+-    if (static_cast<int32_t>(stats->m_requiredLevel) > static_cast<int32_t>(unit->m_unitFieldLevel) || !((1 << (unit->m_unitFieldBytes0[1] - 1)) & stats->m_allowableClass) || !stats->m_allowableRace.HasRace(unit->m_unitFieldBytes0[0])) { // Custom: 256-bit race mask
++    if (static_cast<int32_t>(stats->m_requiredLevel) > static_cast<int32_t>(unit->m_unitFieldLevel) || (unit->m_unitFieldBytes0[1] != 10 && !((1 << (unit->m_unitFieldBytes0[1] - 1)) & stats->m_allowableClass)) || !stats->m_allowableRace.HasRace(unit->m_unitFieldBytes0[0])) { // Custom: 256-bit race mask
+         error = ERR_CANT_USE_ITEM;
+         return 0;
+     }
+diff --git a/WoW/Source/Object/ObjectClient/Unit_C.cpp b/WoW/Source/Object/ObjectClient/Unit_C.cpp
+index 98a492ff..c43ef11d 100644
+--- a/WoW/Source/Object/ObjectClient/Unit_C.cpp
++++ b/WoW/Source/Object/ObjectClient/Unit_C.cpp
+@@ -6752,7 +6752,7 @@ bool CGUnit_C::CanGainXP() const {
+     }
+ 
+     CGUnit_C* owner = static_cast<CGUnit_C*>(ClntObjMgrObjectPtr(unit->m_unitFieldCreatedby, TYPEMASK_PLAYER, __FILE__, __LINE__));
+-    return owner && owner->m_unit->m_unitFieldBytes0[1] == 3;
++    return owner && (owner->m_unit->m_unitFieldBytes0[1] == 3 || owner->m_unit->m_unitFieldBytes0[1] == 10); // Custom: WHE F-100, a Hero's tamed beast
+ }
+ 
+ // VERIFY: 6c86f70b manual
+@@ -7238,7 +7238,7 @@ PetPersonalityRec* CGUnit_C::GetPetPersonality() const {
+ 
+     CGUnit_C* owner = static_cast<CGUnit_C*>(ClntObjMgrObjectPtr(unit->m_unitFieldCreatedby, TYPEMASK_PLAYER, __FILE__, __LINE__));
+ 
+-    if (!owner || owner->m_unit->m_unitFieldBytes0[1] != 3) {
++    if (!owner || (owner->m_unit->m_unitFieldBytes0[1] != 3 && owner->m_unit->m_unitFieldBytes0[1] != 10)) { // Custom: WHE F-100, a Hero's tamed beast
+         return nullptr;
+     }
+ 
+@@ -18578,7 +18578,8 @@ void CGUnit_C::DoPowerRegen(uint32_t elapsed) {
+     int32_t powerType = this->m_unit->m_unitFieldBytes0[3];
+     this->DoPowerRegen(powerType, elapsed);
+ 
+-    if (this->m_unit->m_unitFieldBytes0[1] == 11) {
++    // Custom: WHE F-100, a Hero (class 10) has both pools like a druid
++    if (this->m_unit->m_unitFieldBytes0[1] == 11 || this->m_unit->m_unitFieldBytes0[1] == 10) {
+         if (powerType) {
+             this->DoPowerRegen(0, elapsed);
+         }
+@@ -20420,7 +20421,7 @@ double CGUnit_C::GetHealthModifier() {
+     if (this->m_unit->m_unitFieldPetnumber) {
+         CGUnit_C* owner = static_cast<CGUnit_C*>(ClntObjMgrObjectPtr(this->m_unit->m_unitFieldCreatedby, TYPEMASK_PLAYER, __FILE__, __LINE__));
+ 
+-        if (owner && owner->m_unit->m_unitFieldBytes0[1] == 3) {
++        if (owner && (owner->m_unit->m_unitFieldBytes0[1] == 3 || owner->m_unit->m_unitFieldBytes0[1] == 10)) { // Custom: WHE F-100, a Hero's tamed beast
+             return 1.0;
+         }
+     }
+@@ -20441,7 +20442,7 @@ double CGUnit_C::GetPowerModifier() {
+     if (this->m_unit->m_unitFieldPetnumber) {
+         CGUnit_C* owner = static_cast<CGUnit_C*>(ClntObjMgrObjectPtr(this->m_unit->m_unitFieldCreatedby, TYPEMASK_PLAYER, __FILE__, __LINE__));
+ 
+-        if (owner && owner->m_unit->m_unitFieldBytes0[1] == 3) {
++        if (owner && (owner->m_unit->m_unitFieldBytes0[1] == 3 || owner->m_unit->m_unitFieldBytes0[1] == 10)) { // Custom: WHE F-100, a Hero's tamed beast
+             return 1.0;
+         }
+     }
+diff --git a/WoW/Source/UIUtil/Tooltip_Scripts.cpp b/WoW/Source/UIUtil/Tooltip_Scripts.cpp
+index 1cc6fad3..28d8de33 100644
+--- a/WoW/Source/UIUtil/Tooltip_Scripts.cpp
++++ b/WoW/Source/UIUtil/Tooltip_Scripts.cpp
+@@ -959,6 +959,7 @@ static int32_t Script_SetTalent(lua_State* L) {
+     int32_t pet = StringToBOOL(L, 5, 0);
+     uint32_t group = TalentInfoGetScriptGroupIndex(L, 6);
+     int32_t preview = StringToBOOL(L, 7, 0);
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, inspect, pet); // Custom: WHE F-100
+     TalentTabInfo* tab = CGTalentInfo::GetTab(tabIndex, inspect, pet);
+ 
+     if (tab && talentIndex < tab->m_numTalents) {
+diff --git a/WoW/Source/Ui/CGLookingForGroup.cpp b/WoW/Source/Ui/CGLookingForGroup.cpp
+index 33f1b5f5..0fe5e878 100644
+--- a/WoW/Source/Ui/CGLookingForGroup.cpp
++++ b/WoW/Source/Ui/CGLookingForGroup.cpp
+@@ -25,7 +25,8 @@
+ #include "Engine/Source/FrameXML/LoadXML.h"
+ 
+ // STATIC: 0x00A394B0
+-static const uint8_t s_classRoles[11] = { 0x0B, 0x0F, 0x09, 0x09, 0x0D, 0x0B, 0x0D, 0x09, 0x09, 0x00, 0x0F };
++// Custom: WHE F-100, class 10 (Hero) can take every role
++static const uint8_t s_classRoles[11] = { 0x0B, 0x0F, 0x09, 0x09, 0x0D, 0x0B, 0x0D, 0x09, 0x09, 0x0F, 0x0F };
+ 
+ // STATIC: 0x00ACDD6C
+ static int32_t s_joinAttempts;
+diff --git a/WoW/Source/Ui/GameUI.cpp b/WoW/Source/Ui/GameUI.cpp
+index 287d6072..1755fd6d 100644
+--- a/WoW/Source/Ui/GameUI.cpp
++++ b/WoW/Source/Ui/GameUI.cpp
+@@ -7127,7 +7127,7 @@ void CGGameUI::SetRaidDifficulty(uint32_t difficulty, uint32_t unk, uint32_t inG
+ // OFFSET: 0x0057EA60
+ void CGGameUI::LoadMinimapTrackingState(const char* state) {
+     CGUnit_C* player = static_cast<CGUnit_C*>(ClntObjMgrObjectPtr(ClntObjMgrGetActivePlayer(), TYPEMASK_PLAYER, __FILE__, __LINE__));
+-    uint32_t classMask = player ? 1 << player->m_unit->m_unitFieldBytes0[1] : 0;
++    uint32_t classMask = player ? (player->m_unit->m_unitFieldBytes0[1] == 10 ? 0xFFFFFFFF : 1 << player->m_unit->m_unitFieldBytes0[1]) : 0; // Custom: WHE F-100, Hero
+ 
+     for (uint32_t i = 0; i < 15; i++) {
+         const TrackingTypeInfo& info = CGMinimapFrame::s_trackingTypes[i];
+diff --git a/WoW/Source/Ui/MinimapFrame.cpp b/WoW/Source/Ui/MinimapFrame.cpp
+index decaca2a..7397a8b2 100644
+--- a/WoW/Source/Ui/MinimapFrame.cpp
++++ b/WoW/Source/Ui/MinimapFrame.cpp
+@@ -673,7 +673,7 @@ void CGMinimapFrame::InitializeGame() {
+ int32_t CGMinimapFrame::CountAvailableTrackingTypes() {
+     int32_t count = 0;
+     CGPlayer_C* player = static_cast<CGPlayer_C*>(ClntObjMgrObjectPtr(ClntObjMgrGetActivePlayer(), TYPEMASK_PLAYER, __FILE__, __LINE__));
+-    uint32_t classMask = player ? 1 << player->m_unit->m_unitFieldBytes0[1] : 0;
++    uint32_t classMask = player ? (player->m_unit->m_unitFieldBytes0[1] == 10 ? 0xFFFFFFFF : 1 << player->m_unit->m_unitFieldBytes0[1]) : 0; // Custom: WHE F-100, Hero
+ 
+     for (uint32_t i = 0; i < sizeof(CGMinimapFrame::s_trackingTypes) / sizeof(CGMinimapFrame::s_trackingTypes[0]); i++) {
+         uint32_t mask = CGMinimapFrame::s_trackingTypes[i].m_classMask;
+@@ -691,7 +691,7 @@ int32_t CGMinimapFrame::CountAvailableTrackingTypes() {
+ const TrackingTypeInfo* CGMinimapFrame::GetTrackingTypeByIndex(int32_t index) {
+     int32_t count = 0;
+     CGPlayer_C* player = static_cast<CGPlayer_C*>(ClntObjMgrObjectPtr(ClntObjMgrGetActivePlayer(), TYPEMASK_PLAYER, __FILE__, __LINE__));
+-    uint32_t classMask = player ? 1 << player->m_unit->m_unitFieldBytes0[1] : 0;
++    uint32_t classMask = player ? (player->m_unit->m_unitFieldBytes0[1] == 10 ? 0xFFFFFFFF : 1 << player->m_unit->m_unitFieldBytes0[1]) : 0; // Custom: WHE F-100, Hero
+ 
+     for (uint32_t i = 0; i < sizeof(CGMinimapFrame::s_trackingTypes) / sizeof(CGMinimapFrame::s_trackingTypes[0]); i++) {
+         uint32_t mask = CGMinimapFrame::s_trackingTypes[i].m_classMask;
+diff --git a/WoW/Source/Ui/NamePlateFrame.cpp b/WoW/Source/Ui/NamePlateFrame.cpp
+index cc7e3e90..ff752dfa 100644
+--- a/WoW/Source/Ui/NamePlateFrame.cpp
++++ b/WoW/Source/Ui/NamePlateFrame.cpp
+@@ -51,7 +51,7 @@ static CImVector s_classColors[12] = {
+     CImVector(0xDD, 0x70, 0x00, 0xFF),
+     CImVector(0xEF, 0xCC, 0x68, 0xFF),
+     CImVector(0xC9, 0x82, 0x93, 0xFF),
+-    CImVector(0x00, 0x00, 0x00, 0xFF),
++    CImVector(0x80, 0xCC, 0xE6, 0xFF), // Custom: WHE F-100, class 10 (Hero)
+     CImVector(0x0A, 0x7C, 0xFF, 0xFF),
+ };
+ 
+diff --git a/WoW/Source/Ui/PaperDollInfoFrame.cpp b/WoW/Source/Ui/PaperDollInfoFrame.cpp
+index 11a6350b..9f2fc68f 100644
+--- a/WoW/Source/Ui/PaperDollInfoFrame.cpp
++++ b/WoW/Source/Ui/PaperDollInfoFrame.cpp
+@@ -617,7 +617,8 @@ bool CGCharacterInfo::CanEquipItemInSlot(const ItemStats_C* stats, uint32_t slot
+         for (int32_t i = 0; i < g_chrClassesDB.m_numRecords; i++) {
+             ChrClassesRec* chrClass = g_chrClassesDB.GetRecordByIndex(i);
+ 
+-            if (chrClass && ((1 << (chrClass->m_id - 1)) & stats->m_allowableClass) && player->m_unit->m_unitFieldBytes0[1] != chrClass->m_id) {
++            // Custom: WHE F-100, nothing is closed to a Hero (class 10)
++            if (chrClass && player->m_unit->m_unitFieldBytes0[1] != 10 && ((1 << (chrClass->m_id - 1)) & stats->m_allowableClass) && player->m_unit->m_unitFieldBytes0[1] != chrClass->m_id) {
+                 return false;
+             }
+         }
+@@ -668,7 +669,8 @@ bool CGCharacterInfo::CanEquipItemInSlot(const ItemStats_C* stats, uint32_t slot
+         for (int32_t i = 0; i < g_chrClassesDB.m_numRecords; i++) {
+             ChrClassesRec* chrClass = g_chrClassesDB.GetRecordByIndex(i);
+ 
+-            if (chrClass && ((1 << (chrClass->m_id - 1)) & stats->m_allowableClass) && player->m_unit->m_unitFieldBytes0[1] == chrClass->m_id) {
++            // Custom: WHE F-100, nothing is closed to a Hero (class 10)
++            if (chrClass && ((1 << (chrClass->m_id - 1)) & stats->m_allowableClass) && (player->m_unit->m_unitFieldBytes0[1] == chrClass->m_id || player->m_unit->m_unitFieldBytes0[1] == 10)) {
+                 allowed = 1;
+             }
+         }
+diff --git a/WoW/Source/Ui/ReputationInfo.cpp b/WoW/Source/Ui/ReputationInfo.cpp
+index 0f3d5d25..b28b141e 100644
+--- a/WoW/Source/Ui/ReputationInfo.cpp
++++ b/WoW/Source/Ui/ReputationInfo.cpp
+@@ -361,7 +361,7 @@ static bool FactionHasReputationForPlayer(const FactionRec* faction) {
+         return false;
+     }
+ 
+-    uint8_t classId = player->m_unit->m_unitFieldBytes0[1];
++    uint8_t classId = player->m_unit->m_unitFieldBytes0[1] == 10 ? 2 : player->m_unit->m_unitFieldBytes0[1]; // Custom: WHE F-100, as the server's ReputationMgr
+     uint8_t race = player->m_unit->m_unitFieldBytes0[0];
+ 
+     for (uint32_t i = 0; i < 4; i++) {
+@@ -703,7 +703,7 @@ void CGReputationInfo::EnterWorld() {
+ 
+     CGReputationInfo::m_factions.InternalClear(0);
+     uint8_t race = player->m_unit->m_unitFieldBytes0[0];
+-    uint8_t classId = player->m_unit->m_unitFieldBytes0[1];
++    uint8_t classId = player->m_unit->m_unitFieldBytes0[1] == 10 ? 2 : player->m_unit->m_unitFieldBytes0[1]; // Custom: WHE F-100, as the server's ReputationMgr
+     CGReputationInfo::m_collapsedHeaders = 0xFFFFFFFF;
+     CGReputationInfo::m_numFactions = 0;
+     CGReputationInfo::m_numShownFactions = 0;
+diff --git a/WoW/Source/Ui/ScriptEvents_Scripts.cpp b/WoW/Source/Ui/ScriptEvents_Scripts.cpp
+index bb445f9c..32d48126 100644
+--- a/WoW/Source/Ui/ScriptEvents_Scripts.cpp
++++ b/WoW/Source/Ui/ScriptEvents_Scripts.cpp
+@@ -2887,7 +2887,8 @@ static int32_t Script_GetComboPoints(lua_State* L) {
+         CGPlayer_C* player = static_cast<CGPlayer_C*>(ClntObjMgrObjectPtr(ClntObjMgrGetActivePlayer(), TYPEMASK_PLAYER, __FILE__, __LINE__));
+         uint8_t classId = player ? player->m_unit->m_unitFieldBytes0[1] : 0;
+ 
+-        if (!player || classId == 4 || classId == 11) {
++        // Custom: WHE F-100, a Hero (class 10) can have combo points as well
++        if (!player || classId == 4 || classId == 11 || classId == 10) {
+             points = CGGameUI::GetComboPoints(target);
+         }
+     } else if (unit == CGPetInfo::GetPet(0)) {
+diff --git a/WoW/Source/Ui/SpellBookFrame.cpp b/WoW/Source/Ui/SpellBookFrame.cpp
+index e94fce48..25e94d77 100644
+--- a/WoW/Source/Ui/SpellBookFrame.cpp
++++ b/WoW/Source/Ui/SpellBookFrame.cpp
+@@ -109,6 +109,36 @@ uint32_t s_displayedSpellCount;
+ // STATIC: 0x00BE8DA0
+ uint32_t s_numSkillInfos;
+ 
++// Custom: WHE F-100. Tab 0 (General) is on every page; only a Hero ever has more lines than SpellBookFrame.xml has tabs.
++static const uint32_t HERO_SPELL_TABS_PER_PAGE = 7;
++uint32_t s_heroSpellTabPage;
++
++uint32_t SpellBookHeroPageCount() {
++    return s_numSkillInfos <= HERO_SPELL_TABS_PER_PAGE + 1 ? 1 : (s_numSkillInfos - 2) / HERO_SPELL_TABS_PER_PAGE + 1;
++}
++
++uint32_t SpellBookHeroTabCount() {
++    if (s_numSkillInfos <= HERO_SPELL_TABS_PER_PAGE + 1) {
++        return s_numSkillInfos;
++    }
++
++    if (s_heroSpellTabPage >= SpellBookHeroPageCount()) {
++        s_heroSpellTabPage = SpellBookHeroPageCount() - 1;
++    }
++
++    uint32_t left = s_numSkillInfos - 1 - s_heroSpellTabPage * HERO_SPELL_TABS_PER_PAGE;
++    return 1 + (left < HERO_SPELL_TABS_PER_PAGE ? left : HERO_SPELL_TABS_PER_PAGE);
++}
++
++uint32_t SpellBookHeroMapTab(uint32_t index) {
++    if (!index || s_numSkillInfos <= HERO_SPELL_TABS_PER_PAGE + 1) {
++        return index;
++    }
++
++    SpellBookHeroTabCount();
++    return index + s_heroSpellTabPage * HERO_SPELL_TABS_PER_PAGE;
++}
++
+ // STATIC: 0x00BE8DC8
+ TSGrowableArray<SpellBookSkillInfo*> s_skillInfos;
+ 
+diff --git a/WoW/Source/Ui/SpellBookFrame.h b/WoW/Source/Ui/SpellBookFrame.h
+index 3095ab6f..8f91d20f 100644
+--- a/WoW/Source/Ui/SpellBookFrame.h
++++ b/WoW/Source/Ui/SpellBookFrame.h
+@@ -106,6 +106,11 @@ void ClearPetSpellInfo();
+ extern const char* s_companionTypes[2];
+ extern TSGrowableArray<SpellUsableInfo> s_shapeshiftSpells;
+ extern uint32_t s_numSkillInfos;
++// Custom: WHE F-100, pages of spellbook tabs for a Hero. Index = what Lua asks about, result = into s_skillInfos.
++extern uint32_t s_heroSpellTabPage;
++uint32_t SpellBookHeroTabCount();
++uint32_t SpellBookHeroPageCount();
++uint32_t SpellBookHeroMapTab(uint32_t index);
+ extern uint32_t s_displayedSpells[1024];
+ extern int32_t s_spellList[1024];
+ extern uint32_t s_numSpells;
+diff --git a/WoW/Source/Ui/SpellBookFrame_Scripts.cpp b/WoW/Source/Ui/SpellBookFrame_Scripts.cpp
+index 80eabfd5..e60d2300 100644
+--- a/WoW/Source/Ui/SpellBookFrame_Scripts.cpp
++++ b/WoW/Source/Ui/SpellBookFrame_Scripts.cpp
+@@ -47,10 +47,35 @@ static int32_t Script_UpdateSpells(lua_State* L) {
+ // VERIFY: dd465bdc manual
+ // OFFSET: 0x0053B5C0
+ static int32_t Script_GetNumSpellTabs(lua_State* L) {
+-    lua_pushnumber(L, s_numSkillInfos);
++    lua_pushnumber(L, SpellBookHeroTabCount()); // Custom: WHE F-100, s_numSkillInfos unless a Hero has too many
+     return 1;
+ }
+ 
++// Custom: WHE F-100, the Hero's spellbook pages. The stock frame must refresh itself, in its own event handler: Lua may
++// not call SpellBookFrame_Update, whose tainted writes would then block every cast from the book.
++static int32_t Script_GetHeroSpellTabPage(lua_State* L) {
++    SpellBookHeroTabCount();
++    lua_pushnumber(L, s_heroSpellTabPage + 1);
++    lua_pushnumber(L, SpellBookHeroPageCount());
++    return 2;
++}
++
++static int32_t Script_SetHeroSpellTabPage(lua_State* L) {
++    if (!lua_isnumber(L, 1)) {
++        luaL_error(L, "Usage: SetHeroSpellTabPage(page)");
++        return 0;
++    }
++
++    int32_t page = lua_tointeger(L, 1);
++
++    if (page >= 1 && static_cast<uint32_t>(page) <= SpellBookHeroPageCount()) {
++        s_heroSpellTabPage = page - 1;
++        FrameScript_SignalEvent(SCRIPT_EVENT_SPELLS_CHANGED, nullptr);
++    }
++
++    return 0;
++}
++
+ // VERIFY: 0a46e79d manual
+ // OFFSET: 0x0053B6C0
+ static int32_t Script_FindSpellBookSlotByID(lua_State* L) {
+@@ -104,6 +129,11 @@ static int32_t Script_GetSpellTabInfo(lua_State* L) {
+     int32_t index = static_cast<int32_t>(lua_tonumber(L, 1)) - 1;
+     SpellBookSkillInfo* info;
+ 
++    // Custom: WHE F-100, tabs past the page's last are empty; Lua stays within GetNumSpellTabs
++    if (index >= 0) {
++        index = static_cast<int32_t>(SpellBookHeroMapTab(static_cast<uint32_t>(index)));
++    }
++
+     if (static_cast<uint32_t>(index) >= s_numSkillInfos || !(info = s_skillInfos.m_data[index])) {
+         lua_pushnil(L);
+         lua_pushnil(L);
+@@ -1277,6 +1307,8 @@ static int32_t Script_GetSpellInfo(lua_State* L) {
+ // STATIC: 0x00ACCCE0
+ static FrameScript_Method s_ScriptFunctions[] = {
+     { "GetNumSpellTabs", &Script_GetNumSpellTabs },
++    { "GetHeroSpellTabPage", &Script_GetHeroSpellTabPage }, // Custom: WHE F-100
++    { "SetHeroSpellTabPage", &Script_SetHeroSpellTabPage }, // Custom: WHE F-100
+     { "GetSpellTabInfo", &Script_GetSpellTabInfo },
+     { "GetSpellName", &Script_GetSpellName },
+     { "GetSpellLink", &Script_GetSpellLink },
+diff --git a/WoW/Source/Ui/TalentInfo.cpp b/WoW/Source/Ui/TalentInfo.cpp
+index aa713785..0819ef71 100644
+--- a/WoW/Source/Ui/TalentInfo.cpp
++++ b/WoW/Source/Ui/TalentInfo.cpp
+@@ -303,6 +303,27 @@ TalentGroupTab_C* CGTalentGroup_C::GetTabFromTalentID(int32_t talentId) {
+     return this->GetTabFromID(talent->m_tabID);
+ }
+ 
++// Custom: WHE F-100, see TalentInfo.h. Only a Hero's list is long enough to need this.
++int32_t CGTalentInfo::m_heroTalentClass = 1;
++
++uint32_t CGTalentInfo::MapHeroTab(uint32_t index, int32_t inspect, int32_t pet) {
++    const TSFixedArray<TalentTabInfo*>& tabs = inspect ? CGTalentInfo_Inspect::m_tabs : CGTalentInfo::m_tabs;
++
++    if (pet || tabs.m_count <= 5) {
++        return index;
++    }
++
++    for (uint32_t i = 0; i < tabs.m_count; i++) {
++        TalentTabRec* tab = g_talentTabDB.GetRecord(tabs.m_data[i]->m_tabId);
++
++        if (tab && tab->m_orderIndex == static_cast<int32_t>(index) && (tab->m_classMask & (1 << (CGTalentInfo::m_heroTalentClass - 1)))) {
++            return i;
++        }
++    }
++
++    return 0xFFFFFFFF;
++}
++
+ // VERIFY: 9f0c24f3 auto
+ // OFFSET: 0x005C5C60
+ TalentTabInfo* CGTalentInfo::GetTab(uint32_t index, int32_t inspect, int32_t pet) {
+diff --git a/WoW/Source/Ui/TalentInfo.h b/WoW/Source/Ui/TalentInfo.h
+index d4dab8c5..54f48987 100644
+--- a/WoW/Source/Ui/TalentInfo.h
++++ b/WoW/Source/Ui/TalentInfo.h
+@@ -87,6 +87,10 @@ class CGTalentInfo {
+     static TSFixedArray<TalentTabInfo*> m_petTabs;
+     static CGTalentGroup_C m_talentGroups[2];
+     static CGTalentGroup_C m_petTalentGroup;
++    // Custom: WHE F-100. A Hero's talent list holds every class's tabs. The Lua API keeps talking about three tabs, those
++    // of m_heroTalentClass, so the stock frame works unchanged; MapHeroTab turns its index into the real one.
++    static int32_t m_heroTalentClass;
++    static uint32_t MapHeroTab(uint32_t index, int32_t inspect, int32_t pet);
+     static void EnterWorld();
+     static void LeaveWorld();
+     static void ShutdownGame();
+diff --git a/WoW/Source/Ui/TalentInfo_Scripts.cpp b/WoW/Source/Ui/TalentInfo_Scripts.cpp
+index 6106a49c..d7432e8f 100644
+--- a/WoW/Source/Ui/TalentInfo_Scripts.cpp
++++ b/WoW/Source/Ui/TalentInfo_Scripts.cpp
+@@ -41,10 +41,36 @@ static int32_t Script_GetNumTalentTabs(lua_State* L) {
+         count = pet ? CGTalentInfo::m_petTabs.m_count : CGTalentInfo::m_tabs.m_count;
+     }
+ 
++    // Custom: WHE F-100, a Hero sees one class's tabs at a time (see CGTalentInfo::MapHeroTab)
++    if (!pet && count > 5) {
++        count = 3;
++    }
++
+     lua_pushnumber(L, count);
+     return 1;
+ }
+ 
++// Custom: WHE F-100, which class's talents a Hero's talent frame shows
++static int32_t Script_GetHeroTalentClass(lua_State* L) {
++    lua_pushnumber(L, CGTalentInfo::m_heroTalentClass);
++    return 1;
++}
++
++static int32_t Script_SetHeroTalentClass(lua_State* L) {
++    if (!lua_isnumber(L, 1)) {
++        luaL_error(L, "Usage: SetHeroTalentClass(classID)");
++        return 0;
++    }
++
++    int32_t classId = lua_tointeger(L, 1);
++
++    if (classId >= 1 && classId <= 11 && classId != 10) {
++        CGTalentInfo::m_heroTalentClass = classId;
++    }
++
++    return 0;
++}
++
+ // VERIFY: b59980be manual
+ // OFFSET: 0x005C5D40
+ static int32_t Script_GetNumTalents(lua_State* L) {
+@@ -56,6 +82,7 @@ static int32_t Script_GetNumTalents(lua_State* L) {
+     uint32_t tabIndex = static_cast<uint32_t>(lua_tonumber(L, 1)) - 1;
+     int32_t inspect = StringToBOOL(L, 2, 0);
+     int32_t pet = StringToBOOL(L, 3, 0);
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, inspect, pet); // Custom: WHE F-100
+     TalentTabInfo* tab = CGTalentInfo::GetTab(tabIndex, inspect, pet);
+     lua_pushnumber(L, tab ? tab->m_numTalents : 0);
+     return 1;
+@@ -108,6 +135,7 @@ static int32_t Script_GetTalentTabInfo(lua_State* L) {
+     uint32_t tabIndex = static_cast<uint32_t>(lua_tonumber(L, 1)) - 1;
+     int32_t pet = StringToBOOL(L, 3, 0);
+     int32_t inspect = StringToBOOL(L, 2, 0);
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, inspect, pet); // Custom: WHE F-100
+     TalentTabInfo* info = CGTalentInfo::GetTab(tabIndex, inspect, pet);
+     TalentTabRec* tab;
+ 
+@@ -242,7 +270,7 @@ static int32_t Script_ResetPreviewTalentPoints(lua_State* L) {
+     int32_t pet = StringToBOOL(L, 2, 0);
+     uint32_t group = TalentInfoGetScriptGroupIndex(L, 3);
+     int32_t before = CGTalentInfo::GetPreviewPointsSpent(group, pet);
+-    CGTalentInfo::ResetPreviewTalentPoints(group, tab, pet);
++    CGTalentInfo::ResetPreviewTalentPoints(group, CGTalentInfo::MapHeroTab(tab, 0, pet), pet); // Custom: WHE F-100
+     int32_t after = CGTalentInfo::GetPreviewPointsSpent(group, pet);
+ 
+     if (after != before) {
+@@ -280,6 +308,7 @@ static int32_t Script_GetTalentInfo(lua_State* L) {
+     uint32_t talentIndex = static_cast<uint32_t>(lua_tonumber(L, 2)) - 1;
+     int32_t inspect = StringToBOOL(L, 3, 0);
+     int32_t pet = StringToBOOL(L, 4, 0);
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, inspect, pet); // Custom: WHE F-100
+     TalentTabInfo* tab = CGTalentInfo::GetTab(tabIndex, inspect, pet);
+ 
+     if (tab && talentIndex < tab->m_numTalents) {
+@@ -407,6 +436,7 @@ static int32_t Script_GetTalentPrereqs(lua_State* L) {
+     int32_t inspect = StringToBOOL(L, 3, 0);
+     int32_t pet = StringToBOOL(L, 4, 0);
+     uint32_t group = TalentInfoGetScriptGroupIndex(L, 5);
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, inspect, pet); // Custom: WHE F-100
+     TalentTabInfo* tab = CGTalentInfo::GetTab(tabIndex, inspect, pet);
+ 
+     if (tab && talentIndex < tab->m_numTalents) {
+@@ -468,6 +498,7 @@ static int32_t Script_GetTalentLink(lua_State* L) {
+     uint32_t talentIndex = static_cast<uint32_t>(lua_tonumber(L, 2)) - 1;
+     int32_t inspect = StringToBOOL(L, 3, 0);
+     int32_t pet = StringToBOOL(L, 4, 0);
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, inspect, pet); // Custom: WHE F-100
+     TalentTabInfo* tab = CGTalentInfo::GetTab(tabIndex, inspect, pet);
+ 
+     if (tab && talentIndex < tab->m_numTalents) {
+@@ -507,6 +538,7 @@ static int32_t Script_LearnTalent(lua_State* L) {
+     uint32_t talentIndex = static_cast<uint32_t>(lua_tonumber(L, 2)) - 1;
+     int32_t pet = StringToBOOL(L, 3, 0);
+     CGUnit_C* unit = pet ? static_cast<CGUnit_C*>(ClntObjMgrObjectPtr(CGPetInfo::GetPet(0), TYPEMASK_UNIT, __FILE__, __LINE__)) : ClntObjMgrGetActivePlayerObj();
++    tabIndex = CGTalentInfo::MapHeroTab(tabIndex, 0, pet); // Custom: WHE F-100
+     TalentTabInfo* tab = CGTalentInfo::GetTab(tabIndex, 0, pet);
+ 
+     if (!unit || !tab || talentIndex >= tab->m_numTalents) {
+@@ -568,7 +600,7 @@ static int32_t Script_AddPreviewTalentPoints(lua_State* L) {
+     int32_t pet = StringToBOOL(L, 4, 0);
+     uint32_t group = TalentInfoGetScriptGroupIndex(L, 5);
+     int32_t before = CGTalentInfo::GetPreviewPointsSpent(group, pet);
+-    CGTalentInfo::AddPreviewTalentPoints(group, tab, talent, points, pet);
++    CGTalentInfo::AddPreviewTalentPoints(group, CGTalentInfo::MapHeroTab(tab, 0, pet), talent, points, pet); // Custom: WHE F-100
+     int32_t after = CGTalentInfo::GetPreviewPointsSpent(group, pet);
+ 
+     if (after != before) {
+@@ -618,6 +650,8 @@ static int32_t Script_GetPreviewTalentPointsSpent(lua_State* L) {
+ static FrameScript_Method s_ScriptFunctions[] = {
+     { "GetNumTalentTabs", &Script_GetNumTalentTabs },
+     { "GetTalentTabInfo", &Script_GetTalentTabInfo },
++    { "GetHeroTalentClass", &Script_GetHeroTalentClass }, // Custom: WHE F-100
++    { "SetHeroTalentClass", &Script_SetHeroTalentClass }, // Custom: WHE F-100
+     { "GetNumTalents", &Script_GetNumTalents },
+     { "GetTalentInfo", &Script_GetTalentInfo },
+     { "GetTalentLink", &Script_GetTalentLink },
