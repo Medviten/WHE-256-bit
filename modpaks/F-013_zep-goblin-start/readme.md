@@ -9,6 +9,7 @@
 - F-010_patch-open-azeroth, whose Kalimdor holds both zones, and its map files
 - F-023_mod-playable-goblin, which has the Bilgewater Cartel and "PLAYER, Goblin" factions. F-024_mod-playable-worgen too for the Worgen NPC model
 - `patches/core/goblin-start.patch` and a recompile: phasing (`phase_definitions`), the zone's C++ scripts and SmartAI events. It applies to the `whe-patch-base` tag
+- `GoblinStartZone.Enable = 1` in `worldserver.conf`, the default. The patch's changes to stock behaviour (phasing, quest chests, loot conditions, vehicle bars, quest/movie SmartAI events, the SmartAI respawn event, guardian escorts, taming rods) all sit behind it, so a core built with the patch but without this modpak's SQL can set it to 0 and behave like stock
 - The client assets below
 - Keep it after F-002 in the manifest, so that ARAC's extra classes also start in Kezan
 
@@ -18,7 +19,7 @@ Zeppelin-Craft doesn't keep its models and textures in git, so these come from i
 New Goblin characters play the intro cinematic on their first login, so the client needs `Cameras\FlyByGoblin.m2`. The server also needs it, as `Cameras/FlyByGoblin.m2` in its data directory, to load the area around the camera. Older clients crash without the file, while clients with the camera guard skip the cinematic.
 
 ### Updating
-`tools/races/zep_goblin_port.py <zep-goblin-start> <this folder>` regenerates `dbc/` and `sql/`, so make changes in that script, `variables.sql` or `patches/` rather than in the SQL. To rebuild the patch, apply these patches from Zeppelin-Craft's `zpaks/core-azerothcore/patches` to `whe-patch-base` in order and save the diff: 0031, 0032, 0034-0044, 0047-0050, 0052, 0053.
+`tools/races/zep_goblin_port.py <zep-goblin-start> <this folder>` regenerates `dbc/` and `sql/`, so make changes in that script, `variables.sql` or `patches/` rather than in the SQL. To rebuild the patch, apply these patches from Zeppelin-Craft's `zpaks/core-azerothcore/patches` to `whe-patch-base` in order, add the `GoblinStartZone.Enable` checks back, and save the diff: 0031, 0032, 0034-0044, 0047-0050, 0052, 0053.
 
 ### Known Issues
 - No terrain changes between phases: the town and the burning island need `zep-lost-isles-terrain`, core patch 0055 and a client change, none of which are ported. The server keeps using the base island
