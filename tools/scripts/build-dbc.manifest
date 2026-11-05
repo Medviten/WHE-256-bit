@@ -51,12 +51,12 @@ F-016_mod-dark-iron-dwarf
 F-007_mod-maghar
 F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requires F-007)
 #F-040_mod-mechagnome # Off by default (WIP – not ready)
-#F-073_mod-playable-dracthyr-alliance # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
-#F-074_mod-playable-dracthyr-horde # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
+#F-073_mod-dracthyr-alliance # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
+#F-074_mod-dracthyr-horde # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
 #F-038_mod-earthen-alliance # Off by default (WIP – not ready)
 #F-039_mod-earthen-horde # Off by default (WIP – not ready)
-#F-098_mod-playable-haranir-alliance # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
-#F-099_mod-playable-haranir-horde # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
+#F-098_mod-haranir-alliance # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
+#F-099_mod-haranir-horde # Off by default (tentative, untested; needs the wowdecomp-256-bit client with Retail support and azerothcore-wotlk-256-bit)
 # Skyborne Alliance
 # Skyborne Horde
 # END RETAIL RACES #
