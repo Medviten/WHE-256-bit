@@ -20,17 +20,6 @@ INSERT INTO `creature_template_addon` SET
   `visibilityDistanceType` = 0,
   `auras` = '';
 
-DELETE FROM `creature_template_addon` WHERE entry = 33111;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 33111,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
-
 DELETE FROM `creature_template_addon` WHERE entry = 33420;
 INSERT INTO `creature_template_addon` SET
   `entry` = 33420,
@@ -41,17 +30,6 @@ INSERT INTO `creature_template_addon` SET
   `emote` = 0,
   `visibilityDistanceType` = 0,
   `auras` = '71910';
-
-DELETE FROM `creature_template_addon` WHERE entry = 33765;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 33765,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
 
 DELETE FROM `creature_template_addon` WHERE entry = 34668;
 INSERT INTO `creature_template_addon` SET
@@ -1615,17 +1593,6 @@ INSERT INTO `creature_template_addon` SET
   `visibilityDistanceType` = 0,
   `auras` = '';
 
-DELETE FROM `creature_template_addon` WHERE entry = 37490;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 37490,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
-
 DELETE FROM `creature_template_addon` WHERE entry = 37500;
 INSERT INTO `creature_template_addon` SET
   `entry` = 37500,
@@ -2264,17 +2231,6 @@ INSERT INTO `creature_template_addon` SET
   `visibilityDistanceType` = 0,
   `auras` = '';
 
-DELETE FROM `creature_template_addon` WHERE entry = 38819;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 38819,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
-
 DELETE FROM `creature_template_addon` WHERE entry = 38845;
 INSERT INTO `creature_template_addon` SET
   `entry` = 38845,
@@ -2319,17 +2275,6 @@ INSERT INTO `creature_template_addon` SET
   `visibilityDistanceType` = 0,
   `auras` = '65734';
 
-DELETE FROM `creature_template_addon` WHERE entry = 38908;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 38908,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
-
 DELETE FROM `creature_template_addon` WHERE entry = 38918;
 INSERT INTO `creature_template_addon` SET
   `entry` = 38918,
@@ -2355,28 +2300,6 @@ INSERT INTO `creature_template_addon` SET
 DELETE FROM `creature_template_addon` WHERE entry = 38935;
 INSERT INTO `creature_template_addon` SET
   `entry` = 38935,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
-
-DELETE FROM `creature_template_addon` WHERE entry = 38979;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 38979,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 50331648,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '54422 50296';
-
-DELETE FROM `creature_template_addon` WHERE entry = 38984;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 38984,
   `path_id` = 0,
   `mount` = 0,
   `bytes1` = 0,
@@ -2660,17 +2583,6 @@ INSERT INTO `creature_template_addon` SET
   `visibilityDistanceType` = 0,
   `auras` = '';
 
-DELETE FROM `creature_template_addon` WHERE entry = 39375;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 39375,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 65536,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
-
 DELETE FROM `creature_template_addon` WHERE entry = 39376;
 INSERT INTO `creature_template_addon` SET
   `entry` = 39376,
@@ -2857,17 +2769,6 @@ INSERT INTO `creature_template_addon` SET
   `emote` = 0,
   `visibilityDistanceType` = 0,
   `auras` = '79058';
-
-DELETE FROM `creature_template_addon` WHERE entry = 43359;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 43359,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 1,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '';
 
 DELETE FROM `creature_template_addon` WHERE entry = 44578;
 INSERT INTO `creature_template_addon` SET
@@ -3165,17 +3066,6 @@ INSERT INTO `creature_template_addon` SET
   `emote` = 0,
   `visibilityDistanceType` = 0,
   `auras` = '49414';
-
-DELETE FROM `creature_template_addon` WHERE entry = 75114;
-INSERT INTO `creature_template_addon` SET
-  `entry` = 75114,
-  `path_id` = 0,
-  `mount` = 0,
-  `bytes1` = 0,
-  `bytes2` = 0,
-  `emote` = 0,
-  `visibilityDistanceType` = 0,
-  `auras` = '71333';
 
 DELETE FROM `creature_template_addon` WHERE entry = 75116;
 INSERT INTO `creature_template_addon` SET

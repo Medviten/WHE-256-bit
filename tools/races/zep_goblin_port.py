@@ -19,8 +19,18 @@ What differs from the zpak:
 - stock NPCs and objects the zones spawn keep their stock rows (STOCK_CREATURES, STOCK_GAMEOBJECTS)
 - taking Goblins off a stock class quest only clears their bit, so the races added by other modpaks keep the quest
 - dbc/[F-013]_item.sql adds the new items to Item.dbc, which Zeppelin does at build time instead
+- the files in zep_goblin_fixes/ next to this script are added: what the zpak refers to but doesn't have, taken from
+  Project Neltharion's world database (Zeppelin's donor) and the Cataclysm 4.0.6a DBCs (cata406_dbc_port.py)
+- positions Zeppelin left on map 648 (Cataclysm's Kezan and Lost Isles) move to Kalimdor: SmartAI targets, SmartAI
+  teleports and quest POIs (SHIFT_648)
+- references to what neither the zpak nor stock has are dropped or cleared: Cata items Zeppelin uses for something
+  else, Neltharion's own marker spells and creatures, quest display spells that can't work here (see DEAD_*)
+- creatures whose SmartAI has no rows left get no AIName, and Neltharion's NullAI is NullCreatureAI here
 """
-import os, re, shutil, sys
+import glob, os, re, shutil, sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+FIXES_DIR = os.path.join(HERE, "zep_goblin_fixes")
 
 # Zeppelin's FactionTemplate id -> variable
 FACTION_TEMPLATES = {
@@ -57,6 +67,32 @@ STOCK_SKINNING_LOOT = (100008,)
 # Model info of the displays in KEEP_EXISTING's creaturedisplayinfo: only added if missing
 KEEP_MODEL_INFO = (32385, 35249)
 
+# Kezan and the Lost Isles are map 648 in Cataclysm (661 is a terrain-swap copy of it). Zeppelin moves them to
+# Kalimdor with this shift, but its generator left SmartAI target positions, the map of SmartAI teleports (action 62)
+# and the quest POI fields as they were. [I-277] fixed one of the positions by hand, to the same values.
+SHIFT_648 = (-533.3333, -12800.0)
+MAPS_648 = (648, 661)
+
+# Cata items that Zeppelin's zep-dungeons uses for other items. [I-236] ports the three grey items the creature loot
+# needs under new ids, but [I-338] adds loot rows after it with the old ids. The others have no item here.
+ITEM_REMAP = {67252: 84511, 67256: 84512, 67257: 84513}
+DEAD_ITEMS = frozenset({64433, 61320, *range(67253, 67256), *range(67280, 67324)})
+# Quest display spells (cast on completion) that can't work here: 91847 plays a movie, which [I-280] does instead;
+# 74103's hearthstone bind has no destination in Neltharion; 68063, 68345 and 69013 end in script effects only
+# Neltharion's C++ handled.
+DEAD_DISPLAY_SPELLS = (68063, 68345, 69013, 74103, 91847)
+# creature_template_addon rows of creatures neither the zpak nor stock has
+DEAD_ADDONS = (33111, 33765, 37490, 38819, 38908, 38979, 38984, 39375, 43359, 75114)
+# Rows that point at something nothing here has: Neltharion's marker spells and objects, and 89822, a Felwood spell
+DEAD_ROWS = {
+    "70": (r"\(13, 1, 73425, 0, 1, 31, 0, 5, 202463,",       # land mine trap, spawned nowhere ([I-346])
+           r"\(15, 510097, 0, 0, 0, 1, 0, (?:151099|151100),",  # Neltharion marker auras
+           r"\(13, 1, 73532, ",),                            # no area target since spells.py's override: inert
+    "65": (r"\((?:38318|4458[89]|4459[01]|75116|48310), 0, \d+, \d+, 8, \d+, \d+, \d+, (?:151145|151146|151150|89822),",),
+}
+# SmartAI parameters Neltharion set that AC's actions don't take (AC skips the whole row): (entry, id) -> column
+UNUSED_SMART_PARAMS = {(36600, 2): "action_param2", (37602, 3): "event_param1"}
+
 SQL_DIR = os.path.join("sql", "db-world", "base")
 TABLE_STATEMENT = re.compile(r"^(\s*(?:INSERT(?:\s+IGNORE)?\s+INTO|REPLACE\s+INTO|DELETE\s+FROM|UPDATE)\s+)([A-Za-z_]\w*)\b", re.M)
 
@@ -84,22 +120,111 @@ def drop_blocks(sql, ids):
     return re.sub(rf"DELETE FROM `(\w+)` WHERE (?:entry|CreatureI[dD]) = (?:{alternatives});\r?\n(?:INSERT INTO `\1` SET\r?\n.*?;\r?\n\r?\n?)+", "", sql, flags=re.S)
 
 
-def drop_value_rows(sql, ids):
-    """Remove the rows of these ids from multi-row INSERTs, and the ids from the DELETEs before them."""
-    alternatives = "|".join(map(str, ids))
+def drop_lines(sql, matches):
+    """Remove the rows matches(line) is true for from multi-row INSERTs, ending the statement on the row before."""
     out = []
     for line in sql.split("\n"):
-        if re.match(rf"\s*\((?:{alternatives}),", line):
+        if matches(line):
             if line.rstrip().endswith(";"):  # The statement's last row: the one before it ends the statement now
                 if out[-1].rstrip().endswith(","):
                     out[-1] = out[-1].rstrip()[:-1] + ";"
                 elif out[-1].rstrip().upper().endswith("VALUES"):
                     out.pop()
                 else:
-                    raise SystemExit(f"drop_value_rows: can't end the statement before {line[:40]}")
+                    raise SystemExit(f"drop_lines: can't end the statement before {line[:40]}")
             continue
         out.append(line)
-    sql = "\n".join(out)
+    return "\n".join(out)
+
+
+VALUE = re.compile(r"'(?:[^'\\]|\\.|'')*'|[^,\s()][^,()]*")
+
+
+def edit_rows(sql, table, edit):
+    """Call edit(row) for every row of the multi-row INSERTs into table, with row a dict of its columns (as SQL text).
+    edit changes row in place, or returns False to remove it."""
+    columns, drop = None, set()
+    lines = sql.split("\n")
+    for n, line in enumerate(lines):
+        insert = re.match(rf"\s*(?:INSERT(?:\s+IGNORE)?|REPLACE)\s+INTO\s+`{table}`\s*\(([^)]*)\)\s*VALUES\s*$", line)
+        if insert:
+            columns = [c.strip(" `") for c in insert.group(1).split(",")]
+            continue
+        row = re.match(r"(\s*)\((.*)\)([,;]?)(\s*(?:--.*)?)$", line) if columns else None
+        if not row:
+            columns = None if columns and line.strip() and not line.lstrip().startswith("--") else columns
+            continue
+        values = [v.strip() for v in VALUE.findall(row.group(2))]
+        if len(values) != len(columns):
+            raise SystemExit(f"edit_rows: {len(values)} values for {len(columns)} columns of {table}: {line[:60]}")
+        fields = dict(zip(columns, values))
+        if edit(fields) is False:
+            drop.add(n)
+        elif [fields[c] for c in columns] != values:  # rewrite only changed rows, which keeps hand alignment
+            lines[n] = f"{row.group(1)}({', '.join(fields[c] for c in columns)}){row.group(3)}{row.group(4)}"
+        if row.group(3) == ";":
+            columns = None
+    sql = "\n".join(lines)
+    if drop:
+        marked = "\n".join(("\0" + l) if i in drop else l for i, l in enumerate(sql.split("\n")))
+        sql = drop_lines(marked, lambda l: l.startswith("\0"))
+    return sql
+
+
+def shift_648(x, y):
+    return tuple(f"{float(v) + d:.4f}".rstrip("0").rstrip(".") for v, d in ((x, SHIFT_648[0]), (y, SHIFT_648[1])))
+
+
+def num(value):
+    """The number a column holds, or None for a variable, an expression or a string."""
+    return float(value) if re.fullmatch(r"-?\d+(?:\.\d+)?", value) else None
+
+
+def fix_smart_row(row):
+    if num(row["target_type"]) == 8 and (num(row["target_y"]) or 0) > 0:  # Kalimdor's zones are at y < 0
+        row["target_x"], row["target_y"] = shift_648(row["target_x"], row["target_y"])
+    if num(row["action_type"]) == 62 and num(row["action_param1"]) in MAPS_648:  # SMART_ACTION_TELEPORT
+        row["action_param1"] = "1"
+    unused = UNUSED_SMART_PARAMS.get((num(row["entryorguid"]), num(row["id"])))
+    if unused and num(row["source_type"]) == 0:
+        row[unused] = "0"
+
+
+def fix_items(sql):
+    def loot(row):
+        item = num(row["Item"])
+        if item in DEAD_ITEMS:
+            return False
+        if item in ITEM_REMAP:
+            row["Item"] = str(ITEM_REMAP[item])
+
+    def vendor(row):
+        return num(row["item"]) not in DEAD_ITEMS and None
+
+    def equip(row):
+        for k in ("ItemID1", "ItemID2", "ItemID3"):
+            if num(row[k]) in DEAD_ITEMS:
+                row[k] = "0"
+    sql = edit_rows(sql, "creature_loot_template", loot)
+    sql = edit_rows(sql, "npc_vendor", vendor)
+    return edit_rows(sql, "creature_equip_template", equip)
+
+
+def fix_quests(sql):
+    def poi(m):
+        x, y = shift_648(m.group(4), m.group(6))
+        return f"{m.group(1)}1,{m.group(3)}{x},{m.group(5)}{y},"
+    sql = re.sub(r"(`POIContinent` = )(\d+),(\s*`POIx` = )(-?[\d.]+),(\s*`POIy` = )(-?[\d.]+),",
+                 lambda m: poi(m) if int(m.group(2)) in MAPS_648 else m.group(0), sql)
+    # 4707 is an old "The Lost Isles" area under Dun Morogh; the other quests of the zone use 4720
+    sql = sql.replace("`QuestSortID` = 4707,", "`QuestSortID` = 4720,")
+    return re.sub(rf"(`RewardDisplaySpell` = )(?:{'|'.join(map(str, DEAD_DISPLAY_SPELLS))}),", r"\g<1>0,", sql)
+
+
+def drop_value_rows(sql, ids):
+    """Remove the rows of these ids from multi-row INSERTs, and the ids from the DELETEs before them."""
+    alternatives = "|".join(map(str, ids))
+    sql = drop_lines(sql, lambda line: re.match(rf"\s*\((?:{alternatives}),", line))
     sql = re.sub(rf"(WHERE (?:CreatureID|Entry) IN \()((?:\d+,)*\d+)\)", lambda m: m.group(1) + ",".join(
         i for i in m.group(2).split(",") if int(i) not in ids) + ")", sql)
     return re.sub(rf"DELETE FROM `smart_scripts` WHERE source_type=0 AND entryorguid=(?:{alternatives});\r?\n", "", sql)
@@ -164,7 +289,50 @@ def port_world(name, sql):
             sql = sql.replace(f"position_{axis} = @{axis}", f"position_{axis} = @GoblinStart{var}")
         sql = sql.replace("orientation = @o", "orientation = @GoblinStartO")
         sql = sql.replace("WHERE race = 9 AND class <> 6", "WHERE race = @Goblin AND class <> @DeathKnight")
-    return sql
+    return fix_references(name, sql)
+
+
+def fix_references(name, sql):
+    table = re.search(r"\[AUTO,F-011\]_(\d+)_", name)
+    group = table.group(1) if table else None
+    if group in DEAD_ROWS:
+        dead = re.compile(r"\s*(?:" + "|".join(DEAD_ROWS[group]) + ")")
+        sql = drop_lines(sql, dead.match)
+    if group == "11":
+        sql = drop_blocks(sql, DEAD_ADDONS)
+    if group == "12":
+        # 16480, the display Neltharion gives its Wondi's Bunny markers, is an Imp: use the stock invisible stalker
+        sql = sql.replace("`CreatureDisplayID` = 16480,", "`CreatureDisplayID` = 11686,")
+    if "quest_template" in name:
+        sql = fix_quests(sql)
+    sql = fix_items(edit_rows(sql, "smart_scripts", fix_smart_row))
+    return re.sub(r"(`?AIName`?\s*=\s*)'NullAI'", r"\g<1>'NullCreatureAI'", sql)
+
+
+def unscripted_smart_ai(world_dir):
+    """Clear the SmartAI of generated creatures that have no SmartAI rows left (the generator drops the rows that use
+    what it couldn't port), which the server reports for every one of them."""
+    scripted, guid_entry = set(), {}
+    for path in glob.glob(os.path.join(world_dir, "*.sql")):
+        sql = re.sub(r"--[^\n]*", "", read(path))
+        variables = {m.group(1): int(m.group(2)) for m in re.finditer(r"SET\s+@(\w+)\s*:?=\s*(-?\d+)\s*;", sql)}
+        value = lambda v: variables.get(v[1:]) if v.startswith("@") else int(v)
+        # Rows of every INSERT, however they are laid out: what matters is the first two values of each
+        for m in re.finditer(r"INSERT\s+(?:IGNORE\s+)?INTO\s+`?smart_scripts`?\s*\(([^)]*)\)\s*VALUES(.*?);\s*$", sql,
+                             re.S | re.M):
+            for row in re.finditer(r"\(\s*(-?\d+|@\w+)\s*,\s*(\d+)\s*,", m.group(2)):
+                if row.group(2) == "0":
+                    scripted.add(value(row.group(1)))
+        for m in re.finditer(r"`?entryorguid`?\s*=\s*(-?\d+|@\w+)\s*,\s*`?source_type`?\s*=\s*0\b", sql):
+            scripted.add(value(m.group(1)))
+        for m in re.finditer(r"INSERT\s+INTO\s+`creature`\s*\(`guid`, `id`,[^)]*\)\s*VALUES(.*?);\s*$", sql, re.S | re.M):
+            guid_entry.update((int(g), int(e)) for g, e in re.findall(r"\(\s*(\d+)\s*,\s*(\d+)\s*,", m.group(1)))
+    scripted |= {guid_entry.get(-e) for e in scripted if e is not None and e < 0}
+    path = os.path.join(world_dir, "zz_[AUTO,F-011]_10_creature_template.sql")
+
+    def clear(m):
+        return m.group(0) if int(m.group(1)) in scripted else m.group(0).replace("`AIName` = 'SmartAI',", "`AIName` = '',")
+    write(path, re.sub(r"INSERT INTO `creature_template` SET\s+`entry` = (\d+),.*?;", clear, read(path), flags=re.S))
 
 
 def keep_existing(table, sql):
@@ -295,6 +463,10 @@ def main(zpak, dest):
     for name in sorted(os.listdir(os.path.join(zpak, "sql"))):
         if name.endswith(".sql"):
             write(os.path.join(dest, SQL_DIR, name), port_world(name, read(os.path.join(zpak, "sql", name))))
+    for sub, target in (("dbc", "dbc"), ("sql", SQL_DIR)):
+        for path in sorted(glob.glob(os.path.join(FIXES_DIR, sub, "*.sql"))):
+            shutil.copy2(path, os.path.join(dest, target, os.path.basename(path)))
+    unscripted_smart_ai(os.path.join(dest, SQL_DIR))
     items = item_dbc(os.path.join(dest, SQL_DIR))
     if items:
         write(os.path.join(dest, "dbc", ITEM_DBC_FILE), items)
