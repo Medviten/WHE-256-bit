@@ -5,7 +5,8 @@
 
 The reverse of word2vars.py and word2.py, plus the race IDs:
 - every second race-mask word goes: `SET @X_2 = ...; -- races 65-128` lines, `<mask column>_2` columns and their
-  values in INSERTs, `<mask column>_2 = ...` assignments in UPDATEs and `AND <mask column>_2 = @X_2` in WHEREs
+  values in INSERTs, `<mask column>_2 = ...` assignments in UPDATEs and INSERT ... SETs and `AND <mask column>_2 = @X_2`
+  in WHEREs
 - race IDs are fixed in the 256-bit config.sql but auto-incremented in the 32-bit version: a variables.sql that
   defines a race mask gets `SET @X := @NextRace := @NextRace +1;` before it, and the fixed-ID block of config.sql
   becomes the single @NextRace line
@@ -195,6 +196,7 @@ def drop_pieces(s, drop):
 
 # ------------------------------------------------------------------------------------------- statements
 UPDATE_RE = re.compile(r"^(\s*UPDATE\s+.*?\s+SET\s+)(.*?)(\s+WHERE\s+.*)?$", re.S | re.I)
+INSERT_SET_RE = re.compile(r"^(\s*(?:INSERT|REPLACE)(?:\s+IGNORE)?\s+INTO\s+`?\w+`?\s+SET\s+)(.*)$", re.S | re.I)
 INSERT_RE = re.compile(r"^(\s*(?:INSERT|REPLACE)(?:\s+IGNORE)?\s+INTO\s+`\w+`\s*\()(.*?)(\)\s*)(VALUES\s*.*|SELECT\s.*)$",
                        re.S | re.I)
 WHERE_2 = re.compile(r"\s+AND\s+`(\w+)_2`\s*=\s*@\w+_2\b", re.I)
@@ -256,6 +258,12 @@ def rewrite_insert(stmt):
     return head + new_cols + mid + vm.group(1) + ",".join(out) + tail
 
 
+def drop_assignments(sets):
+    def drop(p):
+        return "=" in p and is_mask_col_2(col_name(p.split("=", 1)[0]))
+    return drop_pieces(sets, drop)
+
+
 def rewrite_update(stmt):
     m = UPDATE_RE.match(stmt)
     if not m:
@@ -263,10 +271,15 @@ def rewrite_update(stmt):
     head, sets, where = m.group(1), m.group(2), m.group(3) or ""
     if not COL_2.search(sets):
         return head + sets + WHERE_2.sub("", where)
+    return head + drop_assignments(sets) + WHERE_2.sub("", where)
 
-    def drop(p):
-        return "=" in p and is_mask_col_2(col_name(p.split("=", 1)[0]))
-    return head + drop_pieces(sets, drop) + WHERE_2.sub("", where)
+
+def rewrite_insert_set(stmt):
+    """INSERT INTO `t` SET a = 1, b = 2: the same assignments as an UPDATE."""
+    m = INSERT_SET_RE.match(stmt)
+    if not m or not COL_2.search(m.group(2)):
+        return stmt
+    return m.group(1) + drop_assignments(m.group(2))
 
 
 def port_sql(text):
@@ -277,7 +290,9 @@ def port_sql(text):
         core = stmt[len(lead):]
         semi = core.endswith(";")
         body = core[:-1] if semi else core
-        if re.match(r"(INSERT|REPLACE)\s", body, re.I):
+        if INSERT_SET_RE.match(body):
+            body = rewrite_insert_set(body)
+        elif re.match(r"(INSERT|REPLACE)\s", body, re.I):
             body = rewrite_insert(body)
         elif re.match(r"UPDATE\s", body, re.I):
             body = rewrite_update(body)
