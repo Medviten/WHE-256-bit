@@ -13,6 +13,8 @@
   --effect-name OLD=NEW      use SpellVisualEffectName NEW (a stock model) in place of Cata's OLD
   --no-sound ID[,ID...]      leave these sounds out of the visuals (0), e.g. when the client has no file for them
   --sound-map OLD=NEW        play stock sound NEW in the visuals in place of Cata's OLD
+  --sound-ext OLD=NEW        rename the sound files' extension, e.g. .wav=.ogg when the files come from a client that
+                             ships them as Ogg Vorbis
 
 Writes OUT_DIR/PREFIX_<table>.sql for every table that has rows, in the DELETE + INSERT ... SET form of the other
 modpak files, keeping the Cata ids. Every id is checked against the stock DBCs: a Cata id stock already uses for
@@ -100,6 +102,7 @@ class Port:
         self.effect_map = dict(map(int, x.split("=")) for x in args.effect_name)
         self.no_sound = set(args.no_sound)
         self.sound_map = dict(map(int, x.split("=")) for x in args.sound_map)
+        self.sound_ext = tuple(args.sound_ext.split("=")) if args.sound_ext else None
         self.skip_kit = set(args.skip_kit)
 
     def add(self, table, key, columns, comment, stock):
@@ -306,6 +309,8 @@ class Port:
         for i in range(10):
             if r[3 + i]:
                 c[f"file_{i + 1}"] = self.cS.s(r[3 + i])
+                if self.sound_ext and c[f"file_{i + 1}"].lower().endswith(self.sound_ext[0].lower()):
+                    c[f"file_{i + 1}"] = c[f"file_{i + 1}"][:-len(self.sound_ext[0])] + self.sound_ext[1]
                 c[f"frequency_{i + 1}"] = r[13 + i]
         c.update({"base_dir": self.cS.s(r[23]), "volume": f32(r[24]), "flags": r[25], "min_distance": f32(r[26]),
                   "distance_cutoff": f32(r[27]), "eax_def": r[28], "advanced_id": 0})
@@ -387,6 +392,7 @@ def main():
     p.add_argument("--no-sound", type=ids, default=[])
     p.add_argument("--effect-name", action="append", default=[])
     p.add_argument("--sound-map", action="append", default=[])
+    p.add_argument("--sound-ext")
     p.add_argument("--source", default="see the modpak's readme")
     a = p.parse_args()
     port = Port(a.cata, a.stock, a)
