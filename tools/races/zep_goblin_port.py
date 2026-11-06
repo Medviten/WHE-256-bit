@@ -288,8 +288,8 @@ def main(zpak, dest):
         shutil.rmtree(os.path.join(dest, sub), ignore_errors=True)
 
     for name in sorted(os.listdir(os.path.join(zpak, "dbc"))):
-        if name.endswith("_md5translate.sql"):  # Not a DBC: F-010 keeps this table in the world database
-            write(os.path.join(dest, SQL_DIR, "zz_" + name), read(os.path.join(zpak, "dbc", name)))
+        if name.endswith("_md5translate.sql"):  # Minimap rows: nothing to port, build-dbc.sh writes the .trs
+            write(os.path.join(dest, "dbc", name), read(os.path.join(zpak, "dbc", name)))
         elif name.endswith(".sql"):
             write(os.path.join(dest, "dbc", name), port_dbc(name, read(os.path.join(zpak, "dbc", name))))
     for name in sorted(os.listdir(os.path.join(zpak, "sql"))):
