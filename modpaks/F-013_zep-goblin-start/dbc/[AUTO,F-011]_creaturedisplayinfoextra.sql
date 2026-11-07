@@ -271,7 +271,7 @@ INSERT INTO `creaturedisplayinfoextra` SET
   `tabard_id` = 0,
   `cape_id` = 0,
   `can_equip` = 0,
-  `texture` = 'CreatureDisplayExtra-19494.blp';
+  `texture` = 'CreatureDisplayExtra-19494.blp'; -- can't find assets
 
 DELETE FROM `creaturedisplayinfoextra` WHERE id = 19495;
 INSERT INTO `creaturedisplayinfoextra` SET
