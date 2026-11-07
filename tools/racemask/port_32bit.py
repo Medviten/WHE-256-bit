@@ -36,6 +36,8 @@ KEEP_FILES = {
     "F-027_mod-gilnean/sql/db-world/extra/[BASE,F-027]_cataclysm-starting-gear.sql",
     "F-032_mod-taunka/dbc/[BASE,F-032]_creaturemodeldata.sql",          # Taunka keep the Tauren female
     "F-063_worgen_racial_spells/dbc/[F-063]_spell.sql",
+    "F-103_mod-skyborne-alliance/readme.md",                            # the Forever look is 256-bit only
+    "F-104_mod-skyborne-horde/readme.md",
 }
 SKIP_FILES = {
     "F-026_custom-race-support/sql/db-world/base/[BASE,F-026]_reputation_spillover_faction.sql",  # 256-bit core table

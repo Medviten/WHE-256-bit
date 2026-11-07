@@ -449,6 +449,7 @@ EYE_SEPARATION = "Depth Amount";
 FACIAL_HAIR_DRIP = "Slime Drip";
 FACIAL_HAIR_EARRINGS = "Earrings";
 FACIAL_HAIR_EARS = "Ears";
+FACIAL_HAIR_EYEBROWS = "Eyebrows";
 FACIAL_HAIR_FEATURES = "Features";
 FACIAL_HAIR_HAIR = "Hair";
 FACIAL_HAIR_HORNS = "Horn Style";

@@ -57,8 +57,8 @@ F-037_maghar-modern-assets # Optional: modern Mag'har models and textures (requi
 #F-039_mod-earthen-horde # Off by default (WIP – not ready)
 #F-098_mod-haranir-alliance # Off by default (tentative, untested; baked native look, or the Retail look in the wowdecomp-256-bit client with Retail support)
 #F-099_mod-haranir-horde # Off by default (tentative, untested; baked native look, or the Retail look in the wowdecomp-256-bit client with Retail support)
-# Skyborne Alliance
-# Skyborne Horde
+#F-103_mod-skyborne-alliance # Off by default (tentative, untested; native look from Kalibro's package, or the Forever look in the wowdecomp-256-bit client with Retail support and Forever data)
+#F-104_mod-skyborne-horde # Off by default (tentative, untested; native look from Kalibro's package, or the Forever look in the wowdecomp-256-bit client with Retail support and Forever data)
 # END RETAIL RACES #
 
 # NPC RACES #

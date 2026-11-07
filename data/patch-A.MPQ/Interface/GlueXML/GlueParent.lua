@@ -79,6 +79,8 @@ GlueAmbienceTracks["ALLIANCEDRACTHYR"] = "GlueScreenHuman";
 GlueAmbienceTracks["HORDEDRACTHYR"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["ALLIANCEHARANIR"] = "GlueScreenNightElf";
 GlueAmbienceTracks["HORDEHARANIR"] = "GlueScreenOrcTroll";
+GlueAmbienceTracks["ALLIANCESKYBORNE"] = "GlueScreenHuman";
+GlueAmbienceTracks["HORDESKYBORNE"] = "GlueScreenBloodElf";
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -498,6 +500,7 @@ GlueBackgroundFallback = {
 	["KYRIAN"] = "NightElf", ["VENTHYR"] = "Scourge", ["BANSHEE"] = "Scourge", ["FACELESSONE"] = "Orc",
 	["ALLIANCEDRACTHYR"] = "Human", ["HORDEDRACTHYR"] = "Orc",
 	["ALLIANCEHARANIR"] = "NightElf", ["HORDEHARANIR"] = "Orc",
+	["ALLIANCESKYBORNE"] = "Human", ["HORDESKYBORNE"] = "BloodElf",
 	["CULTIST"] = "Scourge", ["MANARI"] = "BloodElf",
 };
 

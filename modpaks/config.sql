@@ -390,6 +390,8 @@ SET @Cultist                                                    =   65; -- not i
 SET @Manari                                                     =   66; -- not in retail (F-097)
 SET @AllianceHaranir                                            =   86; -- retail race (F-098); the wowdecomp-256-bit client shows its Retail model
 SET @HordeHaranir                                               =   91; -- retail race (F-099); the wowdecomp-256-bit client shows its Retail model
+SET @AllianceSkyborne                                           =   95; -- Forever race (F-103); the wowdecomp-256-bit client shows its Forever model
+SET @HordeSkyborne                                              =   96; -- Forever race (F-104); the wowdecomp-256-bit client shows its Forever model
 
 -- NPC Races
 SET @NPCGoblin                                                 =   169;
@@ -617,6 +619,12 @@ SET @AllianceHaranirHelmetMask                                  =   0;
 SET @HordeHaranirMask                                           =   0; -- F-099
 SET @HordeHaranirMask_2                                         =   0; -- races 65-128
 SET @HordeHaranirHelmetMask                                     =   0;
+SET @AllianceSkyborneMask                                       =   0; -- F-103
+SET @AllianceSkyborneMask_2                                     =   0; -- races 65-128
+SET @AllianceSkyborneHelmetMask                                 =   0;
+SET @HordeSkyborneMask                                          =   0; -- F-104
+SET @HordeSkyborneMask_2                                        =   0; -- races 65-128
+SET @HordeSkyborneHelmetMask                                    =   0;
 
 -- New Race Models
 SET @NextModelID                                               =    39999;
@@ -956,6 +964,10 @@ SET @AllianceHaranirMaleDisplayExtra                            =   @NextDisplay
 SET @AllianceHaranirFemaleDisplayExtra                          =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @HordeHaranirMaleDisplayExtra                               =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 SET @HordeHaranirFemaleDisplayExtra                             =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceSkyborneMaleDisplayExtra                           =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @AllianceSkyborneFemaleDisplayExtra                         =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeSkyborneMaleDisplayExtra                              =   @NextDisplayExtraID := @NextDisplayExtraID +1;
+SET @HordeSkyborneFemaleDisplayExtra                            =   @NextDisplayExtraID := @NextDisplayExtraID +1;
 
 -- creature_template
 SET @NextCreatureID                                            =    55273;
@@ -1077,6 +1089,8 @@ SET @CultistRacials                                             =   842;
 SET @ManariRacials                                              =   843;
 SET @AllianceHaranirRacials                                     =   844;
 SET @HordeHaranirRacials                                        =   845;
+SET @AllianceSkyborneRacials                                    =   846;
+SET @HordeSkyborneRacials                                       =   847;
 
 -- Racial spells
 SET @Cannibalize                                               = @SpellCannibalize; -- Undead racial
@@ -1596,6 +1610,8 @@ SET @CultistRacialSkillRaceClass                                =   1190;
 SET @ManariRacialSkillRaceClass                                 =   1191;
 SET @AllianceHaranirRacialSkillRaceClass                        =   1192;
 SET @HordeHaranirRacialSkillRaceClass                           =   1193;
+SET @AllianceSkyborneRacialSkillRaceClass                       =   1194;
+SET @HordeSkyborneRacialSkillRaceClass                          =   1195;
 
 -- Weapon SkillRaceClass
 SET @AxesHunterSkillRaceClass1                                 =      117; -- Hunter: Orc, Dwarf, Tauren, Troll
@@ -1741,6 +1757,10 @@ SET @AllianceHaranirMaleModel                                   =   @NextModelID
 SET @AllianceHaranirFemaleModel                                 =   @NextModelID := @NextModelID +1;
 SET @HordeHaranirMaleModel                                      =   @NextModelID := @NextModelID +1;
 SET @HordeHaranirFemaleModel                                    =   @NextModelID := @NextModelID +1;
+SET @AllianceSkyborneMaleModel                                  =   @NextModelID := @NextModelID +1;
+SET @AllianceSkyborneFemaleModel                                =   @NextModelID := @NextModelID +1;
+SET @HordeSkyborneMaleModel                                     =   @NextModelID := @NextModelID +1;
+SET @HordeSkyborneFemaleModel                                   =   @NextModelID := @NextModelID +1;
 
 -- Mount Display IDs
 SET @MechagonMechanostriderDisplay                             =    @NextDisplayID := @NextDisplayID +1;
@@ -1797,6 +1817,10 @@ SET @AllianceHaranirMaleDisplay                                 =   @NextDisplay
 SET @AllianceHaranirFemaleDisplay                               =   @NextDisplayID := @NextDisplayID +1;
 SET @HordeHaranirMaleDisplay                                    =   @NextDisplayID := @NextDisplayID +1;
 SET @HordeHaranirFemaleDisplay                                  =   @NextDisplayID := @NextDisplayID +1;
+SET @AllianceSkyborneMaleDisplay                                =   @NextDisplayID := @NextDisplayID +1;
+SET @AllianceSkyborneFemaleDisplay                              =   @NextDisplayID := @NextDisplayID +1;
+SET @HordeSkyborneMaleDisplay                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @HordeSkyborneFemaleDisplay                                 =   @NextDisplayID := @NextDisplayID +1;
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
@@ -2121,6 +2145,8 @@ SET @CultistFactionTemplate                                     =   2292; -- Ref
 SET @ManariFactionTemplate                                      =   2293; -- References @ManariPlayer
 SET @AllianceHaranirFactionTemplate                             =   2294; -- References @AllianceHaranirPlayer
 SET @HordeHaranirFactionTemplate                                =   2295; -- References @HordeHaranirPlayer
+SET @AllianceSkyborneFactionTemplate                            =   2296; -- References @AllianceSkybornePlayer
+SET @HordeSkyborneFactionTemplate                               =   2297; -- References @HordeSkybornePlayer
 
 -- Reputation Indices
 SET @GoblinFactionRepIndex                                     =    105;
@@ -2182,6 +2208,8 @@ SET @CultistFactionRepIndex                                     =   160;
 SET @ManariFactionRepIndex                                      =   161;
 SET @AllianceHaranirFactionRepIndex                             =   162;
 SET @HordeHaranirFactionRepIndex                                =   163;
+SET @AllianceSkyborneFactionRepIndex                            =   164;
+SET @HordeSkyborneFactionRepIndex                               =   165;
 
 -- Achievements
 SET @KnowThyEnemyAlliance                                      =     246;
@@ -2247,6 +2275,8 @@ SET @CultistAchievement                                         =   1531;
 SET @ManariAchievement                                          =   1533;
 SET @AllianceHaranirAchievement                                 =   1534;
 SET @HordeHaranirAchievement                                    =   1543; -- 1535-1542 are taken
+SET @AllianceSkyborneAchievement                                =   1551; -- 1544-1550 are taken
+SET @HordeSkyborneAchievement                                   =   1553; -- 1552 is taken
 
 SET @Level80AchievementDescriptionenUS                         = 'Level to 80';
 SET @Level80AchievementDescriptionkoKR                         = '80 레벨';
@@ -2502,6 +2532,57 @@ SET @HordeHaranirCriteria1                                      =   19434; -- Ac
 SET @HordeHaranirCriteria2                                      =   19435; -- Achievement 2422: Shake Your Bunny-Maker
 SET @HordeHaranirCriteria3                                      =   19436; -- Achievement 291: Check Your Head
 SET @HordeHaranirCriteria4                                      =   19437; -- @HordeHaranirAchievement: Realm First! Level 80 Haranir
+SET @AllianceSkyborneCriteria1                                  =   19438; -- Achievement 246: Know Thy Enemy
+SET @AllianceSkyborneCriteria2                                  =   19439; -- Achievement 2422: Shake Your Bunny-Maker
+SET @AllianceSkyborneCriteria3                                  =   19440; -- Achievement 291: Check Your Head
+SET @AllianceSkyborneCriteria4                                  =   19441; -- @AllianceSkyborneAchievement: Realm First! Level 80 Skyborne
+SET @HordeSkyborneCriteria1                                     =   19442; -- Achievement 1005: Know Thy Enemy
+SET @HordeSkyborneCriteria2                                     =   19443; -- Achievement 2422: Shake Your Bunny-Maker
+SET @HordeSkyborneCriteria3                                     =   19444; -- Achievement 291: Check Your Head
+SET @HordeSkyborneCriteria4                                     =   19445; -- @HordeSkyborneAchievement: Realm First! Level 80 Skyborne
+
+-- Retail voices (tools/races/retail_voices.py): CreatureSoundData rows of the races it gives retail voices
+SET @AlliancePandarenMaleSoundData                              =   3201;
+SET @AlliancePandarenFemaleSoundData                            =   3202;
+SET @HordePandarenMaleSoundData                                 =   3203;
+SET @HordePandarenFemaleSoundData                               =   3204;
+SET @NightborneMaleSoundData                                    =   3205;
+SET @NightborneFemaleSoundData                                  =   3206;
+SET @HighmountainTaurenMaleSoundData                            =   3207;
+SET @HighmountainTaurenFemaleSoundData                          =   3208;
+SET @VoidElfMaleSoundData                                       =   3209;
+SET @VoidElfFemaleSoundData                                     =   3210;
+SET @LightforgedDraeneiMaleSoundData                            =   3211;
+SET @LightforgedDraeneiFemaleSoundData                          =   3212;
+SET @ZandalariTrollMaleSoundData                                =   3213;
+SET @ZandalariTrollFemaleSoundData                              =   3214;
+SET @KulTiranMaleSoundData                                      =   3215;
+SET @KulTiranFemaleSoundData                                    =   3216;
+SET @DarkIronDwarfMaleSoundData                                 =   3217;
+SET @DarkIronDwarfFemaleSoundData                               =   3218;
+SET @VulperaMaleSoundData                                       =   3219;
+SET @VulperaFemaleSoundData                                     =   3220;
+SET @MagharOrcMaleSoundData                                     =   3221;
+SET @MagharOrcFemaleSoundData                                   =   3222;
+SET @MechagnomeMaleSoundData                                    =   3223;
+SET @MechagnomeFemaleSoundData                                  =   3224;
+SET @AllianceDracthyrMaleSoundData                              =   3225;
+SET @AllianceDracthyrFemaleSoundData                            =   3226;
+SET @HordeDracthyrMaleSoundData                                 =   3227;
+SET @HordeDracthyrFemaleSoundData                               =   3228;
+SET @AllianceEarthenMaleSoundData                               =   3229;
+SET @AllianceEarthenFemaleSoundData                             =   3230;
+SET @HordeEarthenMaleSoundData                                  =   3231;
+SET @HordeEarthenFemaleSoundData                                =   3232;
+SET @AllianceHaranirMaleSoundData                               =   3233;
+SET @AllianceHaranirFemaleSoundData                             =   3234;
+SET @HordeHaranirMaleSoundData                                  =   3235;
+SET @HordeHaranirFemaleSoundData                                =   3236;
+SET @AllianceSkyborneMaleSoundData                              =   3237;
+SET @AllianceSkyborneFemaleSoundData                            =   3238;
+SET @HordeSkyborneMaleSoundData                                 =   3239;
+SET @HordeSkyborneFemaleSoundData                               =   3240;
+-- End of retail voices
 
 -- Classes
 SET @Warrior                                                   =      1;

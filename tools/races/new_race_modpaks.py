@@ -114,6 +114,11 @@ def load_dbc(path):
     return rows, strings, f
 
 
+def folder_name(fnum, slug):
+    """The new modpak's folder; callers may replace it (skyborne_modpaks.py)"""
+    return 'F-%03d_mod-playable-%s' % (fnum, slug)
+
+
 def template_dir(fnum):
     return next(os.path.join(MODPAKS, d) for d in os.listdir(MODPAKS) if d.startswith(fnum + '_'))
 
@@ -191,7 +196,7 @@ def fill(sections):
 
 def from_template(side, fnum, key, name, plural, home, text):
     tf, tkey, tname = TEMPLATE[side]
-    text = text.replace(tf, 'F-0%d' % fnum).replace('@' + tkey, '@' + key)
+    text = text.replace(tf, 'F-%03d' % fnum).replace('@' + tkey, '@' + key)
     text = text.replace(tname + 's', plural).replace(tname, name)
     # F-046's Home race is Orc, F-045's Night Elf
     thome = 'Orc' if side == 'Horde' else 'NightElf'
@@ -209,9 +214,9 @@ def write(path, text):
 
 def main():
     for key, name, plural, fnum, slug, side, home, kin, male_only, model, source, prefix, fname, fdesc, info in RACES:
-        out = os.path.join(OUTPUT, 'F-0%d_mod-playable-%s' % (fnum, slug))
+        out = os.path.join(OUTPUT, folder_name(fnum, slug))
         tdir = template_dir('F-046')
-        tag = '[BASE,F-0%d]' % fnum
+        tag = '[BASE,F-%03d]' % fnum
         generated = {'charsections', 'charhairgeosets', 'characterfacialhairstyles', 'barbershopstyle', 'creaturemodeldata',
                      'creaturedisplayinfo', 'creature_model_info', 'player_totem_model', 'charstartoutfit'}
         for sub in ('dbc', os.path.join('sql', 'db-world', 'base')):
@@ -396,7 +401,7 @@ def write_readme(out, key, name, plural, fnum, slug, side, home, kin, male_only,
     else:
         look = ('    - WallCraft\'s playable %s model (Vanilla format, converted with m2_256_to_264.py) and its %s'
                 % (name, 'donor customization rows' if source[0] == 'donor' else 'skin textures (no customization rows: skin colour only)'))
-    lines = ['# mod-worgoblin-high-elf', '## F-0%d_mod-playable-%s' % (fnum, slug), '', '### Features',
+    lines = ['# mod-worgoblin-high-elf', '## ' + folder_name(fnum, slug), '', '### Features',
              '- Playable %s (%s), race ID set in config.sql%s' % (plural, side, ', male only' if male_only else ''), look,
              '    - Home: %s (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted' % home,
              '      quests and items)', '    - Kin: %s (voice, emotes and names, copied at build time)' % kin,
