@@ -32,6 +32,7 @@ The client's spell modifier packets have no spell family, so `Player::AddSpellMo
 - `SetHeroTalentClass` and `GetHeroTalentClass`: shows one class's trees at a time in the stock talent frame
 - `SetHeroSpellTabPage` and `GetHeroSpellTabPage`: pages the spellbook's tabs, of which the frame only has eight
 - Opens class-restricted items, combo points, hunter pet handling, tracking and LFG roles to the class
+- Gives the creation screen's random class pick room for more than ten classes. Without this, the client closes without an error as soon as you open the creation screen
 
 ### Interface files
 Copy `interface/Interface` into your patch folder, or client root for the addon, then add this line to `Interface/GlueXML/GlueXML.toc`, above the `GlueLocalizationPost.xml` line:
@@ -40,7 +41,7 @@ Copy `interface/Interface` into your patch folder, or client root for the addon,
 HeroClass_CharacterCreate.lua
 ```
 
-- `Interface/GlueXML/HeroClass_CharacterCreate.lua`: an eleventh class button and the class's texts. It goes above the sixth button
+- `Interface/GlueXML/HeroClass_CharacterCreate.lua`: an eleventh class button and the class's texts. The Hero's button goes right above the Warrior's, and the other classes keep their usual places
 - `Interface/AddOns/HeroClass`: the talent class picker, spellbook page arrows, extra resource bars and runes
 
 ### Known Issues
