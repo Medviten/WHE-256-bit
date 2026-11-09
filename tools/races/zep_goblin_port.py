@@ -26,11 +26,15 @@ What differs from the zpak:
 - references to what neither the zpak nor stock has are dropped or cleared: Cata items Zeppelin uses for something
   else, Neltharion's own marker spells and creatures, quest display spells that can't work here (see DEAD_*)
 - creatures whose SmartAI has no rows left get no AIName, and Neltharion's NullAI is NullCreatureAI here
+- NPCs of races 1-8 get the classic bake of their donor display: Zeppelin points them at "_HD" rebakes of stock
+  displays (CreatureDisplayExtra-<donor>_HD.blp), painted for HD player models, which smear on the classic ones; the
+  donor's own 3.3.5 bake (its name in the stock CreatureDisplayInfoExtra.dbc, STOCK_EXTRA_DBC) fits them
 """
-import glob, os, re, shutil, sys
+import glob, os, re, shutil, struct, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIXES_DIR = os.path.join(HERE, "zep_goblin_fixes")
+STOCK_EXTRA_DBC = "D:/GitHub/References/original-client-dbc/CreatureDisplayInfoExtra.dbc"
 
 # Zeppelin's FactionTemplate id -> variable
 FACTION_TEMPLATES = {
@@ -343,8 +347,35 @@ def keep_existing(table, sql):
     return sql
 
 
+_stock_bakes = None
+
+
+def stock_bakes():
+    """Stock CreatureDisplayInfoExtra id -> its bake name (the last column)."""
+    global _stock_bakes
+    if _stock_bakes is None:
+        d = open(STOCK_EXTRA_DBC, "rb").read()
+        _, n, fields, size, strings = struct.unpack("<4s4I", d[:20])
+        table = 20 + n * size
+        _stock_bakes = {}
+        for i in range(n):
+            row = struct.unpack_from("<%dI" % fields, d, 20 + i * size)
+            name = d[table + row[-1]:d.index(b"\0", table + row[-1])].decode("latin1")
+            if name:
+                _stock_bakes[row[0]] = name
+    return _stock_bakes
+
+
+def classic_bakes(sql):
+    def stock(match):
+        return stock_bakes().get(int(match.group(1)), match.group(0))
+    return re.sub(r"CreatureDisplayExtra-(\d+)_HD\.blp", stock, sql)
+
+
 def port_dbc(name, sql):
     sql = port_common(sql)
+    if "creaturedisplayinfoextra" in name:
+        sql = classic_bakes(sql)
     auto = re.fullmatch(r"\[AUTO,F-011\]_(\w+)\.sql", name)
     if auto:
         sql = keep_existing(auto.group(1), sql)
