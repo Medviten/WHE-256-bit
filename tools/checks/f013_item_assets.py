@@ -56,6 +56,42 @@ def needs(row):
     return out
 
 
+def creature_needs(client):
+    """(display, what, [candidates]) for the models and texture variations of F-013's creature displays; model paths
+    come from the client's built CreatureModelData.dbc (the displays can name a model by a variable)."""
+    import struct
+    d = open(os.path.join(client, 'patch-A.MPQ', 'DBFilesClient', 'CreatureModelData.dbc'), 'rb').read()
+    _, n, fields, size, _ = struct.unpack('<4s4I', d[:20])
+    table = 20 + n * size
+    models = {}
+    for i in range(n):
+        mid, _, name = struct.unpack_from('<3I', d, 20 + i * size)
+        models[mid] = d[table + name:d.index(b'\0', table + name)].decode('latin1')
+    # every display the modpak inserts or updates, as the client's built DBC has it
+    ids = set()
+    for path in glob.glob(os.path.join(F013, 'dbc', '*creaturedisplayinfo*.sql')):
+        text = open(path, encoding='utf-8').read()
+        ids.update(int(i) for i in re.findall(r"`id` = (\d+),", text))
+        for where in re.findall(r"WHERE\s+`?id`?\s*(?:=\s*(\d+)|IN\s*\(([\d,\s]+)\))", text, re.I):
+            ids.update(int(i) for i in (where[0] or where[1]).replace(' ', '').split(',') if i)
+    d = open(os.path.join(client, 'patch-A.MPQ', 'DBFilesClient', 'CreatureDisplayInfo.dbc'), 'rb').read()
+    _, n, fields, size, _ = struct.unpack('<4s4I', d[:20])
+    table = 20 + n * size
+    text = lambda o: d[table + o:d.index(b'\0', table + o)].decode('latin1')
+    out = []
+    for i in range(n):
+        row = struct.unpack_from('<%dI' % fields, d, 20 + i * size)
+        if row[0] not in ids or row[1] not in models:
+            continue
+        model = re.sub(r'\.(mdx|mdl|m2)$', '', models[row[1]], flags=re.I)
+        folder = model.rsplit(B, 1)[0]
+        out.append((row[0], 'creature model ' + model, [model]))
+        for o in row[6:9]:
+            if o and text(o):
+                out.append((row[0], 'creature texture ' + folder + B + text(o), [folder + B + text(o) + '.blp']))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--client', default='C:/Users/Medviten/Desktop/WowSquished-256-bit/Data')
@@ -85,10 +121,14 @@ def main():
                                                open(path, encoding='utf-8').read(), re.S):
             items[int(display)].append('%s %s' % (entry, name))
     sql = open(os.path.join(F013, 'dbc', '[AUTO,F-011]_itemdisplayinfo.sql'), encoding='utf-8').read()
-    copied, lost = 0, collections.defaultdict(list)
+    wanted = []
     for block in re.findall(r"INSERT INTO `itemdisplayinfo` SET(.*?);", sql, re.S):
         row = dict(re.findall(r"`(\w+)` = '?([^',\n]*)'?", block))
-        for what, candidates in needs(row):
+        wanted += [(int(row['id']), what, candidates) for what, candidates in needs(row)]
+    wanted += creature_needs(a.client)
+    copied, lost = 0, collections.defaultdict(list)
+    for display, what, candidates in wanted:
+        if True:
             if any(present(c) for c in candidates):
                 continue
             source = next(((c, work[k]) for c in candidates for k in work
@@ -103,7 +143,7 @@ def main():
                     shutil.copy2(f, os.path.join(folder, os.path.basename(f)))
                     copied += 1
             elif not source:
-                lost[what].append(int(row['id']))
+                lost[what].append(display)
     print('copied %d files' % copied if a.copy else '(dry run: --copy copies what Zeppelin has)')
     print('%d files nobody has:' % len(lost))
     for what, displays in sorted(lost.items()):

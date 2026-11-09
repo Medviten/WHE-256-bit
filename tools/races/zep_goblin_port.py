@@ -300,7 +300,36 @@ def port_world(name, sql):
             sql = sql.replace(f"position_{axis} = @{axis}", f"position_{axis} = @GoblinStart{var}")
         sql = sql.replace("orientation = @o", "orientation = @GoblinStartO")
         sql = sql.replace("WHERE race = 9 AND class <> 6", "WHERE race = @Goblin AND class <> @DeathKnight")
+    if name == "zz_[I-242]_hotrod_homies_flavor.sql":
+        sql = hot_rod_homies(sql)
     return fix_references(name, sql)
+
+
+# "Rolling with my Homies": homie -> (pickup marker aura, Hot Rod seat), as Neltharion's kezan.cpp seats them
+HOMIES = {34890: (900901, 1), 34954: (900902, 2), 34892: (900903, 3)}
+
+
+def hot_rod_homies(sql):
+    """Zeppelin's riders board the first free seat and nothing stops a second Grab Passenger on the same homie, which
+    summons a second rider: the extra copies sit in the back and the riders swap seats as more board. As in the donor,
+    each homie boards its own seat (46598's amount - 1 is the seat), and a homie the Hot Rod already carries (it has
+    that homie's pickup marker aura) can't be grabbed again."""
+    for homie, (marker, seat) in HOMIES.items():
+        old = f"({homie}, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 11, 46598, 2, 0, 0, 0, 0, 19, 34840, 15,"
+        new = f"({homie}, 0, 6, 0, 61, 0, 100, 0, 0, 0, 0, 0, 218, 46598, 2, {seat + 1}, 0, 0, 0, 19, 34840, 15,"
+        if old not in sql:
+            raise SystemExit(f"hot_rod_homies: rider row of {homie} changed in the zpak")
+        sql = sql.replace(old, new)
+    rows = ",\n".join(
+        f"  (22, 1, {homie}, 0, 0, 1, 0, {marker}, 0, 0, 1, 0, 0, '', 'Grab Passenger on {homie} only when the Hot Rod "
+        f"doesn''t carry this homie yet (marker {marker})')" for homie, (marker, seat) in HOMIES.items())
+    return sql + (
+        "\n-- F-013 (zep_goblin_port.py): one pickup per homie and a fixed seat each, see hot_rod_homies()\n"
+        "DELETE FROM `conditions` WHERE SourceTypeOrReferenceId = 22 AND SourceGroup = 1 AND SourceEntry IN "
+        f"({', '.join(map(str, HOMIES))}) AND SourceId = 0;\n"
+        "INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`, "
+        "`ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`, "
+        "`NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES\n" + rows + ";\n")
 
 
 def fix_references(name, sql):
