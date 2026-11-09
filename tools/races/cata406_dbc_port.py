@@ -8,6 +8,7 @@
                              SpellVisualEffectName stock lacks) come along.
   --sound ID[,ID...]         SoundEntries rows
   --focus ID[,ID...]         SpellFocusObject rows
+  --npc-sound ID[,ID...]     NPCSounds rows (a display's greeting, farewell and pissed voices) and their SoundEntries
   --display ID[,ID...]       CreatureDisplayInfo rows, for models stock already has
   --skip-kit ID[,ID...]      visual kits a modpak already has: referenced, not written again
   --effect-name OLD=NEW      use SpellVisualEffectName NEW (a stock model) in place of Cata's OLD
@@ -318,6 +319,23 @@ class Port:
         self.add("soundentries", sid, c, f"{sid} {c['name']} ({c['base_dir']}: {files})", self.oS)
         return sid
 
+    def npc_sounds(self, ids):
+        """NPCSounds rows (greeting, farewell, pissed and a spare sound) and the SoundEntries they play."""
+        if not ids:
+            return
+        c, o = self.c("NPCSounds"), self.o("NPCSounds")
+        for nid in ids:
+            r = c.get(nid)
+            if not r:
+                raise SystemExit(f"NPCSounds {nid} isn't in the Cata NPCSounds.dbc")
+            cols = {"id": nid}
+            names = []
+            for i in range(4):
+                cols[f"sound_entry_{i + 1}"] = self.sound(r[1 + i])
+                if r[1 + i]:
+                    names.append(self.cS.s(self.cS.get(r[1 + i])[2]) if self.cS.get(r[1 + i]) else str(r[1 + i]))
+            self.add("npcsounds", nid, cols, f"{nid} {', '.join(names)}", o)
+
     def focus(self, ids):
         if not ids:
             return
@@ -387,6 +405,7 @@ def main():
     p.add_argument("--spell", type=ids, default=[])
     p.add_argument("--sound", type=ids, default=[])
     p.add_argument("--focus", type=ids, default=[])
+    p.add_argument("--npc-sound", type=ids, default=[])
     p.add_argument("--display", type=ids, default=[])
     p.add_argument("--skip-kit", type=ids, default=[])
     p.add_argument("--no-sound", type=ids, default=[])
@@ -399,6 +418,7 @@ def main():
     port.spells(a.spell)
     for s in a.sound:
         port.sound(s)
+    port.npc_sounds(a.npc_sound)
     port.focus(a.focus)
     port.displays(a.display)
     port.write(a.out, a.prefix, a.source)

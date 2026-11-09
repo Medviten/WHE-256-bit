@@ -29,6 +29,11 @@ What differs from the zpak:
 - NPCs of races 1-8 get the classic bake of their donor display: Zeppelin points them at "_HD" rebakes of stock
   displays (CreatureDisplayExtra-<donor>_HD.blp), painted for HD player models, which smear on the classic ones; the
   donor's own 3.3.5 bake (its name in the stock CreatureDisplayInfoExtra.dbc, STOCK_EXTRA_DBC) fits them
+- goblin NPCs use F-023's player goblin models: Zeppelin's client replaces the stock NPC goblin models (831, 832) with
+  the Cataclysm ones, which are F-023's GoblinPC models byte for byte; the stock models lack most hair geosets (bald or
+  headless NPCs) and don't fit the bakes. The stock models stay as they are for every other goblin
+- item displays' Cataclysm textures and icons that neither stock nor WHE-common has are listed by
+  tools/checks/f013_item_assets.py, which copies them from Zeppelin's extracted client files
 """
 import glob, os, re, shutil, struct, sys
 
@@ -51,6 +56,8 @@ FACTION_TEMPLATES = {
 FACTIONS = {1133: "@GoblinFaction", 1152: "@GoblinPlayer", 1157: "@PygmyFaction"}
 # Zeppelin's ChrRaces id -> variable, for the creaturedisplayinfoextra.race column
 RACES = {9: "@Goblin", 12: "@Worgen", 13: "@Naga"}
+# The stock NPC goblin models -> F-023's player models, which Zeppelin's client has at the stock paths
+GOBLIN_MODELS = {831: "@GoblinMaleModel", 832: "@GoblinFemaleModel"}
 # Upstream quest race masks -> (word 1, word 2)
 QUEST_RACES = {256: ("@GoblinMask", "@GoblinMask_2"), 946: ("@HordeMask", "@HordeMask_2")}
 
@@ -387,6 +394,8 @@ def port_dbc(name, sql):
         return sql.replace("SET race = 12 WHERE", "SET race = @Worgen WHERE")
     if name == "[AUTO,F-011]_creaturedisplayinfoextra.sql":
         sql = sub_ids(r"(`race`\s*=\s*)(\d+)\b", RACES, sql)
+    if name == "[AUTO,F-011]_creaturedisplayinfo.sql":
+        sql = sub_ids(r"(`model_id`\s*=\s*)(\d+)\b", GOBLIN_MODELS, sql)
     if name == "[I-280]_goblin_intro_cinematic.sql":
         sql = sql.replace("`cinematic_sequence_id` = 172 WHERE `id` = 9", "`cinematic_sequence_id` = 172 WHERE `id` = @Goblin")
     # Spell 66987 Pygmy Helmet: force reaction with faction 1157
