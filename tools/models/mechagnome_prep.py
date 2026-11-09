@@ -9,6 +9,8 @@ usage: mechagnome_prep.py [--common PATH] [--package PATH]
 Patched in place and safe to rerun; restore with git in WHE-common to start over."""
 import argparse, os, shutil, struct, sys
 
+from m2_retail_combiners import patch as retail_combiners
+
 SLASH = chr(92)
 PAINT = 'custom/mechagnome/character/mechagnome/male/mechagnomemale_paint_2628237.blp'
 
@@ -57,6 +59,9 @@ def main():
         shutil.copy2(os.path.join(a.package, *PAINT.split('/')), dst)
     for sex in ('male', 'female'):
         print(sex, fix_model(a.common, sex))
+        # death knight glow shading, and retail's 1701 smoke off non-death knights
+        print(sex, retail_combiners(os.path.join(a.common, 'patch-A.MPQ', 'custom', 'mechagnome', 'native', sex,
+                                                 'mechagnome%s.m2' % sex)))
 
 
 if __name__ == '__main__':

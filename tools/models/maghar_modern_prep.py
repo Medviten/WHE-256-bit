@@ -10,6 +10,8 @@ Models (all skin profiles, patched in place because wotlkconv's write path isn't
 - geosets the stock path doesn't manage: head, eyes, tusks, feet and torso defaults become 0, other variants of those
   groups are parked in group 19 (hidden by SetGeometryVisible(0, 2000, 0), never shown again)
 - texture slots: retail eye slots (type 11) and the custom\\maghar\\ paths point at files that exist
+- eye and death knight glow shading: m2_retail_combiners.py (two-layer retail shaders the client would turn into a
+  multiply)
 
 Textures (rewritten as 8-bit palette + 8-bit alpha with full mip chains):
 - skin: the left half, with the head painted into the stock head rectangles
@@ -19,6 +21,8 @@ Textures (rewritten as 8-bit palette + 8-bit alpha with full mip chains):
 usage: maghar_modern_prep.py [--common PATH] [--jobs N]
 Already converted files are skipped, so it can be rerun; restore with git in WHE-common to start over."""
 import argparse, glob, multiprocessing, os, shutil, struct, sys
+
+from m2_retail_combiners import patch as retail_combiners
 
 SLASH = chr(92)
 PARKED = 1999
@@ -287,32 +291,6 @@ def convert_model(folder, gender, base):
     return 'sections changed %d, body verts %d (head %d)' % (changed, len(body), head)
 
 
-def fix_eye_batches(folder, gender, base):
-    """The eye batch samples its texture twice (retail's two-layer eye shader), which multiplies the dark orange towards
-    black: draw it once."""
-    d = open(os.path.join(folder, gender, base + '.m2'), 'rb').read()
-    nt, ot = struct.unpack_from('<II', d, 0x50)
-    nl, ol = struct.unpack_from('<II', d, 0x80)
-    lookup = struct.unpack_from('<%dH' % nl, d, ol)
-    eye = set()
-    for i in range(nt):
-        _, _, length, offset = struct.unpack_from('<4I', d, ot + 16 * i)
-        if b'eye_color' in d[offset:offset + length]:
-            eye.add(i)
-    fixed = 0
-    for path in glob.glob(os.path.join(folder, gender, base + '0?.skin')):
-        s = bytearray(open(path, 'rb').read())
-        (_, _, _, _, _, _, _, _, nb, ob, _) = struct.unpack_from('<11I', s, 4)
-        for b in range(nb):
-            field = struct.unpack_from('<BBHHHhHHHHHHH', s, ob + 24 * b)
-            if field[8] == 2 and lookup[field[9]] in eye:
-                struct.pack_into('<H', s, ob + 24 * b + 14, 1)
-                fixed += 1
-        if fixed:
-            open(path, 'wb').write(s)
-    return fixed
-
-
 def fix_eye_glow(folder, gender, base):
     """The client shows geoset 1703 for death knights, but on these models that's a gold glow and the blue one is 1701,
     which the client also leaves on for a facial style without a row (m_geosets[17] keeps its 1701 default). Make the blue
@@ -359,8 +337,8 @@ def main():
             if not os.path.exists(dst):
                 shutil.copy2(os.path.join(PACKAGE, gender, name), dst)
     for gender, base in MODELS:
-        print(base, convert_model(folder, gender, base), '- eye batches fixed:', fix_eye_batches(folder, gender, base),
-              '- glow sections moved:', fix_eye_glow(folder, gender, base), flush=True)
+        print(base, convert_model(folder, gender, base), '- glow sections moved:', fix_eye_glow(folder, gender, base),
+              '- eye shading:', retail_combiners(os.path.join(folder, gender, base + '.m2')), flush=True)
     jobs = []
     for gender in ('male', 'female'):
         g = os.path.join(folder, gender)

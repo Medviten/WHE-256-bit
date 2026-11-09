@@ -11,40 +11,19 @@ Here
   "<style> with feathers" shows the style and its feathers, and the plain variation shows the style alone (Forever's
   default is no feathers);
 - the other feather colours (groups 41-47) are parked at PARKED, which the client hides and nothing shows.
-And the eyes: their batch has retail's two eye layers, both the skin row's eye texture (type 8), the second on UV set 1,
-which maps onto the texture's glow dots. Its shader 0 makes 3.3.5 multiply the two (Combiners_Opaque_Opaque), so the
-eyes come out dark and empty; EYE_SHADER (Combiners_Opaque_AddNA) adds the glow on top instead, as retail does.
+Then m2_retail_combiners.py gives the eyes retail's two-layer shading (eye colour plus the glow of the texture's glow
+dots), which the client otherwise turns into a multiply that leaves them dark.
 
 usage: skyborne_native_prep.py [--common PATH]
 Patched in place; already patched skins are left alone. skyborne_native.py runs it after copying the models."""
 import argparse, os, struct
 
+from m2_retail_combiners import patch as retail_combiners
+
 FEATHERED = 50
 PARKED = 1999
 SEX = ('male', 'female')
 SECTION, BATCH = 48, 24
-EYE_TEXTURE_TYPE = 8
-EYE_SHADER = 0x07   # two layers: opaque, then add without alpha (CM2Shared::GetEffect)
-
-
-def fix_eyes(model_path, skin_path):
-    d = open(model_path, 'rb').read()
-    nt, ot = struct.unpack_from('<II', d, 0x50)
-    nl, ol = struct.unpack_from('<II', d, 0x80)
-    types = [struct.unpack_from('<I', d, ot + 16 * i)[0] for i in range(nt)]
-    lookup = struct.unpack_from('<%dH' % nl, d, ol)
-    s = bytearray(open(skin_path, 'rb').read())
-    nb, ob = struct.unpack_from('<II', s, 4 + 32)
-    fixed = 0
-    for b in range(nb):
-        shader, = struct.unpack_from('<H', s, ob + BATCH * b + 2)
-        count, combo = struct.unpack_from('<HH', s, ob + BATCH * b + 14)
-        if count == 2 and shader == 0 and all(types[lookup[combo + k]] == EYE_TEXTURE_TYPE for k in range(2)):
-            struct.pack_into('<H', s, ob + BATCH * b + 2, EYE_SHADER)
-            fixed += 1
-    if fixed:
-        open(skin_path, 'wb').write(s)
-    return '%d eye batches given the glow shader' % fixed
 
 
 def prep(skin_path):
@@ -92,7 +71,7 @@ def main():
     for sex in SEX:
         skin = os.path.join(a.common, 'custom', 'skyborne', 'native', sex, 'skyborne%s00.skin' % sex)
         print(sex, prep(skin))
-        print(sex, fix_eyes(os.path.join(os.path.dirname(skin), 'skyborne%s.m2' % sex), skin))
+        print(sex, retail_combiners(os.path.join(os.path.dirname(skin), 'skyborne%s.m2' % sex)))
 
 
 if __name__ == '__main__':

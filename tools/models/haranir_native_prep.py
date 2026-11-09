@@ -28,6 +28,7 @@ import argparse, multiprocessing, os, re, shutil, struct, subprocess, sys, zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'races'))
 from maghar_modern_prep import crop_scale, write_blp  # noqa: E402
+from m2_retail_combiners import patch as retail_combiners  # noqa: E402
 
 SLASH = chr(92)
 RACE = 86           # Alliance and Horde Haranir share a ChrModel, so one bake serves both
@@ -302,6 +303,8 @@ def main():
             os.makedirs(folder, exist_ok=True)
             copy_assets(a.common, a.package, sex)
             print(sex, fix_model(a.common, a.package, sex), flush=True)
+            # retail's 1701 death knight smoke would show on everyone (the client's default eye glow geoset)
+            print(sex, retail_combiners(os.path.join(folder, 'harronir%s.m2' % sex)), flush=True)
             if a.models_only:
                 continue
             opts = Options(a.options_probe, a.ini, sex)
