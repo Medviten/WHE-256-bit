@@ -135,11 +135,14 @@ def charhairgeosets(key, geosets):
             % (len(rows), len(HAIR['male']), len(HAIR['female']), key, ',\n'.join(rows)))
 
 
+EYE_GLOW = 2   # geoset_5: geoset 1702, the yellow eye glow skyborne_eye_glow.py gives the models (as Night Elves glow)
+
+
 def facialstyles(key):
-    rows = ["(@%s, %-8s %2d, %2d, 0, %d, 0, 0)" % (key, ('@Male', '@Female')[g] + ',', v, s[1], s[2])
+    rows = ["(@%s, %-8s %2d, %2d, 0, %d, 0, %d)" % (key, ('@Male', '@Female')[g] + ',', v, s[1], s[2], EYE_GLOW)
             for g in (0, 1) for v, s in enumerate(facial_styles(g))]
     return ("-- characterfacialhairstyles: %d inserts, 0 updates, 0 deletes\n"
-            "-- Male: beard (group 1, 102-113) x eyebrows (group 2, 201-204). Female: eyebrows\n\n"
+            "-- Male: beard (group 1, 102-113) x eyebrows (group 2, 201-204). Female: eyebrows. All: eye glow 1702\n\n"
             "-- New entries\nDELETE FROM `characterfacialhairstyles` WHERE `race` = @%s;\n"
             "INSERT INTO `characterfacialhairstyles` (`race`, `gender`, `variation_id`, `geoset_1`, `geoset_2`, `geoset_3`, `geoset_4`, `geoset_5`) VALUES\n%s;\n"
             % (len(rows), key, ',\n'.join(rows)))

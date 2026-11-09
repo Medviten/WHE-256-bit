@@ -11,14 +11,15 @@ Here
   "<style> with feathers" shows the style and its feathers, and the plain variation shows the style alone (Forever's
   default is no feathers);
 - the other feather colours (groups 41-47) are parked at PARKED, which the client hides and nothing shows.
-Then m2_retail_combiners.py gives the eyes retail's two-layer shading (eye colour plus the glow of the texture's glow
-dots), which the client otherwise turns into a multiply that leaves them dark.
+Then skyborne_eye_glow.py adds Forever's eye glows (when the Forever pack is there) and m2_retail_combiners.py gives the
+eyes and glows retail's two-layer shading, which the client otherwise turns into a multiply that leaves them dark.
 
-usage: skyborne_native_prep.py [--common PATH]
+usage: skyborne_native_prep.py [--common PATH] [--pack PATH]
 Patched in place; already patched skins are left alone. skyborne_native.py runs it after copying the models."""
 import argparse, os, struct
 
 from m2_retail_combiners import patch as retail_combiners
+from skyborne_eye_glow import DONORS, port as eye_glow
 
 FEATHERED = 50
 PARKED = 1999
@@ -67,10 +68,15 @@ def prep(skin_path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--common', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', 'WHE-common', 'patch-A.MPQ'))
+    ap.add_argument('--pack', default='D:/wow-scratch/skyborne-pack', help='Forever pack with the eye glows')
     a = ap.parse_args()
     for sex in SEX:
         skin = os.path.join(a.common, 'custom', 'skyborne', 'native', sex, 'skyborne%s00.skin' % sex)
         print(sex, prep(skin))
+        if os.path.isdir(a.pack):
+            print(sex, eye_glow(os.path.join(os.path.dirname(skin), 'skyborne%s.m2' % sex), a.pack, DONORS[sex]))
+        else:
+            print(sex, 'no Forever pack at %s: eye glows not added' % a.pack)
         print(sex, retail_combiners(os.path.join(os.path.dirname(skin), 'skyborne%s.m2' % sex)))
 
 

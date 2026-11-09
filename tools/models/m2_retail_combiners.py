@@ -15,54 +15,118 @@ With header flag 8 the client reads each batch's shader as an index into the mod
   for an opaque material, second layer Opaque), and points second layers on UV combo -1 (which flag 8 would turn into
   a sphere map) at a UV set 1 entry, the set they are drawn with now;
 - gives the eyes Mod_Add (restoring a second layer that an earlier fix removed, when the lookups still pair the eye
-  texture with UV set 1), the death knight smoke (retail's 1701, 80 triangles) Mod_Mod2x and the glow orbs (1702-1705)
-  Mod_Mod;
-- renumbers the glows to the stock meaning of group 17 (1701 none, 1702 the race's glow, 1703 death knights): retail's
-  1701 smoke becomes 1703 and its orbs are parked at PARKED, which the client hides. Without this the client's default
-  1701 shows the death knight smoke on everyone. Models already renumbered (the Mag'har prep) have no 1701 left.
+  texture with UV set 1), the glow smoke Mod_Mod2x and the glow orbs Mod_Mod, and gives glows that lost their second
+  layer in conversion (Haranir) that layer back;
+- renumbers the glows to the stock meaning of group 17 (1701 none, 1702 the race's own glow, 1703 death knights).
+
+Retail's glows: 1701 is a smoke trail (80 triangles; layer 1 samples a colour bar, layer 2 on UV set 1 the smoke) and
+1702-1705 are glowing orbs with wisps (200 triangles; layer 1 the orb shapes, layer 2 a colour strip whose column picks
+the colour: yellow, orange, pale violet, blue). The client shows its default 1701 on everyone and 1703 on death
+knights, so retail's numbers put the death knight smoke on every character. Glows are therefore told apart by their
+geometry and colour column, not their number (earlier fixes renumbered some), and become:
+  smoke -> 1703, blue orbs -> 1703 (a death knight gets both), yellow orbs -> 1702, orange and pale orbs -> PARKED.
+1702 shows when a facial style's CharFacialHairStyles geoset 5 is 2, as for Night Elves.
 
 usage: m2_retail_combiners.py MODEL.m2 [...]
-Patches the model and all its .skin files in place; an already patched model is left alone."""
+Patches the model and all its .skin files in place; safe to rerun."""
 import glob, struct, sys
 
 PARKED = 1999
-GLOW_GEOSETS = {1701: 1703, 1702: PARKED, 1703: PARKED, 1704: PARKED, 1705: PARKED}
-SMOKE_TRIANGLES = 80
+GLOW_IDS = {1701, 1702, 1703, 1704, 1705, PARKED}
+SMOKE_TRIANGLES, ORB_TRIANGLES = 80, 200
+# (highest UV set 1 u of an orb's colour strip, colour, new geoset)
+ORB_COLUMNS = ((0.845, 'yellow', 1702), (0.895, 'orange', PARKED), (0.955, 'pale', PARKED), (1.01, 'blue', 1703))
+SMOKE_GEOSET = 1703
 HEADER_COMBINERS = 0x130
 FLAG_COMBINERS = 8
-BATCH = 24
+BATCH, SECTION, VERTEX = 24, 48, 48
 MOD, OPAQUE, ADD, MOD2X = 1, 0, 3, 4
 EYE_TEXTURE_TYPES = {8, 19}             # type 8: the skin row's extra texture (Skyborne); 19: retail's eye slot
+TEXTURE_COMBOS, UV_COMBOS, TRANSFORM_COMBOS = 0x80, 0x88, 0x98
 
 
 def arr(d, o):
     return struct.unpack_from('<II', d, o)
 
 
+def table(d, offset, fmt='H'):
+    n, o = arr(d, offset)
+    return list(struct.unpack_from('<%d%s' % (n, fmt), d, o))
+
+
+def align(d):
+    while len(d) % 16:
+        d.append(0)
+
+
+def append_data(d, data):
+    align(d)
+    offset = len(d)
+    d.extend(data)
+    return offset
+
+
+def pair_index(d, offset, a, b, fmt):
+    """Index of a consecutive (a, b) in a lookup table, appending the pair (moving the table to the end) if missing."""
+    values = table(d, offset, fmt)
+    for i in range(len(values) - 1):
+        if values[i] == a and values[i + 1] == b:
+            return i
+    struct.pack_into('<II', d, offset, len(values) + 2,
+                     append_data(d, struct.pack('<%d%s' % (len(values) + 2, fmt), *(values + [a, b]))))
+    return len(values)
+
+
 def is_eye_texture(types, names, slot):
     return types[slot] in EYE_TEXTURE_TYPES or 'eye_color' in names[slot].lower()
 
 
-def patch(model_path):
-    d = bytearray(open(model_path, 'rb').read())
+def glow_kind(d, s, section_offset):
+    """('smoke' | colour, new geoset) for a retail eye glow section, else None."""
+    sid, _, vstart, vcount, _, icount = struct.unpack_from('<6H', s, section_offset)
+    if sid not in GLOW_IDS:
+        return None
+    if icount // 3 not in (SMOKE_TRIANGLES, ORB_TRIANGLES):
+        return None
+    nl, ol = arr(s, 0x04)
+    lookup = struct.unpack_from('<%dH' % nl, s, ol)
+    nv, ov = arr(d, 0x3C)
+    uvs = [struct.unpack_from('<4f', d, ov + VERTEX * lookup[vstart + k] + 32) for k in range(vcount)]
+    top = max(uv[2] for uv in uvs)
+    if icount // 3 == SMOKE_TRIANGLES:
+        # layer 1 in the colour bar at the atlas' top left, layer 2 across the smoke on its right half
+        if max(uv[0] for uv in uvs) < 0.2 and max(uv[1] for uv in uvs) < 0.12 and top > 0.9:
+            return 'smoke', SMOKE_GEOSET
+        return None
+    if top < 0.79:
+        return None
+    for limit, colour, geoset in ORB_COLUMNS:
+        if top <= limit:
+            return colour, geoset
+    return None
+
+
+def enable_combiners(d):
     flags, = struct.unpack_from('<I', d, 0x10)
     if flags & FLAG_COMBINERS:
-        return 'already has combiners'
+        return True
     name_n, name_o = arr(d, 0x08)
     loops_n, loops_o = arr(d, 0x14)
     if name_o != HEADER_COMBINERS or loops_o != name_o + ((name_n + 3) & ~3):
-        return 'skipped: the data after the header is not the name and global loops'
-    # Move the name and global loops to the end, aligned.
-    def append(data):
-        while len(d) % 16:
-            d.append(0)
-        offset = len(d)
-        d.extend(data)
-        return offset
+        return False
     name = bytes(d[name_o:name_o + name_n])
     loops = bytes(d[loops_o:loops_o + 4 * loops_n])
-    struct.pack_into('<II', d, 0x08, name_n, append(name))
-    struct.pack_into('<II', d, 0x14, loops_n, append(loops) if loops_n else 0)
+    struct.pack_into('<II', d, 0x08, name_n, append_data(d, name))
+    struct.pack_into('<II', d, 0x14, loops_n, append_data(d, loops) if loops_n else 0)
+    struct.pack_into('<II', d, HEADER_COMBINERS, 0, 0)
+    struct.pack_into('<I', d, 0x10, flags | FLAG_COMBINERS)
+    return True
+
+
+def patch(model_path):
+    d = bytearray(open(model_path, 'rb').read())
+    if not enable_combiners(d):
+        return 'skipped: the data after the header is not the name and global loops'
 
     nt, ot = arr(d, 0x50)
     types = [struct.unpack_from('<I', d, ot + 16 * i)[0] for i in range(nt)]
@@ -72,11 +136,6 @@ def patch(model_path):
         names.append(d[o:o + n].rstrip(b'\0').decode('latin1'))
     nm, om = arr(d, 0x70)
     blend = [struct.unpack_from('<HH', d, om + 4 * i)[1] for i in range(nm)]
-    ntc, otc = arr(d, 0x80)
-    tex_combos = struct.unpack_from('<%dH' % ntc, d, otc)
-    nuv, ouv = arr(d, 0x88)
-    uv_combos = struct.unpack_from('<%dh' % nuv, d, ouv)
-    uv_set1 = uv_combos.index(1) if 1 in uv_combos else None
 
     combiners = []
     def combiner(ops):
@@ -89,60 +148,69 @@ def patch(model_path):
     report = []
     for skin_path in sorted(glob.glob(model_path[:-3] + '0?.skin')):
         s = bytearray(open(skin_path, 'rb').read())
-        ns, osub = struct.unpack_from('<II', s, 0x1C)
-        nb, ob = struct.unpack_from('<II', s, 0x24)
-        counts = {'eyes': 0, 'glows': 0, 'uv': 0, 'plain': 0, 'renumbered': 0}
-        ids = [struct.unpack_from('<H', s, osub + 48 * i)[0] for i in range(ns)]
+        ns, osub = arr(s, 0x1C)
+        nb, ob = arr(s, 0x24)
+        kinds = {i: glow_kind(d, s, osub + SECTION * i) for i in range(ns)}
+        counts = {'eyes': 0, 'glows': 0, 'layered': 0, 'uv': 0, 'plain': 0}
         for b in range(nb):
             o = ob + BATCH * b
             section, = struct.unpack_from('<H', s, o + 4)
             material, = struct.unpack_from('<H', s, o + 10)
-            count, tex, uv = struct.unpack_from('<HHH', s, o + 14)
-            geoset = ids[section]
-            triangles = struct.unpack_from('<H', s, osub + 48 * section + 10)[0] // 3
-            two_on_set1 = (tex + 1 < ntc and uv + 1 < nuv and tex_combos[tex] == tex_combos[tex + 1]
-                           and uv_combos[uv] == 0 and uv_combos[uv + 1] == 1)
+            count, tex, uv, _, transform = struct.unpack_from('<HHHHH', s, o + 14)
+            tex_combos = table(d, TEXTURE_COMBOS)
+            uv_combos = table(d, UV_COMBOS, 'h')
+            geoset, = struct.unpack_from('<H', s, osub + SECTION * section)
+            two_on_set1 = (tex + 1 < len(tex_combos) and uv + 1 < len(uv_combos)
+                           and tex_combos[tex] == tex_combos[tex + 1] and uv_combos[uv] == 0 and uv_combos[uv + 1] == 1)
+            kind = kinds[section]
             if (geoset == 0 or geoset // 100 == 33) and count in (1, 2) and two_on_set1 \
                     and is_eye_texture(types, names, tex_combos[tex]) and blend[material] in (0, 1):
                 struct.pack_into('<H', s, o + 14, 2)
                 ops = (MOD, ADD)
                 counts['eyes'] += 1
-            elif geoset // 100 == 17 and count == 2 and two_on_set1:
-                ops = (MOD, MOD2X) if triangles == SMOKE_TRIANGLES else (MOD, MOD)
+            elif kind and count in (1, 2):
+                if count == 1:
+                    # the second layer conversion dropped: the same texture again, on UV set 1, with the same transform
+                    t = tex_combos[tex]
+                    tf = table(d, TRANSFORM_COMBOS, 'h')[transform]
+                    struct.pack_into('<H', s, o + 14, 2)
+                    struct.pack_into('<H', s, o + 16, pair_index(d, TEXTURE_COMBOS, t, t, 'H'))
+                    struct.pack_into('<H', s, o + 18, pair_index(d, UV_COMBOS, 0, 1, 'h'))
+                    struct.pack_into('<H', s, o + 22, pair_index(d, TRANSFORM_COMBOS, tf, tf, 'h'))
+                    counts['layered'] += 1
+                ops = (MOD, MOD2X) if kind[0] == 'smoke' else (MOD, MOD)
                 counts['glows'] += 1
             else:
                 ops = (MOD, OPAQUE)[:count]
-                if count == 2 and uv + 1 < nuv and (uv_combos[uv + 1] & 0xFFFF) > 2:   # -1 too: the client reads it as 0xFFFF
-                    if uv_set1 is None or uv_combos[uv] != 0:
-                        return "skipped: batch %d has a second layer on UV combo %d and no UV set 1 entry to keep it" % (
+                if count == 2 and uv + 1 < len(uv_combos) and (uv_combos[uv + 1] & 0xFFFF) > 2:   # -1 too (0xFFFF)
+                    if uv_combos[uv] != 0:
+                        return 'skipped: batch %d has a second layer on UV combo %d and a first not on UV set 0' % (
                             b, uv_combos[uv + 1])
-                    # [0, 1] pair: the first entry stays UV set 0
-                    pair = next((i for i in range(nuv - 1) if uv_combos[i] == 0 and uv_combos[i + 1] == 1), None)
-                    if pair is None:
-                        return 'skipped: no UV combo pair (0, 1) for batch %d' % b
-                    struct.pack_into('<H', s, o + 18, pair)
+                    struct.pack_into('<H', s, o + 18, pair_index(d, UV_COMBOS, 0, 1, 'h'))
                     counts['uv'] += 1
                 counts['plain'] += 1
             struct.pack_into('<H', s, o + 2, combiner(ops))
-        if 1701 in ids:
-            for i, sid in enumerate(ids):
-                if sid in GLOW_GEOSETS:
-                    struct.pack_into('<H', s, osub + 48 * i, GLOW_GEOSETS[sid])
-                    counts['renumbered'] += 1
+        renumbered = {}
+        for i, kind in kinds.items():
+            if kind:
+                struct.pack_into('<H', s, osub + SECTION * i, kind[1])
+                renumbered[kind[0]] = renumbered.get(kind[0], 0) + 1
         open(skin_path, 'wb').write(s)
-        report.append('%s: %d eye, %d glow, %d unchanged batches (%d moved off a UV combo -1 layer), %d glow geosets '
-                      'renumbered' % (skin_path.replace(chr(92), '/').split('/')[-1], counts['eyes'], counts['glows'],
-                                      counts['plain'], counts['uv'], counts['renumbered']))
+        report.append('%s: %d eye, %d glow (%d given their second layer), %d unchanged batches (%d moved off a UV combo '
+                      '-1 layer); glows %s' % (skin_path.replace(chr(92), '/').split('/')[-1], counts['eyes'],
+                                              counts['glows'], counts['layered'], counts['plain'], counts['uv'],
+                                              renumbered or 'none'))
 
-    struct.pack_into('<II', d, HEADER_COMBINERS, len(combiners), append(struct.pack('<%dH' % len(combiners), *combiners)))
-    struct.pack_into('<I', d, 0x10, flags | FLAG_COMBINERS)
+    if table(d, HEADER_COMBINERS) != combiners:
+        struct.pack_into('<II', d, HEADER_COMBINERS, len(combiners),
+                         append_data(d, struct.pack('<%dH' % len(combiners), *combiners)))
     open(model_path, 'wb').write(d)
     return '; '.join(report) + ', combiners %s' % combiners
 
 
 def main():
     for path in sys.argv[1:]:
-        print(path.replace('\\', '/').split('/')[-1], patch(path))
+        print(path.replace(chr(92), '/').split('/')[-1], patch(path))
 
 
 if __name__ == '__main__':

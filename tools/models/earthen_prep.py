@@ -18,6 +18,9 @@ Textures, copied as earthendwarf_*.blp and shared by both genders through F-038/
 usage: earthen_prep.py [--common PATH] [--package PATH] [--gems PATH]"""
 import argparse, glob, os, shutil, struct, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from m2_retail_combiners import patch as retail_combiners  # noqa: E402
+
 SLASH = chr(92)
 PARKED = 1999
 HAIR = range(4002, 4012)
@@ -76,6 +79,9 @@ def main():
     print('hair colours:', len(hair), 'gem colours:', len(GEMS))
     for sex in ('male', 'female'):
         print(sex, fix_model(a.common, a.package, sex))
+        # eye glow shading, and retail's glows renumbered (the death knight smoke would show on everyone)
+        print(sex, retail_combiners(os.path.join(a.common, 'patch-A.MPQ', 'custom', 'earthen', 'native', sex,
+                                                 'earthendwarf%s.m2' % sex)))
 
 
 if __name__ == '__main__':
