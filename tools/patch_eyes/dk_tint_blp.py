@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Make a pale, ashen Death Knight version of a BLP2 skin/face/fur texture without re-encoding it.
 Palettized BLPs (compression 1, the format of the compositor body/face textures) only get their palette recoloured;
-DXT BLPs (compression 2) get their colour block endpoints recoloured, so the pixels and the mip chain stay as they were.
+DXT BLPs (compression 2) get their colour block endpoints recoloured, so the pixels and the mip chain stay as they were;
+uncompressed BLPs (compression 3) get their pixels recoloured.
 usage: dk_tint_blp.py in.blp out.blp [desaturation=0.85] [brightness=0.85] [lift=28]"""
 import struct, sys
 
@@ -43,6 +44,14 @@ elif enc == 2:
                     if n0 > 0: n1 -= 1
                     else: n0 += 1
             struct.pack_into('<HHI', d, p, n0, n1, bits)
+elif enc == 3:                                                    # uncompressed BGRA pixels in every mip
+    lut = {}
+    for o, n in zip(offs, sizes):
+        for p in range(o, o + n - 3, 4):
+            key = bytes(d[p:p + 3])
+            if key not in lut:
+                r, g, b = tint(key[2], key[1], key[0]); lut[key] = bytes((b, g, r))
+            d[p:p + 3] = lut[key]
 else:
     sys.exit('unsupported BLP compression %d in %s' % (enc, src))
 open(dst, 'wb').write(d)
