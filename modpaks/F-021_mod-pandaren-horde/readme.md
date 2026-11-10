@@ -2,6 +2,7 @@
 ## F-021_mod-pandaren-horde
 
 ### Features
+- Requires F-129_mod-pandaren-neutral, listed before this modpak: it holds what both Pandaren races share
 - Playable Pandaren (Horde)
     - BfA racial faction: Huojin Pandaren
 - Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none

@@ -3,6 +3,7 @@ void AddSC_mod_race_costumes();
 void AddSC_kyrian_hover();
 void AddSC_kyrian_racials();
 void AddSC_venthyr_racials();
+void AddSC_starting_pet();
 
 // AzerothCore calls Add<module folder name, '-' as '_'>Scripts(): the repository's own name (WHE-256-bit)...
 void AddWHE_256_bitScripts()
@@ -11,6 +12,7 @@ void AddWHE_256_bitScripts()
     AddSC_kyrian_hover();
     AddSC_kyrian_racials();
     AddSC_venthyr_racials();
+    AddSC_starting_pet();
 }
 
 // ...or the module's former name, for installs whose folder is still called mod-worgoblin-high-elf

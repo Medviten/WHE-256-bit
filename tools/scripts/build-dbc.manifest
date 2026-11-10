@@ -37,6 +37,7 @@ F-024_mod-playable-worgen # recompile for Running Wild functionality, but can be
 #F-094_alpha-worgen-assets # Off by default (tentative, untested; alpha Worgen look, requires F-024)
 F-027_mod-gilnean # requires F-024
 F-063_worgen_racial_spells # requires F-024 (listed after it), a recompile and the patched 64-bit client: Running Wild as a mount on oneself, Two Forms as altered form
+F-129_mod-pandaren-neutral # required by F-020 and F-021, and has to come before them
 F-020_mod-pandaren-alliance
 F-021_mod-pandaren-horde
 F-034_mod-nightborne
@@ -45,7 +46,7 @@ F-035_mod-void-elf
 F-033_mod-lightforged-draenei
 F-017_mod-zandalari-troll
 F-025_mod-kul-tiran
-#F-041_mod-thin-human # Off by default (WIP – not ready)
+#F-041_mod-thin-human # Off by default
 F-019_mod-vulpera
 F-016_mod-dark-iron-dwarf
 F-007_mod-maghar
@@ -152,4 +153,5 @@ F-093_racial-mount-vendors # Goblin and Worgen racial mount vendors, for the rac
 #F-092_racial-mount-merchant # Off by default (neutral vendor in Booty Bay selling the racial mounts of enabled races; keep after every race modpak)
 #F-075_mod-individual-progression # Off by default (for mod-individual-progression: needs its world SQL applied first, patch in patches/individual-progression; keep it last)
 #F-076_mod-individual-progression_extras # Off by default (mod-individual-progression's optional SQL and DBCs; one file per feature, delete the ones you don't want, see its readme)
+#F-128_hunter-starting-pets # Off by default (hunters start with a Cataclysm-style pet per race; needs a recompile, see its readme)
 # END ADDITIONAL MODS #

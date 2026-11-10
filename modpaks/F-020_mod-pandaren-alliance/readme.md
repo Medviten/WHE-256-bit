@@ -2,6 +2,7 @@
 ## F-020_mod-pandaren-alliance
 
 ### Features
+- Requires F-129_mod-pandaren-neutral, listed before this modpak: it holds what both Pandaren races share
 - Playable Pandaren (Alliance)
     - BfA racial faction: Tushui Pandaren
 - Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none

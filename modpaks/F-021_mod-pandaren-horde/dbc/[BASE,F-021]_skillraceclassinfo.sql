@@ -1,6 +1,3 @@
--- skillraceclassinfo: 2 inserts, 0 updates, 0 deletes
-
--- New entries
-DELETE FROM `skillraceclassinfo` WHERE `id` = @PandarenRacialSkillRaceClass;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES
-(@PandarenRacialSkillRaceClass, @PandarenRacials, @HordePandarenMask, @AllClassMask, 1170, 0, 0, 0);
+-- skillraceclassinfo: Horde Pandaren can have the racial skill of F-129
+UPDATE `skillraceclassinfo` SET `race_mask` = `race_mask` | @HordePandarenMask,
+    `race_mask_2` = `race_mask_2` | @HordePandarenMask_2 WHERE `id` = @PandarenRacialSkillRaceClass;

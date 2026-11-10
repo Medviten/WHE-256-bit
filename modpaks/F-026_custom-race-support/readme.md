@@ -6,6 +6,7 @@
 - Unified skill update
 - Unified talent update
 - Unified totem update
+- Removes `playercreateinfo` rows for race/class pairs missing from CharBaseInfo, so the server and bots only use the combinations a race actually offers
 - Unified capital reputation spillover (requires the 256-bit core's `reputation_spillover_faction` table)
 - `patches/core/race-templates.patch` (azerothcore-wotlk): replaces per-race core code with `player_race_template` (see
   F-091_race-setup), so races need no enum entries or recompile. It also creates races without a female model as male,

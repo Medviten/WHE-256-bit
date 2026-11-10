@@ -39,6 +39,8 @@ KEEP_FILES = {
     "F-103_mod-skyborne-alliance/readme.md",                            # the Forever look is 256-bit only
     "F-104_mod-skyborne-horde/readme.md",
 }
+# 256-bit shares the Pandaren data through the NPC race F-129; 32-bit keeps F-020 and F-021 as they were, as a race slot is scarce
+SKIP_MODPAKS = {"F-020_mod-pandaren-alliance", "F-021_mod-pandaren-horde", "F-129_mod-pandaren-neutral"}
 SKIP_FILES = {
     "F-026_custom-race-support/sql/db-world/base/[BASE,F-026]_reputation_spillover_faction.sql",  # 256-bit core table
     # Gilnean is an altered form only (32-bit: race 213, no mask bit). The 256-bit modpak no longer has most of these; its
@@ -433,6 +435,8 @@ def main():
     else:
         names = args or sorted(d for d in os.listdir(src) if os.path.isdir(os.path.join(src, d)))
         for name in names:
+            if name in SKIP_MODPAKS:
+                continue
             sdir, ddir = os.path.join(src, name), os.path.join(dest, name)
             for root, _, files in os.walk(sdir):
                 if "__pycache__" in root:
