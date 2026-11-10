@@ -23,8 +23,8 @@ SET @GnollFlags = @HumanFlags;
 SET @GnollExplorationSound = @HumanExplorationSound;
 SET @GnollCinematicSequence = @HumanCinematicSequence;
 SET @GnollBlood = 1;
-SET @GnollMaleModelPath = 'Character\\Gnoll\\Male\\gnoll.mdx'; -- WallCraft model, converted to the 3.3.5 format
-SET @GnollFemaleModelPath = 'Character\\Gnoll\\Male\\gnoll.mdx';
+SET @GnollMaleModelPath = 'custom\\gnoll\\native\\gnoll.m2'; -- CoA 1.9.9 model (tools/races/coa199_replace.py)
+SET @GnollFemaleModelPath = 'custom\\gnoll\\native\\gnoll.m2';
 SET @GnollFaction = 1235; -- vacant slot
 SET @GnollPlayer = 1236; -- vacant slot
 

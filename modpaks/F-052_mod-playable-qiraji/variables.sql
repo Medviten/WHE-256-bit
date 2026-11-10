@@ -23,17 +23,17 @@ SET @QirajiFlags = @OrcFlags;
 SET @QirajiExplorationSound = @OrcExplorationSound;
 SET @QirajiCinematicSequence = @OrcCinematicSequence;
 SET @QirajiBlood = 1;
-SET @QirajiMaleModelPath = 'Character\\Qiraji\\Male\\QirajiMale.mdx'; -- WallCraft model, converted to the 3.3.5 format
-SET @QirajiFemaleModelPath = 'Character\\Qiraji\\Female\\QirajiFemale.mdx';
+SET @QirajiMaleModelPath = 'Creature\\QuirajBattleguard\\QirajiMale.m2'; -- CoA 1.9.9 model (tools/races/coa199_replace.py)
+SET @QirajiFemaleModelPath = 'Creature\\QuirajBattleguard\\QirajiFemale.m2';
 SET @QirajiFaction = 1219; -- vacant slot
 SET @QirajiPlayer = 1220; -- vacant slot
 
 -- Strings
 SET @QirajiClientPrefix               = 'Ni'; -- helmet models of this prefix
 SET @QirajiClientString               = 'Qiraji';
-SET @QirajiFacialHairCustomization1   = 'NORMAL';
-SET @QirajiFacialHairCustomization2   = 'NORMAL';
-SET @QirajiHairCustomization          = 'NORMAL';
+SET @QirajiFacialHairCustomization1   = 'Normal';
+SET @QirajiFacialHairCustomization2   = 'Normal';
+SET @QirajiHairCustomization          = 'MURLOCARMOR';
 
 -- Localization Strings
 SET @QirajienUS                       = 'Qiraji';

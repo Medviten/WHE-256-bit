@@ -21,8 +21,8 @@ SET @FurbolgHome                          = @NightElf; -- classes, start outfits
 SET @FurbolgExplorationSound              = @NightElfExplorationSound;
 SET @FurbolgCinematicSequence             = @NightElfCinematicSequence;
 SET @FurbolgBlood                         = 1;
-SET @FurbolgMaleModelPath                 = 'Character\\Furbolg\\FurbolgRace.mdx';
-SET @FurbolgFemaleModelPath               = 'Character\\Furbolg\\FurbolgRace.mdx';
+SET @FurbolgMaleModelPath = 'Character\\Furbolg\\FurbolgRace.m2'; -- CoA 1.9.9 model (tools/races/coa199_replace.py)
+SET @FurbolgFemaleModelPath = 'Character\\Furbolg\\FurbolgRace.m2';
 SET @FurbolgMaleFootprint                 = @FootprintShoe;
 SET @FurbolgFemaleFootprint               = @FootprintShoe;
 SET @FurbolgRacials                       = @FurbolgRacials;
@@ -32,9 +32,9 @@ SET @FurbolgPlayer                        = 1206; -- vacant slot
 -- Strings
 SET @FurbolgClientPrefix                  = 'Ta'; -- NightElf prefix, so NightElf helmet models are used
 SET @FurbolgClientString                  = 'Furbolg';
-SET @FurbolgFacialHairCustomization1      = 'NORMAL';
-SET @FurbolgFacialHairCustomization2      = 'NORMAL';
-SET @FurbolgHairCustomization             = 'NORMAL';
+SET @FurbolgFacialHairCustomization1   = 'NORMAL';
+SET @FurbolgFacialHairCustomization2   = 'HAIR';
+SET @FurbolgHairCustomization          = 'HORNS';
 
 -- Localization Strings
 SET @FurbolgenUS                          = 'Furbolg';

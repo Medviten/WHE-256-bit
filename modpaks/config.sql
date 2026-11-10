@@ -2211,6 +2211,9 @@ SET @HaranirWaterTotem                                          =   @NextDisplay
 SET @HaranirAirTotemModel                                       =   @NextModelID := @NextModelID +1;
 SET @HaranirAirTotem                                            =   @NextDisplayID := @NextDisplayID +1;
 -- <<< Retail totems <<<
+-- >>> CoA 1.9.9 replaced looks (tools/races/coa199_replace.py) >>>
+SET @ArakkoaFemaleModel                                         =   @NextModelID := @NextModelID +1; -- F-054 was male only
+-- <<< CoA 1.9.9 replaced looks <<<
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;

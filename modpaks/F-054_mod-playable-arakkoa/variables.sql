@@ -23,15 +23,16 @@ SET @ArakkoaFlags = @DraeneiFlags;
 SET @ArakkoaExplorationSound = @DraeneiExplorationSound;
 SET @ArakkoaCinematicSequence = @DraeneiCinematicSequence;
 SET @ArakkoaBlood = 1;
-SET @ArakkoaMaleModelPath = 'Character\\Arakkoa\\Male\\Arakkoa.mdx'; -- WallCraft model, converted to the 3.3.5 format
+SET @ArakkoaMaleModelPath = 'Character\\Arakkoa\\Male\\ArakkoaMale.m2'; -- CoA 1.9.9 model (tools/races/coa199_replace.py)
+SET @ArakkoaFemaleModelPath = 'Character\\Arakkoa\\Female\\ArakkoaFemale.m2';
 SET @ArakkoaFaction = 1223; -- vacant slot
 SET @ArakkoaPlayer = 1224; -- vacant slot
 
 -- Strings
 SET @ArakkoaClientPrefix               = 'Hu'; -- helmet models of this prefix
 SET @ArakkoaClientString               = 'Arakkoa';
-SET @ArakkoaFacialHairCustomization1   = 'NORMAL';
-SET @ArakkoaFacialHairCustomization2   = 'NORMAL';
+SET @ArakkoaFacialHairCustomization1   = 'FEATURES';
+SET @ArakkoaFacialHairCustomization2   = 'FEATURES';
 SET @ArakkoaHairCustomization          = 'NORMAL';
 
 -- Localization Strings

@@ -176,8 +176,28 @@ def unfilled_geosets(skin, model):
     return {g for g, types in types_of.items() if g and all(t >= 11 for t in types)}
 
 
+def hide_unfilled_submeshes(skin, model):
+    """Move geoset 0 submeshes drawn only with replaceable types 11 and up (the DLL's baked armour on the Gnoll's body
+    geoset) to the hidden geoset: geoset 0 is always drawn, so hiding by geoset can't reach them."""
+    b = bytearray(skin)
+    count, offset = struct.unpack_from('<II', b, 0x1C)
+    combo_types = coa_race_prep.texture_types(model)
+    bcount, boffset = struct.unpack_from('<II', b, 0x24)
+    types_of = {}
+    for i in range(bcount):
+        section = struct.unpack_from('<H', b, boffset + 24 * i + 4)[0]
+        types_of.setdefault(section, set()).add(combo_types[struct.unpack_from('<H', b, boffset + 24 * i + 16)[0]])
+    parked = []
+    for i in range(count):
+        if struct.unpack_from('<H', b, offset + 48 * i)[0] == 0 and types_of.get(i) and all(t >= 11 for t in types_of[i]):
+            struct.pack_into('<H', b, offset + 48 * i, coa_race_prep.coa_races.HIDDEN_GEOSET)
+            parked.append(i)
+    return bytes(b), parked
+
+
 def prepare_catalog(cp, catalogs, race, models):
-    looks = coa199_races.catalog(coa199_races.catalog_path(catalogs, race))
+    # catalogs: the folder of the release's catalogs, or {gender: look} already made (coa199_replace.py)
+    looks = catalogs if isinstance(catalogs, dict) else coa199_races.catalog(coa199_races.catalog_path(catalogs, race))
     for gender, path in enumerate(models):
         if gender and path == models[0]:
             continue   # one body for both genders
@@ -206,6 +226,9 @@ def prepare_catalog(cp, catalogs, race, models):
             if skin_path is None:
                 continue
             skin, hidden, shown, used = coa_race_prep.patch_skin(open(skin_path, 'rb').read(), look, model)
+            skin, parked = hide_unfilled_submeshes(skin, model)
+            if parked and n == 0:
+                print('    always-drawn (geoset 0) submeshes drawn only with unfilled types, hidden: %s' % parked)
             open(skin_path, 'wb').write(skin)
             if n == 0:
                 print('    hidden geosets %s; always shown %s; texture types drawn %s' % (hidden, shown, used))

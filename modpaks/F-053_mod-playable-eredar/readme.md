@@ -3,7 +3,7 @@
 
 ### Features
 - Playable Eredar (Alliance), race ID set in config.sql
-    - WallCraft's playable Eredar model (Vanilla format, converted with m2_256_to_264.py) and its donor customization rows
+    - Model, textures and customization from Ilusixn's CoA 1.9.9 release (see Look)
     - Home: Draenei (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted
       quests and items)
     - Kin: Draenei (voice, emotes and names, copied at build time)
@@ -13,13 +13,15 @@
 ### Requirements
 - Interface: a race button and the EREDAR entries in `CharacterCreate.lua`, `GlueParent.lua` and `GlueStrings.lua`
 
+### Look
+Model, textures and customization from Ilusixn's CoA 1.9.9 release (CoA race 55), put in place by `tools/races/coa199_replace.py`. Author: Furioz, Corruption and the Eunoia team; see `CREDITS.md` in the release, which must ship with these files.
+
 ### Known Issues
 - Tentative: not tested in game yet
 - No racial mount
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
-- Converted Vanilla model: armour may composite oddly (try adding the race to `creatureSkinRaces`)
 
 ### CoA Custom 1.9 racials
 - Active: learned with the racial skill line

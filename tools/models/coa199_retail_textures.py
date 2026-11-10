@@ -62,6 +62,20 @@ FDIDS = {
     'Creature\\NerubianEvolvedBoss\\nerubianevolvedboss_5547580.blp': 5547580,
     'Creature\\NerubianEvolvedBoss\\nerubianevolvedboss_5547583.blp': 5547583,
     'Creature\\NerubianEvolvedBoss\\nerubianevolvedboss_5547585.blp': 5547585,
+    # Arakkoa (F-054, coa199_replace.py): retail's Outland arakkoa; CoA's blue, green2, purple, red and yellow
+    # recolours of them are nowhere, so those colours are left out
+    'Creature\\ArakkoaOutland\\arakkoaoutland_fel_base_1.blp': 1110154,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_fel_sage_1.blp': 1110156,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_fel_warrior_1.blp': 1110157,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_gray_base_1.blp': 1042604,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_gray_sage_1.blp': 1042606,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_gray_warrior_1.blp': 1042607,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_orange_base_1.blp': 1087812,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_orange_sage_1.blp': 1042611,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_orange_warrior_1.blp': 1042612,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_teal_base_1.blp': 1088000,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_teal_sage_1.blp': 1042616,
+    'Creature\\ArakkoaOutland\\arakkoaoutland_teal_warrior_1.blp': 1042617,
 }
 
 

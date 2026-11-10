@@ -2,8 +2,8 @@
 ## F-054_mod-playable-arakkoa
 
 ### Features
-- Playable Arakkoa (Alliance), race ID set in config.sql, male only
-    - WallCraft's playable Arakkoa model (Vanilla format, converted with m2_256_to_264.py) and its donor customization rows
+- Playable Arakkoa (Alliance), race ID set in config.sql
+    - Model, textures and customization from Ilusixn's CoA 1.9.9 release (see Look)
     - Home: Draenei (classes, start position, start outfits, action bars, stats, totems, druid forms, race-restricted
       quests and items)
     - Kin: Draenei (voice, emotes and names, copied at build time)
@@ -13,6 +13,9 @@
 ### Requirements
 - Interface: a race button and the ARAKKOA entries in `CharacterCreate.lua`, `GlueParent.lua` and `GlueStrings.lua`
 
+### Look
+Model, textures and customization from Ilusixn's CoA 1.9.9 release (CoA race 79), put in place by `tools/races/coa199_replace.py`. Author: Yami; see `CREDITS.md` in the release, which must ship with these files.
+
 ### Known Issues
 - Tentative: not tested in game yet
 - No racial abilities yet
@@ -20,5 +23,3 @@
 - Placeholder race icon, racial faction name and description
 - Barber shop styles have generic names
 - Character creation camera is not tuned for the model's size
-- Male only: female characters use the male model and customization
-- Converted Vanilla model: armour may composite oddly (try adding the race to `creatureSkinRaces`)

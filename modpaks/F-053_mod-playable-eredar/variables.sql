@@ -23,8 +23,8 @@ SET @EredarFlags = @DraeneiFlags;
 SET @EredarExplorationSound = @DraeneiExplorationSound;
 SET @EredarCinematicSequence = @DraeneiCinematicSequence;
 SET @EredarBlood = 1;
-SET @EredarMaleModelPath = 'Character\\Eredar\\Male\\Eredar.mdx'; -- WallCraft model, converted to the 3.3.5 format
-SET @EredarFemaleModelPath = 'Character\\Eredar\\Female\\EredarFemale.mdx';
+SET @EredarMaleModelPath = 'Character\\eredar\\Male\\Race_EredarMale.m2'; -- CoA 1.9.9 model (tools/races/coa199_replace.py)
+SET @EredarFemaleModelPath = 'Character\\eredar\\Female\\Race_EredarFemale.m2';
 SET @EredarFaction = 1221; -- vacant slot
 SET @EredarPlayer = 1222; -- vacant slot
 
@@ -32,7 +32,7 @@ SET @EredarPlayer = 1222; -- vacant slot
 SET @EredarClientPrefix               = 'Dr'; -- helmet models of this prefix
 SET @EredarClientString               = 'Eredar';
 SET @EredarFacialHairCustomization1   = 'NORMAL';
-SET @EredarFacialHairCustomization2   = 'NORMAL';
+SET @EredarFacialHairCustomization2   = 'HORNS';
 SET @EredarHairCustomization          = 'NORMAL';
 
 -- Localization Strings

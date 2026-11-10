@@ -4,12 +4,14 @@
 ### Features
 - Playable Furbolg (Alliance)
     - Model and textures from Project Reforged's playable Furbolg (`Character\Furbolg\FurbolgRace.m2`): one model
-      for both genders, display scale 0.85
-    - Customization: 7 fur colours (each with its own head texture), 4 accessory colours (the hair colour option,
-      using the stock `Creature\Furbolg\FurbolgStuff*` textures)
+      for both genders
+    - Customization: CoA's (see Look)
     - Home: Night Elf (classes, start position, action bars, stats, race-restricted quests and items); start
       outfits from Night Elf, other classes from the next Alliance race
     - Kin: Tauren (voice, emotes and names copied at build time, model data, helmet prefix)
+
+### Look
+Model, textures and customization from Ilusixn's CoA 1.9.9 release (CoA race 50), put in place by `tools/races/coa199_replace.py`. Author: Project Reforged; see `CREDITS.md` in the release, which must ship with these files.
 
 ### Known Issues
 - No racial mount
