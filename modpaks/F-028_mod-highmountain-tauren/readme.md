@@ -10,6 +10,7 @@
       brown and light fur) and 3 natural-looking but paler browns (dark, red-brown, light)
     - Skin colour can be changed at the barber shop like the Tauren's
 - Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
+- Shaman totems: retail's racial totems (`tools/races/retail_totems.py`, `dbc/[F-028]_retail_totems.sql`; the models are in WHE-common under their retail paths)
 
 ### Known Issues
 - The 3.3.5 client only handles 65535 triangle indices per model, so some retail options are left out: 2 male horn

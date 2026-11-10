@@ -2111,6 +2111,106 @@ SET @GrummleFemaleDisplay                                       =   @NextDisplay
 SET @EluneChosenMaleDisplay                                     =   @NextDisplayID := @NextDisplayID +1;
 SET @EluneChosenFemaleDisplay                                   =   @NextDisplayID := @NextDisplayID +1;
 -- <<< CoA 1.9.9 races <<< displays
+-- >>> Haranir druid forms (tools/races/haranir_druid_forms.py) >>>
+SET @DruidCatHaranirModel                                       =   @NextModelID := @NextModelID +1;
+SET @DruidCatHaranir0Display                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidCatHaranir1Display                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidCatHaranir2Display                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidCatHaranir3Display                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidCatHaranir4Display                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidBearHaranirModel                                      =   @NextModelID := @NextModelID +1;
+SET @DruidBearHaranir0Display                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidBearHaranir1Display                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidBearHaranir2Display                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidBearHaranir3Display                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidBearHaranir4Display                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidTravelHaranirModel                                    =   @NextModelID := @NextModelID +1;
+SET @DruidTravelHaranir0Display                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidTravelHaranir1Display                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidTravelHaranir2Display                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidTravelHaranir3Display                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidTravelHaranir4Display                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidAquaticHaranirModel                                   =   @NextModelID := @NextModelID +1;
+SET @DruidAquaticHaranir0Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidAquaticHaranir1Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidAquaticHaranir2Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidAquaticHaranir3Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidAquaticHaranir4Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidMoonkinHaranirModel                                   =   @NextModelID := @NextModelID +1;
+SET @DruidMoonkinHaranir0Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidMoonkinHaranir1Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidMoonkinHaranir2Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidMoonkinHaranir3Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidMoonkinHaranir4Display                                =   @NextDisplayID := @NextDisplayID +1;
+SET @DruidTreeHaranirModel                                      =   @NextModelID := @NextModelID +1;
+SET @DruidTreeHaranir0Display                                   =   @NextDisplayID := @NextDisplayID +1;
+-- <<< Haranir druid forms <<<
+-- >>> Retail totems (tools/races/retail_totems.py) >>>
+SET @PandarenFireTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @PandarenFireTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @PandarenEarthTotemModel                                    =   @NextModelID := @NextModelID +1;
+SET @PandarenEarthTotem                                         =   @NextDisplayID := @NextDisplayID +1;
+SET @PandarenWaterTotemModel                                    =   @NextModelID := @NextModelID +1;
+SET @PandarenWaterTotem                                         =   @NextDisplayID := @NextDisplayID +1;
+SET @PandarenAirTotemModel                                      =   @NextModelID := @NextModelID +1;
+SET @PandarenAirTotem                                           =   @NextDisplayID := @NextDisplayID +1;
+SET @HighmountainTaurenFireTotemModel                           =   @NextModelID := @NextModelID +1;
+SET @HighmountainTaurenFireTotem                                =   @NextDisplayID := @NextDisplayID +1;
+SET @HighmountainTaurenEarthTotemModel                          =   @NextModelID := @NextModelID +1;
+SET @HighmountainTaurenEarthTotem                               =   @NextDisplayID := @NextDisplayID +1;
+SET @HighmountainTaurenWaterTotemModel                          =   @NextModelID := @NextModelID +1;
+SET @HighmountainTaurenWaterTotem                               =   @NextDisplayID := @NextDisplayID +1;
+SET @HighmountainTaurenAirTotemModel                            =   @NextModelID := @NextModelID +1;
+SET @HighmountainTaurenAirTotem                                 =   @NextDisplayID := @NextDisplayID +1;
+SET @ZandalariTrollFireTotemModel                               =   @NextModelID := @NextModelID +1;
+SET @ZandalariTrollFireTotem                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @ZandalariTrollEarthTotemModel                              =   @NextModelID := @NextModelID +1;
+SET @ZandalariTrollEarthTotem                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @ZandalariTrollWaterTotemModel                              =   @NextModelID := @NextModelID +1;
+SET @ZandalariTrollWaterTotem                                   =   @NextDisplayID := @NextDisplayID +1;
+SET @ZandalariTrollAirTotemModel                                =   @NextModelID := @NextModelID +1;
+SET @ZandalariTrollAirTotem                                     =   @NextDisplayID := @NextDisplayID +1;
+SET @KulTiranFireTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @KulTiranFireTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @KulTiranEarthTotemModel                                    =   @NextModelID := @NextModelID +1;
+SET @KulTiranEarthTotem                                         =   @NextDisplayID := @NextDisplayID +1;
+SET @KulTiranWaterTotemModel                                    =   @NextModelID := @NextModelID +1;
+SET @KulTiranWaterTotem                                         =   @NextDisplayID := @NextDisplayID +1;
+SET @KulTiranAirTotemModel                                      =   @NextModelID := @NextModelID +1;
+SET @KulTiranAirTotem                                           =   @NextDisplayID := @NextDisplayID +1;
+SET @DarkIronDwarfFireTotemModel                                =   @NextModelID := @NextModelID +1;
+SET @DarkIronDwarfFireTotem                                     =   @NextDisplayID := @NextDisplayID +1;
+SET @DarkIronDwarfEarthTotemModel                               =   @NextModelID := @NextModelID +1;
+SET @DarkIronDwarfEarthTotem                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DarkIronDwarfWaterTotemModel                               =   @NextModelID := @NextModelID +1;
+SET @DarkIronDwarfWaterTotem                                    =   @NextDisplayID := @NextDisplayID +1;
+SET @DarkIronDwarfAirTotemModel                                 =   @NextModelID := @NextModelID +1;
+SET @DarkIronDwarfAirTotem                                      =   @NextDisplayID := @NextDisplayID +1;
+SET @VulperaFireTotemModel                                      =   @NextModelID := @NextModelID +1;
+SET @VulperaFireTotem                                           =   @NextDisplayID := @NextDisplayID +1;
+SET @VulperaEarthTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @VulperaEarthTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @VulperaWaterTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @VulperaWaterTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @VulperaAirTotemModel                                       =   @NextModelID := @NextModelID +1;
+SET @VulperaAirTotem                                            =   @NextDisplayID := @NextDisplayID +1;
+SET @MagharOrcFireTotemModel                                    =   @NextModelID := @NextModelID +1;
+SET @MagharOrcFireTotem                                         =   @NextDisplayID := @NextDisplayID +1;
+SET @MagharOrcEarthTotemModel                                   =   @NextModelID := @NextModelID +1;
+SET @MagharOrcEarthTotem                                        =   @NextDisplayID := @NextDisplayID +1;
+SET @MagharOrcWaterTotemModel                                   =   @NextModelID := @NextModelID +1;
+SET @MagharOrcWaterTotem                                        =   @NextDisplayID := @NextDisplayID +1;
+SET @MagharOrcAirTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @MagharOrcAirTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @HaranirFireTotemModel                                      =   @NextModelID := @NextModelID +1;
+SET @HaranirFireTotem                                           =   @NextDisplayID := @NextDisplayID +1;
+SET @HaranirEarthTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @HaranirEarthTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @HaranirWaterTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @HaranirWaterTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @HaranirAirTotemModel                                       =   @NextModelID := @NextModelID +1;
+SET @HaranirAirTotem                                            =   @NextDisplayID := @NextDisplayID +1;
+-- <<< Retail totems <<<
 
 -- Creature IDs
 SET @MechagonMechanostriderCreatureID                          =   @NextCreatureID := @NextCreatureID +1;
@@ -3116,6 +3216,16 @@ SET @DraeneiFireTotem                                          =       19074;
 SET @DraeneiEarthTotem                                         =       19073;
 SET @DraeneiWaterTotem                                         =       19075;
 SET @DraeneiAirTotem                                           =       19071;
+
+-- Goblin totems (F-023; Cataclysm's display and model ids)
+SET @GoblinFireTotem                                           =       30783;
+SET @GoblinEarthTotem                                          =       30782;
+SET @GoblinWaterTotem                                          =       30784;
+SET @GoblinAirTotem                                            =       30781;
+SET @GoblinFireTotemModel                                      =        3326;
+SET @GoblinEarthTotemModel                                     =        3330;
+SET @GoblinWaterTotemModel                                     =        3331;
+SET @GoblinAirTotemModel                                       =        3329;
 
 -- Default totems Alliance
 SET @AllianceFireTotem                                         =       @DwarfFireTotem;

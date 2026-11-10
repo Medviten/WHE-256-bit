@@ -5,6 +5,7 @@
 - Playable Pandaren (Horde)
     - BfA racial faction: Huojin Pandaren
 - Voice: Retail's emotes, error lines and combat sounds (`tools/races/retail_voices.py`; files in WHE-common `Sound/character`), the Kin race's where retail has none
+- Shaman totems: retail's racial totems (`tools/races/retail_totems.py`, `dbc/[F-021]_retail_totems.sql`; the models are in WHE-common under their retail paths)
 
 ### Known Issues
 

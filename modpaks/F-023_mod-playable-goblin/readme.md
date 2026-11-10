@@ -9,6 +9,8 @@
         - Goblin Trike
         - Goblin Turbo-Trike
     - Cataclysm racial faction: Bilgewater Cartel
+    - Cataclysm shaman totems (displays 30781-30784); the models, converted from Cataclysm 4.3.4's `art.MPQ` with
+      Kalibro's wotlkconv, are in WHE-common (`Creature\Spells\GoblinShamanTotem_*`)
 - Optional extra features
     - Cataclysm starting gear
     - Death Knight quests
