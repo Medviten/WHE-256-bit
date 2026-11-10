@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @DreadlordMask                       = 1 << (@Dreadlord - 1);
+SET @DreadlordMask_2                     = IF(@Dreadlord BETWEEN 65 AND 128, 1 << (@Dreadlord - 65), 0); -- races 65-128
+SET @DreadlordHelmetMask                 = 1 << @Dreadlord;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @DreadlordMask;
+SET @HordeMask_2                          = @HordeMask_2       | @DreadlordMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @DreadlordMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @DreadlordMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @DreadlordMask;
+SET @BowHunters_2                         = @BowHunters_2      | @DreadlordMask_2; -- races 65-128
+SET @DreadlordLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DreadlordAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DreadlordKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @DreadlordHome = @Undead; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @DreadlordKin = @Undead; -- voice, emotes and names are copied from this race
+SET @DreadlordFlags = @UndeadFlags;
+SET @DreadlordExplorationSound = @UndeadExplorationSound;
+SET @DreadlordCinematicSequence = @UndeadCinematicSequence;
+SET @DreadlordBlood = 1;
+SET @DreadlordMaleModelPath = 'Creature\\Dreadlord\\DreadlordPlayerFemale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @DreadlordFemaleModelPath = 'Creature\\Dreadlord\\DreadlordPlayerFemale.m2';
+SET @DreadlordFaction = 1405; -- vacant slot
+SET @DreadlordPlayer = 1406; -- vacant slot
+
+-- Strings
+SET @DreadlordClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @DreadlordClientString               = 'Dreadlord';
+SET @DreadlordFacialHairCustomization1   = 'NORMAL';
+SET @DreadlordFacialHairCustomization2   = 'NORMAL';
+SET @DreadlordHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @DreadlordenUS                       = 'Dreadlord';
+SET @DreadlordkoKR                       = '';
+SET @DreadlordfrFR                       = '';
+SET @DreadlorddeDE                       = '';
+SET @DreadlordzhCN                       = '';
+SET @DreadlordzhTW                       = '';
+SET @DreadlordesES                       = '';
+SET @DreadlordesMX                       = '';
+SET @DreadlordruRU                       = '';
+SET @DreadlordjaJP                       = '';
+SET @DreadlordptPT                       = '';
+SET @DreadlorditIT                       = '';
+SET @DreadlordUnk1                       = '';
+SET @DreadlordUnk2                       = '';
+SET @DreadlordUnk3                       = '';
+SET @DreadlordUnk4                       = '';
+
+SET @DreadlordFemaleenUS                 = '';
+SET @DreadlordFemalekoKR                 = '';
+SET @DreadlordFemalefrFR                 = '';
+SET @DreadlordFemaledeDE                 = '';
+SET @DreadlordFemalezhCN                 = '';
+SET @DreadlordFemalezhTW                 = '';
+SET @DreadlordFemaleesES                 = '';
+SET @DreadlordFemaleesMX                 = '';
+SET @DreadlordFemaleruRU                 = '';
+SET @DreadlordFemalejaJP                 = '';
+SET @DreadlordFemaleptPT                 = '';
+SET @DreadlordFemaleitIT                 = '';
+SET @DreadlordFemaleUnk1                 = '';
+SET @DreadlordFemaleUnk2                 = '';
+SET @DreadlordFemaleUnk3                 = '';
+SET @DreadlordFemaleUnk4                 = '';
+
+SET @DreadlordMaleenUS                   = '';
+SET @DreadlordMalekoKR                   = '';
+SET @DreadlordMalefrFR                   = '';
+SET @DreadlordMaledeDE                   = '';
+SET @DreadlordMalezhCN                   = '';
+SET @DreadlordMalezhTW                   = '';
+SET @DreadlordMaleesES                   = '';
+SET @DreadlordMaleesMX                   = '';
+SET @DreadlordMaleruRU                   = '';
+SET @DreadlordMalejaJP                   = '';
+SET @DreadlordMaleptPT                   = '';
+SET @DreadlordMaleitIT                   = '';
+SET @DreadlordMaleUnk1                   = '';
+SET @DreadlordMaleUnk2                   = '';
+SET @DreadlordMaleUnk3                   = '';
+SET @DreadlordMaleUnk4                   = '';
+
+SET @DreadlordRacialNameenUS             = 'Racial - Dreadlord';
+SET @DreadlordRacialNamekoKR             = '';
+SET @DreadlordRacialNamefrFR             = '';
+SET @DreadlordRacialNamedeDE             = '';
+SET @DreadlordRacialNamezhCN             = '';
+SET @DreadlordRacialNamezhTW             = '';
+SET @DreadlordRacialNameesES             = '';
+SET @DreadlordRacialNameesMX             = '';
+SET @DreadlordRacialNameruRU             = '';
+SET @DreadlordRacialNamejaJP             = '';
+SET @DreadlordRacialNameptPT             = '';
+SET @DreadlordRacialNameitIT             = '';
+SET @DreadlordRacialNameUnk1             = '';
+SET @DreadlordRacialNameUnk2             = '';
+SET @DreadlordRacialNameUnk3             = '';
+SET @DreadlordRacialNameUnk4             = '';
+
+SET @DreadlordPlayerenUS                 = '"PLAYER", Dreadlord';
+SET @DreadlordPlayerkoKR                 = '';
+SET @DreadlordPlayerfrFR                 = '';
+SET @DreadlordPlayerdeDE                 = '';
+SET @DreadlordPlayerzhCN                 = '';
+SET @DreadlordPlayerzhTW                 = '';
+SET @DreadlordPlayeresES                 = '';
+SET @DreadlordPlayeresMX                 = '';
+SET @DreadlordPlayerruRU                 = '';
+SET @DreadlordPlayerjaJP                 = '';
+SET @DreadlordPlayerptPT                 = '';
+SET @DreadlordPlayeritIT                 = '';
+SET @DreadlordPlayerUnk1                 = '';
+SET @DreadlordPlayerUnk2                 = '';
+SET @DreadlordPlayerUnk3                 = '';
+SET @DreadlordPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @DreadlordFactionNameenUS            = 'Nathrezim Defectors';
+SET @DreadlordFactionNamekoKR            = '';
+SET @DreadlordFactionNamefrFR            = '';
+SET @DreadlordFactionNamedeDE            = '';
+SET @DreadlordFactionNamezhCN            = '';
+SET @DreadlordFactionNamezhTW            = '';
+SET @DreadlordFactionNameesES            = '';
+SET @DreadlordFactionNameesMX            = '';
+SET @DreadlordFactionNameruRU            = '';
+SET @DreadlordFactionNamejaJP            = '';
+SET @DreadlordFactionNameptPT            = '';
+SET @DreadlordFactionNameitIT            = '';
+SET @DreadlordFactionNameUnk1            = '';
+SET @DreadlordFactionNameUnk2            = '';
+SET @DreadlordFactionNameUnk3            = '';
+SET @DreadlordFactionNameUnk4            = '';
+
+SET @DreadlordFactionDescriptionenUS     = 'Dreadlords who abandoned the Burning Legion for reasons they keep to themselves.';
+SET @DreadlordFactionDescriptionkoKR     = '';
+SET @DreadlordFactionDescriptionfrFR     = '';
+SET @DreadlordFactionDescriptiondeDE     = '';
+SET @DreadlordFactionDescriptionzhCN     = '';
+SET @DreadlordFactionDescriptionzhTW     = '';
+SET @DreadlordFactionDescriptionesES     = '';
+SET @DreadlordFactionDescriptionesMX     = '';
+SET @DreadlordFactionDescriptionruRU     = '';
+SET @DreadlordFactionDescriptionjaJP     = '';
+SET @DreadlordFactionDescriptionptPT     = '';
+SET @DreadlordFactionDescriptionitIT     = '';
+SET @DreadlordFactionDescriptionUnk1     = '';
+SET @DreadlordFactionDescriptionUnk2     = '';
+SET @DreadlordFactionDescriptionUnk3     = '';
+SET @DreadlordFactionDescriptionUnk4     = '';
+
+SET @DreadlordAchievementenUS            = 'Realm First! Level 80 Dreadlord';
+SET @DreadlordAchievementkoKR            = '';
+SET @DreadlordAchievementfrFR            = '';
+SET @DreadlordAchievementdeDE            = '';
+SET @DreadlordAchievementzhCN            = '';
+SET @DreadlordAchievementzhTW            = '';
+SET @DreadlordAchievementesES            = '';
+SET @DreadlordAchievementesMX            = '';
+SET @DreadlordAchievementruRU            = '';
+SET @DreadlordAchievementjaJP            = '';
+SET @DreadlordAchievementptPT            = '';
+SET @DreadlordAchievementitIT            = '';
+SET @DreadlordAchievementUnk1            = '';
+SET @DreadlordAchievementUnk2            = '';
+SET @DreadlordAchievementUnk3            = '';
+SET @DreadlordAchievementUnk4            = '';
+
+SET @DreadlordAchievementDescriptionenUS = 'First Dreadlord on the realm to achieve level 80.';
+SET @DreadlordAchievementDescriptionkoKR = '';
+SET @DreadlordAchievementDescriptionfrFR = '';
+SET @DreadlordAchievementDescriptiondeDE = '';
+SET @DreadlordAchievementDescriptionzhCN = '';
+SET @DreadlordAchievementDescriptionzhTW = '';
+SET @DreadlordAchievementDescriptionesES = '';
+SET @DreadlordAchievementDescriptionesMX = '';
+SET @DreadlordAchievementDescriptionruRU = '';
+SET @DreadlordAchievementDescriptionjaJP = '';
+SET @DreadlordAchievementDescriptionptPT = '';
+SET @DreadlordAchievementDescriptionitIT = '';
+SET @DreadlordAchievementDescriptionUnk1 = '';
+SET @DreadlordAchievementDescriptionUnk2 = '';
+SET @DreadlordAchievementDescriptionUnk3 = '';
+SET @DreadlordAchievementDescriptionUnk4 = '';

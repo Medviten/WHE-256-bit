@@ -38,7 +38,7 @@ def patch_model(data, look):
         raise ValueError('not a 3.3.5 (version 264) M2')
     count, offset = struct.unpack_from('<II', b, TEXTURES)
     lcount, loffset = struct.unpack_from('<II', b, REPLACEABLE_LOOKUP)
-    new_type = {look.skin_types[0]: 1}
+    new_type = {look.skin_types[0]: 1} if look.skin_types else {}   # none: the model keeps its own textures
     if len(look.skin_types) > 1:
         new_type[look.skin_types[1]] = 8
     lookup, changes, appended = {}, [], bytearray()
@@ -57,12 +57,21 @@ def patch_model(data, look):
             struct.pack_into('<IIII', b, o, 0, struct.unpack_from('<I', b, o + 4)[0], len(name), name_offset)
             lookup[typ] = -1
             changes.append('texture %d: type %d -> %s' % (i, typ, look.fixed[typ]))
+    entries = list(struct.unpack_from('<%dh' % lcount, b, loffset))
+    needed = max([t + 1 for t, index in lookup.items() if index >= 0] + [lcount])
+    entries += [-1] * (needed - lcount)
     for typ, index in lookup.items():
-        if typ >= lcount:
-            if index >= 0:
-                raise ValueError('replaceable texture lookup has %d entries, type %d needs more' % (lcount, typ))
-            continue   # the type had no lookup entry to clear
-        struct.pack_into('<h', b, loffset + 2 * typ, index)
+        if typ < len(entries):   # a cleared type beyond the lookup had no entry to clear
+            entries[typ] = index
+    if needed > lcount:
+        # the lookup is too short for the new type (a creature model with types up to 5 that now uses 8): a longer
+        # copy goes at the end of the file, 16-byte aligned, and the header points at it
+        appended += b'\0' * (-(len(b) + len(appended)) % 16)
+        struct.pack_into('<II', b, REPLACEABLE_LOOKUP, needed, len(b) + len(appended))
+        appended += struct.pack('<%dh' % needed, *entries)
+        changes.append('replaceable lookup %d -> %d entries' % (lcount, needed))
+    else:
+        struct.pack_into('<%dh' % lcount, b, loffset, *entries)
     return bytes(b + appended), changes
 
 

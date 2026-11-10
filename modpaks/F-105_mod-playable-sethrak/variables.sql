@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @SethrakMask                       = 1 << (@Sethrak - 1);
+SET @SethrakMask_2                     = IF(@Sethrak BETWEEN 65 AND 128, 1 << (@Sethrak - 65), 0); -- races 65-128
+SET @SethrakHelmetMask                 = 1 << @Sethrak;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @SethrakMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @SethrakMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @SethrakMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @SethrakMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @SethrakMask;
+SET @BowHunters_2                         = @BowHunters_2      | @SethrakMask_2; -- races 65-128
+SET @SethrakLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SethrakAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SethrakKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @SethrakHome = @Human; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @SethrakKin = @Troll; -- voice, emotes and names are copied from this race
+SET @SethrakFlags = @HumanFlags;
+SET @SethrakExplorationSound = @HumanExplorationSound;
+SET @SethrakCinematicSequence = @HumanCinematicSequence;
+SET @SethrakBlood = 1;
+SET @SethrakMaleModelPath = 'custom\\sethrak\\native\\male\\sethrakmale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @SethrakFemaleModelPath = 'custom\\sethrak\\native\\female\\sethrakfemale.m2';
+SET @SethrakFaction = 1401; -- vacant slot
+SET @SethrakPlayer = 1402; -- vacant slot
+
+-- Strings
+SET @SethrakClientPrefix               = 'Tr'; -- helmet models of this prefix
+SET @SethrakClientString               = 'Sethrak';
+SET @SethrakFacialHairCustomization1   = 'NORMAL';
+SET @SethrakFacialHairCustomization2   = 'NORMAL';
+SET @SethrakHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @SethrakenUS                       = 'Sethrak';
+SET @SethrakkoKR                       = '';
+SET @SethrakfrFR                       = '';
+SET @SethrakdeDE                       = '';
+SET @SethrakzhCN                       = '';
+SET @SethrakzhTW                       = '';
+SET @SethrakesES                       = '';
+SET @SethrakesMX                       = '';
+SET @SethrakruRU                       = '';
+SET @SethrakjaJP                       = '';
+SET @SethrakptPT                       = '';
+SET @SethrakitIT                       = '';
+SET @SethrakUnk1                       = '';
+SET @SethrakUnk2                       = '';
+SET @SethrakUnk3                       = '';
+SET @SethrakUnk4                       = '';
+
+SET @SethrakFemaleenUS                 = '';
+SET @SethrakFemalekoKR                 = '';
+SET @SethrakFemalefrFR                 = '';
+SET @SethrakFemaledeDE                 = '';
+SET @SethrakFemalezhCN                 = '';
+SET @SethrakFemalezhTW                 = '';
+SET @SethrakFemaleesES                 = '';
+SET @SethrakFemaleesMX                 = '';
+SET @SethrakFemaleruRU                 = '';
+SET @SethrakFemalejaJP                 = '';
+SET @SethrakFemaleptPT                 = '';
+SET @SethrakFemaleitIT                 = '';
+SET @SethrakFemaleUnk1                 = '';
+SET @SethrakFemaleUnk2                 = '';
+SET @SethrakFemaleUnk3                 = '';
+SET @SethrakFemaleUnk4                 = '';
+
+SET @SethrakMaleenUS                   = '';
+SET @SethrakMalekoKR                   = '';
+SET @SethrakMalefrFR                   = '';
+SET @SethrakMaledeDE                   = '';
+SET @SethrakMalezhCN                   = '';
+SET @SethrakMalezhTW                   = '';
+SET @SethrakMaleesES                   = '';
+SET @SethrakMaleesMX                   = '';
+SET @SethrakMaleruRU                   = '';
+SET @SethrakMalejaJP                   = '';
+SET @SethrakMaleptPT                   = '';
+SET @SethrakMaleitIT                   = '';
+SET @SethrakMaleUnk1                   = '';
+SET @SethrakMaleUnk2                   = '';
+SET @SethrakMaleUnk3                   = '';
+SET @SethrakMaleUnk4                   = '';
+
+SET @SethrakRacialNameenUS             = 'Racial - Sethrak';
+SET @SethrakRacialNamekoKR             = '';
+SET @SethrakRacialNamefrFR             = '';
+SET @SethrakRacialNamedeDE             = '';
+SET @SethrakRacialNamezhCN             = '';
+SET @SethrakRacialNamezhTW             = '';
+SET @SethrakRacialNameesES             = '';
+SET @SethrakRacialNameesMX             = '';
+SET @SethrakRacialNameruRU             = '';
+SET @SethrakRacialNamejaJP             = '';
+SET @SethrakRacialNameptPT             = '';
+SET @SethrakRacialNameitIT             = '';
+SET @SethrakRacialNameUnk1             = '';
+SET @SethrakRacialNameUnk2             = '';
+SET @SethrakRacialNameUnk3             = '';
+SET @SethrakRacialNameUnk4             = '';
+
+SET @SethrakPlayerenUS                 = '"PLAYER", Sethrak';
+SET @SethrakPlayerkoKR                 = '';
+SET @SethrakPlayerfrFR                 = '';
+SET @SethrakPlayerdeDE                 = '';
+SET @SethrakPlayerzhCN                 = '';
+SET @SethrakPlayerzhTW                 = '';
+SET @SethrakPlayeresES                 = '';
+SET @SethrakPlayeresMX                 = '';
+SET @SethrakPlayerruRU                 = '';
+SET @SethrakPlayerjaJP                 = '';
+SET @SethrakPlayerptPT                 = '';
+SET @SethrakPlayeritIT                 = '';
+SET @SethrakPlayerUnk1                 = '';
+SET @SethrakPlayerUnk2                 = '';
+SET @SethrakPlayerUnk3                 = '';
+SET @SethrakPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @SethrakFactionNameenUS            = 'Heirs of Sethraliss';
+SET @SethrakFactionNamekoKR            = '';
+SET @SethrakFactionNamefrFR            = '';
+SET @SethrakFactionNamedeDE            = '';
+SET @SethrakFactionNamezhCN            = '';
+SET @SethrakFactionNamezhTW            = '';
+SET @SethrakFactionNameesES            = '';
+SET @SethrakFactionNameesMX            = '';
+SET @SethrakFactionNameruRU            = '';
+SET @SethrakFactionNamejaJP            = '';
+SET @SethrakFactionNameptPT            = '';
+SET @SethrakFactionNameitIT            = '';
+SET @SethrakFactionNameUnk1            = '';
+SET @SethrakFactionNameUnk2            = '';
+SET @SethrakFactionNameUnk3            = '';
+SET @SethrakFactionNameUnk4            = '';
+
+SET @SethrakFactionDescriptionenUS     = 'Sethrak of Vol\'dun who honour the fallen Loa of the Wind and fight beside the Alliance.';
+SET @SethrakFactionDescriptionkoKR     = '';
+SET @SethrakFactionDescriptionfrFR     = '';
+SET @SethrakFactionDescriptiondeDE     = '';
+SET @SethrakFactionDescriptionzhCN     = '';
+SET @SethrakFactionDescriptionzhTW     = '';
+SET @SethrakFactionDescriptionesES     = '';
+SET @SethrakFactionDescriptionesMX     = '';
+SET @SethrakFactionDescriptionruRU     = '';
+SET @SethrakFactionDescriptionjaJP     = '';
+SET @SethrakFactionDescriptionptPT     = '';
+SET @SethrakFactionDescriptionitIT     = '';
+SET @SethrakFactionDescriptionUnk1     = '';
+SET @SethrakFactionDescriptionUnk2     = '';
+SET @SethrakFactionDescriptionUnk3     = '';
+SET @SethrakFactionDescriptionUnk4     = '';
+
+SET @SethrakAchievementenUS            = 'Realm First! Level 80 Sethrak';
+SET @SethrakAchievementkoKR            = '';
+SET @SethrakAchievementfrFR            = '';
+SET @SethrakAchievementdeDE            = '';
+SET @SethrakAchievementzhCN            = '';
+SET @SethrakAchievementzhTW            = '';
+SET @SethrakAchievementesES            = '';
+SET @SethrakAchievementesMX            = '';
+SET @SethrakAchievementruRU            = '';
+SET @SethrakAchievementjaJP            = '';
+SET @SethrakAchievementptPT            = '';
+SET @SethrakAchievementitIT            = '';
+SET @SethrakAchievementUnk1            = '';
+SET @SethrakAchievementUnk2            = '';
+SET @SethrakAchievementUnk3            = '';
+SET @SethrakAchievementUnk4            = '';
+
+SET @SethrakAchievementDescriptionenUS = 'First Sethrak on the realm to achieve level 80.';
+SET @SethrakAchievementDescriptionkoKR = '';
+SET @SethrakAchievementDescriptionfrFR = '';
+SET @SethrakAchievementDescriptiondeDE = '';
+SET @SethrakAchievementDescriptionzhCN = '';
+SET @SethrakAchievementDescriptionzhTW = '';
+SET @SethrakAchievementDescriptionesES = '';
+SET @SethrakAchievementDescriptionesMX = '';
+SET @SethrakAchievementDescriptionruRU = '';
+SET @SethrakAchievementDescriptionjaJP = '';
+SET @SethrakAchievementDescriptionptPT = '';
+SET @SethrakAchievementDescriptionitIT = '';
+SET @SethrakAchievementDescriptionUnk1 = '';
+SET @SethrakAchievementDescriptionUnk2 = '';
+SET @SethrakAchievementDescriptionUnk3 = '';
+SET @SethrakAchievementDescriptionUnk4 = '';

@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @TwoHeadedOgreMask                       = 1 << (@TwoHeadedOgre - 1);
+SET @TwoHeadedOgreMask_2                     = IF(@TwoHeadedOgre BETWEEN 65 AND 128, 1 << (@TwoHeadedOgre - 65), 0); -- races 65-128
+SET @TwoHeadedOgreHelmetMask                 = 1 << @TwoHeadedOgre;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @TwoHeadedOgreMask;
+SET @HordeMask_2                          = @HordeMask_2       | @TwoHeadedOgreMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @TwoHeadedOgreMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @TwoHeadedOgreMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @TwoHeadedOgreMask;
+SET @BowHunters_2                         = @BowHunters_2      | @TwoHeadedOgreMask_2; -- races 65-128
+SET @TwoHeadedOgreLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @TwoHeadedOgreAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @TwoHeadedOgreKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @TwoHeadedOgreHome = @Orc; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @TwoHeadedOgreKin = @Orc; -- voice, emotes and names are copied from this race
+SET @TwoHeadedOgreFlags = @OrcFlags;
+SET @TwoHeadedOgreExplorationSound = @OrcExplorationSound;
+SET @TwoHeadedOgreCinematicSequence = @OrcCinematicSequence;
+SET @TwoHeadedOgreBlood = 1;
+SET @TwoHeadedOgreMaleModelPath = 'Character\\Ogre\\Female\\TwoHeadedOgre.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @TwoHeadedOgreFemaleModelPath = 'Character\\Ogre\\Female\\TwoHeadedOgre.m2';
+SET @TwoHeadedOgreFaction = 1441; -- vacant slot
+SET @TwoHeadedOgrePlayer = 1442; -- vacant slot
+
+-- Strings
+SET @TwoHeadedOgreClientPrefix               = 'Or'; -- helmet models of this prefix
+SET @TwoHeadedOgreClientString               = 'TwoHeadedOgre';
+SET @TwoHeadedOgreFacialHairCustomization1   = 'NORMAL';
+SET @TwoHeadedOgreFacialHairCustomization2   = 'NONE';
+SET @TwoHeadedOgreHairCustomization          = 'EYES';
+
+-- Localization Strings
+SET @TwoHeadedOgreenUS                       = 'Two-Headed Ogre';
+SET @TwoHeadedOgrekoKR                       = '';
+SET @TwoHeadedOgrefrFR                       = '';
+SET @TwoHeadedOgredeDE                       = '';
+SET @TwoHeadedOgrezhCN                       = '';
+SET @TwoHeadedOgrezhTW                       = '';
+SET @TwoHeadedOgreesES                       = '';
+SET @TwoHeadedOgreesMX                       = '';
+SET @TwoHeadedOgreruRU                       = '';
+SET @TwoHeadedOgrejaJP                       = '';
+SET @TwoHeadedOgreptPT                       = '';
+SET @TwoHeadedOgreitIT                       = '';
+SET @TwoHeadedOgreUnk1                       = '';
+SET @TwoHeadedOgreUnk2                       = '';
+SET @TwoHeadedOgreUnk3                       = '';
+SET @TwoHeadedOgreUnk4                       = '';
+
+SET @TwoHeadedOgreFemaleenUS                 = '';
+SET @TwoHeadedOgreFemalekoKR                 = '';
+SET @TwoHeadedOgreFemalefrFR                 = '';
+SET @TwoHeadedOgreFemaledeDE                 = '';
+SET @TwoHeadedOgreFemalezhCN                 = '';
+SET @TwoHeadedOgreFemalezhTW                 = '';
+SET @TwoHeadedOgreFemaleesES                 = '';
+SET @TwoHeadedOgreFemaleesMX                 = '';
+SET @TwoHeadedOgreFemaleruRU                 = '';
+SET @TwoHeadedOgreFemalejaJP                 = '';
+SET @TwoHeadedOgreFemaleptPT                 = '';
+SET @TwoHeadedOgreFemaleitIT                 = '';
+SET @TwoHeadedOgreFemaleUnk1                 = '';
+SET @TwoHeadedOgreFemaleUnk2                 = '';
+SET @TwoHeadedOgreFemaleUnk3                 = '';
+SET @TwoHeadedOgreFemaleUnk4                 = '';
+
+SET @TwoHeadedOgreMaleenUS                   = '';
+SET @TwoHeadedOgreMalekoKR                   = '';
+SET @TwoHeadedOgreMalefrFR                   = '';
+SET @TwoHeadedOgreMaledeDE                   = '';
+SET @TwoHeadedOgreMalezhCN                   = '';
+SET @TwoHeadedOgreMalezhTW                   = '';
+SET @TwoHeadedOgreMaleesES                   = '';
+SET @TwoHeadedOgreMaleesMX                   = '';
+SET @TwoHeadedOgreMaleruRU                   = '';
+SET @TwoHeadedOgreMalejaJP                   = '';
+SET @TwoHeadedOgreMaleptPT                   = '';
+SET @TwoHeadedOgreMaleitIT                   = '';
+SET @TwoHeadedOgreMaleUnk1                   = '';
+SET @TwoHeadedOgreMaleUnk2                   = '';
+SET @TwoHeadedOgreMaleUnk3                   = '';
+SET @TwoHeadedOgreMaleUnk4                   = '';
+
+SET @TwoHeadedOgreRacialNameenUS             = 'Racial - Two-Headed Ogre';
+SET @TwoHeadedOgreRacialNamekoKR             = '';
+SET @TwoHeadedOgreRacialNamefrFR             = '';
+SET @TwoHeadedOgreRacialNamedeDE             = '';
+SET @TwoHeadedOgreRacialNamezhCN             = '';
+SET @TwoHeadedOgreRacialNamezhTW             = '';
+SET @TwoHeadedOgreRacialNameesES             = '';
+SET @TwoHeadedOgreRacialNameesMX             = '';
+SET @TwoHeadedOgreRacialNameruRU             = '';
+SET @TwoHeadedOgreRacialNamejaJP             = '';
+SET @TwoHeadedOgreRacialNameptPT             = '';
+SET @TwoHeadedOgreRacialNameitIT             = '';
+SET @TwoHeadedOgreRacialNameUnk1             = '';
+SET @TwoHeadedOgreRacialNameUnk2             = '';
+SET @TwoHeadedOgreRacialNameUnk3             = '';
+SET @TwoHeadedOgreRacialNameUnk4             = '';
+
+SET @TwoHeadedOgrePlayerenUS                 = '"PLAYER", Two-Headed Ogre';
+SET @TwoHeadedOgrePlayerkoKR                 = '';
+SET @TwoHeadedOgrePlayerfrFR                 = '';
+SET @TwoHeadedOgrePlayerdeDE                 = '';
+SET @TwoHeadedOgrePlayerzhCN                 = '';
+SET @TwoHeadedOgrePlayerzhTW                 = '';
+SET @TwoHeadedOgrePlayeresES                 = '';
+SET @TwoHeadedOgrePlayeresMX                 = '';
+SET @TwoHeadedOgrePlayerruRU                 = '';
+SET @TwoHeadedOgrePlayerjaJP                 = '';
+SET @TwoHeadedOgrePlayerptPT                 = '';
+SET @TwoHeadedOgrePlayeritIT                 = '';
+SET @TwoHeadedOgrePlayerUnk1                 = '';
+SET @TwoHeadedOgrePlayerUnk2                 = '';
+SET @TwoHeadedOgrePlayerUnk3                 = '';
+SET @TwoHeadedOgrePlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @TwoHeadedOgreFactionNameenUS            = 'Two-Headed Mercenaries';
+SET @TwoHeadedOgreFactionNamekoKR            = '';
+SET @TwoHeadedOgreFactionNamefrFR            = '';
+SET @TwoHeadedOgreFactionNamedeDE            = '';
+SET @TwoHeadedOgreFactionNamezhCN            = '';
+SET @TwoHeadedOgreFactionNamezhTW            = '';
+SET @TwoHeadedOgreFactionNameesES            = '';
+SET @TwoHeadedOgreFactionNameesMX            = '';
+SET @TwoHeadedOgreFactionNameruRU            = '';
+SET @TwoHeadedOgreFactionNamejaJP            = '';
+SET @TwoHeadedOgreFactionNameptPT            = '';
+SET @TwoHeadedOgreFactionNameitIT            = '';
+SET @TwoHeadedOgreFactionNameUnk1            = '';
+SET @TwoHeadedOgreFactionNameUnk2            = '';
+SET @TwoHeadedOgreFactionNameUnk3            = '';
+SET @TwoHeadedOgreFactionNameUnk4            = '';
+
+SET @TwoHeadedOgreFactionDescriptionenUS     = 'Two-headed ogres who argued their way into the Horde\'s ranks.';
+SET @TwoHeadedOgreFactionDescriptionkoKR     = '';
+SET @TwoHeadedOgreFactionDescriptionfrFR     = '';
+SET @TwoHeadedOgreFactionDescriptiondeDE     = '';
+SET @TwoHeadedOgreFactionDescriptionzhCN     = '';
+SET @TwoHeadedOgreFactionDescriptionzhTW     = '';
+SET @TwoHeadedOgreFactionDescriptionesES     = '';
+SET @TwoHeadedOgreFactionDescriptionesMX     = '';
+SET @TwoHeadedOgreFactionDescriptionruRU     = '';
+SET @TwoHeadedOgreFactionDescriptionjaJP     = '';
+SET @TwoHeadedOgreFactionDescriptionptPT     = '';
+SET @TwoHeadedOgreFactionDescriptionitIT     = '';
+SET @TwoHeadedOgreFactionDescriptionUnk1     = '';
+SET @TwoHeadedOgreFactionDescriptionUnk2     = '';
+SET @TwoHeadedOgreFactionDescriptionUnk3     = '';
+SET @TwoHeadedOgreFactionDescriptionUnk4     = '';
+
+SET @TwoHeadedOgreAchievementenUS            = 'Realm First! Level 80 Two-Headed Ogre';
+SET @TwoHeadedOgreAchievementkoKR            = '';
+SET @TwoHeadedOgreAchievementfrFR            = '';
+SET @TwoHeadedOgreAchievementdeDE            = '';
+SET @TwoHeadedOgreAchievementzhCN            = '';
+SET @TwoHeadedOgreAchievementzhTW            = '';
+SET @TwoHeadedOgreAchievementesES            = '';
+SET @TwoHeadedOgreAchievementesMX            = '';
+SET @TwoHeadedOgreAchievementruRU            = '';
+SET @TwoHeadedOgreAchievementjaJP            = '';
+SET @TwoHeadedOgreAchievementptPT            = '';
+SET @TwoHeadedOgreAchievementitIT            = '';
+SET @TwoHeadedOgreAchievementUnk1            = '';
+SET @TwoHeadedOgreAchievementUnk2            = '';
+SET @TwoHeadedOgreAchievementUnk3            = '';
+SET @TwoHeadedOgreAchievementUnk4            = '';
+
+SET @TwoHeadedOgreAchievementDescriptionenUS = 'First Two-Headed Ogre on the realm to achieve level 80.';
+SET @TwoHeadedOgreAchievementDescriptionkoKR = '';
+SET @TwoHeadedOgreAchievementDescriptionfrFR = '';
+SET @TwoHeadedOgreAchievementDescriptiondeDE = '';
+SET @TwoHeadedOgreAchievementDescriptionzhCN = '';
+SET @TwoHeadedOgreAchievementDescriptionzhTW = '';
+SET @TwoHeadedOgreAchievementDescriptionesES = '';
+SET @TwoHeadedOgreAchievementDescriptionesMX = '';
+SET @TwoHeadedOgreAchievementDescriptionruRU = '';
+SET @TwoHeadedOgreAchievementDescriptionjaJP = '';
+SET @TwoHeadedOgreAchievementDescriptionptPT = '';
+SET @TwoHeadedOgreAchievementDescriptionitIT = '';
+SET @TwoHeadedOgreAchievementDescriptionUnk1 = '';
+SET @TwoHeadedOgreAchievementDescriptionUnk2 = '';
+SET @TwoHeadedOgreAchievementDescriptionUnk3 = '';
+SET @TwoHeadedOgreAchievementDescriptionUnk4 = '';

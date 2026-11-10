@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @IllidariNightElfMask                       = 1 << (@IllidariNightElf - 1);
+SET @IllidariNightElfMask_2                     = IF(@IllidariNightElf BETWEEN 65 AND 128, 1 << (@IllidariNightElf - 65), 0); -- races 65-128
+SET @IllidariNightElfHelmetMask                 = 1 << @IllidariNightElf;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @IllidariNightElfMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @IllidariNightElfMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @IllidariNightElfMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @IllidariNightElfMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @IllidariNightElfMask;
+SET @BowHunters_2                         = @BowHunters_2      | @IllidariNightElfMask_2; -- races 65-128
+SET @IllidariNightElfLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @IllidariNightElfAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @IllidariNightElfKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @IllidariNightElfHome = @NightElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @IllidariNightElfKin = @NightElf; -- voice, emotes and names are copied from this race
+SET @IllidariNightElfFlags = @NightElfFlags;
+SET @IllidariNightElfExplorationSound = @NightElfExplorationSound;
+SET @IllidariNightElfCinematicSequence = @NightElfCinematicSequence;
+SET @IllidariNightElfBlood = 1;
+SET @IllidariNightElfMaleModelPath = 'Character\\NightElf_Dh\\Male\\Nightelfmale_DH.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @IllidariNightElfFemaleModelPath = 'Character\\NightElf_Dh\\Female\\Nightelffemale_DH.m2';
+SET @IllidariNightElfFaction = 1437; -- vacant slot
+SET @IllidariNightElfPlayer = 1438; -- vacant slot
+
+-- Strings
+SET @IllidariNightElfClientPrefix               = 'Ni'; -- helmet models of this prefix
+SET @IllidariNightElfClientString               = 'IllidariNightElf';
+SET @IllidariNightElfFacialHairCustomization1   = 'NORMAL';
+SET @IllidariNightElfFacialHairCustomization2   = 'MARKINGS';
+SET @IllidariNightElfHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @IllidariNightElfenUS                       = 'Illidari Night Elf';
+SET @IllidariNightElfkoKR                       = '';
+SET @IllidariNightElffrFR                       = '';
+SET @IllidariNightElfdeDE                       = '';
+SET @IllidariNightElfzhCN                       = '';
+SET @IllidariNightElfzhTW                       = '';
+SET @IllidariNightElfesES                       = '';
+SET @IllidariNightElfesMX                       = '';
+SET @IllidariNightElfruRU                       = '';
+SET @IllidariNightElfjaJP                       = '';
+SET @IllidariNightElfptPT                       = '';
+SET @IllidariNightElfitIT                       = '';
+SET @IllidariNightElfUnk1                       = '';
+SET @IllidariNightElfUnk2                       = '';
+SET @IllidariNightElfUnk3                       = '';
+SET @IllidariNightElfUnk4                       = '';
+
+SET @IllidariNightElfFemaleenUS                 = '';
+SET @IllidariNightElfFemalekoKR                 = '';
+SET @IllidariNightElfFemalefrFR                 = '';
+SET @IllidariNightElfFemaledeDE                 = '';
+SET @IllidariNightElfFemalezhCN                 = '';
+SET @IllidariNightElfFemalezhTW                 = '';
+SET @IllidariNightElfFemaleesES                 = '';
+SET @IllidariNightElfFemaleesMX                 = '';
+SET @IllidariNightElfFemaleruRU                 = '';
+SET @IllidariNightElfFemalejaJP                 = '';
+SET @IllidariNightElfFemaleptPT                 = '';
+SET @IllidariNightElfFemaleitIT                 = '';
+SET @IllidariNightElfFemaleUnk1                 = '';
+SET @IllidariNightElfFemaleUnk2                 = '';
+SET @IllidariNightElfFemaleUnk3                 = '';
+SET @IllidariNightElfFemaleUnk4                 = '';
+
+SET @IllidariNightElfMaleenUS                   = '';
+SET @IllidariNightElfMalekoKR                   = '';
+SET @IllidariNightElfMalefrFR                   = '';
+SET @IllidariNightElfMaledeDE                   = '';
+SET @IllidariNightElfMalezhCN                   = '';
+SET @IllidariNightElfMalezhTW                   = '';
+SET @IllidariNightElfMaleesES                   = '';
+SET @IllidariNightElfMaleesMX                   = '';
+SET @IllidariNightElfMaleruRU                   = '';
+SET @IllidariNightElfMalejaJP                   = '';
+SET @IllidariNightElfMaleptPT                   = '';
+SET @IllidariNightElfMaleitIT                   = '';
+SET @IllidariNightElfMaleUnk1                   = '';
+SET @IllidariNightElfMaleUnk2                   = '';
+SET @IllidariNightElfMaleUnk3                   = '';
+SET @IllidariNightElfMaleUnk4                   = '';
+
+SET @IllidariNightElfRacialNameenUS             = 'Racial - Illidari Night Elf';
+SET @IllidariNightElfRacialNamekoKR             = '';
+SET @IllidariNightElfRacialNamefrFR             = '';
+SET @IllidariNightElfRacialNamedeDE             = '';
+SET @IllidariNightElfRacialNamezhCN             = '';
+SET @IllidariNightElfRacialNamezhTW             = '';
+SET @IllidariNightElfRacialNameesES             = '';
+SET @IllidariNightElfRacialNameesMX             = '';
+SET @IllidariNightElfRacialNameruRU             = '';
+SET @IllidariNightElfRacialNamejaJP             = '';
+SET @IllidariNightElfRacialNameptPT             = '';
+SET @IllidariNightElfRacialNameitIT             = '';
+SET @IllidariNightElfRacialNameUnk1             = '';
+SET @IllidariNightElfRacialNameUnk2             = '';
+SET @IllidariNightElfRacialNameUnk3             = '';
+SET @IllidariNightElfRacialNameUnk4             = '';
+
+SET @IllidariNightElfPlayerenUS                 = '"PLAYER", Illidari Night Elf';
+SET @IllidariNightElfPlayerkoKR                 = '';
+SET @IllidariNightElfPlayerfrFR                 = '';
+SET @IllidariNightElfPlayerdeDE                 = '';
+SET @IllidariNightElfPlayerzhCN                 = '';
+SET @IllidariNightElfPlayerzhTW                 = '';
+SET @IllidariNightElfPlayeresES                 = '';
+SET @IllidariNightElfPlayeresMX                 = '';
+SET @IllidariNightElfPlayerruRU                 = '';
+SET @IllidariNightElfPlayerjaJP                 = '';
+SET @IllidariNightElfPlayerptPT                 = '';
+SET @IllidariNightElfPlayeritIT                 = '';
+SET @IllidariNightElfPlayerUnk1                 = '';
+SET @IllidariNightElfPlayerUnk2                 = '';
+SET @IllidariNightElfPlayerUnk3                 = '';
+SET @IllidariNightElfPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @IllidariNightElfFactionNameenUS            = 'Illidari of Darnassus';
+SET @IllidariNightElfFactionNamekoKR            = '';
+SET @IllidariNightElfFactionNamefrFR            = '';
+SET @IllidariNightElfFactionNamedeDE            = '';
+SET @IllidariNightElfFactionNamezhCN            = '';
+SET @IllidariNightElfFactionNamezhTW            = '';
+SET @IllidariNightElfFactionNameesES            = '';
+SET @IllidariNightElfFactionNameesMX            = '';
+SET @IllidariNightElfFactionNameruRU            = '';
+SET @IllidariNightElfFactionNamejaJP            = '';
+SET @IllidariNightElfFactionNameptPT            = '';
+SET @IllidariNightElfFactionNameitIT            = '';
+SET @IllidariNightElfFactionNameUnk1            = '';
+SET @IllidariNightElfFactionNameUnk2            = '';
+SET @IllidariNightElfFactionNameUnk3            = '';
+SET @IllidariNightElfFactionNameUnk4            = '';
+
+SET @IllidariNightElfFactionDescriptionenUS     = 'Night elf demon hunters whom Tyrande has allowed to come home.';
+SET @IllidariNightElfFactionDescriptionkoKR     = '';
+SET @IllidariNightElfFactionDescriptionfrFR     = '';
+SET @IllidariNightElfFactionDescriptiondeDE     = '';
+SET @IllidariNightElfFactionDescriptionzhCN     = '';
+SET @IllidariNightElfFactionDescriptionzhTW     = '';
+SET @IllidariNightElfFactionDescriptionesES     = '';
+SET @IllidariNightElfFactionDescriptionesMX     = '';
+SET @IllidariNightElfFactionDescriptionruRU     = '';
+SET @IllidariNightElfFactionDescriptionjaJP     = '';
+SET @IllidariNightElfFactionDescriptionptPT     = '';
+SET @IllidariNightElfFactionDescriptionitIT     = '';
+SET @IllidariNightElfFactionDescriptionUnk1     = '';
+SET @IllidariNightElfFactionDescriptionUnk2     = '';
+SET @IllidariNightElfFactionDescriptionUnk3     = '';
+SET @IllidariNightElfFactionDescriptionUnk4     = '';
+
+SET @IllidariNightElfAchievementenUS            = 'Realm First! Level 80 Illidari Night Elf';
+SET @IllidariNightElfAchievementkoKR            = '';
+SET @IllidariNightElfAchievementfrFR            = '';
+SET @IllidariNightElfAchievementdeDE            = '';
+SET @IllidariNightElfAchievementzhCN            = '';
+SET @IllidariNightElfAchievementzhTW            = '';
+SET @IllidariNightElfAchievementesES            = '';
+SET @IllidariNightElfAchievementesMX            = '';
+SET @IllidariNightElfAchievementruRU            = '';
+SET @IllidariNightElfAchievementjaJP            = '';
+SET @IllidariNightElfAchievementptPT            = '';
+SET @IllidariNightElfAchievementitIT            = '';
+SET @IllidariNightElfAchievementUnk1            = '';
+SET @IllidariNightElfAchievementUnk2            = '';
+SET @IllidariNightElfAchievementUnk3            = '';
+SET @IllidariNightElfAchievementUnk4            = '';
+
+SET @IllidariNightElfAchievementDescriptionenUS = 'First Illidari Night Elf on the realm to achieve level 80.';
+SET @IllidariNightElfAchievementDescriptionkoKR = '';
+SET @IllidariNightElfAchievementDescriptionfrFR = '';
+SET @IllidariNightElfAchievementDescriptiondeDE = '';
+SET @IllidariNightElfAchievementDescriptionzhCN = '';
+SET @IllidariNightElfAchievementDescriptionzhTW = '';
+SET @IllidariNightElfAchievementDescriptionesES = '';
+SET @IllidariNightElfAchievementDescriptionesMX = '';
+SET @IllidariNightElfAchievementDescriptionruRU = '';
+SET @IllidariNightElfAchievementDescriptionjaJP = '';
+SET @IllidariNightElfAchievementDescriptionptPT = '';
+SET @IllidariNightElfAchievementDescriptionitIT = '';
+SET @IllidariNightElfAchievementDescriptionUnk1 = '';
+SET @IllidariNightElfAchievementDescriptionUnk2 = '';
+SET @IllidariNightElfAchievementDescriptionUnk3 = '';
+SET @IllidariNightElfAchievementDescriptionUnk4 = '';

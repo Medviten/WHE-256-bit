@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @MoguMask                       = 1 << (@Mogu - 1);
+SET @MoguMask_2                     = IF(@Mogu BETWEEN 65 AND 128, 1 << (@Mogu - 65), 0); -- races 65-128
+SET @MoguHelmetMask                 = 1 << @Mogu;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @MoguMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @MoguMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @MoguMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @MoguMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @MoguMask;
+SET @BowHunters_2                         = @BowHunters_2      | @MoguMask_2; -- races 65-128
+SET @MoguLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @MoguAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @MoguKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @MoguHome = @Human; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @MoguKin = @Human; -- voice, emotes and names are copied from this race
+SET @MoguFlags = @HumanFlags;
+SET @MoguExplorationSound = @HumanExplorationSound;
+SET @MoguCinematicSequence = @HumanCinematicSequence;
+SET @MoguBlood = 1;
+SET @MoguMaleModelPath = 'Creature\\Mogu\\MoguPlayerMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @MoguFemaleModelPath = 'Creature\\MoguFemale\\MoguPlayerFemale.m2';
+SET @MoguFaction = 1425; -- vacant slot
+SET @MoguPlayer = 1426; -- vacant slot
+
+-- Strings
+SET @MoguClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @MoguClientString               = 'Mogu';
+SET @MoguFacialHairCustomization1   = 'NORMAL';
+SET @MoguFacialHairCustomization2   = 'NORMAL';
+SET @MoguHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @MoguenUS                       = 'Mogu';
+SET @MogukoKR                       = '';
+SET @MogufrFR                       = '';
+SET @MogudeDE                       = '';
+SET @MoguzhCN                       = '';
+SET @MoguzhTW                       = '';
+SET @MoguesES                       = '';
+SET @MoguesMX                       = '';
+SET @MoguruRU                       = '';
+SET @MogujaJP                       = '';
+SET @MoguptPT                       = '';
+SET @MoguitIT                       = '';
+SET @MoguUnk1                       = '';
+SET @MoguUnk2                       = '';
+SET @MoguUnk3                       = '';
+SET @MoguUnk4                       = '';
+
+SET @MoguFemaleenUS                 = '';
+SET @MoguFemalekoKR                 = '';
+SET @MoguFemalefrFR                 = '';
+SET @MoguFemaledeDE                 = '';
+SET @MoguFemalezhCN                 = '';
+SET @MoguFemalezhTW                 = '';
+SET @MoguFemaleesES                 = '';
+SET @MoguFemaleesMX                 = '';
+SET @MoguFemaleruRU                 = '';
+SET @MoguFemalejaJP                 = '';
+SET @MoguFemaleptPT                 = '';
+SET @MoguFemaleitIT                 = '';
+SET @MoguFemaleUnk1                 = '';
+SET @MoguFemaleUnk2                 = '';
+SET @MoguFemaleUnk3                 = '';
+SET @MoguFemaleUnk4                 = '';
+
+SET @MoguMaleenUS                   = '';
+SET @MoguMalekoKR                   = '';
+SET @MoguMalefrFR                   = '';
+SET @MoguMaledeDE                   = '';
+SET @MoguMalezhCN                   = '';
+SET @MoguMalezhTW                   = '';
+SET @MoguMaleesES                   = '';
+SET @MoguMaleesMX                   = '';
+SET @MoguMaleruRU                   = '';
+SET @MoguMalejaJP                   = '';
+SET @MoguMaleptPT                   = '';
+SET @MoguMaleitIT                   = '';
+SET @MoguMaleUnk1                   = '';
+SET @MoguMaleUnk2                   = '';
+SET @MoguMaleUnk3                   = '';
+SET @MoguMaleUnk4                   = '';
+
+SET @MoguRacialNameenUS             = 'Racial - Mogu';
+SET @MoguRacialNamekoKR             = '';
+SET @MoguRacialNamefrFR             = '';
+SET @MoguRacialNamedeDE             = '';
+SET @MoguRacialNamezhCN             = '';
+SET @MoguRacialNamezhTW             = '';
+SET @MoguRacialNameesES             = '';
+SET @MoguRacialNameesMX             = '';
+SET @MoguRacialNameruRU             = '';
+SET @MoguRacialNamejaJP             = '';
+SET @MoguRacialNameptPT             = '';
+SET @MoguRacialNameitIT             = '';
+SET @MoguRacialNameUnk1             = '';
+SET @MoguRacialNameUnk2             = '';
+SET @MoguRacialNameUnk3             = '';
+SET @MoguRacialNameUnk4             = '';
+
+SET @MoguPlayerenUS                 = '"PLAYER", Mogu';
+SET @MoguPlayerkoKR                 = '';
+SET @MoguPlayerfrFR                 = '';
+SET @MoguPlayerdeDE                 = '';
+SET @MoguPlayerzhCN                 = '';
+SET @MoguPlayerzhTW                 = '';
+SET @MoguPlayeresES                 = '';
+SET @MoguPlayeresMX                 = '';
+SET @MoguPlayerruRU                 = '';
+SET @MoguPlayerjaJP                 = '';
+SET @MoguPlayerptPT                 = '';
+SET @MoguPlayeritIT                 = '';
+SET @MoguPlayerUnk1                 = '';
+SET @MoguPlayerUnk2                 = '';
+SET @MoguPlayerUnk3                 = '';
+SET @MoguPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @MoguFactionNameenUS            = 'Mogu Penitents';
+SET @MoguFactionNamekoKR            = '';
+SET @MoguFactionNamefrFR            = '';
+SET @MoguFactionNamedeDE            = '';
+SET @MoguFactionNamezhCN            = '';
+SET @MoguFactionNamezhTW            = '';
+SET @MoguFactionNameesES            = '';
+SET @MoguFactionNameesMX            = '';
+SET @MoguFactionNameruRU            = '';
+SET @MoguFactionNamejaJP            = '';
+SET @MoguFactionNameptPT            = '';
+SET @MoguFactionNameitIT            = '';
+SET @MoguFactionNameUnk1            = '';
+SET @MoguFactionNameUnk2            = '';
+SET @MoguFactionNameUnk3            = '';
+SET @MoguFactionNameUnk4            = '';
+
+SET @MoguFactionDescriptionenUS     = 'Mogu who rejected the Thunder King\'s tyranny and seek honour with the Alliance.';
+SET @MoguFactionDescriptionkoKR     = '';
+SET @MoguFactionDescriptionfrFR     = '';
+SET @MoguFactionDescriptiondeDE     = '';
+SET @MoguFactionDescriptionzhCN     = '';
+SET @MoguFactionDescriptionzhTW     = '';
+SET @MoguFactionDescriptionesES     = '';
+SET @MoguFactionDescriptionesMX     = '';
+SET @MoguFactionDescriptionruRU     = '';
+SET @MoguFactionDescriptionjaJP     = '';
+SET @MoguFactionDescriptionptPT     = '';
+SET @MoguFactionDescriptionitIT     = '';
+SET @MoguFactionDescriptionUnk1     = '';
+SET @MoguFactionDescriptionUnk2     = '';
+SET @MoguFactionDescriptionUnk3     = '';
+SET @MoguFactionDescriptionUnk4     = '';
+
+SET @MoguAchievementenUS            = 'Realm First! Level 80 Mogu';
+SET @MoguAchievementkoKR            = '';
+SET @MoguAchievementfrFR            = '';
+SET @MoguAchievementdeDE            = '';
+SET @MoguAchievementzhCN            = '';
+SET @MoguAchievementzhTW            = '';
+SET @MoguAchievementesES            = '';
+SET @MoguAchievementesMX            = '';
+SET @MoguAchievementruRU            = '';
+SET @MoguAchievementjaJP            = '';
+SET @MoguAchievementptPT            = '';
+SET @MoguAchievementitIT            = '';
+SET @MoguAchievementUnk1            = '';
+SET @MoguAchievementUnk2            = '';
+SET @MoguAchievementUnk3            = '';
+SET @MoguAchievementUnk4            = '';
+
+SET @MoguAchievementDescriptionenUS = 'First Mogu on the realm to achieve level 80.';
+SET @MoguAchievementDescriptionkoKR = '';
+SET @MoguAchievementDescriptionfrFR = '';
+SET @MoguAchievementDescriptiondeDE = '';
+SET @MoguAchievementDescriptionzhCN = '';
+SET @MoguAchievementDescriptionzhTW = '';
+SET @MoguAchievementDescriptionesES = '';
+SET @MoguAchievementDescriptionesMX = '';
+SET @MoguAchievementDescriptionruRU = '';
+SET @MoguAchievementDescriptionjaJP = '';
+SET @MoguAchievementDescriptionptPT = '';
+SET @MoguAchievementDescriptionitIT = '';
+SET @MoguAchievementDescriptionUnk1 = '';
+SET @MoguAchievementDescriptionUnk2 = '';
+SET @MoguAchievementDescriptionUnk3 = '';
+SET @MoguAchievementDescriptionUnk4 = '';

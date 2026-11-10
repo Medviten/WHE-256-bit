@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @NerubianMask                       = 1 << (@Nerubian - 1);
+SET @NerubianMask_2                     = IF(@Nerubian BETWEEN 65 AND 128, 1 << (@Nerubian - 65), 0); -- races 65-128
+SET @NerubianHelmetMask                 = 1 << @Nerubian;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @NerubianMask;
+SET @HordeMask_2                          = @HordeMask_2       | @NerubianMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @NerubianMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @NerubianMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @NerubianMask;
+SET @BowHunters_2                         = @BowHunters_2      | @NerubianMask_2; -- races 65-128
+SET @NerubianLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @NerubianAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @NerubianKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @NerubianHome = @Undead; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @NerubianKin = @Undead; -- voice, emotes and names are copied from this race
+SET @NerubianFlags = @UndeadFlags;
+SET @NerubianExplorationSound = @UndeadExplorationSound;
+SET @NerubianCinematicSequence = @UndeadCinematicSequence;
+SET @NerubianBlood = 1;
+SET @NerubianMaleModelPath = 'Creature\\Nerubian\\NerubianPlayerMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @NerubianFemaleModelPath = 'Creature\\NerubianPriest2\\NerubianPlayerFemale.m2';
+SET @NerubianFaction = 1421; -- vacant slot
+SET @NerubianPlayer = 1422; -- vacant slot
+
+-- Strings
+SET @NerubianClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @NerubianClientString               = 'Nerubian';
+SET @NerubianFacialHairCustomization1   = 'NORMAL';
+SET @NerubianFacialHairCustomization2   = 'NORMAL';
+SET @NerubianHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @NerubianenUS                       = 'Nerubian';
+SET @NerubiankoKR                       = '';
+SET @NerubianfrFR                       = '';
+SET @NerubiandeDE                       = '';
+SET @NerubianzhCN                       = '';
+SET @NerubianzhTW                       = '';
+SET @NerubianesES                       = '';
+SET @NerubianesMX                       = '';
+SET @NerubianruRU                       = '';
+SET @NerubianjaJP                       = '';
+SET @NerubianptPT                       = '';
+SET @NerubianitIT                       = '';
+SET @NerubianUnk1                       = '';
+SET @NerubianUnk2                       = '';
+SET @NerubianUnk3                       = '';
+SET @NerubianUnk4                       = '';
+
+SET @NerubianFemaleenUS                 = '';
+SET @NerubianFemalekoKR                 = '';
+SET @NerubianFemalefrFR                 = '';
+SET @NerubianFemaledeDE                 = '';
+SET @NerubianFemalezhCN                 = '';
+SET @NerubianFemalezhTW                 = '';
+SET @NerubianFemaleesES                 = '';
+SET @NerubianFemaleesMX                 = '';
+SET @NerubianFemaleruRU                 = '';
+SET @NerubianFemalejaJP                 = '';
+SET @NerubianFemaleptPT                 = '';
+SET @NerubianFemaleitIT                 = '';
+SET @NerubianFemaleUnk1                 = '';
+SET @NerubianFemaleUnk2                 = '';
+SET @NerubianFemaleUnk3                 = '';
+SET @NerubianFemaleUnk4                 = '';
+
+SET @NerubianMaleenUS                   = '';
+SET @NerubianMalekoKR                   = '';
+SET @NerubianMalefrFR                   = '';
+SET @NerubianMaledeDE                   = '';
+SET @NerubianMalezhCN                   = '';
+SET @NerubianMalezhTW                   = '';
+SET @NerubianMaleesES                   = '';
+SET @NerubianMaleesMX                   = '';
+SET @NerubianMaleruRU                   = '';
+SET @NerubianMalejaJP                   = '';
+SET @NerubianMaleptPT                   = '';
+SET @NerubianMaleitIT                   = '';
+SET @NerubianMaleUnk1                   = '';
+SET @NerubianMaleUnk2                   = '';
+SET @NerubianMaleUnk3                   = '';
+SET @NerubianMaleUnk4                   = '';
+
+SET @NerubianRacialNameenUS             = 'Racial - Nerubian';
+SET @NerubianRacialNamekoKR             = '';
+SET @NerubianRacialNamefrFR             = '';
+SET @NerubianRacialNamedeDE             = '';
+SET @NerubianRacialNamezhCN             = '';
+SET @NerubianRacialNamezhTW             = '';
+SET @NerubianRacialNameesES             = '';
+SET @NerubianRacialNameesMX             = '';
+SET @NerubianRacialNameruRU             = '';
+SET @NerubianRacialNamejaJP             = '';
+SET @NerubianRacialNameptPT             = '';
+SET @NerubianRacialNameitIT             = '';
+SET @NerubianRacialNameUnk1             = '';
+SET @NerubianRacialNameUnk2             = '';
+SET @NerubianRacialNameUnk3             = '';
+SET @NerubianRacialNameUnk4             = '';
+
+SET @NerubianPlayerenUS                 = '"PLAYER", Nerubian';
+SET @NerubianPlayerkoKR                 = '';
+SET @NerubianPlayerfrFR                 = '';
+SET @NerubianPlayerdeDE                 = '';
+SET @NerubianPlayerzhCN                 = '';
+SET @NerubianPlayerzhTW                 = '';
+SET @NerubianPlayeresES                 = '';
+SET @NerubianPlayeresMX                 = '';
+SET @NerubianPlayerruRU                 = '';
+SET @NerubianPlayerjaJP                 = '';
+SET @NerubianPlayerptPT                 = '';
+SET @NerubianPlayeritIT                 = '';
+SET @NerubianPlayerUnk1                 = '';
+SET @NerubianPlayerUnk2                 = '';
+SET @NerubianPlayerUnk3                 = '';
+SET @NerubianPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @NerubianFactionNameenUS            = 'Azjol Survivors';
+SET @NerubianFactionNamekoKR            = '';
+SET @NerubianFactionNamefrFR            = '';
+SET @NerubianFactionNamedeDE            = '';
+SET @NerubianFactionNamezhCN            = '';
+SET @NerubianFactionNamezhTW            = '';
+SET @NerubianFactionNameesES            = '';
+SET @NerubianFactionNameesMX            = '';
+SET @NerubianFactionNameruRU            = '';
+SET @NerubianFactionNamejaJP            = '';
+SET @NerubianFactionNameptPT            = '';
+SET @NerubianFactionNameitIT            = '';
+SET @NerubianFactionNameUnk1            = '';
+SET @NerubianFactionNameUnk2            = '';
+SET @NerubianFactionNameUnk3            = '';
+SET @NerubianFactionNameUnk4            = '';
+
+SET @NerubianFactionDescriptionenUS     = 'Nerubians of Azjol-Nerub who never bowed to the Lich King and fight beside the Forsaken.';
+SET @NerubianFactionDescriptionkoKR     = '';
+SET @NerubianFactionDescriptionfrFR     = '';
+SET @NerubianFactionDescriptiondeDE     = '';
+SET @NerubianFactionDescriptionzhCN     = '';
+SET @NerubianFactionDescriptionzhTW     = '';
+SET @NerubianFactionDescriptionesES     = '';
+SET @NerubianFactionDescriptionesMX     = '';
+SET @NerubianFactionDescriptionruRU     = '';
+SET @NerubianFactionDescriptionjaJP     = '';
+SET @NerubianFactionDescriptionptPT     = '';
+SET @NerubianFactionDescriptionitIT     = '';
+SET @NerubianFactionDescriptionUnk1     = '';
+SET @NerubianFactionDescriptionUnk2     = '';
+SET @NerubianFactionDescriptionUnk3     = '';
+SET @NerubianFactionDescriptionUnk4     = '';
+
+SET @NerubianAchievementenUS            = 'Realm First! Level 80 Nerubian';
+SET @NerubianAchievementkoKR            = '';
+SET @NerubianAchievementfrFR            = '';
+SET @NerubianAchievementdeDE            = '';
+SET @NerubianAchievementzhCN            = '';
+SET @NerubianAchievementzhTW            = '';
+SET @NerubianAchievementesES            = '';
+SET @NerubianAchievementesMX            = '';
+SET @NerubianAchievementruRU            = '';
+SET @NerubianAchievementjaJP            = '';
+SET @NerubianAchievementptPT            = '';
+SET @NerubianAchievementitIT            = '';
+SET @NerubianAchievementUnk1            = '';
+SET @NerubianAchievementUnk2            = '';
+SET @NerubianAchievementUnk3            = '';
+SET @NerubianAchievementUnk4            = '';
+
+SET @NerubianAchievementDescriptionenUS = 'First Nerubian on the realm to achieve level 80.';
+SET @NerubianAchievementDescriptionkoKR = '';
+SET @NerubianAchievementDescriptionfrFR = '';
+SET @NerubianAchievementDescriptiondeDE = '';
+SET @NerubianAchievementDescriptionzhCN = '';
+SET @NerubianAchievementDescriptionzhTW = '';
+SET @NerubianAchievementDescriptionesES = '';
+SET @NerubianAchievementDescriptionesMX = '';
+SET @NerubianAchievementDescriptionruRU = '';
+SET @NerubianAchievementDescriptionjaJP = '';
+SET @NerubianAchievementDescriptionptPT = '';
+SET @NerubianAchievementDescriptionitIT = '';
+SET @NerubianAchievementDescriptionUnk1 = '';
+SET @NerubianAchievementDescriptionUnk2 = '';
+SET @NerubianAchievementDescriptionUnk3 = '';
+SET @NerubianAchievementDescriptionUnk4 = '';

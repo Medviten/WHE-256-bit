@@ -13,9 +13,10 @@ INSERT INTO `spellicon` (`id`, `name`) VALUES
 -- Retail icons of the Worgen racials (the client needs the icon files)
 -- Commented out: the race already has its Cataclysm racials. Remove the comment markers to give the race CoA's racials instead.
 /*
-DELETE FROM `spellicon` WHERE `id` IN (@IconCoAAbilityRacialRunningwild, @IconCoAAbilityWorgenDarkflight);
+DELETE FROM `spellicon` WHERE `id` IN (@IconCoAAbilityRacialRunningwild, @IconCoAAbilityRacialViciousness, @IconCoAAbilityWorgenDarkflight);
 INSERT INTO `spellicon` (`id`, `name`) VALUES
 (@IconCoAAbilityRacialRunningwild, 'Interface\\Icons\\ability_racial_runningwild'),
+(@IconCoAAbilityRacialViciousness, 'Interface\\Icons\\ability_racial_viciousness'),
 (@IconCoAAbilityWorgenDarkflight, 'Interface\\Icons\\ability_worgen_darkflight');
 */
 -- <<< CoA Custom 1.9 racials <<<

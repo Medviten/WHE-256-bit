@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @DrakkinMask                       = 1 << (@Drakkin - 1);
+SET @DrakkinMask_2                     = IF(@Drakkin BETWEEN 65 AND 128, 1 << (@Drakkin - 65), 0); -- races 65-128
+SET @DrakkinHelmetMask                 = 1 << @Drakkin;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @DrakkinMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @DrakkinMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @DrakkinMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @DrakkinMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @DrakkinMask;
+SET @BowHunters_2                         = @BowHunters_2      | @DrakkinMask_2; -- races 65-128
+SET @DrakkinLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DrakkinAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DrakkinKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @DrakkinHome = @Human; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @DrakkinKin = @Human; -- voice, emotes and names are copied from this race
+SET @DrakkinFlags = @HumanFlags;
+SET @DrakkinExplorationSound = @HumanExplorationSound;
+SET @DrakkinCinematicSequence = @HumanCinematicSequence;
+SET @DrakkinBlood = 1;
+SET @DrakkinMaleModelPath = 'custom\\tarasek\\creature\\tarasek\\tarasek.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @DrakkinFemaleModelPath = 'custom\\kobold\\koboldfemale.m2';
+SET @DrakkinFaction = 1429; -- vacant slot
+SET @DrakkinPlayer = 1430; -- vacant slot
+
+-- Strings
+SET @DrakkinClientPrefix               = 'Dr'; -- helmet models of this prefix
+SET @DrakkinClientString               = 'Drakkin';
+SET @DrakkinFacialHairCustomization1   = 'NORMAL';
+SET @DrakkinFacialHairCustomization2   = 'NORMAL';
+SET @DrakkinHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @DrakkinenUS                       = 'Drakkin';
+SET @DrakkinkoKR                       = '';
+SET @DrakkinfrFR                       = '';
+SET @DrakkindeDE                       = '';
+SET @DrakkinzhCN                       = '';
+SET @DrakkinzhTW                       = '';
+SET @DrakkinesES                       = '';
+SET @DrakkinesMX                       = '';
+SET @DrakkinruRU                       = '';
+SET @DrakkinjaJP                       = '';
+SET @DrakkinptPT                       = '';
+SET @DrakkinitIT                       = '';
+SET @DrakkinUnk1                       = '';
+SET @DrakkinUnk2                       = '';
+SET @DrakkinUnk3                       = '';
+SET @DrakkinUnk4                       = '';
+
+SET @DrakkinFemaleenUS                 = '';
+SET @DrakkinFemalekoKR                 = '';
+SET @DrakkinFemalefrFR                 = '';
+SET @DrakkinFemaledeDE                 = '';
+SET @DrakkinFemalezhCN                 = '';
+SET @DrakkinFemalezhTW                 = '';
+SET @DrakkinFemaleesES                 = '';
+SET @DrakkinFemaleesMX                 = '';
+SET @DrakkinFemaleruRU                 = '';
+SET @DrakkinFemalejaJP                 = '';
+SET @DrakkinFemaleptPT                 = '';
+SET @DrakkinFemaleitIT                 = '';
+SET @DrakkinFemaleUnk1                 = '';
+SET @DrakkinFemaleUnk2                 = '';
+SET @DrakkinFemaleUnk3                 = '';
+SET @DrakkinFemaleUnk4                 = '';
+
+SET @DrakkinMaleenUS                   = '';
+SET @DrakkinMalekoKR                   = '';
+SET @DrakkinMalefrFR                   = '';
+SET @DrakkinMaledeDE                   = '';
+SET @DrakkinMalezhCN                   = '';
+SET @DrakkinMalezhTW                   = '';
+SET @DrakkinMaleesES                   = '';
+SET @DrakkinMaleesMX                   = '';
+SET @DrakkinMaleruRU                   = '';
+SET @DrakkinMalejaJP                   = '';
+SET @DrakkinMaleptPT                   = '';
+SET @DrakkinMaleitIT                   = '';
+SET @DrakkinMaleUnk1                   = '';
+SET @DrakkinMaleUnk2                   = '';
+SET @DrakkinMaleUnk3                   = '';
+SET @DrakkinMaleUnk4                   = '';
+
+SET @DrakkinRacialNameenUS             = 'Racial - Drakkin';
+SET @DrakkinRacialNamekoKR             = '';
+SET @DrakkinRacialNamefrFR             = '';
+SET @DrakkinRacialNamedeDE             = '';
+SET @DrakkinRacialNamezhCN             = '';
+SET @DrakkinRacialNamezhTW             = '';
+SET @DrakkinRacialNameesES             = '';
+SET @DrakkinRacialNameesMX             = '';
+SET @DrakkinRacialNameruRU             = '';
+SET @DrakkinRacialNamejaJP             = '';
+SET @DrakkinRacialNameptPT             = '';
+SET @DrakkinRacialNameitIT             = '';
+SET @DrakkinRacialNameUnk1             = '';
+SET @DrakkinRacialNameUnk2             = '';
+SET @DrakkinRacialNameUnk3             = '';
+SET @DrakkinRacialNameUnk4             = '';
+
+SET @DrakkinPlayerenUS                 = '"PLAYER", Drakkin';
+SET @DrakkinPlayerkoKR                 = '';
+SET @DrakkinPlayerfrFR                 = '';
+SET @DrakkinPlayerdeDE                 = '';
+SET @DrakkinPlayerzhCN                 = '';
+SET @DrakkinPlayerzhTW                 = '';
+SET @DrakkinPlayeresES                 = '';
+SET @DrakkinPlayeresMX                 = '';
+SET @DrakkinPlayerruRU                 = '';
+SET @DrakkinPlayerjaJP                 = '';
+SET @DrakkinPlayerptPT                 = '';
+SET @DrakkinPlayeritIT                 = '';
+SET @DrakkinPlayerUnk1                 = '';
+SET @DrakkinPlayerUnk2                 = '';
+SET @DrakkinPlayerUnk3                 = '';
+SET @DrakkinPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @DrakkinFactionNameenUS            = 'Drakkin of the Dragonflights';
+SET @DrakkinFactionNamekoKR            = '';
+SET @DrakkinFactionNamefrFR            = '';
+SET @DrakkinFactionNamedeDE            = '';
+SET @DrakkinFactionNamezhCN            = '';
+SET @DrakkinFactionNamezhTW            = '';
+SET @DrakkinFactionNameesES            = '';
+SET @DrakkinFactionNameesMX            = '';
+SET @DrakkinFactionNameruRU            = '';
+SET @DrakkinFactionNamejaJP            = '';
+SET @DrakkinFactionNameptPT            = '';
+SET @DrakkinFactionNameitIT            = '';
+SET @DrakkinFactionNameUnk1            = '';
+SET @DrakkinFactionNameUnk2            = '';
+SET @DrakkinFactionNameUnk3            = '';
+SET @DrakkinFactionNameUnk4            = '';
+
+SET @DrakkinFactionDescriptionenUS     = 'Dragons in mortal form who walk among the people of Stormwind.';
+SET @DrakkinFactionDescriptionkoKR     = '';
+SET @DrakkinFactionDescriptionfrFR     = '';
+SET @DrakkinFactionDescriptiondeDE     = '';
+SET @DrakkinFactionDescriptionzhCN     = '';
+SET @DrakkinFactionDescriptionzhTW     = '';
+SET @DrakkinFactionDescriptionesES     = '';
+SET @DrakkinFactionDescriptionesMX     = '';
+SET @DrakkinFactionDescriptionruRU     = '';
+SET @DrakkinFactionDescriptionjaJP     = '';
+SET @DrakkinFactionDescriptionptPT     = '';
+SET @DrakkinFactionDescriptionitIT     = '';
+SET @DrakkinFactionDescriptionUnk1     = '';
+SET @DrakkinFactionDescriptionUnk2     = '';
+SET @DrakkinFactionDescriptionUnk3     = '';
+SET @DrakkinFactionDescriptionUnk4     = '';
+
+SET @DrakkinAchievementenUS            = 'Realm First! Level 80 Drakkin';
+SET @DrakkinAchievementkoKR            = '';
+SET @DrakkinAchievementfrFR            = '';
+SET @DrakkinAchievementdeDE            = '';
+SET @DrakkinAchievementzhCN            = '';
+SET @DrakkinAchievementzhTW            = '';
+SET @DrakkinAchievementesES            = '';
+SET @DrakkinAchievementesMX            = '';
+SET @DrakkinAchievementruRU            = '';
+SET @DrakkinAchievementjaJP            = '';
+SET @DrakkinAchievementptPT            = '';
+SET @DrakkinAchievementitIT            = '';
+SET @DrakkinAchievementUnk1            = '';
+SET @DrakkinAchievementUnk2            = '';
+SET @DrakkinAchievementUnk3            = '';
+SET @DrakkinAchievementUnk4            = '';
+
+SET @DrakkinAchievementDescriptionenUS = 'First Drakkin on the realm to achieve level 80.';
+SET @DrakkinAchievementDescriptionkoKR = '';
+SET @DrakkinAchievementDescriptionfrFR = '';
+SET @DrakkinAchievementDescriptiondeDE = '';
+SET @DrakkinAchievementDescriptionzhCN = '';
+SET @DrakkinAchievementDescriptionzhTW = '';
+SET @DrakkinAchievementDescriptionesES = '';
+SET @DrakkinAchievementDescriptionesMX = '';
+SET @DrakkinAchievementDescriptionruRU = '';
+SET @DrakkinAchievementDescriptionjaJP = '';
+SET @DrakkinAchievementDescriptionptPT = '';
+SET @DrakkinAchievementDescriptionitIT = '';
+SET @DrakkinAchievementDescriptionUnk1 = '';
+SET @DrakkinAchievementDescriptionUnk2 = '';
+SET @DrakkinAchievementDescriptionUnk3 = '';
+SET @DrakkinAchievementDescriptionUnk4 = '';

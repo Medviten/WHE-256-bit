@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @LostOneMask                       = 1 << (@LostOne - 1);
+SET @LostOneMask_2                     = IF(@LostOne BETWEEN 65 AND 128, 1 << (@LostOne - 65), 0); -- races 65-128
+SET @LostOneHelmetMask                 = 1 << @LostOne;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @LostOneMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @LostOneMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @LostOneMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @LostOneMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @LostOneMask;
+SET @BowHunters_2                         = @BowHunters_2      | @LostOneMask_2; -- races 65-128
+SET @LostOneLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @LostOneAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @LostOneKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @LostOneHome = @Draenei; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @LostOneKin = @Draenei; -- voice, emotes and names are copied from this race
+SET @LostOneFlags = @DraeneiFlags;
+SET @LostOneExplorationSound = @DraeneiExplorationSound;
+SET @LostOneCinematicSequence = @DraeneiCinematicSequence;
+SET @LostOneBlood = 1;
+SET @LostOneMaleModelPath = 'Creature\\LostOne\\LostOnePlayer.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @LostOneFemaleModelPath = 'Creature\\LostOne\\LostOnePlayer.m2';
+SET @LostOneFaction = 1427; -- vacant slot
+SET @LostOnePlayer = 1428; -- vacant slot
+
+-- Strings
+SET @LostOneClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @LostOneClientString               = 'LostOne';
+SET @LostOneFacialHairCustomization1   = 'NORMAL';
+SET @LostOneFacialHairCustomization2   = 'NORMAL';
+SET @LostOneHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @LostOneenUS                       = 'Lost One';
+SET @LostOnekoKR                       = '';
+SET @LostOnefrFR                       = '';
+SET @LostOnedeDE                       = '';
+SET @LostOnezhCN                       = '';
+SET @LostOnezhTW                       = '';
+SET @LostOneesES                       = '';
+SET @LostOneesMX                       = '';
+SET @LostOneruRU                       = '';
+SET @LostOnejaJP                       = '';
+SET @LostOneptPT                       = '';
+SET @LostOneitIT                       = '';
+SET @LostOneUnk1                       = '';
+SET @LostOneUnk2                       = '';
+SET @LostOneUnk3                       = '';
+SET @LostOneUnk4                       = '';
+
+SET @LostOneFemaleenUS                 = '';
+SET @LostOneFemalekoKR                 = '';
+SET @LostOneFemalefrFR                 = '';
+SET @LostOneFemaledeDE                 = '';
+SET @LostOneFemalezhCN                 = '';
+SET @LostOneFemalezhTW                 = '';
+SET @LostOneFemaleesES                 = '';
+SET @LostOneFemaleesMX                 = '';
+SET @LostOneFemaleruRU                 = '';
+SET @LostOneFemalejaJP                 = '';
+SET @LostOneFemaleptPT                 = '';
+SET @LostOneFemaleitIT                 = '';
+SET @LostOneFemaleUnk1                 = '';
+SET @LostOneFemaleUnk2                 = '';
+SET @LostOneFemaleUnk3                 = '';
+SET @LostOneFemaleUnk4                 = '';
+
+SET @LostOneMaleenUS                   = '';
+SET @LostOneMalekoKR                   = '';
+SET @LostOneMalefrFR                   = '';
+SET @LostOneMaledeDE                   = '';
+SET @LostOneMalezhCN                   = '';
+SET @LostOneMalezhTW                   = '';
+SET @LostOneMaleesES                   = '';
+SET @LostOneMaleesMX                   = '';
+SET @LostOneMaleruRU                   = '';
+SET @LostOneMalejaJP                   = '';
+SET @LostOneMaleptPT                   = '';
+SET @LostOneMaleitIT                   = '';
+SET @LostOneMaleUnk1                   = '';
+SET @LostOneMaleUnk2                   = '';
+SET @LostOneMaleUnk3                   = '';
+SET @LostOneMaleUnk4                   = '';
+
+SET @LostOneRacialNameenUS             = 'Racial - Lost One';
+SET @LostOneRacialNamekoKR             = '';
+SET @LostOneRacialNamefrFR             = '';
+SET @LostOneRacialNamedeDE             = '';
+SET @LostOneRacialNamezhCN             = '';
+SET @LostOneRacialNamezhTW             = '';
+SET @LostOneRacialNameesES             = '';
+SET @LostOneRacialNameesMX             = '';
+SET @LostOneRacialNameruRU             = '';
+SET @LostOneRacialNamejaJP             = '';
+SET @LostOneRacialNameptPT             = '';
+SET @LostOneRacialNameitIT             = '';
+SET @LostOneRacialNameUnk1             = '';
+SET @LostOneRacialNameUnk2             = '';
+SET @LostOneRacialNameUnk3             = '';
+SET @LostOneRacialNameUnk4             = '';
+
+SET @LostOnePlayerenUS                 = '"PLAYER", Lost One';
+SET @LostOnePlayerkoKR                 = '';
+SET @LostOnePlayerfrFR                 = '';
+SET @LostOnePlayerdeDE                 = '';
+SET @LostOnePlayerzhCN                 = '';
+SET @LostOnePlayerzhTW                 = '';
+SET @LostOnePlayeresES                 = '';
+SET @LostOnePlayeresMX                 = '';
+SET @LostOnePlayerruRU                 = '';
+SET @LostOnePlayerjaJP                 = '';
+SET @LostOnePlayerptPT                 = '';
+SET @LostOnePlayeritIT                 = '';
+SET @LostOnePlayerUnk1                 = '';
+SET @LostOnePlayerUnk2                 = '';
+SET @LostOnePlayerUnk3                 = '';
+SET @LostOnePlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @LostOneFactionNameenUS            = 'The Redeemed Lost';
+SET @LostOneFactionNamekoKR            = '';
+SET @LostOneFactionNamefrFR            = '';
+SET @LostOneFactionNamedeDE            = '';
+SET @LostOneFactionNamezhCN            = '';
+SET @LostOneFactionNamezhTW            = '';
+SET @LostOneFactionNameesES            = '';
+SET @LostOneFactionNameesMX            = '';
+SET @LostOneFactionNameruRU            = '';
+SET @LostOneFactionNamejaJP            = '';
+SET @LostOneFactionNameptPT            = '';
+SET @LostOneFactionNameitIT            = '';
+SET @LostOneFactionNameUnk1            = '';
+SET @LostOneFactionNameUnk2            = '';
+SET @LostOneFactionNameUnk3            = '';
+SET @LostOneFactionNameUnk4            = '';
+
+SET @LostOneFactionDescriptionenUS     = 'Lost ones of Draenor whom the naaru have begun to heal.';
+SET @LostOneFactionDescriptionkoKR     = '';
+SET @LostOneFactionDescriptionfrFR     = '';
+SET @LostOneFactionDescriptiondeDE     = '';
+SET @LostOneFactionDescriptionzhCN     = '';
+SET @LostOneFactionDescriptionzhTW     = '';
+SET @LostOneFactionDescriptionesES     = '';
+SET @LostOneFactionDescriptionesMX     = '';
+SET @LostOneFactionDescriptionruRU     = '';
+SET @LostOneFactionDescriptionjaJP     = '';
+SET @LostOneFactionDescriptionptPT     = '';
+SET @LostOneFactionDescriptionitIT     = '';
+SET @LostOneFactionDescriptionUnk1     = '';
+SET @LostOneFactionDescriptionUnk2     = '';
+SET @LostOneFactionDescriptionUnk3     = '';
+SET @LostOneFactionDescriptionUnk4     = '';
+
+SET @LostOneAchievementenUS            = 'Realm First! Level 80 Lost One';
+SET @LostOneAchievementkoKR            = '';
+SET @LostOneAchievementfrFR            = '';
+SET @LostOneAchievementdeDE            = '';
+SET @LostOneAchievementzhCN            = '';
+SET @LostOneAchievementzhTW            = '';
+SET @LostOneAchievementesES            = '';
+SET @LostOneAchievementesMX            = '';
+SET @LostOneAchievementruRU            = '';
+SET @LostOneAchievementjaJP            = '';
+SET @LostOneAchievementptPT            = '';
+SET @LostOneAchievementitIT            = '';
+SET @LostOneAchievementUnk1            = '';
+SET @LostOneAchievementUnk2            = '';
+SET @LostOneAchievementUnk3            = '';
+SET @LostOneAchievementUnk4            = '';
+
+SET @LostOneAchievementDescriptionenUS = 'First Lost One on the realm to achieve level 80.';
+SET @LostOneAchievementDescriptionkoKR = '';
+SET @LostOneAchievementDescriptionfrFR = '';
+SET @LostOneAchievementDescriptiondeDE = '';
+SET @LostOneAchievementDescriptionzhCN = '';
+SET @LostOneAchievementDescriptionzhTW = '';
+SET @LostOneAchievementDescriptionesES = '';
+SET @LostOneAchievementDescriptionesMX = '';
+SET @LostOneAchievementDescriptionruRU = '';
+SET @LostOneAchievementDescriptionjaJP = '';
+SET @LostOneAchievementDescriptionptPT = '';
+SET @LostOneAchievementDescriptionitIT = '';
+SET @LostOneAchievementDescriptionUnk1 = '';
+SET @LostOneAchievementDescriptionUnk2 = '';
+SET @LostOneAchievementDescriptionUnk3 = '';
+SET @LostOneAchievementDescriptionUnk4 = '';

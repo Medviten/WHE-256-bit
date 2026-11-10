@@ -1,0 +1,42 @@
+-- charhairgeosets: 36 inserts, 0 updates, 0 deletes (from CoA 1.9.9's own rows for its race 60)
+
+-- New entries
+DELETE FROM `charhairgeosets` WHERE `race` = @IllidariBloodElf;
+SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `charhairgeosets`);
+INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `show_scalp`) VALUES
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    0,  0, 1),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    1,  2, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    2,  3, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    3,  4, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    4,  6, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    5,  7, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    6,  8, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    7,  9, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    8, 10, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,    9, 11, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,   10, 12, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,   11, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,   12, 14, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,   13, 15, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,   14, 16, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Male,   15, 17, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  0,  0, 1),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  1,  2, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  2,  3, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  3,  4, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  4,  5, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  5,  6, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  6,  8, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  7,  9, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  8, 10, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female,  9, 11, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 10, 12, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 11, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 12, 14, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 13, 15, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 14, 16, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 15, 17, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 16, 18, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 17, 19, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 18, 20, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @IllidariBloodElf, @Female, 19, 21, 0);

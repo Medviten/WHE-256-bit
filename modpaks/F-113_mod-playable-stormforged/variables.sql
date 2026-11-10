@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @StormforgedMask                       = 1 << (@Stormforged - 1);
+SET @StormforgedMask_2                     = IF(@Stormforged BETWEEN 65 AND 128, 1 << (@Stormforged - 65), 0); -- races 65-128
+SET @StormforgedHelmetMask                 = 1 << @Stormforged;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @StormforgedMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @StormforgedMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @StormforgedMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @StormforgedMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @StormforgedMask;
+SET @BowHunters_2                         = @BowHunters_2      | @StormforgedMask_2; -- races 65-128
+SET @StormforgedLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @StormforgedAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @StormforgedKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @StormforgedHome = @Dwarf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @StormforgedKin = @Human; -- voice, emotes and names are copied from this race
+SET @StormforgedFlags = @DwarfFlags;
+SET @StormforgedExplorationSound = @DwarfExplorationSound;
+SET @StormforgedCinematicSequence = @DwarfCinematicSequence;
+SET @StormforgedBlood = 1;
+SET @StormforgedMaleModelPath = 'Creature\\StormforgedVrykul\\StormforgedPlayerMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @StormforgedFemaleModelPath = 'Creature\\IronVrykulFemale2\\StormforgedPlayerFemale.m2';
+SET @StormforgedFaction = 1417; -- vacant slot
+SET @StormforgedPlayer = 1418; -- vacant slot
+
+-- Strings
+SET @StormforgedClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @StormforgedClientString               = 'Stormforged';
+SET @StormforgedFacialHairCustomization1   = 'NORMAL';
+SET @StormforgedFacialHairCustomization2   = 'NORMAL';
+SET @StormforgedHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @StormforgedenUS                       = 'Stormforged';
+SET @StormforgedkoKR                       = '';
+SET @StormforgedfrFR                       = '';
+SET @StormforgeddeDE                       = '';
+SET @StormforgedzhCN                       = '';
+SET @StormforgedzhTW                       = '';
+SET @StormforgedesES                       = '';
+SET @StormforgedesMX                       = '';
+SET @StormforgedruRU                       = '';
+SET @StormforgedjaJP                       = '';
+SET @StormforgedptPT                       = '';
+SET @StormforgeditIT                       = '';
+SET @StormforgedUnk1                       = '';
+SET @StormforgedUnk2                       = '';
+SET @StormforgedUnk3                       = '';
+SET @StormforgedUnk4                       = '';
+
+SET @StormforgedFemaleenUS                 = '';
+SET @StormforgedFemalekoKR                 = '';
+SET @StormforgedFemalefrFR                 = '';
+SET @StormforgedFemaledeDE                 = '';
+SET @StormforgedFemalezhCN                 = '';
+SET @StormforgedFemalezhTW                 = '';
+SET @StormforgedFemaleesES                 = '';
+SET @StormforgedFemaleesMX                 = '';
+SET @StormforgedFemaleruRU                 = '';
+SET @StormforgedFemalejaJP                 = '';
+SET @StormforgedFemaleptPT                 = '';
+SET @StormforgedFemaleitIT                 = '';
+SET @StormforgedFemaleUnk1                 = '';
+SET @StormforgedFemaleUnk2                 = '';
+SET @StormforgedFemaleUnk3                 = '';
+SET @StormforgedFemaleUnk4                 = '';
+
+SET @StormforgedMaleenUS                   = '';
+SET @StormforgedMalekoKR                   = '';
+SET @StormforgedMalefrFR                   = '';
+SET @StormforgedMaledeDE                   = '';
+SET @StormforgedMalezhCN                   = '';
+SET @StormforgedMalezhTW                   = '';
+SET @StormforgedMaleesES                   = '';
+SET @StormforgedMaleesMX                   = '';
+SET @StormforgedMaleruRU                   = '';
+SET @StormforgedMalejaJP                   = '';
+SET @StormforgedMaleptPT                   = '';
+SET @StormforgedMaleitIT                   = '';
+SET @StormforgedMaleUnk1                   = '';
+SET @StormforgedMaleUnk2                   = '';
+SET @StormforgedMaleUnk3                   = '';
+SET @StormforgedMaleUnk4                   = '';
+
+SET @StormforgedRacialNameenUS             = 'Racial - Stormforged';
+SET @StormforgedRacialNamekoKR             = '';
+SET @StormforgedRacialNamefrFR             = '';
+SET @StormforgedRacialNamedeDE             = '';
+SET @StormforgedRacialNamezhCN             = '';
+SET @StormforgedRacialNamezhTW             = '';
+SET @StormforgedRacialNameesES             = '';
+SET @StormforgedRacialNameesMX             = '';
+SET @StormforgedRacialNameruRU             = '';
+SET @StormforgedRacialNamejaJP             = '';
+SET @StormforgedRacialNameptPT             = '';
+SET @StormforgedRacialNameitIT             = '';
+SET @StormforgedRacialNameUnk1             = '';
+SET @StormforgedRacialNameUnk2             = '';
+SET @StormforgedRacialNameUnk3             = '';
+SET @StormforgedRacialNameUnk4             = '';
+
+SET @StormforgedPlayerenUS                 = '"PLAYER", Stormforged';
+SET @StormforgedPlayerkoKR                 = '';
+SET @StormforgedPlayerfrFR                 = '';
+SET @StormforgedPlayerdeDE                 = '';
+SET @StormforgedPlayerzhCN                 = '';
+SET @StormforgedPlayerzhTW                 = '';
+SET @StormforgedPlayeresES                 = '';
+SET @StormforgedPlayeresMX                 = '';
+SET @StormforgedPlayerruRU                 = '';
+SET @StormforgedPlayerjaJP                 = '';
+SET @StormforgedPlayerptPT                 = '';
+SET @StormforgedPlayeritIT                 = '';
+SET @StormforgedPlayerUnk1                 = '';
+SET @StormforgedPlayerUnk2                 = '';
+SET @StormforgedPlayerUnk3                 = '';
+SET @StormforgedPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @StormforgedFactionNameenUS            = 'Stormforged Vanguard';
+SET @StormforgedFactionNamekoKR            = '';
+SET @StormforgedFactionNamefrFR            = '';
+SET @StormforgedFactionNamedeDE            = '';
+SET @StormforgedFactionNamezhCN            = '';
+SET @StormforgedFactionNamezhTW            = '';
+SET @StormforgedFactionNameesES            = '';
+SET @StormforgedFactionNameesMX            = '';
+SET @StormforgedFactionNameruRU            = '';
+SET @StormforgedFactionNamejaJP            = '';
+SET @StormforgedFactionNameptPT            = '';
+SET @StormforgedFactionNameitIT            = '';
+SET @StormforgedFactionNameUnk1            = '';
+SET @StormforgedFactionNameUnk2            = '';
+SET @StormforgedFactionNameUnk3            = '';
+SET @StormforgedFactionNameUnk4            = '';
+
+SET @StormforgedFactionDescriptionenUS     = 'Stormforged who resisted Loken\'s corruption and joined the Explorers\' League.';
+SET @StormforgedFactionDescriptionkoKR     = '';
+SET @StormforgedFactionDescriptionfrFR     = '';
+SET @StormforgedFactionDescriptiondeDE     = '';
+SET @StormforgedFactionDescriptionzhCN     = '';
+SET @StormforgedFactionDescriptionzhTW     = '';
+SET @StormforgedFactionDescriptionesES     = '';
+SET @StormforgedFactionDescriptionesMX     = '';
+SET @StormforgedFactionDescriptionruRU     = '';
+SET @StormforgedFactionDescriptionjaJP     = '';
+SET @StormforgedFactionDescriptionptPT     = '';
+SET @StormforgedFactionDescriptionitIT     = '';
+SET @StormforgedFactionDescriptionUnk1     = '';
+SET @StormforgedFactionDescriptionUnk2     = '';
+SET @StormforgedFactionDescriptionUnk3     = '';
+SET @StormforgedFactionDescriptionUnk4     = '';
+
+SET @StormforgedAchievementenUS            = 'Realm First! Level 80 Stormforged';
+SET @StormforgedAchievementkoKR            = '';
+SET @StormforgedAchievementfrFR            = '';
+SET @StormforgedAchievementdeDE            = '';
+SET @StormforgedAchievementzhCN            = '';
+SET @StormforgedAchievementzhTW            = '';
+SET @StormforgedAchievementesES            = '';
+SET @StormforgedAchievementesMX            = '';
+SET @StormforgedAchievementruRU            = '';
+SET @StormforgedAchievementjaJP            = '';
+SET @StormforgedAchievementptPT            = '';
+SET @StormforgedAchievementitIT            = '';
+SET @StormforgedAchievementUnk1            = '';
+SET @StormforgedAchievementUnk2            = '';
+SET @StormforgedAchievementUnk3            = '';
+SET @StormforgedAchievementUnk4            = '';
+
+SET @StormforgedAchievementDescriptionenUS = 'First Stormforged on the realm to achieve level 80.';
+SET @StormforgedAchievementDescriptionkoKR = '';
+SET @StormforgedAchievementDescriptionfrFR = '';
+SET @StormforgedAchievementDescriptiondeDE = '';
+SET @StormforgedAchievementDescriptionzhCN = '';
+SET @StormforgedAchievementDescriptionzhTW = '';
+SET @StormforgedAchievementDescriptionesES = '';
+SET @StormforgedAchievementDescriptionesMX = '';
+SET @StormforgedAchievementDescriptionruRU = '';
+SET @StormforgedAchievementDescriptionjaJP = '';
+SET @StormforgedAchievementDescriptionptPT = '';
+SET @StormforgedAchievementDescriptionitIT = '';
+SET @StormforgedAchievementDescriptionUnk1 = '';
+SET @StormforgedAchievementDescriptionUnk2 = '';
+SET @StormforgedAchievementDescriptionUnk3 = '';
+SET @StormforgedAchievementDescriptionUnk4 = '';

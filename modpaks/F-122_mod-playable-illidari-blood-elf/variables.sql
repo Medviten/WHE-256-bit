@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @IllidariBloodElfMask                       = 1 << (@IllidariBloodElf - 1);
+SET @IllidariBloodElfMask_2                     = IF(@IllidariBloodElf BETWEEN 65 AND 128, 1 << (@IllidariBloodElf - 65), 0); -- races 65-128
+SET @IllidariBloodElfHelmetMask                 = 1 << @IllidariBloodElf;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @IllidariBloodElfMask;
+SET @HordeMask_2                          = @HordeMask_2       | @IllidariBloodElfMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @IllidariBloodElfMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @IllidariBloodElfMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @IllidariBloodElfMask;
+SET @BowHunters_2                         = @BowHunters_2      | @IllidariBloodElfMask_2; -- races 65-128
+SET @IllidariBloodElfLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @IllidariBloodElfAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @IllidariBloodElfKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @IllidariBloodElfHome = @BloodElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @IllidariBloodElfKin = @BloodElf; -- voice, emotes and names are copied from this race
+SET @IllidariBloodElfFlags = @BloodElfFlags;
+SET @IllidariBloodElfExplorationSound = @BloodElfExplorationSound;
+SET @IllidariBloodElfCinematicSequence = @BloodElfCinematicSequence;
+SET @IllidariBloodElfBlood = 1;
+SET @IllidariBloodElfMaleModelPath = 'Character\\BloodElf_Dh\\Male\\BloodElfMale_DH.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @IllidariBloodElfFemaleModelPath = 'Character\\BloodElf_Dh\\Female\\BloodElfFemale_DH.m2';
+SET @IllidariBloodElfFaction = 1435; -- vacant slot
+SET @IllidariBloodElfPlayer = 1436; -- vacant slot
+
+-- Strings
+SET @IllidariBloodElfClientPrefix               = 'Be'; -- helmet models of this prefix
+SET @IllidariBloodElfClientString               = 'IllidariBloodElf';
+SET @IllidariBloodElfFacialHairCustomization1   = 'NORMAL';
+SET @IllidariBloodElfFacialHairCustomization2   = 'FEATURES';
+SET @IllidariBloodElfHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @IllidariBloodElfenUS                       = 'Illidari Blood Elf';
+SET @IllidariBloodElfkoKR                       = '';
+SET @IllidariBloodElffrFR                       = '';
+SET @IllidariBloodElfdeDE                       = '';
+SET @IllidariBloodElfzhCN                       = '';
+SET @IllidariBloodElfzhTW                       = '';
+SET @IllidariBloodElfesES                       = '';
+SET @IllidariBloodElfesMX                       = '';
+SET @IllidariBloodElfruRU                       = '';
+SET @IllidariBloodElfjaJP                       = '';
+SET @IllidariBloodElfptPT                       = '';
+SET @IllidariBloodElfitIT                       = '';
+SET @IllidariBloodElfUnk1                       = '';
+SET @IllidariBloodElfUnk2                       = '';
+SET @IllidariBloodElfUnk3                       = '';
+SET @IllidariBloodElfUnk4                       = '';
+
+SET @IllidariBloodElfFemaleenUS                 = '';
+SET @IllidariBloodElfFemalekoKR                 = '';
+SET @IllidariBloodElfFemalefrFR                 = '';
+SET @IllidariBloodElfFemaledeDE                 = '';
+SET @IllidariBloodElfFemalezhCN                 = '';
+SET @IllidariBloodElfFemalezhTW                 = '';
+SET @IllidariBloodElfFemaleesES                 = '';
+SET @IllidariBloodElfFemaleesMX                 = '';
+SET @IllidariBloodElfFemaleruRU                 = '';
+SET @IllidariBloodElfFemalejaJP                 = '';
+SET @IllidariBloodElfFemaleptPT                 = '';
+SET @IllidariBloodElfFemaleitIT                 = '';
+SET @IllidariBloodElfFemaleUnk1                 = '';
+SET @IllidariBloodElfFemaleUnk2                 = '';
+SET @IllidariBloodElfFemaleUnk3                 = '';
+SET @IllidariBloodElfFemaleUnk4                 = '';
+
+SET @IllidariBloodElfMaleenUS                   = '';
+SET @IllidariBloodElfMalekoKR                   = '';
+SET @IllidariBloodElfMalefrFR                   = '';
+SET @IllidariBloodElfMaledeDE                   = '';
+SET @IllidariBloodElfMalezhCN                   = '';
+SET @IllidariBloodElfMalezhTW                   = '';
+SET @IllidariBloodElfMaleesES                   = '';
+SET @IllidariBloodElfMaleesMX                   = '';
+SET @IllidariBloodElfMaleruRU                   = '';
+SET @IllidariBloodElfMalejaJP                   = '';
+SET @IllidariBloodElfMaleptPT                   = '';
+SET @IllidariBloodElfMaleitIT                   = '';
+SET @IllidariBloodElfMaleUnk1                   = '';
+SET @IllidariBloodElfMaleUnk2                   = '';
+SET @IllidariBloodElfMaleUnk3                   = '';
+SET @IllidariBloodElfMaleUnk4                   = '';
+
+SET @IllidariBloodElfRacialNameenUS             = 'Racial - Illidari Blood Elf';
+SET @IllidariBloodElfRacialNamekoKR             = '';
+SET @IllidariBloodElfRacialNamefrFR             = '';
+SET @IllidariBloodElfRacialNamedeDE             = '';
+SET @IllidariBloodElfRacialNamezhCN             = '';
+SET @IllidariBloodElfRacialNamezhTW             = '';
+SET @IllidariBloodElfRacialNameesES             = '';
+SET @IllidariBloodElfRacialNameesMX             = '';
+SET @IllidariBloodElfRacialNameruRU             = '';
+SET @IllidariBloodElfRacialNamejaJP             = '';
+SET @IllidariBloodElfRacialNameptPT             = '';
+SET @IllidariBloodElfRacialNameitIT             = '';
+SET @IllidariBloodElfRacialNameUnk1             = '';
+SET @IllidariBloodElfRacialNameUnk2             = '';
+SET @IllidariBloodElfRacialNameUnk3             = '';
+SET @IllidariBloodElfRacialNameUnk4             = '';
+
+SET @IllidariBloodElfPlayerenUS                 = '"PLAYER", Illidari Blood Elf';
+SET @IllidariBloodElfPlayerkoKR                 = '';
+SET @IllidariBloodElfPlayerfrFR                 = '';
+SET @IllidariBloodElfPlayerdeDE                 = '';
+SET @IllidariBloodElfPlayerzhCN                 = '';
+SET @IllidariBloodElfPlayerzhTW                 = '';
+SET @IllidariBloodElfPlayeresES                 = '';
+SET @IllidariBloodElfPlayeresMX                 = '';
+SET @IllidariBloodElfPlayerruRU                 = '';
+SET @IllidariBloodElfPlayerjaJP                 = '';
+SET @IllidariBloodElfPlayerptPT                 = '';
+SET @IllidariBloodElfPlayeritIT                 = '';
+SET @IllidariBloodElfPlayerUnk1                 = '';
+SET @IllidariBloodElfPlayerUnk2                 = '';
+SET @IllidariBloodElfPlayerUnk3                 = '';
+SET @IllidariBloodElfPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @IllidariBloodElfFactionNameenUS            = 'Illidari of Silvermoon';
+SET @IllidariBloodElfFactionNamekoKR            = '';
+SET @IllidariBloodElfFactionNamefrFR            = '';
+SET @IllidariBloodElfFactionNamedeDE            = '';
+SET @IllidariBloodElfFactionNamezhCN            = '';
+SET @IllidariBloodElfFactionNamezhTW            = '';
+SET @IllidariBloodElfFactionNameesES            = '';
+SET @IllidariBloodElfFactionNameesMX            = '';
+SET @IllidariBloodElfFactionNameruRU            = '';
+SET @IllidariBloodElfFactionNamejaJP            = '';
+SET @IllidariBloodElfFactionNameptPT            = '';
+SET @IllidariBloodElfFactionNameitIT            = '';
+SET @IllidariBloodElfFactionNameUnk1            = '';
+SET @IllidariBloodElfFactionNameUnk2            = '';
+SET @IllidariBloodElfFactionNameUnk3            = '';
+SET @IllidariBloodElfFactionNameUnk4            = '';
+
+SET @IllidariBloodElfFactionDescriptionenUS     = 'Blood elf demon hunters who returned to Silvermoon after the fall of the Black Temple.';
+SET @IllidariBloodElfFactionDescriptionkoKR     = '';
+SET @IllidariBloodElfFactionDescriptionfrFR     = '';
+SET @IllidariBloodElfFactionDescriptiondeDE     = '';
+SET @IllidariBloodElfFactionDescriptionzhCN     = '';
+SET @IllidariBloodElfFactionDescriptionzhTW     = '';
+SET @IllidariBloodElfFactionDescriptionesES     = '';
+SET @IllidariBloodElfFactionDescriptionesMX     = '';
+SET @IllidariBloodElfFactionDescriptionruRU     = '';
+SET @IllidariBloodElfFactionDescriptionjaJP     = '';
+SET @IllidariBloodElfFactionDescriptionptPT     = '';
+SET @IllidariBloodElfFactionDescriptionitIT     = '';
+SET @IllidariBloodElfFactionDescriptionUnk1     = '';
+SET @IllidariBloodElfFactionDescriptionUnk2     = '';
+SET @IllidariBloodElfFactionDescriptionUnk3     = '';
+SET @IllidariBloodElfFactionDescriptionUnk4     = '';
+
+SET @IllidariBloodElfAchievementenUS            = 'Realm First! Level 80 Illidari Blood Elf';
+SET @IllidariBloodElfAchievementkoKR            = '';
+SET @IllidariBloodElfAchievementfrFR            = '';
+SET @IllidariBloodElfAchievementdeDE            = '';
+SET @IllidariBloodElfAchievementzhCN            = '';
+SET @IllidariBloodElfAchievementzhTW            = '';
+SET @IllidariBloodElfAchievementesES            = '';
+SET @IllidariBloodElfAchievementesMX            = '';
+SET @IllidariBloodElfAchievementruRU            = '';
+SET @IllidariBloodElfAchievementjaJP            = '';
+SET @IllidariBloodElfAchievementptPT            = '';
+SET @IllidariBloodElfAchievementitIT            = '';
+SET @IllidariBloodElfAchievementUnk1            = '';
+SET @IllidariBloodElfAchievementUnk2            = '';
+SET @IllidariBloodElfAchievementUnk3            = '';
+SET @IllidariBloodElfAchievementUnk4            = '';
+
+SET @IllidariBloodElfAchievementDescriptionenUS = 'First Illidari Blood Elf on the realm to achieve level 80.';
+SET @IllidariBloodElfAchievementDescriptionkoKR = '';
+SET @IllidariBloodElfAchievementDescriptionfrFR = '';
+SET @IllidariBloodElfAchievementDescriptiondeDE = '';
+SET @IllidariBloodElfAchievementDescriptionzhCN = '';
+SET @IllidariBloodElfAchievementDescriptionzhTW = '';
+SET @IllidariBloodElfAchievementDescriptionesES = '';
+SET @IllidariBloodElfAchievementDescriptionesMX = '';
+SET @IllidariBloodElfAchievementDescriptionruRU = '';
+SET @IllidariBloodElfAchievementDescriptionjaJP = '';
+SET @IllidariBloodElfAchievementDescriptionptPT = '';
+SET @IllidariBloodElfAchievementDescriptionitIT = '';
+SET @IllidariBloodElfAchievementDescriptionUnk1 = '';
+SET @IllidariBloodElfAchievementDescriptionUnk2 = '';
+SET @IllidariBloodElfAchievementDescriptionUnk3 = '';
+SET @IllidariBloodElfAchievementDescriptionUnk4 = '';

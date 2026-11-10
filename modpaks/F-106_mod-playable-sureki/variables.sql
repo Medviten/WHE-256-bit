@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @SurekiMask                       = 1 << (@Sureki - 1);
+SET @SurekiMask_2                     = IF(@Sureki BETWEEN 65 AND 128, 1 << (@Sureki - 65), 0); -- races 65-128
+SET @SurekiHelmetMask                 = 1 << @Sureki;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @SurekiMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @SurekiMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @SurekiMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @SurekiMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @SurekiMask;
+SET @BowHunters_2                         = @BowHunters_2      | @SurekiMask_2; -- races 65-128
+SET @SurekiLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SurekiAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SurekiKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @SurekiHome = @NightElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @SurekiKin = @NightElf; -- voice, emotes and names are copied from this race
+SET @SurekiFlags = @NightElfFlags;
+SET @SurekiExplorationSound = @NightElfExplorationSound;
+SET @SurekiCinematicSequence = @NightElfCinematicSequence;
+SET @SurekiBlood = 1;
+SET @SurekiMaleModelPath = 'Creature\\NerubianEvolvedBoss\\SurekiPlayerMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @SurekiFemaleModelPath = 'Creature\\NerubianEvolved\\SurekiPlayerFemale.m2';
+SET @SurekiFaction = 1403; -- vacant slot
+SET @SurekiPlayer = 1404; -- vacant slot
+
+-- Strings
+SET @SurekiClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @SurekiClientString               = 'Sureki';
+SET @SurekiFacialHairCustomization1   = 'NORMAL';
+SET @SurekiFacialHairCustomization2   = 'NORMAL';
+SET @SurekiHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @SurekienUS                       = 'Sureki';
+SET @SurekikoKR                       = '';
+SET @SurekifrFR                       = '';
+SET @SurekideDE                       = '';
+SET @SurekizhCN                       = '';
+SET @SurekizhTW                       = '';
+SET @SurekiesES                       = '';
+SET @SurekiesMX                       = '';
+SET @SurekiruRU                       = '';
+SET @SurekijaJP                       = '';
+SET @SurekiptPT                       = '';
+SET @SurekiitIT                       = '';
+SET @SurekiUnk1                       = '';
+SET @SurekiUnk2                       = '';
+SET @SurekiUnk3                       = '';
+SET @SurekiUnk4                       = '';
+
+SET @SurekiFemaleenUS                 = '';
+SET @SurekiFemalekoKR                 = '';
+SET @SurekiFemalefrFR                 = '';
+SET @SurekiFemaledeDE                 = '';
+SET @SurekiFemalezhCN                 = '';
+SET @SurekiFemalezhTW                 = '';
+SET @SurekiFemaleesES                 = '';
+SET @SurekiFemaleesMX                 = '';
+SET @SurekiFemaleruRU                 = '';
+SET @SurekiFemalejaJP                 = '';
+SET @SurekiFemaleptPT                 = '';
+SET @SurekiFemaleitIT                 = '';
+SET @SurekiFemaleUnk1                 = '';
+SET @SurekiFemaleUnk2                 = '';
+SET @SurekiFemaleUnk3                 = '';
+SET @SurekiFemaleUnk4                 = '';
+
+SET @SurekiMaleenUS                   = '';
+SET @SurekiMalekoKR                   = '';
+SET @SurekiMalefrFR                   = '';
+SET @SurekiMaledeDE                   = '';
+SET @SurekiMalezhCN                   = '';
+SET @SurekiMalezhTW                   = '';
+SET @SurekiMaleesES                   = '';
+SET @SurekiMaleesMX                   = '';
+SET @SurekiMaleruRU                   = '';
+SET @SurekiMalejaJP                   = '';
+SET @SurekiMaleptPT                   = '';
+SET @SurekiMaleitIT                   = '';
+SET @SurekiMaleUnk1                   = '';
+SET @SurekiMaleUnk2                   = '';
+SET @SurekiMaleUnk3                   = '';
+SET @SurekiMaleUnk4                   = '';
+
+SET @SurekiRacialNameenUS             = 'Racial - Sureki';
+SET @SurekiRacialNamekoKR             = '';
+SET @SurekiRacialNamefrFR             = '';
+SET @SurekiRacialNamedeDE             = '';
+SET @SurekiRacialNamezhCN             = '';
+SET @SurekiRacialNamezhTW             = '';
+SET @SurekiRacialNameesES             = '';
+SET @SurekiRacialNameesMX             = '';
+SET @SurekiRacialNameruRU             = '';
+SET @SurekiRacialNamejaJP             = '';
+SET @SurekiRacialNameptPT             = '';
+SET @SurekiRacialNameitIT             = '';
+SET @SurekiRacialNameUnk1             = '';
+SET @SurekiRacialNameUnk2             = '';
+SET @SurekiRacialNameUnk3             = '';
+SET @SurekiRacialNameUnk4             = '';
+
+SET @SurekiPlayerenUS                 = '"PLAYER", Sureki';
+SET @SurekiPlayerkoKR                 = '';
+SET @SurekiPlayerfrFR                 = '';
+SET @SurekiPlayerdeDE                 = '';
+SET @SurekiPlayerzhCN                 = '';
+SET @SurekiPlayerzhTW                 = '';
+SET @SurekiPlayeresES                 = '';
+SET @SurekiPlayeresMX                 = '';
+SET @SurekiPlayerruRU                 = '';
+SET @SurekiPlayerjaJP                 = '';
+SET @SurekiPlayerptPT                 = '';
+SET @SurekiPlayeritIT                 = '';
+SET @SurekiPlayerUnk1                 = '';
+SET @SurekiPlayerUnk2                 = '';
+SET @SurekiPlayerUnk3                 = '';
+SET @SurekiPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @SurekiFactionNameenUS            = 'Sureki Defectors';
+SET @SurekiFactionNamekoKR            = '';
+SET @SurekiFactionNamefrFR            = '';
+SET @SurekiFactionNamedeDE            = '';
+SET @SurekiFactionNamezhCN            = '';
+SET @SurekiFactionNamezhTW            = '';
+SET @SurekiFactionNameesES            = '';
+SET @SurekiFactionNameesMX            = '';
+SET @SurekiFactionNameruRU            = '';
+SET @SurekiFactionNamejaJP            = '';
+SET @SurekiFactionNameptPT            = '';
+SET @SurekiFactionNameitIT            = '';
+SET @SurekiFactionNameUnk1            = '';
+SET @SurekiFactionNameUnk2            = '';
+SET @SurekiFactionNameUnk3            = '';
+SET @SurekiFactionNameUnk4            = '';
+
+SET @SurekiFactionDescriptionenUS     = 'Nerubians of Azj-Kahet who fled the war beneath Khaz Algar and offered their silk to the Alliance.';
+SET @SurekiFactionDescriptionkoKR     = '';
+SET @SurekiFactionDescriptionfrFR     = '';
+SET @SurekiFactionDescriptiondeDE     = '';
+SET @SurekiFactionDescriptionzhCN     = '';
+SET @SurekiFactionDescriptionzhTW     = '';
+SET @SurekiFactionDescriptionesES     = '';
+SET @SurekiFactionDescriptionesMX     = '';
+SET @SurekiFactionDescriptionruRU     = '';
+SET @SurekiFactionDescriptionjaJP     = '';
+SET @SurekiFactionDescriptionptPT     = '';
+SET @SurekiFactionDescriptionitIT     = '';
+SET @SurekiFactionDescriptionUnk1     = '';
+SET @SurekiFactionDescriptionUnk2     = '';
+SET @SurekiFactionDescriptionUnk3     = '';
+SET @SurekiFactionDescriptionUnk4     = '';
+
+SET @SurekiAchievementenUS            = 'Realm First! Level 80 Sureki';
+SET @SurekiAchievementkoKR            = '';
+SET @SurekiAchievementfrFR            = '';
+SET @SurekiAchievementdeDE            = '';
+SET @SurekiAchievementzhCN            = '';
+SET @SurekiAchievementzhTW            = '';
+SET @SurekiAchievementesES            = '';
+SET @SurekiAchievementesMX            = '';
+SET @SurekiAchievementruRU            = '';
+SET @SurekiAchievementjaJP            = '';
+SET @SurekiAchievementptPT            = '';
+SET @SurekiAchievementitIT            = '';
+SET @SurekiAchievementUnk1            = '';
+SET @SurekiAchievementUnk2            = '';
+SET @SurekiAchievementUnk3            = '';
+SET @SurekiAchievementUnk4            = '';
+
+SET @SurekiAchievementDescriptionenUS = 'First Sureki on the realm to achieve level 80.';
+SET @SurekiAchievementDescriptionkoKR = '';
+SET @SurekiAchievementDescriptionfrFR = '';
+SET @SurekiAchievementDescriptiondeDE = '';
+SET @SurekiAchievementDescriptionzhCN = '';
+SET @SurekiAchievementDescriptionzhTW = '';
+SET @SurekiAchievementDescriptionesES = '';
+SET @SurekiAchievementDescriptionesMX = '';
+SET @SurekiAchievementDescriptionruRU = '';
+SET @SurekiAchievementDescriptionjaJP = '';
+SET @SurekiAchievementDescriptionptPT = '';
+SET @SurekiAchievementDescriptionitIT = '';
+SET @SurekiAchievementDescriptionUnk1 = '';
+SET @SurekiAchievementDescriptionUnk2 = '';
+SET @SurekiAchievementDescriptionUnk3 = '';
+SET @SurekiAchievementDescriptionUnk4 = '';

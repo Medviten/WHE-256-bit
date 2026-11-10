@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @SaberonMask                       = 1 << (@Saberon - 1);
+SET @SaberonMask_2                     = IF(@Saberon BETWEEN 65 AND 128, 1 << (@Saberon - 65), 0); -- races 65-128
+SET @SaberonHelmetMask                 = 1 << @Saberon;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @SaberonMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @SaberonMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @SaberonMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @SaberonMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @SaberonMask;
+SET @BowHunters_2                         = @BowHunters_2      | @SaberonMask_2; -- races 65-128
+SET @SaberonLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SaberonAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SaberonKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @SaberonHome = @NightElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @SaberonKin = @NightElf; -- voice, emotes and names are copied from this race
+SET @SaberonFlags = @NightElfFlags;
+SET @SaberonExplorationSound = @NightElfExplorationSound;
+SET @SaberonCinematicSequence = @NightElfCinematicSequence;
+SET @SaberonBlood = 1;
+SET @SaberonMaleModelPath = 'custom\\saberon\\native\\saberon.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @SaberonFemaleModelPath = 'custom\\saberon\\native\\saberon.m2';
+SET @SaberonFaction = 1411; -- vacant slot
+SET @SaberonPlayer = 1412; -- vacant slot
+
+-- Strings
+SET @SaberonClientPrefix               = 'Ta'; -- helmet models of this prefix
+SET @SaberonClientString               = 'Saberon';
+SET @SaberonFacialHairCustomization1   = 'NORMAL';
+SET @SaberonFacialHairCustomization2   = 'NORMAL';
+SET @SaberonHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @SaberonenUS                       = 'Saberon';
+SET @SaberonkoKR                       = '';
+SET @SaberonfrFR                       = '';
+SET @SaberondeDE                       = '';
+SET @SaberonzhCN                       = '';
+SET @SaberonzhTW                       = '';
+SET @SaberonesES                       = '';
+SET @SaberonesMX                       = '';
+SET @SaberonruRU                       = '';
+SET @SaberonjaJP                       = '';
+SET @SaberonptPT                       = '';
+SET @SaberonitIT                       = '';
+SET @SaberonUnk1                       = '';
+SET @SaberonUnk2                       = '';
+SET @SaberonUnk3                       = '';
+SET @SaberonUnk4                       = '';
+
+SET @SaberonFemaleenUS                 = '';
+SET @SaberonFemalekoKR                 = '';
+SET @SaberonFemalefrFR                 = '';
+SET @SaberonFemaledeDE                 = '';
+SET @SaberonFemalezhCN                 = '';
+SET @SaberonFemalezhTW                 = '';
+SET @SaberonFemaleesES                 = '';
+SET @SaberonFemaleesMX                 = '';
+SET @SaberonFemaleruRU                 = '';
+SET @SaberonFemalejaJP                 = '';
+SET @SaberonFemaleptPT                 = '';
+SET @SaberonFemaleitIT                 = '';
+SET @SaberonFemaleUnk1                 = '';
+SET @SaberonFemaleUnk2                 = '';
+SET @SaberonFemaleUnk3                 = '';
+SET @SaberonFemaleUnk4                 = '';
+
+SET @SaberonMaleenUS                   = '';
+SET @SaberonMalekoKR                   = '';
+SET @SaberonMalefrFR                   = '';
+SET @SaberonMaledeDE                   = '';
+SET @SaberonMalezhCN                   = '';
+SET @SaberonMalezhTW                   = '';
+SET @SaberonMaleesES                   = '';
+SET @SaberonMaleesMX                   = '';
+SET @SaberonMaleruRU                   = '';
+SET @SaberonMalejaJP                   = '';
+SET @SaberonMaleptPT                   = '';
+SET @SaberonMaleitIT                   = '';
+SET @SaberonMaleUnk1                   = '';
+SET @SaberonMaleUnk2                   = '';
+SET @SaberonMaleUnk3                   = '';
+SET @SaberonMaleUnk4                   = '';
+
+SET @SaberonRacialNameenUS             = 'Racial - Saberon';
+SET @SaberonRacialNamekoKR             = '';
+SET @SaberonRacialNamefrFR             = '';
+SET @SaberonRacialNamedeDE             = '';
+SET @SaberonRacialNamezhCN             = '';
+SET @SaberonRacialNamezhTW             = '';
+SET @SaberonRacialNameesES             = '';
+SET @SaberonRacialNameesMX             = '';
+SET @SaberonRacialNameruRU             = '';
+SET @SaberonRacialNamejaJP             = '';
+SET @SaberonRacialNameptPT             = '';
+SET @SaberonRacialNameitIT             = '';
+SET @SaberonRacialNameUnk1             = '';
+SET @SaberonRacialNameUnk2             = '';
+SET @SaberonRacialNameUnk3             = '';
+SET @SaberonRacialNameUnk4             = '';
+
+SET @SaberonPlayerenUS                 = '"PLAYER", Saberon';
+SET @SaberonPlayerkoKR                 = '';
+SET @SaberonPlayerfrFR                 = '';
+SET @SaberonPlayerdeDE                 = '';
+SET @SaberonPlayerzhCN                 = '';
+SET @SaberonPlayerzhTW                 = '';
+SET @SaberonPlayeresES                 = '';
+SET @SaberonPlayeresMX                 = '';
+SET @SaberonPlayerruRU                 = '';
+SET @SaberonPlayerjaJP                 = '';
+SET @SaberonPlayerptPT                 = '';
+SET @SaberonPlayeritIT                 = '';
+SET @SaberonPlayerUnk1                 = '';
+SET @SaberonPlayerUnk2                 = '';
+SET @SaberonPlayerUnk3                 = '';
+SET @SaberonPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @SaberonFactionNameenUS            = 'Saberon Pride';
+SET @SaberonFactionNamekoKR            = '';
+SET @SaberonFactionNamefrFR            = '';
+SET @SaberonFactionNamedeDE            = '';
+SET @SaberonFactionNamezhCN            = '';
+SET @SaberonFactionNamezhTW            = '';
+SET @SaberonFactionNameesES            = '';
+SET @SaberonFactionNameesMX            = '';
+SET @SaberonFactionNameruRU            = '';
+SET @SaberonFactionNamejaJP            = '';
+SET @SaberonFactionNameptPT            = '';
+SET @SaberonFactionNameitIT            = '';
+SET @SaberonFactionNameUnk1            = '';
+SET @SaberonFactionNameUnk2            = '';
+SET @SaberonFactionNameUnk3            = '';
+SET @SaberonFactionNameUnk4            = '';
+
+SET @SaberonFactionDescriptionenUS     = 'Saberon of Draenor\'s jungles who hunt beside the night elves\' Sentinels.';
+SET @SaberonFactionDescriptionkoKR     = '';
+SET @SaberonFactionDescriptionfrFR     = '';
+SET @SaberonFactionDescriptiondeDE     = '';
+SET @SaberonFactionDescriptionzhCN     = '';
+SET @SaberonFactionDescriptionzhTW     = '';
+SET @SaberonFactionDescriptionesES     = '';
+SET @SaberonFactionDescriptionesMX     = '';
+SET @SaberonFactionDescriptionruRU     = '';
+SET @SaberonFactionDescriptionjaJP     = '';
+SET @SaberonFactionDescriptionptPT     = '';
+SET @SaberonFactionDescriptionitIT     = '';
+SET @SaberonFactionDescriptionUnk1     = '';
+SET @SaberonFactionDescriptionUnk2     = '';
+SET @SaberonFactionDescriptionUnk3     = '';
+SET @SaberonFactionDescriptionUnk4     = '';
+
+SET @SaberonAchievementenUS            = 'Realm First! Level 80 Saberon';
+SET @SaberonAchievementkoKR            = '';
+SET @SaberonAchievementfrFR            = '';
+SET @SaberonAchievementdeDE            = '';
+SET @SaberonAchievementzhCN            = '';
+SET @SaberonAchievementzhTW            = '';
+SET @SaberonAchievementesES            = '';
+SET @SaberonAchievementesMX            = '';
+SET @SaberonAchievementruRU            = '';
+SET @SaberonAchievementjaJP            = '';
+SET @SaberonAchievementptPT            = '';
+SET @SaberonAchievementitIT            = '';
+SET @SaberonAchievementUnk1            = '';
+SET @SaberonAchievementUnk2            = '';
+SET @SaberonAchievementUnk3            = '';
+SET @SaberonAchievementUnk4            = '';
+
+SET @SaberonAchievementDescriptionenUS = 'First Saberon on the realm to achieve level 80.';
+SET @SaberonAchievementDescriptionkoKR = '';
+SET @SaberonAchievementDescriptionfrFR = '';
+SET @SaberonAchievementDescriptiondeDE = '';
+SET @SaberonAchievementDescriptionzhCN = '';
+SET @SaberonAchievementDescriptionzhTW = '';
+SET @SaberonAchievementDescriptionesES = '';
+SET @SaberonAchievementDescriptionesMX = '';
+SET @SaberonAchievementDescriptionruRU = '';
+SET @SaberonAchievementDescriptionjaJP = '';
+SET @SaberonAchievementDescriptionptPT = '';
+SET @SaberonAchievementDescriptionitIT = '';
+SET @SaberonAchievementDescriptionUnk1 = '';
+SET @SaberonAchievementDescriptionUnk2 = '';
+SET @SaberonAchievementDescriptionUnk3 = '';
+SET @SaberonAchievementDescriptionUnk4 = '';

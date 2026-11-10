@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @HarpyMask                       = 1 << (@Harpy - 1);
+SET @HarpyMask_2                     = IF(@Harpy BETWEEN 65 AND 128, 1 << (@Harpy - 65), 0); -- races 65-128
+SET @HarpyHelmetMask                 = 1 << @Harpy;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @HarpyMask;
+SET @HordeMask_2                          = @HordeMask_2       | @HarpyMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @HarpyMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @HarpyMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @HarpyMask;
+SET @BowHunters_2                         = @BowHunters_2      | @HarpyMask_2; -- races 65-128
+SET @HarpyLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HarpyAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HarpyKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @HarpyHome = @Tauren; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @HarpyKin = @BloodElf; -- voice, emotes and names are copied from this race
+SET @HarpyFlags = @TaurenFlags;
+SET @HarpyExplorationSound = @TaurenExplorationSound;
+SET @HarpyCinematicSequence = @TaurenCinematicSequence;
+SET @HarpyBlood = 1;
+SET @HarpyMaleModelPath = 'Character\\Harpy\\Female\\HarpyFemale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @HarpyFemaleModelPath = 'Character\\Harpy\\Female\\HarpyFemale.m2';
+SET @HarpyFaction = 1433; -- vacant slot
+SET @HarpyPlayer = 1434; -- vacant slot
+
+-- Strings
+SET @HarpyClientPrefix               = 'Be'; -- helmet models of this prefix
+SET @HarpyClientString               = 'Harpy';
+SET @HarpyFacialHairCustomization1   = 'NORMAL';
+SET @HarpyFacialHairCustomization2   = 'EARRINGS';
+SET @HarpyHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @HarpyenUS                       = 'Harpy';
+SET @HarpykoKR                       = '';
+SET @HarpyfrFR                       = '';
+SET @HarpydeDE                       = '';
+SET @HarpyzhCN                       = '';
+SET @HarpyzhTW                       = '';
+SET @HarpyesES                       = '';
+SET @HarpyesMX                       = '';
+SET @HarpyruRU                       = '';
+SET @HarpyjaJP                       = '';
+SET @HarpyptPT                       = '';
+SET @HarpyitIT                       = '';
+SET @HarpyUnk1                       = '';
+SET @HarpyUnk2                       = '';
+SET @HarpyUnk3                       = '';
+SET @HarpyUnk4                       = '';
+
+SET @HarpyFemaleenUS                 = '';
+SET @HarpyFemalekoKR                 = '';
+SET @HarpyFemalefrFR                 = '';
+SET @HarpyFemaledeDE                 = '';
+SET @HarpyFemalezhCN                 = '';
+SET @HarpyFemalezhTW                 = '';
+SET @HarpyFemaleesES                 = '';
+SET @HarpyFemaleesMX                 = '';
+SET @HarpyFemaleruRU                 = '';
+SET @HarpyFemalejaJP                 = '';
+SET @HarpyFemaleptPT                 = '';
+SET @HarpyFemaleitIT                 = '';
+SET @HarpyFemaleUnk1                 = '';
+SET @HarpyFemaleUnk2                 = '';
+SET @HarpyFemaleUnk3                 = '';
+SET @HarpyFemaleUnk4                 = '';
+
+SET @HarpyMaleenUS                   = '';
+SET @HarpyMalekoKR                   = '';
+SET @HarpyMalefrFR                   = '';
+SET @HarpyMaledeDE                   = '';
+SET @HarpyMalezhCN                   = '';
+SET @HarpyMalezhTW                   = '';
+SET @HarpyMaleesES                   = '';
+SET @HarpyMaleesMX                   = '';
+SET @HarpyMaleruRU                   = '';
+SET @HarpyMalejaJP                   = '';
+SET @HarpyMaleptPT                   = '';
+SET @HarpyMaleitIT                   = '';
+SET @HarpyMaleUnk1                   = '';
+SET @HarpyMaleUnk2                   = '';
+SET @HarpyMaleUnk3                   = '';
+SET @HarpyMaleUnk4                   = '';
+
+SET @HarpyRacialNameenUS             = 'Racial - Harpy';
+SET @HarpyRacialNamekoKR             = '';
+SET @HarpyRacialNamefrFR             = '';
+SET @HarpyRacialNamedeDE             = '';
+SET @HarpyRacialNamezhCN             = '';
+SET @HarpyRacialNamezhTW             = '';
+SET @HarpyRacialNameesES             = '';
+SET @HarpyRacialNameesMX             = '';
+SET @HarpyRacialNameruRU             = '';
+SET @HarpyRacialNamejaJP             = '';
+SET @HarpyRacialNameptPT             = '';
+SET @HarpyRacialNameitIT             = '';
+SET @HarpyRacialNameUnk1             = '';
+SET @HarpyRacialNameUnk2             = '';
+SET @HarpyRacialNameUnk3             = '';
+SET @HarpyRacialNameUnk4             = '';
+
+SET @HarpyPlayerenUS                 = '"PLAYER", Harpy';
+SET @HarpyPlayerkoKR                 = '';
+SET @HarpyPlayerfrFR                 = '';
+SET @HarpyPlayerdeDE                 = '';
+SET @HarpyPlayerzhCN                 = '';
+SET @HarpyPlayerzhTW                 = '';
+SET @HarpyPlayeresES                 = '';
+SET @HarpyPlayeresMX                 = '';
+SET @HarpyPlayerruRU                 = '';
+SET @HarpyPlayerjaJP                 = '';
+SET @HarpyPlayerptPT                 = '';
+SET @HarpyPlayeritIT                 = '';
+SET @HarpyPlayerUnk1                 = '';
+SET @HarpyPlayerUnk2                 = '';
+SET @HarpyPlayerUnk3                 = '';
+SET @HarpyPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @HarpyFactionNameenUS            = 'Windfury Defectors';
+SET @HarpyFactionNamekoKR            = '';
+SET @HarpyFactionNamefrFR            = '';
+SET @HarpyFactionNamedeDE            = '';
+SET @HarpyFactionNamezhCN            = '';
+SET @HarpyFactionNamezhTW            = '';
+SET @HarpyFactionNameesES            = '';
+SET @HarpyFactionNameesMX            = '';
+SET @HarpyFactionNameruRU            = '';
+SET @HarpyFactionNamejaJP            = '';
+SET @HarpyFactionNameptPT            = '';
+SET @HarpyFactionNameitIT            = '';
+SET @HarpyFactionNameUnk1            = '';
+SET @HarpyFactionNameUnk2            = '';
+SET @HarpyFactionNameUnk3            = '';
+SET @HarpyFactionNameUnk4            = '';
+
+SET @HarpyFactionDescriptionenUS     = 'Harpies who broke from their flocks and made peace with Thunder Bluff.';
+SET @HarpyFactionDescriptionkoKR     = '';
+SET @HarpyFactionDescriptionfrFR     = '';
+SET @HarpyFactionDescriptiondeDE     = '';
+SET @HarpyFactionDescriptionzhCN     = '';
+SET @HarpyFactionDescriptionzhTW     = '';
+SET @HarpyFactionDescriptionesES     = '';
+SET @HarpyFactionDescriptionesMX     = '';
+SET @HarpyFactionDescriptionruRU     = '';
+SET @HarpyFactionDescriptionjaJP     = '';
+SET @HarpyFactionDescriptionptPT     = '';
+SET @HarpyFactionDescriptionitIT     = '';
+SET @HarpyFactionDescriptionUnk1     = '';
+SET @HarpyFactionDescriptionUnk2     = '';
+SET @HarpyFactionDescriptionUnk3     = '';
+SET @HarpyFactionDescriptionUnk4     = '';
+
+SET @HarpyAchievementenUS            = 'Realm First! Level 80 Harpy';
+SET @HarpyAchievementkoKR            = '';
+SET @HarpyAchievementfrFR            = '';
+SET @HarpyAchievementdeDE            = '';
+SET @HarpyAchievementzhCN            = '';
+SET @HarpyAchievementzhTW            = '';
+SET @HarpyAchievementesES            = '';
+SET @HarpyAchievementesMX            = '';
+SET @HarpyAchievementruRU            = '';
+SET @HarpyAchievementjaJP            = '';
+SET @HarpyAchievementptPT            = '';
+SET @HarpyAchievementitIT            = '';
+SET @HarpyAchievementUnk1            = '';
+SET @HarpyAchievementUnk2            = '';
+SET @HarpyAchievementUnk3            = '';
+SET @HarpyAchievementUnk4            = '';
+
+SET @HarpyAchievementDescriptionenUS = 'First Harpy on the realm to achieve level 80.';
+SET @HarpyAchievementDescriptionkoKR = '';
+SET @HarpyAchievementDescriptionfrFR = '';
+SET @HarpyAchievementDescriptiondeDE = '';
+SET @HarpyAchievementDescriptionzhCN = '';
+SET @HarpyAchievementDescriptionzhTW = '';
+SET @HarpyAchievementDescriptionesES = '';
+SET @HarpyAchievementDescriptionesMX = '';
+SET @HarpyAchievementDescriptionruRU = '';
+SET @HarpyAchievementDescriptionjaJP = '';
+SET @HarpyAchievementDescriptionptPT = '';
+SET @HarpyAchievementDescriptionitIT = '';
+SET @HarpyAchievementDescriptionUnk1 = '';
+SET @HarpyAchievementDescriptionUnk2 = '';
+SET @HarpyAchievementDescriptionUnk3 = '';
+SET @HarpyAchievementDescriptionUnk4 = '';

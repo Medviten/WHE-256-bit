@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @SporelingMask                       = 1 << (@Sporeling - 1);
+SET @SporelingMask_2                     = IF(@Sporeling BETWEEN 65 AND 128, 1 << (@Sporeling - 65), 0); -- races 65-128
+SET @SporelingHelmetMask                 = 1 << @Sporeling;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @SporelingMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @SporelingMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @SporelingMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @SporelingMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @SporelingMask;
+SET @BowHunters_2                         = @BowHunters_2      | @SporelingMask_2; -- races 65-128
+SET @SporelingLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SporelingAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @SporelingKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @SporelingHome = @Gnome; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @SporelingKin = @Gnome; -- voice, emotes and names are copied from this race
+SET @SporelingFlags = @GnomeFlags;
+SET @SporelingExplorationSound = @GnomeExplorationSound;
+SET @SporelingCinematicSequence = @GnomeCinematicSequence;
+SET @SporelingBlood = 1;
+SET @SporelingMaleModelPath = 'Creature\\Sporeling\\SporelingPlayer.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @SporelingFemaleModelPath = 'Creature\\Sporeling\\SporelingPlayer.m2';
+SET @SporelingFaction = 1415; -- vacant slot
+SET @SporelingPlayer = 1416; -- vacant slot
+
+-- Strings
+SET @SporelingClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @SporelingClientString               = 'Sporeling';
+SET @SporelingFacialHairCustomization1   = 'NORMAL';
+SET @SporelingFacialHairCustomization2   = 'NORMAL';
+SET @SporelingHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @SporelingenUS                       = 'Sporeling';
+SET @SporelingkoKR                       = '';
+SET @SporelingfrFR                       = '';
+SET @SporelingdeDE                       = '';
+SET @SporelingzhCN                       = '';
+SET @SporelingzhTW                       = '';
+SET @SporelingesES                       = '';
+SET @SporelingesMX                       = '';
+SET @SporelingruRU                       = '';
+SET @SporelingjaJP                       = '';
+SET @SporelingptPT                       = '';
+SET @SporelingitIT                       = '';
+SET @SporelingUnk1                       = '';
+SET @SporelingUnk2                       = '';
+SET @SporelingUnk3                       = '';
+SET @SporelingUnk4                       = '';
+
+SET @SporelingFemaleenUS                 = '';
+SET @SporelingFemalekoKR                 = '';
+SET @SporelingFemalefrFR                 = '';
+SET @SporelingFemaledeDE                 = '';
+SET @SporelingFemalezhCN                 = '';
+SET @SporelingFemalezhTW                 = '';
+SET @SporelingFemaleesES                 = '';
+SET @SporelingFemaleesMX                 = '';
+SET @SporelingFemaleruRU                 = '';
+SET @SporelingFemalejaJP                 = '';
+SET @SporelingFemaleptPT                 = '';
+SET @SporelingFemaleitIT                 = '';
+SET @SporelingFemaleUnk1                 = '';
+SET @SporelingFemaleUnk2                 = '';
+SET @SporelingFemaleUnk3                 = '';
+SET @SporelingFemaleUnk4                 = '';
+
+SET @SporelingMaleenUS                   = '';
+SET @SporelingMalekoKR                   = '';
+SET @SporelingMalefrFR                   = '';
+SET @SporelingMaledeDE                   = '';
+SET @SporelingMalezhCN                   = '';
+SET @SporelingMalezhTW                   = '';
+SET @SporelingMaleesES                   = '';
+SET @SporelingMaleesMX                   = '';
+SET @SporelingMaleruRU                   = '';
+SET @SporelingMalejaJP                   = '';
+SET @SporelingMaleptPT                   = '';
+SET @SporelingMaleitIT                   = '';
+SET @SporelingMaleUnk1                   = '';
+SET @SporelingMaleUnk2                   = '';
+SET @SporelingMaleUnk3                   = '';
+SET @SporelingMaleUnk4                   = '';
+
+SET @SporelingRacialNameenUS             = 'Racial - Sporeling';
+SET @SporelingRacialNamekoKR             = '';
+SET @SporelingRacialNamefrFR             = '';
+SET @SporelingRacialNamedeDE             = '';
+SET @SporelingRacialNamezhCN             = '';
+SET @SporelingRacialNamezhTW             = '';
+SET @SporelingRacialNameesES             = '';
+SET @SporelingRacialNameesMX             = '';
+SET @SporelingRacialNameruRU             = '';
+SET @SporelingRacialNamejaJP             = '';
+SET @SporelingRacialNameptPT             = '';
+SET @SporelingRacialNameitIT             = '';
+SET @SporelingRacialNameUnk1             = '';
+SET @SporelingRacialNameUnk2             = '';
+SET @SporelingRacialNameUnk3             = '';
+SET @SporelingRacialNameUnk4             = '';
+
+SET @SporelingPlayerenUS                 = '"PLAYER", Sporeling';
+SET @SporelingPlayerkoKR                 = '';
+SET @SporelingPlayerfrFR                 = '';
+SET @SporelingPlayerdeDE                 = '';
+SET @SporelingPlayerzhCN                 = '';
+SET @SporelingPlayerzhTW                 = '';
+SET @SporelingPlayeresES                 = '';
+SET @SporelingPlayeresMX                 = '';
+SET @SporelingPlayerruRU                 = '';
+SET @SporelingPlayerjaJP                 = '';
+SET @SporelingPlayerptPT                 = '';
+SET @SporelingPlayeritIT                 = '';
+SET @SporelingPlayerUnk1                 = '';
+SET @SporelingPlayerUnk2                 = '';
+SET @SporelingPlayerUnk3                 = '';
+SET @SporelingPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @SporelingFactionNameenUS            = 'Sporeggar Envoys';
+SET @SporelingFactionNamekoKR            = '';
+SET @SporelingFactionNamefrFR            = '';
+SET @SporelingFactionNamedeDE            = '';
+SET @SporelingFactionNamezhCN            = '';
+SET @SporelingFactionNamezhTW            = '';
+SET @SporelingFactionNameesES            = '';
+SET @SporelingFactionNameesMX            = '';
+SET @SporelingFactionNameruRU            = '';
+SET @SporelingFactionNamejaJP            = '';
+SET @SporelingFactionNameptPT            = '';
+SET @SporelingFactionNameitIT            = '';
+SET @SporelingFactionNameUnk1            = '';
+SET @SporelingFactionNameUnk2            = '';
+SET @SporelingFactionNameUnk3            = '';
+SET @SporelingFactionNameUnk4            = '';
+
+SET @SporelingFactionDescriptionenUS     = 'Sporelings of Sporeggar who came to Azeroth to see the world.';
+SET @SporelingFactionDescriptionkoKR     = '';
+SET @SporelingFactionDescriptionfrFR     = '';
+SET @SporelingFactionDescriptiondeDE     = '';
+SET @SporelingFactionDescriptionzhCN     = '';
+SET @SporelingFactionDescriptionzhTW     = '';
+SET @SporelingFactionDescriptionesES     = '';
+SET @SporelingFactionDescriptionesMX     = '';
+SET @SporelingFactionDescriptionruRU     = '';
+SET @SporelingFactionDescriptionjaJP     = '';
+SET @SporelingFactionDescriptionptPT     = '';
+SET @SporelingFactionDescriptionitIT     = '';
+SET @SporelingFactionDescriptionUnk1     = '';
+SET @SporelingFactionDescriptionUnk2     = '';
+SET @SporelingFactionDescriptionUnk3     = '';
+SET @SporelingFactionDescriptionUnk4     = '';
+
+SET @SporelingAchievementenUS            = 'Realm First! Level 80 Sporeling';
+SET @SporelingAchievementkoKR            = '';
+SET @SporelingAchievementfrFR            = '';
+SET @SporelingAchievementdeDE            = '';
+SET @SporelingAchievementzhCN            = '';
+SET @SporelingAchievementzhTW            = '';
+SET @SporelingAchievementesES            = '';
+SET @SporelingAchievementesMX            = '';
+SET @SporelingAchievementruRU            = '';
+SET @SporelingAchievementjaJP            = '';
+SET @SporelingAchievementptPT            = '';
+SET @SporelingAchievementitIT            = '';
+SET @SporelingAchievementUnk1            = '';
+SET @SporelingAchievementUnk2            = '';
+SET @SporelingAchievementUnk3            = '';
+SET @SporelingAchievementUnk4            = '';
+
+SET @SporelingAchievementDescriptionenUS = 'First Sporeling on the realm to achieve level 80.';
+SET @SporelingAchievementDescriptionkoKR = '';
+SET @SporelingAchievementDescriptionfrFR = '';
+SET @SporelingAchievementDescriptiondeDE = '';
+SET @SporelingAchievementDescriptionzhCN = '';
+SET @SporelingAchievementDescriptionzhTW = '';
+SET @SporelingAchievementDescriptionesES = '';
+SET @SporelingAchievementDescriptionesMX = '';
+SET @SporelingAchievementDescriptionruRU = '';
+SET @SporelingAchievementDescriptionjaJP = '';
+SET @SporelingAchievementDescriptionptPT = '';
+SET @SporelingAchievementDescriptionitIT = '';
+SET @SporelingAchievementDescriptionUnk1 = '';
+SET @SporelingAchievementDescriptionUnk2 = '';
+SET @SporelingAchievementDescriptionUnk3 = '';
+SET @SporelingAchievementDescriptionUnk4 = '';

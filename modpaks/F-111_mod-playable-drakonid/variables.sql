@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @DrakonidMask                       = 1 << (@Drakonid - 1);
+SET @DrakonidMask_2                     = IF(@Drakonid BETWEEN 65 AND 128, 1 << (@Drakonid - 65), 0); -- races 65-128
+SET @DrakonidHelmetMask                 = 1 << @Drakonid;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @DrakonidMask;
+SET @HordeMask_2                          = @HordeMask_2       | @DrakonidMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @DrakonidMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @DrakonidMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @DrakonidMask;
+SET @BowHunters_2                         = @BowHunters_2      | @DrakonidMask_2; -- races 65-128
+SET @DrakonidLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DrakonidAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @DrakonidKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @DrakonidHome = @Orc; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @DrakonidKin = @Orc; -- voice, emotes and names are copied from this race
+SET @DrakonidFlags = @OrcFlags;
+SET @DrakonidExplorationSound = @OrcExplorationSound;
+SET @DrakonidCinematicSequence = @OrcCinematicSequence;
+SET @DrakonidBlood = 1;
+SET @DrakonidMaleModelPath = 'custom\\drakonid\\native\\drakonid.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @DrakonidFemaleModelPath = 'custom\\drakonid\\native\\drakonid.m2';
+SET @DrakonidFaction = 1413; -- vacant slot
+SET @DrakonidPlayer = 1414; -- vacant slot
+
+-- Strings
+SET @DrakonidClientPrefix               = 'Dk'; -- helmet models of this prefix
+SET @DrakonidClientString               = 'Drakonid';
+SET @DrakonidFacialHairCustomization1   = 'NORMAL';
+SET @DrakonidFacialHairCustomization2   = 'NORMAL';
+SET @DrakonidHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @DrakonidenUS                       = 'Drakonid';
+SET @DrakonidkoKR                       = '';
+SET @DrakonidfrFR                       = '';
+SET @DrakoniddeDE                       = '';
+SET @DrakonidzhCN                       = '';
+SET @DrakonidzhTW                       = '';
+SET @DrakonidesES                       = '';
+SET @DrakonidesMX                       = '';
+SET @DrakonidruRU                       = '';
+SET @DrakonidjaJP                       = '';
+SET @DrakonidptPT                       = '';
+SET @DrakoniditIT                       = '';
+SET @DrakonidUnk1                       = '';
+SET @DrakonidUnk2                       = '';
+SET @DrakonidUnk3                       = '';
+SET @DrakonidUnk4                       = '';
+
+SET @DrakonidFemaleenUS                 = '';
+SET @DrakonidFemalekoKR                 = '';
+SET @DrakonidFemalefrFR                 = '';
+SET @DrakonidFemaledeDE                 = '';
+SET @DrakonidFemalezhCN                 = '';
+SET @DrakonidFemalezhTW                 = '';
+SET @DrakonidFemaleesES                 = '';
+SET @DrakonidFemaleesMX                 = '';
+SET @DrakonidFemaleruRU                 = '';
+SET @DrakonidFemalejaJP                 = '';
+SET @DrakonidFemaleptPT                 = '';
+SET @DrakonidFemaleitIT                 = '';
+SET @DrakonidFemaleUnk1                 = '';
+SET @DrakonidFemaleUnk2                 = '';
+SET @DrakonidFemaleUnk3                 = '';
+SET @DrakonidFemaleUnk4                 = '';
+
+SET @DrakonidMaleenUS                   = '';
+SET @DrakonidMalekoKR                   = '';
+SET @DrakonidMalefrFR                   = '';
+SET @DrakonidMaledeDE                   = '';
+SET @DrakonidMalezhCN                   = '';
+SET @DrakonidMalezhTW                   = '';
+SET @DrakonidMaleesES                   = '';
+SET @DrakonidMaleesMX                   = '';
+SET @DrakonidMaleruRU                   = '';
+SET @DrakonidMalejaJP                   = '';
+SET @DrakonidMaleptPT                   = '';
+SET @DrakonidMaleitIT                   = '';
+SET @DrakonidMaleUnk1                   = '';
+SET @DrakonidMaleUnk2                   = '';
+SET @DrakonidMaleUnk3                   = '';
+SET @DrakonidMaleUnk4                   = '';
+
+SET @DrakonidRacialNameenUS             = 'Racial - Drakonid';
+SET @DrakonidRacialNamekoKR             = '';
+SET @DrakonidRacialNamefrFR             = '';
+SET @DrakonidRacialNamedeDE             = '';
+SET @DrakonidRacialNamezhCN             = '';
+SET @DrakonidRacialNamezhTW             = '';
+SET @DrakonidRacialNameesES             = '';
+SET @DrakonidRacialNameesMX             = '';
+SET @DrakonidRacialNameruRU             = '';
+SET @DrakonidRacialNamejaJP             = '';
+SET @DrakonidRacialNameptPT             = '';
+SET @DrakonidRacialNameitIT             = '';
+SET @DrakonidRacialNameUnk1             = '';
+SET @DrakonidRacialNameUnk2             = '';
+SET @DrakonidRacialNameUnk3             = '';
+SET @DrakonidRacialNameUnk4             = '';
+
+SET @DrakonidPlayerenUS                 = '"PLAYER", Drakonid';
+SET @DrakonidPlayerkoKR                 = '';
+SET @DrakonidPlayerfrFR                 = '';
+SET @DrakonidPlayerdeDE                 = '';
+SET @DrakonidPlayerzhCN                 = '';
+SET @DrakonidPlayerzhTW                 = '';
+SET @DrakonidPlayeresES                 = '';
+SET @DrakonidPlayeresMX                 = '';
+SET @DrakonidPlayerruRU                 = '';
+SET @DrakonidPlayerjaJP                 = '';
+SET @DrakonidPlayerptPT                 = '';
+SET @DrakonidPlayeritIT                 = '';
+SET @DrakonidPlayerUnk1                 = '';
+SET @DrakonidPlayerUnk2                 = '';
+SET @DrakonidPlayerUnk3                 = '';
+SET @DrakonidPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @DrakonidFactionNameenUS            = 'Unbound Drakonid';
+SET @DrakonidFactionNamekoKR            = '';
+SET @DrakonidFactionNamefrFR            = '';
+SET @DrakonidFactionNamedeDE            = '';
+SET @DrakonidFactionNamezhCN            = '';
+SET @DrakonidFactionNamezhTW            = '';
+SET @DrakonidFactionNameesES            = '';
+SET @DrakonidFactionNameesMX            = '';
+SET @DrakonidFactionNameruRU            = '';
+SET @DrakonidFactionNamejaJP            = '';
+SET @DrakonidFactionNameptPT            = '';
+SET @DrakonidFactionNameitIT            = '';
+SET @DrakonidFactionNameUnk1            = '';
+SET @DrakonidFactionNameUnk2            = '';
+SET @DrakonidFactionNameUnk3            = '';
+SET @DrakonidFactionNameUnk4            = '';
+
+SET @DrakonidFactionDescriptionenUS     = 'Drakonid freed from the black dragonflight who fight for the Horde.';
+SET @DrakonidFactionDescriptionkoKR     = '';
+SET @DrakonidFactionDescriptionfrFR     = '';
+SET @DrakonidFactionDescriptiondeDE     = '';
+SET @DrakonidFactionDescriptionzhCN     = '';
+SET @DrakonidFactionDescriptionzhTW     = '';
+SET @DrakonidFactionDescriptionesES     = '';
+SET @DrakonidFactionDescriptionesMX     = '';
+SET @DrakonidFactionDescriptionruRU     = '';
+SET @DrakonidFactionDescriptionjaJP     = '';
+SET @DrakonidFactionDescriptionptPT     = '';
+SET @DrakonidFactionDescriptionitIT     = '';
+SET @DrakonidFactionDescriptionUnk1     = '';
+SET @DrakonidFactionDescriptionUnk2     = '';
+SET @DrakonidFactionDescriptionUnk3     = '';
+SET @DrakonidFactionDescriptionUnk4     = '';
+
+SET @DrakonidAchievementenUS            = 'Realm First! Level 80 Drakonid';
+SET @DrakonidAchievementkoKR            = '';
+SET @DrakonidAchievementfrFR            = '';
+SET @DrakonidAchievementdeDE            = '';
+SET @DrakonidAchievementzhCN            = '';
+SET @DrakonidAchievementzhTW            = '';
+SET @DrakonidAchievementesES            = '';
+SET @DrakonidAchievementesMX            = '';
+SET @DrakonidAchievementruRU            = '';
+SET @DrakonidAchievementjaJP            = '';
+SET @DrakonidAchievementptPT            = '';
+SET @DrakonidAchievementitIT            = '';
+SET @DrakonidAchievementUnk1            = '';
+SET @DrakonidAchievementUnk2            = '';
+SET @DrakonidAchievementUnk3            = '';
+SET @DrakonidAchievementUnk4            = '';
+
+SET @DrakonidAchievementDescriptionenUS = 'First Drakonid on the realm to achieve level 80.';
+SET @DrakonidAchievementDescriptionkoKR = '';
+SET @DrakonidAchievementDescriptionfrFR = '';
+SET @DrakonidAchievementDescriptiondeDE = '';
+SET @DrakonidAchievementDescriptionzhCN = '';
+SET @DrakonidAchievementDescriptionzhTW = '';
+SET @DrakonidAchievementDescriptionesES = '';
+SET @DrakonidAchievementDescriptionesMX = '';
+SET @DrakonidAchievementDescriptionruRU = '';
+SET @DrakonidAchievementDescriptionjaJP = '';
+SET @DrakonidAchievementDescriptionptPT = '';
+SET @DrakonidAchievementDescriptionitIT = '';
+SET @DrakonidAchievementDescriptionUnk1 = '';
+SET @DrakonidAchievementDescriptionUnk2 = '';
+SET @DrakonidAchievementDescriptionUnk3 = '';
+SET @DrakonidAchievementDescriptionUnk4 = '';

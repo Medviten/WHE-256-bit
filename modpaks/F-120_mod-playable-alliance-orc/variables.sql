@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @AllianceOrcMask                       = 1 << (@AllianceOrc - 1);
+SET @AllianceOrcMask_2                     = IF(@AllianceOrc BETWEEN 65 AND 128, 1 << (@AllianceOrc - 65), 0); -- races 65-128
+SET @AllianceOrcHelmetMask                 = 1 << @AllianceOrc;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @AllianceOrcMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @AllianceOrcMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @AllianceOrcMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @AllianceOrcMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @AllianceOrcMask;
+SET @BowHunters_2                         = @BowHunters_2      | @AllianceOrcMask_2; -- races 65-128
+SET @AllianceOrcLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @AllianceOrcAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @AllianceOrcKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @AllianceOrcHome = @Human; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @AllianceOrcKin = @Orc; -- voice, emotes and names are copied from this race
+SET @AllianceOrcFlags = @HumanFlags;
+SET @AllianceOrcExplorationSound = @HumanExplorationSound;
+SET @AllianceOrcCinematicSequence = @HumanCinematicSequence;
+SET @AllianceOrcBlood = 1;
+SET @AllianceOrcMaleModelPath = 'Character\\Orc2\\Male\\OrcMale2.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @AllianceOrcFemaleModelPath = 'Character\\Orc2\\Female\\OrcFemale2.m2';
+SET @AllianceOrcFaction = 1431; -- vacant slot
+SET @AllianceOrcPlayer = 1432; -- vacant slot
+
+-- Strings
+SET @AllianceOrcClientPrefix               = 'Or'; -- helmet models of this prefix
+SET @AllianceOrcClientString               = 'AllianceOrc';
+SET @AllianceOrcFacialHairCustomization1   = 'NORMAL';
+SET @AllianceOrcFacialHairCustomization2   = 'PIERCINGS';
+SET @AllianceOrcHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @AllianceOrcenUS                       = 'Orc';
+SET @AllianceOrckoKR                       = '';
+SET @AllianceOrcfrFR                       = '';
+SET @AllianceOrcdeDE                       = '';
+SET @AllianceOrczhCN                       = '';
+SET @AllianceOrczhTW                       = '';
+SET @AllianceOrcesES                       = '';
+SET @AllianceOrcesMX                       = '';
+SET @AllianceOrcruRU                       = '';
+SET @AllianceOrcjaJP                       = '';
+SET @AllianceOrcptPT                       = '';
+SET @AllianceOrcitIT                       = '';
+SET @AllianceOrcUnk1                       = '';
+SET @AllianceOrcUnk2                       = '';
+SET @AllianceOrcUnk3                       = '';
+SET @AllianceOrcUnk4                       = '';
+
+SET @AllianceOrcFemaleenUS                 = '';
+SET @AllianceOrcFemalekoKR                 = '';
+SET @AllianceOrcFemalefrFR                 = '';
+SET @AllianceOrcFemaledeDE                 = '';
+SET @AllianceOrcFemalezhCN                 = '';
+SET @AllianceOrcFemalezhTW                 = '';
+SET @AllianceOrcFemaleesES                 = '';
+SET @AllianceOrcFemaleesMX                 = '';
+SET @AllianceOrcFemaleruRU                 = '';
+SET @AllianceOrcFemalejaJP                 = '';
+SET @AllianceOrcFemaleptPT                 = '';
+SET @AllianceOrcFemaleitIT                 = '';
+SET @AllianceOrcFemaleUnk1                 = '';
+SET @AllianceOrcFemaleUnk2                 = '';
+SET @AllianceOrcFemaleUnk3                 = '';
+SET @AllianceOrcFemaleUnk4                 = '';
+
+SET @AllianceOrcMaleenUS                   = '';
+SET @AllianceOrcMalekoKR                   = '';
+SET @AllianceOrcMalefrFR                   = '';
+SET @AllianceOrcMaledeDE                   = '';
+SET @AllianceOrcMalezhCN                   = '';
+SET @AllianceOrcMalezhTW                   = '';
+SET @AllianceOrcMaleesES                   = '';
+SET @AllianceOrcMaleesMX                   = '';
+SET @AllianceOrcMaleruRU                   = '';
+SET @AllianceOrcMalejaJP                   = '';
+SET @AllianceOrcMaleptPT                   = '';
+SET @AllianceOrcMaleitIT                   = '';
+SET @AllianceOrcMaleUnk1                   = '';
+SET @AllianceOrcMaleUnk2                   = '';
+SET @AllianceOrcMaleUnk3                   = '';
+SET @AllianceOrcMaleUnk4                   = '';
+
+SET @AllianceOrcRacialNameenUS             = 'Racial - Orc';
+SET @AllianceOrcRacialNamekoKR             = '';
+SET @AllianceOrcRacialNamefrFR             = '';
+SET @AllianceOrcRacialNamedeDE             = '';
+SET @AllianceOrcRacialNamezhCN             = '';
+SET @AllianceOrcRacialNamezhTW             = '';
+SET @AllianceOrcRacialNameesES             = '';
+SET @AllianceOrcRacialNameesMX             = '';
+SET @AllianceOrcRacialNameruRU             = '';
+SET @AllianceOrcRacialNamejaJP             = '';
+SET @AllianceOrcRacialNameptPT             = '';
+SET @AllianceOrcRacialNameitIT             = '';
+SET @AllianceOrcRacialNameUnk1             = '';
+SET @AllianceOrcRacialNameUnk2             = '';
+SET @AllianceOrcRacialNameUnk3             = '';
+SET @AllianceOrcRacialNameUnk4             = '';
+
+SET @AllianceOrcPlayerenUS                 = '"PLAYER", Orc';
+SET @AllianceOrcPlayerkoKR                 = '';
+SET @AllianceOrcPlayerfrFR                 = '';
+SET @AllianceOrcPlayerdeDE                 = '';
+SET @AllianceOrcPlayerzhCN                 = '';
+SET @AllianceOrcPlayerzhTW                 = '';
+SET @AllianceOrcPlayeresES                 = '';
+SET @AllianceOrcPlayeresMX                 = '';
+SET @AllianceOrcPlayerruRU                 = '';
+SET @AllianceOrcPlayerjaJP                 = '';
+SET @AllianceOrcPlayerptPT                 = '';
+SET @AllianceOrcPlayeritIT                 = '';
+SET @AllianceOrcPlayerUnk1                 = '';
+SET @AllianceOrcPlayerUnk2                 = '';
+SET @AllianceOrcPlayerUnk3                 = '';
+SET @AllianceOrcPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @AllianceOrcFactionNameenUS            = 'Orcs of the Alliance';
+SET @AllianceOrcFactionNamekoKR            = '';
+SET @AllianceOrcFactionNamefrFR            = '';
+SET @AllianceOrcFactionNamedeDE            = '';
+SET @AllianceOrcFactionNamezhCN            = '';
+SET @AllianceOrcFactionNamezhTW            = '';
+SET @AllianceOrcFactionNameesES            = '';
+SET @AllianceOrcFactionNameesMX            = '';
+SET @AllianceOrcFactionNameruRU            = '';
+SET @AllianceOrcFactionNamejaJP            = '';
+SET @AllianceOrcFactionNameptPT            = '';
+SET @AllianceOrcFactionNameitIT            = '';
+SET @AllianceOrcFactionNameUnk1            = '';
+SET @AllianceOrcFactionNameUnk2            = '';
+SET @AllianceOrcFactionNameUnk3            = '';
+SET @AllianceOrcFactionNameUnk4            = '';
+
+SET @AllianceOrcFactionDescriptionenUS     = 'Orcs who left the Horde and pledged themselves to Stormwind.';
+SET @AllianceOrcFactionDescriptionkoKR     = '';
+SET @AllianceOrcFactionDescriptionfrFR     = '';
+SET @AllianceOrcFactionDescriptiondeDE     = '';
+SET @AllianceOrcFactionDescriptionzhCN     = '';
+SET @AllianceOrcFactionDescriptionzhTW     = '';
+SET @AllianceOrcFactionDescriptionesES     = '';
+SET @AllianceOrcFactionDescriptionesMX     = '';
+SET @AllianceOrcFactionDescriptionruRU     = '';
+SET @AllianceOrcFactionDescriptionjaJP     = '';
+SET @AllianceOrcFactionDescriptionptPT     = '';
+SET @AllianceOrcFactionDescriptionitIT     = '';
+SET @AllianceOrcFactionDescriptionUnk1     = '';
+SET @AllianceOrcFactionDescriptionUnk2     = '';
+SET @AllianceOrcFactionDescriptionUnk3     = '';
+SET @AllianceOrcFactionDescriptionUnk4     = '';
+
+SET @AllianceOrcAchievementenUS            = 'Realm First! Level 80 Orc';
+SET @AllianceOrcAchievementkoKR            = '';
+SET @AllianceOrcAchievementfrFR            = '';
+SET @AllianceOrcAchievementdeDE            = '';
+SET @AllianceOrcAchievementzhCN            = '';
+SET @AllianceOrcAchievementzhTW            = '';
+SET @AllianceOrcAchievementesES            = '';
+SET @AllianceOrcAchievementesMX            = '';
+SET @AllianceOrcAchievementruRU            = '';
+SET @AllianceOrcAchievementjaJP            = '';
+SET @AllianceOrcAchievementptPT            = '';
+SET @AllianceOrcAchievementitIT            = '';
+SET @AllianceOrcAchievementUnk1            = '';
+SET @AllianceOrcAchievementUnk2            = '';
+SET @AllianceOrcAchievementUnk3            = '';
+SET @AllianceOrcAchievementUnk4            = '';
+
+SET @AllianceOrcAchievementDescriptionenUS = 'First Orc on the realm to achieve level 80.';
+SET @AllianceOrcAchievementDescriptionkoKR = '';
+SET @AllianceOrcAchievementDescriptionfrFR = '';
+SET @AllianceOrcAchievementDescriptiondeDE = '';
+SET @AllianceOrcAchievementDescriptionzhCN = '';
+SET @AllianceOrcAchievementDescriptionzhTW = '';
+SET @AllianceOrcAchievementDescriptionesES = '';
+SET @AllianceOrcAchievementDescriptionesMX = '';
+SET @AllianceOrcAchievementDescriptionruRU = '';
+SET @AllianceOrcAchievementDescriptionjaJP = '';
+SET @AllianceOrcAchievementDescriptionptPT = '';
+SET @AllianceOrcAchievementDescriptionitIT = '';
+SET @AllianceOrcAchievementDescriptionUnk1 = '';
+SET @AllianceOrcAchievementDescriptionUnk2 = '';
+SET @AllianceOrcAchievementDescriptionUnk3 = '';
+SET @AllianceOrcAchievementDescriptionUnk4 = '';

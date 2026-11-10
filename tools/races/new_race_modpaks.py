@@ -96,9 +96,9 @@ RACES += [
      ('skins', {0: skins('Shivan', ['ShivanSkin', 'ShivanSkin_Black', 'ShivanSkin_Blue', 'ShivanSkin_Green', 'ShivanSkin_Red'])}), 'Dr',
      'Shivarra Penitents', 'Shivarra who turned from the Burning Legion and serve the Naaru.', ''),
 ]
-HOME_MODELS = {'Human': (49, 50), 'Orc': (51, 52), 'NightElf': (55, 56), 'Undead': (57, 58), 'Tauren': (59, 60), 'Gnome': (182, 183),
+HOME_MODELS = {'Human': (49, 50), 'Dwarf': (53, 54), 'Orc': (51, 52), 'NightElf': (55, 56), 'Undead': (57, 58), 'Tauren': (59, 60), 'Gnome': (182, 183),
                'Troll': (185, 186), 'BloodElf': (2208, 2209), 'Draenei': (2248, 2250)}
-HOME_DISPLAYS = {'Human': (49, 50), 'Orc': (51, 52), 'NightElf': (55, 56), 'Undead': (57, 58), 'Tauren': (59, 60), 'Gnome': (1563, 1564),
+HOME_DISPLAYS = {'Human': (49, 50), 'Dwarf': (53, 54), 'Orc': (51, 52), 'NightElf': (55, 56), 'Undead': (57, 58), 'Tauren': (59, 60), 'Gnome': (1563, 1564),
                  'Troll': (1478, 1479), 'BloodElf': (15476, 15475), 'Draenei': (16125, 16126)}
 SECTIONS = {0: '@Skin', 1: '@Face', 2: '@FacialHair', 3: '@Hair', 4: '@Underwear'}
 # Skin textures shipped with a donor race but missing from its CharSections rows: extra skin colours (donor race, gender)
@@ -146,7 +146,7 @@ def customization(source):
         hair = [(g, 0, 0, 0) for g in race]
         facial = [(g, 0, 0, 0, 0, 0, 0) for g in race]
         return fill(sorted(sections)), hair, facial
-    folder = BUILT if kind == 'npc' else DONOR
+    folder = BUILT if kind == 'npc' else DONOR   # 'coa': CoA 1.9.9's own rows, 3.3.5 layout (coa199_race_modpaks.py)
     rows, strings, f = load_dbc(os.path.join(folder, 'CharSections.dbc'))
     sections = []
     PLAYER_FLAGS.clear()
@@ -154,7 +154,7 @@ def customization(source):
         v = struct.unpack_from('<10I', r)
         if v[1] != race:
             continue
-        if kind == 'npc':   # 3.3.5: id, race, gender, section, texture 1-3, flags, type, colour
+        if kind in ('npc', 'coa'):   # 3.3.5: id, race, gender, section, texture 1-3, flags, type, colour
             gender, section, tex, var, colour = v[2], v[3], v[4:7], v[8], v[9]
             if v[7] & 1:   # a playable race's rows (a Home race copy): keep its flags (NPC-only skins, Death Knight skins)
                 PLAYER_FLAGS[(gender, section, var, colour)] = v[7]
@@ -244,7 +244,8 @@ def main():
         origin = {'npc': lambda: 'the stock NPC race rows (race %d after F-008)' % source[1],
                   'donor': lambda: 'WallCraft\'s donor rows (race %d)' % source[1],
                   'skins': lambda: 'the skin textures shipped with the model (WallCraft has no rows for it)',
-                  'package': lambda: "the Alpha-Worgen package's rows for race %d" % source[1]}[source[0]]()
+                  'package': lambda: "the Alpha-Worgen package's rows for race %d" % source[1],
+                  'coa': lambda: "CoA 1.9.9's own rows for its race %d" % source[1]}[source[0]]()
         write(os.path.join(out, 'dbc', tag + '_charsections.sql'),
               "-- charsections: %d inserts, 0 updates, 0 deletes\n-- From %s, flagged for character creation (17, faces 1)%s\n\n"
               "-- New entries\nDELETE FROM `charsections` WHERE `race` = @%s;\nSET @CharSectionsID = (SELECT COALESCE(MAX(id), 0) FROM `charsections`);\n"
@@ -376,7 +377,7 @@ def write_variables(out, key, name, plural, fnum, side, home, kin, male_only, mo
     # strings: prefix, client string and customization labels from the race's own ChrRaces row
     rows, strings, f = load_dbc(os.path.join(BUILT if source[0] in ('npc', 'package') else DONOR, 'ChrRaces.dbc'))
     custom = ('NORMAL', 'NORMAL', 'NORMAL')
-    if source[0] in ('npc', 'package'):
+    if source[0] in ('npc', 'package', 'coa'):
         row = next(r for r in rows if struct.unpack_from('<I', r)[0] == source[1])
         custom = tuple(string(strings, struct.unpack_from('<I', row, 4 * i)[0]) or 'NORMAL' for i in (65, 66, 67))
     text = re.sub(r'(SET @%sClientPrefix\s*= )[^;]*;.*' % key, r"\g<1>'%s'; -- helmet models of this prefix" % prefix, text)

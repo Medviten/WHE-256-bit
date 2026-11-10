@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @LichMask                       = 1 << (@Lich - 1);
+SET @LichMask_2                     = IF(@Lich BETWEEN 65 AND 128, 1 << (@Lich - 65), 0); -- races 65-128
+SET @LichHelmetMask                 = 1 << @Lich;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @LichMask;
+SET @HordeMask_2                          = @HordeMask_2       | @LichMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @LichMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @LichMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @LichMask;
+SET @BowHunters_2                         = @BowHunters_2      | @LichMask_2; -- races 65-128
+SET @LichLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @LichAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @LichKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @LichHome = @Undead; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @LichKin = @Undead; -- voice, emotes and names are copied from this race
+SET @LichFlags = @UndeadFlags;
+SET @LichExplorationSound = @UndeadExplorationSound;
+SET @LichCinematicSequence = @UndeadCinematicSequence;
+SET @LichBlood = 1;
+SET @LichMaleModelPath = 'Creature\\Lich2\\LichPlayerMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @LichFemaleModelPath = 'Creature\\TrollLich\\LichPlayerFemale.m2';
+SET @LichFaction = 1423; -- vacant slot
+SET @LichPlayer = 1424; -- vacant slot
+
+-- Strings
+SET @LichClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @LichClientString               = 'Lich';
+SET @LichFacialHairCustomization1   = 'NORMAL';
+SET @LichFacialHairCustomization2   = 'NORMAL';
+SET @LichHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @LichenUS                       = 'Lich';
+SET @LichkoKR                       = '';
+SET @LichfrFR                       = '';
+SET @LichdeDE                       = '';
+SET @LichzhCN                       = '';
+SET @LichzhTW                       = '';
+SET @LichesES                       = '';
+SET @LichesMX                       = '';
+SET @LichruRU                       = '';
+SET @LichjaJP                       = '';
+SET @LichptPT                       = '';
+SET @LichitIT                       = '';
+SET @LichUnk1                       = '';
+SET @LichUnk2                       = '';
+SET @LichUnk3                       = '';
+SET @LichUnk4                       = '';
+
+SET @LichFemaleenUS                 = '';
+SET @LichFemalekoKR                 = '';
+SET @LichFemalefrFR                 = '';
+SET @LichFemaledeDE                 = '';
+SET @LichFemalezhCN                 = '';
+SET @LichFemalezhTW                 = '';
+SET @LichFemaleesES                 = '';
+SET @LichFemaleesMX                 = '';
+SET @LichFemaleruRU                 = '';
+SET @LichFemalejaJP                 = '';
+SET @LichFemaleptPT                 = '';
+SET @LichFemaleitIT                 = '';
+SET @LichFemaleUnk1                 = '';
+SET @LichFemaleUnk2                 = '';
+SET @LichFemaleUnk3                 = '';
+SET @LichFemaleUnk4                 = '';
+
+SET @LichMaleenUS                   = '';
+SET @LichMalekoKR                   = '';
+SET @LichMalefrFR                   = '';
+SET @LichMaledeDE                   = '';
+SET @LichMalezhCN                   = '';
+SET @LichMalezhTW                   = '';
+SET @LichMaleesES                   = '';
+SET @LichMaleesMX                   = '';
+SET @LichMaleruRU                   = '';
+SET @LichMalejaJP                   = '';
+SET @LichMaleptPT                   = '';
+SET @LichMaleitIT                   = '';
+SET @LichMaleUnk1                   = '';
+SET @LichMaleUnk2                   = '';
+SET @LichMaleUnk3                   = '';
+SET @LichMaleUnk4                   = '';
+
+SET @LichRacialNameenUS             = 'Racial - Lich';
+SET @LichRacialNamekoKR             = '';
+SET @LichRacialNamefrFR             = '';
+SET @LichRacialNamedeDE             = '';
+SET @LichRacialNamezhCN             = '';
+SET @LichRacialNamezhTW             = '';
+SET @LichRacialNameesES             = '';
+SET @LichRacialNameesMX             = '';
+SET @LichRacialNameruRU             = '';
+SET @LichRacialNamejaJP             = '';
+SET @LichRacialNameptPT             = '';
+SET @LichRacialNameitIT             = '';
+SET @LichRacialNameUnk1             = '';
+SET @LichRacialNameUnk2             = '';
+SET @LichRacialNameUnk3             = '';
+SET @LichRacialNameUnk4             = '';
+
+SET @LichPlayerenUS                 = '"PLAYER", Lich';
+SET @LichPlayerkoKR                 = '';
+SET @LichPlayerfrFR                 = '';
+SET @LichPlayerdeDE                 = '';
+SET @LichPlayerzhCN                 = '';
+SET @LichPlayerzhTW                 = '';
+SET @LichPlayeresES                 = '';
+SET @LichPlayeresMX                 = '';
+SET @LichPlayerruRU                 = '';
+SET @LichPlayerjaJP                 = '';
+SET @LichPlayerptPT                 = '';
+SET @LichPlayeritIT                 = '';
+SET @LichPlayerUnk1                 = '';
+SET @LichPlayerUnk2                 = '';
+SET @LichPlayerUnk3                 = '';
+SET @LichPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @LichFactionNameenUS            = 'Unbound Phylacteries';
+SET @LichFactionNamekoKR            = '';
+SET @LichFactionNamefrFR            = '';
+SET @LichFactionNamedeDE            = '';
+SET @LichFactionNamezhCN            = '';
+SET @LichFactionNamezhTW            = '';
+SET @LichFactionNameesES            = '';
+SET @LichFactionNameesMX            = '';
+SET @LichFactionNameruRU            = '';
+SET @LichFactionNamejaJP            = '';
+SET @LichFactionNameptPT            = '';
+SET @LichFactionNameitIT            = '';
+SET @LichFactionNameUnk1            = '';
+SET @LichFactionNameUnk2            = '';
+SET @LichFactionNameUnk3            = '';
+SET @LichFactionNameUnk4            = '';
+
+SET @LichFactionDescriptionenUS     = 'Liches who broke free of the Scourge and serve the Banshee Queen.';
+SET @LichFactionDescriptionkoKR     = '';
+SET @LichFactionDescriptionfrFR     = '';
+SET @LichFactionDescriptiondeDE     = '';
+SET @LichFactionDescriptionzhCN     = '';
+SET @LichFactionDescriptionzhTW     = '';
+SET @LichFactionDescriptionesES     = '';
+SET @LichFactionDescriptionesMX     = '';
+SET @LichFactionDescriptionruRU     = '';
+SET @LichFactionDescriptionjaJP     = '';
+SET @LichFactionDescriptionptPT     = '';
+SET @LichFactionDescriptionitIT     = '';
+SET @LichFactionDescriptionUnk1     = '';
+SET @LichFactionDescriptionUnk2     = '';
+SET @LichFactionDescriptionUnk3     = '';
+SET @LichFactionDescriptionUnk4     = '';
+
+SET @LichAchievementenUS            = 'Realm First! Level 80 Lich';
+SET @LichAchievementkoKR            = '';
+SET @LichAchievementfrFR            = '';
+SET @LichAchievementdeDE            = '';
+SET @LichAchievementzhCN            = '';
+SET @LichAchievementzhTW            = '';
+SET @LichAchievementesES            = '';
+SET @LichAchievementesMX            = '';
+SET @LichAchievementruRU            = '';
+SET @LichAchievementjaJP            = '';
+SET @LichAchievementptPT            = '';
+SET @LichAchievementitIT            = '';
+SET @LichAchievementUnk1            = '';
+SET @LichAchievementUnk2            = '';
+SET @LichAchievementUnk3            = '';
+SET @LichAchievementUnk4            = '';
+
+SET @LichAchievementDescriptionenUS = 'First Lich on the realm to achieve level 80.';
+SET @LichAchievementDescriptionkoKR = '';
+SET @LichAchievementDescriptionfrFR = '';
+SET @LichAchievementDescriptiondeDE = '';
+SET @LichAchievementDescriptionzhCN = '';
+SET @LichAchievementDescriptionzhTW = '';
+SET @LichAchievementDescriptionesES = '';
+SET @LichAchievementDescriptionesMX = '';
+SET @LichAchievementDescriptionruRU = '';
+SET @LichAchievementDescriptionjaJP = '';
+SET @LichAchievementDescriptionptPT = '';
+SET @LichAchievementDescriptionitIT = '';
+SET @LichAchievementDescriptionUnk1 = '';
+SET @LichAchievementDescriptionUnk2 = '';
+SET @LichAchievementDescriptionUnk3 = '';
+SET @LichAchievementDescriptionUnk4 = '';

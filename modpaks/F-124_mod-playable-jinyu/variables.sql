@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @JinyuMask                       = 1 << (@Jinyu - 1);
+SET @JinyuMask_2                     = IF(@Jinyu BETWEEN 65 AND 128, 1 << (@Jinyu - 65), 0); -- races 65-128
+SET @JinyuHelmetMask                 = 1 << @Jinyu;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @JinyuMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @JinyuMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @JinyuMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @JinyuMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @JinyuMask;
+SET @BowHunters_2                         = @BowHunters_2      | @JinyuMask_2; -- races 65-128
+SET @JinyuLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @JinyuAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @JinyuKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @JinyuHome = @NightElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @JinyuKin = @Draenei; -- voice, emotes and names are copied from this race
+SET @JinyuFlags = @NightElfFlags;
+SET @JinyuExplorationSound = @NightElfExplorationSound;
+SET @JinyuCinematicSequence = @NightElfCinematicSequence;
+SET @JinyuBlood = 1;
+SET @JinyuMaleModelPath = 'Character\\Jinyu\\Male\\JinyuMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @JinyuFemaleModelPath = 'Character\\Jinyu\\Female\\JinyuFemale.m2';
+SET @JinyuFaction = 1439; -- vacant slot
+SET @JinyuPlayer = 1440; -- vacant slot
+
+-- Strings
+SET @JinyuClientPrefix               = 'Dr'; -- helmet models of this prefix
+SET @JinyuClientString               = 'Jinyu';
+SET @JinyuFacialHairCustomization1   = 'NORMAL';
+SET @JinyuFacialHairCustomization2   = 'PIERCINGS';
+SET @JinyuHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @JinyuenUS                       = 'Jinyu';
+SET @JinyukoKR                       = '';
+SET @JinyufrFR                       = '';
+SET @JinyudeDE                       = '';
+SET @JinyuzhCN                       = '';
+SET @JinyuzhTW                       = '';
+SET @JinyuesES                       = '';
+SET @JinyuesMX                       = '';
+SET @JinyuruRU                       = '';
+SET @JinyujaJP                       = '';
+SET @JinyuptPT                       = '';
+SET @JinyuitIT                       = '';
+SET @JinyuUnk1                       = '';
+SET @JinyuUnk2                       = '';
+SET @JinyuUnk3                       = '';
+SET @JinyuUnk4                       = '';
+
+SET @JinyuFemaleenUS                 = '';
+SET @JinyuFemalekoKR                 = '';
+SET @JinyuFemalefrFR                 = '';
+SET @JinyuFemaledeDE                 = '';
+SET @JinyuFemalezhCN                 = '';
+SET @JinyuFemalezhTW                 = '';
+SET @JinyuFemaleesES                 = '';
+SET @JinyuFemaleesMX                 = '';
+SET @JinyuFemaleruRU                 = '';
+SET @JinyuFemalejaJP                 = '';
+SET @JinyuFemaleptPT                 = '';
+SET @JinyuFemaleitIT                 = '';
+SET @JinyuFemaleUnk1                 = '';
+SET @JinyuFemaleUnk2                 = '';
+SET @JinyuFemaleUnk3                 = '';
+SET @JinyuFemaleUnk4                 = '';
+
+SET @JinyuMaleenUS                   = '';
+SET @JinyuMalekoKR                   = '';
+SET @JinyuMalefrFR                   = '';
+SET @JinyuMaledeDE                   = '';
+SET @JinyuMalezhCN                   = '';
+SET @JinyuMalezhTW                   = '';
+SET @JinyuMaleesES                   = '';
+SET @JinyuMaleesMX                   = '';
+SET @JinyuMaleruRU                   = '';
+SET @JinyuMalejaJP                   = '';
+SET @JinyuMaleptPT                   = '';
+SET @JinyuMaleitIT                   = '';
+SET @JinyuMaleUnk1                   = '';
+SET @JinyuMaleUnk2                   = '';
+SET @JinyuMaleUnk3                   = '';
+SET @JinyuMaleUnk4                   = '';
+
+SET @JinyuRacialNameenUS             = 'Racial - Jinyu';
+SET @JinyuRacialNamekoKR             = '';
+SET @JinyuRacialNamefrFR             = '';
+SET @JinyuRacialNamedeDE             = '';
+SET @JinyuRacialNamezhCN             = '';
+SET @JinyuRacialNamezhTW             = '';
+SET @JinyuRacialNameesES             = '';
+SET @JinyuRacialNameesMX             = '';
+SET @JinyuRacialNameruRU             = '';
+SET @JinyuRacialNamejaJP             = '';
+SET @JinyuRacialNameptPT             = '';
+SET @JinyuRacialNameitIT             = '';
+SET @JinyuRacialNameUnk1             = '';
+SET @JinyuRacialNameUnk2             = '';
+SET @JinyuRacialNameUnk3             = '';
+SET @JinyuRacialNameUnk4             = '';
+
+SET @JinyuPlayerenUS                 = '"PLAYER", Jinyu';
+SET @JinyuPlayerkoKR                 = '';
+SET @JinyuPlayerfrFR                 = '';
+SET @JinyuPlayerdeDE                 = '';
+SET @JinyuPlayerzhCN                 = '';
+SET @JinyuPlayerzhTW                 = '';
+SET @JinyuPlayeresES                 = '';
+SET @JinyuPlayeresMX                 = '';
+SET @JinyuPlayerruRU                 = '';
+SET @JinyuPlayerjaJP                 = '';
+SET @JinyuPlayerptPT                 = '';
+SET @JinyuPlayeritIT                 = '';
+SET @JinyuPlayerUnk1                 = '';
+SET @JinyuPlayerUnk2                 = '';
+SET @JinyuPlayerUnk3                 = '';
+SET @JinyuPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @JinyuFactionNameenUS            = 'Pearlfin Jinyu';
+SET @JinyuFactionNamekoKR            = '';
+SET @JinyuFactionNamefrFR            = '';
+SET @JinyuFactionNamedeDE            = '';
+SET @JinyuFactionNamezhCN            = '';
+SET @JinyuFactionNamezhTW            = '';
+SET @JinyuFactionNameesES            = '';
+SET @JinyuFactionNameesMX            = '';
+SET @JinyuFactionNameruRU            = '';
+SET @JinyuFactionNamejaJP            = '';
+SET @JinyuFactionNameptPT            = '';
+SET @JinyuFactionNameitIT            = '';
+SET @JinyuFactionNameUnk1            = '';
+SET @JinyuFactionNameUnk2            = '';
+SET @JinyuFactionNameUnk3            = '';
+SET @JinyuFactionNameUnk4            = '';
+
+SET @JinyuFactionDescriptionenUS     = 'Jinyu of the Pearlfin village who befriended the Alliance in Pandaria.';
+SET @JinyuFactionDescriptionkoKR     = '';
+SET @JinyuFactionDescriptionfrFR     = '';
+SET @JinyuFactionDescriptiondeDE     = '';
+SET @JinyuFactionDescriptionzhCN     = '';
+SET @JinyuFactionDescriptionzhTW     = '';
+SET @JinyuFactionDescriptionesES     = '';
+SET @JinyuFactionDescriptionesMX     = '';
+SET @JinyuFactionDescriptionruRU     = '';
+SET @JinyuFactionDescriptionjaJP     = '';
+SET @JinyuFactionDescriptionptPT     = '';
+SET @JinyuFactionDescriptionitIT     = '';
+SET @JinyuFactionDescriptionUnk1     = '';
+SET @JinyuFactionDescriptionUnk2     = '';
+SET @JinyuFactionDescriptionUnk3     = '';
+SET @JinyuFactionDescriptionUnk4     = '';
+
+SET @JinyuAchievementenUS            = 'Realm First! Level 80 Jinyu';
+SET @JinyuAchievementkoKR            = '';
+SET @JinyuAchievementfrFR            = '';
+SET @JinyuAchievementdeDE            = '';
+SET @JinyuAchievementzhCN            = '';
+SET @JinyuAchievementzhTW            = '';
+SET @JinyuAchievementesES            = '';
+SET @JinyuAchievementesMX            = '';
+SET @JinyuAchievementruRU            = '';
+SET @JinyuAchievementjaJP            = '';
+SET @JinyuAchievementptPT            = '';
+SET @JinyuAchievementitIT            = '';
+SET @JinyuAchievementUnk1            = '';
+SET @JinyuAchievementUnk2            = '';
+SET @JinyuAchievementUnk3            = '';
+SET @JinyuAchievementUnk4            = '';
+
+SET @JinyuAchievementDescriptionenUS = 'First Jinyu on the realm to achieve level 80.';
+SET @JinyuAchievementDescriptionkoKR = '';
+SET @JinyuAchievementDescriptionfrFR = '';
+SET @JinyuAchievementDescriptiondeDE = '';
+SET @JinyuAchievementDescriptionzhCN = '';
+SET @JinyuAchievementDescriptionzhTW = '';
+SET @JinyuAchievementDescriptionesES = '';
+SET @JinyuAchievementDescriptionesMX = '';
+SET @JinyuAchievementDescriptionruRU = '';
+SET @JinyuAchievementDescriptionjaJP = '';
+SET @JinyuAchievementDescriptionptPT = '';
+SET @JinyuAchievementDescriptionitIT = '';
+SET @JinyuAchievementDescriptionUnk1 = '';
+SET @JinyuAchievementDescriptionUnk2 = '';
+SET @JinyuAchievementDescriptionUnk3 = '';
+SET @JinyuAchievementDescriptionUnk4 = '';

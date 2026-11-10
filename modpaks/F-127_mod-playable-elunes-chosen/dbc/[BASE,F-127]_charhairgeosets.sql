@@ -1,0 +1,40 @@
+-- charhairgeosets: 34 inserts, 0 updates, 0 deletes (from CoA 1.9.9's own rows for its race 118)
+
+-- New entries
+DELETE FROM `charhairgeosets` WHERE `race` = @EluneChosen;
+SET @CharHairGeosetsID = (SELECT COALESCE(MAX(id), 0) FROM `charhairgeosets`);
+INSERT INTO `charhairgeosets` (`id`, `race`, `gender`, `variation`, `geoset`, `show_scalp`) VALUES
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    0,  0, 1),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    1,  1, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    2,  2, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    3,  3, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    4,  4, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    5,  5, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    6,  6, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    7,  7, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    8,  8, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,    9,  9, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   10, 10, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   11, 11, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   12, 12, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   13, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   14, 14, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   15, 15, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Male,   16, 16, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  0,  0, 1),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  1,  1, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  2,  2, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  3,  3, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  4,  4, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  5,  5, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  6,  6, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  7,  7, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  8,  8, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female,  9,  9, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 10, 10, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 11, 11, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 12, 12, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 13, 13, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 14, 14, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 15, 15, 0),
+(@CharHairGeosetsID := @CharHairGeosetsID +1, @EluneChosen, @Female, 16, 16, 0);

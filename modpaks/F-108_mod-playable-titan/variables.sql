@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @TitanMask                       = 1 << (@Titan - 1);
+SET @TitanMask_2                     = IF(@Titan BETWEEN 65 AND 128, 1 << (@Titan - 65), 0); -- races 65-128
+SET @TitanHelmetMask                 = 1 << @Titan;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @TitanMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @TitanMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @TitanMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @TitanMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @TitanMask;
+SET @BowHunters_2                         = @BowHunters_2      | @TitanMask_2; -- races 65-128
+SET @TitanLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @TitanAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @TitanKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @TitanHome = @Dwarf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @TitanKin = @Human; -- voice, emotes and names are copied from this race
+SET @TitanFlags = @DwarfFlags;
+SET @TitanExplorationSound = @DwarfExplorationSound;
+SET @TitanCinematicSequence = @DwarfCinematicSequence;
+SET @TitanBlood = 1;
+SET @TitanMaleModelPath = 'Creature\\TitanFemale\\TitanPlayerFemale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @TitanFemaleModelPath = 'Creature\\TitanFemale\\TitanPlayerFemale.m2';
+SET @TitanFaction = 1407; -- vacant slot
+SET @TitanPlayer = 1408; -- vacant slot
+
+-- Strings
+SET @TitanClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @TitanClientString               = 'Titan';
+SET @TitanFacialHairCustomization1   = 'NORMAL';
+SET @TitanFacialHairCustomization2   = 'NORMAL';
+SET @TitanHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @TitanenUS                       = 'Titan';
+SET @TitankoKR                       = '';
+SET @TitanfrFR                       = '';
+SET @TitandeDE                       = '';
+SET @TitanzhCN                       = '';
+SET @TitanzhTW                       = '';
+SET @TitanesES                       = '';
+SET @TitanesMX                       = '';
+SET @TitanruRU                       = '';
+SET @TitanjaJP                       = '';
+SET @TitanptPT                       = '';
+SET @TitanitIT                       = '';
+SET @TitanUnk1                       = '';
+SET @TitanUnk2                       = '';
+SET @TitanUnk3                       = '';
+SET @TitanUnk4                       = '';
+
+SET @TitanFemaleenUS                 = '';
+SET @TitanFemalekoKR                 = '';
+SET @TitanFemalefrFR                 = '';
+SET @TitanFemaledeDE                 = '';
+SET @TitanFemalezhCN                 = '';
+SET @TitanFemalezhTW                 = '';
+SET @TitanFemaleesES                 = '';
+SET @TitanFemaleesMX                 = '';
+SET @TitanFemaleruRU                 = '';
+SET @TitanFemalejaJP                 = '';
+SET @TitanFemaleptPT                 = '';
+SET @TitanFemaleitIT                 = '';
+SET @TitanFemaleUnk1                 = '';
+SET @TitanFemaleUnk2                 = '';
+SET @TitanFemaleUnk3                 = '';
+SET @TitanFemaleUnk4                 = '';
+
+SET @TitanMaleenUS                   = '';
+SET @TitanMalekoKR                   = '';
+SET @TitanMalefrFR                   = '';
+SET @TitanMaledeDE                   = '';
+SET @TitanMalezhCN                   = '';
+SET @TitanMalezhTW                   = '';
+SET @TitanMaleesES                   = '';
+SET @TitanMaleesMX                   = '';
+SET @TitanMaleruRU                   = '';
+SET @TitanMalejaJP                   = '';
+SET @TitanMaleptPT                   = '';
+SET @TitanMaleitIT                   = '';
+SET @TitanMaleUnk1                   = '';
+SET @TitanMaleUnk2                   = '';
+SET @TitanMaleUnk3                   = '';
+SET @TitanMaleUnk4                   = '';
+
+SET @TitanRacialNameenUS             = 'Racial - Titan';
+SET @TitanRacialNamekoKR             = '';
+SET @TitanRacialNamefrFR             = '';
+SET @TitanRacialNamedeDE             = '';
+SET @TitanRacialNamezhCN             = '';
+SET @TitanRacialNamezhTW             = '';
+SET @TitanRacialNameesES             = '';
+SET @TitanRacialNameesMX             = '';
+SET @TitanRacialNameruRU             = '';
+SET @TitanRacialNamejaJP             = '';
+SET @TitanRacialNameptPT             = '';
+SET @TitanRacialNameitIT             = '';
+SET @TitanRacialNameUnk1             = '';
+SET @TitanRacialNameUnk2             = '';
+SET @TitanRacialNameUnk3             = '';
+SET @TitanRacialNameUnk4             = '';
+
+SET @TitanPlayerenUS                 = '"PLAYER", Titan';
+SET @TitanPlayerkoKR                 = '';
+SET @TitanPlayerfrFR                 = '';
+SET @TitanPlayerdeDE                 = '';
+SET @TitanPlayerzhCN                 = '';
+SET @TitanPlayerzhTW                 = '';
+SET @TitanPlayeresES                 = '';
+SET @TitanPlayeresMX                 = '';
+SET @TitanPlayerruRU                 = '';
+SET @TitanPlayerjaJP                 = '';
+SET @TitanPlayerptPT                 = '';
+SET @TitanPlayeritIT                 = '';
+SET @TitanPlayerUnk1                 = '';
+SET @TitanPlayerUnk2                 = '';
+SET @TitanPlayerUnk3                 = '';
+SET @TitanPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @TitanFactionNameenUS            = 'Titan-Forged Vanguard';
+SET @TitanFactionNamekoKR            = '';
+SET @TitanFactionNamefrFR            = '';
+SET @TitanFactionNamedeDE            = '';
+SET @TitanFactionNamezhCN            = '';
+SET @TitanFactionNamezhTW            = '';
+SET @TitanFactionNameesES            = '';
+SET @TitanFactionNameesMX            = '';
+SET @TitanFactionNameruRU            = '';
+SET @TitanFactionNamejaJP            = '';
+SET @TitanFactionNameptPT            = '';
+SET @TitanFactionNameitIT            = '';
+SET @TitanFactionNameUnk1            = '';
+SET @TitanFactionNameUnk2            = '';
+SET @TitanFactionNameUnk3            = '';
+SET @TitanFactionNameUnk4            = '';
+
+SET @TitanFactionDescriptionenUS     = 'Titan-forged who answer to the Keepers and stand with the dwarves of Ironforge.';
+SET @TitanFactionDescriptionkoKR     = '';
+SET @TitanFactionDescriptionfrFR     = '';
+SET @TitanFactionDescriptiondeDE     = '';
+SET @TitanFactionDescriptionzhCN     = '';
+SET @TitanFactionDescriptionzhTW     = '';
+SET @TitanFactionDescriptionesES     = '';
+SET @TitanFactionDescriptionesMX     = '';
+SET @TitanFactionDescriptionruRU     = '';
+SET @TitanFactionDescriptionjaJP     = '';
+SET @TitanFactionDescriptionptPT     = '';
+SET @TitanFactionDescriptionitIT     = '';
+SET @TitanFactionDescriptionUnk1     = '';
+SET @TitanFactionDescriptionUnk2     = '';
+SET @TitanFactionDescriptionUnk3     = '';
+SET @TitanFactionDescriptionUnk4     = '';
+
+SET @TitanAchievementenUS            = 'Realm First! Level 80 Titan';
+SET @TitanAchievementkoKR            = '';
+SET @TitanAchievementfrFR            = '';
+SET @TitanAchievementdeDE            = '';
+SET @TitanAchievementzhCN            = '';
+SET @TitanAchievementzhTW            = '';
+SET @TitanAchievementesES            = '';
+SET @TitanAchievementesMX            = '';
+SET @TitanAchievementruRU            = '';
+SET @TitanAchievementjaJP            = '';
+SET @TitanAchievementptPT            = '';
+SET @TitanAchievementitIT            = '';
+SET @TitanAchievementUnk1            = '';
+SET @TitanAchievementUnk2            = '';
+SET @TitanAchievementUnk3            = '';
+SET @TitanAchievementUnk4            = '';
+
+SET @TitanAchievementDescriptionenUS = 'First Titan on the realm to achieve level 80.';
+SET @TitanAchievementDescriptionkoKR = '';
+SET @TitanAchievementDescriptionfrFR = '';
+SET @TitanAchievementDescriptiondeDE = '';
+SET @TitanAchievementDescriptionzhCN = '';
+SET @TitanAchievementDescriptionzhTW = '';
+SET @TitanAchievementDescriptionesES = '';
+SET @TitanAchievementDescriptionesMX = '';
+SET @TitanAchievementDescriptionruRU = '';
+SET @TitanAchievementDescriptionjaJP = '';
+SET @TitanAchievementDescriptionptPT = '';
+SET @TitanAchievementDescriptionitIT = '';
+SET @TitanAchievementDescriptionUnk1 = '';
+SET @TitanAchievementDescriptionUnk2 = '';
+SET @TitanAchievementDescriptionUnk3 = '';
+SET @TitanAchievementDescriptionUnk4 = '';

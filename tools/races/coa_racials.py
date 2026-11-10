@@ -15,8 +15,8 @@ as marked blocks at the end of its spell, skilllineability and spellicon files (
 replaces the blocks. Modpaks that already give their race racial abilities (or copy a stock race's) get the block
 commented out. The ids go into a marked block of config.sql.
 
-usage: coa_racials.py <CoA server sql/14_races_1.9.sql> <CoA client Spell.dbc> <Ascension SpellIcon.dbc>
-                      <stock DBFilesClient> [icon folder ...]"""
+usage: coa_racials.py <CoA server sql/14_races_1.9.sql> <CoA client Spell.dbc[,another,...]> <Ascension SpellIcon.dbc>
+                      <stock DBFilesClient> [icon folder ...] [--v12 <CoA 1.9.9 server sql/23_racials_round2_v12.sql>]"""
 import glob
 import os
 import re
@@ -80,13 +80,42 @@ TARGETS = [
     (123, 'F-052', 'Qiraji', True, 'Qiraji (shelved in CoA 1.9)', ''),
     (54, 'F-073', 'AllianceDracthyr', True, 'Dracthyr (Alliance)', ''),
     (58, 'F-074', 'HordeDracthyr', True, 'Dracthyr (Horde)', ''),
+    # CoA 1.9.9 races (coa199_races.py); 1000 + n: the release's v12 racials (15000000 + n * 10 + slot)
+    (82, 'F-105', 'Sethrak', True, 'Sethrak', ''),
+    (1086, 'F-106', 'Sureki', True, 'Sureki', ''),
+    (1089, 'F-107', 'Dreadlord', True, 'Dreadlord', ''),
+    (1091, 'F-108', 'Titan', True, 'Titan', ''),
+    (1093, 'F-109', 'Fungarian', True, 'Fungarian', ''),
+    (97, 'F-110', 'Saberon', True, 'Saberon', ''),
+    (1111, 'F-112', 'Sporeling', True, 'Sporeling', ''),
+    (1114, 'F-113', 'Stormforged', True, 'Stormforged', ''),
+    (1119, 'F-114', 'Moarg', True, 'Mo\'arg', ''),
+    (1120, 'F-115', 'Nerubian', True, 'Nerubian', ''),
+    (1122, 'F-116', 'Lich', True, 'Lich', ''),
+    (1123, 'F-117', 'Mogu', True, 'Mogu', ''),
+    (1125, 'F-118', 'LostOne', True, 'Lost One', ''),
+    (56, 'F-121', 'Harpy', True, 'Harpy', ''),
+    (60, 'F-122', 'IllidariBloodElf', True, 'Illidari Blood Elf', ''),
+    (61, 'F-123', 'IllidariNightElf', True, 'Illidari Night Elf', ''),
+    (78, 'F-124', 'Jinyu', True, 'Jinyu', ''),
+    (53, 'F-125', 'TwoHeadedOgre', True, 'Ogre (CoA\'s Two-Headed Ogre has none of its own)', ''),
+    (103, 'F-126', 'Grummle', True, 'Grummle', ''),
+    (121, 'F-127', 'EluneChosen', True, 'Elune\'s Chosen', ''),
 ]
 # CoA races added after the first run: their spells and SkillLineAbility rows are numbered after everyone else's, so
 # the spell ids characters may already have learned stay put
-APPENDED = (54, 58)
+APPENDED = (54, 58, 82, 1086, 1089, 1091, 1093, 97, 1111, 1114, 1119, 1120, 1122, 1123, 1125, 56, 61, 78, 103, 121)
+# v12 racials (--v12 <23_racials_round2_v12.sql>): race part n -> TARGETS race (1000 + n unless merged into a 1.9 race)
+V12_MERGE = {118: 121}   # Elune's Chosen's Moonlit Veil joins its 1.9 racials
+V12_SKIP = {15000935}    # Sporebloom Pulse: cast by the Sporebloom creature's SmartAI, not a racial
+V12_BASE = 15000000
 HELPERS = {801044: 'SlowAndRootDispel', 820589: 'EscapeArtist', 828730: 'ArcaneTorrent'}
 NOTES = {14001006: 'CoA drives it with the C++ scripts spell_centaur_gallop/_aura, which WHE does not have: '
-                   'without them it is a plain speed buff'}
+                   'without them it is a plain speed buff',
+         15000914: 'CoA sizes the absorb with the C++ script spell_titan_aegis (titan_aegis.cpp), which WHE does not '
+                   'have: without it the shield absorbs its base amount only',
+         15000934: 'CoA\'s sporebloom is a creature (15000930) whose SmartAI casts Sporebloom Pulse; WHE does not have '
+                   'it, so the spell summons nothing that heals'}
 CLASS_WORDS = ['Witch Doctor', 'Ranger', 'Reaper', 'Starcaller', 'Barbarian', 'monks', 'Sun Cleric', 'Felsworn', 'Necromancer',
                'Pyromancer', 'Primalist', 'Tinker', 'Chronomancer', 'Cultist', 'Templar', 'Runemaster', 'Bloodmage', 'Venomancer']
 # retail icons no client folder has: a similar stock icon
@@ -122,6 +151,7 @@ FALLBACK_ICONS = {
     '_monkspecialattack_dodgepandaren': 'Ability_Rogue_Feint',
     'ability_earthen_pillar': 'Spell_Nature_StoneSkinTotem',
     'ability_earthenfury_giftofearth': 'Spell_Nature_StoneClawTotem',
+    'spell_druid_wildmushroom_bloom': 'INV_Mushroom_11',
 }
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -186,6 +216,60 @@ def load_spells(path, wanted):
     return out
 
 
+def sql_values(row):
+    """The values of one SQL row (the text between its parentheses), strings unquoted."""
+    out, cur, quoted, i = [], '', None, 0
+    while i < len(row):
+        ch = row[i]
+        if quoted is not None:
+            if ch == '\\' and i + 1 < len(row):
+                quoted += {'n': '\n', 'r': '\r', 't': '\t', '0': '\0'}.get(row[i + 1], row[i + 1])
+                i += 1
+            elif ch == "'" and row[i + 1:i + 2] == "'":
+                quoted += "'"
+                i += 1
+            elif ch == "'":
+                out.append(quoted)
+                quoted, cur = None, None
+            else:
+                quoted += ch
+        elif ch == "'":
+            quoted = ''
+        elif ch == ',':
+            if cur is not None:
+                out.append(cur.strip())
+            cur = ''
+        elif cur is not None:
+            cur += ch
+        i += 1
+    if cur is not None:
+        out.append(cur.strip())
+    return out
+
+
+def load_v12(path):
+    """{spell id: row} of the release's v12 racials (its spell_dbc INSERT, floats written as decimals)."""
+    text = open(path, encoding='utf-8').read()
+    start = text.index('INSERT INTO spell_dbc VALUES') + len('INSERT INTO spell_dbc VALUES')
+    body = text[start:text.index(';\n', start)]
+    out = {}
+    for m in re.finditer(r'\((%d\d{4},.*?)\)\s*(?=,\s*\n\s*\(|$)' % (V12_BASE // 10000), body, re.S):
+        values = sql_values(m.group(1))
+        if len(values) != len(COLUMNS):
+            raise SystemExit('%s: a row with %d values' % (path, len(values)))
+        row = []
+        for c, v in enumerate(values):
+            if c in STRINGS:
+                row.append(v)
+            elif c in FLOATS:
+                row.append(float(v))
+            else:
+                row.append(int(v) if c in SIGNED else int(v) & 0xFFFFFFFF)
+        if row[0] not in V12_SKIP:
+            out[row[0]] = row
+    return out
+
+
 def ids_of(path):
     rows, _, _ = nrm.load_dbc(path)
     return {struct.unpack_from('<I', r)[0] for r in rows}
@@ -213,17 +297,30 @@ def camel(name):
 
 
 class Plan:
-    def __init__(self, sql, coa_spell, asc_icon, stock, icon_dirs):
+    def __init__(self, sql, coa_spell, asc_icon, stock, icon_dirs, v12=None):
         wanted_races = {t[0] for t in TARGETS}
         coa_ids = [int(m) for m in re.findall(r'REPLACE INTO `spell_dbc` VALUES \((\d+),', open(sql, encoding='utf-8').read())]
+        v12_rows = load_v12(v12) if v12 else {}
         self.racials = {}   # CoA race -> sorted CoA spell ids
         for sid in coa_ids:
             race = (sid - 14000000) // 10
             if race in wanted_races:
                 self.racials.setdefault(race, []).append(sid)
+        for sid in v12_rows:
+            n = (sid - V12_BASE) // 10
+            race = V12_MERGE.get(n, 1000 + n)
+            if race in wanted_races:
+                self.racials.setdefault(race, []).append(sid)
         for race in self.racials:
             self.racials[race].sort()
-        self.spells = load_spells(coa_spell, set(coa_ids) | set(HELPERS))
+        self.spells = {}
+        for path in coa_spell.split(','):   # several client Spell.dbc files: the first one with a spell wins
+            for sid, row in load_spells(path, set(coa_ids) | set(HELPERS)).items():
+                self.spells.setdefault(sid, row)
+        self.spells.update(v12_rows)
+        missing = [s for sids in self.racials.values() for s in sids if s not in self.spells]
+        if missing:
+            raise SystemExit('spells in neither the client Spell.dbc nor the v12 SQL: %s' % missing)
         self.new_id, self.var = {}, {}
         next_id = SPELL_BASE
         for sid in sorted(HELPERS):
@@ -233,16 +330,26 @@ class Plan:
         for race, fnum, key, active, name, why in TARGETS:
             keys.setdefault(race, key)
         order = sorted(self.racials, key=lambda r: (r in APPENDED, APPENDED.index(r) if r in APPENDED else r))
+        self.slot = {}   # spell -> number in its variable names: the id's last digit, or the next free one (merged v12)
         for race in order:
             for sid in self.racials[race]:
-                self.new_id[sid], self.var[sid] = next_id, '@CoA%sRacial%d' % (keys[race], sid % 10)
+                taken = [self.slot[s] for s in self.racials[race] if s in self.slot]
+                self.slot[sid] = sid % 10 if sid % 10 not in taken else max(taken) + 1
+                self.new_id[sid], self.var[sid] = next_id, '@CoA%sRacial%d' % (keys[race], self.slot[sid])
                 next_id += 1
-        self.sla = {}
+        self.sla = {}   # (spell, race key) -> (SkillLineAbility id, variable)
         next_sla = SLA_BASE
         for race in order:
             for sid in self.racials[race]:
-                self.sla[sid] = (next_sla, '@CoA%sSkillLineAbility%d' % (keys[race], sid % 10))
+                self.sla[(sid, keys[race])] = (next_sla, '@CoA%sSkillLineAbility%d' % (keys[race], self.slot[sid]))
                 next_sla += 1
+        # races that learn another race's spells (Illidari Blood Elf: Fel Elf's; Two-Headed Ogre: Ogre's) get rows of
+        # their own, after everyone else's
+        for race, fnum, key, active, name, why in TARGETS:
+            if race in self.racials and key != keys[race]:
+                for sid in self.racials[race]:
+                    self.sla[(sid, key)] = (next_sla, '@CoA%sSkillLineAbility%d' % (key, self.slot[sid]))
+                    next_sla += 1
         # icons
         rows, strings, _ = nrm.load_dbc(asc_icon)
         asc = {struct.unpack_from('<I', r)[0]: nrm.string(strings, struct.unpack_from('<I', r, 4)[0]) for r in rows}
@@ -347,8 +454,15 @@ def wrap(lines, active, why):
 
 
 def main():
-    sql, coa_spell, asc_icon, stock = sys.argv[1:5]
-    plan = Plan(sql, coa_spell, asc_icon, stock, sys.argv[5:])
+    args, v12 = sys.argv[1:], None
+    if '--v12' in args:
+        i = args.index('--v12')
+        v12 = args[i + 1]
+        del args[i:i + 2]
+    sql, coa_spell, asc_icon, stock = args[:4]
+    plan = Plan(sql, coa_spell, asc_icon, stock, args[4:], v12)
+    race_ids = {k: int(v) for k, v in re.findall(r'^SET @(\w+)\s*=\s*(\d+);',
+                                                  open(os.path.join(MODPAKS, 'config.sql'), encoding='utf-8').read(), re.M)}
     for race, fnum, key, active, name, why in TARGETS:
         sids = plan.racials.get(race, [])
         if not sids:
@@ -356,19 +470,22 @@ def main():
             continue
         folder = glob.glob(os.path.join(MODPAKS, fnum + '_*'))[0]
         tag = '[BASE,%s]' % fnum
-        header = ['-- %s racials from CoA Custom 1.9 (Ilusixn\'s CoA race files, CoA race %d), renumbered into vacant slots'
-                  % (name, race)]
+        header = ['-- %s racials from %s, renumbered into vacant slots' % (name, source(race))]
         spells = plan.deps(sids) + sids
         lines = ['DELETE FROM `spell` WHERE `id` IN (%s);' % ', '.join(plan.var[s] for s in spells),
                  'INSERT INTO `spell` (%s) VALUES' % ', '.join('`%s`' % c for c in COLUMNS),
                  ',\n'.join(plan.row_sql(s) for s in spells) + ';']
         update(os.path.join(folder, 'dbc', tag + '_spell.sql'), '\n'.join(header + wrap(lines, active, why)))
-        rows = ['(%s, @%sRacials, %s, @%sMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0)%s -- %s' % (
-            plan.sla[s][1], key, plan.var[s], key, ';' if s == sids[-1] else ',', plan.name(s)) for s in sids]
-        lines = ['DELETE FROM `skilllineability` WHERE `id` IN (%s);' % ', '.join(plan.sla[s][1] for s in sids),
+        # a race above 64 is in the second race-mask word: its rows need required_races_2 (else required_races 0 = any race)
+        high = race_ids.get(key, 0) > 64
+        rows = ['(%s, @%sRacials, %s, @%sMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0%s)%s -- %s' % (
+            plan.sla[(s, key)][1], key, plan.var[s], key, ', @%sMask_2' % key if high else '',
+            ';' if s == sids[-1] else ',', plan.name(s)) for s in sids]
+        lines = ['DELETE FROM `skilllineability` WHERE `id` IN (%s);' % ', '.join(plan.sla[(s, key)][1] for s in sids),
                  'INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`, `required_classes`, '
                  '`excluded_races`, `excluded_classes`, `min_skill_value`, `spell_parent_id`, `acquire_method`, '
-                 '`skill_grey_level`, `skill_yellow_level`, `character_points_1`, `character_points_2`) VALUES'] + rows
+                 '`skill_grey_level`, `skill_yellow_level`, `character_points_1`, `character_points_2`%s) VALUES'
+                 % (', `required_races_2`' if high else '')] + rows
         update(os.path.join(folder, 'dbc', tag + '_skilllineability.sql'),
                '\n'.join(['-- The %s racials, learned with the racial skill line' % name] + wrap(lines, active, why)))
         icons = sorted({plan.icon[plan.spells[s][133]][0] for s in spells} & {v for _, v in plan.new_icons.values()})
@@ -384,6 +501,18 @@ def main():
     write_config(plan)
 
 
+def source(race):
+    """Where a TARGETS race's racials come from, for comments and readmes."""
+    if race in V12_MERGE.values():
+        return ('CoA (Ilusixn\'s CoA 1.9.9 release, CoA race %d and the v12 racials of race %s)'
+                % (race, ', '.join(str(n) for n, r in V12_MERGE.items() if r == race)))
+    if race >= 1000:
+        return 'CoA (Ilusixn\'s CoA 1.9.9 release, v12 racials of CoA race %d)' % (race - 1000)
+    if race in APPENDED[2:]:
+        return 'CoA (Ilusixn\'s CoA 1.9.9 release, CoA race %d)' % race
+    return 'CoA Custom 1.9 (Ilusixn\'s CoA race files, CoA race %d)' % race
+
+
 def readme(folder, plan, sids, race, name, active, why, tag):
     path = os.path.join(folder, 'readme.md')
     text = open(path, encoding='utf-8').read()
@@ -393,8 +522,8 @@ def readme(folder, plan, sids, race, name, active, why, tag):
     lines = ['', '', README,
              ('- Active: learned with the racial skill line' if active else '- Commented out (%s); remove the comment markers in the '
               'CoA blocks to use them' % why),
-             '- From CoA race %d (%s), renumbered; blocks at the end of `%s_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`'
-             % (race, name, tag)]
+             '- From %s (%s), renumbered; blocks at the end of `%s_spell.sql`, `_skilllineability.sql` and `_spellicon.sql`'
+             % ('CoA race %d' % race if source(race).startswith('CoA Custom 1.9') else source(race), name, tag)]
     for s in sids:
         desc = plan.text(s).split('\n\n')[-1].replace('\n', ' ')
         lines.append('    - %s: %s' % (plan.name(s), desc))
@@ -409,8 +538,8 @@ def write_config(plan):
              % (SPELL_BASE, SLA_BASE), '-- spell icons from %d. The comment gives the CoA spell id.' % ICON_BASE]
     for sid in sorted(plan.new_id, key=plan.new_id.get):
         lines.append(('SET ' + plan.var[sid]).ljust(63) + '= %8d; -- %s (CoA %d)' % (plan.new_id[sid], plan.name(sid), sid))
-    for sid in sorted(plan.sla, key=lambda s: plan.sla[s][0]):
-        lines.append(('SET ' + plan.sla[sid][1]).ljust(63) + '= %8d; -- %s' % (plan.sla[sid][0], plan.name(sid)))
+    for sid, key in sorted(plan.sla, key=lambda s: plan.sla[s][0]):
+        lines.append(('SET ' + plan.sla[(sid, key)][1]).ljust(63) + '= %8d; -- %s' % (plan.sla[(sid, key)][0], plan.name(sid)))
     for p, (i, v) in sorted(plan.new_icons.items(), key=lambda x: x[1][0]):
         lines.append(('SET ' + v).ljust(63) + '= %8d; -- %s' % (i, p))
     update(path, '\n'.join(lines))

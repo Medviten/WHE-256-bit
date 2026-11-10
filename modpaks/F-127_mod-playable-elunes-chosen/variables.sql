@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @EluneChosenMask                       = 1 << (@EluneChosen - 1);
+SET @EluneChosenMask_2                     = IF(@EluneChosen BETWEEN 65 AND 128, 1 << (@EluneChosen - 65), 0); -- races 65-128
+SET @EluneChosenHelmetMask                 = 1 << @EluneChosen;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @EluneChosenMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @EluneChosenMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @EluneChosenMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @EluneChosenMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @EluneChosenMask;
+SET @BowHunters_2                         = @BowHunters_2      | @EluneChosenMask_2; -- races 65-128
+SET @EluneChosenLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @EluneChosenAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @EluneChosenKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @EluneChosenHome = @NightElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @EluneChosenKin = @NightElf; -- voice, emotes and names are copied from this race
+SET @EluneChosenFlags = @NightElfFlags;
+SET @EluneChosenExplorationSound = @NightElfExplorationSound;
+SET @EluneChosenCinematicSequence = @NightElfCinematicSequence;
+SET @EluneChosenBlood = 1;
+SET @EluneChosenMaleModelPath = 'Character\\Nightborne\\Elune\\Male\\EluneChosenMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @EluneChosenFemaleModelPath = 'Character\\Nightborne\\Elune\\Female\\EluneChosenFemale.m2';
+SET @EluneChosenFaction = 1445; -- vacant slot
+SET @EluneChosenPlayer = 1446; -- vacant slot
+
+-- Strings
+SET @EluneChosenClientPrefix               = 'Ni'; -- helmet models of this prefix
+SET @EluneChosenClientString               = 'EluneChosen';
+SET @EluneChosenFacialHairCustomization1   = 'NORMAL';
+SET @EluneChosenFacialHairCustomization2   = 'EARRINGS';
+SET @EluneChosenHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @EluneChosenenUS                       = 'Elune's Chosen';
+SET @EluneChosenkoKR                       = '';
+SET @EluneChosenfrFR                       = '';
+SET @EluneChosendeDE                       = '';
+SET @EluneChosenzhCN                       = '';
+SET @EluneChosenzhTW                       = '';
+SET @EluneChosenesES                       = '';
+SET @EluneChosenesMX                       = '';
+SET @EluneChosenruRU                       = '';
+SET @EluneChosenjaJP                       = '';
+SET @EluneChosenptPT                       = '';
+SET @EluneChosenitIT                       = '';
+SET @EluneChosenUnk1                       = '';
+SET @EluneChosenUnk2                       = '';
+SET @EluneChosenUnk3                       = '';
+SET @EluneChosenUnk4                       = '';
+
+SET @EluneChosenFemaleenUS                 = '';
+SET @EluneChosenFemalekoKR                 = '';
+SET @EluneChosenFemalefrFR                 = '';
+SET @EluneChosenFemaledeDE                 = '';
+SET @EluneChosenFemalezhCN                 = '';
+SET @EluneChosenFemalezhTW                 = '';
+SET @EluneChosenFemaleesES                 = '';
+SET @EluneChosenFemaleesMX                 = '';
+SET @EluneChosenFemaleruRU                 = '';
+SET @EluneChosenFemalejaJP                 = '';
+SET @EluneChosenFemaleptPT                 = '';
+SET @EluneChosenFemaleitIT                 = '';
+SET @EluneChosenFemaleUnk1                 = '';
+SET @EluneChosenFemaleUnk2                 = '';
+SET @EluneChosenFemaleUnk3                 = '';
+SET @EluneChosenFemaleUnk4                 = '';
+
+SET @EluneChosenMaleenUS                   = '';
+SET @EluneChosenMalekoKR                   = '';
+SET @EluneChosenMalefrFR                   = '';
+SET @EluneChosenMaledeDE                   = '';
+SET @EluneChosenMalezhCN                   = '';
+SET @EluneChosenMalezhTW                   = '';
+SET @EluneChosenMaleesES                   = '';
+SET @EluneChosenMaleesMX                   = '';
+SET @EluneChosenMaleruRU                   = '';
+SET @EluneChosenMalejaJP                   = '';
+SET @EluneChosenMaleptPT                   = '';
+SET @EluneChosenMaleitIT                   = '';
+SET @EluneChosenMaleUnk1                   = '';
+SET @EluneChosenMaleUnk2                   = '';
+SET @EluneChosenMaleUnk3                   = '';
+SET @EluneChosenMaleUnk4                   = '';
+
+SET @EluneChosenRacialNameenUS             = 'Racial - Elune's Chosen';
+SET @EluneChosenRacialNamekoKR             = '';
+SET @EluneChosenRacialNamefrFR             = '';
+SET @EluneChosenRacialNamedeDE             = '';
+SET @EluneChosenRacialNamezhCN             = '';
+SET @EluneChosenRacialNamezhTW             = '';
+SET @EluneChosenRacialNameesES             = '';
+SET @EluneChosenRacialNameesMX             = '';
+SET @EluneChosenRacialNameruRU             = '';
+SET @EluneChosenRacialNamejaJP             = '';
+SET @EluneChosenRacialNameptPT             = '';
+SET @EluneChosenRacialNameitIT             = '';
+SET @EluneChosenRacialNameUnk1             = '';
+SET @EluneChosenRacialNameUnk2             = '';
+SET @EluneChosenRacialNameUnk3             = '';
+SET @EluneChosenRacialNameUnk4             = '';
+
+SET @EluneChosenPlayerenUS                 = '"PLAYER", Elune\'s Chosen';
+SET @EluneChosenPlayerkoKR                 = '';
+SET @EluneChosenPlayerfrFR                 = '';
+SET @EluneChosenPlayerdeDE                 = '';
+SET @EluneChosenPlayerzhCN                 = '';
+SET @EluneChosenPlayerzhTW                 = '';
+SET @EluneChosenPlayeresES                 = '';
+SET @EluneChosenPlayeresMX                 = '';
+SET @EluneChosenPlayerruRU                 = '';
+SET @EluneChosenPlayerjaJP                 = '';
+SET @EluneChosenPlayerptPT                 = '';
+SET @EluneChosenPlayeritIT                 = '';
+SET @EluneChosenPlayerUnk1                 = '';
+SET @EluneChosenPlayerUnk2                 = '';
+SET @EluneChosenPlayerUnk3                 = '';
+SET @EluneChosenPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @EluneChosenFactionNameenUS            = 'Elune\'s Chosen';
+SET @EluneChosenFactionNamekoKR            = '';
+SET @EluneChosenFactionNamefrFR            = '';
+SET @EluneChosenFactionNamedeDE            = '';
+SET @EluneChosenFactionNamezhCN            = '';
+SET @EluneChosenFactionNamezhTW            = '';
+SET @EluneChosenFactionNameesES            = '';
+SET @EluneChosenFactionNameesMX            = '';
+SET @EluneChosenFactionNameruRU            = '';
+SET @EluneChosenFactionNamejaJP            = '';
+SET @EluneChosenFactionNameptPT            = '';
+SET @EluneChosenFactionNameitIT            = '';
+SET @EluneChosenFactionNameUnk1            = '';
+SET @EluneChosenFactionNameUnk2            = '';
+SET @EluneChosenFactionNameUnk3            = '';
+SET @EluneChosenFactionNameUnk4            = '';
+
+SET @EluneChosenFactionDescriptionenUS     = 'Elves touched by the light of the Moon who answered Tyrande\'s call.';
+SET @EluneChosenFactionDescriptionkoKR     = '';
+SET @EluneChosenFactionDescriptionfrFR     = '';
+SET @EluneChosenFactionDescriptiondeDE     = '';
+SET @EluneChosenFactionDescriptionzhCN     = '';
+SET @EluneChosenFactionDescriptionzhTW     = '';
+SET @EluneChosenFactionDescriptionesES     = '';
+SET @EluneChosenFactionDescriptionesMX     = '';
+SET @EluneChosenFactionDescriptionruRU     = '';
+SET @EluneChosenFactionDescriptionjaJP     = '';
+SET @EluneChosenFactionDescriptionptPT     = '';
+SET @EluneChosenFactionDescriptionitIT     = '';
+SET @EluneChosenFactionDescriptionUnk1     = '';
+SET @EluneChosenFactionDescriptionUnk2     = '';
+SET @EluneChosenFactionDescriptionUnk3     = '';
+SET @EluneChosenFactionDescriptionUnk4     = '';
+
+SET @EluneChosenAchievementenUS            = 'Realm First! Level 80 Elune\'s Chosen';
+SET @EluneChosenAchievementkoKR            = '';
+SET @EluneChosenAchievementfrFR            = '';
+SET @EluneChosenAchievementdeDE            = '';
+SET @EluneChosenAchievementzhCN            = '';
+SET @EluneChosenAchievementzhTW            = '';
+SET @EluneChosenAchievementesES            = '';
+SET @EluneChosenAchievementesMX            = '';
+SET @EluneChosenAchievementruRU            = '';
+SET @EluneChosenAchievementjaJP            = '';
+SET @EluneChosenAchievementptPT            = '';
+SET @EluneChosenAchievementitIT            = '';
+SET @EluneChosenAchievementUnk1            = '';
+SET @EluneChosenAchievementUnk2            = '';
+SET @EluneChosenAchievementUnk3            = '';
+SET @EluneChosenAchievementUnk4            = '';
+
+SET @EluneChosenAchievementDescriptionenUS = 'First Elune\'s Chosen on the realm to achieve level 80.';
+SET @EluneChosenAchievementDescriptionkoKR = '';
+SET @EluneChosenAchievementDescriptionfrFR = '';
+SET @EluneChosenAchievementDescriptiondeDE = '';
+SET @EluneChosenAchievementDescriptionzhCN = '';
+SET @EluneChosenAchievementDescriptionzhTW = '';
+SET @EluneChosenAchievementDescriptionesES = '';
+SET @EluneChosenAchievementDescriptionesMX = '';
+SET @EluneChosenAchievementDescriptionruRU = '';
+SET @EluneChosenAchievementDescriptionjaJP = '';
+SET @EluneChosenAchievementDescriptionptPT = '';
+SET @EluneChosenAchievementDescriptionitIT = '';
+SET @EluneChosenAchievementDescriptionUnk1 = '';
+SET @EluneChosenAchievementDescriptionUnk2 = '';
+SET @EluneChosenAchievementDescriptionUnk3 = '';
+SET @EluneChosenAchievementDescriptionUnk4 = '';

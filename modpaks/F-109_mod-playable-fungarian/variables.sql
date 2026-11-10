@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @FungarianMask                       = 1 << (@Fungarian - 1);
+SET @FungarianMask_2                     = IF(@Fungarian BETWEEN 65 AND 128, 1 << (@Fungarian - 65), 0); -- races 65-128
+SET @FungarianHelmetMask                 = 1 << @Fungarian;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @FungarianMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @FungarianMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @FungarianMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @FungarianMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @FungarianMask;
+SET @BowHunters_2                         = @BowHunters_2      | @FungarianMask_2; -- races 65-128
+SET @FungarianLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @FungarianAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @FungarianKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @FungarianHome = @NightElf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @FungarianKin = @Draenei; -- voice, emotes and names are copied from this race
+SET @FungarianFlags = @NightElfFlags;
+SET @FungarianExplorationSound = @NightElfExplorationSound;
+SET @FungarianCinematicSequence = @NightElfCinematicSequence;
+SET @FungarianBlood = 1;
+SET @FungarianMaleModelPath = 'Creature\\Fungarian\\FungarianPlayer.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @FungarianFemaleModelPath = 'Creature\\Fungarian\\FungarianPlayer.m2';
+SET @FungarianFaction = 1409; -- vacant slot
+SET @FungarianPlayer = 1410; -- vacant slot
+
+-- Strings
+SET @FungarianClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @FungarianClientString               = 'Fungarian';
+SET @FungarianFacialHairCustomization1   = 'NORMAL';
+SET @FungarianFacialHairCustomization2   = 'NORMAL';
+SET @FungarianHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @FungarianenUS                       = 'Fungarian';
+SET @FungariankoKR                       = '';
+SET @FungarianfrFR                       = '';
+SET @FungariandeDE                       = '';
+SET @FungarianzhCN                       = '';
+SET @FungarianzhTW                       = '';
+SET @FungarianesES                       = '';
+SET @FungarianesMX                       = '';
+SET @FungarianruRU                       = '';
+SET @FungarianjaJP                       = '';
+SET @FungarianptPT                       = '';
+SET @FungarianitIT                       = '';
+SET @FungarianUnk1                       = '';
+SET @FungarianUnk2                       = '';
+SET @FungarianUnk3                       = '';
+SET @FungarianUnk4                       = '';
+
+SET @FungarianFemaleenUS                 = '';
+SET @FungarianFemalekoKR                 = '';
+SET @FungarianFemalefrFR                 = '';
+SET @FungarianFemaledeDE                 = '';
+SET @FungarianFemalezhCN                 = '';
+SET @FungarianFemalezhTW                 = '';
+SET @FungarianFemaleesES                 = '';
+SET @FungarianFemaleesMX                 = '';
+SET @FungarianFemaleruRU                 = '';
+SET @FungarianFemalejaJP                 = '';
+SET @FungarianFemaleptPT                 = '';
+SET @FungarianFemaleitIT                 = '';
+SET @FungarianFemaleUnk1                 = '';
+SET @FungarianFemaleUnk2                 = '';
+SET @FungarianFemaleUnk3                 = '';
+SET @FungarianFemaleUnk4                 = '';
+
+SET @FungarianMaleenUS                   = '';
+SET @FungarianMalekoKR                   = '';
+SET @FungarianMalefrFR                   = '';
+SET @FungarianMaledeDE                   = '';
+SET @FungarianMalezhCN                   = '';
+SET @FungarianMalezhTW                   = '';
+SET @FungarianMaleesES                   = '';
+SET @FungarianMaleesMX                   = '';
+SET @FungarianMaleruRU                   = '';
+SET @FungarianMalejaJP                   = '';
+SET @FungarianMaleptPT                   = '';
+SET @FungarianMaleitIT                   = '';
+SET @FungarianMaleUnk1                   = '';
+SET @FungarianMaleUnk2                   = '';
+SET @FungarianMaleUnk3                   = '';
+SET @FungarianMaleUnk4                   = '';
+
+SET @FungarianRacialNameenUS             = 'Racial - Fungarian';
+SET @FungarianRacialNamekoKR             = '';
+SET @FungarianRacialNamefrFR             = '';
+SET @FungarianRacialNamedeDE             = '';
+SET @FungarianRacialNamezhCN             = '';
+SET @FungarianRacialNamezhTW             = '';
+SET @FungarianRacialNameesES             = '';
+SET @FungarianRacialNameesMX             = '';
+SET @FungarianRacialNameruRU             = '';
+SET @FungarianRacialNamejaJP             = '';
+SET @FungarianRacialNameptPT             = '';
+SET @FungarianRacialNameitIT             = '';
+SET @FungarianRacialNameUnk1             = '';
+SET @FungarianRacialNameUnk2             = '';
+SET @FungarianRacialNameUnk3             = '';
+SET @FungarianRacialNameUnk4             = '';
+
+SET @FungarianPlayerenUS                 = '"PLAYER", Fungarian';
+SET @FungarianPlayerkoKR                 = '';
+SET @FungarianPlayerfrFR                 = '';
+SET @FungarianPlayerdeDE                 = '';
+SET @FungarianPlayerzhCN                 = '';
+SET @FungarianPlayerzhTW                 = '';
+SET @FungarianPlayeresES                 = '';
+SET @FungarianPlayeresMX                 = '';
+SET @FungarianPlayerruRU                 = '';
+SET @FungarianPlayerjaJP                 = '';
+SET @FungarianPlayerptPT                 = '';
+SET @FungarianPlayeritIT                 = '';
+SET @FungarianPlayerUnk1                 = '';
+SET @FungarianPlayerUnk2                 = '';
+SET @FungarianPlayerUnk3                 = '';
+SET @FungarianPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @FungarianFactionNameenUS            = 'Fungarian Circle';
+SET @FungarianFactionNamekoKR            = '';
+SET @FungarianFactionNamefrFR            = '';
+SET @FungarianFactionNamedeDE            = '';
+SET @FungarianFactionNamezhCN            = '';
+SET @FungarianFactionNamezhTW            = '';
+SET @FungarianFactionNameesES            = '';
+SET @FungarianFactionNameesMX            = '';
+SET @FungarianFactionNameruRU            = '';
+SET @FungarianFactionNamejaJP            = '';
+SET @FungarianFactionNameptPT            = '';
+SET @FungarianFactionNameitIT            = '';
+SET @FungarianFactionNameUnk1            = '';
+SET @FungarianFactionNameUnk2            = '';
+SET @FungarianFactionNameUnk3            = '';
+SET @FungarianFactionNameUnk4            = '';
+
+SET @FungarianFactionDescriptionenUS     = 'Mushroom folk of Zangarmarsh who tend the spore groves beside the druids.';
+SET @FungarianFactionDescriptionkoKR     = '';
+SET @FungarianFactionDescriptionfrFR     = '';
+SET @FungarianFactionDescriptiondeDE     = '';
+SET @FungarianFactionDescriptionzhCN     = '';
+SET @FungarianFactionDescriptionzhTW     = '';
+SET @FungarianFactionDescriptionesES     = '';
+SET @FungarianFactionDescriptionesMX     = '';
+SET @FungarianFactionDescriptionruRU     = '';
+SET @FungarianFactionDescriptionjaJP     = '';
+SET @FungarianFactionDescriptionptPT     = '';
+SET @FungarianFactionDescriptionitIT     = '';
+SET @FungarianFactionDescriptionUnk1     = '';
+SET @FungarianFactionDescriptionUnk2     = '';
+SET @FungarianFactionDescriptionUnk3     = '';
+SET @FungarianFactionDescriptionUnk4     = '';
+
+SET @FungarianAchievementenUS            = 'Realm First! Level 80 Fungarian';
+SET @FungarianAchievementkoKR            = '';
+SET @FungarianAchievementfrFR            = '';
+SET @FungarianAchievementdeDE            = '';
+SET @FungarianAchievementzhCN            = '';
+SET @FungarianAchievementzhTW            = '';
+SET @FungarianAchievementesES            = '';
+SET @FungarianAchievementesMX            = '';
+SET @FungarianAchievementruRU            = '';
+SET @FungarianAchievementjaJP            = '';
+SET @FungarianAchievementptPT            = '';
+SET @FungarianAchievementitIT            = '';
+SET @FungarianAchievementUnk1            = '';
+SET @FungarianAchievementUnk2            = '';
+SET @FungarianAchievementUnk3            = '';
+SET @FungarianAchievementUnk4            = '';
+
+SET @FungarianAchievementDescriptionenUS = 'First Fungarian on the realm to achieve level 80.';
+SET @FungarianAchievementDescriptionkoKR = '';
+SET @FungarianAchievementDescriptionfrFR = '';
+SET @FungarianAchievementDescriptiondeDE = '';
+SET @FungarianAchievementDescriptionzhCN = '';
+SET @FungarianAchievementDescriptionzhTW = '';
+SET @FungarianAchievementDescriptionesES = '';
+SET @FungarianAchievementDescriptionesMX = '';
+SET @FungarianAchievementDescriptionruRU = '';
+SET @FungarianAchievementDescriptionjaJP = '';
+SET @FungarianAchievementDescriptionptPT = '';
+SET @FungarianAchievementDescriptionitIT = '';
+SET @FungarianAchievementDescriptionUnk1 = '';
+SET @FungarianAchievementDescriptionUnk2 = '';
+SET @FungarianAchievementDescriptionUnk3 = '';
+SET @FungarianAchievementDescriptionUnk4 = '';

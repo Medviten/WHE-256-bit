@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @GrummleMask                       = 1 << (@Grummle - 1);
+SET @GrummleMask_2                     = IF(@Grummle BETWEEN 65 AND 128, 1 << (@Grummle - 65), 0); -- races 65-128
+SET @GrummleHelmetMask                 = 1 << @Grummle;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @AllianceMask                         = @AllianceMask    | @GrummleMask;
+SET @AllianceMask_2                       = @AllianceMask_2    | @GrummleMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask | @GrummleMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @GrummleMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters      | @GrummleMask;
+SET @BowHunters_2                         = @BowHunters_2      | @GrummleMask_2; -- races 65-128
+SET @GrummleLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @GrummleAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @GrummleKnowThyEnemy                  = @KnowThyEnemyAlliance;
+
+-- Miscellaneous
+SET @GrummleHome = @Dwarf; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @GrummleKin = @Gnome; -- voice, emotes and names are copied from this race
+SET @GrummleFlags = @DwarfFlags;
+SET @GrummleExplorationSound = @DwarfExplorationSound;
+SET @GrummleCinematicSequence = @DwarfCinematicSequence;
+SET @GrummleBlood = 1;
+SET @GrummleMaleModelPath = 'custom\\grummle\\native\\grummle.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @GrummleFemaleModelPath = 'custom\\grummle\\native\\grummle.m2';
+SET @GrummleFaction = 1443; -- vacant slot
+SET @GrummlePlayer = 1444; -- vacant slot
+
+-- Strings
+SET @GrummleClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @GrummleClientString               = 'Grummle';
+SET @GrummleFacialHairCustomization1   = 'NORMAL';
+SET @GrummleFacialHairCustomization2   = 'EARRINGS';
+SET @GrummleHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @GrummleenUS                       = 'Grummle';
+SET @GrummlekoKR                       = '';
+SET @GrummlefrFR                       = '';
+SET @GrummledeDE                       = '';
+SET @GrummlezhCN                       = '';
+SET @GrummlezhTW                       = '';
+SET @GrummleesES                       = '';
+SET @GrummleesMX                       = '';
+SET @GrummleruRU                       = '';
+SET @GrummlejaJP                       = '';
+SET @GrummleptPT                       = '';
+SET @GrummleitIT                       = '';
+SET @GrummleUnk1                       = '';
+SET @GrummleUnk2                       = '';
+SET @GrummleUnk3                       = '';
+SET @GrummleUnk4                       = '';
+
+SET @GrummleFemaleenUS                 = '';
+SET @GrummleFemalekoKR                 = '';
+SET @GrummleFemalefrFR                 = '';
+SET @GrummleFemaledeDE                 = '';
+SET @GrummleFemalezhCN                 = '';
+SET @GrummleFemalezhTW                 = '';
+SET @GrummleFemaleesES                 = '';
+SET @GrummleFemaleesMX                 = '';
+SET @GrummleFemaleruRU                 = '';
+SET @GrummleFemalejaJP                 = '';
+SET @GrummleFemaleptPT                 = '';
+SET @GrummleFemaleitIT                 = '';
+SET @GrummleFemaleUnk1                 = '';
+SET @GrummleFemaleUnk2                 = '';
+SET @GrummleFemaleUnk3                 = '';
+SET @GrummleFemaleUnk4                 = '';
+
+SET @GrummleMaleenUS                   = '';
+SET @GrummleMalekoKR                   = '';
+SET @GrummleMalefrFR                   = '';
+SET @GrummleMaledeDE                   = '';
+SET @GrummleMalezhCN                   = '';
+SET @GrummleMalezhTW                   = '';
+SET @GrummleMaleesES                   = '';
+SET @GrummleMaleesMX                   = '';
+SET @GrummleMaleruRU                   = '';
+SET @GrummleMalejaJP                   = '';
+SET @GrummleMaleptPT                   = '';
+SET @GrummleMaleitIT                   = '';
+SET @GrummleMaleUnk1                   = '';
+SET @GrummleMaleUnk2                   = '';
+SET @GrummleMaleUnk3                   = '';
+SET @GrummleMaleUnk4                   = '';
+
+SET @GrummleRacialNameenUS             = 'Racial - Grummle';
+SET @GrummleRacialNamekoKR             = '';
+SET @GrummleRacialNamefrFR             = '';
+SET @GrummleRacialNamedeDE             = '';
+SET @GrummleRacialNamezhCN             = '';
+SET @GrummleRacialNamezhTW             = '';
+SET @GrummleRacialNameesES             = '';
+SET @GrummleRacialNameesMX             = '';
+SET @GrummleRacialNameruRU             = '';
+SET @GrummleRacialNamejaJP             = '';
+SET @GrummleRacialNameptPT             = '';
+SET @GrummleRacialNameitIT             = '';
+SET @GrummleRacialNameUnk1             = '';
+SET @GrummleRacialNameUnk2             = '';
+SET @GrummleRacialNameUnk3             = '';
+SET @GrummleRacialNameUnk4             = '';
+
+SET @GrummlePlayerenUS                 = '"PLAYER", Grummle';
+SET @GrummlePlayerkoKR                 = '';
+SET @GrummlePlayerfrFR                 = '';
+SET @GrummlePlayerdeDE                 = '';
+SET @GrummlePlayerzhCN                 = '';
+SET @GrummlePlayerzhTW                 = '';
+SET @GrummlePlayeresES                 = '';
+SET @GrummlePlayeresMX                 = '';
+SET @GrummlePlayerruRU                 = '';
+SET @GrummlePlayerjaJP                 = '';
+SET @GrummlePlayerptPT                 = '';
+SET @GrummlePlayeritIT                 = '';
+SET @GrummlePlayerUnk1                 = '';
+SET @GrummlePlayerUnk2                 = '';
+SET @GrummlePlayerUnk3                 = '';
+SET @GrummlePlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @GrummleFactionNameenUS            = 'Grummle Traders';
+SET @GrummleFactionNamekoKR            = '';
+SET @GrummleFactionNamefrFR            = '';
+SET @GrummleFactionNamedeDE            = '';
+SET @GrummleFactionNamezhCN            = '';
+SET @GrummleFactionNamezhTW            = '';
+SET @GrummleFactionNameesES            = '';
+SET @GrummleFactionNameesMX            = '';
+SET @GrummleFactionNameruRU            = '';
+SET @GrummleFactionNamejaJP            = '';
+SET @GrummleFactionNameptPT            = '';
+SET @GrummleFactionNameitIT            = '';
+SET @GrummleFactionNameUnk1            = '';
+SET @GrummleFactionNameUnk2            = '';
+SET @GrummleFactionNameUnk3            = '';
+SET @GrummleFactionNameUnk4            = '';
+
+SET @GrummleFactionDescriptionenUS     = 'Grummles of Kun-Lai who carry goods along Alliance roads, and bring luck.';
+SET @GrummleFactionDescriptionkoKR     = '';
+SET @GrummleFactionDescriptionfrFR     = '';
+SET @GrummleFactionDescriptiondeDE     = '';
+SET @GrummleFactionDescriptionzhCN     = '';
+SET @GrummleFactionDescriptionzhTW     = '';
+SET @GrummleFactionDescriptionesES     = '';
+SET @GrummleFactionDescriptionesMX     = '';
+SET @GrummleFactionDescriptionruRU     = '';
+SET @GrummleFactionDescriptionjaJP     = '';
+SET @GrummleFactionDescriptionptPT     = '';
+SET @GrummleFactionDescriptionitIT     = '';
+SET @GrummleFactionDescriptionUnk1     = '';
+SET @GrummleFactionDescriptionUnk2     = '';
+SET @GrummleFactionDescriptionUnk3     = '';
+SET @GrummleFactionDescriptionUnk4     = '';
+
+SET @GrummleAchievementenUS            = 'Realm First! Level 80 Grummle';
+SET @GrummleAchievementkoKR            = '';
+SET @GrummleAchievementfrFR            = '';
+SET @GrummleAchievementdeDE            = '';
+SET @GrummleAchievementzhCN            = '';
+SET @GrummleAchievementzhTW            = '';
+SET @GrummleAchievementesES            = '';
+SET @GrummleAchievementesMX            = '';
+SET @GrummleAchievementruRU            = '';
+SET @GrummleAchievementjaJP            = '';
+SET @GrummleAchievementptPT            = '';
+SET @GrummleAchievementitIT            = '';
+SET @GrummleAchievementUnk1            = '';
+SET @GrummleAchievementUnk2            = '';
+SET @GrummleAchievementUnk3            = '';
+SET @GrummleAchievementUnk4            = '';
+
+SET @GrummleAchievementDescriptionenUS = 'First Grummle on the realm to achieve level 80.';
+SET @GrummleAchievementDescriptionkoKR = '';
+SET @GrummleAchievementDescriptionfrFR = '';
+SET @GrummleAchievementDescriptiondeDE = '';
+SET @GrummleAchievementDescriptionzhCN = '';
+SET @GrummleAchievementDescriptionzhTW = '';
+SET @GrummleAchievementDescriptionesES = '';
+SET @GrummleAchievementDescriptionesMX = '';
+SET @GrummleAchievementDescriptionruRU = '';
+SET @GrummleAchievementDescriptionjaJP = '';
+SET @GrummleAchievementDescriptionptPT = '';
+SET @GrummleAchievementDescriptionitIT = '';
+SET @GrummleAchievementDescriptionUnk1 = '';
+SET @GrummleAchievementDescriptionUnk2 = '';
+SET @GrummleAchievementDescriptionUnk3 = '';
+SET @GrummleAchievementDescriptionUnk4 = '';

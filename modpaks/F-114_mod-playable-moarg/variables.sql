@@ -1,0 +1,191 @@
+-- Race masks (race IDs are fixed in config.sql)
+SET @MoargMask                       = 1 << (@Moarg - 1);
+SET @MoargMask_2                     = IF(@Moarg BETWEEN 65 AND 128, 1 << (@Moarg - 65), 0); -- races 65-128
+SET @MoargHelmetMask                 = 1 << @Moarg;
+
+-- Important variable updates (Alliance vs. Horde)
+SET @HordeMask                            = @HordeMask         | @MoargMask;
+SET @HordeMask_2                          = @HordeMask_2       | @MoargMask_2; -- races 65-128
+SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
+SET @BarrensBros_2                        = @HordeMask_2  & ~@UndercityMask_2; -- races 65-128
+SET @PlayableRaceMask                     = @PlayableRaceMask  | @MoargMask;
+SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @MoargMask_2; -- races 65-128
+SET @BowHunters                           = @BowHunters        | @MoargMask;
+SET @BowHunters_2                         = @BowHunters_2      | @MoargMask_2; -- races 65-128
+SET @MoargLanguage                   = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @MoargAlliance                   = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @MoargKnowThyEnemy               = @KnowThyEnemyHorde;
+
+-- Miscellaneous
+SET @MoargHome = @Orc; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @MoargKin = @Orc; -- voice, emotes and names are copied from this race
+SET @MoargFlags = @OrcFlags;
+SET @MoargExplorationSound = @OrcExplorationSound;
+SET @MoargCinematicSequence = @OrcCinematicSequence;
+SET @MoargBlood = 1;
+SET @MoargMaleModelPath = 'Creature\\MoargEngineer\\MoargPlayerMale.m2'; -- CoA 1.9.9 model (prepared by coa199_race_prep.py)
+SET @MoargFemaleModelPath = 'Creature\\MoargMinion2\\MoargPlayerFemale.m2';
+SET @MoargFaction = 1419; -- vacant slot
+SET @MoargPlayer = 1420; -- vacant slot
+
+-- Strings
+SET @MoargClientPrefix               = 'Gn'; -- helmet models of this prefix
+SET @MoargClientString               = 'Moarg';
+SET @MoargFacialHairCustomization1   = 'NORMAL';
+SET @MoargFacialHairCustomization2   = 'NORMAL';
+SET @MoargHairCustomization          = 'NORMAL';
+
+-- Localization Strings
+SET @MoargenUS                       = 'Mo'arg';
+SET @MoargkoKR                       = '';
+SET @MoargfrFR                       = '';
+SET @MoargdeDE                       = '';
+SET @MoargzhCN                       = '';
+SET @MoargzhTW                       = '';
+SET @MoargesES                       = '';
+SET @MoargesMX                       = '';
+SET @MoargruRU                       = '';
+SET @MoargjaJP                       = '';
+SET @MoargptPT                       = '';
+SET @MoargitIT                       = '';
+SET @MoargUnk1                       = '';
+SET @MoargUnk2                       = '';
+SET @MoargUnk3                       = '';
+SET @MoargUnk4                       = '';
+
+SET @MoargFemaleenUS                 = '';
+SET @MoargFemalekoKR                 = '';
+SET @MoargFemalefrFR                 = '';
+SET @MoargFemaledeDE                 = '';
+SET @MoargFemalezhCN                 = '';
+SET @MoargFemalezhTW                 = '';
+SET @MoargFemaleesES                 = '';
+SET @MoargFemaleesMX                 = '';
+SET @MoargFemaleruRU                 = '';
+SET @MoargFemalejaJP                 = '';
+SET @MoargFemaleptPT                 = '';
+SET @MoargFemaleitIT                 = '';
+SET @MoargFemaleUnk1                 = '';
+SET @MoargFemaleUnk2                 = '';
+SET @MoargFemaleUnk3                 = '';
+SET @MoargFemaleUnk4                 = '';
+
+SET @MoargMaleenUS                   = '';
+SET @MoargMalekoKR                   = '';
+SET @MoargMalefrFR                   = '';
+SET @MoargMaledeDE                   = '';
+SET @MoargMalezhCN                   = '';
+SET @MoargMalezhTW                   = '';
+SET @MoargMaleesES                   = '';
+SET @MoargMaleesMX                   = '';
+SET @MoargMaleruRU                   = '';
+SET @MoargMalejaJP                   = '';
+SET @MoargMaleptPT                   = '';
+SET @MoargMaleitIT                   = '';
+SET @MoargMaleUnk1                   = '';
+SET @MoargMaleUnk2                   = '';
+SET @MoargMaleUnk3                   = '';
+SET @MoargMaleUnk4                   = '';
+
+SET @MoargRacialNameenUS             = 'Racial - Mo'arg';
+SET @MoargRacialNamekoKR             = '';
+SET @MoargRacialNamefrFR             = '';
+SET @MoargRacialNamedeDE             = '';
+SET @MoargRacialNamezhCN             = '';
+SET @MoargRacialNamezhTW             = '';
+SET @MoargRacialNameesES             = '';
+SET @MoargRacialNameesMX             = '';
+SET @MoargRacialNameruRU             = '';
+SET @MoargRacialNamejaJP             = '';
+SET @MoargRacialNameptPT             = '';
+SET @MoargRacialNameitIT             = '';
+SET @MoargRacialNameUnk1             = '';
+SET @MoargRacialNameUnk2             = '';
+SET @MoargRacialNameUnk3             = '';
+SET @MoargRacialNameUnk4             = '';
+
+SET @MoargPlayerenUS                 = '"PLAYER", Mo\'arg';
+SET @MoargPlayerkoKR                 = '';
+SET @MoargPlayerfrFR                 = '';
+SET @MoargPlayerdeDE                 = '';
+SET @MoargPlayerzhCN                 = '';
+SET @MoargPlayerzhTW                 = '';
+SET @MoargPlayeresES                 = '';
+SET @MoargPlayeresMX                 = '';
+SET @MoargPlayerruRU                 = '';
+SET @MoargPlayerjaJP                 = '';
+SET @MoargPlayerptPT                 = '';
+SET @MoargPlayeritIT                 = '';
+SET @MoargPlayerUnk1                 = '';
+SET @MoargPlayerUnk2                 = '';
+SET @MoargPlayerUnk3                 = '';
+SET @MoargPlayerUnk4                 = '';
+
+-- Placeholder name and description
+SET @MoargFactionNameenUS            = 'Felforge Renegades';
+SET @MoargFactionNamekoKR            = '';
+SET @MoargFactionNamefrFR            = '';
+SET @MoargFactionNamedeDE            = '';
+SET @MoargFactionNamezhCN            = '';
+SET @MoargFactionNamezhTW            = '';
+SET @MoargFactionNameesES            = '';
+SET @MoargFactionNameesMX            = '';
+SET @MoargFactionNameruRU            = '';
+SET @MoargFactionNamejaJP            = '';
+SET @MoargFactionNameptPT            = '';
+SET @MoargFactionNameitIT            = '';
+SET @MoargFactionNameUnk1            = '';
+SET @MoargFactionNameUnk2            = '';
+SET @MoargFactionNameUnk3            = '';
+SET @MoargFactionNameUnk4            = '';
+
+SET @MoargFactionDescriptionenUS     = 'Mo\'arg engineers who fled the Legion\'s forges and sell their skills to the Horde.';
+SET @MoargFactionDescriptionkoKR     = '';
+SET @MoargFactionDescriptionfrFR     = '';
+SET @MoargFactionDescriptiondeDE     = '';
+SET @MoargFactionDescriptionzhCN     = '';
+SET @MoargFactionDescriptionzhTW     = '';
+SET @MoargFactionDescriptionesES     = '';
+SET @MoargFactionDescriptionesMX     = '';
+SET @MoargFactionDescriptionruRU     = '';
+SET @MoargFactionDescriptionjaJP     = '';
+SET @MoargFactionDescriptionptPT     = '';
+SET @MoargFactionDescriptionitIT     = '';
+SET @MoargFactionDescriptionUnk1     = '';
+SET @MoargFactionDescriptionUnk2     = '';
+SET @MoargFactionDescriptionUnk3     = '';
+SET @MoargFactionDescriptionUnk4     = '';
+
+SET @MoargAchievementenUS            = 'Realm First! Level 80 Mo\'arg';
+SET @MoargAchievementkoKR            = '';
+SET @MoargAchievementfrFR            = '';
+SET @MoargAchievementdeDE            = '';
+SET @MoargAchievementzhCN            = '';
+SET @MoargAchievementzhTW            = '';
+SET @MoargAchievementesES            = '';
+SET @MoargAchievementesMX            = '';
+SET @MoargAchievementruRU            = '';
+SET @MoargAchievementjaJP            = '';
+SET @MoargAchievementptPT            = '';
+SET @MoargAchievementitIT            = '';
+SET @MoargAchievementUnk1            = '';
+SET @MoargAchievementUnk2            = '';
+SET @MoargAchievementUnk3            = '';
+SET @MoargAchievementUnk4            = '';
+
+SET @MoargAchievementDescriptionenUS = 'First Mo\'arg on the realm to achieve level 80.';
+SET @MoargAchievementDescriptionkoKR = '';
+SET @MoargAchievementDescriptionfrFR = '';
+SET @MoargAchievementDescriptiondeDE = '';
+SET @MoargAchievementDescriptionzhCN = '';
+SET @MoargAchievementDescriptionzhTW = '';
+SET @MoargAchievementDescriptionesES = '';
+SET @MoargAchievementDescriptionesMX = '';
+SET @MoargAchievementDescriptionruRU = '';
+SET @MoargAchievementDescriptionjaJP = '';
+SET @MoargAchievementDescriptionptPT = '';
+SET @MoargAchievementDescriptionitIT = '';
+SET @MoargAchievementDescriptionUnk1 = '';
+SET @MoargAchievementDescriptionUnk2 = '';
+SET @MoargAchievementDescriptionUnk3 = '';
+SET @MoargAchievementDescriptionUnk4 = '';
