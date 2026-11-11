@@ -36,7 +36,7 @@ SET @EluneChosenFacialHairCustomization2   = 'EARRINGS';
 SET @EluneChosenHairCustomization          = 'NORMAL';
 
 -- Localization Strings
-SET @EluneChosenenUS                       = 'Elune's Chosen';
+SET @EluneChosenenUS                       = 'Elune\'s Chosen';
 SET @EluneChosenkoKR                       = '';
 SET @EluneChosenfrFR                       = '';
 SET @EluneChosendeDE                       = '';
@@ -87,7 +87,7 @@ SET @EluneChosenMaleUnk2                   = '';
 SET @EluneChosenMaleUnk3                   = '';
 SET @EluneChosenMaleUnk4                   = '';
 
-SET @EluneChosenRacialNameenUS             = 'Racial - Elune's Chosen';
+SET @EluneChosenRacialNameenUS             = 'Racial - Elune\'s Chosen';
 SET @EluneChosenRacialNamekoKR             = '';
 SET @EluneChosenRacialNamefrFR             = '';
 SET @EluneChosenRacialNamedeDE             = '';

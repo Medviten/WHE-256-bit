@@ -36,7 +36,7 @@ SET @MoargFacialHairCustomization2   = 'NORMAL';
 SET @MoargHairCustomization          = 'NORMAL';
 
 -- Localization Strings
-SET @MoargenUS                       = 'Mo'arg';
+SET @MoargenUS                       = 'Mo\'arg';
 SET @MoargkoKR                       = '';
 SET @MoargfrFR                       = '';
 SET @MoargdeDE                       = '';
@@ -87,7 +87,7 @@ SET @MoargMaleUnk2                   = '';
 SET @MoargMaleUnk3                   = '';
 SET @MoargMaleUnk4                   = '';
 
-SET @MoargRacialNameenUS             = 'Racial - Mo'arg';
+SET @MoargRacialNameenUS             = 'Racial - Mo\'arg';
 SET @MoargRacialNamekoKR             = '';
 SET @MoargRacialNamefrFR             = '';
 SET @MoargRacialNamedeDE             = '';

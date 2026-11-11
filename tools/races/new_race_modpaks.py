@@ -176,7 +176,13 @@ def customization(source):
         v = struct.unpack_from('<%di' % f, r)
         if v[0] == race:   # race, gender, variation, geosets (stock pads with 0xCCCCCCCC: keep the first 5, real ones only)
             facial.append((v[1], v[2]) + tuple(g if g != -858993460 else 0 for g in v[3:8]))
-    return fill(sorted(sections)), hair, sorted(facial)
+    # a race without hair or facial hair still needs one empty row per gender (and the SQL a non-empty INSERT)
+    for gender in sorted({s[0] for s in sections}) or [0, 1]:
+        if not any(h[0] == gender for h in hair):
+            hair.append([gender, 0, 0, 0])
+        if not any(h[0] == gender for h in facial):
+            facial.append((gender, 0, 0, 0, 0, 0, 0))
+    return fill(sorted(sections)), sorted(hair), sorted(facial)
 
 
 def fill(sections):
@@ -197,6 +203,9 @@ def fill(sections):
 def from_template(side, fnum, key, name, plural, home, text):
     tf, tkey, tname = TEMPLATE[side]
     text = text.replace(tf, 'F-%03d' % fnum).replace('@' + tkey, '@' + key)
+    # inside SQL string literals the names must be escaped (Mo'arg, Elune's Chosen); comments keep them as written
+    esc = lambda s: sql_str(s)[1:-1]
+    text = re.sub(r"'(?:[^'\\\n]|\\.|'')*'", lambda m: m.group(0).replace(tname + 's', esc(plural)).replace(tname, esc(name)), text)
     text = text.replace(tname + 's', plural).replace(tname, name)
     # F-046's Home race is Orc, F-045's Night Elf
     thome = 'Orc' if side == 'Horde' else 'NightElf'
@@ -391,7 +400,7 @@ def write_variables(out, key, name, plural, fnum, side, home, kin, male_only, mo
     text = re.sub(r"(SET @%sAchievementDescriptionenUS\s*= )[^;]*;" % key, lambda m: m.group(1) + sql_str('First %s on the realm to achieve level 80.' % name) + ';', text)
     # drop the template's own localizations (only enUS is known for these races)
     text = re.sub(r"(SET @%s[A-Za-z0-9]*(koKR|frFR|deDE|zhCN|zhTW|esES|esMX|ruRU|jaJP|ptPT|itIT)\s*= )'[^']*';" % key, r"\g<1>'';", text)
-    text = re.sub(r"(SET @%senUS\s*= )'[^']*';" % key, r"\g<1>%s;" % sql_str(name), text)
+    text = re.sub(r"(SET @%senUS\s*= )'[^']*';" % key, lambda m: m.group(1) + sql_str(name) + ';', text)
     text = re.sub(r'-- Placeholder name and description.*', '-- Placeholder name and description', text)
     write(os.path.join(out, 'variables.sql'), text)
 
