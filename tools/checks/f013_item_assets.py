@@ -4,7 +4,7 @@
 Zeppelin's goblin-start items use Cataclysm icons, armour textures and models. Its own client carries them, ours only
 when they are in WHE-common (or stock). An item whose files are missing shows no icon and paints nothing when worn.
 
-For each row of F-013's [AUTO,F-011]_itemdisplayinfo.sql this looks up the icon, the models (any ObjectComponents
+For each row of the modpak's dbc/*itemdisplayinfo*.sql (F-013's by default, --modpak for another) this looks up the icon, the models (any ObjectComponents
 folder; head models with any race suffix) and textures, and the armour textures (any of _U, _M, _F) in WHE-common, the
 client's patch folders and its MPQs (enUS ones included). With --copy, what is missing but in Zeppelin's extracted
 client files (ZEPPELIN/Work, the output of extracting its patches) is copied to WHE-common under the client's path.
@@ -98,7 +98,10 @@ def main():
     ap.add_argument('--common', default='D:/GitHub/WHE-common/patch-A.MPQ')
     ap.add_argument('--zeppelin', default='D:/GitHub/References/Zeppelin_patches/Data')
     ap.add_argument('--copy', action='store_true')
+    ap.add_argument('--modpak', help='modpak folder whose dbc/ and sql/ to check (default F-013)')
     a = ap.parse_args()
+    global F013
+    F013 = a.modpak or F013
     local = {}
     for root in [a.common] + [os.path.join(a.client, p) for p in ('patch-C.MPQ', 'patch-B.MPQ', 'patch-A.MPQ')]:
         for k, v in tree(root).items():
@@ -120,7 +123,7 @@ def main():
         for entry, name, display in re.findall(r"`entry` = (\d+),.*?`name` = '(.*?)',\s*\n.*?`displayid` = (\d+)",
                                                open(path, encoding='utf-8').read(), re.S):
             items[int(display)].append('%s %s' % (entry, name))
-    sql = open(os.path.join(F013, 'dbc', '[AUTO,F-011]_itemdisplayinfo.sql'), encoding='utf-8').read()
+    sql = ''.join(open(p, encoding='utf-8').read() for p in glob.glob(os.path.join(F013, 'dbc', '*itemdisplayinfo*.sql')))
     wanted = []
     for block in re.findall(r"INSERT INTO `itemdisplayinfo` SET(.*?);", sql, re.S):
         row = dict(re.findall(r"`(\w+)` = '?([^',\n]*)'?", block))

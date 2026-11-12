@@ -11,6 +11,8 @@
   --npc-sound ID[,ID...]     NPCSounds rows (a display's greeting, farewell and pissed voices) and their SoundEntries
   --display ID[,ID...]       CreatureDisplayInfo rows, for models stock already has
   --skip-kit ID[,ID...]      visual kits a modpak already has: referenced, not written again
+  --skip-visual ID[,ID...]   spell visuals to leave as they are: referenced, not written (e.g. old ids Cataclysm reworked,
+                             which stock has as different rows; the spell then shows stock's visual)
   --effect-name OLD=NEW      use SpellVisualEffectName NEW (a stock model) in place of Cata's OLD
   --no-sound ID[,ID...]      leave these sounds out of the visuals (0), e.g. when the client has no file for them
   --sound-map OLD=NEW        play stock sound NEW in the visuals in place of Cata's OLD
@@ -105,6 +107,7 @@ class Port:
         self.sound_map = dict(map(int, x.split("=")) for x in args.sound_map)
         self.sound_ext = tuple(args.sound_ext.split("=")) if args.sound_ext else None
         self.skip_kit = set(args.skip_kit)
+        self.skip_visual = set(getattr(args, "skip_visual", []))
 
     def add(self, table, key, columns, comment, stock):
         if stock.get(key):
@@ -236,6 +239,8 @@ class Port:
                                                                        "SpellVisualEffectName",
                                                                        "SpellVisualKitModelAttach"))
             self.motions = set(self.o("SpellMissileMotion").rows)
+        if vid in self.skip_visual or vid in self.out.get("spellvisual", {}):
+            return
         r = list(self.cV.get(vid))
         r[8] = self.effect_name(r[8])
         for i in (11, 12):
@@ -284,6 +289,8 @@ class Port:
             return eid
         eid = self.effect_map.get(eid, eid)
         c, o = self.cE.get(eid), self.oE.get(eid)
+        if not c and not o:
+            return 0  # neither client has it: the kit shows nothing there
         if o and (not c or o[2] and self.oE.s(o[2]).lower() == self.cE.s(c[2]).lower()):
             return eid  # stock has the same model
         if o:
@@ -408,6 +415,7 @@ def main():
     p.add_argument("--npc-sound", type=ids, default=[])
     p.add_argument("--display", type=ids, default=[])
     p.add_argument("--skip-kit", type=ids, default=[])
+    p.add_argument("--skip-visual", type=ids, default=[])
     p.add_argument("--no-sound", type=ids, default=[])
     p.add_argument("--effect-name", action="append", default=[])
     p.add_argument("--sound-map", action="append", default=[])
