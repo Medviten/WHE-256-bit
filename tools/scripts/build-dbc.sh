@@ -643,10 +643,19 @@ apply_sql_file_list() {
         CURRENT_SQL_FILE="$TMP_DIR/apply-$label-$(printf '%03d' "$file_index")-$(basename "$file")"
         : > "$CURRENT_SQL_FILE"
 
+        # Only the snapshot lines for variables the file names: the snapshot
+        # holds literal values, so the others can't change what it does, and
+        # sending all of them (tens of thousands of SETs) before each of
+        # thousands of files made the build grow with modpaks x variables.
+        # MySQL variable names ignore case.
         if [[ -s "$snapshot" ]]; then
+            { grep -o '@[A-Za-z0-9_$]*' -- "$file" || true; } | tr 'A-Z' 'a-z' | sort -u > "$TMP_DIR/used-variables"
             {
                 printf -- '-- ==== %s ====\n' "$snapshot"
-                apply_db_placeholders "$snapshot"
+                awk 'NR == FNR { used[$0] = 1; next }
+                     match($0, /^SET @[A-Za-z0-9_$]+/) { if (tolower(substr($0, 5, RLENGTH - 4)) in used) print; next }
+                     { print }' "$TMP_DIR/used-variables" "$snapshot" > "$TMP_DIR/used-snapshot"
+                apply_db_placeholders "$TMP_DIR/used-snapshot"
                 echo
             } >> "$CURRENT_SQL_FILE"
         fi
