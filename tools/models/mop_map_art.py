@@ -26,7 +26,7 @@ def wanted(mop_dbc, map_id, world):
     wmo = Dbc(os.path.join(mop_dbc, "WorldMapOverlay.dbc"))
     out, folder_of = {}, {}
     for r in wma.records:
-        if r[1] != map_id or r[9] or r[10]:
+        if r[1] != map_id or r[9] or r[10] not in (0, -1):
             continue
         name = wma.s(r[3])
         folder_of[r[0]] = name

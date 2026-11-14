@@ -22,6 +22,12 @@ What goes where (3.3.5a layout as in Blizzard's and Open Azeroth's own tiles):
   MCSH, MCAL, MCLQ (if the root has one) and MCSE. _tex0's MCMT is dropped. Cataclysm's high-res holes (flag
   0x10000, 8 bytes where 3.3.5a keeps the MCVT and MCNR offsets) become low-res holes: a 2 x 2 group of them that
   is all holes makes its low-res hole, as Zeppelin-Craft's server map builder does.
+- Later tiles (MoP Classic, retail) name textures and models by file id: _tex0 has MDID instead of MTEX, and _obj0
+  has no MMDX/MWMO (its MDDF/MODF entries hold file ids, flags 0x40/0x8). --listfile (the community listfile,
+  "id;path" lines) turns them back into the name lists 3.3.5a reads; MDDF/MODF keep only the flags 3.3.5a knows.
+  Ids it doesn't name become unknown\\<id> (not drawn). Use MoP's DBCs as --cata-dbc for their liquids. --wdt also
+  writes a 3.3.5a <map>.wdt for the converted tiles (the later WDTs are file id based too) and, from the input's
+  <map>.wdl, a 3.3.5a <map>.wdl (its MARE heights unchanged, the later chunks dropped).
 - MCLY ground effect ids are kept. The client skips ids GroundEffectTexture.dbc doesn't have (Open Azeroth's own
   tiles have such ids too); --effects (the client's GroundEffectTexture.dbc) sets them to 0 instead."""
 import argparse, os, re, struct
@@ -110,10 +116,100 @@ def known_effects(path):
     return {struct.unpack_from("<I", d, 20 + i * size)[0] for i in range(n)}
 
 
-def convert(root_path, tex_path, obj_path, liquids, effects=None):
+def file_ids(tex, obj):
+    """The file ids a later (MoP Classic, retail) tile names its textures and models by: _tex0's MDID instead of
+    MTEX, and _obj0 placements without MMDX/MWMO (MDDF flag 0x40, MODF flag 0x8)."""
+    ids = set()
+    if "MTEX" not in tex and "MDID" in tex:
+        ids.update(struct.unpack(f"<{len(tex['MDID']) // 4}I", tex["MDID"]))
+    if "MMDX" not in obj:
+        ids.update(struct.unpack_from("<I", obj.get("MDDF", b""), k)[0] for k in range(0, len(obj.get("MDDF", b"")), 36))
+    if "MWMO" not in obj:
+        ids.update(struct.unpack_from("<I", obj.get("MODF", b""), k)[0] for k in range(0, len(obj.get("MODF", b"")), 64))
+    return ids
+
+
+def load_listfile(path, wanted):
+    names = {}
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            fdid, _, name = line.rstrip("\n").partition(";")
+            if fdid.isdigit() and int(fdid) in wanted:
+                names[int(fdid)] = name.replace("/", "\\")
+    return names
+
+
+def name_table(paths):
+    """Null-separated names and their offsets (MMDX + MMID, MWMO + MWID)."""
+    data, offsets = bytearray(), []
+    for p in paths:
+        offsets.append(len(data))
+        data.extend(p.encode("latin1") + b"\0")
+    return bytes(data), struct.pack(f"<{len(offsets)}I", *offsets)
+
+
+def resolve_file_ids(tex, obj, names, missing):
+    """Rewrite a later tile's file id references as the name lists 3.3.5a reads, in place."""
+    def name(fdid, ext):
+        if fdid not in names:
+            missing.add(fdid)
+            return f"unknown\\{fdid}{ext}"
+        return names[fdid]
+    if "MTEX" not in tex and "MDID" in tex:
+        ids = struct.unpack(f"<{len(tex['MDID']) // 4}I", tex["MDID"])
+        # MDID names the specular texture (<name>_s.blp); MTEX names the base one, as in Cataclysm's own tiles
+        tex["MTEX"] = b"".join(re.sub(r"_s\.blp$", ".blp", name(i, ".blp"), flags=re.I).encode("latin1") + b"\0"
+                               for i in ids)
+    for kind, size, flag_at, keep, ext, names_tag, ids_tag in (("MDDF", 36, 34, 0x3, ".m2", "MMDX", "MMID"),
+                                                                ("MODF", 64, 56, 0x7, ".wmo", "MWMO", "MWID")):
+        if names_tag in obj or kind not in obj:
+            continue
+        entries = bytearray(obj[kind])
+        order = {}
+        for k in range(0, len(entries), size):
+            fdid = struct.unpack_from("<I", entries, k)[0]
+            index = order.setdefault(fdid, len(order))
+            flags = struct.unpack_from("<H", entries, k + flag_at)[0]
+            struct.pack_into("<I", entries, k, index)
+            struct.pack_into("<H", entries, k + flag_at, flags & keep)  # drops the file id flag and later-only flags
+        obj[kind] = bytes(entries)
+        obj[names_tag], obj[ids_tag] = name_table([name(i, ext) for i in order])
+
+
+def wotlk_wdt(tiles, vertex_colors):
+    """A 3.3.5a WDT for the converted tiles: big alpha maps (MPHD 0x4, the later tiles' alpha maps need it) and
+    vertex colours (0x2) if any tile has MCCV; MAIN marks each (x, y) tile."""
+    main = bytearray(64 * 64 * 8)
+    for x, y in tiles:
+        struct.pack_into("<I", main, (y * 64 + x) * 8, 1)
+    return (chunk("MVER", struct.pack("<I", 18)) + chunk("MPHD", struct.pack("<8I", 0x4 | (0x2 if vertex_colors else 0),
+            *[0] * 7)) + chunk("MAIN", bytes(main)) + chunk("MWMO", b""))
+
+
+def wotlk_wdl(d):
+    """A later WDL (low-detail heights for distant terrain) as 3.3.5a reads it: MAOF's absolute offsets to each
+    tile's MARE, rewritten for a file without the later chunks (MLDD..MLMX, MAOE)."""
+    found = dict(chunks(d))
+    maof = struct.unpack("<4096I", found["MAOF"])
+    head = chunk("MVER", struct.pack("<I", 18)) + chunk("MWMO", b"") + chunk("MWID", b"") + chunk("MODF", b"")
+    at = len(head) + 8 + 4096 * 4
+    offsets, body = [], bytearray()
+    for o in maof:
+        if not o:
+            offsets.append(0)
+            continue
+        size = struct.unpack_from("<I", d, o + 4)[0]
+        offsets.append(at + len(body))
+        body.extend(d[o:o + 8 + size])
+    return head + chunk("MAOF", struct.pack("<4096I", *offsets)) + bytes(body)
+
+
+def convert(root_path, tex_path, obj_path, liquids, effects=None, names=None, missing=None):
     root, root_mcnk = top(open(root_path, "rb").read())
     tex, tex_mcnk = top(open(tex_path, "rb").read())
     obj, obj_mcnk = top(open(obj_path, "rb").read())
+    if names is not None:
+        resolve_file_ids(tex, obj, names, missing)
     if "MH2O" in root:
         root["MH2O"] = liquids.fix(bytearray(root["MH2O"]))
     if not (len(root_mcnk) == len(tex_mcnk) == len(obj_mcnk) == 256):
@@ -220,12 +316,14 @@ def main():
     p.add_argument("--stock-dbc", required=True)
     p.add_argument("--effects")
     p.add_argument("--name")
+    p.add_argument("--listfile")
+    p.add_argument("--wdt", action="store_true")
     a = p.parse_args()
     effects = known_effects(a.effects)
     liquids = Liquids(a.cata_dbc, a.stock_dbc)
     os.makedirs(a.output, exist_ok=True)
     files = {f.lower(): f for f in os.listdir(a.input)}
-    done = 0
+    jobs = []
     for low, name in sorted(files.items()):
         m = re.fullmatch(r"(.+)_(\d+)_(\d+)\.adt", low)
         if not m:
@@ -235,8 +333,21 @@ def main():
         if not tex or not obj:
             print(f"{name}: no _tex0/_obj0, skipped")
             continue
+        jobs.append((m, name, tex, obj))
+    names, missing = None, set()
+    if a.listfile:
+        wanted = set()
+        for _, name, tex, obj in jobs:
+            wanted |= file_ids(top(open(os.path.join(a.input, tex), "rb").read())[0],
+                               top(open(os.path.join(a.input, obj), "rb").read())[0])
+        names = load_listfile(a.listfile, wanted)
+        print(f"{len(wanted)} file ids, {len(names)} named by the listfile")
+    done, tiles, vertex_colors = 0, [], False
+    for m, name, tex, obj in jobs:
         before = liquids.fixed
-        data, dropped = convert(*(os.path.join(a.input, f) for f in (name, tex, obj)), liquids, effects)
+        data, dropped = convert(*(os.path.join(a.input, f) for f in (name, tex, obj)), liquids, effects, names, missing)
+        tiles.append((int(m.group(2)), int(m.group(3))))
+        vertex_colors |= b"VCCM" in data
         if liquids.fixed > before:
             dropped_note = f", {liquids.fixed - before} liquid instances made readable"
         else:
@@ -249,6 +360,18 @@ def main():
         print(f"{os.path.basename(target)}: {len(data)} bytes" + dropped_note
               + (f", {dropped} unknown ground effects cleared" if dropped else ""))
     print(f"{done} tiles")
+    if missing:
+        print(f"{len(missing)} file ids the listfile doesn't name (written as unknown\\<id>): {sorted(missing)[:20]}")
+    if a.wdt and jobs:
+        prefix = a.name or jobs[0][1][:-len(f"_{jobs[0][0].group(2)}_{jobs[0][0].group(3)}.adt")]
+        with open(os.path.join(a.output, f"{prefix}.wdt"), "wb") as f:
+            f.write(wotlk_wdt(tiles, vertex_colors))
+        print(f"{prefix}.wdt: {len(tiles)} tiles")
+        source = files.get(jobs[0][0].group(1) + ".wdl")
+        if source:
+            with open(os.path.join(a.output, f"{prefix}.wdl"), "wb") as f:
+                f.write(wotlk_wdl(open(os.path.join(a.input, source), "rb").read()))
+            print(f"{prefix}.wdl")
 
 
 if __name__ == "__main__":
