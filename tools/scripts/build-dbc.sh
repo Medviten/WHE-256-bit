@@ -464,6 +464,43 @@ apply_db_placeholders() {
     fi
 }
 
+# Splits multi-row INSERT ... VALUES statements (a header line ending in
+# VALUES, one row per line) into statements of MAX_INSERT_ROWS rows. Same
+# rows in the same order, so ids numbered with `@id := @id + 1` don't change;
+# but MySQL 8 slows down far more than linearly on such a statement:
+# 88,000 rows took 238 s in one statement and 2.3 s in 1000-row ones.
+# Statements with anything after the last row (ON DUPLICATE KEY UPDATE, ...)
+# are left whole. Reads stdin, writes stdout.
+split_long_inserts() {
+    awk -v max="${MAX_INSERT_ROWS:-1000}" '
+        function flush(   i, n, rows, line) {
+            if (buf[k] !~ /\);[[:space:]]*$/ || toupper(buf[k]) ~ /ON DUPLICATE KEY/) {
+                for (i = 1; i <= k; i++) print buf[i]
+                k = 0
+                return
+            }
+            rows = 0
+            for (i = 2; i <= k; i++) if (buf[i] ~ /^[[:space:]]*\(/) rows++
+            n = 0
+            print buf[1]
+            for (i = 2; i <= k; i++) {
+                line = buf[i]
+                if (line ~ /^[[:space:]]*\(/ && ++n % max == 0 && n < rows && line ~ /\),[[:space:]]*$/) {
+                    sub(/,[[:space:]]*$/, ";", line)
+                    print line
+                    print buf[1]
+                    continue
+                }
+                print line
+            }
+            k = 0
+        }
+        k > 0 { buf[++k] = $0; if ($0 ~ /;[[:space:]]*$/) flush(); next }
+        /^INSERT INTO .*VALUES[[:space:]]*$/ { k = 1; buf[1] = $0; next }
+        { print }
+        END { for (i = 1; i <= k; i++) print buf[i] }'
+}
+
 # Extracts every variable name assigned in $1, whether via a top-level
 # `SET @name = ...` or an inline `@name := ...` (the latter can appear
 # anywhere in an expression, e.g. `@ReputationIndex := @ReputationIndex +
@@ -662,7 +699,7 @@ apply_sql_file_list() {
 
         {
             printf -- '-- ==== %s ====\n' "$file"
-            apply_db_placeholders "$file"
+            apply_db_placeholders "$file" | split_long_inserts
         } >> "$CURRENT_SQL_FILE"
 
         mysql_cmd "$db" < "$CURRENT_SQL_FILE"
