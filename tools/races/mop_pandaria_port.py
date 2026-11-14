@@ -162,13 +162,22 @@ def main():
     with open(os.path.join(dbc_dir, f"{TAG}_worldmapoverlay.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + "\n".join(out))
 
-    wmc = next(r for r in Dbc(os.path.join(a.mop_dbc, "WorldMapContinent.dbc")).records if r[1] == MAP)
+    continents = Dbc(os.path.join(a.mop_dbc, "WorldMapContinent.dbc")).records
+    wmc = next(r for r in continents if r[1] == MAP)
+    # MoP's World map art (WHE-common's modpaks/F-133) places the other continents differently from Open Azeroth's,
+    # and their clickable rectangles on the World map come from these rows. Outland's is the same in both.
+    moved = ["\n-- MoP's placement of the other continents on the World map, to match MoP's World map art"]
+    for r in continents:
+        if r[1] in (0, 1, 571):
+            moved.append(f"UPDATE `worldmapcontinent` SET `left_boundary` = {r[2]}, `right_boundary` = {r[3]}, "
+                         f"`top_boundary` = {r[4]}, `bottom_boundary` = {r[5]}, `continent_offset_x` = {f32(r[6])}, "
+                         f"`continent_offset_y` = {f32(r[7])}, `scale` = {f32(r[8])} WHERE `map_id` = {r[1]};")
     with open(os.path.join(dbc_dir, f"{TAG}_worldmapcontinent.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + block("worldmapcontinent", wmc[0], {
             "id": wmc[0], "map_id": MAP, "left_boundary": wmc[2], "right_boundary": wmc[3], "top_boundary": wmc[4],
             "bottom_boundary": wmc[5], "continent_offset_x": f32(wmc[6]), "continent_offset_y": f32(wmc[7]),
             "scale": f32(wmc[8]), "taxi_min_x": f32(wmc[9]), "taxi_min_y": f32(wmc[10]), "taxi_max_x": f32(wmc[11]),
-            "taxi_max_y": f32(wmc[12]), "world_map_id": wmc[13]}, "Pandaria"))
+            "taxi_max_y": f32(wmc[12]), "world_map_id": wmc[13]}, "Pandaria") + "\n".join(moved) + "\n")
 
     parent = {r[0]: (r[2] or r[0]) for r in rows}
     by_zone = collections.defaultdict(list)

@@ -303,6 +303,43 @@ if [[ -n "${LOCAL_MINIMAP_DIR:-}" && -n "${REMOTE_CSV_DIR:-}" ]]; then
 fi
 
 ###############################################################################
+# Copy the realm's modpaks' client files into its client patch
+###############################################################################
+
+# Client files that only make sense with a modpak (e.g. F-133's world map art)
+# live in WHE-common under modpaks/<modpak>/, laid out as in a patch. They're
+# copied into this realm's patch for each modpak in the build's manifest, in
+# manifest order, so other realms never see them. MODPAK_FILES_RECORD lists
+# what was copied, so files of modpaks no longer in the manifest are removed.
+if [[ -n "${LOCAL_PATCH_DIR:-}" && -n "${LOCAL_COMMON_DIR:-}" && -n "${REMOTE_CSV_DIR:-}" ]]; then
+    echo
+    MODPAK_FILES_RECORD="$LOCAL_PATCH_DIR/.modpak-files"
+    if ssh -o ControlPath="$CONTROL_PATH" "$SSH_HOST" "cat '$REMOTE_CSV_DIR/modpaks.txt'" > "$TMP_DIR/modpaks.txt" 2>/dev/null; then
+        : > "$TMP_DIR/modpak-files"
+        while IFS= read -r name; do
+            src="$LOCAL_COMMON_DIR/modpaks/$name"
+            [[ -n "$name" && -d "$src" ]] || continue
+            echo "Copying $name's client files..."
+            (cd -- "$src" && find . -type f | sed 's#^\./##') >> "$TMP_DIR/modpak-files"
+            rsync -a -- "$src/" "$LOCAL_PATCH_DIR/"
+        done < "$TMP_DIR/modpaks.txt"
+        sort -u -o "$TMP_DIR/modpak-files" "$TMP_DIR/modpak-files"
+        if [[ -f "$MODPAK_FILES_RECORD" ]]; then
+            sort -u "$MODPAK_FILES_RECORD" | comm -23 - "$TMP_DIR/modpak-files" | while IFS= read -r old; do
+                echo "Removing $old (its modpak is no longer in the manifest)"
+                rm -f -- "$LOCAL_PATCH_DIR/$old"
+            done
+        fi
+        cp -- "$TMP_DIR/modpak-files" "$MODPAK_FILES_RECORD"
+    else
+        echo "No modpak list from the build ($REMOTE_CSV_DIR/modpaks.txt): modpak client files skipped."
+    fi
+else
+    echo
+    echo "Skipping modpak client files: LOCAL_DATA_DIR, LOCAL_COMMON_DIR or REMOTE_CSV_DIR is not set."
+fi
+
+###############################################################################
 # Clean up the remote export directory
 ###############################################################################
 

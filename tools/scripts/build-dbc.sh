@@ -182,6 +182,11 @@ ORIGINAL_TRS="${ORIGINAL_TRS:-}"
 # Textures\Minimap.
 MINIMAP_TRS="${MINIMAP_TRS:-$SERVER_DBC/md5translate.trs}"
 
+# Where the names of this build's modpaks are written, one per line in
+# manifest order. deploy-dbc.sh reads it to copy those modpaks' client files
+# (WHE-common's modpaks/<name>/) into the realm's client patch.
+MODPAK_LIST="${MODPAK_LIST:-$SERVER_DBC/modpaks.txt}"
+
 # Optional: apply extra per-modpak SQL to additional databases (e.g. your
 # worldserver DB), using the same single-connection + config.sql approach
 # as the DBC build. EXTRA_SQL_DATABASES and EXTRA_SQL_PATTERNS are
@@ -943,6 +948,10 @@ echo "Found ${#MODPAK_DIRS[@]} modpaks in manifest ($MANIFEST_FILE):"
 for dir in "${MODPAK_DIRS[@]}"; do
     echo "  $(basename "$dir")"
 done
+
+for dir in "${MODPAK_DIRS[@]}"; do
+    basename "$dir"
+done > "$MODPAK_LIST"
 
 # Informational only: flag any modpak directories on disk that aren't
 # listed in the manifest, so nothing sits there forgotten by accident.

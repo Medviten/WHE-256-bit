@@ -5,7 +5,7 @@
 - Pandaria (Mists of Pandaria's map 870, `HawaiiMainLand`) as a visitable continent, for the terrain in the squished client's `Patch-5.mpq`
 - All 486 of its 5.4.8 areas (zones and subzones: zone text, `/who` locations, exploration), with English names from retail's AreaTable. Every area is flyable
 - `.tele` targets for its ten zones: `.tele TheJadeForest`, `ValleyoftheFourWinds`, `ValeofEternalBlossoms`, `Kun-LaiSummit`, `TownlongSteppes`, `TheVeiledStair`, `KrasarangWilds`, `DreadWastes`, `IsleofGiants`, `TimelessIsle`
-- MoP's world map for Pandaria: the continent and zone maps, explored-area overlays, zone highlights and the grid that makes zones clickable (`Interface\WorldMap\Pandaria.zmp`, built from the terrain with `tools/models/zmp_from_maps.py`). The art is in WHE-common, downloaded by `tools/models/mop_map_art.py`. MoP's World map, with Pandaria on it, comes with F-010 (see its readme)
+- MoP's world map for Pandaria: the continent and zone maps, explored-area overlays, zone highlights and the grid that makes zones clickable (`Interface\WorldMap\Pandaria.zmp`, built from the terrain with `tools/models/zmp_from_maps.py`). With it, MoP's World map, which shows Pandaria, and MoP's placement of the other continents on it, so they are clickable where that art draws them. The art is in WHE-common's `modpaks/F-133_mop-pandaria`, downloaded by `tools/models/mop_map_art.py`; `deploy-dbc.sh` copies it into the realm's own client patch (set `LOCAL_COMMON_DIR`), so realms without F-133 keep Open Azeroth's World map
 - Terrain only: no creatures, objects, quests, flight paths or graveyards
 
 ### Setup

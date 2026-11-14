@@ -41,6 +41,12 @@ LOCAL_DBFILES_CLIENT="/path/to/WoW/Data/patch-A.MPQ/DBFilesClient"
 #LOCAL_DATA_DIR="/path/to/WoW/Data"
 #PATCH_STEM="A"
 
+# A WHE-common checkout. With LOCAL_DATA_DIR set, the client files of the
+# realm's modpaks (WHE-common's modpaks/<modpak>/, e.g. F-133's world map) are
+# copied into the realm's patch, and removed again when a modpak leaves the
+# manifest. Leave it unset to skip that.
+#LOCAL_COMMON_DIR="/path/to/WHE-common"
+
 # Where your game client reads minimap textures from, on this machine. The
 # md5translate.trs that build-dbc.sh writes (MINIMAP_TRS, in REMOTE_CSV_DIR by
 # default) is copied here. Use the patch that loads after every other patch
