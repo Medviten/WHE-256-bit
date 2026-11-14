@@ -78,3 +78,5 @@
   95 to 12 minute speedup
 - `models/ocean_minimaps.py <ocean patch folder> <OA md5translate.trs> <out.sql>`: minimap entries for ocean filler
   tiles (byte-copies of open-sea tiles), so the minimap shows sea over them (F-010's `[F-010]_ocean_minimaps.sql`)
+- `models/wdl_fill.py <patch>/World/Maps/<map> ...`: gives a map's WDL the low-detail heights of tiles added as
+  copies (the ocean patch's filler tiles), so the distant ocean is drawn past the loaded tiles, as on Northrend
