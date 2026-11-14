@@ -76,3 +76,5 @@
 - `skills/speed-up-sql-build/SKILL.md`: a skill for LLM assistants (Claude Code format; copy the folder into
   `.claude/skills/`) on finding and removing what makes a SQL-heavy build slow, written up from build-dbc.sh's
   95 to 12 minute speedup
+- `models/ocean_minimaps.py <ocean patch folder> <OA md5translate.trs> <out.sql>`: minimap entries for ocean filler
+  tiles (byte-copies of open-sea tiles), so the minimap shows sea over them (F-010's `[F-010]_ocean_minimaps.sql`)
