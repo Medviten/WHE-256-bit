@@ -18,6 +18,11 @@ tile for every other tile around them (ISLAND below), so a path can leave a swap
 the base map's collision under the swap id. Run mmaps_generator there for the swap map and copy the result from its
 mmaps/ into the server's mmaps/. Without a swap navmesh, paths use the base map's.
 
+--new-map builds a whole map that has no server files yet (F-133's Pandaria): the AREA section comes from the tiles'
+MCNK area ids, as the map_extractor writes it, and an empty vmaps/<map>.vmtree is written if there is none, since the
+core refuses to put players on a map without one while vmaps are on. The vmtree holds no models (no line-of-sight
+blocking by buildings); the map_extractor and vmap tools can replace both later.
+
 A port of Zeppelin-Craft's zpaks/zep-lost-isles-terrain/build_server_maps.py for WHE's converted tiles: their
 liquids are already readable by 3.3.5a, so its liquid remap tables aren't needed."""
 import argparse, os, re, shutil, struct
@@ -47,10 +52,33 @@ def base_area(path):
     return d[off:off + size]
 
 
+def adt_area(d, mcin):
+    """AREA section from the tile's own MCNK area ids, as the map_extractor writes it."""
+    ids = [[0] * CELLS for _ in range(CELLS)]
+    for k in range(256):
+        h = struct.unpack_from("<I", d, mcin + k * 16)[0] + 8
+        ix, iy = struct.unpack_from("<II", d, h + 4)
+        ids[iy][ix] = struct.unpack_from("<I", d, h + 0x34)[0]
+    if all(v == ids[0][0] for r in ids for v in r):
+        return struct.pack("<4sHH", b"AREA", 0x1, ids[0][0])
+    return struct.pack("<4sHH", b"AREA", 0, 0) + b"".join(struct.pack(f"<{CELLS}H", *r) for r in ids)
+
+
+def empty_vmtree(path):
+    """An untiled .vmtree without models: the core needs one to let players onto a map with vmaps enabled. Its one
+    leaf sits outside the world, so no ray or point query reaches it."""
+    far = 1e9
+    with open(path, "wb") as fh:
+        fh.write(b"VMAP_4.8" + b"\0" + b"NODE" + struct.pack("<6f", far, far, far, far, far, far)
+                 + struct.pack("<I3I", 3, 3 << 30, 0, 0) + struct.pack("<II", 1, 0) + b"GOBJ")
+
+
 def convert(adt_path, area_section, kinds):
     d = open(adt_path, "rb").read()
     mhdr = struct.unpack_from("<16I", d, 20)
     mcin = 20 + mhdr[1] + 8
+    if area_section is None:
+        area_section = adt_area(d, mcin)
 
     v9 = [[0.0] * (GRID + 1) for _ in range(GRID + 1)]
     v8 = [[0.0] * GRID for _ in range(GRID)]
@@ -182,19 +210,27 @@ def main():
     p.add_argument("data_dir")
     p.add_argument("--base-map", type=int, default=1)
     p.add_argument("--stage-navmesh")
+    p.add_argument("--new-map", action="store_true")
     a = p.parse_args()
     maps_dir = os.path.join(a.data_dir, "maps")
     kinds = liquid_kinds(os.path.join(a.data_dir, "dbc"))
+    if a.new_map:
+        os.makedirs(maps_dir, exist_ok=True)
+        vmtree = os.path.join(a.data_dir, "vmaps", f"{a.swap_map:03}.vmtree")
+        if not os.path.exists(vmtree):
+            os.makedirs(os.path.dirname(vmtree), exist_ok=True)
+            empty_vmtree(vmtree)
+            print(f"wrote an empty {vmtree}")
     for f in sorted(os.listdir(a.adt_dir)):
         m = re.fullmatch(r".+_(\d+)_(\d+)\.adt", f, re.I)
         if not m:
             continue
         x, y = int(m.group(1)), int(m.group(2))
         base = os.path.join(maps_dir, map_name(a.base_map, x, y))
-        if not os.path.exists(base):
+        if not a.new_map and not os.path.exists(base):
             print(f"{f}: no {os.path.basename(base)} to take the area from, skipped")
             continue
-        data, (lo, hi) = convert(os.path.join(a.adt_dir, f), base_area(base), kinds)
+        data, (lo, hi) = convert(os.path.join(a.adt_dir, f), None if a.new_map else base_area(base), kinds)
         out = os.path.join(maps_dir, map_name(a.swap_map, x, y))
         with open(out, "wb") as fh:
             fh.write(data)

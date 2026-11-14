@@ -62,6 +62,14 @@
     - `races/haranir_modpaks.py <built DBFilesClient>`: generates F-098/F-099 (Haranir, races 86/91) the same way; no racials to add. It ends with `races/haranir_native.py <modpaks>`, which points them at the native look baked by `models/haranir_native_prep.py` (needs a `WOWDECOMP_RETAIL_ASSETS` build's probes and the Retail files)
     - `races/skyborne_modpaks.py <built DBFilesClient>`: generates F-103/F-104 (Skyborne, Forever races 95/96) the same way; no racials. It ends with `races/skyborne_native.py`, which writes the native look's rows from Kalibro's races package and copies its files to WHE-common's `custom/skyborne`, then runs `models/skyborne_native_prep.py` (geosets the stock client can select). The wowdecomp-256-bit client shows the Forever look with `retailRaces` `race=forever:<id>` and `Data/Retail/ForeverCasc.ini`
     - `races/retail_voices.py download`, then `races/retail_voices.py write <modpaks>`: retail voices (emotes, error lines, combat sounds) for the races added after Cataclysm (Pandaren, the allied races, Dracthyr, Earthen, Haranir; Skyborne from the Forever build). Reads wago.tools DB2 CSVs and the community listfile from `--data` (default `D:\wow-scratch\retail-vo`), downloads the sound files by FileDataID (paced, resumable), writes each modpak's `soundentries`, `emotestextsound`, `vocaluisounds` and `creaturesounddata` files (the Kin's rows where retail has none), the CreatureSoundData ids in config.sql and the files to WHE-common's `Sound/character`
+
+- `races/mop_pandaria_port.py <MoP dbc> <stock dbc> <AreaTable.csv> <ADT dir> <modpaks> <F-133 folder>`: generates F-133
+  (Pandaria, map 870) from the 5.4.8 DBCs and the squished client's Patch-5.mpq tiles. `models/swap_server_maps.py 870
+  <ADT dir> <data dir> --new-map` writes its server .map files and an empty vmtree (see the F-133 readme)
+- `questie/questie_whe.py <stock dbc> <client>/Interface/AddOns/Questie-X-WHE --realm NAME=<realm DBFilesClient> ...`:
+  builds the Questie-X-WHE addon, which gives [Questie-X](https://github.com/Xurkon/Questie-X) the maps a realm adds or
+  moves (Open Azeroth's zones, Pandaria) so its arrow, coordinates and zone names work there. Rerun after the realm's
+  WorldMapArea or AreaTable changes
 - `skills/speed-up-sql-build/SKILL.md`: a skill for LLM assistants (Claude Code format; copy the folder into
   `.claude/skills/`) on finding and removing what makes a SQL-heavy build slow, written up from build-dbc.sh's
   95 to 12 minute speedup
