@@ -12,7 +12,7 @@ As run for F-133 (from the WHE-256-bit root, the ADTs unpacked by tools/models/m
   python -I -X utf8 tools/races/mop_pandaria_port.py ../References/MoP/MoP_data/dbc ../References/original-client-dbc
       AreaTable.csv <unpacked Patch-5>/World/maps/hawaiimainland modpaks modpaks/F-133_mop-pandaria
 
-Writes MODPAK/dbc/[F-133]_{map,areatable,light,worldmaparea,worldmapcontinent}.sql and MODPAK/sql/db-world/base/[F-133]_game_tele.sql.
+Writes MODPAK/dbc/[F-133]_{map,areatable,light,worldmaparea,worldmapoverlay,worldmapcontinent}.sql and MODPAK/sql/db-world/base/[F-133]_game_tele.sql.
 
 - Map 870 as Open Azeroth (F-010) has it, but expansion 2: the core refuses a map whose expansion is above the
   account's. Loading screen 3 (Kalimdor's): Pandaria's isn't in the client.
@@ -22,8 +22,8 @@ Writes MODPAK/dbc/[F-133]_{map,areatable,light,worldmaparea,worldmapcontinent}.s
   sets. Sounds, music and ambience are 0 (MoP ids the client lacks); exploration level is capped at 80.
 - Light: one global light (MoP's id 4136) with stock's Eastern Kingdoms default parameters; MoP's light bands
   aren't in MOP_DBC_DIR.
-- WorldMapArea/WorldMapContinent: MoP's continent and zone rows, so the client knows where the player is on the
-  map (map coordinates, addons). The map textures aren't in the client, so the map itself is blank.
+- WorldMapArea/WorldMapOverlay/WorldMapContinent: MoP's continent, zone and explored-area rows (map coordinates,
+  addons, the world map). The art is in WHE-common (downloaded by tools/models/mop_map_art.py).
 - game_tele: one ".tele" target per zone, on the land chunk nearest the middle of the zone's chunks."""
 import argparse, collections, csv, glob, os, re, struct, sys
 
@@ -133,18 +133,35 @@ def main():
                                 f"Pandaria's global light, with stock light {STOCK_LIGHT}'s parameters"))
 
     # World map: the continent and its zones (not the shrines' dungeon floors or Krasarang's phase copy), so the
-    # client can place the player (GetPlayerMapPosition, addons' coordinates). Their textures aren't in the client.
+    # client can place the player (GetPlayerMapPosition, addons' coordinates) and draw the map.
     wma = Dbc(os.path.join(a.mop_dbc, "WorldMapArea.dbc"))
-    out = []
+    out, kept = [], set()
     for r in wma.records:
         if r[1] != MAP or r[9] or r[10] or (r[2] and r[2] not in zones):
             continue
+        kept.add(r[0])
         out.append(block("worldmaparea", r[0], {
             "id": r[0], "map_id": MAP, "area_id": r[2], "area_name": wma.s(r[3]), "loc_left": f32(r[4]),
             "loc_right": f32(r[5]), "loc_top": f32(r[6]), "loc_bottom": f32(r[7]), "display_map_id": r[8],
             "default_dungeon_floor": 0, "parent_world_map_id": 0}, zones.get(r[2], "Pandaria")))
     with open(os.path.join(dbc_dir, f"{TAG}_worldmaparea.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + "\n".join(out))
+    # Explored-area overlays of those maps. MoP's hit rectangles are 0 (it no longer used them); 3.3.5 shows a
+    # subzone's name while the cursor is in its rectangle, so they get the overlay's own.
+    wmo = Dbc(os.path.join(a.mop_dbc, "WorldMapOverlay.dbc"))
+    out = []
+    for r in wmo.records:
+        if r[1] not in kept:
+            continue
+        w, h, x, y = r[7:11]
+        out.append(block("worldmapoverlay", r[0], {
+            "id": r[0], "map_area_id": r[1], "area_id_1": r[2], "area_id_2": r[3], "area_id_3": r[4],
+            "area_id_4": r[5], "map_point_x": 0, "map_point_y": 0, "texture_name": wmo.s(r[6]), "texture_width": w,
+            "texture_height": h, "offset_x": x, "offset_y": y, "hit_rect_top": y, "hit_rect_left": x,
+            "hit_rect_bottom": y + h, "hit_rect_right": x + w}, wmo.s(r[6])))
+    with open(os.path.join(dbc_dir, f"{TAG}_worldmapoverlay.sql"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(HEADER + "\n".join(out))
+
     wmc = next(r for r in Dbc(os.path.join(a.mop_dbc, "WorldMapContinent.dbc")).records if r[1] == MAP)
     with open(os.path.join(dbc_dir, f"{TAG}_worldmapcontinent.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + block("worldmapcontinent", wmc[0], {
