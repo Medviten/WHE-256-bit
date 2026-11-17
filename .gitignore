@@ -72,3 +72,5 @@ tools/scripts/combined-*.patch
 tools/scripts/deploy-dbc.exclude
 
 __pycache__/
+
+*.pyc
