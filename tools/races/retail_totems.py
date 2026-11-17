@@ -21,7 +21,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MODPAKS = os.path.join(HERE, '..', '..', 'modpaks')
 ELEMENTS = (('Fire', 1, 'OrcFireTotem', 3240), ('Earth', 2, 'OrcEarthTotem', 3239), ('Water', 3, 'OrcWaterTotem', 3241),
             ('Air', 4, 'OrcAirTotem', 3238))
-# variable part: (race variables, modpaks, fire, earth, water, air model file ids)
+# variable part: (race variables, modpaks, fire, earth, water, air model file ids or SQL-escaped stock paths[, display
+# scales, for models far from the racial totems' 1.6-yard height])
 RACES = {
     'Pandaren': (('AlliancePandaren', 'HordePandaren'), ('F-020', 'F-021'), (608637, 608634, 608640, 608631)),
     'HighmountainTauren': (('HighmountainTauren',), ('F-028',), (1778744, 1778746, 1778745, 1778743)),
@@ -32,7 +33,16 @@ RACES = {
     'MagharOrc': (('MagharOrc',), ('F-007',), (1967911, 1967913, 1967914, 1967909)),
     # not in TDB yet: retail's Haranir totem models by name (world/expansion10/doodads/wildelves/haranir_totem_*.m2)
     'Haranir': (('AllianceHaranir', 'HordeHaranir'), ('F-098', 'F-099'), (7426818, 7426819, 7426817, 7426816)),
+    # no racial totems in retail: the Winterpelt furbolgs' totems (Dragonflight NPC creature models 13732, 13731)
+    'Furbolg': (('Furbolg',), ('F-045',), (4524204, 4524204, 4524203, 4524203), (0.3, 0.3, 0.3, 0.3)),
+    # no Tuskarr totem anywhere: the stock Tuskarr idol doodads (SQL-escaped stock paths)
+    'Tuskarr': (('Tuskarr',), ('F-042',), ('World\\\\Expansion02\\\\Doodads\\\\Generic\\\\Tuskarr\\\\TS_Idols_01.m2',) * 2
+                + ('World\\\\Expansion02\\\\Doodads\\\\Generic\\\\Tuskarr\\\\TS_Idols_02.m2',) * 2, (0.6, 0.6, 1.1, 1.1)),
+    # the Shrine of the Storm Sea Priests' totem (creature model 11035) for every element
+    'Naga': (('Naga',), ('F-030',), (2057302,) * 4, (0.6,) * 4),
 }
+# races whose totem models and displays live in a shared modpak (F-129 holds the Pandaren data F-020/F-021 build on)
+DBC_MODPAK = {'Pandaren': 'F-129'}
 BEGIN, END = '-- >>> Retail totems (tools/races/retail_totems.py) >>>', '-- <<< Retail totems <<<'
 CMD_COLUMNS = ('`size_class`, `model_scale`, `blood_id`, `footprint_texture_id`, `footprint_texture_length`, '
                '`footprint_texture_width`, `footprint_particle_scale`, `foley_material_id`, `footstep_shake_size`, '
@@ -64,15 +74,17 @@ def main():
     # the converted tree has the retail paths: copy it whole (textures and effects come along)
     shutil.copytree(converted, common, dirs_exist_ok=True)
     config = []
-    for key, (race_vars, fnums, fdids) in RACES.items():
+    for key, (race_vars, fnums, fdids, *scales) in RACES.items():
+        scales = scales[0] if scales else (None,) * 4
         models, displays = [], []
-        for (element, _, orc, orc_model), fdid in zip(ELEMENTS, fdids):
-            path = names[fdid].replace('/', '\\\\')
+        for (element, _, orc, orc_model), fdid, scale in zip(ELEMENTS, fdids, scales):
+            path = fdid if isinstance(fdid, str) else names[fdid].replace('/', '\\\\')
             models.append("SELECT @%s%sTotemModel, `flags`, '%s', %s FROM `creaturemodeldata` WHERE `id` = %d /* Orc %s totem */"
                           % (key, element, path, CMD_COLUMNS, orc_model, element.lower()))
-            displays.append("SELECT @%s%sTotem, @%s%sTotemModel, `sound_id`, 0, `creature_model_scale`, `creature_model_alpha`, "
+            displays.append("SELECT @%s%sTotem, @%s%sTotemModel, `sound_id`, 0, %s, `creature_model_alpha`, "
                             "'', '', '', '', `blood_level`, `blood_id`, `npc_sound_id`, `praticle_color_id`, 0, "
-                            "`obj_effect_package_id` FROM `creaturedisplayinfo` WHERE `id` = @%s" % (key, element, key, element, orc))
+                            "`obj_effect_package_id` FROM `creaturedisplayinfo` WHERE `id` = @%s"
+                            % (key, element, key, element, scale or '`creature_model_scale`', orc))
             config += [('SET @%s%sTotemModel' % (key, element)).ljust(64) + '=   @NextModelID := @NextModelID +1;',
                        ('SET @%s%sTotem' % (key, element)).ljust(64) + '=   @NextDisplayID := @NextDisplayID +1;']
         ids = lambda suffix: ', '.join('@%s%s%s' % (key, e[0], suffix) for e in ELEMENTS)
@@ -87,9 +99,12 @@ def main():
                '`texture_variation_3`, `portrait_texture_name`, `blood_level`, `blood_id`, `npc_sound_id`, '
                '`praticle_color_id`, `creature_geoset_data`, `obj_effect_package_id`)',
                '\nUNION ALL\n'.join(displays) + ';']
+        if key in DBC_MODPAK:
+            write(os.path.join(modpak(DBC_MODPAK[key]), 'dbc', '[%s]_retail_totems.sql' % DBC_MODPAK[key]), '\n'.join(dbc))
         for fnum, race in zip(fnums, race_vars):
             folder = modpak(fnum)
-            write(os.path.join(folder, 'dbc', '[%s]_retail_totems.sql' % fnum), '\n'.join(dbc))
+            if key not in DBC_MODPAK:
+                write(os.path.join(folder, 'dbc', '[%s]_retail_totems.sql' % fnum), '\n'.join(dbc))
             rows = ',\n'.join('(%d, @%s, @%s%sTotem)' % (slot, race, key, element) for element, slot, _, _ in ELEMENTS)
             write(os.path.join(folder, 'sql', 'db-world', 'base', '[BASE,%s]_player_totem_model.sql' % fnum),
                   '-- Retail\'s %s totems (dbc/[%s]_retail_totems.sql)\nDELETE FROM `player_totem_model` WHERE `RaceID` = @%s;\n'
