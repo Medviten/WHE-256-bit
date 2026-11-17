@@ -12,8 +12,15 @@ drawn for the continent placement F-133 moves them to). MOP_DBC_DIR holds the 5.
 
 The files come from wago.tools at --version, by default MoP Classic's (its map art is MoP's; the newest version of
 the World tiles is Legion's, with the Broken Isles). Their community listfile names are looked up per folder.
-Files already in OUT are kept."""
-import argparse, math, os, sys, urllib.parse, json
+Files already in OUT are kept.
+
+--uimap CSV (MoP Classic's UiMapAssignment, https://wago.tools/db2/UiMapAssignment/csv?build=5.5.4.70631; give
+mop_map_port.py the same file) re-lays the continents' World map highlights for the 3.3.5 client. MoP Classic draws
+one in a box of the World map's 3:2 aspect, as tall as the continent's UiMapAssignment region and centred on it, from
+the texture's top 512 x 341 band; 3.3.5 samples the top-left square part the region's tile aspect gives
+(Script_UpdateMapHighlight) over the region itself, so tall continents came out a third too small and shifted. Each
+highlight still in MoP's band is resampled so the 3.3.5 rectangle shows what MoP Classic draws there."""
+import argparse, csv, math, os, sys, urllib.parse, json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "races"))
@@ -46,6 +53,61 @@ def wanted(mop_dbc, map_id, world):
     return out
 
 
+CONTINENT_FOLDERS = {0: "Azeroth", 1: "Kalimdor", 571: "Northrend", 870: "Pandaria"}
+
+
+def read_rgba(path):
+    from maghar_modern_prep import read_dxt
+    from mop_bake_prep import read_pal
+    b = open(path, "rb").read()
+    if b[8] == 2 and b[10] == 0 and b[9]:     # DXT1 with 1-bit alpha: read_dxt takes alpha depth for 16-byte blocks
+        tmp = path + ".dxt1.tmp"
+        open(tmp, "wb").write(b[:9] + b"\0" + b[10:])
+        try:
+            return read_dxt(tmp)
+        finally:
+            os.remove(tmp)
+    return read_dxt(path) or read_pal(path)
+
+
+def relayout_highlights(out, uimap):
+    from maghar_modern_prep import write_blp
+    done = 0
+    for r in csv.DictReader(open(uimap, encoding="utf-8")):
+        if r["UiMapID"] != "947" or int(r["MapID"]) not in CONTINENT_FOLDERS:
+            continue
+        name = CONTINENT_FOLDERS[int(r["MapID"])]
+        path = os.path.join(out, "Interface", "WorldMap", name, name + "Highlight.blp")
+        if not os.path.exists(path):
+            continue
+        w, h, src = read_rgba(path)
+        band = h * 668 / 1002                              # the part of the texture MoP Classic uses
+        if any(src[(y * w + x) * 4 + c] > 60 for y in range(int(band) + 6, h) for x in range(0, w, 4) for c in range(3)):
+            continue                                       # already re-laid: content below the band
+        f = {k: float(v) for k, v in r.items() if k.startswith(("Ui", "Region"))}
+        tiles_w = (f["Region_4"] - f["Region_1"]) / 533.3333       # region size in ADT tiles
+        tiles_h = (f["Region_3"] - f["Region_0"]) / 533.3333
+        tcx, tcy = (tiles_w / tiles_h, 1.0) if tiles_h >= tiles_w else (1.0, tiles_h / tiles_w)
+        rx0, ry0 = f["UiMin_0"] * 1002, f["UiMin_1"] * 668
+        rw, rh = (f["UiMax_0"] - f["UiMin_0"]) * 1002, (f["UiMax_1"] - f["UiMin_1"]) * 668
+        bh = rh                                            # MoP Classic's box: 3:2, region height, centred
+        bw = bh * 1002 / 668
+        bx0 = rx0 + rw / 2 - bw / 2
+        dst = bytearray(w * h * 4)
+        for j in range(int(tcy * h)):
+            py = ry0 + (j + 0.5) / (tcy * h) * rh
+            v = int((py - ry0) / bh * band)
+            for i in range(int(tcx * w)):
+                px = rx0 + (i + 0.5) / (tcx * w) * rw
+                u = int((px - bx0) / bw * w)
+                if 0 <= u < w and 0 <= v < h:
+                    k, s = (j * w + i) * 4, (v * w + u) * 4
+                    dst[k:k + 4] = src[s:s + 4]
+        write_blp(path, w, h, dst)
+        done += 1
+    print(f"re-laid {done} continent highlights for the 3.3.5 World map")
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("mop_dbc")
@@ -53,6 +115,7 @@ def main():
     p.add_argument("--map", type=int, default=870)
     p.add_argument("--world", action="store_true")
     p.add_argument("--version", default="5.5.4.70631")
+    p.add_argument("--uimap")
     a = p.parse_args()
     missing = []
     count = 0
@@ -81,6 +144,8 @@ def main():
     print(f"downloaded {count}; missing {len(missing)}")
     for m in missing:
         print("  missing", m)
+    if a.uimap:
+        relayout_highlights(a.out, a.uimap)
 
 
 if __name__ == "__main__":

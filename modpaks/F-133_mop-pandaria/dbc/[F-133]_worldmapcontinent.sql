@@ -5,13 +5,13 @@ DELETE FROM `worldmapcontinent` WHERE `id` = 12;
 INSERT INTO `worldmapcontinent` SET
   `id` = 12,
   `map_id` = 870,
-  `left_boundary` = 19,
-  `right_boundary` = 43,
-  `top_boundary` = 19,
-  `bottom_boundary` = 37,
-  `continent_offset_x` = 2.5119,
-  `continent_offset_y` = 15.4243,
-  `scale` = 0.6514,
+  `left_boundary` = 16,
+  `right_boundary` = 45,
+  `top_boundary` = 18,
+  `bottom_boundary` = 41,
+  `continent_offset_x` = 2.47323,
+  `continent_offset_y` = 15.3546,
+  `scale` = 0.629,
   `taxi_min_x` = -4431,
   `taxi_min_y` = -5122,
   `taxi_max_x` = 7461,
@@ -19,6 +19,6 @@ INSERT INTO `worldmapcontinent` SET
   `world_map_id` = 1;
 
 -- MoP's placement of the other continents on the World map, to match MoP's World map art
-UPDATE `worldmapcontinent` SET `left_boundary` = 16, `right_boundary` = 44, `top_boundary` = 10, `bottom_boundary` = 60, `continent_offset_x` = 19.59698, `continent_offset_y` = -3.52696, `scale` = 0.563 WHERE `map_id` = 0;
-UPDATE `worldmapcontinent` SET `left_boundary` = 16, `right_boundary` = 48, `top_boundary` = 9, `bottom_boundary` = 54, `continent_offset_x` = -20.4678, `continent_offset_y` = -0.03125, `scale` = 0.5609 WHERE `map_id` = 1;
-UPDATE `worldmapcontinent` SET `left_boundary` = 17, `right_boundary` = 44, `top_boundary` = 12, `bottom_boundary` = 32, `continent_offset_x` = 1.87277, `continent_offset_y` = -8.09821, `scale` = 0.5949 WHERE `map_id` = 571;
+UPDATE `worldmapcontinent` SET `left_boundary` = 17, `right_boundary` = 45, `top_boundary` = 19, `bottom_boundary` = 61, `continent_offset_x` = 19.43684, `continent_offset_y` = -3.55878, `scale` = 0.5848 WHERE `map_id` = 0;
+UPDATE `worldmapcontinent` SET `left_boundary` = 19, `right_boundary` = 49, `top_boundary` = 9, `bottom_boundary` = 55, `continent_offset_x` = -20.53193, `continent_offset_y` = -0.13112, `scale` = 0.5663 WHERE `map_id` = 1;
+UPDATE `worldmapcontinent` SET `left_boundary` = 11, `right_boundary` = 49, `top_boundary` = 9, `bottom_boundary` = 37, `continent_offset_x` = 1.91632, `continent_offset_y` = -8.09863, `scale` = 0.5928 WHERE `map_id` = 571;

@@ -35,7 +35,9 @@ MODPAK/sql/db-world/base/[TAG]_game_tele.sql.
 - WorldMapArea/WorldMapOverlay/WorldMapContinent: MoP's continent, zone and explored-area rows (map coordinates,
   addons, the world map). The art is in WHE-common (downloaded by tools/models/mop_map_art.py). A map without a
   WorldMapContinent row (the Wandering Isle) is a single zone map, as 3.3.5a shows dungeons. --move-continents also
-  moves Eastern Kingdoms, Kalimdor and Northrend to MoP's places on the World map (F-133, with MoP's World art).
+  moves Eastern Kingdoms, Kalimdor and Northrend to MoP's places on the World map (F-133, with MoP's World art). --uimap
+  (https://wago.tools/db2/UiMapAssignment/csv?build=5.5.4.70631) takes those placements from MoP Classic, whose
+  continent highlights the art is drawn for, instead of 5.4.8's rows.
 - game_tele: one ".tele" target per zone and subarea the tiles have chunks of (named as the area, without spaces
   or apostrophes: .tele TheSingingPools), on the land chunk nearest the middle of the area's chunks. --tele-only
   rewrites just this file.
@@ -103,6 +105,26 @@ def taken_ids(modpaks_dir, table, own_tag):
             continue
         ids |= {int(m.group(1) or m.group(2)) for m in pat.finditer(open(f, encoding="utf-8").read())}
     return ids
+
+
+def uimap_placement(path):
+    """WorldMapContinent placement solved from MoP Classic's UiMapAssignment rows on the World map (UiMap 947):
+    3.3.5a puts world position p at (31.3125 + offset - p * scale / 533.33) / 62.625 of the map's width (20.875 and
+    41.75 for the height), the region's tile-aligned corners give the boundaries."""
+    out = {}
+    for r in csv.DictReader(open(path, encoding="utf-8")):
+        if r["UiMapID"] != "947" or int(r["MapID"]) not in (0, 1, 571, 870, 860):
+            continue
+        f = {k: float(v) for k, v in r.items() if k.startswith(("Ui", "Region"))}
+        xmin, ymin, xmax, ymax = f["Region_0"], f["Region_1"], f["Region_3"], f["Region_4"]
+        kx = (f["UiMax_0"] - f["UiMin_0"]) / (ymax - ymin)
+        ky = (f["UiMax_1"] - f["UiMin_1"]) / (xmax - xmin)
+        scale = round(kx * TILE * 62.625, 4)
+        tile = lambda v: round((32 * TILE - v) / TILE)
+        out[int(r["MapID"])] = (tile(ymax), tile(ymin) - 1, tile(xmax), tile(xmin) - 1,
+                                round((f["UiMin_0"] + ymax * kx) * 62.625 - 31.3125, 5),
+                                round((f["UiMin_1"] + xmax * ky) * 41.75 - 20.875, 5), scale)
+    return out
 
 
 def write_graveyards(mop_dbc, modpaks_dir, sql_dir, MAP, TAG, NAME):
@@ -207,6 +229,7 @@ def main():
     p.add_argument("--name", default="Pandaria")
     p.add_argument("--tele-base", type=int, default=87000)
     p.add_argument("--move-continents", action="store_true")
+    p.add_argument("--uimap", help="MoP Classic's UiMapAssignment CSV (wago.tools): continent placement for its art")
     p.add_argument("--lights-only", action="store_true")
     p.add_argument("--graveyards-only", action="store_true")
     p.add_argument("--tele-only", action="store_true")
@@ -299,20 +322,28 @@ def main():
     continents = Dbc(os.path.join(a.mop_dbc, "WorldMapContinent.dbc")).records
     wmc = next((r for r in continents if r[1] == MAP), None)
     if wmc:
+        # (left, right, top, bottom, offset x, offset y, scale) per map: 5.4.8's rows, or with --uimap MoP Classic's,
+        # whose World map art and continent highlights are drawn for UiMapAssignment regions: 5.4.8's tile
+        # boundaries size the highlights wrongly (Kalimdor's came out a third too small)
+        place = {r[1]: (r[2], r[3], r[4], r[5], f32(r[6]), f32(r[7]), f32(r[8])) for r in continents}
+        if a.uimap:
+            place.update(uimap_placement(a.uimap))
         # MoP's World map art (WHE-common's modpaks/F-133) places the other continents differently from Open
         # Azeroth's, and their clickable rectangles on the World map come from these rows. Outland's is the same.
         moved = ["\n-- MoP's placement of the other continents on the World map, to match MoP's World map art"]
-        for r in continents:
-            if a.move_continents and r[1] in (0, 1, 571):
-                moved.append(f"UPDATE `worldmapcontinent` SET `left_boundary` = {r[2]}, `right_boundary` = {r[3]}, "
-                             f"`top_boundary` = {r[4]}, `bottom_boundary` = {r[5]}, `continent_offset_x` = "
-                             f"{f32(r[6])}, `continent_offset_y` = {f32(r[7])}, `scale` = {f32(r[8])} "
-                             f"WHERE `map_id` = {r[1]};")
+        for m in (0, 1, 571):
+            if a.move_continents and m in place:
+                L, R, T, B, ox, oy, sc = place[m]
+                moved.append(f"UPDATE `worldmapcontinent` SET `left_boundary` = {L}, `right_boundary` = {R}, "
+                             f"`top_boundary` = {T}, `bottom_boundary` = {B}, `continent_offset_x` = "
+                             f"{ox}, `continent_offset_y` = {oy}, `scale` = {sc} "
+                             f"WHERE `map_id` = {m};")
+        L, R, T, B, ox, oy, sc = place[MAP]
         with open(os.path.join(dbc_dir, f"{TAG}_worldmapcontinent.sql"), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(HEADER + block("worldmapcontinent", wmc[0], {
-                "id": wmc[0], "map_id": MAP, "left_boundary": wmc[2], "right_boundary": wmc[3],
-                "top_boundary": wmc[4], "bottom_boundary": wmc[5], "continent_offset_x": f32(wmc[6]),
-                "continent_offset_y": f32(wmc[7]), "scale": f32(wmc[8]), "taxi_min_x": f32(wmc[9]),
+                "id": wmc[0], "map_id": MAP, "left_boundary": L, "right_boundary": R,
+                "top_boundary": T, "bottom_boundary": B, "continent_offset_x": ox,
+                "continent_offset_y": oy, "scale": sc, "taxi_min_x": f32(wmc[9]),
                 "taxi_min_y": f32(wmc[10]), "taxi_max_x": f32(wmc[11]), "taxi_max_y": f32(wmc[12]),
                 "world_map_id": wmc[13]}, NAME) + ("\n".join(moved) + "\n" if len(moved) > 1 else ""))
 
