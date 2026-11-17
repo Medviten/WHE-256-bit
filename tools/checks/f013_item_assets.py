@@ -8,8 +8,12 @@ For each row of the modpak's dbc/*itemdisplayinfo*.sql (F-013's by default, --mo
 folder; head models with any race suffix) and textures, and the armour textures (any of _U, _M, _F) in WHE-common, the
 client's patch folders and its MPQs (enUS ones included). With --copy, what is missing but in Zeppelin's extracted
 client files (ZEPPELIN/Work, the output of extracting its patches) is copied to WHE-common under the client's path.
+With --art (the 4.3.4 client's art.MPQ), what Zeppelin lacks comes from there: textures and icons to WHE-common, models
+(Cataclysm M2s, with their skins) to --stage, to be converted with wotlkconv and m2_unshare_tracks.py and then copied to
+WHE-common. A head model counts as present with any race variant, so --art also stages the race variants it has that the
+client lacks (NPCs of those races would show a missing-model cube).
 
-usage: f013_item_assets.py [--client DATA] [--common PATH] [--zeppelin DATA] [--copy]"""
+usage: f013_item_assets.py [--client DATA] [--common PATH] [--zeppelin DATA] [--art ART.MPQ [--stage DIR]] [--copy]"""
 import argparse, collections, glob, os, re, shutil, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -99,6 +103,8 @@ def main():
     ap.add_argument('--zeppelin', default='D:/GitHub/References/Zeppelin_patches/Data')
     ap.add_argument('--copy', action='store_true')
     ap.add_argument('--modpak', help='modpak folder whose dbc/ and sql/ to check (default F-013)')
+    ap.add_argument('--art', help="the 4.3.4 client's art.MPQ, a second source after Zeppelin")
+    ap.add_argument('--stage', default='D:/wow-scratch/cata434/items-src', help='where --art models go for conversion')
     a = ap.parse_args()
     global F013
     F013 = a.modpak or F013
@@ -109,6 +115,13 @@ def main():
     archives = [Archive(p) for p in glob.glob(os.path.join(a.client, '*.[mM][pP][qQ]'))
                 + glob.glob(os.path.join(a.client, 'enUS', '*.[mM][pP][qQ]')) if os.path.isfile(p)]
     work = tree(os.path.join(a.zeppelin, 'Work'))
+    art, art_names = None, {}
+    if a.art:
+        sys.path.insert(0, os.path.join(HERE, '..', 'models'))
+        from mpq_unpack import Archive as ReadArchive
+        art = ReadArchive(a.art)
+        art_names = {n.strip().upper(): n.strip() for n in art.read('(listfile)').decode('latin1').splitlines()
+                     if n.strip()}
 
     def present(path):
         if path.upper().endswith('.BLP'):
@@ -130,9 +143,35 @@ def main():
         wanted += [(int(row['id']), what, candidates) for what, candidates in needs(row)]
     wanted += creature_needs(a.client)
     copied, lost = 0, collections.defaultdict(list)
+    def art_models(candidates):
+        """art.MPQ's .m2s with any race suffix and their skins for a model's candidate paths."""
+        return [n for k, n in art_names.items() for c in candidates
+                if k == c.upper() or (not c.upper().endswith('.BLP') and k.startswith(c.upper())
+                                      and k.endswith(('.M2', '.SKIN')))]
+
+    def stage(names):
+        n = 0
+        for name in names:
+            root = a.stage if not name.upper().endswith('.BLP') else a.common
+            out = os.path.join(root, *name.split(B))
+            os.makedirs(os.path.dirname(out), exist_ok=True)
+            with open(out, 'wb') as f:
+                f.write(art.read(name))
+            n += 1
+        return n
+
     for display, what, candidates in wanted:
         if True:
             if any(present(c) for c in candidates):
+                # a head model counts as present with any race variant; fill in the races art.MPQ has and we lack
+                if art and what.startswith('model '):
+                    gaps = [os.path.splitext(n)[0] for n in art_models(candidates)
+                            if n.upper().endswith('.M2') and not present(os.path.splitext(n)[0])]
+                    gaps = [n for g in gaps for n in art_models([g])]
+                    if gaps and a.copy:
+                        copied += stage(sorted(set(gaps)))
+                    elif gaps:
+                        lost[what + ' (race variants in art.MPQ)'].append(display)
                 continue
             source = next(((c, work[k]) for c in candidates for k in work
                            if k == c.upper() or (k.startswith(c.upper()) and k.endswith('.M2'))), None)
@@ -146,8 +185,12 @@ def main():
                     shutil.copy2(f, os.path.join(folder, os.path.basename(f)))
                     copied += 1
             elif not source:
-                lost[what].append(display)
-    print('copied %d files' % copied if a.copy else '(dry run: --copy copies what Zeppelin has)')
+                names = art_models(candidates)
+                if not names:
+                    lost[what].append(display)
+                elif a.copy:
+                    copied += stage(names)
+    print('copied %d files' % copied if a.copy else '(dry run: --copy copies what Zeppelin and --art have)')
     print('%d files nobody has:' % len(lost))
     for what, displays in sorted(lost.items()):
         print('  %-60s displays %s, items %s' % (what, displays[:4], [i for d in displays for i in items.get(d, [])][:3]))

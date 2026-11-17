@@ -1,0 +1,2239 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 1051edcee..b858d8e9c 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -1458,6 +1458,19 @@ GoblinStartZone.Enable = 0
+ 
+ GilneasStartZone.Enable = 0
+ 
++#
++#    WanderingIsleStartZone.Enable
++#        Description: Core support for the Wandering Isle (Pandaren) start zone (WHE modpak F-134):
++#                     new Pandaren characters (except Death Knights) start on the Wandering Isle
++#                     (map 860) by Master Shang Xi, bound there, with "Much to Learn". The island's
++#                     phases are phase_definitions, so enabling it also enables everything
++#                     GoblinStartZone.Enable does and requires that table (from F-134, F-130 or
++#                     F-013). Needs F-134's server map files for map 860.
++#        Default:     0 - (Disabled, stock behaviour)
++#                     1 - (Enabled)
++
++WanderingIsleStartZone.Enable = 0
++
+ #
+ ###################################################################################################
+ 
+diff --git a/src/server/game/Maps/PhaseMgr.cpp b/src/server/game/Maps/PhaseMgr.cpp
+index 472e76d28..f0510b6b2 100644
+--- a/src/server/game/Maps/PhaseMgr.cpp
++++ b/src/server/game/Maps/PhaseMgr.cpp
+@@ -57,7 +57,9 @@ void PhaseMgr::Recalculate()
+             break;
+     }
+ 
+-    uint32 const finalMask = phasemask ? phasemask : uint32(PHASEMASK_NORMAL);
++    // Custom: F-134, phase auras add to the zone's phases (Cataclysm's PhaseMgr merged both): the Wandering Isle's
++    // duel phase 102515 must not hide the zone's own phases, nor a recalculation drop the aura's
++    uint32 const finalMask = (phasemask ? phasemask : uint32(PHASEMASK_NORMAL)) | _player->GetPhaseByAuras();
+     if (_player->GetPhaseMask() != finalMask)
+         _player->SetPhaseMask(finalMask, true);
+ 
+@@ -65,6 +67,14 @@ void PhaseMgr::Recalculate()
+         SendTerrainSwap(terrainSwap);
+ }
+ 
++bool PhaseMgr::HandlesCurrentZone() const
++{
++    if (!_player || !sWorld->getBoolConfig(CONFIG_GOBLIN_START_ZONE) || _player->IsGameMaster())
++        return false;
++    PhaseDefinitionStore const& store = sObjectMgr->GetPhaseDefinitionStore();
++    return store.find(_player->GetZoneId()) != store.end();
++}
++
+ void PhaseMgr::SendTerrainSwap(uint32 swapMapId)
+ {
+     _terrainSwap = swapMapId;
+diff --git a/src/server/game/Maps/PhaseMgr.h b/src/server/game/Maps/PhaseMgr.h
+index 63c9fdae0..b985b75f6 100644
+--- a/src/server/game/Maps/PhaseMgr.h
++++ b/src/server/game/Maps/PhaseMgr.h
+@@ -80,6 +80,9 @@ public:
+     // quest accept/complete/reward/abandon, login). Currently just recalculates.
+     void NotifyConditionChanged() { Recalculate(); }
+ 
++    // Custom: F-134, whether the player's zone has phase_definitions (then phase auras go through Recalculate)
++    [[nodiscard]] bool HandlesCurrentZone() const;
++
+ private:
+     // WHE F-102: tell the client which map's tiles replace the base terrain (0 = none). Our client reads the
+     // swap map and its base map after SMSG_SET_PHASE_SHIFT's phase; stock clients only read the phase.
+diff --git a/src/server/game/Spells/Auras/SpellAuraEffects.cpp b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+index 24a1d1a1c..90d63a209 100644
+--- a/src/server/game/Spells/Auras/SpellAuraEffects.cpp
++++ b/src/server/game/Spells/Auras/SpellAuraEffects.cpp
+@@ -31,6 +31,7 @@
+ #include "Opcodes.h"
+ #include "OutdoorPvPMgr.h"
+ #include "Pet.h"
++#include "PhaseMgr.h" // Custom: F-134
+ #include "Player.h"
+ #include "ReputationMgr.h"
+ #include "ScriptMgr.h"
+@@ -1929,6 +1930,14 @@ void AuraEffect::HandlePhase(AuraApplication const* aurApp, uint8 mode, bool app
+ 
+     if (Player* player = target->ToPlayer())
+     {
++        // Custom: F-134, in a phase_definitions zone the zone's phases and the aura phases are merged there
++        if (PhaseMgr* pm = player->GetPhaseMgr(); pm && pm->HandlesCurrentZone())
++        {
++            pm->Recalculate();
++            player->GetSession()->SendSetPhaseShift(player->GetPhaseMask());
++            return;
++        }
++
+         if (!newPhase)
+             newPhase = PHASEMASK_NORMAL;
+ 
+diff --git a/src/server/game/World/World.cpp b/src/server/game/World/World.cpp
+index 59945d768..2b379d9be 100644
+--- a/src/server/game/World/World.cpp
++++ b/src/server/game/World/World.cpp
+@@ -199,6 +199,10 @@ void World::LoadConfigSettings(bool reload)
+     if (getBoolConfig(CONFIG_GILNEAS_START_ZONE))
+         setBoolConfig(CONFIG_GOBLIN_START_ZONE, true);
+ 
++    // Custom: F-134, the same for the Wandering Isle (its phases are phase_definitions)
++    if (getBoolConfig(CONFIG_WANDERING_ISLE_START_ZONE))
++        setBoolConfig(CONFIG_GOBLIN_START_ZONE, true);
++
+     for (uint8 i = 0; i < MAX_MOVE_TYPE; ++i)
+         playerBaseMoveSpeed[i] = baseMoveSpeed[i] * getRate(RATE_MOVESPEED_PLAYER);
+ 
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index a61f964f3..20e3e0a38 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -306,6 +306,7 @@ void WorldConfig::BuildConfigCache()
+ 
+     SetConfigValue<bool>(CONFIG_GOBLIN_START_ZONE, "GoblinStartZone.Enable", false);
+     SetConfigValue<bool>(CONFIG_GILNEAS_START_ZONE, "GilneasStartZone.Enable", false);
++    SetConfigValue<bool>(CONFIG_WANDERING_ISLE_START_ZONE, "WanderingIsleStartZone.Enable", false); // Custom: F-134
+ 
+     SetConfigValue<uint32>(CONFIG_MAIL_DELIVERY_DELAY, "MailDeliveryDelay", HOUR);
+     SetConfigValue<bool>(CONFIG_MAIL_PUSH_INBOX_ON_DELIVERY, "Mail.PushInboxOnDelivery", false);
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index d4ea315d6..54dc72a42 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -145,6 +145,7 @@ enum ServerConfigs
+     CONFIG_OBJECT_QUEST_MARKERS,
+     CONFIG_GOBLIN_START_ZONE, // F-013 Zeppelin goblin start zone core support
+     CONFIG_GILNEAS_START_ZONE, // F-130 Gilneas (Worgen) start zone; turns CONFIG_GOBLIN_START_ZONE's support on too
++    CONFIG_WANDERING_ISLE_START_ZONE, // Custom: F-134 Wandering Isle (Pandaren) start; turns CONFIG_GOBLIN_START_ZONE's support on too
+     CONFIG_STRICT_NAMES_RESERVED,
+     CONFIG_STRICT_NAMES_PROFANITY,
+     CONFIG_CHAT_FILTER_WHISPER,
+diff --git a/src/server/scripts/Custom/custom_script_loader.cpp b/src/server/scripts/Custom/custom_script_loader.cpp
+index 6b8bf1bb2..9cf4c4014 100644
+--- a/src/server/scripts/Custom/custom_script_loader.cpp
++++ b/src/server/scripts/Custom/custom_script_loader.cpp
+@@ -20,6 +20,8 @@
+ void AddSC_zeppelin_goblin_start();
+ void AddSC_zeppelin_goblin_creatures();
+ void AddSC_gilneas_start(); // Custom: F-130 Gilneas start zone
++void AddSC_wandering_isle_start(); // Custom: F-134 Wandering Isle start
++void AddSC_wandering_isle(); // Custom: F-134 Wandering Isle scripts
+ 
+ // The name of this function should match:
+ // void Add${NameOfDirectory}Scripts()
+@@ -29,4 +31,6 @@ void AddCustomScripts()
+     AddSC_zeppelin_goblin_start();
+     AddSC_zeppelin_goblin_creatures();
+     AddSC_gilneas_start();
++    AddSC_wandering_isle_start();
++    AddSC_wandering_isle();
+ }
+diff --git a/src/server/shared/SharedDefines.h b/src/server/shared/SharedDefines.h
+index e94e5f4d1..230a29944 100644
+--- a/src/server/shared/SharedDefines.h
++++ b/src/server/shared/SharedDefines.h
+@@ -1255,7 +1255,9 @@ enum InvisibilityType
+     INVISIBILITY_UNK10       = 10,
+     INVISIBILITY_UNK11       = 11,
+ 
+-    TOTAL_INVISIBILITY_TYPES = 12
++    // Custom: F-134, MoP's quest invisibility types go up to 30 (the Wandering Isle's phasing uses 5-30); the
++    // per-object arrays are 32-bit flag sets, so 32 is the limit
++    TOTAL_INVISIBILITY_TYPES = 32
+ };
+ 
+ enum ServerSideVisibilityType
+diff --git a/src/server/scripts/Custom/wandering_isle_start.cpp b/src/server/scripts/Custom/wandering_isle_start.cpp
+new file mode 100644
+index 000000000..701623943
+--- /dev/null
++++ b/src/server/scripts/Custom/wandering_isle_start.cpp
+@@ -0,0 +1,54 @@
++/*
++ * Custom: F-134 Wandering Isle (Pandaren) start zone.
++ *
++ * With WanderingIsleStartZone.Enable on, a new Pandaren character (a race "The Lesson of the Sandy Fist", which
++ * only Pandaren may take, allows), except a Death Knight, is moved on its first login to the Wandering Isle (map 860),
++ * by Master Shang Xi where Mists of Pandaria starts Pandaren, bound there, and given "Much to Learn" (MoP offers it
++ * with a spell this port doesn't have). playercreateinfo stays as it is, so switching it off gives the races their
++ * normal start back. The island's NPCs, objects and quests are the modpak's (F-134); its scripted events are not
++ * ported yet.
++ */
++
++#include "ObjectMgr.h"
++#include "Player.h"
++#include "PlayerScript.h"
++#include "World.h"
++
++enum WanderingIsleStart
++{
++    QUEST_MUCH_TO_LEARN             = 29404,
++    QUEST_LESSON_OF_THE_SANDY_FIST  = 29406,  // Pandaren races only
++    MAP_WANDERING_ISLE              = 860,
++    ZONE_WANDERING_ISLE             = 5736,
++};
++
++static Position const WanderingIsleStartPos = { 1466.09f, 3465.98f, 181.86f, 2.87962f };
++
++class WanderingIsleStartPlayerScript : public PlayerScript
++{
++public:
++    WanderingIsleStartPlayerScript() : PlayerScript("WanderingIsleStartPlayerScript", { PLAYERHOOK_ON_FIRST_LOGIN }) { }
++
++    void OnPlayerFirstLogin(Player* player) override
++    {
++        if (!sWorld->getBoolConfig(CONFIG_WANDERING_ISLE_START_ZONE) || player->getClass() == CLASS_DEATH_KNIGHT)
++            return;
++
++        Quest const* pandarenOnly = sObjectMgr->GetQuestTemplate(QUEST_LESSON_OF_THE_SANDY_FIST);
++        if (!pandarenOnly || !player->SatisfyQuestRace(pandarenOnly, false))
++            return;
++
++        WorldLocation start(MAP_WANDERING_ISLE, WanderingIsleStartPos);
++        player->SetHomebind(start, ZONE_WANDERING_ISLE);
++        player->TeleportTo(start);
++
++        if (Quest const* first = sObjectMgr->GetQuestTemplate(QUEST_MUCH_TO_LEARN))
++            if (player->CanAddQuest(first, false))
++                player->AddQuestAndCheckCompletion(first, nullptr);
++    }
++};
++
++void AddSC_wandering_isle_start()
++{
++    new WanderingIsleStartPlayerScript();
++}
+diff --git a/src/server/scripts/Custom/wandering_isle.cpp b/src/server/scripts/Custom/wandering_isle.cpp
+new file mode 100644
+index 000000000..81b65be56
+--- /dev/null
++++ b/src/server/scripts/Custom/wandering_isle.cpp
+@@ -0,0 +1,1909 @@
++/*
++ * Custom: F-134 Wandering Isle (Pandaren start zone) scripts.
++ *
++ * Ported from the TrinityCore MoP Classic port's src/server/scripts/Pandaria/zone_the_wandering_isle.cpp (GPL-2.0),
++ * under the same script names, which F-134's creature_template / creature / gameobject_template /
++ * spell_script_names / areatrigger_scripts rows use. AzerothCore differences handled here:
++ * - TrinityCore's StringId spawn lookups use the spawn ids F-134's port gave those spawns, and its path, gossip menu,
++ *   entry and phase ids go through wandering_isle_ids.h, which the port writes.
++ * - 3.3.5a clients only report entering an area trigger, so the trigger scripts that act on leaving are polled
++ *   (WanderingIsleTriggerExitScript).
++ * - 3.3.5a has no alternate power: the meditation (bar 149, 90) and Shen-zin Su (bar 158, 700) bars count the
++ *   periodic ticks of their auras (F-134 makes the enable-alternate-power aura a dummy).
++ * - Flying paths built at runtime (Zhao-Ren's circle, the balloon's legs) are splines whose end is polled.
++ * - PhasingHandler::OnConditionChange is F-013's PhaseMgr::Recalculate.
++ * - The finale ("A New Fate", 31450): F-020 / F-021's Pandaren already have their side, so the spirit of Master
++ *   Shang Xi completes it and sends them to their capital instead of offering MoP's faction choice.
++ */
++
++#include "AreaDefines.h"
++#include "CreatureAIImpl.h"
++#include "CreatureScript.h"
++#include "GameObjectAI.h"
++#include "GameObjectScript.h"
++#include "Group.h"
++#include "MotionMaster.h"
++#include "MoveSpline.h"
++#include "ObjectAccessor.h"
++#include "ObjectMgr.h"
++#include "PhaseMgr.h"
++#include "Player.h"
++#include "PlayerScript.h"
++#include "ScriptedCreature.h"
++#include "ScriptedGossip.h"
++#include "SpellAuraEffects.h"
++#include "SpellInfo.h"
++#include "SpellScript.h"
++#include "SpellScriptLoader.h"
++#include "AreaTriggerScript.h"
++#include "TaskScheduler.h"
++#include "TemporarySummon.h"
++#include "Vehicle.h"
++#include "World.h"
++#include "wandering_isle_ids.h"
++#include <unordered_map>
++
++using namespace WanderingIsleIds;
++
++namespace WanderingIsle
++{
++namespace Spells
++{
++    static constexpr uint32 ForceVehicleRide = 46598;
++    static constexpr uint32 EjectPassengers = 50630;
++    static constexpr uint32 OxCartRopeLeft = 108627;
++
++    static constexpr uint32 CurseOfTheFrog = 102938;
++    static constexpr uint32 CurseOfTheSkunk = 102939;
++    static constexpr uint32 CurseOfTheTurtle = 102940;
++    static constexpr uint32 CurseOfTheCrane = 102941;
++    static constexpr uint32 CurseOfTheCrocodile = 102942;
++    static constexpr uint32 RideVehiclePole = 102717;
++    static constexpr uint32 TrainingBellPoleExitExclusion = 133381;
++
++    static constexpr uint32 FireCrashCover = 108149;
++    static constexpr uint32 FireCrashInvis = 108150;
++    static constexpr uint32 FireCrashPhaseShift = 102515;
++    static constexpr uint32 FlyingShadowKick = 108936;
++    static constexpr uint32 FlyingShadowKickJump = 108943;
++    static constexpr uint32 FeetOfFury = 108958;
++    static constexpr uint32 FeetOfFuryDamage = 108957;
++
++    static constexpr uint32 SummonHuo = 128700;
++}
++
++namespace Quests
++{
++    static constexpr uint32 OnlyTheWorthyShallPass = 29421;
++    static constexpr uint32 PassionOfShenZinSu = 29423;
++    static constexpr uint32 TheSourceOfLivelihood = 29680;
++    static constexpr uint32 TheSpiritAndBodyOfShenzinsu = 29775;
++    static constexpr uint32 NewAllies = 29800;
++}
++
++namespace Creatures
++{
++    static constexpr uint32 MasterLiFei = 54135;
++    static constexpr uint32 MasterLiFeiCombat = 54734;
++    static constexpr uint32 HuoFollower = 54958;
++    static constexpr uint32 CartSingingPools = 57710;
++    static constexpr uint32 CartFarmstead = 59497;
++    static constexpr uint32 CartForest = 57741;
++    static constexpr uint32 CartVehicleSingingPools = 57208;
++    static constexpr uint32 CartVehicleFarmstead = 59496;
++    static constexpr uint32 CartVehicleForest = 57740;
++    static constexpr uint32 MinDimwind = 54855;           // TrinityCore's StringId npc_min_dimwind (template)
++    static constexpr uint32 AysaQuest29414 = 59642;       // TrinityCore's StringId npc_aysa_quest_29414 (template)
++}
++
++// The spawn F-134 gave a TrinityCore StringId (wandering_isle_ids.h), near `near`
++static Creature* FindSpawn(WorldObject const* near, uint32 spawnId, float range = 40.0f)
++{
++    auto bounds = near->GetMap()->GetCreatureBySpawnIdStore().equal_range(spawnId);
++    for (auto itr = bounds.first; itr != bounds.second; ++itr)
++        if (itr->second->IsInWorld() && near->IsWithinDist(itr->second, range))
++            return itr->second;
++    return nullptr;
++}
++
++static void RefreshPhases(Unit* unit)
++{
++    if (Player* player = unit ? unit->ToPlayer() : nullptr)
++        if (PhaseMgr* pm = player->GetPhaseMgr())
++            pm->Recalculate();
++}
++
++// ---- Area triggers left: 3.3.5a clients only report entering --------------------------------------------------------
++class WanderingIsleTriggerExitScript;
++
++struct TriggerExits
++{
++    using Handler = void (*)(Player*);
++    // player -> (trigger, what to do on leaving it)
++    static std::unordered_map<ObjectGuid, std::unordered_map<uint32, Handler>>& Watched()
++    {
++        static std::unordered_map<ObjectGuid, std::unordered_map<uint32, Handler>> watched;
++        return watched;
++    }
++
++    static void Watch(Player* player, uint32 triggerId, Handler onExit)
++    {
++        Watched()[player->GetGUID()][triggerId] = onExit;
++    }
++};
++
++class WanderingIsleTriggerExitScript : public PlayerScript
++{
++public:
++    WanderingIsleTriggerExitScript() : PlayerScript("WanderingIsleTriggerExitScript", { PLAYERHOOK_ON_UPDATE, PLAYERHOOK_ON_LOGOUT }) { }
++
++    void OnPlayerUpdate(Player* player, uint32 diff) override
++    {
++        auto itr = TriggerExits::Watched().find(player->GetGUID());
++        if (itr == TriggerExits::Watched().end())
++            return;
++
++        uint32& timer = _timers[player->GetGUID()];
++        if (timer > diff)
++        {
++            timer -= diff;
++            return;
++        }
++        timer = 500;
++
++        for (auto watch = itr->second.begin(); watch != itr->second.end();)
++        {
++            AreaTrigger const* trigger = sObjectMgr->GetAreaTrigger(watch->first);
++            if (!trigger || trigger->map != player->GetMapId() || !player->IsInAreaTriggerRadius(trigger, 1.0f))
++            {
++                TriggerExits::Handler handler = watch->second;
++                watch = itr->second.erase(watch);
++                handler(player);
++            }
++            else
++                ++watch;
++        }
++        if (itr->second.empty())
++            TriggerExits::Watched().erase(itr);
++    }
++
++    void OnPlayerLogout(Player* player) override
++    {
++        TriggerExits::Watched().erase(player->GetGUID());
++        _timers.erase(player->GetGUID());
++    }
++
++private:
++    std::unordered_map<ObjectGuid, uint32> _timers;
++};
++
++// ---- Trainees --------------------------------------------------------------------------------------------------------
++enum TraineeMisc
++{
++    SAY_FINISH_FIGHT                    = 0,
++    SPELL_BLACKOUT_KICK                 = 109080,
++    QUEST_29524_KILLCREDIT              = 54586,
++    POINT_DESPAWN                       = 0,
++    NPC_HUOJIN_TRAINEE_MALE             = 54586,
++    NPC_HUOJIN_TRAINEE_FEMALE           = 65470,
++    NPC_TUSHUI_TRAINEE_MALE             = 54587,
++    NPC_TUSHUI_TRAINEE_FEMALE           = 65471,
++    ACTION_PARTNER_ENTERED_COMBAT       = 1,
++};
++
++Position const TraineeEndpoints[] =
++{
++    { 1465.3872f, 3283.8604f, 137.69096f }, { 1431.401f, 3264.001f, 136.02579f }, { 1397.2067f, 3276.5618f, 133.84508f },
++    { 1441.566f, 3232.8013f, 135.01802f }, { 1403.632f, 3229.1094f, 132.14877f }, { 1347.1927f, 3286.5842f, 131.94803f },
++    { 1365.1865f, 3338.9502f, 128.57233f }, { 1349.6024f, 3315.0574f, 130.97443f }, { 1335.4618f, 3344.019f, 130.42047f },
++    { 1360.1198f, 3378.02f, 127.34183f }, { 1435.8524f, 3355.6423f, 173.77744f }, { 1432.7031f, 3385.1572f, 184.4187f },
++    { 1452.6094f, 3373.3315f, 187.0402f }, { 1426.7778f, 3364.7517f, 184.39569f }, { 1450.3646f, 3361.264f, 184.42484f },
++};
++
++// MoP's monk training emotes, as the stock unarmed ones F-134 maps them to
++Emote const TraineeEmotes[] = { EMOTE_ONESHOT_ATTACK_UNARMED, EMOTE_ONESHOT_PARRY_UNARMED, EMOTE_ONESHOT_ATTACK_UNARMED };
++
++// 54586, 65470 - Huojin Trainee; 54587, 65471 - Tushui Trainee
++struct npc_tushui_huojin_trainee : public ScriptedAI
++{
++    npc_tushui_huojin_trainee(Creature* creature) : ScriptedAI(creature), _defeated(false) { }
++
++    Emote PlayRandomEmote() const
++    {
++        Emote emote = Acore::Containers::SelectRandomContainerElement(TraineeEmotes);
++        me->HandleEmoteCommand(emote);
++        return emote;
++    }
++
++    void DamageTaken(Unit* attacker, uint32& damage, DamageEffectType /*type*/, SpellSchoolMask /*school*/) override
++    {
++        if (!me->HealthBelowPctDamaged(20, damage))
++            return;
++
++        damage = 0;
++        if (_defeated)
++            return;
++
++        _defeated = true;
++        if (Player* player = attacker ? attacker->GetCharmerOrOwnerPlayerOrPlayerItself() : nullptr)
++            player->KilledMonsterCredit(QUEST_29524_KILLCREDIT);
++
++        me->SetEmoteState(EMOTE_ONESHOT_NONE);
++        me->SetImmuneToPC(true);
++        me->CombatStop();
++
++        _scheduler.Schedule(1s, [this](TaskContext /*task*/) { Talk(SAY_FINISH_FIGHT); });
++        _scheduler.Schedule(3s, [this](TaskContext /*task*/)
++        {
++            Position target = TraineeEndpoints[0];
++            float best = 1000.0f;
++            for (Position const& pos : TraineeEndpoints)
++            {
++                float dist = pos.GetExactDist(me);
++                if (dist < best)
++                {
++                    best = dist;
++                    target = pos;
++                }
++            }
++            me->GetMotionMaster()->MovePoint(POINT_DESPAWN, target);
++        });
++    }
++
++    void MovementInform(uint32 type, uint32 id) override
++    {
++        if (type == POINT_MOTION_TYPE && id == POINT_DESPAWN)
++            me->DespawnOrUnsummon();
++    }
++
++    void JustEngagedWith(Unit* /*who*/) override
++    {
++        _scheduler.Schedule(4s, [this](TaskContext task)
++        {
++            if (me->GetVictim())
++                DoCastVictim(SPELL_BLACKOUT_KICK);
++            task.Repeat(8s);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _scheduler.Update(diff);
++        if (!UpdateVictim())
++            return;
++        DoMeleeAttackIfReady();
++    }
++
++    void EnterEvadeMode(EvadeReason why) override
++    {
++        if (!_defeated)
++            ScriptedAI::EnterEvadeMode(why);
++    }
++
++protected:
++    TaskScheduler _scheduler;
++    bool _defeated;
++};
++
++// 54586, 65470 - Huojin Trainee: spar with the nearest free Huojin trainee
++struct npc_huojin_trainee : public npc_tushui_huojin_trainee
++{
++    npc_huojin_trainee(Creature* creature) : npc_tushui_huojin_trainee(creature) { }
++
++    void JustEngagedWith(Unit* who) override
++    {
++        _scheduler.CancelAll();
++        npc_tushui_huojin_trainee::JustEngagedWith(who);
++        if (Creature* partner = ObjectAccessor::GetCreature(*me, _partnerGuid))
++            if (partner->AI())
++                partner->AI()->DoAction(ACTION_PARTNER_ENTERED_COMBAT);
++    }
++
++    void DoAction(int32 action) override
++    {
++        if (action != ACTION_PARTNER_ENTERED_COMBAT)
++            return;
++        _scheduler.CancelAll();
++        me->SetEmoteState(EMOTE_ONESHOT_NONE);
++        _scheduler.Schedule(1s, [this](TaskContext /*task*/) { me->HandleEmoteCommand(EMOTE_ONESHOT_BOW); });
++    }
++
++    void BeginSparring(ObjectGuid guid)
++    {
++        _partnerGuid = guid;
++        me->SetEmoteState(EMOTE_ONESHOT_NONE);
++        me->HandleEmoteCommand(EMOTE_ONESHOT_BOW);
++        _scheduler.Schedule(1s, [this](TaskContext /*task*/) { me->SetEmoteState(EMOTE_STATE_READY_UNARMED); });
++        _scheduler.Schedule(4s, [this](TaskContext task)
++        {
++            PlayRandomEmote();
++            task.Repeat(4s);
++        });
++    }
++
++    Creature* GetNewPartner() const
++    {
++        std::list<Creature*> list;
++        me->GetCreatureListWithEntryInGrid(list, { NPC_HUOJIN_TRAINEE_MALE, NPC_HUOJIN_TRAINEE_FEMALE }, 10.0f);
++        Creature* best = nullptr;
++        float bestDist = 10.0f;
++        for (Creature* c : list)
++        {
++            if (c == me || c->IsInCombat() || c->IsInEvadeMode() || c->isDead())
++                continue;
++            float dist = c->GetDistance(me);
++            if (dist < bestDist)
++            {
++                bestDist = dist;
++                best = c;
++            }
++        }
++        return best;
++    }
++
++    void BeginSparringDelayed(ObjectGuid partnerGuid)
++    {
++        _partnerGuid = partnerGuid;
++        _scheduler.Schedule(1s, [this, partnerGuid](TaskContext /*task*/) { BeginSparring(partnerGuid); });
++    }
++
++    void InitiateSparring()
++    {
++        Creature* partner = GetNewPartner();
++        if (!partner)
++            return;
++        BeginSparring(partner->GetGUID());
++        if (npc_huojin_trainee* ai = CAST_AI(npc_huojin_trainee, partner->AI()))
++            ai->BeginSparringDelayed(me->GetGUID());
++    }
++
++    void JustReachedHome() override { InitiateSparring(); }
++
++    void JustRespawned() override
++    {
++        if (!ObjectAccessor::GetCreature(*me, _partnerGuid))
++            InitiateSparring();
++    }
++
++    void InitializeAI() override
++    {
++        npc_tushui_huojin_trainee::InitializeAI();
++        _scheduler.Schedule(2s, [this](TaskContext /*task*/)
++        {
++            if (!ObjectAccessor::GetCreature(*me, _partnerGuid))
++                InitiateSparring();
++        });
++    }
++
++private:
++    ObjectGuid _partnerGuid;
++};
++
++static void HandleEmoteNearbyTushuiTrainees(Creature* leader, Emote emote)
++{
++    std::list<Creature*> list;
++    leader->GetCreatureListWithEntryInGrid(list, { NPC_TUSHUI_TRAINEE_MALE, NPC_TUSHUI_TRAINEE_FEMALE }, 10.0f);
++    for (Creature* trainee : list)
++        if (trainee != leader && !trainee->IsInCombat() && !trainee->IsInEvadeMode() && trainee->IsAlive())
++            trainee->HandleEmoteCommand(emote);
++}
++
++// 54587, 65471 - Tushui Trainee (leading a group)
++struct npc_tushui_leading_trainee : public npc_tushui_huojin_trainee
++{
++    npc_tushui_leading_trainee(Creature* creature) : npc_tushui_huojin_trainee(creature) { }
++
++    void ScheduleEmotes()
++    {
++        _scheduler.Schedule(1s, [this](TaskContext task)
++        {
++            HandleEmoteNearbyTushuiTrainees(me, PlayRandomEmote());
++            task.Repeat(6s);
++        });
++    }
++
++    void InitializeAI() override
++    {
++        npc_tushui_huojin_trainee::InitializeAI();
++        ScheduleEmotes();
++    }
++
++    void JustReachedHome() override { ScheduleEmotes(); }
++
++    void JustEngagedWith(Unit* who) override
++    {
++        _scheduler.CancelAll();
++        npc_tushui_huojin_trainee::JustEngagedWith(who);
++    }
++};
++
++// 61411 - Instructor Zhi
++struct npc_instructor_zhi : public ScriptedAI
++{
++    npc_instructor_zhi(Creature* creature) : ScriptedAI(creature) { }
++
++    void InitializeAI() override
++    {
++        ScriptedAI::InitializeAI();
++        _scheduler.Schedule(6s, [this](TaskContext task)
++        {
++            Emote emote = Acore::Containers::SelectRandomContainerElement(TraineeEmotes);
++            me->HandleEmoteCommand(emote);
++            task.Schedule(1s, [this, emote](TaskContext /*task*/) { HandleEmoteNearbyTushuiTrainees(me, emote); });
++            task.Repeat(6s);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// 210986 - Edict of Temperance
++struct go_edict_of_temperance : public GameObjectAI
++{
++    go_edict_of_temperance(GameObject* go) : GameObjectAI(go) { }
++
++    bool GossipHello(Player* /*player*/, bool /*reportUse*/) override
++    {
++        me->DespawnOrUnsummon(1ms);
++        return false;
++    }
++};
++
++// ---- Jaomin Ro -------------------------------------------------------------------------------------------------------
++enum JaominRoMisc
++{
++    SPELL_CSA_AREATRIGGER_DUMMY      = 88811,
++    SPELL_HAWK_DIVING_TO_EARTH       = 108955,
++    SPELL_HAWK_DIVING_TO_EARTH_DMG   = 108935,
++    SPELL_BABY_ELEPHANT_TAKES_A_BATH = 108938,
++    SPELL_FORCE_SUMMONER_TO_RIDE     = 108583,
++    SPELL_DIZZY                      = 108959,
++    SPELL_RIDE_DRAKE                 = 108582,
++    SPELL_SERVERSIDE_KILL_CREDIT     = 109837,
++    SPELL_FULL_HEALTH                = 17683,
++    SAY_INTRO                        = 0,
++    SAY_DEFEATED                     = 1,
++    POINT_RANDOM_DEST                = 0,
++    EVENT_RANDOM_SPELL               = 1,
++    EVENT_HEAL,
++    EVENT_MOVE_HOME
++};
++
++// 54611 - Jaomin Ro
++struct npc_jaomin_ro : public ScriptedAI
++{
++    npc_jaomin_ro(Creature* creature) : ScriptedAI(creature), _depleted(false) { }
++
++    void Reset() override
++    {
++        _depleted = false;
++        _events.Reset();
++    }
++
++    void JustEngagedWith(Unit* /*who*/) override
++    {
++        _events.ScheduleEvent(EVENT_RANDOM_SPELL, 4s, 6s);
++    }
++
++    void JustReachedHome() override
++    {
++        me->RemoveUnitFlag(UNIT_FLAG_NON_ATTACKABLE_2);
++        me->InitializeReactState();
++    }
++
++    void SpellHitTarget(Unit* target, SpellInfo const* spellInfo) override
++    {
++        if (spellInfo->Id == SPELL_CSA_AREATRIGGER_DUMMY && target->IsPlayer() && !me->IsInCombat())
++        {
++            Talk(SAY_INTRO, target);
++            me->SetOrientation(1.67690026f);
++            me->SetStandState(UNIT_STAND_STATE_STAND);
++            me->SetEmoteState(EMOTE_STATE_READY_UNARMED);
++        }
++    }
++
++    // TrinityCore's OnHealthDepleted: he yields at 1 health instead of dying
++    void DamageTaken(Unit* attacker, uint32& damage, DamageEffectType /*type*/, SpellSchoolMask /*school*/) override
++    {
++        if (damage < me->GetHealth())
++            return;
++        damage = me->GetHealth() > 1 ? me->GetHealth() - 1 : 0;
++        if (_depleted)
++            return;
++        _depleted = true;
++
++        me->SetReactState(REACT_PASSIVE);
++        me->AttackStop();
++        me->RemoveAllAuras();
++        me->InterruptNonMeleeSpells(true);
++        _events.Reset();
++        me->SetUnitFlag(UNIT_FLAG_NOT_SELECTABLE);
++        me->SetUnitFlag(UNIT_FLAG_NON_ATTACKABLE_2);
++        me->SetEmoteState(EMOTE_ONESHOT_NONE);
++        DoCast(me, SPELL_SERVERSIDE_KILL_CREDIT, true);
++        if (attacker)
++            if (Player* player = attacker->GetCharmerOrOwnerPlayerOrPlayerItself())
++                player->KilledMonsterCredit(me->GetEntry());
++        Talk(SAY_DEFEATED, attacker);
++        _events.ScheduleEvent(EVENT_HEAL, 5s);
++        _events.ScheduleEvent(EVENT_MOVE_HOME, 6s);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _events.Update(diff);
++        switch (_events.ExecuteEvent())
++        {
++            case EVENT_HEAL:
++                DoCastSelf(SPELL_FULL_HEALTH, true);
++                me->RemoveUnitFlag(UNIT_FLAG_NOT_SELECTABLE);
++                return;
++            case EVENT_MOVE_HOME:
++                EnterEvadeMode();
++                return;
++            case EVENT_RANDOM_SPELL:
++                if (!me->HasUnitState(UNIT_STATE_CASTING | UNIT_STATE_STUNNED) && !me->HasAura(SPELL_RIDE_DRAKE))
++                    DoCast(RAND(SPELL_BABY_ELEPHANT_TAKES_A_BATH, SPELL_HAWK_DIVING_TO_EARTH));
++                _events.ScheduleEvent(EVENT_RANDOM_SPELL, 4s, 6s);
++                break;
++            default:
++                break;
++        }
++        if (!_depleted && UpdateVictim())
++            DoMeleeAttackIfReady();
++    }
++
++private:
++    EventMap _events;
++    bool _depleted;
++};
++
++// 57750 - Jaomin Ro (Hawk)
++struct npc_jaomin_ro_hawk : public ScriptedAI
++{
++    npc_jaomin_ro_hawk(Creature* creature) : ScriptedAI(creature) { }
++
++    void InitializeAI() override
++    {
++        ScriptedAI::InitializeAI();
++        me->SetReactState(REACT_PASSIVE);
++        me->SetSpeed(MOVE_RUN, 2.5f);
++    }
++
++    void IsSummonedBy(WorldObject* summonerWO) override
++    {
++        Unit* summoner = summonerWO ? summonerWO->ToUnit() : nullptr;
++        Unit* victim = summoner ? summoner->GetVictim() : nullptr;
++        if (!victim)
++            return;
++
++        DoCast(me, SPELL_FORCE_SUMMONER_TO_RIDE, true);
++        float angle = me->GetAngle(victim) - me->GetOrientation();
++        _scheduler.Schedule(1s, [this, angle](TaskContext /*task*/)
++        {
++            me->GetMotionMaster()->MovePoint(POINT_RANDOM_DEST, me->GetFirstCollisionPosition(40.0f, angle));
++        });
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++    void SpellHitTarget(Unit* target, SpellInfo const* spellInfo) override
++    {
++        if (spellInfo->Id == SPELL_HAWK_DIVING_TO_EARTH_DMG && target->IsPlayer())
++        {
++            DoCast(me, Spells::EjectPassengers, true);
++            me->DespawnOrUnsummon();
++        }
++    }
++
++    void MovementInform(uint32 type, uint32 pointId) override
++    {
++        if (type == POINT_MOTION_TYPE && pointId == POINT_RANDOM_DEST)
++        {
++            DoCast(me, Spells::EjectPassengers, true);
++            me->DespawnOrUnsummon();
++        }
++    }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// 108583 - Force Summoner to Ride Vehicle
++class spell_force_summoner_to_ride_vehicle : public SpellScript
++{
++    PrepareSpellScript(spell_force_summoner_to_ride_vehicle);
++
++    void HandleScript(SpellEffIndex /*effIndex*/)
++    {
++        if (Unit* hit = GetHitUnit())
++            hit->CastSpell(GetCaster(), uint32(GetEffectValue()), true);
++    }
++
++    void Register() override
++    {
++        OnEffectHitTarget += SpellEffectFn(spell_force_summoner_to_ride_vehicle::HandleScript, EFFECT_0, SPELL_EFFECT_SCRIPT_EFFECT);
++    }
++};
++
++// 108582 - Ride Drake
++class spell_ride_drake : public AuraScript
++{
++    PrepareAuraScript(spell_ride_drake);
++
++    void OnRemoveVehicle(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        if (Unit* caster = GetCaster())
++            caster->CastSpell(caster, SPELL_DIZZY, true);
++    }
++
++    void Register() override
++    {
++        OnEffectRemove += AuraEffectRemoveFn(spell_ride_drake::OnRemoveVehicle, EFFECT_0, SPELL_AURA_CONTROL_VEHICLE, AURA_EFFECT_HANDLE_REAL);
++    }
++};
++
++// ---- The Missing Driver (29419) --------------------------------------------------------------------------------------
++enum TheMissingDriverMisc
++{
++    SPELL_SERVERSIDE_DRIVER_CREDIT  = 106231,
++    SPELL_FORCE_SUMMON_CART_DRIVER  = 106206,
++    SPELL_SUMMON_CART_DRIVER        = 106205,
++    SAY_MIN_DIMWIND_TEXT_0          = 0,
++    SAY_MIN_DIMWIND_TEXT_1          = 1,
++    SAY_MIN_DIMWIND_TEXT_2          = 2,
++    SAY_MIN_DIMWIND_TEXT_3          = 3,
++    SAY_AMBERLEAF_SCAMP_0           = 0,
++    SAY_AMBERLEAF_SCAMP_1           = 1,
++    PATH_MOVE_RUN                   = 5650300,
++    PATH_MOVE_WALK                  = 5650301,
++    WAYPOINT_TALK_0                 = 0,
++    WAYPOINT_TALK_1                 = 3,
++    WAYPOINT_MOVE_WALK              = 11,
++    WAYPOINT_DESPAWN                = 3,
++    POINT_MOVE_RANDOM               = 0,
++    QUEST_THE_MISSING_DRIVER        = 29419
++};
++
++Position const amberleafPos[5] =
++{
++    { 1410.2014f, 3598.6494f, 89.59319f }, { 1456.201f, 3568.265f, 88.39075f }, { 1383.158f, 3595.447f, 90.3155f },
++    { 1367.333f, 3594.927f, 88.89806f }, { 1350.278f, 3588.938f, 89.17908f }
++};
++
++static void StartPath(Creature* creature, uint32 tcPathId)
++{
++    creature->LoadPath(Path(tcPathId));
++    creature->GetMotionMaster()->MoveWaypoint(Path(tcPathId), false);
++}
++
++// 6958
++class at_min_dimwind_captured : public AreaTriggerScript
++{
++public:
++    at_min_dimwind_captured() : AreaTriggerScript("at_min_dimwind_captured") { }
++
++    bool OnTrigger(Player* player, AreaTrigger const* /*trigger*/) override
++    {
++        if (player->isDead() || player->GetQuestStatus(QUEST_THE_MISSING_DRIVER) != QUEST_STATUS_INCOMPLETE)
++            return false;
++        Creature* minDimwind = player->FindNearestCreature(Creatures::MinDimwind, 20.0f);
++        if (!minDimwind)
++            return false;
++        minDimwind->CastSpell(player, SPELL_FORCE_SUMMON_CART_DRIVER, true);
++        player->CastSpell(player, SPELL_SERVERSIDE_DRIVER_CREDIT, true);
++        RefreshPhases(player);
++        return false;
++    }
++};
++
++// 56503 - Min Dimwind (Summon)
++struct npc_min_dimwind_summon : public ScriptedAI
++{
++    npc_min_dimwind_summon(Creature* creature) : ScriptedAI(creature) { }
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        if (!summoner || !summoner->IsPlayer())
++            return;
++
++        Creature* scamp1 = FindSpawn(me, SPAWN_NPC_AMBERLEAF_SCAMP_1, 20.0f);
++        Creature* scamp2 = FindSpawn(me, SPAWN_NPC_AMBERLEAF_SCAMP_2, 20.0f);
++        Creature* scamp3 = FindSpawn(me, SPAWN_NPC_AMBERLEAF_SCAMP_3, 20.0f);
++        Creature* scamp5 = FindSpawn(me, SPAWN_NPC_AMBERLEAF_SCAMP_5, 20.0f);
++        if (!scamp1 || !scamp2 || !scamp3 || !scamp5)
++            return;
++
++        scamp1->AI()->Talk(SAY_AMBERLEAF_SCAMP_0);
++        scamp1->GetMotionMaster()->MovePoint(0, amberleafPos[0]);
++        scamp2->GetMotionMaster()->MovePoint(0, amberleafPos[1]);
++        scamp3->GetMotionMaster()->MovePoint(0, amberleafPos[2]);
++        scamp5->GetMotionMaster()->MovePoint(0, amberleafPos[4]);
++
++        _scheduler.Schedule(2s, [this](TaskContext /*task*/)
++        {
++            if (Creature* scamp4 = FindSpawn(me, SPAWN_NPC_AMBERLEAF_SCAMP_4, 20.0f))
++            {
++                scamp4->AI()->Talk(SAY_AMBERLEAF_SCAMP_1);
++                scamp4->GetMotionMaster()->MovePoint(0, amberleafPos[3]);
++            }
++        });
++        _scheduler.Schedule(5s, [this](TaskContext task)
++        {
++            Unit* summoner = me->ToTempSummon() ? me->ToTempSummon()->GetSummonerUnit() : nullptr;
++            if (!summoner)
++                return;
++            me->SetFacingToObject(summoner);
++            Talk(SAY_MIN_DIMWIND_TEXT_0, summoner);
++            task.Schedule(4s, [this](TaskContext task2)
++            {
++                Talk(SAY_MIN_DIMWIND_TEXT_1);
++                task2.Schedule(4s, [this](TaskContext /*task*/) { StartPath(me, PATH_MOVE_RUN); });
++            });
++        });
++    }
++
++    void WaypointReached(uint32 waypointId, uint32 pathId) override
++    {
++        if (pathId == Path(PATH_MOVE_RUN))
++        {
++            if (waypointId == WAYPOINT_TALK_0 || waypointId == WAYPOINT_TALK_1)
++                Talk(SAY_MIN_DIMWIND_TEXT_2);
++            else if (waypointId == WAYPOINT_MOVE_WALK)
++            {
++                Talk(SAY_MIN_DIMWIND_TEXT_3);
++                StartPath(me, PATH_MOVE_WALK);
++            }
++        }
++        else if (pathId == Path(PATH_MOVE_WALK) && waypointId == WAYPOINT_DESPAWN)
++        {
++            me->SetFacingTo(0.575958f);
++            me->DespawnOrUnsummon(2s);
++            _scheduler.Schedule(1s, [this](TaskContext /*task*/)
++            {
++                if (TempSummon* summon = me->ToTempSummon())
++                    if (Unit* summoner = summon->GetSummonerUnit())
++                    {
++                        summoner->RemoveAurasDueToSpell(SPELL_SUMMON_CART_DRIVER);
++                        RefreshPhases(summoner);
++                    }
++            });
++        }
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// 54130 - Amberleaf Scamp
++struct npc_amberleaf_scamp : public ScriptedAI
++{
++    npc_amberleaf_scamp(Creature* creature) : ScriptedAI(creature) { }
++
++    void MovementInform(uint32 type, uint32 id) override
++    {
++        if (type != POINT_MOTION_TYPE || id != POINT_MOVE_RANDOM || me->IsInCombat())
++            return;
++        me->GetMotionMaster()->MoveRandom(10.0f);
++        _scheduler.Schedule(10s, [this](TaskContext /*task*/)
++        {
++            if (!me->IsInCombat())
++                me->GetMotionMaster()->MoveTargetedHome();
++        });
++    }
++
++    void JustReachedHome() override { me->GetMotionMaster()->Initialize(); }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _scheduler.Update(diff);
++        if (UpdateVictim())
++            DoMeleeAttackIfReady();
++    }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// ---- The Way of the Tushui (29414) -----------------------------------------------------------------------------------
++enum AysaCloudsingerMisc
++{
++    SAY_GO_CAVE              = 0,
++    POINT_JUMP               = 1,
++    POINT_JUMP_STEP          = 2,
++    PATH_CAVE_OF_MEDITATION  = 5965200
++};
++
++Position const aysaJumpPos[3] =
++{
++    { 1196.72f, 3492.85f, 90.9836f }, { 1192.29f, 3478.69f, 108.788f }, { 1197.99f, 3460.63f, 103.04f }
++};
++
++// 59652 - Aysa Cloudsinger (summon)
++struct npc_aysa_cloudsinger_summon : public ScriptedAI
++{
++    npc_aysa_cloudsinger_summon(Creature* creature) : ScriptedAI(creature) { }
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        if (!summoner || !summoner->IsPlayer())
++            return;
++        Talk(SAY_GO_CAVE, summoner);
++        _scheduler.Schedule(3s, [this](TaskContext task)
++        {
++            me->GetMotionMaster()->MoveJump(aysaJumpPos[0], 12.0f, 5.0f, POINT_JUMP_STEP);
++            task.Schedule(1700ms, [this](TaskContext task2)
++            {
++                me->GetMotionMaster()->MoveJump(aysaJumpPos[1], 12.0f, 5.0f, POINT_JUMP_STEP);
++                task2.Schedule(2s, [this](TaskContext /*task*/)
++                {
++                    me->GetMotionMaster()->MoveJump(aysaJumpPos[2], 12.0f, 5.0f, POINT_JUMP);
++                });
++            });
++        });
++    }
++
++    void MovementInform(uint32 type, uint32 pointId) override
++    {
++        if (type == EFFECT_MOTION_TYPE && pointId == POINT_JUMP)
++            StartPath(me, PATH_CAVE_OF_MEDITATION);
++    }
++
++    void WaypointPathEnded(uint32 /*nodeId*/, uint32 pathId) override
++    {
++        if (pathId == Path(PATH_CAVE_OF_MEDITATION))
++            me->DespawnOrUnsummon();
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++enum CaveOfMeditationMisc
++{
++    QUEST_THE_WAY_OF_THE_TUSHUI     = 29414,
++    SPELL_MEDITATION_TIMER_BAR      = 116421,
++    SPELL_CAVE_OF_SCROLLS_CREDIT    = 102447,
++    SPELL_AYSA_CAVE_OF_SCROLLS_COMP = 128598,
++    SPELL_SUMMON_MASTER_LI_FEI      = 102445,
++    SPELL_SUMMON_AMBERLEAF_TROUBLEMAKER = 114710,
++    ACTION_START_MEDITATION  = 1,
++    ACTION_FINISH_MEDITATION = 2,
++    ACTION_FINISH_EVENT      = 3,
++    EVENT_SUMMON_AMBERLEAF = 1,
++    SAY_AYSA_HELP                   = 0,
++    SAY_AYSA_FINISH_MEDITATION      = 1,
++    MEDITATION_BAR_MAX              = 90,    // UnitPowerBar 149
++    TRIGGER_CAVE_OF_MEDITATION      = 7756,
++    TRIGGER_INSIDE_CAVE             = 7645,
++};
++
++// 59642 - Aysa Cloudsinger (Cave of Meditation)
++struct npc_aysa_cloudsinger_cave_of_meditation : public ScriptedAI
++{
++    npc_aysa_cloudsinger_cave_of_meditation(Creature* creature) : ScriptedAI(creature), _finishEvent(false) { }
++
++    void DoAction(int32 action) override
++    {
++        switch (action)
++        {
++            case ACTION_START_MEDITATION:
++                _finishEvent = false;
++                _events.ScheduleEvent(EVENT_SUMMON_AMBERLEAF, 1s);
++                break;
++            case ACTION_FINISH_MEDITATION:
++                _events.CancelEvent(EVENT_SUMMON_AMBERLEAF);
++                break;
++            case ACTION_FINISH_EVENT:
++                if (_finishEvent)
++                    return;
++                if (Creature* aysa = FindSpawn(me, SPAWN_NPC_AYSA_AFTER_QUEST_29414))
++                {
++                    aysa->AI()->Talk(SAY_AYSA_FINISH_MEDITATION);
++                    _finishEvent = true;
++                }
++                break;
++            default:
++                break;
++        }
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _events.Update(diff);
++        while (uint32 eventId = _events.ExecuteEvent())
++        {
++            if (eventId == EVENT_SUMMON_AMBERLEAF)
++            {
++                DoCastSelf(SPELL_SUMMON_AMBERLEAF_TROUBLEMAKER, true);
++                _events.Repeat(11s);
++            }
++        }
++    }
++
++private:
++    EventMap _events;
++    bool _finishEvent;
++};
++
++enum MasterLiFeiMisc
++{
++    PATH_MASTER_LI = 5485600,
++    SPELL_UPDATE_PHASE_SHIFT_DEMON_CREATOR = 84034
++};
++
++// 54856 - Master Li Fei (Summon)
++struct npc_master_li_fei_summon : public ScriptedAI
++{
++    npc_master_li_fei_summon(Creature* creature) : ScriptedAI(creature) { }
++
++    void FaceToPlayer()
++    {
++        if (TempSummon* summon = me->ToTempSummon())
++            if (Unit* summoner = summon->GetSummonerUnit())
++                me->SetFacingToObject(summoner);
++    }
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        if (!summoner || !summoner->IsPlayer())
++            return;
++
++        StartPath(me, PATH_MASTER_LI);
++        Milliseconds delay = 23s;
++        _scheduler.Schedule(delay, [this](TaskContext) { FaceToPlayer(); });
++        // (delay, text): TrinityCore's timeline for the meditation's lines
++        std::pair<Milliseconds, uint8> const lines[] = { { 2s, 0 }, { 10s, 1 }, { 12s, 2 }, { 11s, 3 }, { 11s, 4 }, { 11s, 5 } };
++        for (auto const& [step, text] : lines)
++        {
++            delay += step;
++            uint8 const t = text;
++            _scheduler.Schedule(delay, [this, t](TaskContext)
++            {
++                if (t == 3 || t == 5)
++                    FaceToPlayer();
++                Talk(t);
++            });
++        }
++        delay += 6s;
++        _scheduler.Schedule(delay, [this](TaskContext)
++        {
++            if (Creature* aysa = me->FindNearestCreature(Creatures::AysaQuest29414, 40.0f))
++                aysa->AI()->DoAction(ACTION_FINISH_MEDITATION);
++            DoCastSelf(SPELL_UPDATE_PHASE_SHIFT_DEMON_CREATOR, true);
++            Talk(6);
++            me->DespawnOrUnsummon(200ms);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++static void LeaveCaveOfMeditation(Player* player)
++{
++    player->RemoveAurasDueToSpell(SPELL_MEDITATION_TIMER_BAR);
++}
++
++static void LeaveInsideOfCave(Player* player)
++{
++    if (player->IsAlive() && player->GetQuestStatus(QUEST_THE_WAY_OF_THE_TUSHUI) == QUEST_STATUS_COMPLETE)
++        if (Creature* aysa = player->FindNearestCreature(Creatures::AysaQuest29414, 40.0f))
++            aysa->AI()->DoAction(ACTION_FINISH_EVENT);
++}
++
++// 7756
++class at_cave_of_meditation : public AreaTriggerScript
++{
++public:
++    at_cave_of_meditation() : AreaTriggerScript("at_cave_of_meditation") { }
++
++    bool OnTrigger(Player* player, AreaTrigger const* /*trigger*/) override
++    {
++        if (!player->IsAlive() || player->GetQuestStatus(QUEST_THE_WAY_OF_THE_TUSHUI) != QUEST_STATUS_INCOMPLETE)
++            return false;
++        if (!player->HasAura(SPELL_MEDITATION_TIMER_BAR))
++            player->CastSpell(player, SPELL_MEDITATION_TIMER_BAR, true);
++        TriggerExits::Watch(player, TRIGGER_CAVE_OF_MEDITATION, &LeaveCaveOfMeditation);
++        return true;
++    }
++};
++
++// 7645
++class at_inside_of_cave_of_meditation : public AreaTriggerScript
++{
++public:
++    at_inside_of_cave_of_meditation() : AreaTriggerScript("at_inside_of_cave_of_meditation") { }
++
++    bool OnTrigger(Player* player, AreaTrigger const* /*trigger*/) override
++    {
++        if (!player->IsAlive() || player->GetQuestStatus(QUEST_THE_WAY_OF_THE_TUSHUI) != QUEST_STATUS_INCOMPLETE)
++            return false;
++        TriggerExits::Watch(player, TRIGGER_INSIDE_CAVE, &LeaveInsideOfCave);
++        if (player->HasAura(SPELL_SUMMON_MASTER_LI_FEI))
++            return true;
++        Creature* aysa = player->FindNearestCreature(Creatures::AysaQuest29414, 40.0f);
++        if (!aysa)
++            return false;
++        aysa->AI()->Talk(SAY_AYSA_HELP, player);
++        aysa->AI()->DoAction(ACTION_START_MEDITATION);
++        player->CastSpell(player, SPELL_SUMMON_MASTER_LI_FEI, true);
++        return true;
++    }
++};
++
++// 116421 - Meditation Timer Bar: MoP fills alternate power bar 149 by 1 a second; here the ticks are counted
++class spell_meditation_timer_bar : public AuraScript
++{
++    PrepareAuraScript(spell_meditation_timer_bar);
++
++    void HandleEffectPeriodic(AuraEffect const* /*aurEff*/)
++    {
++        Unit* target = GetTarget();
++        if (!target || ++_power < MEDITATION_BAR_MAX)
++            return;
++        target->CastSpell(target, SPELL_CAVE_OF_SCROLLS_CREDIT, true);
++        target->CastSpell(target, SPELL_AYSA_CAVE_OF_SCROLLS_COMP, true);
++        Remove();
++    }
++
++    void Register() override
++    {
++        OnEffectPeriodic += AuraEffectPeriodicFn(spell_meditation_timer_bar::HandleEffectPeriodic, EFFECT_1, SPELL_AURA_PERIODIC_DUMMY);
++    }
++
++private:
++    uint32 _power = 0;
++};
++
++// 114684 - Flame Spout
++class spell_flame_spout : public AuraScript
++{
++    PrepareAuraScript(spell_flame_spout);
++
++    void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        GetTarget()->RemoveAurasDueToSpell(114686);
++    }
++
++    void Register() override
++    {
++        AfterEffectRemove += AuraEffectRemoveFn(spell_flame_spout::OnRemove, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL, AURA_EFFECT_HANDLE_REAL);
++    }
++};
++
++// ---- The Singing Pools: a curse while in a pool ----------------------------------------------------------------------
++template<uint32 Curse>
++static void LiftCurse(Player* player)
++{
++    player->RemoveAurasDueToSpell(Curse);
++}
++
++template<uint32 Curse>
++class at_singing_pools_transform_base : public AreaTriggerScript
++{
++public:
++    at_singing_pools_transform_base(char const* name) : AreaTriggerScript(name) { }
++
++    bool OnTrigger(Player* player, AreaTrigger const* trigger) override
++    {
++        if (!player->IsAlive() || player->HasAura(Spells::RideVehiclePole))
++            return true;
++        if (!player->HasAura(Curse))
++            player->CastSpell(player, Curse, false);
++        if (Curse == Spells::CurseOfTheFrog)
++            player->RemoveAurasDueToSpell(Spells::TrainingBellPoleExitExclusion);
++        TriggerExits::Watch(player, trigger->entry, &LiftCurse<Curse>);
++        return true;
++    }
++};
++
++// ---- Master Li Fei: Only the Worthy Shall Pass (29421) ---------------------------------------------------------------
++// 54135 - Master Li Fei
++struct npc_li_fei : public ScriptedAI
++{
++    npc_li_fei(Creature* creature) : ScriptedAI(creature) { }
++
++    void sQuestAccept(Player* player, Quest const* quest) override
++    {
++        if (quest->GetQuestId() == Quests::OnlyTheWorthyShallPass)
++            player->CastSpell(player, Spells::FireCrashCover, true);
++    }
++
++    // option 0 of menu 13050 ("I am ready to face you") retries the duel
++    void sGossipSelect(Player* player, uint32 menuId, uint32 gossipListId) override
++    {
++        if (menuId != Menu(13050) || gossipListId != 0)
++            return;
++        CloseGossipMenuFor(player);
++        player->CastSpell(player, Spells::FireCrashCover, true);
++    }
++};
++
++// 29423 - The Passion of Shen-zin Su: Huo leaves when it's rewarded or abandoned
++static void DismissHuo(Player* player)
++{
++    player->RemoveAurasDueToSpell(Spells::SummonHuo);
++    std::list<Creature*> huos;
++    player->GetAllMinionsByEntry(huos, Creatures::HuoFollower);
++    for (Creature* huo : huos)
++        if (TempSummon* summon = huo->ToTempSummon())
++            summon->UnSummon();
++}
++
++class WanderingIsleQuestPlayerScript : public PlayerScript
++{
++public:
++    WanderingIsleQuestPlayerScript() : PlayerScript("WanderingIsleQuestPlayerScript",
++        { PLAYERHOOK_ON_PLAYER_COMPLETE_QUEST, PLAYERHOOK_ON_QUEST_ABANDON }) { }
++
++    void OnPlayerCompleteQuest(Player* player, Quest const* quest) override   // called when the quest is rewarded
++    {
++        if (quest->GetQuestId() == Quests::PassionOfShenZinSu)
++            DismissHuo(player);
++    }
++
++    void OnPlayerQuestAbandon(Player* player, uint32 questId) override
++    {
++        if (questId == Quests::PassionOfShenZinSu)
++            DismissHuo(player);
++    }
++};
++
++// 102499 - Fire Crash
++class spell_fire_crash : public SpellScript
++{
++    PrepareSpellScript(spell_fire_crash);
++
++    void SetDest(SpellDestination& dest)
++    {
++        dest.Relocate({ 1351.3334f, 3939.0347f, 109.32395f, 6.00115f });
++    }
++
++    void Register() override
++    {
++        OnDestinationTargetSelect += SpellDestinationTargetSelectFn(spell_fire_crash::SetDest, EFFECT_ALL, TARGET_DEST_NEARBY_ENTRY);
++    }
++};
++
++// 54734 - Master Li Fei (combat)
++struct npc_li_fei_combat : public ScriptedAI
++{
++    enum Events { EVENT_FEET_OF_FURY = 1, EVENT_SHADOW_KICK };
++
++    npc_li_fei_combat(Creature* creature) : ScriptedAI(creature), _defeatTriggered(false) { }
++
++    void Reset() override
++    {
++        _defeatTriggered = false;
++        _events.Reset();
++    }
++
++    void JustEngagedWith(Unit* /*who*/) override
++    {
++        _events.ScheduleEvent(EVENT_FEET_OF_FURY, 6s);
++        _events.ScheduleEvent(EVENT_SHADOW_KICK, 10s);
++    }
++
++    void DamageTaken(Unit* attacker, uint32& damage, DamageEffectType /*type*/, SpellSchoolMask /*school*/) override
++    {
++        if (_defeatTriggered || !me->HealthBelowPctDamaged(50, damage))
++            return;
++        _defeatTriggered = true;
++        damage = 0;
++        me->HandleEmoteCommand(EMOTE_ONESHOT_SALUTE);
++
++        // TrinityCore credits everyone on the tap list; here the attacker and its group nearby
++        if (Player* player = attacker ? attacker->GetCharmerOrOwnerPlayerOrPlayerItself() : nullptr)
++        {
++            auto credit = [](Player* p)
++            {
++                p->KilledMonsterCredit(Creatures::MasterLiFeiCombat);
++                p->RemoveAurasDueToSpell(Spells::FireCrashCover);
++                p->RemoveAurasDueToSpell(Spells::FireCrashInvis);
++                p->RemoveAurasDueToSpell(Spells::FireCrashPhaseShift);
++            };
++            if (Group* group = player->GetGroup())
++            {
++                for (GroupReference* ref = group->GetFirstMember(); ref; ref = ref->next())
++                    if (Player* member = ref->GetSource())
++                        if (member->IsWithinDist(me, 60.0f))
++                            credit(member);
++            }
++            else
++                credit(player);
++        }
++
++        if (Creature* liFei = me->FindNearestCreature(Creatures::MasterLiFei, 30.0f))
++            liFei->AI()->Talk(0, attacker);
++        EnterEvadeMode();
++    }
++
++    void KilledUnit(Unit* victim) override
++    {
++        if (Player* player = victim->ToPlayer())
++            player->FailQuest(Quests::OnlyTheWorthyShallPass);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!UpdateVictim())
++            return;
++        _events.Update(diff);
++        if (me->HasUnitState(UNIT_STATE_CASTING))
++            return;
++        switch (_events.ExecuteEvent())
++        {
++            case EVENT_FEET_OF_FURY:
++                DoCastVictim(Spells::FeetOfFury);
++                _events.ScheduleEvent(EVENT_FEET_OF_FURY, 12s);
++                break;
++            case EVENT_SHADOW_KICK:
++                DoCastVictim(Spells::FlyingShadowKick);
++                _events.ScheduleEvent(EVENT_SHADOW_KICK, 15s);
++                break;
++            default:
++                break;
++        }
++        DoMeleeAttackIfReady();
++    }
++
++private:
++    EventMap _events;
++    bool _defeatTriggered;
++};
++
++// 108958 - Feet of Fury
++class spell_feet_of_fury : public AuraScript
++{
++    PrepareAuraScript(spell_feet_of_fury);
++
++    void PeriodicTick(AuraEffect const* aurEff)
++    {
++        PreventDefaultAction();
++        Unit* target = GetTarget();
++        if (Unit* victim = target->GetVictim())
++            target->CastSpell(victim, Spells::FeetOfFuryDamage, TriggerCastFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR), nullptr, aurEff);
++    }
++
++    void Register() override
++    {
++        OnEffectPeriodic += AuraEffectPeriodicFn(spell_feet_of_fury::PeriodicTick, EFFECT_0, SPELL_AURA_PERIODIC_TRIGGER_SPELL);
++    }
++};
++
++// 108936 - Flying Shadow Kick
++class spell_flying_shadow_kick : public SpellScript
++{
++    PrepareSpellScript(spell_flying_shadow_kick);
++
++    void HandleHitTarget(SpellEffIndex /*effIndex*/)
++    {
++        if (Unit* hit = GetHitUnit())
++            GetCaster()->CastSpell(hit, Spells::FlyingShadowKickJump, TriggerCastFlags(TRIGGERED_IGNORE_CAST_IN_PROGRESS | TRIGGERED_DONT_REPORT_CAST_ERROR));
++    }
++
++    void Register() override
++    {
++        OnEffectHitTarget += SpellEffectFn(spell_flying_shadow_kick::HandleHitTarget, EFFECT_1, SPELL_EFFECT_SCRIPT_EFFECT);
++    }
++};
++
++// ---- Delivery carts --------------------------------------------------------------------------------------------------
++struct CartData
++{
++    uint32 Entry;
++    uint32 PathId;          // TrinityCore's
++    uint8 EjectNodeId;
++    uint32 CreditNPC;
++    uint32 QuestId;
++};
++
++static constexpr CartData CartDataTable[] =
++{
++    { Creatures::CartVehicleSingingPools, 5720800, 28, Creatures::CartSingingPools, Quests::TheSourceOfLivelihood },
++    { Creatures::CartVehicleFarmstead, 5949600, 28, Creatures::CartFarmstead, Quests::TheSpiritAndBodyOfShenzinsu },
++    { Creatures::CartVehicleForest, 5774000, 34, Creatures::CartForest, Quests::NewAllies },
++};
++
++static CartData const* GetCartData(uint32 entry)
++{
++    for (CartData const& data : CartDataTable)
++        if (data.Entry == entry)
++            return &data;
++    return nullptr;
++}
++
++// 57208, 59496, 57740 - Delivery Cart
++struct npc_delivery_cart : public ScriptedAI
++{
++    enum { EVENT_PATH_START = 1, EVENT_ROPES };
++
++    npc_delivery_cart(Creature* creature) : ScriptedAI(creature), _data(GetCartData(creature->GetEntry())) { }
++
++    void Reset() override { _events.Reset(); }
++
++    void PassengerBoarded(Unit* passenger, int8 /*seat*/, bool apply) override
++    {
++        Player* player = apply && passenger ? passenger->ToPlayer() : nullptr;
++        if (!player || !_data)
++            return;
++        me->CastSpell(player, Spells::ForceVehicleRide, true);
++        _events.ScheduleEvent(EVENT_PATH_START, 1800ms);
++        _events.ScheduleEvent(EVENT_ROPES, 1s);
++        if (player->hasQuest(_data->QuestId))
++            player->KilledMonsterCredit(_data->CreditNPC);
++    }
++
++    void WaypointReached(uint32 nodeId, uint32 /*pathId*/) override
++    {
++        if (_data && nodeId == _data->EjectNodeId)
++            me->CastSpell(me, Spells::EjectPassengers, true);
++    }
++
++    void WaypointPathEnded(uint32 /*nodeId*/, uint32 /*pathId*/) override { me->DespawnOrUnsummon(1s); }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _events.Update(diff);
++        while (uint32 eventId = _events.ExecuteEvent())
++        {
++            if (eventId == EVENT_ROPES)
++                me->CastSpell(me, Spells::OxCartRopeLeft, true);
++            else if (eventId == EVENT_PATH_START && _data)
++                StartPath(me, _data->PathId);
++        }
++    }
++
++private:
++    EventMap _events;
++    CartData const* _data;
++};
++
++// ---- Second half (29422-29800) ---------------------------------------------------------------------------------------
++namespace SecondHalf
++{
++namespace Spells
++{
++    static constexpr uint32 HuoOfferingStart = 109090;
++    static constexpr uint32 HuoOfferingPulseA = 109095;
++    static constexpr uint32 HuoOfferingPulseB = 109105;
++    static constexpr uint32 HuoOfferingCredit = 109107;
++    static constexpr uint32 HuoOfferingFinish = 109109;
++    static constexpr uint32 SummonWaterSpout = 116810;
++    static constexpr uint32 ShuSpoutCue = 117063;
++    static constexpr uint32 WaterSpoutWarning = 116695;
++    static constexpr uint32 WaterSpoutBurst = 117057;
++    static constexpr uint32 WaterSpoutKnockUp = 116696;
++    static constexpr uint32 ShuWakeWugou = 104017;
++    static constexpr uint32 ZhaoRenLightning = 126006;
++    static constexpr uint32 ZhaoRenStunned = 125992;
++    static constexpr uint32 ZhaoRenShockwave = 125990;
++    static constexpr uint32 FireworkHit = 104855;
++    static constexpr uint32 FireworkLaunch = 125970;
++    static constexpr uint32 FireworkLauncherUsed = 125964;
++    static constexpr uint32 RideVehicleHardcoded = 46598;
++    static constexpr uint32 BalloonCreditStart = 105895;
++    static constexpr uint32 BalloonCreditAirship = 105010;
++    static constexpr uint32 Parachute = 45472;
++    static constexpr uint32 EjectAllPassengers = 68576;
++    static constexpr uint32 UpliftingDraftLaunch = 104490;
++    static constexpr uint32 InjuredSailorVehicleKit = 105520;
++    static constexpr uint32 HealingShenZinSuCredit = 108898;
++}
++
++namespace Creatures
++{
++    static constexpr uint32 BalloonAysa = 56661;
++    static constexpr uint32 InjuredSailor = 55999;
++    static constexpr uint32 RescuedSailor = 56236;
++    static constexpr uint32 ZhaoRen = 55786;
++}
++
++namespace Quests
++{
++    static constexpr uint32 HuoTheSpiritOfFire = 29422;
++    static constexpr uint32 BattleForTheSkies = 29786;
++    static constexpr uint32 NoneLeftBehind = 29794;
++}
++
++// Fly `points` as one spline; true while it is still flying
++static void FlySpline(Creature* creature, std::vector<Position> const& points, float speed)
++{
++    Movement::PointsArray path;
++    path.emplace_back(creature->GetPositionX(), creature->GetPositionY(), creature->GetPositionZ());
++    for (Position const& pos : points)
++        path.emplace_back(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ());
++    creature->SetSpeed(MOVE_RUN, speed / baseMoveSpeed[MOVE_RUN]);
++    creature->SetSpeed(MOVE_FLIGHT, speed / baseMoveSpeed[MOVE_FLIGHT]);
++    creature->GetMotionMaster()->Clear();
++    creature->GetMotionMaster()->MoveSplinePath(&path);
++}
++
++// 102522 - Huo's Offerings (29422)
++class spell_huo_offering : public AuraScript
++{
++    PrepareAuraScript(spell_huo_offering);
++
++    void HandleApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        GetTarget()->CastSpell(GetTarget(), Spells::HuoOfferingStart, true);
++    }
++
++    void HandlePeriodic(AuraEffect const* aurEff)
++    {
++        GetTarget()->CastSpell(GetTarget(), aurEff->GetTickNumber() % 2 ? Spells::HuoOfferingPulseA : Spells::HuoOfferingPulseB, true);
++    }
++
++    void HandleRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
++    {
++        if (GetTargetApplication()->GetRemoveMode() != AURA_REMOVE_BY_EXPIRE)
++            return;
++        Player* player = GetTarget()->ToPlayer();
++        if (!player || player->GetQuestStatus(Quests::HuoTheSpiritOfFire) != QUEST_STATUS_INCOMPLETE)
++            return;
++        player->CastSpell(player, Spells::HuoOfferingFinish, true);
++        player->CastSpell(player, Spells::HuoOfferingCredit, true);
++    }
++
++    void Register() override
++    {
++        AfterEffectApply += AuraEffectApplyFn(spell_huo_offering::HandleApply, EFFECT_0, SPELL_AURA_PERIODIC_DUMMY, AURA_EFFECT_HANDLE_REAL);
++        OnEffectPeriodic += AuraEffectPeriodicFn(spell_huo_offering::HandlePeriodic, EFFECT_0, SPELL_AURA_PERIODIC_DUMMY);
++        AfterEffectRemove += AuraEffectRemoveFn(spell_huo_offering::HandleRemove, EFFECT_0, SPELL_AURA_PERIODIC_DUMMY, AURA_EFFECT_HANDLE_REAL);
++    }
++};
++
++Position const WaterSpoutSpots[] =
++{
++    { 1105.2310f, 2847.7656f, 92.22351f }, { 1118.2205f, 2875.4270f, 92.22351f }, { 1126.3577f, 2881.0051f, 92.22351f },
++    { 1105.9202f, 2853.4324f, 92.22351f }, { 1132.9115f, 2864.3810f, 92.22351f }, { 1131.8560f, 2852.7805f, 92.22351f },
++    { 1118.7656f, 2890.4192f, 92.22351f },
++};
++
++// 65493 - Shu (29679 "A New Friend"): a water spout every 9.7-12.9 s
++struct npc_shu_water_spouts : public ScriptedAI
++{
++    npc_shu_water_spouts(Creature* creature) : ScriptedAI(creature) { }
++
++    void InitializeAI() override
++    {
++        ScriptedAI::InitializeAI();
++        _scheduler.CancelAll();
++        _scheduler.Schedule(10s, [this](TaskContext task)
++        {
++            Position const& spot = Acore::Containers::SelectRandomContainerElement(WaterSpoutSpots);
++            me->CastSpell(spot.GetPositionX(), spot.GetPositionY(), spot.GetPositionZ(), Spells::SummonWaterSpout, true);
++            task.Schedule(4s, [this](TaskContext /*task*/) { DoCastSelf(Spells::ShuSpoutCue, true); });
++            task.Repeat(9700ms, 12900ms);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// 60488 - Water Spout Bunny
++struct npc_water_spout_bunny : public ScriptedAI
++{
++    npc_water_spout_bunny(Creature* creature) : ScriptedAI(creature) { }
++
++    void IsSummonedBy(WorldObject* /*summoner*/) override
++    {
++        me->SetReactState(REACT_PASSIVE);
++        DoCastSelf(Spells::WaterSpoutWarning, true);
++        _scheduler.Schedule(4400ms, [this](TaskContext /*task*/)
++        {
++            DoCastSelf(Spells::WaterSpoutBurst, true);
++            DoCastSelf(Spells::WaterSpoutKnockUp, true);
++            me->DespawnOrUnsummon(3s);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// 55556 - Shu (29774): option 0 of menu 13140 casts 104017, which brings Wugou
++struct npc_shu_wake_wugou : public ScriptedAI
++{
++    npc_shu_wake_wugou(Creature* creature) : ScriptedAI(creature) { }
++
++    void sGossipSelect(Player* player, uint32 menuId, uint32 gossipListId) override
++    {
++        if (menuId != Menu(13140) || gossipListId != 0)
++            return;
++        CloseGossipMenuFor(player);
++        player->CastSpell(player, Spells::ShuWakeWugou, true);
++    }
++};
++
++std::vector<Position> const ZhaoRenCircle =
++{
++    { 688.20f, 4186.41f, 214.87f }, { 682.38f, 4176.08f, 214.52f }, { 682.06f, 4157.68f, 214.09f }, { 691.18f, 4145.19f, 214.62f },
++    { 709.08f, 4137.22f, 216.30f }, { 734.30f, 4134.32f, 220.85f }, { 750.48f, 4142.90f, 222.95f }, { 760.12f, 4158.66f, 223.89f },
++    { 752.17f, 4179.30f, 222.46f }, { 736.62f, 4189.58f, 220.09f }, { 720.89f, 4193.51f, 216.79f }, { 704.30f, 4195.27f, 215.21f },
++};
++Position const ZhaoRenLandingSpot = { 723.16f, 4163.80f, 205.00f };
++
++enum ZhaoRenMisc { ACTION_FIREWORK_HIT = 1, POINT_LANDING = 1 };
++
++// 55786 - Zhao-Ren (29786): circles, lands after 5 firework hits, flies again 18.7 s later
++struct boss_zhao_ren : public ScriptedAI
++{
++    static constexpr uint8 HitsToLand = 5;
++
++    boss_zhao_ren(Creature* creature) : ScriptedAI(creature), _hits(0), _grounded(false) { }
++
++    void Reset() override
++    {
++        _hits = 0;
++        _grounded = false;
++        _scheduler.CancelAll();
++        me->SetDisableGravity(true);
++        me->SetCanFly(true);
++        FlySpline(me, ZhaoRenCircle, 9.0f);
++        _scheduler.Schedule(5s, [this](TaskContext task)
++        {
++            if (!_grounded)
++                if (Player* player = me->SelectNearestPlayer(80.0f))
++                    if (player->GetQuestStatus(Quests::BattleForTheSkies) == QUEST_STATUS_INCOMPLETE)
++                        DoCast(player, Spells::ZhaoRenLightning);
++            task.Repeat(5s);
++        });
++    }
++
++    void DoAction(int32 action) override
++    {
++        if (action != ACTION_FIREWORK_HIT || _grounded || ++_hits < HitsToLand)
++            return;
++        _grounded = true;
++        _hits = 0;
++        me->GetMotionMaster()->Clear();
++        me->GetMotionMaster()->MovePoint(POINT_LANDING, ZhaoRenLandingSpot, FORCED_MOVEMENT_NONE, 11.11f, false);
++    }
++
++    void MovementInform(uint32 type, uint32 id) override
++    {
++        if (type != POINT_MOTION_TYPE || id != POINT_LANDING)
++            return;
++        DoCastSelf(Spells::ZhaoRenStunned, true);
++        _scheduler.Schedule(15500ms, [this](TaskContext /*task*/) { DoCastSelf(Spells::ZhaoRenShockwave); });
++        _scheduler.Schedule(18700ms, [this](TaskContext /*task*/)
++        {
++            _grounded = false;
++            FlySpline(me, ZhaoRenCircle, 9.0f);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _scheduler.Update(diff);
++        if (!_grounded && me->movespline->Finalized() && !me->HasUnitState(UNIT_STATE_CASTING))
++            FlySpline(me, ZhaoRenCircle, 9.0f);                       // keep circling
++        if (UpdateVictim() && _grounded)
++            DoMeleeAttackIfReady();
++    }
++
++private:
++    TaskScheduler _scheduler;
++    uint8 _hits;
++    bool _grounded;
++};
++
++// 125961 - Firework Launcher click (29786): the launcher fires at Zhao-Ren for the clicker
++class spell_firework_launcher_click : public SpellScript
++{
++    PrepareSpellScript(spell_firework_launcher_click);
++
++    void HandleDummy(SpellEffIndex /*effIndex*/)
++    {
++        Unit* launcher = GetHitUnit();
++        Unit* caster = GetCaster();
++        if (!launcher || !caster || launcher->HasAura(Spells::FireworkLauncherUsed))
++            return;
++        launcher->CastSpell(caster, Spells::FireworkLaunch, true);
++        launcher->CastSpell(launcher, Spells::FireworkLauncherUsed, true);
++        // TrinityCore counts 104855 hitting Zhao-Ren; its MoP effect 165 is a dummy here, so the launcher counts it
++        if (Creature* zhaoRen = caster->FindNearestCreature(Creatures::ZhaoRen, 150.0f))
++            zhaoRen->AI()->DoAction(ACTION_FIREWORK_HIT);
++    }
++
++    void Register() override
++    {
++        OnEffectHitTarget += SpellEffectFn(spell_firework_launcher_click::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
++    }
++};
++
++struct FlightLeg
++{
++    std::vector<Position> Points;
++    float Speed;
++};
++
++static std::vector<FlightLeg> const& BalloonLegs()
++{
++    static std::vector<FlightLeg> const legs =
++    {
++        { { { 934.24f, 4571.04f, 233.65f }, { 1015.72f, 4604.33f, 216.55f }, { 1056.45f, 4658.65f, 187.74f }, { 1081.42f, 4796.38f, 157.66f } }, 7.35f },
++        { { { 1091.85f, 4926.62f, 137.93f }, { 1026.33f, 5137.10f, 138.06f }, { 818.29f, 5216.31f, 134.64f }, { 621.72f, 5132.56f, 142.15f } }, 8.0f },
++        { { { 547.26f, 5035.91f, 130.49f }, { 440.75f, 4867.26f, 117.58f }, { 403.52f, 4650.16f, 81.14f }, { 341.30f, 4475.94f, 75.50f },
++            { 222.56f, 4369.27f, 93.21f }, { 164.76f, 4297.13f, 112.24f }, { 131.75f, 4156.71f, 124.64f } }, 26.71f },
++        { { { 123.95f, 4109.05f, 124.64f }, { 112.05f, 3931.90f, 128.34f }, { 218.50f, 3824.77f, 137.58f }, { 388.92f, 3765.61f, 159.47f },
++            { 596.57f, 3689.25f, 183.04f }, { 745.19f, 3664.53f, 194.05f } }, 32.0f },
++    };
++    return legs;
++}
++
++// 55649 - Shang Xi's Hot Air Balloon (29791): four legs
++struct npc_shang_xi_hot_air_balloon : public ScriptedAI
++{
++    npc_shang_xi_hot_air_balloon(Creature* creature) : ScriptedAI(creature), _leg(0), _flying(false), _done(false) { }
++
++    void IsSummonedBy(WorldObject* summoner) override
++    {
++        Player* player = summoner ? summoner->ToPlayer() : nullptr;
++        if (!player)
++            return;
++        _playerGuid = player->GetGUID();
++        me->SetDisableGravity(true);
++        me->SetCanFly(true);
++        player->CastSpell(me, Spells::RideVehicleHardcoded, true);
++
++        _scheduler.Schedule(600ms, [this](TaskContext /*task*/)
++        {
++            if (Creature* aysa = me->FindNearestCreature(Creatures::BalloonAysa, 20.0f))
++                aysa->EnterVehicle(me, 1);
++            DoCastSelf(Spells::BalloonCreditStart, true);
++        });
++        _scheduler.Schedule(4s, [this](TaskContext /*task*/) { FlyLeg(); });
++    }
++
++    void FlyLeg()
++    {
++        FlightLeg const& leg = BalloonLegs()[_leg];
++        FlySpline(me, leg.Points, leg.Speed);
++        _flying = true;
++        if (_leg == BalloonLegs().size() - 1)
++            DoCastSelf(Spells::BalloonCreditAirship, true);
++    }
++
++    void LegEnded()
++    {
++        _flying = false;
++        if (++_leg < BalloonLegs().size())
++        {
++            FlyLeg();
++            return;
++        }
++        _done = true;
++        _scheduler.Schedule(1600ms, [this](TaskContext /*task*/)
++        {
++            Player* player = ObjectAccessor::GetPlayer(*me, _playerGuid);
++            if (player && player->GetVehicleBase() == me)
++            {
++                Position const exitPos = { 746.39276f, 3665.7275f, 194.19475f, 0.6864777f };
++                player->ExitVehicle(&exitPos);
++                DoCast(player, Spells::Parachute, true);
++            }
++            me->DespawnOrUnsummon(1s);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        _scheduler.Update(diff);
++        if (_flying && !_done && me->movespline->Finalized())
++            LegEnded();
++    }
++
++private:
++    TaskScheduler _scheduler;
++    ObjectGuid _playerGuid;
++    std::size_t _leg;
++    bool _flying;
++    bool _done;
++};
++
++// 55685 - Uplifting Draft (29776): lifts the rider to the upper ledge, ejects it 20.8 s after boarding
++struct npc_uplifting_draft : public ScriptedAI
++{
++    npc_uplifting_draft(Creature* creature) : ScriptedAI(creature) { }
++
++    void PassengerBoarded(Unit* passenger, int8 /*seatId*/, bool apply) override
++    {
++        if (!apply || !passenger || !passenger->IsPlayer())
++            return;
++        ObjectGuid passengerGuid = passenger->GetGUID();
++        me->SetDisableGravity(true);
++        me->SetCanFly(true);
++        _scheduler.Schedule(4600ms, [this](TaskContext /*task*/)
++        {
++            me->GetMotionMaster()->MovePoint(0, Position(920.45f, 3604.77f, 253.17f), FORCED_MOVEMENT_NONE, 48.0f, false);
++        });
++        _scheduler.Schedule(20800ms, [this, passengerGuid](TaskContext /*task*/)
++        {
++            Player* player = ObjectAccessor::GetPlayer(*me, passengerGuid);
++            DoCastSelf(Spells::EjectAllPassengers, true);
++            if (player)
++            {
++                player->NearTeleportTo(920.44965f, 3604.7708f, 255.17317f, 2.7885048f);
++                DoCast(player, Spells::UpliftingDraftLaunch, true);
++            }
++            me->DespawnOrUnsummon(2s);
++        });
++    }
++
++    void UpdateAI(uint32 diff) override { _scheduler.Update(diff); }
++
++private:
++    TaskScheduler _scheduler;
++};
++
++// 55999 - Injured Sailor (29794): the clicker becomes a vehicle (105520, kit 1845) carrying 56236
++struct npc_injured_sailor : public ScriptedAI
++{
++    npc_injured_sailor(Creature* creature) : ScriptedAI(creature) { }
++
++    void OnSpellClick(Unit* clicker, bool& /*result*/) override
++    {
++        Player* player = clicker ? clicker->ToPlayer() : nullptr;
++        if (!player || player->GetQuestStatus(Quests::NoneLeftBehind) != QUEST_STATUS_INCOMPLETE || !player->GetVehicleKit())
++            return;
++        if (TempSummon* sailor = me->SummonCreature(Creatures::RescuedSailor, me->GetPosition(), TEMPSUMMON_TIMED_DESPAWN, 3 * MINUTE * IN_MILLISECONDS))
++            sailor->EnterVehicle(player, 0);
++        me->DespawnOrUnsummon(0ms, 30s);
++    }
++};
++
++// 7087 - shore of 29794: a carried sailor is dropped and counts as rescued
++class at_none_left_behind : public AreaTriggerScript
++{
++public:
++    at_none_left_behind() : AreaTriggerScript("at_none_left_behind") { }
++
++    bool OnTrigger(Player* player, AreaTrigger const* /*trigger*/) override
++    {
++        Vehicle* kit = player->GetVehicleKit();
++        Unit* passenger = kit ? kit->GetPassenger(0) : nullptr;
++        Creature* sailor = passenger ? passenger->ToCreature() : nullptr;
++        if (!sailor || sailor->GetEntry() != Creatures::RescuedSailor)
++            return false;
++        player->KilledMonsterCredit(Creatures::InjuredSailor);
++        sailor->ExitVehicle();
++        sailor->AI()->Talk(0, player);
++        sailor->DespawnOrUnsummon(5s);
++        player->RemoveAurasDueToSpell(Spells::InjuredSailorVehicleKit);
++        return true;
++    }
++};
++
++// 117783 - Healing of Shen-zin Su: MoP fills alternate power bar 158 (700) by 2-3 a second; the ticks are counted
++class spell_healing_shen_zin_su_bar : public AuraScript
++{
++    PrepareAuraScript(spell_healing_shen_zin_su_bar);
++
++    void HandlePeriodic(AuraEffect const* aurEff)
++    {
++        _power += aurEff->GetTickNumber() % 5 < 3 ? 3 : 2;
++        if (_power < 700)
++            return;
++        GetTarget()->CastSpell(GetTarget(), Spells::HealingShenZinSuCredit, true);
++        Remove();
++    }
++
++    void Register() override
++    {
++        OnEffectPeriodic += AuraEffectPeriodicFn(spell_healing_shen_zin_su_bar::HandlePeriodic, EFFECT_1, SPELL_AURA_PERIODIC_DUMMY);
++    }
++
++private:
++    uint32 _power = 0;
++};
++}
++
++// ---- A New Fate (31450) ----------------------------------------------------------------------------------------------
++namespace NewFate
++{
++    static constexpr uint32 QuestANewFate = 31450;
++    static constexpr uint32 TalkAccomplished = 0;
++    static constexpr uint32 TalkJourneysNotDone = 1;
++}
++
++// 56013 - Spirit of Master Shang Xi: F-020 / F-021's Pandaren already have their side, so instead of MoP's faction
++// choice the spirit completes "A New Fate" and sends them to their capital (Stormwind or Orgrimmar), bound there
++struct npc_spirit_of_master_shang_xi : public ScriptedAI
++{
++    npc_spirit_of_master_shang_xi(Creature* creature) : ScriptedAI(creature) { }
++
++    void sQuestAccept(Player* player, Quest const* quest) override
++    {
++        if (quest->GetQuestId() == NewFate::QuestANewFate)
++            Talk(NewFate::TalkAccomplished, player);
++    }
++
++    void sGossipSelect(Player* player, uint32 menuId, uint32 /*gossipListId*/) override
++    {
++        if (menuId != Menu(13726) || player->GetQuestStatus(NewFate::QuestANewFate) != QUEST_STATUS_INCOMPLETE)
++            return;
++        CloseGossipMenuFor(player);
++        Talk(NewFate::TalkJourneysNotDone, player);
++        player->CompleteQuest(NewFate::QuestANewFate);
++        if (Quest const* quest = sObjectMgr->GetQuestTemplate(NewFate::QuestANewFate))
++            player->RewardQuest(quest, 0, me);
++
++        WorldLocation home = player->GetTeamId() == TEAM_ALLIANCE
++            ? WorldLocation(MAP_EASTERN_KINGDOMS, -8833.38f, 628.63f, 94.01f, 1.07f)     // Stormwind, Trade District
++            : WorldLocation(MAP_KALIMDOR, 1633.75f, -4439.39f, 15.43f, 0.0f);          // Orgrimmar, Valley of Strength
++        player->SetHomebind(home, player->GetTeamId() == TEAM_ALLIANCE ? AREA_STORMWIND_CITY : AREA_ORGRIMMAR);
++        player->TeleportTo(home);
++    }
++};
++}
++
++void AddSC_wandering_isle()
++{
++    using namespace WanderingIsle;
++
++    new WanderingIsleTriggerExitScript();
++    new WanderingIsleQuestPlayerScript();
++
++    RegisterCreatureAI(npc_tushui_huojin_trainee);
++    RegisterCreatureAI(npc_huojin_trainee);
++    RegisterCreatureAI(npc_tushui_leading_trainee);
++    RegisterCreatureAI(npc_instructor_zhi);
++    RegisterGameObjectAI(go_edict_of_temperance);
++    RegisterCreatureAI(npc_jaomin_ro);
++    RegisterCreatureAI(npc_jaomin_ro_hawk);
++    RegisterCreatureAI(npc_min_dimwind_summon);
++    RegisterCreatureAI(npc_amberleaf_scamp);
++    RegisterCreatureAI(npc_aysa_cloudsinger_summon);
++    RegisterCreatureAI(npc_aysa_cloudsinger_cave_of_meditation);
++    RegisterCreatureAI(npc_master_li_fei_summon);
++    RegisterSpellScript(spell_force_summoner_to_ride_vehicle);
++    RegisterSpellScript(spell_ride_drake);
++    RegisterSpellScript(spell_meditation_timer_bar);
++    RegisterSpellScript(spell_flame_spout);
++    new at_min_dimwind_captured();
++    new at_cave_of_meditation();
++    new at_inside_of_cave_of_meditation();
++    new at_singing_pools_transform_base<Spells::CurseOfTheFrog>("at_singing_pools_transform_frog");
++    new at_singing_pools_transform_base<Spells::CurseOfTheSkunk>("at_singing_pools_transform_skunk");
++    new at_singing_pools_transform_base<Spells::CurseOfTheCrocodile>("at_singing_pools_transform_crocodile");
++    new at_singing_pools_transform_base<Spells::CurseOfTheCrane>("at_singing_pools_transform_crane");
++    new at_singing_pools_transform_base<Spells::CurseOfTheTurtle>("at_singing_pools_transform_turtle");
++    RegisterCreatureAI(npc_li_fei);
++    RegisterSpellScript(spell_fire_crash);
++    RegisterCreatureAI(npc_li_fei_combat);
++    RegisterSpellScript(spell_feet_of_fury);
++    RegisterSpellScript(spell_flying_shadow_kick);
++    RegisterCreatureAI(npc_delivery_cart);
++    {
++        using namespace SecondHalf;
++        RegisterSpellScript(spell_huo_offering);
++        RegisterCreatureAI(npc_shu_water_spouts);
++        RegisterCreatureAI(npc_water_spout_bunny);
++        RegisterCreatureAI(npc_shu_wake_wugou);
++        RegisterCreatureAI(boss_zhao_ren);
++        RegisterSpellScript(spell_firework_launcher_click);
++        RegisterCreatureAI(npc_shang_xi_hot_air_balloon);
++        RegisterCreatureAI(npc_uplifting_draft);
++        RegisterCreatureAI(npc_injured_sailor);
++        new at_none_left_behind();
++        RegisterSpellScript(spell_healing_shen_zin_su_bar);
++    }
++    RegisterCreatureAI(npc_spirit_of_master_shang_xi);
++}
+diff --git a/src/server/scripts/Custom/wandering_isle_ids.h b/src/server/scripts/Custom/wandering_isle_ids.h
+new file mode 100644
+index 000000000..aa8a86245
+--- /dev/null
++++ b/src/server/scripts/Custom/wandering_isle_ids.h
+@@ -0,0 +1,89 @@
++// Generated by WHE's tools/races/mop_wandering_isle_port.py (F-134): the TrinityCore ids the Wandering Isle
++// scripts use, as F-134's SQL numbers them. Regenerate it with the port (--core) rather than editing it.
++
++#ifndef WANDERING_ISLE_IDS_H
++#define WANDERING_ISLE_IDS_H
++
++#include "Define.h"
++
++namespace WanderingIsleIds
++{
++constexpr uint32 Path(uint32 id)
++{
++    switch (id)
++    {
++        case 5720800: return 13400032;
++        case 5949600: return 13400035;
++        case 5774000: return 13400033;
++        case 5650300: return 13400008;
++        case 5650301: return 13400009;
++        case 5965200: return 13400037;
++        case 5485600: return 13400005;
++        default: return id;
++    }
++}
++
++constexpr uint32 Menu(uint32 id)
++{
++    switch (id)
++    {
++        case 13050: return 1340007;
++        case 13140: return 1340010;
++        case 13726: return 1340016;
++        default: return id;
++    }
++}
++
++constexpr uint32 Entry(uint32 id)
++{
++    switch (id)
++    {
++        case 55292: return 1340000;
++        default: return id;
++    }
++}
++
++constexpr uint32 PhaseMask(uint32 id)
++{
++    switch (id)
++    {
++        case 504: return 2;
++        case 592: return 4;
++        case 593: return 8;
++        case 594: return 16;
++        case 595: return 32;
++        case 596: return 64;
++        case 597: return 128;
++        case 598: return 256;
++        case 629: return 512;
++        case 630: return 1024;
++        case 838: return 2048;
++        case 1231: return 4096;
++        default: return id;
++    }
++}
++
++// creature spawns TrinityCore finds by StringId
++constexpr uint32 SPAWN_NPC_AMBERLEAF_SCAMP_1 = 13400237;
++constexpr uint32 SPAWN_NPC_AMBERLEAF_SCAMP_2 = 13400251;
++constexpr uint32 SPAWN_NPC_AMBERLEAF_SCAMP_3 = 13400235;
++constexpr uint32 SPAWN_NPC_AMBERLEAF_SCAMP_4 = 13400233;
++constexpr uint32 SPAWN_NPC_AMBERLEAF_SCAMP_5 = 13400234;
++constexpr uint32 SPAWN_NPC_AYSA_AFTER_QUEST_29414 = 13400331;
++constexpr uint32 SPAWN_NPC_FE_FENG_BREWTHIEF_ATTACK_1 = 13400281;
++constexpr uint32 SPAWN_NPC_FE_FENG_BREWTHIEF_ATTACK_2 = 13400299;
++constexpr uint32 SPAWN_NPC_FE_FENG_BREWTHIEF_ATTACK_3 = 13400380;
++constexpr uint32 SPAWN_NPC_FE_FENG_BREWTHIEF_ATTACK_4 = 13400396;
++constexpr uint32 SPAWN_NPC_FE_FENG_HOZEN_ATTACK_1 = 13400351;
++constexpr uint32 SPAWN_NPC_FE_FENG_HOZEN_ATTACK_2 = 13400390;
++constexpr uint32 SPAWN_NPC_FE_FENG_HOZEN_ATTACK_3 = 13400392;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_1 = 13400358;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_2 = 13400383;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_3 = 13400410;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_4 = 13400279;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_5 = 13400296;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_6 = 13400382;
++constexpr uint32 SPAWN_NPC_WU_SONG_VILLAGER_ATTACK_7 = 13400395;
++}
++
++#endif

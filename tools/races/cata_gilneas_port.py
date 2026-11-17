@@ -83,6 +83,16 @@ CATA_HORDE = 2 | 16 | 32 | 128 | 256 | 512
 # Cataclysm's faction 1134 (Gilneas) is F-024's @WorgenFaction
 FACTION_VARS = {1134: "@WorgenFaction"}
 WORGEN_MODELS = {3141: "@WorgenMaleModel", 3142: "@WorgenFemaleModel"}
+# Cataclysm creature models stock lacks whose files WHE-common has (4.3.4 art.MPQ, converted with wotlkconv and
+# m2_restore_anim_refs.py): mastiff (F-128's retail model at the same path, plus the Cata skins), mist fox, ettin,
+# raven, crocodile, stagecoach harness and carriage. Their CreatureModelData rows come from 4.0.6a
+CATA_MODELS = (3190, 3193, 3220, 3433, 3451, 3497, 3498)
+MODEL_COLUMNS = ("id flags model_path size_class model_scale blood_id footprint_texture_id footprint_texture_length "
+                 "footprint_texture_width footprint_particle_scale foley_material_id footstep_shake_size "
+                 "death_thud_shake_size sound_data collision_width collision_height mount_height geo_box_min_x "
+                 "geo_box_min_y geo_box_min_z geo_box_max_x geo_box_max_y geo_box_max_z world_effect_scale "
+                 "attached_effect_scale missile_collision_radius missile_collision_push missile_collision_raise").split()
+MODEL_FLOATS = {4, 7, 8, 9} | set(range(14, 28))
 
 # SmartAI opcodes that differ between Neltharion's core and AzerothCore (Zeppelin-Craft's audit, _spellscope.py)
 SAI_MAX_EVENT, SAI_MAX_ACTION = 74, 135
@@ -103,6 +113,13 @@ INVISIBILITY_AURAS = (18, 19)
 FALLBACK_DISPLAY = 646           # what Zeppelin-Craft's generator uses for a display nothing has
 
 dropped = collections.defaultdict(list)
+
+
+def modpak_spells():
+    """Spell ids config.sql assigns: its @Spell... variables and the races' @...Racial<n> ones."""
+    text = open(os.path.join(HERE, "..", "..", "modpaks", "config.sql"), encoding="utf-8").read()
+    return {int(v) for k, v in re.findall(r"^SET @(\w+)\s*=\s*(\d+)\s*;", text, re.M)
+            if k.startswith("Spell") or re.search(r"Racial\d+$", k)}
 
 
 # ---- reading -------------------------------------------------------------------------------------------------------
@@ -174,7 +191,9 @@ class Port:
             "creature_loot_template", "gameobject_loot_template", "pickpocketing_loot_template",
             "skinning_loot_template", "npc_spellclick_spells", "vehicle_template_accessory", "npc_vendor",
             "phase_definitions", "spell_area", "spell_script_names", "spell_target_position")}
-        self.stock_spells = dbc_ids("Spell")
+        # Spell ids the other modpaks already define count as present, so their rows aren't replaced by Cataclysm's:
+        # F-024 gives the Worgen racials Cataclysm's ids (Two Forms 68996 is F-063's altered form, not Cataclysm's dummy)
+        self.stock_spells = dbc_ids("Spell") | modpak_spells()
         self.stock_sounds = dbc_ids("SoundEntries")
         self.stock_cdisp = dbc_ids("CreatureDisplayInfo")
         self.stock_extra = dbc_ids("CreatureDisplayInfoExtra")
@@ -500,7 +519,7 @@ class Port:
         """Port the Cataclysm creature displays stock lacks; returns the ids that now exist."""
         cd = c406.Dbc(os.path.join(CATA_DBC, "CreatureDisplayInfo.dbc"))
         ce = c406.Dbc(os.path.join(CATA_DBC, "CreatureDisplayInfoExtra.dbc"))
-        out_d, out_e, ok = [], [], set()
+        out_d, out_e, ok, cata_models = [], [], set(), set()
         for d in sorted(ids):
             if d in self.stock_cdisp:
                 ok.add(d)
@@ -510,8 +529,10 @@ class Port:
                 continue
             model = WORGEN_MODELS.get(r[1], r[1])
             if model == r[1] and r[1] not in self.stock_models:
-                dropped["displays whose model stock lacks"].append("%d (model %d)" % (d, r[1]))
-                continue
+                if r[1] not in CATA_MODELS:
+                    dropped["displays whose model stock lacks"].append("%d (model %d)" % (d, r[1]))
+                    continue
+                cata_models.add(r[1])
             extra = r[3]
             if extra and extra not in self.stock_extra:
                 x = ce.get(extra)
@@ -532,6 +553,16 @@ class Port:
                               blood_id=r[11], npc_sound_id=r[12] if r[12] in self.stock_npcsounds else 0,
                               praticle_color_id=r[13], creature_geoset_data=r[14], obj_effect_package_id=0))
             ok.add(d)
+        cm = c406.Dbc(os.path.join(CATA_DBC, "CreatureModelData.dbc"))
+        out_m = []
+        for m in sorted(cata_models):
+            r = cm.get(m)
+            row = {k: (c406.f32(r[i]) if i in MODEL_FLOATS else r[i]) for i, k in enumerate(MODEL_COLUMNS)}
+            row["model_path"] = cm.s(r[2])
+            row["sound_data"] = r[13] if r[13] in self.stock_soundData else 0
+            out_m.append(row)
+        self.write_dbc("creaturemodeldata", out_m, "Cataclysm creature models (CreatureModelData, 4.0.6a) whose "
+                       "converted files WHE-common has")
         self.write_dbc("creaturedisplayinfoextra", out_e, "Cataclysm NPC looks (CreatureDisplayInfoExtra, 4.0.6a); the "
                        "bakes they name are Textures\\BakedNpcTextures\\<texture>")
         self.write_dbc("creaturedisplayinfo", out_d, "Cataclysm creature displays (4.0.6a) stock lacks")
@@ -680,8 +711,10 @@ class Port:
             it = self.item
             row = [q, s["Method"], s["Level"], s["MinLevel"], s["ZoneOrSort"], s["Type"], s["SuggestedPlayers"],
                    0, 0, 0, 0, s["NextQuestIdChain"], s["RewardXPId"], s["RewardOrRequiredMoney"],
-                   s["RewardMoneyMaxLevel"], self.spell_ok(s["RewardSpellCast"]) or 0,
-                   self.spell_ok(s["RewardSpell"]) or 0, s["RewardHonor"], 0, it(s["SourceItemId"]), s["Flags"],
+                   # TrinityCore 4.3.4's RewardSpell (shown, cast when RewardSpellCast is 0) and RewardSpellCast
+                   # are AzerothCore's RewardDisplaySpell and RewardSpell
+                   s["RewardMoneyMaxLevel"], self.spell_ok(s["RewardSpell"]) or 0,
+                   self.spell_ok(s["RewardSpellCast"]) or 0, s["RewardHonor"], 0, it(s["SourceItemId"]), s["Flags"],
                    s["RequiredPlayerKills"]]
             for n in range(1, 5):
                 row += [it(s["RewardItemId%d" % n]), s["RewardItemCount%d" % n]]

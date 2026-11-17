@@ -5,9 +5,10 @@
 
 OUT is a patch-shaped folder, for F-133 WHE-common's modpaks/F-133_mop-pandaria: files go to
 OUT/Interface/WorldMap/<map>/<file>.blp, named as the 3.3.5 client asks for them. Which files: for every WorldMapArea of --map that F-133 keeps (no dungeon floors or
-phase copies), its 12 tiles (<name>1..12) and, for zones, the highlight the continent map shows on hover
-(<name>Highlight); for every WorldMapOverlay of those, its 256 x 256 pieces (<texture>1..N, N = tiles across x down);
-with --world, the World map's 12 tiles. MOP_DBC_DIR holds the 5.4.8 DBCs the rows come from.
+phase copies), its 12 tiles (<name>1..12) and the highlight the parent map shows on hover (<name>Highlight:
+a zone's on its continent, a continent's on the World map); for every WorldMapOverlay of those, its 256 x 256 pieces (<texture>1..N, N = tiles across x down);
+with --world, the World map's 12 tiles and the Eastern Kingdoms', Kalimdor's and Northrend's highlights (MoP's,
+drawn for the continent placement F-133 moves them to). MOP_DBC_DIR holds the 5.4.8 DBCs the rows come from.
 
 The files come from wago.tools at --version, by default MoP Classic's (its map art is MoP's; the newest version of
 the World tiles is Legion's, with the Broken Isles). Their community listfile names are looked up per folder.
@@ -30,7 +31,7 @@ def wanted(mop_dbc, map_id, world):
             continue
         name = wma.s(r[3])
         folder_of[r[0]] = name
-        out[name] = [f"{name}{i}" for i in range(1, 13)] + ([f"{name}Highlight"] if r[2] else [])
+        out[name] = [f"{name}{i}" for i in range(1, 13)] + [f"{name}Highlight"]
     for r in wmo.records:
         if r[1] in folder_of:
             tex = wmo.s(r[6])
@@ -38,6 +39,10 @@ def wanted(mop_dbc, map_id, world):
             out[folder_of[r[1]]] += [f"{tex}{i}" for i in range(1, n + 1)]
     if world:
         out["World"] = [f"World{i}" for i in range(1, 13)]
+        # the other continents' World map highlights: drawn for MoP's WorldMapContinent bounds, which F-133 uses
+        for r in wma.records:
+            if r[1] in (0, 1, 571) and not r[2] and r[10] in (0, -1):
+                out.setdefault(wma.s(r[3]), []).append(f"{wma.s(r[3])}Highlight")
     return out
 
 

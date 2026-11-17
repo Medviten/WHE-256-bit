@@ -102,6 +102,8 @@ def string(block, offset):
 
 
 class CataItems:
+    sp = SP                          # Item-sparse field indices (MopItems in mop_items.py has 5.4.8's)
+
     def __init__(self, cata_dbc, stock_dbc, model_substitutes=None):
         """model_substitutes: {Cataclysm model: (model, texture)} for weapon models no client here has yet."""
         self.model_substitutes = {k.lower(): (m.lower(), t.lower()) for k, (m, t) in (model_substitutes or {}).items()}
@@ -142,7 +144,7 @@ class CataItems:
         return cata_id in self.item and cata_id in self.sparse
 
     def name(self, cata_id):
-        return string(self.sparse_str, self.sparse[cata_id][SP["name"]])
+        return string(self.sparse_str, self.sparse[cata_id][self.sp["name"]])
 
     # ---- displays ----
     def display(self, cata_id):
@@ -224,21 +226,21 @@ class CataItems:
     def damage(self, cata_id):
         cls, sub, _, _, _, inv = self.item[cata_id][1:7]
         s = self.sparse[cata_id]
-        q, ilvl, delay = s[SP["quality"]], s[SP["ilvl"]], s[SP["delay"]]
+        q, ilvl, delay = s[self.sp["quality"]], s[self.sp["ilvl"]], s[self.sp["delay"]]
         if cls != ITEM_CLASS_WEAPON or q > 6 or not delay:
             return 0, 0
-        row = self.tables[self._damage_table(cls, sub, inv, s[SP["flags2"]])].get(ilvl)
+        row = self.tables[self._damage_table(cls, sub, inv, s[self.sp["flags2"]])].get(ilvl)
         if not row:
             return 0, 0
         dps = as_float(row[1 + q])
         avg = dps * delay / 1000.0
-        f = as_float(s[SP["scaling_factor"]])
+        f = as_float(s[self.sp["scaling_factor"]])
         return int(math.floor(avg * (1.0 - f * 0.5))), int(math.floor(avg * (1.0 + f * 0.5) + 0.5))
 
     def armor(self, cata_id):
         cls, sub, _, _, _, inv = self.item[cata_id][1:7]
         s = self.sparse[cata_id]
-        q, ilvl = s[SP["quality"]], s[SP["ilvl"]]
+        q, ilvl = s[self.sp["quality"]], s[self.sp["ilvl"]]
         if cls != ITEM_CLASS_ARMOR or q > 6:
             return 0
         if sub == ARMOR_SHIELD:
@@ -262,7 +264,7 @@ class CataItems:
     def template(self, cata_id, entry, race_mask=None):
         """item_template columns. race_mask: what to write for AllowableRace (Cataclysm's is kept when None)."""
         it, s = self.item[cata_id], self.sparse[cata_id]
-        g = lambda k, i=0: s[SP[k] + i]
+        g = lambda k, i=0: s[self.sp[k] + i]
         cls, sub, sound, material, _, inv, sheath = it[1:8]
         dmin, dmax = self.damage(cata_id)
         row = dict.fromkeys(ITEM_TEMPLATE_COLUMNS, 0)
