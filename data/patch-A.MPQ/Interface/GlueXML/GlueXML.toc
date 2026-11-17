@@ -38,5 +38,7 @@ AlteredForm_CharacterCreate.lua
 DruidForms_CharacterCreate.lua
 MaleOnly_CharacterCreate.lua
 RetailRace_CharacterCreate.lua
+HeroClass_CharacterCreate.lua
+Realm_CharacterCreate.lua
 ## This Always Runs Last, Add New Items above it.
 GlueLocalizationPost.xml

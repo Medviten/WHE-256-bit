@@ -10,6 +10,9 @@ MAX_CHARACTERS_PER_REALM = 100;
 -- CharSelectCharacterButtonN anchors). Only used to size the scroll range.
 CHARACTER_BUTTON_HEIGHT = 57;
 
+CHARACTER_SEARCH_PLACEHOLDER = "Name, race, class, zone, level...";
+CHARACTER_SEARCH_NO_RESULTS = "No matching characters";
+
 function CharacterSelect_OnLoad(self)
 	self:SetSequence(0);
 	self:SetCamera(0);
@@ -54,6 +57,8 @@ function CharacterSelect_OnShow()
 	end
 
 	UpdateAddonButton();
+
+	CharacterSelect_ResetSearch();
 
 	local serverName, isPVP, isRP = GetServerName();
 	local connected = IsConnectedToServer();
@@ -234,23 +239,20 @@ function CharacterSelect_OnKeyDown(self,key)
 		CharacterSelect_EnterWorld();
 	elseif ( key == "PRINTSCREEN" ) then
 		Screenshot();
-	elseif ( key == "UP" or key == "LEFT" ) then
-		local numChars = GetNumCharacters();
-		if ( numChars > 1 ) then
-			if ( self.selectedIndex > 1 ) then
-				CharacterSelect_SelectCharacter(self.selectedIndex - 1);
-			else
-				CharacterSelect_SelectCharacter(numChars);
-			end
-		end
-	elseif ( key == "DOWN" or key == "RIGHT" ) then
-		local numChars = GetNumCharacters();
-		if ( numChars > 1 ) then
-			if ( self.selectedIndex < GetNumCharacters() ) then
-				CharacterSelect_SelectCharacter(self.selectedIndex + 1);
-			else
-				CharacterSelect_SelectCharacter(1);
-			end
+	elseif ( key == "TAB" ) then
+		CharacterSelectSearchBox:SetFocus();
+	elseif ( key == "UP" ) then
+		CharacterSelect_SelectAdjacent(-1);
+	elseif ( key == "DOWN" ) then
+		CharacterSelect_SelectAdjacent(1);
+	elseif ( key == "LEFT" or key == "RIGHT" ) then
+		-- The search box passes all arrow keys on (ignoreArrows) so UP/DOWN can walk
+		-- the results while typing; LEFT/RIGHT still have to move its cursor.
+		local direction = (key == "LEFT") and -1 or 1;
+		if ( CharacterSelectSearchBox:HasFocus() ) then
+			CharacterSelectSearchBox:SetCursorPosition(CharacterSelectSearchBox:GetCursorPosition() + direction);
+		else
+			CharacterSelect_SelectAdjacent(direction);
 		end
 	end
 end
@@ -289,6 +291,7 @@ function CharacterSelect_OnEvent(self, event, ...)
 		end
 	elseif ( event == "FORCE_RENAME_CHARACTER" ) then
 		local message = ...;
+		CharacterSelectSearchBox:ClearFocus();
 		CharacterRenameDialog:Show();
 		CharacterRenameText1:SetText(_G[message]);
 	end
@@ -301,13 +304,97 @@ end
 
 local scrollSyncing = false;
 
--- Rows in use: one per character. The Create button is pinned below the list.
-function CharacterSelect_GetNumRows(numChars)
-	return numChars;
+-- Character search. The rows, scroll range and keyboard navigation all work on
+-- visibleChars: the indices (for GetCharacterInfo etc.) of the characters that
+-- match the search box, in list order.
+local visibleChars = {};
+local searchQuery = "";
+local searchTerms = {};
+
+-- Sex and ghost are matched as whole-word prefixes, so "male" doesn't find "female".
+local function CharacterSearch_IsKeyword(word, term)
+	return strlen(term) >= 3 and strsub(word, 1, strlen(term)) == term;
 end
 
-function CharacterSelect_GetMaxOffset(numChars)
-	return math.max(CharacterSelect_GetNumRows(numChars) - MAX_CHARACTERS_DISPLAYED, 0);
+-- "80" is that level, "70-80" a range, "70+" that level or above.
+local function CharacterSearch_MatchesLevel(term, level)
+	local low, high = strmatch(term, "^(%d+)%-(%d+)$");
+	if ( low ) then
+		return level >= tonumber(low) and level <= tonumber(high);
+	end
+	low = strmatch(term, "^(%d+)%+$");
+	if ( low ) then
+		return level >= tonumber(low);
+	end
+	low = strmatch(term, "^%d+$");
+	return low ~= nil and tonumber(low) == level;
+end
+
+-- Every term has to match something; a term can match any part of the text.
+local function CharacterSearch_Matches(index)
+	local name, race, class, level, zone, sex, ghost = GetCharacterInfo(index);
+	if ( not name ) then
+		return false;
+	end
+
+	local text = strlower(name.."\n"..race.."\n"..class.."\n"..(zone or ""));
+	local sexWord = (sex == 2 and "male") or (sex == 3 and "female") or "";
+
+	for _, term in ipairs(searchTerms) do
+		local matched = strfind(text, term, 1, true)
+			or CharacterSearch_MatchesLevel(term, level)
+			or CharacterSearch_IsKeyword(sexWord, term)
+			or (ghost and (CharacterSearch_IsKeyword("ghost", term) or CharacterSearch_IsKeyword("dead", term)));
+		if ( not matched ) then
+			return false;
+		end
+	end
+	return true;
+end
+
+local function CharacterSearch_Rebuild()
+	visibleChars = {};
+	for index = 1, GetNumCharacters() do
+		if ( #searchTerms == 0 or CharacterSearch_Matches(index) ) then
+			visibleChars[#visibleChars + 1] = index;
+		end
+	end
+end
+
+-- Position of character [id] among the visible rows, or nil if filtered out.
+local function CharacterSearch_GetPosition(id)
+	for position, index in ipairs(visibleChars) do
+		if ( index == id ) then
+			return position;
+		end
+	end
+end
+
+local function CharacterSearch_SetQuery(query)
+	searchQuery = query;
+	searchTerms = {};
+	for term in gmatch(query, "%S+") do
+		searchTerms[#searchTerms + 1] = term;
+	end
+end
+
+local function CharacterSearch_UpdateBox(text)
+	if ( text == "" ) then
+		CharacterSelectSearchBoxPlaceholder:Show();
+		CharacterSelectSearchBoxClearButton:Hide();
+	else
+		CharacterSelectSearchBoxPlaceholder:Hide();
+		CharacterSelectSearchBoxClearButton:Show();
+	end
+end
+
+-- Rows in use: one per visible character. The Create button is pinned below the list.
+function CharacterSelect_GetNumRows()
+	return #visibleChars;
+end
+
+function CharacterSelect_GetMaxOffset()
+	return math.max(CharacterSelect_GetNumRows() - MAX_CHARACTERS_DISPLAYED, 0);
 end
 
 local function CharacterSelect_GetScrollBar()
@@ -320,7 +407,7 @@ function CharacterSelectScrollFrame_OnLoad(self)
 	if ( bar ) then
 		-- Put the bar inside the panel, to the right of the rows.
 		bar:ClearAllPoints();
-		bar:SetPoint("TOPRIGHT", CharacterSelectCharacterFrame, "TOPRIGHT", -12, -85);
+		bar:SetPoint("TOPRIGHT", CharacterSelectCharacterFrame, "TOPRIGHT", -12, -110);
 		bar:SetPoint("BOTTOMRIGHT", CharacterSelectCharacterFrame, "BOTTOMRIGHT", -12, 75);
 		bar:Hide();
 	end
@@ -335,9 +422,9 @@ function CharacterSelectScrollFrame_OnLoad(self)
 	end
 end
 
--- Size the native scroll range for the current character count.
-local function CharacterSelect_ResizeScrollRange(numChars)
-	local maxOffset = CharacterSelect_GetMaxOffset(numChars);
+-- Size the native scroll range for the current number of visible characters.
+local function CharacterSelect_ResizeScrollRange()
+	local maxOffset = CharacterSelect_GetMaxOffset();
 	local range = maxOffset * CHARACTER_BUTTON_HEIGHT;
 	local view = MAX_CHARACTERS_DISPLAYED * CHARACTER_BUTTON_HEIGHT;
 
@@ -365,7 +452,7 @@ function CharacterSelect_RefreshRows()
 	CharSelectCreateCharacterButton:Hide();
 
 	for row = 1, MAX_CHARACTERS_DISPLAYED do
-		local actual = offset + row;
+		local actual = visibleChars[offset + row];
 		local button = _G["CharSelectCharacterButton"..row];
 		local customize = _G["CharSelectCharacterCustomize"..row];
 		local raceChange = _G["CharSelectRaceChange"..row];
@@ -375,7 +462,7 @@ function CharacterSelect_RefreshRows()
 		raceChange:Hide();
 		factionChange:Hide();
 
-		if ( actual <= numChars ) then
+		if ( actual ) then
 			local name, race, class, level, zone, sex, ghost, PCC, PRC, PFC = GetCharacterInfo(actual);
 
 			button:SetID(actual);
@@ -411,9 +498,14 @@ function CharacterSelect_RefreshRows()
 			end
 
 		else
-			button:SetID(actual);
 			button:Hide();
 		end
+	end
+
+	if ( numChars > 0 and #visibleChars == 0 ) then
+		CharSelectSearchNoResults:Show();
+	else
+		CharSelectSearchNoResults:Hide();
 	end
 
 	-- Create button is pinned at the bottom of the panel (anchored in the XML).
@@ -426,7 +518,7 @@ end
 
 -- offset is in rows (0 = top of list).
 function CharacterSelect_SetScrollOffset(offset)
-	local maxOffset = CharacterSelect_GetMaxOffset(GetNumCharacters());
+	local maxOffset = CharacterSelect_GetMaxOffset();
 	offset = math.floor(offset + 0.5);
 	if ( offset < 0 ) then
 		offset = 0;
@@ -470,12 +562,82 @@ end
 -- Scroll just enough to make character [id] visible.
 function CharacterSelect_ScrollToIndex(id)
 	local offset = CharacterSelect.scrollOffset or 0;
-	if ( id <= offset ) then
-		offset = id - 1;
-	elseif ( id > offset + MAX_CHARACTERS_DISPLAYED ) then
-		offset = id - MAX_CHARACTERS_DISPLAYED;
+	local position = CharacterSearch_GetPosition(id);
+	if ( position ) then
+		if ( position <= offset ) then
+			offset = position - 1;
+		elseif ( position > offset + MAX_CHARACTERS_DISPLAYED ) then
+			offset = position - MAX_CHARACTERS_DISPLAYED;
+		end
 	end
 	CharacterSelect_SetScrollOffset(offset);
+end
+
+-- Step through the visible characters, wrapping at the ends.
+function CharacterSelect_SelectAdjacent(direction)
+	local count = #visibleChars;
+	if ( count == 0 ) then
+		return;
+	end
+	local position = (CharacterSearch_GetPosition(CharacterSelect.selectedIndex) or 0) + direction;
+	if ( position < 1 ) then
+		position = count;
+	elseif ( position > count ) then
+		position = 1;
+	end
+	if ( visibleChars[position] ~= CharacterSelect.selectedIndex ) then
+		CharacterSelect_SelectCharacter(visibleChars[position]);
+	end
+end
+
+-- Re-filter after the query changed. The selection is kept while it still matches;
+-- otherwise the first match gets selected, unless nothing matched at all.
+local function CharacterSelect_ApplySearch()
+	CharacterSearch_Rebuild();
+	CharacterSelect_ResizeScrollRange();
+	CharacterSelect.scrollOffset = 0;
+
+	if ( visibleChars[1] and not CharacterSearch_GetPosition(CharacterSelect.selectedIndex) ) then
+		CharacterSelect_SelectCharacter(visibleChars[1], 1);
+	else
+		CharacterSelect_ScrollToIndex(CharacterSelect.selectedIndex);
+	end
+end
+
+function CharacterSelectSearch_OnTextChanged(self)
+	local text = self:GetText();
+
+	-- TAB from CharacterSelect_OnKeyDown focuses the box and then also types its spaces.
+	if ( text ~= "" and not strfind(text, "%S") ) then
+		self:SetText("");
+		text = "";
+	end
+
+	CharacterSearch_UpdateBox(text);
+
+	-- Only re-filter on a real change: this also fires for CharacterSelect_ResetSearch.
+	local query = strlower(text);
+	if ( query ~= searchQuery ) then
+		CharacterSearch_SetQuery(query);
+		CharacterSelect_ApplySearch();
+	end
+end
+
+function CharacterSelectSearch_OnEscapePressed(self)
+	if ( self:GetText() ~= "" ) then
+		self:SetText("");
+	else
+		self:ClearFocus();
+	end
+end
+
+-- The search starts empty each time the screen is shown.
+function CharacterSelect_ResetSearch()
+	CharacterSelectSearchBox:SetText("");
+	CharacterSelectSearchBox:ClearFocus();
+	CharacterSearch_UpdateBox("");
+	CharacterSearch_SetQuery("");
+	CharacterSearch_Rebuild();
 end
 
 function UpdateCharacterSelection(self)
@@ -485,7 +647,7 @@ function UpdateCharacterSelection(self)
 		_G["CharSelectCharacterButton"..i]:UnlockHighlight();
 	end
 
-	local row = self.selectedIndex - offset;
+	local row = (CharacterSearch_GetPosition(self.selectedIndex) or 0) - offset;
 	if ( row > 0 and row <= MAX_CHARACTERS_DISPLAYED ) then
 		_G["CharSelectCharacterButton"..row]:LockHighlight();
 	end
@@ -501,7 +663,8 @@ function UpdateCharacterList()
 	end
 	CharSelectCreateCharacterButton:SetID(CharacterSelect.createIndex);
 
-	CharacterSelect_ResizeScrollRange(numChars);
+	CharacterSearch_Rebuild();
+	CharacterSelect_ResizeScrollRange();
 	CharacterSelect_SetScrollOffset(CharacterSelect.scrollOffset or 0);  -- clamps + redraws rows
 
 	if ( numChars == 0 ) then
@@ -525,10 +688,15 @@ function UpdateCharacterList()
 		CharacterSelect.selectedIndex = 1;
 	end
 
+	if ( visibleChars[1] and not CharacterSearch_GetPosition(CharacterSelect.selectedIndex) ) then
+		CharacterSelect.selectedIndex = visibleChars[1];
+	end
+
 	CharacterSelect_SelectCharacter(CharacterSelect.selectedIndex, 1);
 end
 
 function CharacterSelectButton_OnClick(self)
+	CharacterSelectSearchBox:ClearFocus();
 	local id = self:GetID();
 	if ( id ~= CharacterSelect.selectedIndex ) then
 		CharacterSelect_SelectCharacter(id);
@@ -601,6 +769,8 @@ end
 
 function CharacterSelect_Delete()
 	PlaySound("gsCharacterSelectionDelCharacter");
+	-- The dialog's edit box only takes the keyboard if nothing else has it.
+	CharacterSelectSearchBox:ClearFocus();
 	if ( CharacterSelect.selectedIndex > 0 ) then
 		CharacterDeleteDialog:Show();
 	end
@@ -608,10 +778,12 @@ end
 
 function CharacterSelect_ChangeRealm()
 	PlaySound("gsCharacterSelectionDelCharacter");
+	CharacterSelectSearchBox:ClearFocus();
 	RequestRealmList(1);
 end
 
 function CharacterSelectFrame_OnMouseDown(button)
+	CharacterSelectSearchBox:ClearFocus();
 	if ( button == "LeftButton" ) then
 		CHARACTER_SELECT_ROTATION_START_X = GetCursorPosition();
 		CHARACTER_SELECT_INITIAL_FACING = GetCharacterSelectFacing();

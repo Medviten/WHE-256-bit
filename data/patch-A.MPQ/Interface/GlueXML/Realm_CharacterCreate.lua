@@ -1,0 +1,3 @@
+-- Per-realm overrides of the CharacterCreate.lua settings, e.g. RACE_GRID_*.
+-- Empty here; a realm's patch-A.<realm>.MPQ ships its own copy of this file,
+-- which wins over this one while realmName equals the tag.

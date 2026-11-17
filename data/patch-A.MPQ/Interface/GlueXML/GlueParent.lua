@@ -81,6 +81,31 @@ GlueAmbienceTracks["ALLIANCEHARANIR"] = "GlueScreenNightElf";
 GlueAmbienceTracks["HORDEHARANIR"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["ALLIANCESKYBORNE"] = "GlueScreenHuman";
 GlueAmbienceTracks["HORDESKYBORNE"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["CULTIST"] = "GlueScreenUndead";
+GlueAmbienceTracks["MANARI"] = "GlueScreenBloodElf";
+GlueAmbienceTracks["SETHRAK"] = "GlueScreenHuman"; -- CoA 1.9.9
+GlueAmbienceTracks["SUREKI"] = "GlueScreenNightElf"; -- CoA 1.9.9
+GlueAmbienceTracks["DREADLORD"] = "GlueScreenUndead"; -- CoA 1.9.9
+GlueAmbienceTracks["TITAN"] = "GlueScreenDwarfGnome"; -- CoA 1.9.9
+GlueAmbienceTracks["FUNGARIAN"] = "GlueScreenNightElf"; -- CoA 1.9.9
+GlueAmbienceTracks["SABERON"] = "GlueScreenNightElf"; -- CoA 1.9.9
+GlueAmbienceTracks["DRAKONID"] = "GlueScreenOrcTroll"; -- CoA 1.9.9
+GlueAmbienceTracks["SPORELING"] = "GlueScreenDwarfGnome"; -- CoA 1.9.9
+GlueAmbienceTracks["STORMFORGED"] = "GlueScreenDwarfGnome"; -- CoA 1.9.9
+GlueAmbienceTracks["MOARG"] = "GlueScreenOrcTroll"; -- CoA 1.9.9
+GlueAmbienceTracks["NERUBIAN"] = "GlueScreenUndead"; -- CoA 1.9.9
+GlueAmbienceTracks["LICH"] = "GlueScreenUndead"; -- CoA 1.9.9
+GlueAmbienceTracks["MOGU"] = "GlueScreenHuman"; -- CoA 1.9.9
+GlueAmbienceTracks["LOSTONE"] = "GlueScreenDraenei"; -- CoA 1.9.9
+GlueAmbienceTracks["DRAKKIN"] = "GlueScreenHuman"; -- CoA 1.9.9
+GlueAmbienceTracks["ALLIANCEORC"] = "GlueScreenHuman"; -- CoA 1.9.9
+GlueAmbienceTracks["HARPY"] = "GlueScreenTauren"; -- CoA 1.9.9
+GlueAmbienceTracks["ILLIDARIBLOODELF"] = "GlueScreenBloodElf"; -- CoA 1.9.9
+GlueAmbienceTracks["ILLIDARINIGHTELF"] = "GlueScreenNightElf"; -- CoA 1.9.9
+GlueAmbienceTracks["JINYU"] = "GlueScreenNightElf"; -- CoA 1.9.9
+GlueAmbienceTracks["TWOHEADEDOGRE"] = "GlueScreenOrcTroll"; -- CoA 1.9.9
+GlueAmbienceTracks["GRUMMLE"] = "GlueScreenDwarfGnome"; -- CoA 1.9.9
+GlueAmbienceTracks["ELUNECHOSEN"] = "GlueScreenNightElf"; -- CoA 1.9.9
 
 -- RaceLights[] duplicates the 3.2.2 color values in the models. Henceforth, the models no longer contain directional lights
 RaceLights = {
@@ -205,6 +230,41 @@ RaceLights = {
 		{1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.20000,    0.20000,    0.20000,    1.0,    0.00000,    0.00000,    0.00000},
     },
 }
+
+-- New races light like the stock race whose scene they use
+RaceLights.THINHUMAN = RaceLights.HUMAN;
+RaceLights.CULTIST = RaceLights.SCOURGE;
+RaceLights.MANARI = RaceLights.BLOODELF;
+RaceLights.SETHRAK = RaceLights.HUMAN; -- CoA 1.9.9
+RaceLights.SUREKI = RaceLights.NIGHTELF; -- CoA 1.9.9
+RaceLights.DREADLORD = RaceLights.SCOURGE; -- CoA 1.9.9
+RaceLights.TITAN = RaceLights.DWARF; -- CoA 1.9.9
+RaceLights.FUNGARIAN = RaceLights.NIGHTELF; -- CoA 1.9.9
+RaceLights.SABERON = RaceLights.NIGHTELF; -- CoA 1.9.9
+RaceLights.DRAKONID = RaceLights.ORC; -- CoA 1.9.9
+RaceLights.SPORELING = RaceLights.GNOME; -- CoA 1.9.9
+RaceLights.STORMFORGED = RaceLights.DWARF; -- CoA 1.9.9
+RaceLights.MOARG = RaceLights.ORC; -- CoA 1.9.9
+RaceLights.NERUBIAN = RaceLights.SCOURGE; -- CoA 1.9.9
+RaceLights.LICH = RaceLights.SCOURGE; -- CoA 1.9.9
+RaceLights.MOGU = RaceLights.HUMAN; -- CoA 1.9.9
+RaceLights.LOSTONE = RaceLights.DRAENEI; -- CoA 1.9.9
+RaceLights.DRAKKIN = RaceLights.HUMAN; -- CoA 1.9.9
+RaceLights.ALLIANCEORC = RaceLights.HUMAN; -- CoA 1.9.9
+RaceLights.HARPY = RaceLights.TAUREN; -- CoA 1.9.9
+RaceLights.ILLIDARIBLOODELF = RaceLights.BLOODELF; -- CoA 1.9.9
+RaceLights.ILLIDARINIGHTELF = RaceLights.NIGHTELF; -- CoA 1.9.9
+RaceLights.JINYU = RaceLights.NIGHTELF; -- CoA 1.9.9
+RaceLights.TWOHEADEDOGRE = RaceLights.ORC; -- CoA 1.9.9
+RaceLights.GRUMMLE = RaceLights.DWARF; -- CoA 1.9.9
+RaceLights.ELUNECHOSEN = RaceLights.NIGHTELF; -- CoA 1.9.9
+
+-- Horde Earthen use the Orc scene: ORC's lights with more ambient and stronger directionals, to make them brighter
+RaceLights.HORDEEARTHEN = {
+	{1,     0,  0.00000,        0.00000,        -1.00000,   1.0,    0.40000,    0.40000,    0.40000,    1.0,    0.00000,    0.00000,    0.00000},
+	{1,     0,  -0.74919,       0.35208,        -0.56103,   1.0,    0.00000,    0.00000,    0.00000,    1.5,    0.44706,    0.54510,    0.73725},
+	{1,     0,  0.53162,        -0.84340,       0.07780,    1.0,    0.00000,    0.00000,    0.00000,    2.5,    0.55,       0.338625,   0.148825},
+};
 
 -- indicies for adding lights ModelFFX:Add*Light
 LIGHT_LIVE  = 0;
@@ -488,20 +548,59 @@ end
 -- Background scenes for races that have none of their own (the stock race whose start area they share)
 GlueBackgroundFallback = {
 	["MECHAGNOME"] = "Dwarf", ["ALLIANCEEARTHEN"] = "Dwarf",
-	["VOIDELF"] = "Human", ["VRYKUL"] = "Human", ["THINHUMAN"] = "Human",
+	["VOIDELF"] = "Human", ["VRYKUL"] = "KulTiran", ["THINHUMAN"] = "Human",
 	["NIGHTBORNE"] = "BloodElf", ["DARKFALLEN"] = "Scourge", ["TAUNKA"] = "Tauren",
 	["FURBOLG"] = "NightElf",
 	["HORDEEARTHEN"] = "Orc", ["ZANDALARITROLL"] = "Orc", ["SLIMEGIANT"] = "Ogre",
 	["FELORC"] = "Orc", ["SKELETON"] = "Scourge", ["FORESTTROLL"] = "Orc", ["NORTHRENDSKELETON"] = "Scourge",
 	["ICETROLL"] = "Orc", ["QIRAJI"] = "Orc", ["EREDAR"] = "Draenei", ["ARAKKOA"] = "Draenei",
-	["FELELF"] = "BloodElf", ["QUILLBOAR"] = "Tauren", ["CENTAUR"] = "Tauren", ["DEMON"] = "BloodElf",
+	["FELELF"] = "BloodElf", ["QUILLBOAR"] = "Tauren", ["DEMON"] = "BloodElf",
 	["SATYR"] = "NightElf", ["GNOLL"] = "Human", ["BEHOLDER"] = "Dwarf", ["SHIVAN"] = "Draenei",
 	["HOZEN"] = "Human", ["SYLVARI"] = "NightElf", ["MANTID"] = "Tauren", ["ETHEREAL"] = "NightElf",
-	["KYRIAN"] = "NightElf", ["VENTHYR"] = "Scourge", ["BANSHEE"] = "Scourge", ["FACELESSONE"] = "Orc",
-	["ALLIANCEDRACTHYR"] = "Human", ["HORDEDRACTHYR"] = "Orc",
+	["BANSHEE"] = "Scourge", ["FACELESSONE"] = "Orc",
+	["ALLIANCEDRACTHYR"] = "KulTiran", ["HORDEDRACTHYR"] = "Ogre",
 	["ALLIANCEHARANIR"] = "NightElf", ["HORDEHARANIR"] = "Orc",
 	["ALLIANCESKYBORNE"] = "Human", ["HORDESKYBORNE"] = "BloodElf",
 	["CULTIST"] = "Scourge", ["MANARI"] = "BloodElf",
+	["SETHRAK"] = "Human", -- CoA 1.9.9
+	["SUREKI"] = "NightElf", -- CoA 1.9.9
+	["DREADLORD"] = "Scourge", -- CoA 1.9.9
+	["TITAN"] = "Dwarf", -- CoA 1.9.9
+	["FUNGARIAN"] = "NightElf", -- CoA 1.9.9
+	["SABERON"] = "NightElf", -- CoA 1.9.9
+	["DRAKONID"] = "Orc", -- CoA 1.9.9
+	["SPORELING"] = "Gnome", -- CoA 1.9.9
+	["STORMFORGED"] = "Dwarf", -- CoA 1.9.9
+	["MOARG"] = "Orc", -- CoA 1.9.9
+	["NERUBIAN"] = "Scourge", -- CoA 1.9.9
+	["LICH"] = "Scourge", -- CoA 1.9.9
+	["MOGU"] = "Human", -- CoA 1.9.9
+	["LOSTONE"] = "Draenei", -- CoA 1.9.9
+	["DRAKKIN"] = "Human", -- CoA 1.9.9
+	["ALLIANCEORC"] = "Human", -- CoA 1.9.9
+	["HARPY"] = "Tauren", -- CoA 1.9.9
+	["ILLIDARIBLOODELF"] = "BloodElf", -- CoA 1.9.9
+	["ILLIDARINIGHTELF"] = "NightElf", -- CoA 1.9.9
+	["JINYU"] = "NightElf", -- CoA 1.9.9
+	["TWOHEADEDOGRE"] = "Orc", -- CoA 1.9.9
+	["GRUMMLE"] = "Dwarf", -- CoA 1.9.9
+	["ELUNECHOSEN"] = "NightElf", -- CoA 1.9.9
+};
+
+-- Races with a scene of their own: the scene of the stock race in brackets with the camera moved back (or forward)
+-- by the factor, made with tools/patch_eyes/make_ui_scene.py (factors from the races' heights, adjusted in game)
+GlueRaceScenes = {
+	["DARKFALLEN"] = "Darkfallen", -- Scourge 1.25
+	["NORTHRENDSKELETON"] = "NorthrendSkeleton", -- Scourge 2.05
+	["DEMON"] = "Demon", -- BloodElf 2.15
+	["MANTID"] = "Mantid", -- Tauren 1.25
+	["BANSHEE"] = "Banshee", -- Scourge 1.4
+	["FACELESSONE"] = "FacelessOne", -- Orc 2.9
+	["MANARI"] = "Manari", -- BloodElf 1.25
+	["SHIVAN"] = "Shivan", -- Draenei 1.45
+	["BEHOLDER"] = "Beholder", -- Dwarf 1.35
+	["VRYKUL"] = "Vrykul", -- KulTiran 1.8
+	["ETHEREAL"] = "Ethereal", -- NightElf 1.45
 };
 
 -- Death knights share one class scene; these races are too tall for its camera and get a copy with the
@@ -509,7 +608,7 @@ GlueBackgroundFallback = {
 -- file string is the second value of GetCreateBackgroundModel()/GetSelectBackgroundModel() (patched client).
 TallDeathKnightRaces = {
 	["OGRE"] = true, ["ZANDALARITROLL"] = true, ["KULTIRAN"] = true, ["HIGHMOUNTAINTAUREN"] = true,
-	["TUSKARR"] = true,
+	["TUSKARR"] = true, ["KYRIAN"] = true, ["ALLIANCEPANDAREN"] = true, ["VENTHYR"] = true, ["CENTAUR"] = true,
 };
 
 -- Function to set the background model for character select and create screens
@@ -546,6 +645,10 @@ function SetBackgroundModel(model, name, race)
 		name = "Naga";
 	end
 
+	if (name == "Nightborne" or name == "NIGHTBORNE") then
+		name = "Naga";
+	end
+
 	if (name == "Zandalari Troll" or name == "ZANDALARI TROLL" or name == "ZANDALARI_TROLL" or name == "ZandalariTroll") then
 		name = "Ogre";
 	end
@@ -563,6 +666,8 @@ function SetBackgroundModel(model, name, race)
 	end
 
 	-- Tuskarr are tall: UI_Tuskarr is the Dwarf scene with the camera pulled back (make_ui_scene.py at 1.45)
+	-- Very tall races have their own scene too, further back (make_ui_scene.py): UI_Kyrian is NightElf at 1.6,
+	-- UI_Venthyr is Scourge at 1.65, UI_Centaur is HighmountainTauren at 2.0 (1.38 on its 1.45 scene)
 
 	if (name == "AlliancePandaren" or name == "Alliance Pandaren" or name == "Alliance_Pandaren" or name == "ALLIANCEPANDAREN" or name == "ALLIANCE PANDAREN" or name == "ALLIANCE_PANDAREN") then
 		name = "Pandaren"; -- MoP's Pandaren scene (UI_Pandaren, in WHE-common), for every Pandaren race
@@ -594,6 +699,7 @@ function SetBackgroundModel(model, name, race)
 
 	-- races without a scene of their own use the scene of the stock race whose start area they share
 	name = GlueBackgroundFallback[strupper(name)] or name;
+	name = GlueRaceScenes[nameupper] or name;
 
     local path = "Interface\\Glues\\Models\\UI_"..name.."\\UI_"..name..".m2";
 	if ( model == CharacterCreate ) then
@@ -700,3 +806,5 @@ function UpgradeAccount()
 	PlaySound("gsLoginNewAccount");
 	LaunchURL(AUTH_NO_TIME_URL);
 end
+
+

@@ -325,6 +325,7 @@
 						</Layers>
 						<Scripts>
 							<OnClick>
+								CharacterSelectSearchBox:ClearFocus();
 								AddonList:Show();
 							</OnClick>
 							<OnUpdate>
@@ -423,7 +424,7 @@
 					</Button>
                     <Frame name="CharacterSelectCharacterFrame" enableMouseWheel="true">
                         <Size>
-                            <AbsDimension x="280" y="642"/>
+                            <AbsDimension x="280" y="667"/>
                         </Size>
                         <Anchors>
                             <Anchor point="TOPRIGHT">
@@ -453,6 +454,15 @@
                                         <Anchor point="RIGHT">
                                             <Offset>
                                                 <AbsDimension x="-8" y="0"/>
+                                            </Offset>
+                                        </Anchor>
+                                    </Anchors>
+                                </FontString>
+                                <FontString name="CharSelectSearchNoResults" inherits="GlueFontDisableSmall" text="CHARACTER_SEARCH_NO_RESULTS" hidden="true">
+                                    <Anchors>
+                                        <Anchor point="TOP">
+                                            <Offset>
+                                                <AbsDimension x="0" y="-105"/>
                                             </Offset>
                                         </Anchor>
                                     </Anchors>
@@ -491,6 +501,107 @@
                                 </Scripts>
                             </Button>
 
+                            <!-- ===================================================== -->
+                            <!-- CHARACTER SEARCH                                      -->
+                            <!-- ===================================================== -->
+
+                            <EditBox name="CharacterSelectSearchBox" letters="64" autoFocus="false" ignoreArrows="true">
+                                <Size>
+                                    <AbsDimension x="212" y="32"/>
+                                </Size>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT">
+                                        <Offset>
+                                            <AbsDimension x="34" y="-54"/>
+                                        </Offset>
+                                    </Anchor>
+                                </Anchors>
+                                <TextInsets>
+                                    <AbsInset left="0" right="18" top="0" bottom="0"/>
+                                </TextInsets>
+                                <Layers>
+                                    <Layer level="BACKGROUND">
+                                        <Texture name="$parentLeft" file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+                                            <Size>
+                                                <AbsDimension x="75" y="32"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="LEFT">
+                                                    <Offset>
+                                                        <AbsDimension x="-10" y="0"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                            <TexCoords left="0" right="0.29296875" top="0" bottom="1.0"/>
+                                        </Texture>
+                                        <Texture name="$parentRight" file="Interface\ChatFrame\UI-ChatInputBorder-Right">
+                                            <Size>
+                                                <AbsDimension x="75" y="32"/>
+                                            </Size>
+                                            <Anchors>
+                                                <Anchor point="RIGHT">
+                                                    <Offset>
+                                                        <AbsDimension x="10" y="0"/>
+                                                    </Offset>
+                                                </Anchor>
+                                            </Anchors>
+                                            <TexCoords left="0.70703125" right="1.0" top="0" bottom="1.0"/>
+                                        </Texture>
+                                        <Texture name="$parentMiddle" file="Interface\ChatFrame\UI-ChatInputBorder-Left">
+                                            <Anchors>
+                                                <Anchor point="TOPLEFT" relativeTo="$parentLeft" relativePoint="TOPRIGHT"/>
+                                                <Anchor point="BOTTOMRIGHT" relativeTo="$parentRight" relativePoint="BOTTOMLEFT"/>
+                                            </Anchors>
+                                            <TexCoords left="0.25" right="0.29296875" top="0" bottom="1.0"/>
+                                        </Texture>
+                                    </Layer>
+                                    <Layer level="ARTWORK">
+                                        <FontString name="$parentPlaceholder" inherits="GlueFontDisableSmall" justifyH="LEFT" text="CHARACTER_SEARCH_PLACEHOLDER">
+                                            <Anchors>
+                                                <Anchor point="LEFT"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Frames>
+                                    <Button name="$parentClearButton" hidden="true">
+                                        <Size>
+                                            <AbsDimension x="22" y="22"/>
+                                        </Size>
+                                        <Anchors>
+                                            <Anchor point="RIGHT">
+                                                <Offset>
+                                                    <AbsDimension x="3" y="0"/>
+                                                </Offset>
+                                            </Anchor>
+                                        </Anchors>
+                                        <Scripts>
+                                            <OnClick>
+                                                CharacterSelectSearchBox:SetText("");
+                                                CharacterSelectSearchBox:SetFocus();
+                                            </OnClick>
+                                        </Scripts>
+                                        <NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+                                        <PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+                                        <HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+                                    </Button>
+                                </Frames>
+                                <Scripts>
+                                    <OnTextChanged>
+                                        CharacterSelectSearch_OnTextChanged(self);
+                                    </OnTextChanged>
+                                    <OnEnterPressed>
+                                        self:ClearFocus();
+                                    </OnEnterPressed>
+                                    <OnEscapePressed>
+                                        CharacterSelectSearch_OnEscapePressed(self);
+                                    </OnEscapePressed>
+                                    <OnTabPressed>
+                                        self:ClearFocus();
+                                    </OnTabPressed>
+                                </Scripts>
+                                <FontString inherits="GlueFontHighlightSmall"/>
+                            </EditBox>
 
                             <!-- ===================================================== -->
                             <!-- SCROLL FRAME (drives the scrollbar only; the rows below -->
@@ -504,7 +615,7 @@
                                 <Anchors>
                                     <Anchor point="TOPLEFT">
                                         <Offset>
-                                            <AbsDimension x="24" y="-65"/>
+                                            <AbsDimension x="24" y="-90"/>
                                         </Offset>
                                     </Anchor>
                                 </Anchors>
@@ -535,7 +646,7 @@
 
                             <Button name="CharSelectCharacterButton1" inherits="CharSelectCharacterButtonTemplate" id="1">
                                 <Size><AbsDimension x="226" y="70"/></Size>
-                                <Anchors><Anchor point="TOPLEFT" relativeTo="CharacterSelectCharacterFrame" relativePoint="TOPLEFT"><Offset><AbsDimension x="24" y="-65"/></Offset></Anchor></Anchors>
+                                <Anchors><Anchor point="TOPLEFT" relativeTo="CharacterSelectCharacterFrame" relativePoint="TOPLEFT"><Offset><AbsDimension x="24" y="-90"/></Offset></Anchor></Anchors>
                             </Button>
                             <Button name="CharSelectCharacterCustomize1" inherits="CharSelectCharacterCustomizeTemplate" id="1">
                                 <Anchors><Anchor point="RIGHT" relativeTo="CharSelectCharacterButton1" relativePoint="LEFT"><Offset><AbsDimension x="8" y="0"/></Offset></Anchor></Anchors>

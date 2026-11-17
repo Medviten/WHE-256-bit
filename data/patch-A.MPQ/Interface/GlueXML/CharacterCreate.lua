@@ -74,26 +74,50 @@ RACE_ICON_TCOORDS = {
 	["NORTHRENDSKELETON_MALE"]    = {0.03125, 0.0625,  0.25, 0.5}, -- placeholder: the Scourge icon
 	["ICETROLL_MALE"]             = {0.0625,  0.09375, 0.25, 0.5}, -- placeholder: the Troll icon
 	["QIRAJI_MALE"]               = {0.09375, 0.125,   0.25, 0.5}, -- placeholder: the Orc icon
-	["EREDAR_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["EREDAR_MALE"]               = {0.65625, 0.6875,  0,    0.25}, -- Kalibro's Eredar icon
 	["ARAKKOA_MALE"]              = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
 	["FELELF_MALE"]               = {0.125,   0.15625, 0.25, 0.5}, -- placeholder: the BloodElf icon
 	["QUILLBOAR_MALE"]            = {0,       0.03125, 0.25, 0.5}, -- placeholder: the Tauren icon
-	["CENTAUR_MALE"]              = {0,       0.03125, 0.25, 0.5}, -- placeholder: the Tauren icon
+	["CENTAUR_MALE"]              = {0.75,    0.78125, 0,    0.25}, -- Esteria's Centaur icon
 	["DEMON_MALE"]                = {0.125,   0.15625, 0.25, 0.5}, -- placeholder: the BloodElf icon
 	["SATYR_MALE"]                = {0.09375, 0.125,   0,    0.25}, -- placeholder: the NightElf icon
-	["GNOLL_MALE"]                = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
+	["GNOLL_MALE"]                = {0.71875, 0.75,    0,    0.25}, -- Kalibro's Gnoll icon
 	["BEHOLDER_MALE"]             = {0.0625,  0.09375, 0,    0.25}, -- placeholder: the Gnome icon
 	["SHIVAN_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
 	["HOZEN_MALE"]                = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
 	["SYLVARI_MALE"]              = {0.09375, 0.125,   0,    0.25}, -- placeholder: the NightElf icon
 	["ETHEREAL_MALE"]             = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
-	["KYRIAN_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["KYRIAN_MALE"]               = {0.78125, 0.8125,  0,    0.25}, -- Esteria's Kyrian icon
 	["MANTID_MALE"]               = {0,       0.03125, 0.25, 0.5}, -- placeholder: the Tauren icon
-	["VENTHYR_MALE"]              = {0.03125, 0.0625,  0.25, 0.5}, -- placeholder: the Undead icon
+	["VENTHYR_MALE"]              = {0.8125,  0.84375, 0,    0.25}, -- Esteria's Venthyr icon
 	["BANSHEE_MALE"]              = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the female Undead icon (one female body)
 	["FACELESSONE_MALE"]          = {0.09375, 0.125,   0.25, 0.5}, -- placeholder: the Orc icon
-	["CULTIST_MALE"]               = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
-	["MANARI_MALE"]                = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["THINHUMAN_MALE"]            = {0.6875,  0.71875, 0,    0.25}, -- Kalibro's Thin Human icon
+	["CULTIST_MALE"]              = {0,       0.03125, 0,    0.25}, -- placeholder: the Human icon
+	["MANARI_MALE"]               = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon
+	["SETHRAK_MALE"]          = {0.84375, 0.875,   0,    0.25}, -- Ilusixn's CoA 1.9.9 icon
+	["SUREKI_MALE"]               = {0.09375, 0.125,   0,    0.25}, -- placeholder: the Nightelf icon -- CoA 1.9.9
+	["DREADLORD_MALE"]            = {0.03125, 0.0625,  0.25,  0.5}, -- placeholder: the Scourge icon -- CoA 1.9.9
+	["TITAN_MALE"]                = {0.03125, 0.0625,  0,    0.25}, -- placeholder: the Dwarf icon -- CoA 1.9.9
+	["FUNGARIAN_MALE"]            = {0.09375, 0.125,   0,    0.25}, -- placeholder: the Nightelf icon -- CoA 1.9.9
+	["SABERON_MALE"]          = {0.90625, 0.9375,  0,    0.25}, -- Ilusixn's CoA 1.9.9 icon
+	["DRAKONID_MALE"]         = {0.9375,  0.96875, 0.25, 0.5}, -- Ilusixn's CoA 1.9.9 icon
+	["SPORELING_MALE"]            = {0.0625,  0.09375, 0,    0.25}, -- placeholder: the Gnome icon -- CoA 1.9.9
+	["STORMFORGED_MALE"]          = {0.03125, 0.0625,  0,    0.25}, -- placeholder: the Dwarf icon -- CoA 1.9.9
+	["MOARG_MALE"]                = {0.09375, 0.125,   0.25,  0.5}, -- placeholder: the Orc icon -- CoA 1.9.9
+	["NERUBIAN_MALE"]             = {0.03125, 0.0625,  0.25,  0.5}, -- placeholder: the Scourge icon -- CoA 1.9.9
+	["LICH_MALE"]                 = {0.03125, 0.0625,  0.25,  0.5}, -- placeholder: the Scourge icon -- CoA 1.9.9
+	["MOGU_MALE"]                 = {0.09375, 0.125,   0.25,  0.5}, -- placeholder: the Orc icon -- CoA 1.9.9
+	["LOSTONE_MALE"]              = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon -- CoA 1.9.9
+	["DRAKKIN_MALE"]          = {0.875,   0.90625, 0,    0.25}, -- Ilusixn's CoA 1.9.9 icon
+	["ALLIANCEORC_MALE"]          = {0.09375, 0.125,   0.25,  0.5}, -- placeholder: the Orc icon -- CoA 1.9.9
+	["HARPY_MALE"]                = {0.125,   0.15625, 0.25,  0.5}, -- placeholder: the Bloodelf icon -- CoA 1.9.9
+	["ILLIDARIBLOODELF_MALE"]     = {0.125,   0.15625, 0.25,  0.5}, -- placeholder: the Bloodelf icon -- CoA 1.9.9
+	["ILLIDARINIGHTELF_MALE"]     = {0.09375, 0.125,   0,    0.25}, -- placeholder: the Nightelf icon -- CoA 1.9.9
+	["JINYU_MALE"]                = {0.125,   0.15625, 0,    0.25}, -- placeholder: the Draenei icon -- CoA 1.9.9
+	["TWOHEADEDOGRE_MALE"]        = {0.5,     0.53125, 0.25,  0.5}, -- placeholder: the Ogre icon -- CoA 1.9.9
+	["GRUMMLE_MALE"]              = {0.0625,  0.09375, 0,    0.25}, -- placeholder: the Gnome icon -- CoA 1.9.9
+	["ELUNECHOSEN_MALE"]          = {0.21875, 0.25,    0.25,  0.5}, -- placeholder: the Nightborne icon -- CoA 1.9.9
 
 	["HUMAN_FEMALE"]              = {0,       0.03125, 0.5,  0.75},
 	["GILNEAN_FEMALE"]            = {0,       0.03125, 0.5,  0.75},
@@ -146,33 +170,69 @@ RACE_ICON_TCOORDS = {
 	["NORTHRENDSKELETON_FEMALE"]  = {0.03125, 0.0625,  0.25, 0.5}, -- male-only race: the male icon
 	["ICETROLL_FEMALE"]           = {0.0625,  0.09375, 0.25, 0.5}, -- male-only race: the male icon
 	["QIRAJI_FEMALE"]             = {0.09375, 0.125,   0.75, 1}, -- placeholder: the Orc icon
-	["EREDAR_FEMALE"]             = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
+	["EREDAR_FEMALE"]             = {0.65625, 0.6875,  0.5,  0.75}, -- Kalibro's Eredar icon
 	["ARAKKOA_FEMALE"]            = {0.125,   0.15625, 0,    0.25}, -- male-only race: the male icon
 	["FELELF_FEMALE"]             = {0.125,   0.15625, 0.75, 1.0}, -- placeholder: the BloodElf icon
 	["QUILLBOAR_FEMALE"]          = {0,       0.03125, 0.75, 1.0}, -- placeholder: the Tauren icon
-	["CENTAUR_FEMALE"]            = {0,       0.03125, 0.75, 1.0}, -- placeholder: the Tauren icon
+	["CENTAUR_FEMALE"]            = {0.75,    0.78125, 0.5,  0.75}, -- Esteria's Centaur icon
 	["DEMON_FEMALE"]              = {0.125,   0.15625, 0.25, 0.5}, -- male-only race: the male icon
 	["SATYR_FEMALE"]              = {0.09375, 0.125,   0.5,  0.75}, -- placeholder: the NightElf icon
-	["GNOLL_FEMALE"]              = {0,       0.03125, 0.5,  0.75}, -- placeholder: the Human icon
+	["GNOLL_FEMALE"]              = {0.71875, 0.75,    0.5,  0.75}, -- Esteria's Gnoll icon
 	["BEHOLDER_FEMALE"]           = {0.0625,  0.09375, 0,    0.25}, -- male-only race: the male icon
 	["SHIVAN_FEMALE"]             = {0.125,   0.15625, 0,    0.25}, -- male-only race: the male icon
 	["HOZEN_FEMALE"]              = {0,       0.03125, 0,    0.25}, -- male-only race: the male icon
 	["SYLVARI_FEMALE"]            = {0.09375, 0.125,   0.5,  0.75}, -- placeholder: the NightElf icon
 	["ETHEREAL_FEMALE"]           = {0.125,   0.15625, 0,    0.25}, -- male-only race: the male icon
-	["KYRIAN_FEMALE"]             = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
+	["KYRIAN_FEMALE"]             = {0.78125, 0.8125,  0.5,  0.75}, -- Esteria's Kyrian icon
 	["MANTID_FEMALE"]             = {0,       0.03125, 0.25, 0.5}, -- male-only race: the male icon
-	["VENTHYR_FEMALE"]            = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the Undead icon
+	["VENTHYR_FEMALE"]            = {0.8125,  0.84375, 0.5,  0.75}, -- Esteria's Venthyr icon
 	["BANSHEE_FEMALE"]            = {0.03125, 0.0625,  0.75, 1.0}, -- placeholder: the Undead icon
 	["FACELESSONE_FEMALE"]        = {0.09375, 0.125,   0.25, 0.5}, -- male-only race: the male icon
-	["CULTIST_FEMALE"]             = {0,       0.03125, 0.5,  0.75}, -- placeholder: the Human icon
-	["MANARI_FEMALE"]              = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
+	["THINHUMAN_FEMALE"]          = {0.6875,  0.71875, 0.5,  0.75}, -- Kalibro's Thin Human icon
+	["CULTIST_FEMALE"]            = {0,       0.03125, 0.5,  0.75}, -- placeholder: the Human icon
+	["MANARI_FEMALE"]             = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon
+	["SETHRAK_FEMALE"]        = {0.84375, 0.875,   0.5,  0.75}, -- Ilusixn's CoA 1.9.9 icon
+	["SUREKI_FEMALE"]             = {0.09375, 0.125,   0.5,  0.75}, -- placeholder: the Nightelf icon -- CoA 1.9.9
+	["DREADLORD_FEMALE"]          = {0.03125, 0.0625,  0.75,  1.0}, -- placeholder: the Scourge icon -- CoA 1.9.9
+	["TITAN_FEMALE"]              = {0.03125, 0.0625,  0.5,  0.75}, -- placeholder: the Dwarf icon -- CoA 1.9.9
+	["FUNGARIAN_FEMALE"]          = {0.09375, 0.125,   0.5,  0.75}, -- placeholder: the Nightelf icon -- CoA 1.9.9
+	["SABERON_FEMALE"]        = {0.90625, 0.9375,  0.5,  0.75}, -- Ilusixn's CoA 1.9.9 icon (the male one)
+	["DRAKONID_FEMALE"]       = {0.9375,  0.96875, 0.75, 1}, -- Ilusixn's CoA 1.9.9 icon
+	["SPORELING_FEMALE"]          = {0.0625,  0.09375, 0.5,  0.75}, -- placeholder: the Gnome icon -- CoA 1.9.9
+	["STORMFORGED_FEMALE"]        = {0.03125, 0.0625,  0.5,  0.75}, -- placeholder: the Dwarf icon -- CoA 1.9.9
+	["MOARG_FEMALE"]              = {0.09375, 0.125,   0.75,  1.0}, -- placeholder: the Orc icon -- CoA 1.9.9
+	["NERUBIAN_FEMALE"]           = {0.03125, 0.0625,  0.75,  1.0}, -- placeholder: the Scourge icon -- CoA 1.9.9
+	["LICH_FEMALE"]               = {0.03125, 0.0625,  0.75,  1.0}, -- placeholder: the Scourge icon -- CoA 1.9.9
+	["MOGU_FEMALE"]               = {0.09375, 0.125,   0.75,  1.0}, -- placeholder: the Orc icon -- CoA 1.9.9
+	["LOSTONE_FEMALE"]            = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon -- CoA 1.9.9
+	["DRAKKIN_FEMALE"]        = {0.875,   0.90625, 0.5,  0.75}, -- Ilusixn's CoA 1.9.9 icon
+	["ALLIANCEORC_FEMALE"]        = {0.09375, 0.125,   0.75,  1.0}, -- placeholder: the Orc icon -- CoA 1.9.9
+	["HARPY_FEMALE"]              = {0.125,   0.15625, 0.75,  1.0}, -- placeholder: the Bloodelf icon -- CoA 1.9.9
+	["ILLIDARIBLOODELF_FEMALE"]   = {0.125,   0.15625, 0.75,  1.0}, -- placeholder: the Bloodelf icon -- CoA 1.9.9
+	["ILLIDARINIGHTELF_FEMALE"]   = {0.09375, 0.125,   0.5,  0.75}, -- placeholder: the Nightelf icon -- CoA 1.9.9
+	["JINYU_FEMALE"]              = {0.125,   0.15625, 0.5,  0.75}, -- placeholder: the Draenei icon -- CoA 1.9.9
+	["TWOHEADEDOGRE_FEMALE"]      = {0.5,     0.53125, 0.75,  1.0}, -- placeholder: the Ogre icon -- CoA 1.9.9
+	["GRUMMLE_FEMALE"]            = {0.0625,  0.09375, 0.5,  0.75}, -- placeholder: the Gnome icon -- CoA 1.9.9
+	["ELUNECHOSEN_FEMALE"]        = {0.21875, 0.25,    0.75,  1.0}, -- placeholder: the Nightborne icon -- CoA 1.9.9
 };
 
--- Fixed button layout for every race, independent of whatever order (or
--- completeness) GetAvailableRaces() returns them in. Add new races here as
--- you add them to your DBCs -- this is what keeps one missing/mis-flagged
--- race from shifting every race after it into the wrong icon slot.
--- Matches the layout documented in CharacterCreate.xml.
+-- Race grid: icons at 75% size, three columns per faction (38px icons 4px
+-- apart, rows 1px apart, before scaling). CharacterCreateEnumerateRaces places
+-- the buttons, replacing their anchors in CharacterCreate.xml. Positions are in
+-- the parent's units; the scale is applied to them when the buttons are placed.
+RACE_GRID_SCALE = 0.75;
+RACE_GRID_TOP = -50;
+RACE_GRID_ROW_HEIGHT = 29.25;
+RACE_GRID_MAX_ROWS = 22;
+RACE_GRID_COLUMNS = {
+	Alliance = { -96.15, -64.65, -33.15 },
+	Horde = { 33.15, 64.65, 96.15 },
+};
+
+-- Display order of the races, independent of whatever order GetAvailableRaces()
+-- returns them in. Add new races here as you add them to your DBCs. Only the
+-- relative order counts: races the DBCs don't have are skipped, and which
+-- column a race goes in comes from its faction (see CharacterCreateEnumerateRaces).
 RACE_VISUAL_SLOTS = {
 	["HUMAN"]                              = 1,
 	["DWARF"]                              = 2,
@@ -193,7 +253,7 @@ RACE_VISUAL_SLOTS = {
 	["HIGHELF"]                            = 17,
 	["BROKEN"]                             = 18,
 	["FURBOLG"]                            = 19,
-	["GILNEAN"]                            = 20,
+	["THINHUMAN"]                          = 20, -- was Gilnean, now only Worgen's altered form (F-027)
 	["VRYKUL"]                             = 21,
 	["TUSKARR"]                            = 22,
 	["ORC"]                                = 23,
@@ -218,32 +278,55 @@ RACE_VISUAL_SLOTS = {
 	["TAUNKA"]                             = 42,
 	["DARKFALLEN"]                         = 43,
 	["SLIMEGIANT"]                         = 44,
-	["EREDAR"]                             = 45, -- Alliance row 12
+	["EREDAR"]                             = 45,
 	["ARAKKOA"]                            = 46,
-	["FELORC"]                             = 47, -- Horde rows 12-13
+	["FELORC"]                             = 47,
 	["SKELETON"]                           = 48,
 	["FORESTTROLL"]                        = 49,
 	["ICETROLL"]                           = 50,
-	["SATYR"]                              = 51, -- Alliance rows 13-14
+	["SATYR"]                              = 51,
 	["GNOLL"]                              = 52,
 	["BEHOLDER"]                           = 53,
 	["SHIVAN"]                             = 54,
-	["NORTHRENDSKELETON"]                  = 55, -- Horde rows 14-16
+	["NORTHRENDSKELETON"]                  = 55,
 	["QIRAJI"]                             = 56,
 	["FELELF"]                             = 57,
 	["QUILLBOAR"]                          = 58,
 	["CENTAUR"]                            = 59,
 	["DEMON"]                              = 60,
-	["HOZEN"]                              = 61, -- Alliance rows 15-16 (CoA Custom 1.9 races)
+	["HOZEN"]                              = 61,
 	["SYLVARI"]                            = 62,
 	["ETHEREAL"]                           = 63,
 	["KYRIAN"]                             = 64,
-	["MANTID"]                             = 65, -- Horde rows 17-18 (CoA Custom 1.9 races)
+	["MANTID"]                             = 65,
 	["VENTHYR"]                            = 66,
 	["BANSHEE"]                            = 67,
 	["FACELESSONE"]                        = 68,
-	["CULTIST"]                            = 69, -- Horde row 19 (Alpha-Worgen package races)
+	["CULTIST"]                            = 69, -- Horde (Alpha-Worgen package races)
 	["MANARI"]                             = 70,
+	["SETHRAK"]                            = 71, -- CoA 1.9.9
+	["SUREKI"]                             = 72, -- CoA 1.9.9
+	["DREADLORD"]                          = 73, -- CoA 1.9.9
+	["TITAN"]                              = 74, -- CoA 1.9.9
+	["FUNGARIAN"]                          = 75, -- CoA 1.9.9
+	["SABERON"]                            = 76, -- CoA 1.9.9
+	["DRAKONID"]                           = 77, -- CoA 1.9.9
+	["SPORELING"]                          = 78, -- CoA 1.9.9
+	["STORMFORGED"]                        = 79, -- CoA 1.9.9
+	["MOARG"]                              = 80, -- CoA 1.9.9
+	["NERUBIAN"]                           = 81, -- CoA 1.9.9
+	["LICH"]                               = 82, -- CoA 1.9.9
+	["MOGU"]                               = 83, -- CoA 1.9.9
+	["LOSTONE"]                            = 84, -- CoA 1.9.9
+	["DRAKKIN"]                            = 85, -- CoA 1.9.9
+	["ALLIANCEORC"]                        = 86, -- CoA 1.9.9
+	["HARPY"]                              = 87, -- CoA 1.9.9
+	["ILLIDARIBLOODELF"]                   = 88, -- CoA 1.9.9
+	["ILLIDARINIGHTELF"]                   = 89, -- CoA 1.9.9
+	["JINYU"]                              = 90, -- CoA 1.9.9
+	["TWOHEADEDOGRE"]                      = 91, -- CoA 1.9.9
+	["GRUMMLE"]                            = 92, -- CoA 1.9.9
+	["ELUNECHOSEN"]                        = 93, -- CoA 1.9.9
 };
 
 -- Safe accessor for RACE_ICON_TCOORDS: falls back to the human icon instead
@@ -363,9 +446,11 @@ end
 
 function CharacterCreateEnumerateRaces(...)
 	CharacterCreate.numRaces = select("#", ...)/3;
-	if ( CharacterCreate.numRaces > MAX_RACES ) then
-		message("Too many races!  Update MAX_RACES");
-		return;
+	-- More races than CharacterCreate.xml has buttons for: make the rest.
+	while ( CharacterCreate.numRaces > MAX_RACES ) do
+		MAX_RACES = MAX_RACES + 1;
+		local button = CreateFrame("CheckButton", "CharacterCreateRaceButton"..MAX_RACES, CharacterCreateRaceButton1:GetParent(), "CharacterCreateRaceButtonTemplate");
+		button:SetID(MAX_RACES);
 	end
 	local gender;
 	local selectedSex = GetSelectedSex();
@@ -375,45 +460,54 @@ function CharacterCreateEnumerateRaces(...)
 		gender = "FEMALE";
 	end
 
-	-- Start clean: hide every button first. A race that's absent from the
-	-- list entirely (rather than merely disabled) will now just leave its
-	-- own slot hidden instead of letting every race after it slide over.
+	-- Start clean: hide every button first, and forget its race, so a button
+	-- left unused below can't be mistaken for a selected race.
 	for i=1, MAX_RACES, 1 do
-		_G["CharacterCreateRaceButton"..i]:Hide();
+		local button = _G["CharacterCreateRaceButton"..i];
+		button:Hide();
+		button.raceIndex = nil;
 	end
 
 	-- realIndex is the race's position in the sequence GetAvailableRaces()
 	-- handed us -- this is what SetSelectedRace()/SetCharacterRace() expect
-	-- to receive, and it can differ from the button's fixed visual slot.
-	local slotData = {};
-	local usedSlots = {};
-	local unslotted = {};
+	-- to receive, and it can differ from the button's position.
+	local factionRaces = { Alliance = {}, Horde = {} };
 
 	for i=1, select("#", ...), 3 do
 		local realIndex = (i - 1)/3 + 1;
 		local raceName   = select(i, ...);
 		local fileString = select(i+1, ...);
 		local enabled    = select(i+2, ...);
-		local slot = RACE_VISUAL_SLOTS[strupper(fileString)];
-		if ( slot ) then
-			slotData[slot] = {realIndex, raceName, fileString, enabled};
-			usedSlots[slot] = true;
-		else
-			-- A race we haven't added to RACE_VISUAL_SLOTS yet -- rather than
-			-- drop it, queue it for the first free slot below so it still
-			-- shows up somewhere instead of silently vanishing.
-			table.insert(unslotted, {realIndex, raceName, fileString, enabled});
-		end
+		local _, faction = GetFactionForRace(realIndex);
+		-- A race we haven't added to RACE_VISUAL_SLOTS yet goes after the
+		-- listed ones rather than vanishing.
+		local order = RACE_VISUAL_SLOTS[strupper(fileString)] or (MAX_RACES + realIndex);
+		local races = factionRaces[faction] or factionRaces.Alliance;
+		table.insert(races, {realIndex, raceName, fileString, enabled, order});
 	end
 
-	local nextFreeSlot = 1;
-	for _, data in ipairs(unslotted) do
-		while ( usedSlots[nextFreeSlot] ) do
-			nextFreeSlot = nextFreeSlot + 1;
+	-- Pack each faction into its own columns, so races this patch doesn't have
+	-- leave no holes in the grid. Any button will do: they're all placed here.
+	local slotData = {};
+	local slot = 0;
+	for _, faction in ipairs({ "Alliance", "Horde" }) do
+		local races = factionRaces[faction];
+		local columns = RACE_GRID_COLUMNS[faction];
+		table.sort(races, function(a, b) return a[5] < b[5]; end);
+		for position, data in ipairs(races) do
+			if ( position > #columns * RACE_GRID_MAX_ROWS ) then
+				message("Too many "..faction.." races!  They don't fit the race grid");
+				break;
+			end
+			slot = slot + 1;
+			slotData[slot] = data;
+			local button = _G["CharacterCreateRaceButton"..slot];
+			local column = (position - 1) % #columns + 1;
+			local row = math.floor((position - 1) / #columns);
+			button:SetScale(RACE_GRID_SCALE);
+			button:ClearAllPoints();
+			button:SetPoint("TOP", button:GetParent(), "TOP", columns[column] / RACE_GRID_SCALE, (RACE_GRID_TOP - row * RACE_GRID_ROW_HEIGHT) / RACE_GRID_SCALE);
 		end
-		slotData[nextFreeSlot] = data;
-		usedSlots[nextFreeSlot] = true;
-		nextFreeSlot = nextFreeSlot + 1;
 	end
 
 	for slot=1, MAX_RACES, 1 do
