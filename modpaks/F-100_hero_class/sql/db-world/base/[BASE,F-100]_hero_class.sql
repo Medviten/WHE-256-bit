@@ -26,6 +26,7 @@ INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`,
 (0, @HeroMask, 414, 0, 'Hero - Leather'),
 (0, @HeroMask, 433, 0, 'Hero - Shield');
 
--- Gossip that depends on the class, e.g. a class trainer's offer to train you
+-- Gossip (14, 15) and quests (19) that depend on the class, e.g. a class trainer's offer to train you or a class chain.
+-- Negated conditions ("not this class") are left alone, or a Hero would be shut out of them
 UPDATE IGNORE `conditions` SET `ConditionValue1` = `ConditionValue1` | @HeroMask
-WHERE `SourceTypeOrReferenceId` IN (14, 15) AND `ConditionTypeOrReference` = 15 AND `ConditionValue1` != 0;
+WHERE `SourceTypeOrReferenceId` IN (14, 15, 19) AND `ConditionTypeOrReference` = 15 AND `ConditionValue1` != 0 AND `NegativeCondition` = 0;

@@ -1,4 +1,4 @@
--- [F-100] hero_class: charstartoutfit: every race starts in the Human Warrior's outfit (keep after the race modpaks)
+-- [F-100] hero_class: charstartoutfit: every race starts in the Human Warrior's outfit, with a one-handed sword (keep after the race modpaks)
 
 SET @CharStartOutfitID = (SELECT COALESCE(MAX(id), 0) FROM `charstartoutfit`);
 DELETE FROM `charstartoutfit` WHERE `class` = @Hero;
@@ -6,3 +6,6 @@ INSERT INTO `charstartoutfit` (`id`, `race`, `class`, `gender`, `outfit_id`, `it
 SELECT (@CharStartOutfitID := @CharStartOutfitID + 1), r.`race`, @Hero, s.`gender`, s.`outfit_id`, s.`item_1`, s.`item_2`, s.`item_3`, s.`item_4`, s.`item_5`, s.`item_6`, s.`item_7`, s.`item_8`, s.`item_9`, s.`item_10`, s.`item_11`, s.`item_12`, s.`item_13`, s.`item_14`, s.`item_15`, s.`item_16`, s.`item_17`, s.`item_18`, s.`item_19`, s.`item_20`, s.`item_21`, s.`item_22`, s.`item_23`, s.`item_24`, s.`display_item_1`, s.`display_item_2`, s.`display_item_3`, s.`display_item_4`, s.`display_item_5`, s.`display_item_6`, s.`display_item_7`, s.`display_item_8`, s.`display_item_9`, s.`display_item_10`, s.`display_item_11`, s.`display_item_12`, s.`display_item_13`, s.`display_item_14`, s.`display_item_15`, s.`display_item_16`, s.`display_item_17`, s.`display_item_18`, s.`display_item_19`, s.`display_item_20`, s.`display_item_21`, s.`display_item_22`, s.`display_item_23`, s.`display_item_24`, s.`inventory_type_1`, s.`inventory_type_2`, s.`inventory_type_3`, s.`inventory_type_4`, s.`inventory_type_5`, s.`inventory_type_6`, s.`inventory_type_7`, s.`inventory_type_8`, s.`inventory_type_9`, s.`inventory_type_10`, s.`inventory_type_11`, s.`inventory_type_12`, s.`inventory_type_13`, s.`inventory_type_14`, s.`inventory_type_15`, s.`inventory_type_16`, s.`inventory_type_17`, s.`inventory_type_18`, s.`inventory_type_19`, s.`inventory_type_20`, s.`inventory_type_21`, s.`inventory_type_22`, s.`inventory_type_23`, s.`inventory_type_24`
 FROM (SELECT DISTINCT `race` FROM `charbaseinfo`) r
 INNER JOIN `charstartoutfit` s ON s.`race` = @Human AND s.`class` = @Warrior;
+
+-- The Human Warrior's Worn Greatsword (49778, a two-hander) becomes a Worn Shortsword (25): Heroes start with One-Handed Swords only
+UPDATE `charstartoutfit` SET `item_5` = 25, `display_item_5` = 1542, `inventory_type_5` = 21 WHERE `class` = @Hero AND `item_5` = 49778;

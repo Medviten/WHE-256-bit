@@ -8,12 +8,13 @@
 - Has mana, rage, energy and runic power at once. Each spell draws on its own, and extra bars appear below the player frame when they matter. Runes appear once a Death Knight spell is known
 - Equips anything it has the skill for, including class-restricted items and any relic. Armor and weapon skills come from trainers and weapon masters, as for other classes
 - Tames and summons pets of any kind
+- Starts in the Human Warrior's outfit, with a Worn Shortsword in place of the two-handed Worn Greatsword (it starts with One-Handed Swords, Leather and Shield)
 - Other classes aren't affected, and nor are characters on a client or server without the class
 
 ### Spells that aren't normally at a trainer
 What a class starts with and what it gets from its quests are never on its trainers. Later ranks need the first, so `[BASE,F-100]_trainer.sql` adds both for free, in `trainer` rows 190000 + class, which only a Hero can reach. Examples: Fireball, Battle Stance, Summon Voidwalker, Tame Beast and Bear Form.
 
-Class quests stay closed to a Hero, unlike quests for several classes. It doesn't need the shaman's four totems.
+A Hero can take every class quest, each class's own chains included (the trainer rows above still teach the same spells, so the quests are optional). It doesn't need the shaman's four totems.
 
 ### Stats
 Base stats, mana, crit, regeneration, and dodge and parry limits are Paladin's. Attack power is Paladin's plus 1 per Agility, and ranged attack power is Hunter's.
