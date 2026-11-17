@@ -42,17 +42,17 @@ index cffada5..dd204ed 100644
          if (_fieldNotifyFlags & flags[index] ||
                  ((updateType == UPDATETYPE_VALUES ? _changesMask.GetBit(index) : m_uint32Values[index]) && (flags[index] & visibleFlag)))
 diff --git a/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp b/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
-index 149ca6d..00266cf 100644
+index 149ca6d..dd2939e 100644
 --- a/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
 +++ b/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
 @@ -1487,8 +1487,19 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
      UF_FLAG_PRIVATE,                                        // PLAYER_FIELD_GLYPHS_1+5
      UF_FLAG_PRIVATE,                                        // PLAYER_GLYPHS_ENABLED
      UF_FLAG_PRIVATE,                                        // PLAYER_PET_SPELL_POWER
-+    // PLAYER_QUEST_LOG_EXT_1_1 .. PLAYER_END: filled in below
++    // PLAYER_QUEST_LOG_EXT_1_1 .. PLAYER_QUEST_LOG_SIZE: filled in below
  };
  
-+// Custom: the extended quest log fields are all private
++// Custom: the extended quest log fields and PLAYER_QUEST_LOG_SIZE are all private
 +static struct QuestLogExtFieldFlags
 +{
 +    QuestLogExtFieldFlags()
@@ -66,10 +66,10 @@ index 149ca6d..00266cf 100644
  {
      UF_FLAG_PUBLIC,                                         // OBJECT_FIELD_GUID
 diff --git a/src/server/game/Entities/Object/Updates/UpdateFields.h b/src/server/game/Entities/Object/Updates/UpdateFields.h
-index 7f57183..1a0b121 100644
+index 7f57183..f3b90e5 100644
 --- a/src/server/game/Entities/Object/Updates/UpdateFields.h
 +++ b/src/server/game/Entities/Object/Updates/UpdateFields.h
-@@ -389,7 +389,10 @@ enum EUnitFields
+@@ -389,7 +389,12 @@ enum EUnitFields
      PLAYER_FIELD_GLYPHS_1                     = UNIT_END + 0x0492, // Size: 6, Type: INT, Flags: PRIVATE
      PLAYER_GLYPHS_ENABLED                     = UNIT_END + 0x0498, // Size: 1, Type: INT, Flags: PRIVATE
      PLAYER_PET_SPELL_POWER                    = UNIT_END + 0x0499, // Size: 1, Type: INT, Flags: PRIVATE
@@ -77,7 +77,9 @@ index 7f57183..1a0b121 100644
 +    // Custom: quest log slots 25-254 (5 fields each, laid out like PLAYER_QUEST_LOG_1_1), appended so no stock field
 +    // moves. Private; the client takes them from the matching wowdecomp-256-bit build.
 +    PLAYER_QUEST_LOG_EXT_1_1                  = UNIT_END + 0x049A, // Size: 1150, Type: INT, Flags: PRIVATE
-+    PLAYER_END                                = UNIT_END + 0x0918, // Custom: was UNIT_END + 0x049A
++    PLAYER_QUEST_LOG_SIZE                     = UNIT_END + 0x0918, // Size: 1, Type: INT, Flags: PRIVATE (Custom: Quests.LogSize, for the client's GetQuestLogCapacity())
++    PLAYER_FIELD_EXT_PADDING                  = UNIT_END + 0x0919, // Size: 1, Type: INT, Flags: PRIVATE (Custom: always 0, keeps the client's player data a multiple of 8 bytes)
++    PLAYER_END                                = UNIT_END + 0x091A, // Custom: was UNIT_END + 0x049A
  };
  
  enum EGameObjectFields
@@ -193,6 +195,20 @@ index b3228c1..fa1ba74 100644
  void Player::AreaExploredOrEventHappens(uint32 questId)
  {
      if (questId)
+diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
+index a0529ad..d3702b3 100644
+--- a/src/server/game/Entities/Player/PlayerUpdates.cpp
++++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
+@@ -57,6 +57,9 @@ void Player::Update(uint32 p_time)
+ 
+     sScriptMgr->OnPlayerBeforeUpdate(this, p_time);
+ 
++    // Custom: tell the client the quest log size (only sent when it changes, e.g. after .reload config)
++    SetUInt32Value(PLAYER_QUEST_LOG_SIZE, GetQuestLogSize());
++
+     // undelivered mail
+     if (m_nextMailDelivereTime && m_nextMailDelivereTime <= GameTime::GetGameTime().count())
+     {
 diff --git a/src/server/game/Quests/QuestDef.h b/src/server/game/Quests/QuestDef.h
 index 17b286e..3a1a9c1 100644
 --- a/src/server/game/Quests/QuestDef.h

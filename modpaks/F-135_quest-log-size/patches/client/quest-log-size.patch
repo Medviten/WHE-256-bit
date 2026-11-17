@@ -13,7 +13,7 @@ index bfcf9048..c686e6fe 100644
              return 1;
          }
 diff --git a/WoW/Source/Object/ObjectClient/Player_C.cpp b/WoW/Source/Object/ObjectClient/Player_C.cpp
-index 5f60a8a2..3273f6fd 100644
+index 5f60a8a2..7a37a3a8 100644
 --- a/WoW/Source/Object/ObjectClient/Player_C.cpp
 +++ b/WoW/Source/Object/ObjectClient/Player_C.cpp
 @@ -3809,8 +3809,9 @@ int32_t Packet_Group_17(void* param, NETMESSAGE msgId, uint32_t time, CDataStore
@@ -46,7 +46,7 @@ index 5f60a8a2..3273f6fd 100644
      }
  
 +    // Custom: extended quest log slots
-+    for (uint32_t i = offsetof(CGPlayerLocalData, m_playerQuestLogExt); i < sizeof(CGPlayerLocalData); i += sizeof(PlayerQuestLogEntry)) {
++    for (uint32_t i = offsetof(CGPlayerLocalData, m_playerQuestLogExt); i < offsetof(CGPlayerLocalData, m_playerQuestLogExt) + sizeof(CGPlayerLocalData::m_playerQuestLogExt); i += sizeof(PlayerQuestLogEntry)) {
 +        ClntObjMgrSetObjMirrorHandler(this->m_obj->m_guid, ID_PLAYER, i, sizeof(PlayerQuestLogEntry), OnUpdateQuest, nullptr, HANDLER_PRIORITY_NORMAL, 0);
 +    }
 +
@@ -58,7 +58,7 @@ index 5f60a8a2..3273f6fd 100644
      }
  
 +    // Custom: extended quest log slots
-+    for (uint32_t i = offsetof(CGPlayerLocalData, m_playerQuestLogExt); i < sizeof(CGPlayerLocalData); i += sizeof(PlayerQuestLogEntry)) {
++    for (uint32_t i = offsetof(CGPlayerLocalData, m_playerQuestLogExt); i < offsetof(CGPlayerLocalData, m_playerQuestLogExt) + sizeof(CGPlayerLocalData::m_playerQuestLogExt); i += sizeof(PlayerQuestLogEntry)) {
 +        ClntObjMgrUnsetObjMirrorHandler(this->m_obj->m_guid, ID_PLAYER, i, OnUpdateQuest, nullptr);
 +    }
 +
@@ -78,7 +78,7 @@ index 5f60a8a2..3273f6fd 100644
          if (static_cast<int32_t>(entry->m_questId) <= 0 || CGQuestLog::IsQuestExpiredByID(entry->m_questId)) {
              continue;
 diff --git a/WoW/Source/Object/Player.cpp b/WoW/Source/Object/Player.cpp
-index a302dc76..7833aa9c 100644
+index a302dc76..e99bbae1 100644
 --- a/WoW/Source/Object/Player.cpp
 +++ b/WoW/Source/Object/Player.cpp
 @@ -98,6 +98,11 @@ uint32_t CGPlayer::GetSavedIndexFromDataIndex(uint32_t index, uint32_t count, in
@@ -86,8 +86,8 @@ index a302dc76..7833aa9c 100644
              }
          }
 +
-+        // Custom: the extended quest log fields follow the stock local mirror fields
-+        if (index >= 1178 && index < 1178 + PLAYER_QUEST_LOG_EXT_FIELDS) {
++        // Custom: the appended fields (extended quest log, quest log size) follow the stock local mirror fields
++        if (index >= 1178 && index < 1178 + PLAYER_EXT_FIELDS) {
 +            return index - 1178 + sizeof(CGPlayer::s_mirrorFields) / sizeof(CGPlayer::s_mirrorFields[0]) + sizeof(CGPlayer::s_localMirrorFields) / sizeof(CGPlayer::s_localMirrorFields[0]);
 +        }
      }
@@ -98,8 +98,8 @@ index a302dc76..7833aa9c 100644
  // OFFSET: 0x004F5530
  int32_t CGPlayer::TotalFields() {
 -    return CGUnit::TotalFields() + 1043;
-+    // Custom: + the extended quest log fields
-+    return CGUnit::TotalFields() + 1043 + PLAYER_QUEST_LOG_EXT_FIELDS;
++    // Custom: + the appended fields (extended quest log, quest log size)
++    return CGUnit::TotalFields() + 1043 + PLAYER_EXT_FIELDS;
  }
  
  // VERIFY: f3b17437 auto
@@ -121,10 +121,10 @@ index a302dc76..7833aa9c 100644
      return &this->m_player->m_playerQuestLog[slot];
  }
 diff --git a/WoW/Source/Object/Player.h b/WoW/Source/Object/Player.h
-index dff9dafa..1cd0b13f 100644
+index dff9dafa..2f847a18 100644
 --- a/WoW/Source/Object/Player.h
 +++ b/WoW/Source/Object/Player.h
-@@ -8,6 +8,13 @@
+@@ -8,6 +8,16 @@
  
  class CGPlayerLocalData;
  
@@ -134,21 +134,28 @@ index dff9dafa..1cd0b13f 100644
 +static constexpr uint32_t PLAYER_QUEST_LOG_STOCK_SLOTS = 25;
 +static constexpr uint32_t PLAYER_QUEST_LOG_SLOTS = 255;
 +static constexpr uint32_t PLAYER_QUEST_LOG_EXT_FIELDS = (PLAYER_QUEST_LOG_SLOTS - PLAYER_QUEST_LOG_STOCK_SLOTS) * 5;
++// Custom: all fields appended after the stock player fields: the extended quest log, m_playerQuestLogSize and
++// m_playerExtPad
++static constexpr uint32_t PLAYER_EXT_FIELDS = PLAYER_QUEST_LOG_EXT_FIELDS + 2;
 +
  struct PlayerQuestLogEntry {
      /* 0000 */ uint32_t m_questId;
      /* 0004 */ uint32_t m_state;
-@@ -128,6 +135,8 @@ class CGPlayerLocalData : public CGPlayerData {
+@@ -128,6 +138,12 @@ class CGPlayerLocalData : public CGPlayerData {
      /* 1248 */ uint32_t m_playerFieldGlyphs1 [6];
      /* 1260 */ uint32_t m_playerGlyphsEnabled;
      /* 1264 */ uint32_t m_playerPetSpellPower;
 +    // Custom: quest log slots 25-254 (see PLAYER_QUEST_LOG_SLOTS)
 +    /* 1268 */ PlayerQuestLogEntry m_playerQuestLogExt [PLAYER_QUEST_LOG_SLOTS - PLAYER_QUEST_LOG_STOCK_SLOTS];
++    // Custom: the server's Quests.LogSize (0 from a server without it), for GetQuestLogCapacity()
++    /* 2460 */ uint32_t m_playerQuestLogSize;
++    // Custom: keeps the size a multiple of 8 (WOWGUID members align the struct to 8), so it matches the field count
++    /* 2464 */ uint32_t m_playerExtPad;
  };
  
  #endif
 diff --git a/WoW/Source/ObjectMgrClient/Mirror.cpp b/WoW/Source/ObjectMgrClient/Mirror.cpp
-index e87e2e55..b84bd133 100644
+index e87e2e55..510a3db6 100644
 --- a/WoW/Source/ObjectMgrClient/Mirror.cpp
 +++ b/WoW/Source/ObjectMgrClient/Mirror.cpp
 @@ -154,7 +154,7 @@ CGFieldDescriptor UNIT_DESCRIPTORS[89] = {
@@ -156,20 +163,21 @@ index e87e2e55..b84bd133 100644
  
  // STATIC: 0xAC66D8
 -CGFieldDescriptor PLAYER_DESCRIPTORS[215] = {
-+CGFieldDescriptor PLAYER_DESCRIPTORS[216] = { // Custom: + PLAYER_QUEST_LOG_EXT (was 215)
++CGFieldDescriptor PLAYER_DESCRIPTORS[217] = { // Custom: + PLAYER_QUEST_LOG_EXT, PLAYER_QUEST_LOG_SIZE (was 215)
      { "PLAYER_DUEL_ARBITER", 0, 2, 4, 0x1 },
      { "PLAYER_FLAGS", 2, 1, 1, 0x1 },
      { "PLAYER_GUILDID", 3, 1, 1, 0x1 },
-@@ -370,6 +370,7 @@ CGFieldDescriptor PLAYER_DESCRIPTORS[215] = {
+@@ -370,6 +370,8 @@ CGFieldDescriptor PLAYER_DESCRIPTORS[215] = {
      { "PLAYER_FIELD_GLYPHS_1", 1170, 6, 1, 0x2 },
      { "PLAYER_GLYPHS_ENABLED", 1176, 1, 1, 0x2 },
      { "PLAYER_PET_SPELL_POWER", 1177, 1, 1, 0x2 },
 +    { "PLAYER_QUEST_LOG_EXT", 1178, PLAYER_QUEST_LOG_EXT_FIELDS, 1, 0x2 }, // Custom: quest log slots 25-254
++    { "PLAYER_QUEST_LOG_SIZE", 1178 + PLAYER_QUEST_LOG_EXT_FIELDS, 1, 1, 0x2 }, // Custom: Quests.LogSize
  };
  
  // STATIC: 0xAC77A8
 diff --git a/WoW/Source/ObjectMgrClient/Mirror.h b/WoW/Source/ObjectMgrClient/Mirror.h
-index 7360dcf5..0991b515 100644
+index 7360dcf5..9d15a298 100644
 --- a/WoW/Source/ObjectMgrClient/Mirror.h
 +++ b/WoW/Source/ObjectMgrClient/Mirror.h
 @@ -24,7 +24,7 @@ extern CGFieldDescriptor OBJECT_DISCRIPTORS[5];
@@ -177,21 +185,21 @@ index 7360dcf5..0991b515 100644
  extern CGFieldDescriptor CONTAINER_DESCRIPTORS[3];
  extern CGFieldDescriptor UNIT_DESCRIPTORS[89];
 -extern CGFieldDescriptor PLAYER_DESCRIPTORS[215];
-+extern CGFieldDescriptor PLAYER_DESCRIPTORS[216]; // Custom: was 215
++extern CGFieldDescriptor PLAYER_DESCRIPTORS[217]; // Custom: was 215
  extern CGFieldDescriptor GAMEOBJECT_DESCRIPTORS[8];
  extern CGFieldDescriptor DYNAMICOBJECT_DESCRIPTORS[5];
  extern CGFieldDescriptor CORPSE_DESCRIPTORS[10];
 diff --git a/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp b/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp
-index 5489e570..926e0578 100644
+index 5489e570..8e791fce 100644
 --- a/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp
 +++ b/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp
 @@ -39,8 +39,14 @@ static thread_local ObjectMgr* s_curMgr;
  // STATIC: 0x00B4B014
  static ObjectMgr* s_savedObjMgr;
  
-+// Custom: the active player has PLAYER_QUEST_LOG_EXT_FIELDS more fields than stock (1326) for the 255-slot quest
-+// log, which takes the update mask past the stock 42 blocks
-+static constexpr uint32_t ACTIVE_PLAYER_DWORDS = 1326 + PLAYER_QUEST_LOG_EXT_FIELDS;
++// Custom: the active player has PLAYER_EXT_FIELDS more fields than stock (1326) for the 255-slot quest log and its
++// size, which takes the update mask past the stock 42 blocks
++static constexpr uint32_t ACTIVE_PLAYER_DWORDS = 1326 + PLAYER_EXT_FIELDS;
 +static constexpr uint32_t MAX_DIRTY_MASK_BLOCKS = (ACTIVE_PLAYER_DWORDS + 31) / 32;
 +static_assert(ACTIVE_PLAYER_DWORDS * sizeof(uint32_t) == sizeof(CGObjectData) + sizeof(CGUnitData) + sizeof(CGPlayerLocalData), "active player field count");
 +
@@ -254,7 +262,7 @@ index 5489e570..926e0578 100644
  CGObject_C* ClntObjMgrAllocObject(OBJECT_TYPE_ID typeId, WOWGUID guid) {
      if (guid == ClntObjMgrGetActivePlayer()) {
 -        return static_cast<CGObject_C*>(SMemAlloc(sizeof(CGPlayer_C) + s_objDwordCount[ID_PLAYER] * sizeof(uint32_t) + CGPlayer::TotalFields() * sizeof(uint32_t) + 1002 * sizeof(TSList<void>), __FILE__, __LINE__, 0));
-+        return static_cast<CGObject_C*>(SMemAlloc(sizeof(CGPlayer_C) + s_objDwordCount[ID_PLAYER] * sizeof(uint32_t) + CGPlayer::TotalFields() * sizeof(uint32_t) + (1002 + PLAYER_QUEST_LOG_EXT_FIELDS) * sizeof(TSList<void>), __FILE__, __LINE__, 0));
++        return static_cast<CGObject_C*>(SMemAlloc(sizeof(CGPlayer_C) + s_objDwordCount[ID_PLAYER] * sizeof(uint32_t) + CGPlayer::TotalFields() * sizeof(uint32_t) + (1002 + PLAYER_EXT_FIELDS) * sizeof(TSList<void>), __FILE__, __LINE__, 0));
      }
  
      ExpireOldObjects(10000, typeId);
@@ -281,7 +289,7 @@ index 5489e570..926e0578 100644
  
              if (player->IsActivePlayer()) {
 -                FreeMirrorHandlers(player->m_playerLocalMirrorLists, 1002);
-+                FreeMirrorHandlers(player->m_playerLocalMirrorLists, 1002 + PLAYER_QUEST_LOG_EXT_FIELDS);
++                FreeMirrorHandlers(player->m_playerLocalMirrorLists, 1002 + PLAYER_EXT_FIELDS);
              }
          }
  
@@ -789,10 +797,31 @@ index 74b5ce51..fd2c0201 100644
      static uint32_t m_numQuestWatches;
      static int32_t m_timeOffset;
 diff --git a/WoW/Source/Ui/QuestLog_Scripts.cpp b/WoW/Source/Ui/QuestLog_Scripts.cpp
-index 6706a9d6..88ef666a 100644
+index 6706a9d6..ad907c04 100644
 --- a/WoW/Source/Ui/QuestLog_Scripts.cpp
 +++ b/WoW/Source/Ui/QuestLog_Scripts.cpp
-@@ -267,11 +267,12 @@ static int32_t Script_GetQuestTimers(lua_State* L) {
+@@ -106,6 +106,20 @@ static int32_t Script_GetNumQuestLogEntries(lua_State* L) {
+     return 2;
+ }
+ 
++// Custom: GetQuestLogCapacity() returns how many quests the quest log takes: the server's Quests.LogSize, or the
++// stock 25 from a server that doesn't send it
++static int32_t Script_GetQuestLogCapacity(lua_State* L) {
++    CGPlayer_C* player = ClntObjMgrGetActivePlayerObj();
++    uint32_t capacity = player ? player->m_player->m_playerQuestLogSize : 0;
++
++    if (capacity < PLAYER_QUEST_LOG_STOCK_SLOTS || capacity > PLAYER_QUEST_LOG_SLOTS) {
++        capacity = PLAYER_QUEST_LOG_STOCK_SLOTS;
++    }
++
++    lua_pushnumber(L, capacity);
++    return 1;
++}
++
+ // VERIFY: 8f4872a2 manual
+ // OFFSET: 0x005DFC40
+ static int32_t Script_GetQuestWatchIndex(lua_State* L) {
+@@ -267,11 +281,12 @@ static int32_t Script_GetQuestTimers(lua_State* L) {
  
          int32_t slot = CGQuestLog::m_quests[i].m_logSlot;
  
@@ -807,7 +836,7 @@ index 6706a9d6..88ef666a 100644
  
          if (!entry || !entry->m_time || (entry->m_state & 2) || (i < CGQuestLog::m_numQuest && CGQuestLog::m_quests[i].m_expired)) {
              continue;
-@@ -923,11 +924,12 @@ static int32_t Script_GetQuestIndexForTimer(lua_State* L) {
+@@ -923,11 +938,12 @@ static int32_t Script_GetQuestIndexForTimer(lua_State* L) {
  
              int32_t slot = CGQuestLog::m_quests[i].m_logSlot;
  
@@ -822,7 +851,7 @@ index 6706a9d6..88ef666a 100644
  
              if (!entry || !entry->m_time || (entry->m_state & 2) || timeOffset - static_cast<int32_t>(time(nullptr)) + static_cast<int32_t>(entry->m_time) - 1 < 0) {
                  continue;
-@@ -1073,7 +1075,7 @@ static int32_t Script_QuestPOIGetQuestIDByIndex(lua_State* L) {
+@@ -1073,7 +1089,7 @@ static int32_t Script_QuestPOIGetQuestIDByIndex(lua_State* L) {
  
      uint32_t index = static_cast<uint32_t>(lua_tonumber(L, 1)) - 1;
  
@@ -831,7 +860,7 @@ index 6706a9d6..88ef666a 100644
          return 0;
      }
  
-@@ -1109,8 +1111,9 @@ static int32_t Script_GetQuestLogTimeLeft(lua_State* L) {
+@@ -1109,8 +1125,9 @@ static int32_t Script_GetQuestLogTimeLeft(lua_State* L) {
          int32_t index = CGQuestLog::GetSelectedLogEntry();
          uint32_t slot = index < 0 ? 0 : CGQuestLog::m_quests[index].m_logSlot;
  
@@ -843,7 +872,7 @@ index 6706a9d6..88ef666a 100644
              int32_t timeOffset = CGQuestLog::m_timeOffset;
  
              if (entry && entry->m_time && !(entry->m_state & 2) && timeOffset) {
-@@ -1139,8 +1142,9 @@ static int32_t Script_IsCurrentQuestFailed(lua_State* L) {
+@@ -1139,8 +1156,9 @@ static int32_t Script_IsCurrentQuestFailed(lua_State* L) {
          int32_t index = CGQuestLog::GetSelectedLogEntry();
          uint32_t slot = index < 0 ? 0 : CGQuestLog::m_quests[index].m_logSlot;
  
@@ -855,7 +884,7 @@ index 6706a9d6..88ef666a 100644
  
              if (entry && ((entry->m_state & 2) || CGQuestLog::IsSelectedQuestExpired())) {
                  lua_pushnumber(L, 1.0);
-@@ -1166,7 +1170,8 @@ static int32_t Script_IsUnitOnQuest(lua_State* L) {
+@@ -1166,7 +1184,8 @@ static int32_t Script_IsUnitOnQuest(lua_State* L) {
      WOWGUID guid;
  
      if (index >= 0 && index < CGQuestLog::m_numQuest && !CGQuestLog::m_quests[index].m_isHeader && (questId = CGQuestLog::m_quests[index].m_questId) && (guid = GetGuidByKeyword(lua_tolstring(L, 2, nullptr)), CGPartyInfo::IsMember(guid)) && (member = static_cast<CGPlayer_C*>(ClntObjMgrObjectPtr(guid, TYPE_PLAYER, __FILE__, __LINE__))) && !(member->m_modelFlags & 0x10000)) {
@@ -865,7 +894,7 @@ index 6706a9d6..88ef666a 100644
              PlayerQuestLogEntry* entry = member->GetQuestLogEntry(slot);
  
              if (entry && static_cast<int32_t>(entry->m_questId) == questId) {
-@@ -1471,8 +1476,9 @@ static int32_t Script_GetQuestLogTitle(lua_State* L) {
+@@ -1471,8 +1490,9 @@ static int32_t Script_GetQuestLogTitle(lua_State* L) {
          if (index >= 0 && index < CGQuestLog::m_numQuest && !CGQuestLog::m_quests[index].m_isHeader) {
              uint32_t slot = CGQuestLog::m_quests[index].m_logSlot;
  
@@ -877,6 +906,14 @@ index 6706a9d6..88ef666a 100644
  
                  if (entry && (entry->m_state & 2)) {
                      failed = true;
+@@ -1706,6 +1726,7 @@ static int32_t Script_QuestPOIUpdateTexture(lua_State* L) {
+ // STATIC: 0x00AD1020
+ static FrameScript_Method s_ScriptFunctions[] = {
+     { "GetNumQuestLogEntries", &Script_GetNumQuestLogEntries },
++    { "GetQuestLogCapacity", &Script_GetQuestLogCapacity }, // Custom
+     { "GetQuestLogTitle", &Script_GetQuestLogTitle },
+     { "SelectQuestLogEntry", &Script_SelectQuestLogEntry },
+     { "GetQuestLogSelection", &Script_GetQuestLogSelection },
 diff --git a/WoW/Source/Ui/ScriptEvents.cpp b/WoW/Source/Ui/ScriptEvents.cpp
 index db28a6a3..8d8ff566 100644
 --- a/WoW/Source/Ui/ScriptEvents.cpp

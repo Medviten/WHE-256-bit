@@ -1,0 +1,38 @@
+diff --git a/Interface/FrameXML/QuestLogFrame.lua b/Interface/FrameXML/QuestLogFrame.lua
+index 225ab95..0167d34 100644
+--- a/Interface/FrameXML/QuestLogFrame.lua
++++ b/Interface/FrameXML/QuestLogFrame.lua
+@@ -513,7 +513,8 @@ function QuestLog_Update()
+ end
+ 
+ function QuestLog_UpdateQuestCount(numQuests)
+-	QuestLogQuestCount:SetFormattedText(QUEST_LOG_COUNT_TEMPLATE, numQuests, MAX_QUESTLOG_QUESTS);
++	-- Custom: the server's quest log size (GetQuestLogCapacity, from the F-135 client patch) instead of 25
++	QuestLogQuestCount:SetFormattedText(QUEST_LOG_COUNT_TEMPLATE, numQuests, GetQuestLogCapacity and GetQuestLogCapacity() or MAX_QUESTLOG_QUESTS);
+ 	local textHeight = 12;
+ 	local hPadding = 15;
+ 	local vPadding = 8;
+diff --git a/Interface/FrameXML/UIParent.lua b/Interface/FrameXML/UIParent.lua
+index 106e90c..3508733 100644
+--- a/Interface/FrameXML/UIParent.lua
++++ b/Interface/FrameXML/UIParent.lua
+@@ -617,7 +617,8 @@ function UIParent_OnEvent(self, event, ...)
+ 	end
+ 	if ( event == "QUEST_ACCEPT_CONFIRM" ) then
+ 		local numEntries, numQuests = GetNumQuestLogEntries();
+-		if( numQuests >= MAX_QUESTS) then
++		-- Custom: the server's quest log size (GetQuestLogCapacity, from the F-135 client patch) instead of 25
++		if( numQuests >= (GetQuestLogCapacity and GetQuestLogCapacity() or MAX_QUESTS)) then
+ 			StaticPopup_Show("QUEST_ACCEPT_LOG_FULL", arg1, arg2);
+ 		else
+ 			StaticPopup_Show("QUEST_ACCEPT", arg1, arg2);
+@@ -629,7 +630,8 @@ function UIParent_OnEvent(self, event, ...)
+ 		if( frameName ) then
+ 			local numEntries, numQuests = GetNumQuestLogEntries();
+ 			local button = _G[frameName.."Button1"];
+-			if( numQuests < MAX_QUESTS ) then
++			-- Custom: the server's quest log size instead of 25
++			if( numQuests < (GetQuestLogCapacity and GetQuestLogCapacity() or MAX_QUESTS) ) then
+ 				button:Enable();
+ 			else
+ 				button:Disable();
