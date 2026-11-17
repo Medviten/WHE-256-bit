@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Illidari Blood Elves (as BloodElf) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @IllidariBloodElfMask WHERE `AllowableRaces` & @BloodElfMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @IllidariBloodElfMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @IllidariBloodElfMask_2 WHERE `AllowableRaces` & @BloodElfMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

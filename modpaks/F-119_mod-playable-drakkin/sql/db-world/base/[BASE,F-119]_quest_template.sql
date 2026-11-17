@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Drakkin (as Human) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @DrakkinMask WHERE `AllowableRaces` & @HumanMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @DrakkinMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @DrakkinMask_2 WHERE `AllowableRaces` & @HumanMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

@@ -2,5 +2,5 @@
 
 -- New entries
 DELETE FROM `skillraceclassinfo` WHERE `id` = @HarpyRacialSkillRaceClass;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES
-(@HarpyRacialSkillRaceClass, @HarpyRacials, @HarpyMask, @AllClassMask, 1170, 0, 0, 0);
+INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`, `race_mask_2`) VALUES
+(@HarpyRacialSkillRaceClass, @HarpyRacials, @HarpyMask, @AllClassMask, 1170, 0, 0, 0, @HarpyMask_2);

@@ -7,7 +7,7 @@ Mirroring: a statement that writes a word-0 mask column (see MASK_COLS) with an 
 mask variable (AGGREGATES) or the mask of a race above 64 gets a matching assignment/value for <column>_2, where every
 race-mask variable @X becomes @X_2 and every mask column c becomes c_2. Statements are never split or reordered.
 
-When adding a race above 64: add its name to WORD2_RACES below, run word2vars.py (variables) and then this script,
+When adding a race above 64 (picked up from its id in config.sql; WORD2_RACES lists any without one), run word2vars.py (variables) and then this script,
 both with `report` first. Both are idempotent, so re-running them on already converted files changes nothing."""
 import os, re, sys
 
@@ -34,6 +34,9 @@ def races():
 
 
 RACES = races()
+# Every race whose fixed id in config.sql is above 64 (the CoA 1.9.9 races were missed when this was a hand-kept list)
+_ids = dict(re.findall(r"^SET @(\w+)\s*=\s*(\d+)\s*;", open(os.path.join(MODPAKS, "config.sql"), encoding="utf-8").read(), re.M))
+WORD2_RACES |= {r for r in RACES if 64 < int(_ids.get(r, 0)) <= 128}
 MASKVARS = set(AGGREGATES) | {r + "Mask" for r in RACES}
 VAR_RE = re.compile(r"@(\w+)\b")
 TRIGGER = set(AGGREGATES) | {r + "Mask" for r in WORD2_RACES}

@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Drakonid (as Orc) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @DrakonidMask WHERE `AllowableRaces` & @OrcMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @DrakonidMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @DrakonidMask_2 WHERE `AllowableRaces` & @OrcMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

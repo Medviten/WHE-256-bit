@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Elune's Chosen (as NightElf) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @EluneChosenMask WHERE `AllowableRaces` & @NightElfMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @EluneChosenMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @EluneChosenMask_2 WHERE `AllowableRaces` & @NightElfMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

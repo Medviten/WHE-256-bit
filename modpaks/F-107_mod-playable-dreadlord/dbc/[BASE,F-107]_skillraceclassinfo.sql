@@ -2,5 +2,5 @@
 
 -- New entries
 DELETE FROM `skillraceclassinfo` WHERE `id` = @DreadlordRacialSkillRaceClass;
-INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`) VALUES
-(@DreadlordRacialSkillRaceClass, @DreadlordRacials, @DreadlordMask, @AllClassMask, 1170, 0, 0, 0);
+INSERT INTO `skillraceclassinfo` (`id`, `skill_id`, `race_mask`, `class_mask`, `flags`, `min_level`, `skill_tier_id`, `skill_cost_id`, `race_mask_2`) VALUES
+(@DreadlordRacialSkillRaceClass, @DreadlordRacials, @DreadlordMask, @AllClassMask, 1170, 0, 0, 0, @DreadlordMask_2);

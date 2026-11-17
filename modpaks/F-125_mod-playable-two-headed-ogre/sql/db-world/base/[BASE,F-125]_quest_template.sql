@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Two-Headed Ogres (as Orc) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @TwoHeadedOgreMask WHERE `AllowableRaces` & @OrcMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @TwoHeadedOgreMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @TwoHeadedOgreMask_2 WHERE `AllowableRaces` & @OrcMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

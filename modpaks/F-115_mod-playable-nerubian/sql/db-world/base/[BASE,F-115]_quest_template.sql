@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Nerubians (as Undead) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @NerubianMask WHERE `AllowableRaces` & @UndeadMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @NerubianMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @NerubianMask_2 WHERE `AllowableRaces` & @UndeadMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

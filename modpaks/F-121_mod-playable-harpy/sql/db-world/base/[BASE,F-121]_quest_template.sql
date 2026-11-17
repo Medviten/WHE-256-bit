@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Harpies (as Tauren) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @HarpyMask WHERE `AllowableRaces` & @TaurenMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @HarpyMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @HarpyMask_2 WHERE `AllowableRaces` & @TaurenMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

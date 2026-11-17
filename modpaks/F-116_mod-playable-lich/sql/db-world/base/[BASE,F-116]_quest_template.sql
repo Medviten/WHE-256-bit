@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Liches (as Undead) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @LichMask WHERE `AllowableRaces` & @UndeadMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @LichMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @LichMask_2 WHERE `AllowableRaces` & @UndeadMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

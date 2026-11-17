@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Sporelings (as Gnome) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @SporelingMask WHERE `AllowableRaces` & @GnomeMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @SporelingMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @SporelingMask_2 WHERE `AllowableRaces` & @GnomeMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`

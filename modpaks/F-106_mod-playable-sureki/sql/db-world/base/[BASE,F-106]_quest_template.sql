@@ -1,5 +1,6 @@
 /* Ensures that race-restricted quests include Sureki (as NightElf) */
-UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @SurekiMask WHERE `AllowableRaces` & @NightElfMask AND `AllowableRaces` != -1;
+UPDATE `quest_template` SET `AllowableRaces` = `AllowableRaces` | @SurekiMask,
+    `AllowableRaces_2` = `AllowableRaces_2` | @SurekiMask_2 WHERE `AllowableRaces` & @NightElfMask AND `AllowableRaces` != -1;
 
 /* Allows any race to complete any class-specific quest (ARAC, sweeping approach) */
 UPDATE `quest_template` INNER JOIN `quest_template_addon`
