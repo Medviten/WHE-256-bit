@@ -1,16 +1,18 @@
 diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
-index 13e6b72c0..aff7b7b9d 100644
+index 13e6b72c0..b858d8e9c 100644
 --- a/src/server/apps/worldserver/worldserver.conf.dist
 +++ b/src/server/apps/worldserver/worldserver.conf.dist
-@@ -1444,6 +1444,18 @@ DontCacheRandomMovementPaths = 0
+@@ -1444,6 +1444,33 @@ DontCacheRandomMovementPaths = 0
  
  GoblinStartZone.Enable = 0
  
 +#
 +#    GilneasStartZone.Enable
 +#        Description: Core support for the Gilneas (Worgen) start zone (WHE modpak F-130): its
-+#                     scripted NPCs and vehicles, and the Worgen curse being reapplied on login
-+#                     in the stocks of Greymane Manor. Enabling it also enables everything
++#                     scripted NPCs and vehicles, the Worgen curse being reapplied on login
++#                     in the stocks of Greymane Manor, and Worgen (except Death Knights) starting
++#                     in Human Form, turned and taught their racials by "Last Stand" (also
++#                     outside Gilneas, without it). Enabling it also enables everything
 +#                     GoblinStartZone.Enable does, which the zone relies on, so it requires the
 +#                     phase_definitions table (from F-130 or F-013) too.
 +#        Default:     0 - (Disabled, stock behaviour)
@@ -18,14 +20,27 @@ index 13e6b72c0..aff7b7b9d 100644
 +
 +GilneasStartZone.Enable = 0
 +
++#
++#    WanderingIsleStartZone.Enable
++#        Description: Core support for the Wandering Isle (Pandaren) start zone (WHE modpak F-134):
++#                     new Pandaren characters (except Death Knights) start on the Wandering Isle
++#                     (map 860) by Master Shang Xi, bound there, with "Much to Learn". The island's
++#                     phases are phase_definitions, so enabling it also enables everything
++#                     GoblinStartZone.Enable does and requires that table (from F-134, F-130 or
++#                     F-013). Needs F-134's server map files for map 860.
++#        Default:     0 - (Disabled, stock behaviour)
++#                     1 - (Enabled)
++
++WanderingIsleStartZone.Enable = 0
++
  #
  ###################################################################################################
  
 diff --git a/src/server/game/World/World.cpp b/src/server/game/World/World.cpp
-index e6c9b35d7..59945d768 100644
+index e6c9b35d7..2b379d9be 100644
 --- a/src/server/game/World/World.cpp
 +++ b/src/server/game/World/World.cpp
-@@ -194,6 +194,11 @@ void World::LoadConfigSettings(bool reload)
+@@ -194,6 +194,15 @@ void World::LoadConfigSettings(bool reload)
  
      _worldConfig.Initialize(reload);
  
@@ -34,57 +49,67 @@ index e6c9b35d7..59945d768 100644
 +    if (getBoolConfig(CONFIG_GILNEAS_START_ZONE))
 +        setBoolConfig(CONFIG_GOBLIN_START_ZONE, true);
 +
++    // Custom: F-134, the same for the Wandering Isle (its phases are phase_definitions)
++    if (getBoolConfig(CONFIG_WANDERING_ISLE_START_ZONE))
++        setBoolConfig(CONFIG_GOBLIN_START_ZONE, true);
++
      for (uint8 i = 0; i < MAX_MOVE_TYPE; ++i)
          playerBaseMoveSpeed[i] = baseMoveSpeed[i] * getRate(RATE_MOVESPEED_PLAYER);
  
 diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
-index d04535264..a61f964f3 100644
+index d04535264..20e3e0a38 100644
 --- a/src/server/game/World/WorldConfig.cpp
 +++ b/src/server/game/World/WorldConfig.cpp
-@@ -305,6 +305,7 @@ void WorldConfig::BuildConfigCache()
+@@ -305,6 +305,8 @@ void WorldConfig::BuildConfigCache()
      SetConfigValue<bool>(CONFIG_OBJECT_QUEST_MARKERS, "Visibility.ObjectQuestMarkers", true);
  
      SetConfigValue<bool>(CONFIG_GOBLIN_START_ZONE, "GoblinStartZone.Enable", false);
 +    SetConfigValue<bool>(CONFIG_GILNEAS_START_ZONE, "GilneasStartZone.Enable", false);
++    SetConfigValue<bool>(CONFIG_WANDERING_ISLE_START_ZONE, "WanderingIsleStartZone.Enable", false); // Custom: F-134
  
      SetConfigValue<uint32>(CONFIG_MAIL_DELIVERY_DELAY, "MailDeliveryDelay", HOUR);
      SetConfigValue<bool>(CONFIG_MAIL_PUSH_INBOX_ON_DELIVERY, "Mail.PushInboxOnDelivery", false);
 diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
-index d95144194..d4ea315d6 100644
+index d95144194..54dc72a42 100644
 --- a/src/server/game/World/WorldConfig.h
 +++ b/src/server/game/World/WorldConfig.h
-@@ -144,6 +144,7 @@ enum ServerConfigs
+@@ -144,6 +144,8 @@ enum ServerConfigs
      CONFIG_LOW_LEVEL_REGEN_BOOST,
      CONFIG_OBJECT_QUEST_MARKERS,
      CONFIG_GOBLIN_START_ZONE, // F-013 Zeppelin goblin start zone core support
 +    CONFIG_GILNEAS_START_ZONE, // F-130 Gilneas (Worgen) start zone; turns CONFIG_GOBLIN_START_ZONE's support on too
++    CONFIG_WANDERING_ISLE_START_ZONE, // Custom: F-134 Wandering Isle (Pandaren) start; turns CONFIG_GOBLIN_START_ZONE's support on too
      CONFIG_STRICT_NAMES_RESERVED,
      CONFIG_STRICT_NAMES_PROFANITY,
      CONFIG_CHAT_FILTER_WHISPER,
 diff --git a/src/server/scripts/Custom/custom_script_loader.cpp b/src/server/scripts/Custom/custom_script_loader.cpp
-index b7b61e254..6b8bf1bb2 100644
+index b7b61e254..9cf4c4014 100644
 --- a/src/server/scripts/Custom/custom_script_loader.cpp
 +++ b/src/server/scripts/Custom/custom_script_loader.cpp
-@@ -19,6 +19,7 @@
+@@ -19,6 +19,9 @@
  // void MyExampleScript()
  void AddSC_zeppelin_goblin_start();
  void AddSC_zeppelin_goblin_creatures();
 +void AddSC_gilneas_start(); // Custom: F-130 Gilneas start zone
++void AddSC_wandering_isle_start(); // Custom: F-134 Wandering Isle start
++void AddSC_wandering_isle(); // Custom: F-134 Wandering Isle scripts
  
  // The name of this function should match:
  // void Add${NameOfDirectory}Scripts()
-@@ -27,4 +28,5 @@ void AddCustomScripts()
+@@ -27,4 +30,7 @@ void AddCustomScripts()
      // MyExampleScript()
      AddSC_zeppelin_goblin_start();
      AddSC_zeppelin_goblin_creatures();
 +    AddSC_gilneas_start();
++    AddSC_wandering_isle_start();
++    AddSC_wandering_isle();
  }
 diff --git a/src/server/scripts/Custom/gilneas_start.cpp b/src/server/scripts/Custom/gilneas_start.cpp
 new file mode 100644
-index 000000000..23a331c0a
+index 000000000..b2ba6654f
 --- /dev/null
 +++ b/src/server/scripts/Custom/gilneas_start.cpp
-@@ -0,0 +1,1509 @@
+@@ -0,0 +1,1588 @@
 +/*
 + * Custom: F-130 Gilneas (Worgen) start zone.
 + *
@@ -107,11 +132,13 @@ index 000000000..23a331c0a
 +#include "MotionMaster.h"
 +#include "MoveSpline.h"
 +#include "ObjectAccessor.h"
++#include "ObjectMgr.h"
 +#include "Player.h"
 +#include "PlayerScript.h"
 +#include "ScriptedCreature.h"
 +#include "SpellAuraEffects.h"
 +#include "SpellInfo.h"
++#include "SpellMgr.h"
 +#include "SpellScript.h"
 +#include "SpellScriptLoader.h"
 +#include "TemporarySummon.h"
@@ -540,6 +567,82 @@ index 000000000..23a331c0a
 +            if (krennan->GetOwnerGUID() == player->GetGUID())
 +                return;
 +        player->CastSpell(player, SPELL_CURSE_OF_THE_WORGEN, true);
++    }
++};
++
++/* Worgen start as humans, as in Cataclysm: until "Last Stand" is rewarded they wear Human Form and lack their racials
++ * (the modpak leaves F-024's racial skill line rows to Death Knights). Last Stand's reward, whose cutscene turns them,
++ * takes the aura off and teaches Viciousness, Aberration, Flayer and Darkflight. Two Forms comes later from q24593,
++ * Running Wild at level 20 (src/Worgoblin.cpp). A Worgen found outside Gilneas without Last Stand (a bot, or a
++ * character from before the zone) is turned there and taught Two Forms too. Worgen are whoever may take Last Stand,
++ * so no race id is needed. */
++enum WorgenCurse
++{
++    SPELL_HUMAN_FORM_MALE           = 68995,  // @SpellHumanFormMale: with F-063 the one Human Form, for both genders
++    SPELL_HUMAN_FORM_FEMALE         = 110020, // @SpellHumanFormFemale: the female transform without F-063 (which deletes it)
++    SPELL_TWO_FORMS                 = 68996,  // @SpellTwoFormsMale
++    ZONE_GILNEAS                    = 4714,
++    ZONE_GILNEAS_CITY               = 4755,
++};
++
++// @SpellViciousness, @SpellAberration, @SpellFlayer, @SpellDarkflight
++static uint32 const WorgenRacials[] = { 68975, 68976, 68978, 68992 };
++
++class WorgenCursePlayerScript : public PlayerScript
++{
++public:
++    WorgenCursePlayerScript() : PlayerScript("WorgenCursePlayerScript",
++        { PLAYERHOOK_ON_LOGIN, PLAYERHOOK_ON_UPDATE_ZONE, PLAYERHOOK_ON_PLAYER_COMPLETE_QUEST }) { }
++
++    void OnPlayerLogin(Player* player) override { Update(player, player->GetZoneId()); }
++
++    void OnPlayerUpdateZone(Player* player, uint32 newZone, uint32 /*newArea*/) override { Update(player, newZone); }
++
++    void OnPlayerCompleteQuest(Player* player, Quest const* quest) override
++    {
++        if (quest->GetQuestId() == QUEST_LAST_STAND && IsUnturnedWorgenClass(player))
++            Turn(player);
++    }
++
++private:
++    static bool IsUnturnedWorgenClass(Player* player)
++    {
++        if (!sWorld->getBoolConfig(CONFIG_GILNEAS_START_ZONE) || player->getClass() == CLASS_DEATH_KNIGHT)
++            return false;
++        Quest const* lastStand = sObjectMgr->GetQuestTemplate(QUEST_LAST_STAND);
++        return lastStand && player->SatisfyQuestRace(lastStand, false);
++    }
++
++    static void Update(Player* player, uint32 zone)
++    {
++        if (!IsUnturnedWorgenClass(player))
++            return;
++        if (player->GetQuestRewardStatus(QUEST_LAST_STAND))
++        {
++            Turn(player);
++            return;
++        }
++        if (zone != ZONE_GILNEAS && zone != ZONE_GILNEAS_CITY)
++        {
++            // skipped Gilneas, so q24593 won't teach Two Forms either
++            Turn(player);
++            if (!player->HasSpell(SPELL_TWO_FORMS))
++                player->learnSpell(SPELL_TWO_FORMS);
++            return;
++        }
++        uint32 humanForm = player->getGender() == GENDER_FEMALE && sSpellMgr->GetSpellInfo(SPELL_HUMAN_FORM_FEMALE)
++            ? SPELL_HUMAN_FORM_FEMALE : SPELL_HUMAN_FORM_MALE;
++        if (!player->HasAura(humanForm))
++            player->CastSpell(player, humanForm, true);
++    }
++
++    static void Turn(Player* player)
++    {
++        player->RemoveAurasDueToSpell(SPELL_HUMAN_FORM_MALE);
++        player->RemoveAurasDueToSpell(SPELL_HUMAN_FORM_FEMALE);
++        for (uint32 spell : WorgenRacials)
++            if (!player->HasSpell(spell))
++                player->learnSpell(spell);
 +    }
 +};
 +
@@ -1580,6 +1683,7 @@ index 000000000..23a331c0a
 +    RegisterCreatureAI(npc_gilnean_mastiff_pet);
 +    RegisterCreatureAI(npc_king_greymanes_horse);
 +    new StocksPlayerScript();
++    new WorgenCursePlayerScript();
 +    RegisterCreatureAI(npc_crowleys_horse_vehicle);
 +    RegisterCreatureAI(npc_crowleys_horse_spellclick);
 +    RegisterCreatureAI(npc_drowning_watchtman_spellclick);

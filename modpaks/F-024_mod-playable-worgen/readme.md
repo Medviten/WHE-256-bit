@@ -20,8 +20,8 @@
     - Mount vendor: see F-093_racial-mount-vendors
 
 ### Known Issues
-- Two Forms is not yet implemented correctly
-- Worgen currently start the game in wolf form, though there are spells to make them pseudo-humans
+- Two Forms is learned with the racial skill line; as the altered form it needs F-063 and the patched client
+- Worgen start the game in wolf form with their racials, unless F-130 (Gilneas start) is on: then only Death Knights do, and the others start in Human Form and earn them in Gilneas
 - Worgen mount vendor not yet implemented correctly
 - Alpha worgen: see F-094_alpha-worgen-assets (tentative)
 

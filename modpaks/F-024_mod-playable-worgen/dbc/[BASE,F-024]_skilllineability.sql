@@ -1,14 +1,21 @@
--- skilllineability: 4 inserts, 0 updates, 0 deletes
+-- skilllineability: 6 inserts, 0 updates, 0 deletes
 
 -- New entries
 DELETE FROM `skilllineability` WHERE `id` IN (
-    @WorgenSkillLineAbility1, @WorgenSkillLineAbility2, @WorgenSkillLineAbility3, @WorgenSkillLineAbility4
+    @WorgenSkillLineAbility1, @WorgenSkillLineAbility2, @WorgenSkillLineAbility3, @WorgenSkillLineAbility4,
+    @WorgenSkillLineAbility5, @WorgenSkillLineAbility6
 );
 INSERT INTO `skilllineability` (`id`, `skill_line`, `spell_id`, `required_races`, `required_classes`, `excluded_races`, `excluded_classes`, `min_skill_value`, `spell_parent_id`, `acquire_method`, `skill_grey_level`, `skill_yellow_level`, `character_points_1`, `character_points_2`) VALUES
 (@WorgenSkillLineAbility1, @WorgenRacials, @WorgenRacial1, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellViciousness
 (@WorgenSkillLineAbility2, @WorgenRacials, @WorgenRacial2, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellAberration
 (@WorgenSkillLineAbility3, @WorgenRacials, @WorgenRacial3, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellFlayer
-(@WorgenSkillLineAbility4, @WorgenRacials, @WorgenRacial4, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0); -- @SpellDarkflight
+(@WorgenSkillLineAbility4, @WorgenRacials, @WorgenRacial4, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0), -- @SpellDarkflight
+-- Running Wild: acquire method 0 (taught at level 20 by player_worgen_running_wild in src/Worgoblin.cpp); places it
+-- with the racials
+(@WorgenSkillLineAbility5, @WorgenRacials, @RunningWildMale60, @WorgenMask, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0),
+-- Two Forms, learned with the racial skill line like the racials above. F-130 (Gilneas start) leaves this and the racials
+-- to Death Knights, as Cataclysm does: the others learn them through the Gilneas questline
+(@WorgenSkillLineAbility6, @WorgenRacials, @TwoFormsMale, @WorgenMask, 0, 0, 0, 1, 0, 2, 0, 0, 0, 0);
 
 -- >>> CoA Custom 1.9 racials (tools/races/coa_racials.py) >>>
 -- The Worgen racials, learned with the racial skill line

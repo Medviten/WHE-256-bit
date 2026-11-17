@@ -648,6 +648,82 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 30210;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 30210,
+  `model_id` = 3190,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.7,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'MastiffDog_Yellow',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 30211;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 30211,
+  `model_id` = 3190,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.7,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'MastiffDog_Black',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 30212;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 30212,
+  `model_id` = 3190,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.7,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'MastiffDog_Red',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 30213;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 30213,
+  `model_id` = 3190,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.7,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'MastiffDog_Gray',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 30214;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 30214,
@@ -1018,6 +1094,44 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_model_scale` = 1,
   `creature_model_alpha` = 255,
   `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 30301;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 30301,
+  `model_id` = 3193,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.5,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'MistFoxSkinRed',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 30302;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 30302,
+  `model_id` = 3193,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.5,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'MistFoxSkinBrown',
   `texture_variation_2` = '',
   `texture_variation_3` = '',
   `portrait_texture_name` = '',
@@ -1541,6 +1655,44 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33314;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33314,
+  `model_id` = 3497,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33315;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33315,
+  `model_id` = 3498,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 33316;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 33316,
@@ -1554,6 +1706,25 @@ INSERT INTO `creaturedisplayinfo` SET
   `texture_variation_3` = '',
   `portrait_texture_name` = '',
   `blood_level` = 1,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33450;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33450,
+  `model_id` = 3451,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.5,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'CrocodileCataclysmGreen',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
   `blood_id` = 0,
   `npc_sound_id` = 0,
   `praticle_color_id` = 0,
@@ -1655,6 +1826,25 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33949;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33949,
+  `model_id` = 3220,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 2,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'Ettin_Yellow_01',
+  `texture_variation_2` = 'Ettin_Yellow_02',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = -1,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 34917;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 34917,
@@ -1683,6 +1873,25 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_model_scale` = 1,
   `creature_model_alpha` = 255,
   `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 36743;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 36743,
+  `model_id` = 3433,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.5,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'raven',
   `texture_variation_2` = '',
   `texture_variation_3` = '',
   `portrait_texture_name` = '',
