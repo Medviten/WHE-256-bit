@@ -72,6 +72,9 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (19, 0, @QuestEarthHorde,    0, 0, 2, 0, @EarthTotemItem, 1, 1, 1, 0, 0, '', 'Call of Earth: only without an Earth Totem');
 
 /* The stock chains stay with their own stock races. Custom races keep whatever F-026 gave them */
-UPDATE `quest_template` SET `AllowableRaces` = (`AllowableRaces` & ~(@BaseAllianceMask | @BaseHordeMask)) | @OrcMask | @TrollMask WHERE `ID` IN (1516, 1517, 1518);
-UPDATE `quest_template` SET `AllowableRaces` = (`AllowableRaces` & ~(@BaseAllianceMask | @BaseHordeMask)) | @TaurenMask          WHERE `ID` IN (1519, 1520, 1521);
-UPDATE `quest_template` SET `AllowableRaces` = (`AllowableRaces` & ~(@BaseAllianceMask | @BaseHordeMask)) | @DraeneiMask         WHERE `ID` IN (9449, 9450, 9451);
+UPDATE `quest_template` SET `AllowableRaces` = (`AllowableRaces` & ~(@BaseAllianceMask | @BaseHordeMask)) | @OrcMask | @TrollMask,
+    `AllowableRaces_2` = (`AllowableRaces_2` & ~(@BaseAllianceMask_2 | @BaseHordeMask_2)) | @OrcMask_2 | @TrollMask_2 WHERE `ID` IN (1516, 1517, 1518);
+UPDATE `quest_template` SET `AllowableRaces` = (`AllowableRaces` & ~(@BaseAllianceMask | @BaseHordeMask)) | @TaurenMask,
+    `AllowableRaces_2` = (`AllowableRaces_2` & ~(@BaseAllianceMask_2 | @BaseHordeMask_2)) | @TaurenMask_2          WHERE `ID` IN (1519, 1520, 1521);
+UPDATE `quest_template` SET `AllowableRaces` = (`AllowableRaces` & ~(@BaseAllianceMask | @BaseHordeMask)) | @DraeneiMask,
+    `AllowableRaces_2` = (`AllowableRaces_2` & ~(@BaseAllianceMask_2 | @BaseHordeMask_2)) | @DraeneiMask_2         WHERE `ID` IN (9449, 9450, 9451);
