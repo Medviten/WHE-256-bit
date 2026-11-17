@@ -1,0 +1,14 @@
+diff --git a/src/LuaEngine/methods/PlayerMethods.h b/src/LuaEngine/methods/PlayerMethods.h
+index ba525a4..43c47db 100644
+--- a/src/LuaEngine/methods/PlayerMethods.h
++++ b/src/LuaEngine/methods/PlayerMethods.h
+@@ -5100,7 +5100,8 @@ namespace LuaPlayer
+     int GetQuestSlotQuestId(lua_State* L, Player* player)
+     {
+         uint16 slot = ALE::CHECKVAL<uint16>(L, 2);
+-        if (slot > MAX_QUEST_LOG_SIZE)
++        // Custom: slot == MAX_QUEST_LOG_SIZE is past the last field now that the quest log has 255 slots (was > )
++        if (slot >= MAX_QUEST_LOG_SIZE)
+             return 0;
+ 
+         ALE::Push(L, player->GetQuestSlotQuestId(slot));

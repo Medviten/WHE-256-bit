@@ -1,0 +1,236 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index 396d801..1484192 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -2961,6 +2961,17 @@ Quests.IgnoreAutoAccept = 0
+ 
+ Quests.IgnoreAutoComplete = 0
+ 
++#
++#    Quests.LogSize
++#        Description: Number of quests a character can have in the quest log. Above 25 needs a client
++#                     that shows the extra slots (wowdecomp-256-bit, or the client patch in WHE's F-135).
++#                     Characters already holding more quests keep them, but can't take new ones until
++#                     they are below the limit.
++#        Range:       25-255
++#        Default:     255
++
++Quests.LogSize = 255
++
+ #
+ #    Rate.RewardQuestMoney
+ #        Description: Allows to tweak the amount of money rewarded by quests (does not affect RewardBonusMoney).
+diff --git a/src/server/game/Entities/Object/Object.cpp b/src/server/game/Entities/Object/Object.cpp
+index cffada5..dd204ed 100644
+--- a/src/server/game/Entities/Object/Object.cpp
++++ b/src/server/game/Entities/Object/Object.cpp
+@@ -499,12 +499,14 @@ void Object::BuildValuesUpdate(uint8 updateType, ByteBuffer* data, Player* targe
+ 
+     ByteBuffer fieldBuffer;
+     UpdateMask updateMask;
+-    updateMask.SetCount(m_valuesCount);
++    // Custom: the extended quest log fields are private, so other players get the stock-length mask
++    uint16 valuesCount = m_valuesCount == PLAYER_END && target != this ? uint16(PLAYER_QUEST_LOG_EXT_1_1) : m_valuesCount;
++    updateMask.SetCount(valuesCount);
+ 
+     uint32* flags = nullptr;
+     uint32 visibleFlag = GetUpdateFieldData(target, flags);
+ 
+-    for (uint16 index = 0; index < m_valuesCount; ++index)
++    for (uint16 index = 0; index < valuesCount; ++index)
+     {
+         if (_fieldNotifyFlags & flags[index] ||
+                 ((updateType == UPDATETYPE_VALUES ? _changesMask.GetBit(index) : m_uint32Values[index]) && (flags[index] & visibleFlag)))
+diff --git a/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp b/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
+index 149ca6d..00266cf 100644
+--- a/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
++++ b/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
+@@ -1487,8 +1487,19 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
+     UF_FLAG_PRIVATE,                                        // PLAYER_FIELD_GLYPHS_1+5
+     UF_FLAG_PRIVATE,                                        // PLAYER_GLYPHS_ENABLED
+     UF_FLAG_PRIVATE,                                        // PLAYER_PET_SPELL_POWER
++    // PLAYER_QUEST_LOG_EXT_1_1 .. PLAYER_END: filled in below
+ };
+ 
++// Custom: the extended quest log fields are all private
++static struct QuestLogExtFieldFlags
++{
++    QuestLogExtFieldFlags()
++    {
++        for (uint32 i = PLAYER_QUEST_LOG_EXT_1_1; i < PLAYER_END; ++i)
++            UnitUpdateFieldFlags[i] = UF_FLAG_PRIVATE;
++    }
++} s_questLogExtFieldFlags;
++
+ uint32 GameObjectUpdateFieldFlags[GAMEOBJECT_END] =
+ {
+     UF_FLAG_PUBLIC,                                         // OBJECT_FIELD_GUID
+diff --git a/src/server/game/Entities/Object/Updates/UpdateFields.h b/src/server/game/Entities/Object/Updates/UpdateFields.h
+index 7f57183..1a0b121 100644
+--- a/src/server/game/Entities/Object/Updates/UpdateFields.h
++++ b/src/server/game/Entities/Object/Updates/UpdateFields.h
+@@ -389,7 +389,10 @@ enum EUnitFields
+     PLAYER_FIELD_GLYPHS_1                     = UNIT_END + 0x0492, // Size: 6, Type: INT, Flags: PRIVATE
+     PLAYER_GLYPHS_ENABLED                     = UNIT_END + 0x0498, // Size: 1, Type: INT, Flags: PRIVATE
+     PLAYER_PET_SPELL_POWER                    = UNIT_END + 0x0499, // Size: 1, Type: INT, Flags: PRIVATE
+-    PLAYER_END                                = UNIT_END + 0x049A,
++    // Custom: quest log slots 25-254 (5 fields each, laid out like PLAYER_QUEST_LOG_1_1), appended so no stock field
++    // moves. Private; the client takes them from the matching wowdecomp-256-bit build.
++    PLAYER_QUEST_LOG_EXT_1_1                  = UNIT_END + 0x049A, // Size: 1150, Type: INT, Flags: PRIVATE
++    PLAYER_END                                = UNIT_END + 0x0918, // Custom: was UNIT_END + 0x049A
+ };
+ 
+ enum EGameObjectFields
+diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
+index cc1f42b..4ead92f 100644
+--- a/src/server/game/Entities/Player/Player.h
++++ b/src/server/game/Entities/Player/Player.h
+@@ -1509,37 +1509,43 @@ public:
+     void ResetSeasonalQuestStatus(uint16 event_id);
+ 
+     [[nodiscard]] uint16 FindQuestSlot(uint32 quest_id) const;
+-    [[nodiscard]] uint32 GetQuestSlotQuestId(uint16 slot) const { return GetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_ID_OFFSET); }
+-    [[nodiscard]] uint32 GetQuestSlotState(uint16 slot)   const { return GetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_STATE_OFFSET); }
+-    [[nodiscard]] uint16 GetQuestSlotCounter(uint16 slot, uint8 counter) const { return (uint16)(GetUInt64Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_COUNTS_OFFSET) >> (counter * 16)); }
+-    [[nodiscard]] uint32 GetQuestSlotTime(uint16 slot)    const { return GetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_TIME_OFFSET); }
++    // Custom: a free slot below Quests.LogSize, or MAX_QUEST_LOG_SIZE if there is none
++    [[nodiscard]] uint16 FindFreeQuestSlot() const;
++    // Custom: Quests.LogSize, the number of usable quest log slots
++    [[nodiscard]] static uint16 GetQuestLogSize();
++    // Custom: first field of a quest log slot; slots from MAX_QUEST_LOG_SIZE_STOCK on are in the PLAYER_QUEST_LOG_EXT fields
++    [[nodiscard]] static uint16 GetQuestSlotField(uint16 slot) { return (slot < MAX_QUEST_LOG_SIZE_STOCK ? PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET : PLAYER_QUEST_LOG_EXT_1_1 + (slot - MAX_QUEST_LOG_SIZE_STOCK) * MAX_QUEST_OFFSET); }
++    [[nodiscard]] uint32 GetQuestSlotQuestId(uint16 slot) const { return GetUInt32Value(GetQuestSlotField(slot) + QUEST_ID_OFFSET); }
++    [[nodiscard]] uint32 GetQuestSlotState(uint16 slot)   const { return GetUInt32Value(GetQuestSlotField(slot) + QUEST_STATE_OFFSET); }
++    [[nodiscard]] uint16 GetQuestSlotCounter(uint16 slot, uint8 counter) const { return (uint16)(GetUInt64Value(GetQuestSlotField(slot) + QUEST_COUNTS_OFFSET) >> (counter * 16)); }
++    [[nodiscard]] uint32 GetQuestSlotTime(uint16 slot)    const { return GetUInt32Value(GetQuestSlotField(slot) + QUEST_TIME_OFFSET); }
+     void SetQuestSlot(uint16 slot, uint32 quest_id, uint32 timer = 0)
+     {
+-        SetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_ID_OFFSET, quest_id);
+-        SetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_STATE_OFFSET, 0);
+-        SetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_COUNTS_OFFSET, 0);
+-        SetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_COUNTS_OFFSET + 1, 0);
+-        SetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_TIME_OFFSET, timer);
++        SetUInt32Value(GetQuestSlotField(slot) + QUEST_ID_OFFSET, quest_id);
++        SetUInt32Value(GetQuestSlotField(slot) + QUEST_STATE_OFFSET, 0);
++        SetUInt32Value(GetQuestSlotField(slot) + QUEST_COUNTS_OFFSET, 0);
++        SetUInt32Value(GetQuestSlotField(slot) + QUEST_COUNTS_OFFSET + 1, 0);
++        SetUInt32Value(GetQuestSlotField(slot) + QUEST_TIME_OFFSET, timer);
+     }
+     void SetQuestSlotCounter(uint16 slot, uint8 counter, uint16 count)
+     {
+-        uint64 val = GetUInt64Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_COUNTS_OFFSET);
++        uint64 val = GetUInt64Value(GetQuestSlotField(slot) + QUEST_COUNTS_OFFSET);
+         val &= ~((uint64)0xFFFF << (counter * 16));
+         val |= ((uint64)count << (counter * 16));
+-        SetUInt64Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_COUNTS_OFFSET, val);
++        SetUInt64Value(GetQuestSlotField(slot) + QUEST_COUNTS_OFFSET, val);
+     }
+-    void SetQuestSlotState(uint16 slot, uint32 state) { SetFlag(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_STATE_OFFSET, state); }
+-    void RemoveQuestSlotState(uint16 slot, uint32 state) { RemoveFlag(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_STATE_OFFSET, state); }
+-    void SetQuestSlotTimer(uint16 slot, uint32 timer) { SetUInt32Value(PLAYER_QUEST_LOG_1_1 + slot * MAX_QUEST_OFFSET + QUEST_TIME_OFFSET, timer); }
++    void SetQuestSlotState(uint16 slot, uint32 state) { SetFlag(GetQuestSlotField(slot) + QUEST_STATE_OFFSET, state); }
++    void RemoveQuestSlotState(uint16 slot, uint32 state) { RemoveFlag(GetQuestSlotField(slot) + QUEST_STATE_OFFSET, state); }
++    void SetQuestSlotTimer(uint16 slot, uint32 timer) { SetUInt32Value(GetQuestSlotField(slot) + QUEST_TIME_OFFSET, timer); }
+     void SwapQuestSlot(uint16 slot1, uint16 slot2)
+     {
+         for (int i = 0; i < MAX_QUEST_OFFSET; ++i)
+         {
+-            uint32 temp1 = GetUInt32Value(PLAYER_QUEST_LOG_1_1 + MAX_QUEST_OFFSET * slot1 + i);
+-            uint32 temp2 = GetUInt32Value(PLAYER_QUEST_LOG_1_1 + MAX_QUEST_OFFSET * slot2 + i);
++            uint32 temp1 = GetUInt32Value(GetQuestSlotField(slot1) + i);
++            uint32 temp2 = GetUInt32Value(GetQuestSlotField(slot2) + i);
+ 
+-            SetUInt32Value(PLAYER_QUEST_LOG_1_1 + MAX_QUEST_OFFSET * slot1 + i, temp2);
+-            SetUInt32Value(PLAYER_QUEST_LOG_1_1 + MAX_QUEST_OFFSET * slot2 + i, temp1);
++            SetUInt32Value(GetQuestSlotField(slot1) + i, temp2);
++            SetUInt32Value(GetQuestSlotField(slot2) + i, temp1);
+         }
+     }
+     uint16 GetReqKillOrCastCurrentCount(uint32 quest_id, int32 entry);
+diff --git a/src/server/game/Entities/Player/PlayerQuest.cpp b/src/server/game/Entities/Player/PlayerQuest.cpp
+index b3228c1..fa1ba74 100644
+--- a/src/server/game/Entities/Player/PlayerQuest.cpp
++++ b/src/server/game/Entities/Player/PlayerQuest.cpp
+@@ -519,7 +519,7 @@ bool Player::CanRewardQuest(Quest const* quest, uint32 reward, bool msg)
+ 
+ void Player::AddQuest(Quest const* quest, Object* questGiver)
+ {
+-    uint16 log_slot = FindQuestSlot(0);
++    uint16 log_slot = FindFreeQuestSlot(); // Custom: was FindQuestSlot(0), which ignores Quests.LogSize
+ 
+     if (log_slot >= MAX_QUEST_LOG_SIZE) // Player does not have any free slot in the quest log
+         return;
+@@ -1025,7 +1025,7 @@ bool Player::SatisfyQuestLevel(Quest const* qInfo, bool msg) const
+ bool Player::SatisfyQuestLog(bool msg)
+ {
+     // exist free slot
+-    if (FindQuestSlot(0) < MAX_QUEST_LOG_SIZE)
++    if (FindFreeQuestSlot() < MAX_QUEST_LOG_SIZE) // Custom: was FindQuestSlot(0), which ignores Quests.LogSize
+         return true;
+ 
+     if (msg)
+@@ -1862,6 +1862,23 @@ uint16 Player::FindQuestSlot(uint32 quest_id) const
+     return MAX_QUEST_LOG_SIZE;
+ }
+ 
++// Custom: Quests.LogSize
++uint16 Player::GetQuestLogSize()
++{
++    return uint16(sWorld->getIntConfig(CONFIG_QUEST_LOG_SIZE));
++}
++
++// Custom: only slots below Quests.LogSize are handed out; quests already in higher slots stay where they are
++uint16 Player::FindFreeQuestSlot() const
++{
++    uint16 size = GetQuestLogSize();
++    for (uint16 i = 0; i < size; ++i)
++        if (!GetQuestSlotQuestId(i))
++            return i;
++
++    return MAX_QUEST_LOG_SIZE;
++}
++
+ void Player::AreaExploredOrEventHappens(uint32 questId)
+ {
+     if (questId)
+diff --git a/src/server/game/Quests/QuestDef.h b/src/server/game/Quests/QuestDef.h
+index 17b286e..3a1a9c1 100644
+--- a/src/server/game/Quests/QuestDef.h
++++ b/src/server/game/Quests/QuestDef.h
+@@ -31,7 +31,10 @@ class Player;
+ 
+ class ObjectMgr;
+ 
+-#define MAX_QUEST_LOG_SIZE 25
++// Custom: 255 quest log slots (stock 25). Slots 0-24 use PLAYER_QUEST_LOG_1_1..25_5, slots 25-254 the
++// PLAYER_QUEST_LOG_EXT fields after them; needs the matching wowdecomp-256-bit client.
++#define MAX_QUEST_LOG_SIZE 255
++#define MAX_QUEST_LOG_SIZE_STOCK 25
+ 
+ #define QUEST_OBJECTIVES_COUNT 4
+ #define QUEST_ITEM_OBJECTIVES_COUNT 6
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index a39e23b..bf66829 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -381,6 +381,8 @@ void WorldConfig::BuildConfigCache()
+     SetConfigValue<uint32>(CONFIG_QUEST_LOW_LEVEL_HIDE_DIFF, "Quests.LowLevelHideDiff", 4, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value <= MAX_LEVEL; }, "<= MAX_LEVEL");
+     SetConfigValue<uint32>(CONFIG_QUEST_HIGH_LEVEL_HIDE_DIFF, "Quests.HighLevelHideDiff", 7, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value <= MAX_LEVEL; }, "<= MAX_LEVEL");
+     SetConfigValue<bool>(CONFIG_QUEST_IGNORE_RAID, "Quests.IgnoreRaid", false);
++    // Custom: quest log size, 25 (stock) to MAX_QUEST_LOG_SIZE
++    SetConfigValue<uint32>(CONFIG_QUEST_LOG_SIZE, "Quests.LogSize", 255, ConfigValueCache::Reloadable::Yes, [](uint32 const& value) { return value >= MAX_QUEST_LOG_SIZE_STOCK && value <= MAX_QUEST_LOG_SIZE; }, ">= MAX_QUEST_LOG_SIZE_STOCK && <= MAX_QUEST_LOG_SIZE");
+     SetConfigValue<bool>(CONFIG_QUEST_IGNORE_AUTO_ACCEPT, "Quests.IgnoreAutoAccept", false);
+     SetConfigValue<bool>(CONFIG_QUEST_IGNORE_AUTO_COMPLETE, "Quests.IgnoreAutoComplete", false);
+ 
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 4b6bf00..540ae77 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -244,6 +244,7 @@ enum ServerConfigs
+     CONFIG_WORLD_BOSS_LEVEL_DIFF,
+     CONFIG_QUEST_LOW_LEVEL_HIDE_DIFF,
+     CONFIG_QUEST_HIGH_LEVEL_HIDE_DIFF,
++    CONFIG_QUEST_LOG_SIZE, // Custom: usable quest log slots, up to MAX_QUEST_LOG_SIZE
+     CONFIG_CHAT_STRICT_LINK_CHECKING_SEVERITY,
+     CONFIG_CHAT_STRICT_LINK_CHECKING_KICK,
+     CONFIG_CHAT_CHANNEL_LEVEL_REQ,
