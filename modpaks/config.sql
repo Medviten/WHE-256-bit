@@ -68,9 +68,9 @@ SET @SpellAberration                                         =    68976; -- Cata
 SET @SpellFlayer                                             =    68978; -- Cataclysm ID (Worgen racial)
 SET @SpellDarkflight                                         =    68992; -- Cataclysm ID (Worgen racial)
 SET @SpellTwoFormsMale                                       =    68996; -- Cataclysm ID (except gendered) (Worgen racial)
-SET @SpellTwoFormsFemale                                     =    68995; -- Vacant slot (Worgen racial)
-SET @SpellHumanFormMale                                      =    68994; -- Vacant slot (Worgen support)
-SET @SpellHumanFormFemale                                    =   110020; -- Vacant slot (Worgen support)
+SET @SpellTwoFormsFemale                                     =    68994; -- Vacant slot (Worgen racial; the female transform without F-063, which deletes it)
+SET @SpellHumanFormMale                                      =    68995; -- Vacant slot (Worgen support; with F-063 the one Human Form, an altered form for both genders)
+SET @SpellHumanFormFemale                                    =   110020; -- Vacant slot (Worgen support; the female transform without F-063, which deletes it)
 SET @SpellRunningWildMale60                                  =    87840; -- Cataclysm ID (Worgen racial)
 SET @SpellRunningWildFemale60                                =    87841; -- Vacant slot (Worgen racial)
 SET @SpellRunningWildMale100                                 =   110010; -- Vacant slot (Worgen racial)
@@ -1616,6 +1616,8 @@ SET @WorgenSkillLineAbility1                                   =    21981;
 SET @WorgenSkillLineAbility2                                   =    21982;
 SET @WorgenSkillLineAbility3                                   =    21983;
 SET @WorgenSkillLineAbility4                                   =    21984;
+SET @WorgenSkillLineAbility5                                   =    31501; -- Running Wild (not learned from the skill: src/Worgoblin.cpp teaches it at level 20)
+SET @WorgenSkillLineAbility6                                   =    31502; -- Two Forms
 SET @GoblinSkillLineAbility1                                   =    21985;
 SET @GoblinSkillLineAbility2                                   =    21986;
 SET @GoblinSkillLineAbility3                                   =    21987;
@@ -2210,6 +2212,30 @@ SET @HaranirWaterTotemModel                                     =   @NextModelID
 SET @HaranirWaterTotem                                          =   @NextDisplayID := @NextDisplayID +1;
 SET @HaranirAirTotemModel                                       =   @NextModelID := @NextModelID +1;
 SET @HaranirAirTotem                                            =   @NextDisplayID := @NextDisplayID +1;
+SET @FurbolgFireTotemModel                                      =   @NextModelID := @NextModelID +1;
+SET @FurbolgFireTotem                                           =   @NextDisplayID := @NextDisplayID +1;
+SET @FurbolgEarthTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @FurbolgEarthTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @FurbolgWaterTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @FurbolgWaterTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @FurbolgAirTotemModel                                       =   @NextModelID := @NextModelID +1;
+SET @FurbolgAirTotem                                            =   @NextDisplayID := @NextDisplayID +1;
+SET @TuskarrFireTotemModel                                      =   @NextModelID := @NextModelID +1;
+SET @TuskarrFireTotem                                           =   @NextDisplayID := @NextDisplayID +1;
+SET @TuskarrEarthTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @TuskarrEarthTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @TuskarrWaterTotemModel                                     =   @NextModelID := @NextModelID +1;
+SET @TuskarrWaterTotem                                          =   @NextDisplayID := @NextDisplayID +1;
+SET @TuskarrAirTotemModel                                       =   @NextModelID := @NextModelID +1;
+SET @TuskarrAirTotem                                            =   @NextDisplayID := @NextDisplayID +1;
+SET @NagaFireTotemModel                                         =   @NextModelID := @NextModelID +1;
+SET @NagaFireTotem                                              =   @NextDisplayID := @NextDisplayID +1;
+SET @NagaEarthTotemModel                                        =   @NextModelID := @NextModelID +1;
+SET @NagaEarthTotem                                             =   @NextDisplayID := @NextDisplayID +1;
+SET @NagaWaterTotemModel                                        =   @NextModelID := @NextModelID +1;
+SET @NagaWaterTotem                                             =   @NextDisplayID := @NextDisplayID +1;
+SET @NagaAirTotemModel                                          =   @NextModelID := @NextModelID +1;
+SET @NagaAirTotem                                               =   @NextDisplayID := @NextDisplayID +1;
 -- <<< Retail totems <<<
 -- >>> CoA 1.9.9 replaced looks (tools/races/coa199_replace.py) >>>
 SET @ArakkoaFemaleModel                                         =   @NextModelID := @NextModelID +1; -- F-054 was male only
