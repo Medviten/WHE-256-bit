@@ -48,13 +48,15 @@ What the port does (details at the top of the script):
 - "Cast spell X on NPC" quest objectives (`RequiredSpellCast`), which AzerothCore lacks, become SmartAI credit on the NPC
 - Stock creatures and objects the zone spawns (critters, Spirit Healer, herbs, ore) keep their stock rows; so does quest 3861
 
+Hand-written on top (`sql/db-world/base/zz_[I-378]_class_quest_wotlk_spells.sql`, loads after the generated files): the class trainer quests (14266-14283) are level 4 and practise what the trainer teaches at 4 (Serpent Sting, Frostbolt and Lesser Heal instead of Steady Shot, Arcane Missiles and Flash Heal), as F-013's Kezan quests do; the quests before them give enough XP to reach level 4.
+
 ### Known Issues
 - Not tried in game or loaded into a database yet, and the core patch isn't compiled
 - No terrain swaps: Cataclysm floods Duskhaven and shakes Gilneas (maps 638, 655 and 656), but the phases play on Open Azeroth's post-Cataclysm Gilneas, where the Greymane Wall is open. A terrain modpak like F-102 can add them later
 - Worgen change form only at Last Stand (see Worgen racials): Neltharion forces the altered form with 98274, which no client here has, and the curse (68630) only shows the Cataclysm auras. Two Forms and Running Wild themselves are F-063's
 - No intro cinematic, and NPC voices are silent: the zone's Cataclysm sound ids are cleared from `creature_text`
 - The converted Cataclysm creature models haven't been looked at in game. wotlkconv drops their shadow batches and resets shaders 3.3.5a lacks to the default combiner; their CreatureSoundData ids stock lacks are cleared, so they're silent
-- Spells 3.3.5a can't run are left out (68643, 70796, 72764, 81040, 94293), with the rows that cast them. The stagecoach ride's 72764 is replaced by boarding directly
+- Spells 3.3.5a can't run are left out (68643, 70796, 72764, 94293), with the rows that cast them. The stagecoach ride's 72764 is replaced by boarding directly
 - Neltharion's custom SmartAI action 204, its script `npc_woe_mixed_creatures_ai` and its spell 151181 (the stocks scene's script spell) aren't ported
 - Creatures' loot references (Cataclysm world drops) are left out; their direct drops, quest items included, are there
 - Cataclysm Summon Properties 3122 and 2993 aren't in 3.3.5a: their summons use 64
