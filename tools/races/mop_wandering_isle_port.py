@@ -282,6 +282,9 @@ FAMILY_MAP = {50: 1, 52: 1,              # fox, dog -> wolf
 # 29404 Much to Learn and the generic 29405 The Lesson of the Iron Staff follows (retail used the class versions,
 # 30039-30045 and 30027/30033-30038), so Master Shang Xi has to end 29404 and give and end 29405
 SHANG_XI = 53566
+# The class versions' NextQuestID 29406 would make one of them (none of which is offered) a prerequisite of
+# 29406 The Lesson of the Sandy Fist: the chain goes through 29405 instead
+CLASS_LESSONS = {30027, 30033, 30034, 30035, 30036, 30037, 30038}
 EXTRA_RELATIONS = {"creature_queststarter": [(SHANG_XI, 29405)],
                    "creature_questender": [(SHANG_XI, 29404), (SHANG_XI, 29405)]}
 
@@ -1000,8 +1003,13 @@ class Port:
                 dropped["quest accept spells nothing has"].append("%d %d" % (q, src))
             src = self.spell_ok(src) or 0
             classes = num(a.get("AllowableClasses"))
+            prev, nxt = num(a.get("PrevQuestID")), num(a.get("NextQuestID"))
+            if q in CLASS_LESSONS:
+                nxt = 0
+            elif q == 29406:
+                prev = 29405
             qa.append([q, num(a.get("MaxLevel")), classes & CLASS_MASK if classes & CLASS_MASK else classes,
-                       src, num(a.get("PrevQuestID")), num(a.get("NextQuestID")), num(a.get("ExclusiveGroup")),
+                       src, prev, nxt, num(a.get("ExclusiveGroup")),
                        num(a.get("BreadcrumbForQuestId")), num(a.get("RewardMailTemplateID")),
                        num(a.get("RewardMailDelay")), num(a.get("RequiredSkillID")), num(a.get("RequiredSkillPoints")),
                        0, 0, 0, 0, num(a.get("ProvidedItemCount")), num(a.get("SpecialFlags")) & 0xF])
