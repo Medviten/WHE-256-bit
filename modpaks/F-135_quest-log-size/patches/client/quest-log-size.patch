@@ -13,10 +13,20 @@ index bfcf9048..c686e6fe 100644
              return 1;
          }
 diff --git a/WoW/Source/Object/ObjectClient/Player_C.cpp b/WoW/Source/Object/ObjectClient/Player_C.cpp
-index 5f60a8a2..7a37a3a8 100644
+index 5f60a8a2..353f1a83 100644
 --- a/WoW/Source/Object/ObjectClient/Player_C.cpp
 +++ b/WoW/Source/Object/ObjectClient/Player_C.cpp
-@@ -3809,8 +3809,9 @@ int32_t Packet_Group_17(void* param, NETMESSAGE msgId, uint32_t time, CDataStore
+@@ -2810,7 +2810,8 @@ CGPlayer_C::CGPlayer_C(uint32_t time, const CClientObjCreate& create)
+     }
+ 
+     if (this->m_obj->m_guid == ClntObjMgrGetActivePlayer()) {
+-        for (uint32_t i = 0; i < 1002; i++) {
++        // Custom: + PLAYER_EXT_FIELDS lists for the appended fields (extended quest log, quest log size)
++        for (uint32_t i = 0; i < 1002 + PLAYER_EXT_FIELDS; i++) {
+             new (&this->m_playerLocalMirrorLists[i]) TSList<void>();
+         }
+ 
+@@ -3809,8 +3810,9 @@ int32_t Packet_Group_17(void* param, NETMESSAGE msgId, uint32_t time, CDataStore
              return 1;
          }
  
@@ -28,7 +38,7 @@ index 5f60a8a2..7a37a3a8 100644
  
              if (entry && entry->m_questId == questId) {
                  if (entry->m_state & 0x2) {
-@@ -7128,8 +7129,10 @@ int32_t OnUpdateQuest(WOWGUID guid, uint32_t offset, uint32_t count, const void*
+@@ -7128,8 +7130,10 @@ int32_t OnUpdateQuest(WOWGUID guid, uint32_t offset, uint32_t count, const void*
      }
  
      CGQuestLog::Update(1);
@@ -41,7 +51,7 @@ index 5f60a8a2..7a37a3a8 100644
      const PlayerQuestLogEntry* old = static_cast<const PlayerQuestLogEntry*>(value);
      uint32_t questId = entry->m_questId;
      WOWGUID none = { 0 };
-@@ -7204,6 +7207,11 @@ void CGPlayer_C::SetActiveMirrorHandlers() {
+@@ -7204,6 +7208,11 @@ void CGPlayer_C::SetActiveMirrorHandlers() {
          ClntObjMgrSetObjMirrorHandler(this->m_obj->m_guid, ID_PLAYER, i, 20, OnUpdateQuest, nullptr, HANDLER_PRIORITY_NORMAL, 0);
      }
  
@@ -53,7 +63,7 @@ index 5f60a8a2..7a37a3a8 100644
      for (uint32_t i = 0x11B0; i < 0x1214; i += 4) {
          ClntObjMgrSetObjMirrorHandler(this->m_obj->m_guid, ID_PLAYER, i, 4, ReportDailyQuestsRemaining, nullptr, HANDLER_PRIORITY_NORMAL, 0);
      }
-@@ -7299,6 +7307,11 @@ void CGPlayer_C::UnsetActiveMirrorHandlers() {
+@@ -7299,6 +7308,11 @@ void CGPlayer_C::UnsetActiveMirrorHandlers() {
          ClntObjMgrUnsetObjMirrorHandler(this->m_obj->m_guid, ID_PLAYER, i, OnUpdateQuest, nullptr);
      }
  
@@ -65,7 +75,7 @@ index 5f60a8a2..7a37a3a8 100644
      for (uint32_t i = 0x11B0; i < 0x1214; i += 4) {
          ClntObjMgrUnsetObjMirrorHandler(this->m_obj->m_guid, ID_PLAYER, i, ReportDailyQuestsRemaining, nullptr);
      }
-@@ -12514,8 +12527,9 @@ void CGPlayer_C::CheckForQuestItemLoot(uint32_t itemId, uint32_t count, uint32_t
+@@ -12514,8 +12528,9 @@ void CGPlayer_C::CheckForQuestItemLoot(uint32_t itemId, uint32_t count, uint32_t
          return;
      }
  
@@ -77,6 +87,16 @@ index 5f60a8a2..7a37a3a8 100644
  
          if (static_cast<int32_t>(entry->m_questId) <= 0 || CGQuestLog::IsQuestExpiredByID(entry->m_questId)) {
              continue;
+@@ -13447,7 +13462,8 @@ void CGPlayer_C::DestructActivePlayer() {
+         CGGameUI::LeaveWorld();
+     }
+ 
+-    for (uint32_t i = 0; i < 1002; i++) {
++    // Custom: + PLAYER_EXT_FIELDS lists for the appended fields (extended quest log, quest log size)
++    for (uint32_t i = 0; i < 1002 + PLAYER_EXT_FIELDS; i++) {
+         this->m_playerLocalMirrorLists[i].~TSList<void>();
+     }
+ 
 diff --git a/WoW/Source/Object/Player.cpp b/WoW/Source/Object/Player.cpp
 index a302dc76..e99bbae1 100644
 --- a/WoW/Source/Object/Player.cpp
