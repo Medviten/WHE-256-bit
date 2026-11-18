@@ -1,10 +1,11 @@
-"""Port Cataclysm's starting-area class practice quests to F-136_cata-class-quests.
+"""Port Cataclysm's starting-area class practice quests to F-029_all-trainers.
 
-  python cata_class_quests_port.py WORLD_SQL F136_DIR [--acore AZEROTHCORE] [--cache PICKLE]
+  python cata_class_quests_port.py WORLD_SQL F029_DIR [--acore AZEROTHCORE] [--cache PICKLE]
 
 WORLD_SQL is Project Neltharion's `source/sql/base/world.zip` unpacked (as for cata_zone_extract.py). AZEROTHCORE is
 the 256-bit core checkout: its base world SQL says which trainers stand where, their names and the spell ranks. Rerun
-this after changing it: it replaces F136_DIR/dbc and F136_DIR/sql and leaves readme.md alone.
+this after changing it: it replaces its own files in F029_DIR (sql/.../zz_[AUTO,F-029]_*.sql, dbc/[F-029]_*.sql) and
+leaves F-029's hand-written ones alone.
 
 Cataclysm gave every starting area a level-3 quest per class: learn a spell from the class trainer, then use it on a
 training dummy (or heal a wounded NPC). This takes the ones of the eight stock starting areas and moves two of Echo
@@ -13,9 +14,12 @@ Tinkertown quests have Valley of Trials and Coldridge Valley twins already. Buil
 - the quest givers are the trainers of the quest's class that stand in its area here, stock's or F-029's (which
   places Cataclysm's new race/class trainers' counterparts); their names replace Cataclysm's in the texts. A zone
   condition keeps a trainer entry that also stands elsewhere (F-029 reuses stock entries) to its own area's quest
-- the quests are open to the area's faction (config.sql masks), not one race, and one per class (ExclusiveGroup):
-  ARAC's and the custom races' characters train there too. Prerequisites and follow-ups are dropped (Cataclysm's
-  letters and starting-area chains mostly aren't here)
+- the quests are open to the area's faction, not one race, and one per class (ExclusiveGroup): ARAC's and the custom
+  races' characters train there too. The faction is a team condition with race mask 0, so ARAC's quest update (which
+  opens every race-masked class quest to both factions) leaves them alone, whatever the manifest order. Prerequisites
+  and follow-ups are dropped (Cataclysm's letters and starting-area chains mostly aren't here)
+- the WotLK priest "Garments" quests, which Cataclysm replaced with these, are no longer offered; their "In Favor
+  of..." breadcrumbs to the first town's priest trainer stay
 - as F-013's [I-273]: level 4, and the spells 3.3.5a trains far above it become ones its trainers teach at 4
   (SPELL_SWAP, texts in TEXT_SWAP / TEXT_FIXES); every rank of the spell gives credit
 - the dummies and wounded NPCs come over with their spawns, SmartAI and displays; Cataclysm's dummies use F-013's
@@ -29,7 +33,8 @@ sys.path.insert(0, HERE)
 import cata_zone_extract as X  # noqa: E402
 import cata_gilneas_port as G  # noqa: E402
 
-TAG = "F-136"
+TAG = "F-029"
+GARMENTS = (5621, 5624, 5625, 5648, 5650)       # WotLK priest "Garments of ..." quests
 CREATURE_GUID = 13500001
 F029 = os.path.join(HERE, "..", "..", "modpaks", "F-029_all-trainers", "sql", "db-world", "base")
 
@@ -234,10 +239,13 @@ class Port(G.Port):
                 + "UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN %s;\n" % ents)
 
     def extras(self):
-        """Zone conditions, the Valley of Trials druid trainer."""
+        """Zone and team conditions, the Valley of Trials druid trainer, the Garments quests."""
         cond = []
         for q, area in sorted(self.t["quest_area"].items()):
+            team = 469 if AREAS[area][4] == G.CATA_ALLIANCE else 67
             cond.append([19, 0, q, 0, 0, 4, 0, AREAS[area][3], 0, 0, 0, 0, 0, "", "%s only" % area])
+            cond.append([19, 0, q, 0, 0, 6, 0, team, 0, 0, 0, 0, 0, "", "%s only" % ("Alliance" if team == 469
+                                                                                     else "Horde")])
         self.write("70_conditions", G.insert(
             "conditions", "SourceTypeOrReferenceId SourceGroup SourceEntry SourceId ElseGroup ConditionTypeOrReference "
             "ConditionTarget ConditionValue1 ConditionValue2 ConditionValue3 NegativeCondition ErrorType ErrorTextId "
@@ -250,6 +258,11 @@ class Port(G.Port):
                    "UPDATE `creature_template` SET `gossip_menu_id` = 4605, `AIName` = '' WHERE `entry` = %d;\n"
                    "UPDATE `creature` SET `id` = %d WHERE `guid` = %d;\n" % (TROLL_DRUID, TROLL_DRUID,
                                                                           F029_VALLEY_DRUID_GUID))
+        self.write("85_priest_garments",
+                   "-- The WotLK priest \"Garments of ...\" quests heal a wounded NPC as Healing the Wounded does; "
+                   "Cataclysm replaced them\n-- with it, so their first-town trainers no longer offer them. The "
+                   "\"In Favor of ...\" breadcrumbs there stay.\n"
+                   "DELETE FROM `creature_queststarter` WHERE `quest` IN %s;\n" % G.in_list(GARMENTS))
 
     def run(self):
         self.trainers, self.faction_templates, self.bakes = [], set(), set()
@@ -367,7 +380,7 @@ def select(N, acore):
     for q in sorted(quests, key=lambda q: q["Id"]):
         group.setdefault(q["RequiredClasses"], q["Id"])
     for q in quests:
-        q.update(Level=4, MinLevel=4, RequiredRaces=AREAS[quest_area[q["Id"]]][4], PrevQuestId=0, NextQuestId=0,
+        q.update(Level=4, MinLevel=4, RequiredRaces=0, PrevQuestId=0, NextQuestId=0,
                  NextQuestIdChain=0, ExclusiveGroup=group[q["RequiredClasses"]])
         for i in range(1, 5):
             q["RequiredSpellCast%d" % i] = SPELL_SWAP.get(q["RequiredSpellCast%d" % i], q["RequiredSpellCast%d" % i])
@@ -414,7 +427,8 @@ if __name__ == "__main__":
     G.TAG, G.STOCK_CREATURES, G.STOCK_GAMEOBJECTS, G.STOCK_QUESTS = TAG, set(), set(), set()
     G.SCRIPTS, G.DEAD_SCRIPTS, G.SCRIPT_SPELLS, G.SCRIPT_CREATURES = {DUMMY_SCRIPT}, set(), set(), set()
     G.FIXED_SPELLS, G.SPELL_SUBSTITUTES, G.SOURCE_MAPS, G.CATA_MODELS = set(), DROP_SPELLS, (), ()
-    import shutil
-    for sub in ("dbc", "sql"):
-        shutil.rmtree(os.path.join(a.dest, sub), ignore_errors=True)
+    import glob
+    for old in (glob.glob(os.path.join(a.dest, G.SQL_DIR, "zz_[[]AUTO,%s[]]_*.sql" % TAG))
+                + glob.glob(os.path.join(a.dest, "dbc", "[[]%s[]]_*.sql" % TAG))):
+        os.remove(old)
     Port(select(load(a.world, a.cache), a.acore), a.dest).run()
