@@ -50,7 +50,7 @@ What the port does (details at the top of the script):
 
 Hand-written on top (`sql/db-world/base/zz_[I-378]_class_quest_wotlk_spells.sql`, loads after the generated files; it and `[I-379]` below are kept in `tools/races/cata_gilneas_fixes/sql/`, which the port copies in, since it rewrites `sql/`): the class trainer quests (14266-14283) are level 4 and practise what the trainer teaches at 4 (Serpent Sting, Frostbolt and Lesser Heal instead of Steady Shot, Arcane Missiles and Flash Heal), as F-013's Kezan quests do; the quests before them give enough XP to reach level 4.
 
-Classes with no Gilneas class quest (ARAC's paladins and shamans, F-100's heroes) can go on without one (`zz_[I-379]_arac_classes.sql`). With F-029_all-trainers in the manifest, a paladin and a shaman trainer also stand beside Sister Almyra in each of her phases.
+Classes with no Gilneas class quest (ARAC's paladins and shamans, F-100's heroes) can go on without one (`zz_[I-379]_arac_classes.sql`). With F-029_all-trainers in the manifest, a paladin and a shaman trainer also stand beside Sister Almyra in each of her phases. Paladins and shamans then get the natives' three-step class chain too (Gwen Armstead's lead-in, a Judgement / Earth Shock practice quest on the Bloodfang Worgen, Safety in Numbers; `zz_[I-382]_arac_class_quests.sql`), and the shaman trainer gives F-002's Call of Earth
 
 ### Known Issues
 - Not tried in game or loaded into a database yet, and the core patch isn't compiled

@@ -15,7 +15,8 @@ SET @GilneasAracTrainers = COALESCE(@AllTrainersEnabled, 0) <> 0;
 
 -- ---------------------------------------------------------------------------
 -- Main path: Safety in Numbers, or a class without a Gilneas class quest
--- (warrior 1, hunter 4, rogue 8, priest 16, mage 128, warlock 256, druid 1024 = 1437)
+-- (warrior 1, hunter 4, rogue 8, priest 16, mage 128, warlock 256, druid 1024 = 1437; with F-029 also paladin 2 and
+-- shaman 64, whose chain [I-382] adds, = 1503)
 -- ---------------------------------------------------------------------------
 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (19, 20) AND `SourceGroup` = 0
@@ -23,8 +24,8 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` IN (19, 20) AND `Source
 INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry`, `SourceId`, `ElseGroup`,
   `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`,
   `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
-  (19, 0, 14157, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'Old Divisions: classes without a Gilneas class quest (I-379)'),
-  (19, 0, 24930, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'While You''re At It: classes without a Gilneas class quest (I-379)');
+  (19, 0, 14157, 0, 7, 15, 0, 1437 | IF(@GilneasAracTrainers, 66, 0), 0, 0, 1, 0, 0, '', 'Old Divisions: classes without a Gilneas class quest (I-379)'),
+  (19, 0, 24930, 0, 7, 15, 0, 1437 | IF(@GilneasAracTrainers, 66, 0), 0, 0, 1, 0, 0, '', 'While You''re At It: classes without a Gilneas class quest (I-379)');
 
 -- ---------------------------------------------------------------------------
 -- Paladin and shaman trainers (spawned only with F-029)

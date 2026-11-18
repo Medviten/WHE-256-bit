@@ -4,7 +4,7 @@
 ### Features
 - The Cataclysm Goblin starting zone from [Zeppelin-Craft](https://github.com/ZepplinCore-Development/Zeppelin-Craft): Kezan and the Lost Isles, with their creatures, quests, phases and scripts
 - New Goblin characters start in Kezan, except Death Knights, and see the Goblin intro cinematic
-- With F-029_all-trainers in the manifest, a paladin and a druid trainer for ARAC's goblins stand beside Sister Goldskimmer in each of her phases (`zz_[I-380]_arac_class_trainers.sql`)
+- With F-029_all-trainers in the manifest, a paladin and a druid trainer for ARAC's goblins stand beside Sister Goldskimmer in each of her phases (`zz_[I-380]_arac_class_trainers.sql`), with a level-4 practice quest each like the native classes' (`zz_[I-383]_arac_class_quests.sql`)
 
 ### Requirements
 - F-010_patch-open-azeroth, whose Kalimdor holds both zones, and its map files
