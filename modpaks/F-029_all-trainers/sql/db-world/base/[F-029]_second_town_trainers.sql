@@ -33,7 +33,8 @@ DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (142044, 142045, 14
 DROP TEMPORARY TABLE IF EXISTS `f029_clone_templates`;
 CREATE TEMPORARY TABLE `f029_clone_templates` SELECT m.`new_entry`, m.`new_name`, c.*
   FROM `f029_clones` m JOIN `creature_template` c ON c.`entry` = m.`src`;
-UPDATE `f029_clone_templates` SET `entry` = `new_entry`, `name` = `new_name`, `KillCredit1` = 0, `KillCredit2` = 0;
+UPDATE `f029_clone_templates` SET `entry` = `new_entry`, `name` = `new_name`, `KillCredit1` = 0, `KillCredit2` = 0,
+  `npcflag` = `npcflag` | 2;  -- quest giver: [F-029]_second_town_quests.sql
 ALTER TABLE `f029_clone_templates` DROP COLUMN `new_entry`, DROP COLUMN `new_name`;
 INSERT INTO `creature_template` SELECT * FROM `f029_clone_templates`;
 DROP TEMPORARY TABLE `f029_clone_templates`;

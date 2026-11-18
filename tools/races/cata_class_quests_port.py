@@ -271,9 +271,11 @@ class Port(G.Port):
                    "UPDATE `creature` SET `id` = %d WHERE `guid` = %d;\n" % (TROLL_DRUID, TROLL_DRUID,
                                                                           F029_VALLEY_DRUID_GUID))
         self.write("81_second_town_trainers",
-                   "-- Cataclysm's second-town trainers use the gossip of a stock trainer of their class and faction\n"
+                   "-- Cataclysm's second-town trainers use the gossip of a stock trainer of their class and faction, and\n"
+                   "-- give quests ([F-029]_second_town_quests.sql, zz_[I-381]_hunter_taming.sql): questgiver flag\n"
                    + "".join("UPDATE `creature_template` t JOIN `creature_template` s ON s.`entry` = %d "
-                             "SET t.`gossip_menu_id` = s.`gossip_menu_id`, t.`AIName` = '' WHERE t.`entry` = %d;\n"
+                             "SET t.`gossip_menu_id` = s.`gossip_menu_id`, t.`AIName` = '', "
+                             "t.`npcflag` = t.`npcflag` | 2 WHERE t.`entry` = %d;\n"
                              % (src, e) for e, src in sorted(SECOND_TOWN_TRAINERS.items())))
         self.write("85_priest_garments",
                    "-- The WotLK priest \"Garments of ...\" quests heal a wounded NPC as Healing the Wounded does; "
