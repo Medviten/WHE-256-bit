@@ -13,7 +13,7 @@
 - Credit is SmartAI on the dummies and wounded NPCs (AzerothCore has no "cast spell on NPC" objective); Neltharion's own SmartAI on them is left out. The dummies use F-013's core script `npc_zep_training_dummy` (no damage, keeps SmartAI)
 
 ### Requirements
-- F-029_all-trainers. Keep F-136 after it and before F-010: it replaces one of F-029's spawns, and F-010's move scripts relocate the Ammen Vale and Sunstrider Isle dummies with the rest of those areas
+- F-029_all-trainers. Keep F-136 after it and after F-002 (whose update opens every class quest to every race, both factions), and before F-010: it replaces one of F-029's spawns, and F-010's move scripts relocate the Ammen Vale and Sunstrider Isle dummies with the rest of those areas
 - The core's `npc_zep_training_dummy` (F-013's `goblin-start.patch`; the 256-bit core has it). Without it the dummies take damage and can die
 - Client assets: the wounded NPCs' bakes, `Textures\BakedNpcTextures\CreatureDisplayExtra-*.blp` (the `texture` column of `dbc/[F-136]_creaturedisplayinfoextra.sql`), are in WHE-common, from the 4.3.4 client's art.MPQ
 
