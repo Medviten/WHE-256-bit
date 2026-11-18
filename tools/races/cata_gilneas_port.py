@@ -103,6 +103,10 @@ SAI_EVENT_DROP = {66, 78}
 # (entry, id) rows left out: Prince Liam Greymane at the Merchant Square turned his invincibility off when first hit,
 # so the worgen he fights killed him and the quests he ends had no one to turn in to for five minutes
 SAI_ROW_DROP = {(34913, 2)}
+# Creature faction templates replaced: the Worgen Alpha and Runts that come for Crowley (By the Skin of His Teeth)
+# are Warsong Offensive (1978) in the source, a Horde faction no Alliance-hostile player could attack here; they get
+# the Bloodfang worgen's 2179 like every other hostile worgen
+FACTION_FIX = {35170: 2179, 35188: 2179}
 SAI_SPELL_ACTIONS = {11, 28, 75, 85, 86, 134}
 SAI_SPELL_EVENTS = {8, 31}
 # Neltharion condition types AzerothCore doesn't have
@@ -445,7 +449,7 @@ class Port:
             tmpl.append([e, r["difficulty_entry_1"], r["difficulty_entry_2"], r["difficulty_entry_3"],
                          r["KillCredit1"], r["KillCredit2"], r["name"], r["subname"] or None, r["IconName"] or None,
                          self.menu.get(r["gossip_menu_id"], 0), r["minlevel"], r["maxlevel"], min(r["exp"], 2),
-                         self.faction(r["faction_A"]), r["npcflag"], r["speed_walk"], r["speed_run"], r["speed_swim"],
+                         self.faction(FACTION_FIX.get(r["entry"], r["faction_A"])), r["npcflag"], r["speed_walk"], r["speed_run"], r["speed_swim"],
                          r["speed_fly"], 18, r["rank"], r["dmgschool"], r["dmg_multiplier"] or 1,
                          r["baseattacktime"] or 2000, r["rangeattacktime"] or 2000, 1, 1, r["unit_class"] or 1,
                          r["unit_flags"], r["unit_flags2"], r["dynamicflags"], FAMILY_MAP.get(r["family"], r["family"]), r["type"],
