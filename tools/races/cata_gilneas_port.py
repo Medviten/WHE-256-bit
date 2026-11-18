@@ -25,7 +25,7 @@ What it does to Neltharion's TrinityCore 4.3.4 rows:
 - Neltharion's own server spells (151xxx) and the few 4.3.4-only ones are written by cata_gilneas_fixes/; rows that
   use spells, creatures, items or scripts nothing here has are dropped and listed at the end
 """
-import collections, glob, os, re, shutil, struct, sys
+import collections, glob, math, os, re, shutil, struct, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -100,6 +100,9 @@ SAI_MAX_EVENT, SAI_MAX_ACTION = 74, 135
 SAI_ACTION_REMAP = {85: 134}
 SAI_ACTION_DROP = {16, 103, 114, 121}
 SAI_EVENT_DROP = {66, 78}
+# (entry, id) rows left out: Prince Liam Greymane at the Merchant Square turned his invincibility off when first hit,
+# so the worgen he fights killed him and the quests he ends had no one to turn in to for five minutes
+SAI_ROW_DROP = {(34913, 2)}
 SAI_SPELL_ACTIONS = {11, 28, 75, 85, 86, 134}
 SAI_SPELL_EVENTS = {8, 31}
 # Neltharion condition types AzerothCore doesn't have
@@ -146,6 +149,25 @@ def dbc_ids(name):
     d = open(os.path.join(STOCK_DBC, name + ".dbc"), "rb").read()
     n, _, rs, _ = struct.unpack_from("<4I", d, 4)
     return {struct.unpack_from("<I", d, 20 + i * rs)[0] for i in range(n)}
+
+
+def go_rotation(o, r0, r1, r2, r3):
+    """A spawn's rotation quaternion: the newer cores keep (0, 0, 0, 1) or zeros and turn the object by its
+    orientation, AzerothCore turns it by the quaternion, so those become a turn about z by the orientation."""
+    if float(o) and not (float(r0) or float(r1) or float(r2)) and float(r3) in (0, 1):
+        return [0, 0, round(math.sin(float(o) / 2), 6), round(math.cos(float(o) / 2), 6)]
+    return [r0, r1, r2, r3]
+
+
+# The 3.3.5a client's cursor names (Cursor.cpp); Cataclysm added others (openhandglow: an object to use)
+STOCK_CURSORS = {c.lower(): c for c in (
+    "Point Cast Buy Attack Interact Speak Inspect Pickup Taxi Trainer Mine Skin GatherHerbs PickLock Mail LootAll "
+    "Repair RepairNPC Item SkinHorde SkinAlliance Innkeeper Quest QuestRepeatable QuestTurnIn vehichleCursor").split()}
+
+
+def go_icon(name):
+    """A gameobject IconName the 3.3.5a client knows (no cursor at all otherwise): the gear for the newer ones."""
+    return STOCK_CURSORS.get((name or "").lower(), "Interact") if name else ""
 
 
 # ---- writing -------------------------------------------------------------------------------------------------------
@@ -623,8 +645,9 @@ class Port:
                 a.append([g, self.path(r["path_id"]), r["mount"], r["bytes1"], r["bytes2"], r["emote"], 0,
                           self.auras(r["auras"], "spawn %d" % r["guid"]), ""])
         g = [[self.gguid[r["guid"]], r["id"], 0, 0, 0, 1, r["phaseMask"], r["position_x"], r["position_y"],
-              r["position_z"], r["orientation"], r["rotation0"], r["rotation1"], r["rotation2"], r["rotation3"],
-              r["spawntimesecs"], r["animprogress"], r["state"], "", 0, "[gen F-130 Gilneas]"]
+              r["position_z"], r["orientation"]]
+             + go_rotation(r["orientation"], r["rotation0"], r["rotation1"], r["rotation2"], r["rotation3"])
+             + [r["spawntimesecs"], r["animprogress"], r["state"], "", 0, "[gen F-130 Gilneas]"]
              for r in sorted(T["gameobject"], key=lambda r: r["guid"]) if r["id"] in self.goentries | STOCK_GAMEOBJECTS]
         self.write("40_creature", insert(
             "creature", "guid id map zoneId areaId spawnMask phaseMask equipment_id position_x position_y position_z "
@@ -676,7 +699,7 @@ class Port:
             if r["type"] == 2 and data[3]:            # questgiver gossip menu
                 data[3] = self.menu.get(data[3], 0)
             script = r["ScriptName"] if r["ScriptName"] in SCRIPTS else ""
-            tmpl.append([e, r["type"], d, r["name"], r["IconName"] or "", r["castBarCaption"] or "", r["unk1"] or "",
+            tmpl.append([e, r["type"], d, r["name"], go_icon(r["IconName"]), r["castBarCaption"] or "", r["unk1"] or "",
                          r["size"]] + data + ["SmartGameObjectAI" if r["AIName"] and e in ai else "", script, 0])
             addon.append([e, self.faction(r["faction"]) if r["faction"] else 0, r["flags"]])
             for i in range(1, 7):
@@ -875,6 +898,8 @@ class Port:
             p = [r["action_param%d" % i] for i in range(1, 7)]
             ep = [r["event_param%d" % i] for i in range(1, 5)]
             why = None
+            if (e, r["id"]) in SAI_ROW_DROP:
+                continue
             if ev > SAI_MAX_EVENT or ev in SAI_EVENT_DROP:
                 why = "event %d" % ev
             elif a > SAI_MAX_ACTION or a in SAI_ACTION_DROP:

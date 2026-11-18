@@ -35,7 +35,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mop_wandering_isle_port as wi  # noqa: E402
 from mop_pandaria_nodes import sfdb  # noqa: E402
 from cata_items import ITEM_TEMPLATE_COLUMNS, display_sql, sql_value  # noqa: E402
-from cata_gilneas_port import insert, in_list  # noqa: E402
+from cata_gilneas_port import insert, in_list, go_rotation  # noqa: E402
 from mop_items import MopItems  # noqa: E402
 from mop_loot import LootFill, killable, gold  # noqa: E402
 import cata406_dbc_port as c406  # noqa: E402
@@ -542,8 +542,8 @@ class PandariaPort(wi.Port):
             "DELETE FROM `gameobject_questitem` WHERE `GameObjectEntry` IN %s;" % ents))
         self.write_dbc("gameobjectdisplayinfo", disp, "MoP object displays (5.4.8) of Pandaria's quest objects")
         sp = [[GAMEOBJECT_GUID + i, int(r["id"]), MAP, 0, 0, 1, 1] +
-              [float(r[k]) for k in ("position_x", "position_y", "position_z", "orientation", "rotation0", "rotation1",
-                                     "rotation2", "rotation3")] +
+              [float(r[k]) for k in ("position_x", "position_y", "position_z", "orientation")] +
+              go_rotation(*(float(r[k]) for k in ("orientation", "rotation0", "rotation1", "rotation2", "rotation3"))) +
               [int(r["spawntimesecs"]), int(r["animprogress"]), int(r["state"]), "", 0, "[gen F-133 Pandaria]"]
               for i, r in enumerate(self.go_spawns)]
         self.write("42_gameobject", insert(

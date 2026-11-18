@@ -38,7 +38,7 @@ from cata_items import sql_value, ITEM_TEMPLATE_COLUMNS, DISPLAY_COLUMNS, displa
 from mop_items import MopItems  # noqa: E402
 from mop_loot import LootFill, killable, gold  # noqa: E402
 from mop_spells import MopSpells  # noqa: E402
-from cata_gilneas_port import insert, in_list, MODEL_COLUMNS, MODEL_FLOATS, modpak_spells  # noqa: E402
+from cata_gilneas_port import insert, in_list, MODEL_COLUMNS, MODEL_FLOATS, modpak_spells, go_rotation, go_icon  # noqa: E402
 import cata406_dbc_port as c406  # noqa: E402
 
 REFS = os.path.normpath(os.path.join(HERE, "..", "..", "..", "References"))
@@ -834,9 +834,9 @@ class Port:
                 dropped["object spawns not on the island or of objects nothing defines"].append(r["id"])
                 continue
             g.append([self.gguid[r["guid"]], r["id"], MAP, 0, 0, 1, self.phasemask(r["PhaseId"], r["PhaseGroup"]),
-                      r["position_x"], r["position_y"], r["position_z"], r["orientation"], r["rotation0"], r["rotation1"],
-                      r["rotation2"], r["rotation3"], r["spawntimesecs"], r["animprogress"], r["state"], "", 0,
-                      "[gen F-134 Wandering Isle]"])
+                      r["position_x"], r["position_y"], r["position_z"], r["orientation"]]
+                     + go_rotation(r["orientation"], r["rotation0"], r["rotation1"], r["rotation2"], r["rotation3"])
+                     + [r["spawntimesecs"], r["animprogress"], r["state"], "", 0, "[gen F-134 Wandering Isle]"])
         gkept = {x[0] for x in g}
         for r in self.t("gameobject_addon"):
             guid = self.gguid.get(r["guid"])
@@ -896,7 +896,7 @@ class Port:
             script = r["ScriptName"] if r["ScriptName"] in SCRIPTS else ""
             if r["ScriptName"] and not script:
                 dropped["object script names nothing implements yet"].append("%d %s" % (e, r["ScriptName"]))
-            tmpl.append([e, r["type"], d, r["name"], r["IconName"] or "", r["castBarCaption"] or "", r["unk1"] or "",
+            tmpl.append([e, r["type"], d, r["name"], go_icon(r["IconName"]), r["castBarCaption"] or "", r["unk1"] or "",
                          r["size"]] + data + ["SmartGameObjectAI" if r["AIName"] and e in ai else "", script, 0])
         for r in self.t("gameobject_template_addon"):
             if r["entry"] in self.got:
