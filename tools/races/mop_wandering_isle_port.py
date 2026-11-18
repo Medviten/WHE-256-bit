@@ -87,6 +87,10 @@ CONDITION_SOURCE_DROP = {28, 29, 30, 31, 32, 33, 34, 35}
 CONDITION_TYPE_MAP = {51: 31, 52: 32}
 CONDITION_TYPE_DROP = {50, 53, 54, 55, 56, 57, 58, 59, 60}
 CONDITION_AURA, CONDITION_SPELL, CONDITION_AREA, CONDITION_PHASE = 1, 25, 23, 26
+CONDITION_CLASS = 15
+# Classes MoP's Pandaren couldn't be, put in the class phase of a lesson weapon they can use: the phase holds that
+# class's weapon racks at the training grounds (paladin: warrior's sword, druid: monk's staff)
+CLASS_PHASE_EXTRA = {592: 0x2, 598: 0x400}
 # GossipOptionNpc -> (OptionType, OptionNpcFlag, OptionIcon)
 GOSSIP_NPC = {0: (1, 1, 0), 1: (3, 128, 1), 2: (4, 8192, 2), 3: (5, 16, 3), 4: (6, 16384, 4), 5: (8, 65536, 5),
               6: (9, 131072, 6), 9: (12, 1048576, 9), 12: (14, 4194304, 0)}
@@ -1325,6 +1329,8 @@ class Port:
                         continue
                     cv = self.condition_values(c)
                     if cv:
+                        if cv[0] == CONDITION_CLASS and not num(c["NegativeCondition"]):
+                            cv[1][0] |= CLASS_PHASE_EXTRA.get(a["PhaseId"], 0)
                         out.append([26, ZONE, n, 0, gnum, cv[0], c["ConditionTarget"]] + cv[1]
                                    + [num(c["NegativeCondition"]), 0, 0, "", "F-134 phase %d" % a["PhaseId"]])
         keys = sorted({(r[0], r[1], r[2], r[3]) for r in out if r[0] != 26})
