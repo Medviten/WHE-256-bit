@@ -41,11 +41,12 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
   (@GilneasPaladinTrainerCreatureID, 0, 29466, 1, 1, 0),
   (@GilneasShamanTrainerCreatureID, 0, 30215, 1, 1, 0);
 
--- Alliance trainer lists, as Brother Sammuel (paladin 6) and Firmanvaar (shaman 15)
+-- Full trainer lists, as the other Gilneas trainers have: Alliance paladin 3 (Brother Wilhelm), shaman 14 (Tuluun).
+-- (6 and 15 are the starting-area lists, which stop at level 6)
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (@GilneasPaladinTrainerCreatureID, @GilneasShamanTrainerCreatureID);
 INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
-  (@GilneasPaladinTrainerCreatureID, 6),
-  (@GilneasShamanTrainerCreatureID, 15);
+  (@GilneasPaladinTrainerCreatureID, 3),
+  (@GilneasShamanTrainerCreatureID, 14);
 
 -- 1.5 yards either side of each Sister Almyra spawn, same phase and facing
 DELETE FROM `creature` WHERE `guid` BETWEEN 13009901 AND 13009910;

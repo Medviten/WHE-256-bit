@@ -54,6 +54,18 @@ RADIUS = 250
 TRANSPLANT = {24784: "Valley of Trials", 24766: "Valley of Trials"}
 TRANSPLANT_TARGETS = {47057}                     # Wounded Darkspear Watcher: placed by the Valley's dummies
 TROLL_DRUID, F029_VALLEY_DRUID_GUID = 38243, 6210113   # Zen'tabra; F-029's Gart Mistrunner spawn she replaces
+# Cataclysm's trainers for its new race/class pairs in the second towns, with their 4.3.4 spawns: entry -> the stock
+# trainer of the same class and faction whose trainer list and gossip they get (Neltharion's gossip isn't ported).
+# The classes Cataclysm didn't add there are [F-029]_second_town_trainers.sql's
+SECOND_TOWN_TRAINERS = {46983: 1231,    # Benjamin Foxworthy, Goldshire hunter (Grif Wildheart)
+                        43464: 17212,   # Halbin Frosthammer, Kharanos shaman (Tuluun)
+                        44380: 3064,    # Jabul, Razor Hill druid (Gennia Runetotem)
+                        43015: 3706,    # Seer Alsoomse, Bloodhoof Village priest (Tai'jin)
+                        43013: 16275,   # Sunwalker Iopi, Bloodhoof Village paladin (Noellene)
+                        39100: 3171,    # Dedlow Wormwood, Brill hunter (Thotar)
+                        43012: 2131}    # Lothan Silverblade, Falconwing Square warrior (Austil de Mon)
+SECOND_TOWNS = {"Goldshire": (0, -9460, 40), "Kharanos": (0, -5600, -500), "Razor Hill": (1, 320, -4700),
+                "Bloodhoof Village": (1, -2300, -370), "Brill": (0, 2260, 270), "Falconwing Square": (530, 9500, -6800)}
 STOCK_TARGETS = {16971}                          # Injured Draenei: stock, spawned in Ammen Vale already
 CREDIT = 44175                                   # Spell Practice Credit: the dummies' KillCredit
 
@@ -153,7 +165,7 @@ def acore_data(acore):
         ranks[int(f)].append(int(s))
         first[int(s)] = int(f)
     klass = lambda e: trainer[cdt[e]][1] if e in cdt and cdt[e] in trainer and trainer[cdt[e]][0] == 0 else None
-    return spawns, names, klass, {s: ranks[f] for s, f in first.items()}
+    return spawns, names, klass, {s: ranks[f] for s, f in first.items()}, cdt
 
 
 def near(m, x, y, area):
@@ -258,6 +270,11 @@ class Port(G.Port):
                    "UPDATE `creature_template` SET `gossip_menu_id` = 4605, `AIName` = '' WHERE `entry` = %d;\n"
                    "UPDATE `creature` SET `id` = %d WHERE `guid` = %d;\n" % (TROLL_DRUID, TROLL_DRUID,
                                                                           F029_VALLEY_DRUID_GUID))
+        self.write("81_second_town_trainers",
+                   "-- Cataclysm's second-town trainers use the gossip of a stock trainer of their class and faction\n"
+                   + "".join("UPDATE `creature_template` t JOIN `creature_template` s ON s.`entry` = %d "
+                             "SET t.`gossip_menu_id` = s.`gossip_menu_id`, t.`AIName` = '' WHERE t.`entry` = %d;\n"
+                             % (src, e) for e, src in sorted(SECOND_TOWN_TRAINERS.items())))
         self.write("85_priest_garments",
                    "-- The WotLK priest \"Garments of ...\" quests heal a wounded NPC as Healing the Wounded does; "
                    "Cataclysm replaced them\n-- with it, so their first-town trainers no longer offer them. The "
@@ -269,7 +286,9 @@ class Port(G.Port):
         self.cast_credit, self.cast_credit_npcs = [], set()
         self.collect_spells()
         self.creatures()
-        self.trainers = [(e, 34 if e == TROLL_DRUID else t) for e, t in self.trainers]   # Horde druid list
+        lists = dict(self.t["second_town_lists"])
+        lists[TROLL_DRUID] = 34                                                    # Horde druid list
+        self.trainers = [(e, lists.get(e, t)) for e, t in self.trainers]
         self.write("57_creature_default_trainer", G.insert(
             "creature_default_trainer", ["CreatureId", "TrainerId"], self.trainers,
             "DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN %s;" % G.in_list(r[0] for r in self.trainers)))
@@ -295,7 +314,7 @@ class Port(G.Port):
 
 
 def select(N, acore):
-    spawns, names, klass, ranks = acore_data(acore)
+    spawns, names, klass, ranks, cdt = acore_data(acore)
     ct = {r["entry"]: r for r in N["creature_template"]}
     nspawn = collections.defaultdict(list)
     for r in N["creature"]:
@@ -365,6 +384,14 @@ def select(N, acore):
                 if here:
                     entries.add(e)
                     cspawns += [dict(s, area=area) for s in here]
+    # the second towns' Cataclysm trainers, where they stood in 4.3.4
+    for e in SECOND_TOWN_TRAINERS:
+        entries.add(e)
+        for s in nspawn[e]:
+            town = next((t for t, (m, x, y) in SECOND_TOWNS.items() if s["map"] == m
+                         and math.hypot(s["position_x"] - x, s["position_y"] - y) < RADIUS), None)
+            if town:
+                cspawns.append(dict(s, area=town))
     cspawns = list({s["guid"]: s for s in cspawns}.values())
     # Echo Isles' wounded watchers: three yards from each Valley of Trials dummy
     dummies = sorted((s for s in cspawns if s["area"] == "Valley of Trials" and s["id"] != 47057),
@@ -413,7 +440,8 @@ def select(N, acore):
         quest_poi=[r for r in N["quest_poi"] if r["questId"] in qids - transplanted],
         quest_poi_points=[r for r in N["quest_poi_points"] if r["questId"] in qids - transplanted],
         creature_questrelation=rel, creature_involvedrelation=rel,
-        givers=givers, quest_area=quest_area, ranks=ranks)
+        givers=givers, quest_area=quest_area, ranks=ranks,
+        second_town_lists={e: cdt[src] for e, src in SECOND_TOWN_TRAINERS.items()})
 
 
 if __name__ == "__main__":

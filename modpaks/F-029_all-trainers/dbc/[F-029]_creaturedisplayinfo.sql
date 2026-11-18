@@ -78,6 +78,25 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 31311;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 31311,
+  `model_id` = 57,
+  `sound_id` = 0,
+  `extended_display_info_id` = 20855,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = -1,
+  `blood_id` = 0,
+  `npc_sound_id` = 84,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 32778;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 32778,
@@ -93,6 +112,101 @@ INSERT INTO `creaturedisplayinfo` SET
   `blood_level` = -1,
   `blood_id` = 0,
   `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33381;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33381,
+  `model_id` = 53,
+  `sound_id` = 0,
+  `extended_display_info_id` = 22138,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 38,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33509;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33509,
+  `model_id` = 60,
+  `sound_id` = 0,
+  `extended_display_info_id` = 22232,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 72,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33510;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33510,
+  `model_id` = 59,
+  `sound_id` = 0,
+  `extended_display_info_id` = 22233,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 69,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33687;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33687,
+  `model_id` = 2208,
+  `sound_id` = 0,
+  `extended_display_info_id` = 22350,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 1,
+  `blood_id` = 0,
+  `npc_sound_id` = 195,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 33829;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 33829,
+  `model_id` = 185,
+  `sound_id` = 0,
+  `extended_display_info_id` = 22447,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 1,
+  `blood_id` = 0,
+  `npc_sound_id` = 76,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -473,6 +587,25 @@ INSERT INTO `creaturedisplayinfo` SET
   `blood_level` = -1,
   `blood_id` = 0,
   `npc_sound_id` = 69,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 35369;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 35369,
+  `model_id` = 49,
+  `sound_id` = 0,
+  `extended_display_info_id` = 23435,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 50,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;

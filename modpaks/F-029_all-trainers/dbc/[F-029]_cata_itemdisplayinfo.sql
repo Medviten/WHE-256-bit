@@ -114,6 +114,34 @@ INSERT INTO `itemdisplayinfo` SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
+DELETE FROM `itemdisplayinfo` WHERE `id` = 60034;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 60034,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = '',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 0,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = 'cloth_a_03crewmanblue_sleeve_au',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = 'cloth_a_03crewmanblue_chest_tu',
+  `lower_torso_texture` = 'cloth_a_03crewmanblue_chest_tl',
+  `upper_leg_texture` = 'cloth_a_03crewmanblue_belt_lu',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
 DELETE FROM `itemdisplayinfo` WHERE `id` = 63697;
 INSERT INTO `itemdisplayinfo` SET
   `id` = 63697,
@@ -142,6 +170,34 @@ INSERT INTO `itemdisplayinfo` SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
+DELETE FROM `itemdisplayinfo` WHERE `id` = 68873;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 68873,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = '',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 0,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = '',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = '',
+  `lower_torso_texture` = '',
+  `upper_leg_texture` = 'mail_dungeonshaman_a_01blue_robe_lu',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
 DELETE FROM `itemdisplayinfo` WHERE `id` = 69940;
 INSERT INTO `itemdisplayinfo` SET
   `id` = 69940,
@@ -165,6 +221,34 @@ INSERT INTO `itemdisplayinfo` SET
   `upper_torso_texture` = 'leather_b_02mountaineer_chest_tu',
   `lower_torso_texture` = 'leather_b_02mountaineer_chest_tl',
   `upper_leg_texture` = 'leather_b_02mountaineer_belt_lu',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
+DELETE FROM `itemdisplayinfo` WHERE `id` = 70617;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 70617,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_shirt_05',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 7,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = 'mail_blood_b_01crimson_sleeve_au',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = 'cloth_a_11darkgray_chest_tu',
+  `lower_torso_texture` = 'mail_blood_b_01crimson_chest_tl',
+  `upper_leg_texture` = 'mail_blood_b_01crimson_belt_lu',
   `lower_leg_texture` = '',
   `foot_texture` = '',
   `item_visual` = 0,

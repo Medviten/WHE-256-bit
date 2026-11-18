@@ -4,6 +4,7 @@
 ### Features
 - All class trainers in all stock capitals
 - Class trainers in the stock starting areas for the classes those zones lack (spawns from mod-uac)
+- Class trainers in the second towns (Goldshire, Kharanos, Dolanaar, Azure Watch, Razor Hill, Bloodhoof Village, Brill, Falconwing Square) for the classes those towns lack, 25 in all: Cataclysm's own trainers for its new race/class pairs where it had one (Benjamin Foxworthy, Halbin Frosthammer, Jabul, Seer Alsoomse, Sunwalker Iopi, Dedlow Wormwood, Lothan Silverblade; from Neltharion, at their Cataclysm spots, with the trainer list and gossip of a stock trainer of their class), and for the rest new NPCs (`[F-029]_second_town_trainers.sql`), each a copy of a stock trainer of the same class and faction (look, gossip, trainer list, none of its quests) under a new name, beside a stock trainer of the town
 - Mage and warlock trainers in Teldrassil for Worgen, if F-024 is in the manifest (their displays are in its DBCs)
 - Sets `@AllTrainersEnabled` (`variables.sql`), so other modpaks can add trainers for the classes their zones lack: F-130 puts a paladin and a shaman trainer in Gilneas, F-013 a paladin and a druid trainer in Kezan and the Lost Isles
 - Cataclysm's class practice quests in the eight stock starting areas (below)

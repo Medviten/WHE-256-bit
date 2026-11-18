@@ -98,6 +98,150 @@ INSERT INTO `creaturedisplayinfoextra` SET
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-20587.blp';
 
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 20855;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 20855,
+  `race` = 5,
+  `gender` = 0,
+  `skin_color` = 2,
+  `face_type` = 2,
+  `hair_style` = 7,
+  `hair_color` = 1,
+  `facial_hair` = 5,
+  `helm_id` = 0,
+  `shoulders_id` = 0,
+  `shirt_id` = 18225,
+  `chest_id` = 18225,
+  `belt_id` = 0,
+  `legs_id` = 1978,
+  `boots_id` = 1981,
+  `wrists_id` = 3615,
+  `gloves_id` = 3523,
+  `tabard_id` = 0,
+  `cape_id` = 0,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-20855.blp';
+
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 22138;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 22138,
+  `race` = 3,
+  `gender` = 0,
+  `skin_color` = 16,
+  `face_type` = 0,
+  `hair_style` = 11,
+  `hair_color` = 7,
+  `facial_hair` = 3,
+  `helm_id` = 0,
+  `shoulders_id` = 4483,
+  `shirt_id` = 68873,
+  `chest_id` = 47084,
+  `belt_id` = 14202,
+  `legs_id` = 31415,
+  `boots_id` = 0,
+  `wrists_id` = 4494,
+  `gloves_id` = 0,
+  `tabard_id` = 0,
+  `cape_id` = 0,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-22138.blp';
+
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 22232;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 22232,
+  `race` = 6,
+  `gender` = 1,
+  `skin_color` = 3,
+  `face_type` = 3,
+  `hair_style` = 3,
+  `hair_color` = 2,
+  `facial_hair` = 3,
+  `helm_id` = 0,
+  `shoulders_id` = 0,
+  `shirt_id` = 59915,
+  `chest_id` = 25425,
+  `belt_id` = 9203,
+  `legs_id` = 25426,
+  `boots_id` = 59918,
+  `wrists_id` = 9206,
+  `gloves_id` = 0,
+  `tabard_id` = 10959,
+  `cape_id` = 0,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-22232.blp';
+
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 22233;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 22233,
+  `race` = 6,
+  `gender` = 0,
+  `skin_color` = 5,
+  `face_type` = 1,
+  `hair_style` = 8,
+  `hair_color` = 2,
+  `facial_hair` = 3,
+  `helm_id` = 0,
+  `shoulders_id` = 0,
+  `shirt_id` = 59912,
+  `chest_id` = 11102,
+  `belt_id` = 59913,
+  `legs_id` = 11104,
+  `boots_id` = 59914,
+  `wrists_id` = 55482,
+  `gloves_id` = 11106,
+  `tabard_id` = 0,
+  `cape_id` = 38665,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-22233.blp';
+
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 22350;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 22350,
+  `race` = 10,
+  `gender` = 0,
+  `skin_color` = 8,
+  `face_type` = 3,
+  `hair_style` = 5,
+  `hair_color` = 5,
+  `facial_hair` = 0,
+  `helm_id` = 0,
+  `shoulders_id` = 36497,
+  `shirt_id` = 70617,
+  `chest_id` = 36498,
+  `belt_id` = 36499,
+  `legs_id` = 36500,
+  `boots_id` = 36671,
+  `wrists_id` = 37647,
+  `gloves_id` = 36502,
+  `tabard_id` = 0,
+  `cape_id` = 0,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-22350.blp';
+
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 22447;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 22447,
+  `race` = 8,
+  `gender` = 0,
+  `skin_color` = 4,
+  `face_type` = 0,
+  `hair_style` = 6,
+  `hair_color` = 4,
+  `facial_hair` = 0,
+  `helm_id` = 0,
+  `shoulders_id` = 0,
+  `shirt_id` = 60034,
+  `chest_id` = 10108,
+  `belt_id` = 15832,
+  `legs_id` = 9204,
+  `boots_id` = 0,
+  `wrists_id` = 9206,
+  `gloves_id` = 0,
+  `tabard_id` = 0,
+  `cape_id` = 0,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-22447.blp';
+
 DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 22463;
 INSERT INTO `creaturedisplayinfoextra` SET
   `id` = 22463,
@@ -577,3 +721,27 @@ INSERT INTO `creaturedisplayinfoextra` SET
   `cape_id` = 0,
   `can_equip` = 0,
   `texture` = 'CreatureDisplayExtra-22682.blp';
+
+DELETE FROM `creaturedisplayinfoextra` WHERE `id` = 23435;
+INSERT INTO `creaturedisplayinfoextra` SET
+  `id` = 23435,
+  `race` = 1,
+  `gender` = 0,
+  `skin_color` = 0,
+  `face_type` = 0,
+  `hair_style` = 1,
+  `hair_color` = 0,
+  `facial_hair` = 8,
+  `helm_id` = 0,
+  `shoulders_id` = 0,
+  `shirt_id` = 3903,
+  `chest_id` = 684,
+  `belt_id` = 0,
+  `legs_id` = 1818,
+  `boots_id` = 31732,
+  `wrists_id` = 2118,
+  `gloves_id` = 12063,
+  `tabard_id` = 0,
+  `cape_id` = 0,
+  `can_equip` = 0,
+  `texture` = 'CreatureDisplayExtra-23435.blp';
