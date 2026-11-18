@@ -58,7 +58,7 @@ Level-10 class quests Worgen otherwise only find after leaving Gilneas (`zz_[I-3
 - Not tried in game or loaded into a database yet, and the core patch isn't compiled
 - No terrain swaps: Cataclysm floods Duskhaven and shakes Gilneas (maps 638, 655 and 656), but the phases play on Open Azeroth's post-Cataclysm Gilneas, where the Greymane Wall is open. A terrain modpak like F-102 can add them later
 - Worgen change form only at Last Stand (see Worgen racials): Neltharion forces the altered form with 98274, which no client here has, and the curse (68630) only shows the Cataclysm auras. Two Forms and Running Wild themselves are F-063's
-- No intro cinematic, and NPC voices are silent: the zone's Cataclysm sound ids are cleared from `creature_text`
+- NPCs greet, say farewell and get annoyed in their Cataclysm voices (`dbc/[F-130]_npc_*.sql`, 4.0.6a NPCSounds rows of the displays; the files, retail's .ogg, fetched into WHE-common's patch-A.MPQ with `tools/races/zep_goblin_sounds.py --sql`), but their spoken `creature_text` lines are silent: those sound ids are cleared
 - The converted Cataclysm creature models haven't been looked at in game. wotlkconv drops their shadow batches and resets shaders 3.3.5a lacks to the default combiner; their CreatureSoundData ids stock lacks are cleared, so they're silent
 - Spells 3.3.5a can't run are left out (68643, 70796, 72764, 94293), with the rows that cast them. The stagecoach ride's 72764 is replaced by boarding directly
 - Neltharion's custom SmartAI action 204, its script `npc_woe_mixed_creatures_ai` and its spell 151181 (the stocks scene's script spell) aren't ported

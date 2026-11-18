@@ -642,6 +642,7 @@ class PandariaPort(wi.Port):
         self.client_rows()
         self.enchantments()
         self.write_vehicles()
+        self.write_npc_sounds()
         for old in glob.glob(os.path.join(self.dest, wi.SQL_DIR, wi.SQL_PREFIX + "*.sql")) + \
                 glob.glob(os.path.join(self.dest, "dbc", wi.DBC_PREFIX + "*.sql")):
             os.remove(old)

@@ -6,7 +6,9 @@ NPCs' greetings, farewells and pissed lines among them). Zeppelin's client doesn
 them under the same paths, so each missing file is looked up in the community listfile and downloaded from wago.tools
 by FileDataID into WHE-common at its client path.
 
-usage: zep_goblin_sounds.py [--common PATH] [--client DATA] [--listfile CSV] [--build VERSION]
+usage: zep_goblin_sounds.py [--sql FILE ...] [--common PATH] [--client DATA] [--listfile CSV] [--build VERSION]
+--sql: other soundentries files to fetch for (F-130's [F-130]_npc_soundentries.sql, F-133 / F-134's
+[F-13x]_*_npc_soundentries.sql), with --common their modpak's folder in WHE-common
 Resumable: files already in WHE-common are skipped."""
 import argparse, glob, os, re, sys, time, urllib.error, urllib.request
 
@@ -18,9 +20,9 @@ B = chr(92)
 SQL = os.path.join(HERE, 'zep_goblin_fixes', 'dbc', '[F-013]_cata_soundentries.sql')
 
 
-def wanted():
+def wanted(sql=(SQL,)):
     """Client paths of every file the rows play."""
-    text = open(SQL, encoding='utf-8').read()
+    text = ''.join(open(p, encoding='utf-8').read() for p in sql)
     out = []
     for block in re.findall(r"INSERT INTO `soundentries` SET(.*?);", text, re.S):
         row = dict(re.findall(r"`(\w+)` = '((?:[^'\\]|\\.)*)'", block))
@@ -37,10 +39,11 @@ def main():
     ap.add_argument('--client', default='C:/Users/Medviten/Desktop/WowSquished-256-bit/Data')
     ap.add_argument('--listfile', default='D:/wow-scratch/retail-vo/community-listfile.csv')
     ap.add_argument('--build', default='12.1.5.70448')
+    ap.add_argument('--sql', nargs='+', default=[SQL])
     a = ap.parse_args()
     archives = [Archive(p) for p in glob.glob(os.path.join(a.client, '*.[mM][pP][qQ]'))
                 + glob.glob(os.path.join(a.client, 'enUS', '*.[mM][pP][qQ]')) if os.path.isfile(p)]
-    paths = wanted()
+    paths = wanted(a.sql)
     ids = {}
     want = {p.lower().replace(B, '/') for p in paths}
     with open(a.listfile, encoding='utf-8', errors='replace') as f:
