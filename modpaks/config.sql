@@ -1121,6 +1121,8 @@ SET @GilneanMaleCreatureID                                     =    @NextCreatur
 SET @GilneanFemaleCreatureID                                   =    @NextCreatureID := @NextCreatureID +1; -- 55277;
 SET @GilneasPaladinTrainerCreatureID                           =    @NextCreatureID := @NextCreatureID +1; -- 55278; F-130 with F-029
 SET @GilneasShamanTrainerCreatureID                            =    @NextCreatureID := @NextCreatureID +1; -- 55279; F-130 with F-029
+SET @KezanPaladinTrainerCreatureID                             =    @NextCreatureID := @NextCreatureID +1; -- 55280; F-013 with F-029
+SET @KezanDruidTrainerCreatureID                               =    @NextCreatureID := @NextCreatureID +1; -- 55281; F-013 with F-029
 
 -- ChrRaces Flags
 SET @NPCOnlyFlag                                               =        1;
