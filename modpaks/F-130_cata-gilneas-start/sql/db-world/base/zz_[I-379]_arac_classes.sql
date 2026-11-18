@@ -24,9 +24,7 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   `ConditionTypeOrReference`, `ConditionTarget`, `ConditionValue1`, `ConditionValue2`, `ConditionValue3`,
   `NegativeCondition`, `ErrorType`, `ErrorTextId`, `ScriptName`, `Comment`) VALUES
   (19, 0, 14157, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'Old Divisions: classes without a Gilneas class quest (I-379)'),
-  (20, 0, 14157, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'Old Divisions: classes without a Gilneas class quest (I-379)'),
-  (19, 0, 24930, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'While You''re At It: classes without a Gilneas class quest (I-379)'),
-  (20, 0, 24930, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'While You''re At It: classes without a Gilneas class quest (I-379)');
+  (19, 0, 24930, 0, 7, 15, 0, 1437, 0, 0, 1, 0, 0, '', 'While You''re At It: classes without a Gilneas class quest (I-379)');
 
 -- ---------------------------------------------------------------------------
 -- Paladin and shaman trainers (spawned only with F-029)

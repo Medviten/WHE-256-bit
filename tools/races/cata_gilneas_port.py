@@ -105,6 +105,8 @@ SAI_SPELL_EVENTS = {8, 31}
 # Neltharion condition types AzerothCore doesn't have
 CONDITION_DROP = {201, 202}
 CONDITION_AURA, CONDITION_SPELL = 1, 25
+# TrinityCore's condition source 20 (quest show mark) is AzerothCore's gossip hello: those rows are left out
+CONDITION_SOURCE_QUEST_SHOW_MARK = 20
 # Neltharion's phase definition condition source (25) is F-013's 26
 CONDITION_PHASE_SOURCE = (25, 26)
 # AzerothCore has invisibility types 0-11 (it indexes an array by them): Cataclysm's quest invisibility types above
@@ -916,6 +918,8 @@ class Port:
             v = [r["ConditionValue1"], r["ConditionValue2"], r["ConditionValue3"]]
             if ct in CONDITION_DROP:
                 dropped["conditions of types AzerothCore lacks"].append("%d/%d/%d type %d" % (st, g, e, ct))
+                continue
+            if st == CONDITION_SOURCE_QUEST_SHOW_MARK:   # AzerothCore's 19 covers the quest mark too
                 continue
             if st == CONDITION_PHASE_SOURCE[0]:
                 st = CONDITION_PHASE_SOURCE[1]

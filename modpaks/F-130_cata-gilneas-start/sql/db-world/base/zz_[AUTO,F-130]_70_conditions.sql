@@ -53,16 +53,6 @@ DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceGroup` 
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceGroup` = 0 AND `SourceEntry` = 14465 AND `SourceId` = 0;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceGroup` = 0 AND `SourceEntry` = 24676 AND `SourceId` = 0;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 19 AND `SourceGroup` = 0 AND `SourceEntry` = 24930 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14099 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14157 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14366 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14386 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14402 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14405 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14463 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 14465 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 24676 AND `SourceId` = 0;
-DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 20 AND `SourceGroup` = 0 AND `SourceEntry` = 24930 AND `SourceId` = 0;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 22 AND `SourceGroup` = 1 AND `SourceEntry` = 35123 AND `SourceId` = 0;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 22 AND `SourceGroup` = 1 AND `SourceEntry` = 35369 AND `SourceId` = 0;
 DELETE FROM `conditions` WHERE `SourceTypeOrReferenceId` = 22 AND `SourceGroup` = 1 AND `SourceEntry` = 35906 AND `SourceId` = 0;
@@ -137,9 +127,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (19, 0, 14386, 0, 0, 8, 0, 14368, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14366, 0, 0, 8, 0, 14347, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14366, 0, 0, 8, 0, 14348, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14366, 0, 0, 8, 0, 14348, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 1, 8, 0, 14285, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 0, 8, 0, 14286, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14099, 0, 0, 8, 0, 14098, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14099, 0, 0, 8, 0, 14093, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14099, 0, 0, 8, 0, 14094, 0, 0, 0, 0, 0, '', ''),
@@ -165,7 +152,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (13, 1, 33806, 0, 0, 31, 0, 3, 19384, 0, 0, 0, 0, '', ''),
   (13, 1, 33806, 0, 1, 31, 0, 3, 19388, 0, 0, 0, 0, '', ''),
   (26, 4714, 7, 0, 0, 8, 0, 14321, 0, 0, 0, 0, 0, '', 'Phase 2 Duskhaven'),
-  (20, 0, 14099, 0, 0, 8, 0, 14093, 0, 0, 0, 0, 0, '', ''),
   (26, 4755, 5, 0, 0, 28, 0, 24904, 0, 0, 0, 0, 0, '', 'Phase 1024 on quest complete'),
   (26, 4755, 3, 0, 0, 8, 0, 14293, 0, 0, 0, 0, 0, '', 'Phase 8 Gilneas'),
   (26, 4755, 4, 0, 0, 8, 0, 14221, 0, 0, 0, 0, 0, '', 'Phase 16 Gilneas - Last Stand'),
@@ -184,13 +170,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (26, 4714, 4, 0, 0, 9, 0, 24904, 0, 0, 0, 0, 0, '', 'Phase 1024 Gilneas Battle'),
   (13, 1, 70354, 0, 1, 31, 0, 3, 37694, 0, 0, 0, 0, '', ''),
   (13, 1, 70354, 0, 0, 31, 0, 3, 44768, 0, 0, 0, 0, '', ''),
-  (20, 0, 14099, 0, 0, 8, 0, 14098, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14099, 0, 0, 8, 0, 14094, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 2, 8, 0, 14287, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 3, 8, 0, 14290, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 4, 8, 0, 14288, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 5, 8, 0, 14289, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24930, 0, 6, 8, 0, 14291, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14157, 0, 0, 8, 0, 14286, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14157, 0, 1, 8, 0, 14285, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14157, 0, 2, 8, 0, 14287, 0, 0, 0, 0, 0, '', ''),
@@ -198,13 +177,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (19, 0, 14157, 0, 4, 8, 0, 14288, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14157, 0, 5, 8, 0, 14289, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14157, 0, 6, 8, 0, 14291, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 0, 8, 0, 14286, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 1, 8, 0, 14285, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 2, 8, 0, 14287, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 3, 8, 0, 14290, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 4, 8, 0, 14288, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 5, 8, 0, 14289, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14157, 0, 6, 8, 0, 14291, 0, 0, 0, 0, 0, '', ''),
   (22, 3, 34916, 0, 0, 31, 0, 4, 0, 0, 0, 0, 0, '', ''),
   (22, 3, 34884, 0, 0, 31, 0, 4, 0, 0, 0, 0, 0, '', ''),
   (22, 3, 34913, 0, 0, 31, 0, 4, 0, 0, 0, 0, 0, '', ''),
@@ -234,10 +206,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (18, 44427, 56685, 0, 0, 9, 0, 14212, 0, 0, 0, 0, 0, '', ''),
   (18, 35317, 43671, 0, 0, 9, 0, 14218, 0, 0, 0, 0, 0, '', ''),
   (22, 3, 35627, 0, 0, 31, 0, 4, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14386, 0, 0, 8, 0, 14368, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14386, 0, 0, 8, 0, 14382, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14386, 0, 0, 8, 0, 14369, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14366, 0, 0, 8, 0, 14347, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14402, 0, 0, 8, 0, 14404, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14402, 0, 0, 8, 0, 14416, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14463, 0, 0, 8, 0, 14416, 0, 0, 0, 0, 0, '', ''),
@@ -248,12 +216,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (19, 0, 14405, 0, 0, 8, 0, 14404, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14405, 0, 0, 8, 0, 14416, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14405, 0, 0, 8, 0, 14401, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14465, 0, 0, 8, 0, 14402, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14465, 0, 1, 8, 0, 14405, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14465, 0, 2, 8, 0, 14463, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24676, 0, 0, 8, 0, 24575, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24676, 0, 0, 8, 0, 24675, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 24676, 0, 0, 8, 0, 24674, 0, 0, 0, 0, 0, '', ''),
   (13, 1, 151180, 0, 0, 31, 0, 3, 36331, 0, 0, 0, 0, '', ''),
   (13, 1, 151180, 0, 0, 33, 0, 1, 3, 0, 0, 0, 0, '', ''),
   (13, 2, 69296, 0, 0, 31, 0, 5, 197337, 0, 0, 0, 0, '', ''),
@@ -311,18 +273,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
   (15, 520034, 0, 0, 0, 28, 0, 14434, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14402, 0, 0, 8, 0, 14412, 0, 0, 0, 0, 0, '', ''),
   (19, 0, 14402, 0, 0, 8, 0, 14401, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14402, 0, 0, 8, 0, 14416, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14402, 0, 0, 8, 0, 14404, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14402, 0, 0, 8, 0, 14412, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14402, 0, 0, 8, 0, 14401, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14463, 0, 0, 8, 0, 14401, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14463, 0, 0, 8, 0, 14404, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14463, 0, 0, 8, 0, 14412, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14463, 0, 0, 8, 0, 14416, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14405, 0, 0, 8, 0, 14401, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14405, 0, 0, 8, 0, 14416, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14405, 0, 0, 8, 0, 14404, 0, 0, 0, 0, 0, '', ''),
-  (20, 0, 14405, 0, 0, 8, 0, 14412, 0, 0, 0, 0, 0, '', ''),
   (22, 1, 36457, 0, 0, 29, 1, 36540, 9, 0, 0, 0, 0, '', ''),
   (26, 4714, 6, 0, 0, 8, 0, 14221, 0, 0, 1, 0, 0, '', 'Gilneas City - issue fix - enter zone'),
   (26, 4714, 5, 0, 0, 8, 0, 24904, 0, 0, 0, 0, 0, '', 'Phase 2048 After Battle Gilneas'),
