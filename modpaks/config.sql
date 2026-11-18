@@ -1119,10 +1119,6 @@ SET @WorgenWildMaleCreatureID                                  =    @NextCreatur
 SET @WorgenWildFemaleCreatureID                                =    @NextCreatureID := @NextCreatureID +1; -- 55275;
 SET @GilneanMaleCreatureID                                     =    @NextCreatureID := @NextCreatureID +1; -- 55276;
 SET @GilneanFemaleCreatureID                                   =    @NextCreatureID := @NextCreatureID +1; -- 55277;
-SET @GilneasPaladinTrainerCreatureID                           =    @NextCreatureID := @NextCreatureID +1; -- 55278; F-130 with F-029
-SET @GilneasShamanTrainerCreatureID                            =    @NextCreatureID := @NextCreatureID +1; -- 55279; F-130 with F-029
-SET @KezanPaladinTrainerCreatureID                             =    @NextCreatureID := @NextCreatureID +1; -- 55280; F-013 with F-029
-SET @KezanDruidTrainerCreatureID                               =    @NextCreatureID := @NextCreatureID +1; -- 55281; F-013 with F-029
 
 -- ChrRaces Flags
 SET @NPCOnlyFlag                                               =        1;
@@ -2288,6 +2284,10 @@ SET @NightborneManasaberCreatureID                             =   @NextCreature
 SET @StarcursedVoidstriderCreatureID                           =   @NextCreatureID := @NextCreatureID +1;
 SET @ForsakenWarhorseCreatureID                                 =   @NextCreatureID := @NextCreatureID +1; -- F-087
 SET @ForsakenChargerCreatureID                                  =   @NextCreatureID := @NextCreatureID +1; -- F-087
+SET @GilneasPaladinTrainerCreatureID                           =    @NextCreatureID := @NextCreatureID +1; -- 55316; F-130 with F-029
+SET @GilneasShamanTrainerCreatureID                            =    @NextCreatureID := @NextCreatureID +1; -- 55317; F-130 with F-029
+SET @KezanPaladinTrainerCreatureID                             =    @NextCreatureID := @NextCreatureID +1; -- 55318; F-013 with F-029
+SET @KezanDruidTrainerCreatureID                               =    @NextCreatureID := @NextCreatureID +1; -- 55319; F-013 with F-029
 
 -- Mount Items
 SET @MechagonMechanostriderItem                                =   174067; -- BfA ID
