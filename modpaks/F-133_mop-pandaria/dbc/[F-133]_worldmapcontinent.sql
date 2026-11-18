@@ -19,6 +19,6 @@ INSERT INTO `worldmapcontinent` SET
   `world_map_id` = 1;
 
 -- MoP's placement of the other continents on the World map, to match MoP's World map art
-UPDATE `worldmapcontinent` SET `left_boundary` = 17, `right_boundary` = 45, `top_boundary` = 19, `bottom_boundary` = 61, `continent_offset_x` = 19.43684, `continent_offset_y` = -3.55878, `scale` = 0.5848 WHERE `map_id` = 0;
+UPDATE `worldmapcontinent` SET `left_boundary` = 17, `right_boundary` = 45, `top_boundary` = 16, `bottom_boundary` = 61, `continent_offset_x` = 19.43684, `continent_offset_y` = -3.55878, `scale` = 0.5848 WHERE `map_id` = 0;
 UPDATE `worldmapcontinent` SET `left_boundary` = 19, `right_boundary` = 49, `top_boundary` = 9, `bottom_boundary` = 55, `continent_offset_x` = -20.53193, `continent_offset_y` = -0.13112, `scale` = 0.5663 WHERE `map_id` = 1;
 UPDATE `worldmapcontinent` SET `left_boundary` = 11, `right_boundary` = 49, `top_boundary` = 9, `bottom_boundary` = 37, `continent_offset_x` = 1.91632, `continent_offset_y` = -8.09863, `scale` = 0.5928 WHERE `map_id` = 571;

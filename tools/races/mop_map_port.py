@@ -121,7 +121,9 @@ def uimap_placement(path):
         ky = (f["UiMax_1"] - f["UiMin_1"]) / (xmax - xmin)
         scale = round(kx * TILE * 62.625, 4)
         tile = lambda v: round((32 * TILE - v) / TILE)
-        out[int(r["MapID"])] = (tile(ymax), tile(ymin) - 1, tile(xmax), tile(xmin) - 1,
+        # the boundaries also clip the highlight: Azeroth's region stops short of Quel'Thalas' tip in the World art
+        top = tile(xmax) - (3 if r["MapID"] == "0" else 0)
+        out[int(r["MapID"])] = (tile(ymax), tile(ymin) - 1, top, tile(xmin) - 1,
                                 round((f["UiMin_0"] + ymax * kx) * 62.625 - 31.3125, 5),
                                 round((f["UiMin_1"] + xmax * ky) * 41.75 - 20.875, 5), scale)
     return out

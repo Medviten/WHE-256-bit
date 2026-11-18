@@ -15,12 +15,14 @@ the World tiles is Legion's, with the Broken Isles). Their community listfile na
 Files already in OUT are kept.
 
 --uimap CSV (MoP Classic's UiMapAssignment, https://wago.tools/db2/UiMapAssignment/csv?build=5.5.4.70631; give
-mop_map_port.py the same file) re-lays the continents' World map highlights for the 3.3.5 client. MoP Classic draws
-one in a box of the World map's 3:2 aspect, as tall as the continent's UiMapAssignment region and centred on it, from
-the texture's top 512 x 341 band; 3.3.5 samples the top-left square part the region's tile aspect gives
-(Script_UpdateMapHighlight) over the region itself, so tall continents came out a third too small and shifted. Each
-highlight still in MoP's band is resampled so the 3.3.5 rectangle shows what MoP Classic draws there."""
-import argparse, csv, math, os, sys, urllib.parse, json
+mop_map_port.py the same file) re-lays the continents' World map highlights for the 3.3.5 client. A MoP highlight
+holds its outline in the texture's top 512 x 341 band, at a scale and place per continent that follows neither the
+UiMapAssignment region nor 5.4.8's WorldMapContinent row, so HIGHLIGHT_BOX gives where each band lands on the
+1002 x 668 World map, fitted to the coastlines of the World tiles. 3.3.5 draws the highlight over the WorldMapContinent
+rectangle mop_map_port.py writes (Script_UpdateMapHighlight: the top-left part the boundaries' aspect gives); each
+highlight still as downloaded (DXT, the re-laid ones are palettized) is resampled so that rectangle shows the band at
+its box."""
+import argparse, math, os, sys, urllib.parse, json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "races"))
@@ -70,37 +72,34 @@ def read_rgba(path):
     return read_dxt(path) or read_pal(path)
 
 
+# (scale, left, top): a MoP highlight's texture pixel (u, v) shows at World map pixel (left + u * scale,
+# top + v * scale); fitted to the MoP Classic World tiles' coastlines
+HIGHLIGHT_BOX = {"Azeroth": (1.2257, 534.5, 117.5), "Kalimdor": (1.1475, -97.0, 125.5),
+                 "Northrend": (0.5937, 384.5, 9.5), "Pandaria": (0.5227, 388.0, 461.0)}
+
+
 def relayout_highlights(out, uimap):
     from maghar_modern_prep import write_blp
+    from mop_map_port import uimap_placement
     done = 0
-    for r in csv.DictReader(open(uimap, encoding="utf-8")):
-        if r["UiMapID"] != "947" or int(r["MapID"]) not in CONTINENT_FOLDERS:
-            continue
-        name = CONTINENT_FOLDERS[int(r["MapID"])]
-        path = os.path.join(out, "Interface", "WorldMap", name, name + "Highlight.blp")
-        if not os.path.exists(path):
-            continue
+    for map_id, (L, R, T, B, ox, oy, sc) in uimap_placement(uimap).items():
+        name = CONTINENT_FOLDERS.get(map_id)
+        path = os.path.join(out, "Interface", "WorldMap", name or "", f"{name}Highlight.blp")
+        if not name or not os.path.exists(path) or open(path, "rb").read(9)[8] != 2:
+            continue                                       # not downloaded, or already re-laid
         w, h, src = read_rgba(path)
-        band = h * 668 / 1002                              # the part of the texture MoP Classic uses
-        if any(src[(y * w + x) * 4 + c] > 60 for y in range(int(band) + 6, h) for x in range(0, w, 4) for c in range(3)):
-            continue                                       # already re-laid: content below the band
-        f = {k: float(v) for k, v in r.items() if k.startswith(("Ui", "Region"))}
-        tiles_w = (f["Region_4"] - f["Region_1"]) / 533.3333       # region size in ADT tiles
-        tiles_h = (f["Region_3"] - f["Region_0"]) / 533.3333
-        tcx, tcy = (tiles_w / tiles_h, 1.0) if tiles_h >= tiles_w else (1.0, tiles_h / tiles_w)
-        rx0, ry0 = f["UiMin_0"] * 1002, f["UiMin_1"] * 668
-        rw, rh = (f["UiMax_0"] - f["UiMin_0"]) * 1002, (f["UiMax_1"] - f["UiMin_1"]) * 668
-        bh = rh                                            # MoP Classic's box: 3:2, region height, centred
-        bw = bh * 1002 / 668
-        bx0 = rx0 + rw / 2 - bw / 2
+        scale, bx0, by0 = HIGHLIGHT_BOX[name]
+        # the rectangle and texture part Script_UpdateMapHighlight gives, in World map pixels (16 per unit)
+        tw, th = R - L + 1, B - T + 1
+        tcx, tcy = (tw / th, 1.0) if th >= tw else (1.0, th / tw)
+        rx0, ry0 = (L * sc + 31.3125 - sc * 32 + ox) * 16, (T * sc + 20.875 - sc * 32 + oy) * 16
+        rw, rh = sc * tw * 16, sc * th * 16
         dst = bytearray(w * h * 4)
         for j in range(int(tcy * h)):
-            py = ry0 + (j + 0.5) / (tcy * h) * rh
-            v = int((py - ry0) / bh * band)
+            v = int((ry0 + (j + 0.5) / (tcy * h) * rh - by0) / scale)
             for i in range(int(tcx * w)):
-                px = rx0 + (i + 0.5) / (tcx * w) * rw
-                u = int((px - bx0) / bw * w)
-                if 0 <= u < w and 0 <= v < h:
+                u = int((rx0 + (i + 0.5) / (tcx * w) * rw - bx0) / scale)
+                if 0 <= u < w and 0 <= v < h * 2 // 3:
                     k, s = (j * w + i) * 4, (v * w + u) * 4
                     dst[k:k + 4] = src[s:s + 4]
         write_blp(path, w, h, dst)

@@ -223,10 +223,11 @@ class CataItems:
             return "ItemDamageTwoHandCaster" if caster else "ItemDamageTwoHand"
         return "ItemDamageOneHandCaster" if caster else "ItemDamageOneHand"
 
-    def damage(self, cata_id):
+    def damage(self, cata_id, ilvl=None):
+        """(min, max) from the damage tables at the item's level, or at `ilvl` when given."""
         cls, sub, _, _, _, inv = self.item[cata_id][1:7]
         s = self.sparse[cata_id]
-        q, ilvl, delay = s[self.sp["quality"]], s[self.sp["ilvl"]], s[self.sp["delay"]]
+        q, ilvl, delay = s[self.sp["quality"]], ilvl or s[self.sp["ilvl"]], s[self.sp["delay"]]
         if cls != ITEM_CLASS_WEAPON or q > 6 or not delay:
             return 0, 0
         row = self.tables[self._damage_table(cls, sub, inv, s[self.sp["flags2"]])].get(ilvl)
@@ -237,10 +238,10 @@ class CataItems:
         f = as_float(s[self.sp["scaling_factor"]])
         return int(math.floor(avg * (1.0 - f * 0.5))), int(math.floor(avg * (1.0 + f * 0.5) + 0.5))
 
-    def armor(self, cata_id):
+    def armor(self, cata_id, ilvl=None):
         cls, sub, _, _, _, inv = self.item[cata_id][1:7]
         s = self.sparse[cata_id]
-        q, ilvl = s[self.sp["quality"]], s[self.sp["ilvl"]]
+        q, ilvl = s[self.sp["quality"]], ilvl or s[self.sp["ilvl"]]
         if cls != ITEM_CLASS_ARMOR or q > 6:
             return 0
         if sub == ARMOR_SHIELD:

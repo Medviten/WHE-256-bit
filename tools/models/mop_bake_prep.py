@@ -10,16 +10,16 @@ bottom-left of the left half), so the bakes put head fur on the chest and armour
 
 Each 1024 x 512 Pandaren bake becomes 512 x 512: the left half, with the face rectangles taken from F-129's own
 skin and face textures for the row's skin colour and face (the same textures players are composited from).
-Converted bakes are 512 x 512 and are skipped, so it can be rerun; restore with git in WHE-common to start over."""
-import argparse, multiprocessing, os, re, struct, sys
+Converted bakes are 512 x 512 and are skipped, so it can be rerun; restore with git in WHE-common to start over.
+--modpak picks the modpak (F-134 by default, F-133 for Pandaria's NPCs)."""
+import argparse, glob, multiprocessing, os, re, struct, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from maghar_modern_prep import crop_scale, read_dxt, write_blp  # noqa: E402
 
 SLASH = chr(92)
-EXTRA = 'modpaks/F-134_mop-wandering-isle/dbc/[F-134]_wi_creaturedisplayinfoextra.sql'
 SECTIONS = 'modpaks/F-129_mod-pandaren-neutral/dbc/[BASE,F-129]_charsections.sql'
-BAKES = 'modpaks/F-134_mop-wandering-isle/textures/bakednpctextures'
+BAKES = 'textures/bakednpctextures'      # in WHE-common/modpaks/<modpak>; the rows in WHE's <modpak>/dbc
 FACE_UPPER, FACE_LOWER = (0, 320, 256, 64), (0, 384, 256, 128)    # stock rectangles at 512 x 512
 
 
@@ -91,6 +91,7 @@ def main():
     p.add_argument('--whe', default=os.path.normpath(os.path.join(here, '..', '..')))
     p.add_argument('--common', default=os.path.normpath(os.path.join(here, '..', '..', '..', 'WHE-common')))
     p.add_argument('--jobs', type=int, default=4)
+    p.add_argument('--modpak', default='F-134_mop-wandering-isle', help='also F-133_mop-pandaria')
     a = p.parse_args()
 
     sections = {}   # (gender, section, variation, colour) -> (texture_1, texture_2)
@@ -107,7 +108,9 @@ def main():
     jobs, seen = [], set()
     extra = re.compile(r"`race` = @NeutralPandaren,\s*`gender` = (\d+),\s*`skin_color` = (\d+),\s*`face_type` = (\d+),"
                        r".*?`texture` = '([^']*)'", re.S)
-    for m in extra.finditer(open(os.path.join(a.whe, EXTRA), encoding='utf-8').read()):
+    text = ''.join(open(p, encoding='utf-8').read() for p in
+                   glob.glob(os.path.join(a.whe, 'modpaks', a.modpak, 'dbc', '*creaturedisplayinfoextra.sql')))
+    for m in extra.finditer(text):
         gender, skin, face, tex = int(m.group(1)), int(m.group(2)), int(m.group(3)), m.group(4).lower()
         if not tex or tex in seen:
             continue
@@ -117,7 +120,10 @@ def main():
         if not faces or not skins:
             print('no F-129 face or skin for', tex, (gender, skin, face))
             continue
-        jobs.append((os.path.join(a.common, BAKES, tex), local(skins[0]), local(faces[0]), local(faces[1])))
+        bake = os.path.join(a.common, 'modpaks', a.modpak, BAKES, tex)
+        if not os.path.exists(bake):
+            continue
+        jobs.append((bake, local(skins[0]), local(faces[0]), local(faces[1])))
     with multiprocessing.Pool(a.jobs) as pool:
         n = sum(pool.map(convert, jobs))
     print('converted %d of %d Pandaren bakes' % (n, len(jobs)))

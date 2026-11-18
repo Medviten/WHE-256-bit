@@ -36,6 +36,7 @@ sys.path.insert(0, HERE)
 from tc_sql_load import load, rows  # noqa: E402
 from cata_items import sql_value, ITEM_TEMPLATE_COLUMNS, DISPLAY_COLUMNS, display_sql  # noqa: E402
 from mop_items import MopItems  # noqa: E402
+from mop_loot import LootFill, killable, gold  # noqa: E402
 from mop_spells import MopSpells  # noqa: E402
 from cata_gilneas_port import insert, in_list, MODEL_COLUMNS, MODEL_FLOATS, modpak_spells  # noqa: E402
 import cata406_dbc_port as c406  # noqa: E402
@@ -115,6 +116,9 @@ SCRIPT_SPELLS = {46598, 50630, 108627, 102938, 102939, 102940, 102941, 102942, 1
 SCRIPT_PATHS = (5720800, 5949600, 5774000, 5650300, 5650301, 5965200, 5485600)
 SCRIPT_MENUS = (13050, 13140, 13726)
 VEHICLE_BASE = 1340                   # Vehicle / VehicleSeat ids another modpak or stock uses
+LOOT_REF_BASE = 1340000               # reference_loot_template entries of the generated loot pools (mop_loot.py)
+LINEN_CLOTH = 2589
+WI_SKINS = [(2318, 100, 1, 2), (2934, 50, 1, 1)]     # Light Leather; Ruined Leather Scraps
 
 dropped = collections.defaultdict(list)
 
@@ -147,6 +151,14 @@ def taken(table, column):
                 out |= {int(v) for v in re.findall(r"\(\s*(\d+)\s*,", m.group(2))}
         for m in re.finditer(r"INSERT INTO `%s` SET\s*`%s` = (\d+)" % (table, column), text):
             out.add(int(m.group(1)))
+    return out
+
+
+def modpak_display_ids(modpak):
+    """creaturedisplayinfo ids a modpak's dbc/ SQL writes."""
+    out = set()
+    for p in glob.glob(os.path.join(modpak, "dbc", "*creaturedisplayinfo.sql")):
+        out |= {int(v) for v in re.findall(r"INSERT INTO `creaturedisplayinfo` SET\s*`id` = (\d+)", open(p, encoding="utf8").read())}
     return out
 
 
@@ -238,7 +250,9 @@ class Port:
         self.emote_map = emote_names(self.stock_emotes)
         self.items = MopItems(MOP_DBC, STOCK_DBC, os.path.join(data, "ItemSparse.csv"), config_range("NextItemDisplayID"))
         self.taken_entries = config_range("NextCreatureID") | taken("creature_template", "entry")
-        self.taken_displays = config_range("NextDisplayID") | taken("creaturedisplayinfo", "id")
+        # F-133 (Pandaria, mop_pandaria_port.py) writes the same 5.4.8 rows for the displays both use
+        self.taken_displays = (config_range("NextDisplayID") | taken("creaturedisplayinfo", "id")) - \
+            modpak_display_ids(os.path.join(MODPAKS, "F-133_mop-pandaria"))
         self.taken_quests = taken("quest_template", "ID")
         self.taken_goentries = taken("gameobject_template", "entry")
 
@@ -466,8 +480,10 @@ class Port:
                          num(d.get("DamageModifier"), 1), r["BaseAttackTime"] or 2000, r["RangeAttackTime"] or 2000,
                          r["BaseVariance"] or 1, r["RangeVariance"] or 1, r["unit_class"] or 1, num(r["unit_flags"]),
                          num(r["unit_flags2"]) & 0x3FFFF, 0, family, r["type"], num(d.get("TypeFlags")),
-                         num(d.get("LootID")), num(d.get("PickPocketLootID")), num(d.get("SkinLootID")), 0, vehicle,
-                         num(d.get("GoldMin")), num(d.get("GoldMax")), aname, r["MovementType"], 1,
+                         num(d.get("LootID")) or (self.entry(e) if self.gen_loot.get(e) else 0),
+                         num(d.get("PickPocketLootID")), self.entry(e) if self.gen_skin.get(e) else 0, 0, vehicle]
+                        + list(self.gen_gold.get(e, (num(d.get("GoldMin")), num(d.get("GoldMax"))))) +
+                        [aname, r["MovementType"], 1,
                          num(d.get("HealthModifier"), 1), num(d.get("ManaModifier"), 1), num(d.get("ArmorModifier"), 1),
                          r["ExperienceModifier"] or 1, r["RacialLeader"], 0, r["RegenHealth"], 0, 0, script, 0])
             a = addon_by_entry.get(e)
@@ -593,7 +609,8 @@ class Port:
         def rows_(table, data, dbc):
             cols = meta(table)
             assert all(len(r) == len(cols) for r in data), (table, len(cols), {len(r) for r in data})
-            conv = {"float": c406.f32, "string": dbc.s}
+            # the DBC reader gives signed ints: unsigned columns (Vehicle flags with bit 31) need their unsigned value
+            conv = {"float": c406.f32, "string": dbc.s, "uint32": c406.u32}
             return [{c: conv.get(t, lambda v: v)(v) for (c, t), v in zip(cols, r)} for r in data]
 
         self.write_dbc("vehicle", rows_("vehicle", self.out_vehicles, self.vdbc),
@@ -961,6 +978,29 @@ class Port:
                                                      "DELETE FROM `%s` WHERE `quest` IN %s;" % (t, qs)))
 
     # ---- loot, vendors, clicks ----------------------------------------------------------------------------------
+    def plan_loot(self):
+        """Generated loot (mop_loot.py) for the killable creatures the TC import has no loot for, from pools of what
+        its 33 looted creatures drop; gold by level where it has none; Light Leather skins for beasts."""
+        have = collections.defaultdict(list)
+        for r in self.t("creature_loot_template"):
+            if not r["ItemType"] and r["Chance"] > 0 and not r["QuestRequired"]:
+                have[r["Entry"]].append(r["Item"])
+        self.fill = LootFill(LOOT_REF_BASE, self.items, cloth=LINEN_CLOTH, skins=WI_SKINS)
+        for e, r in self.ct.items():
+            for i in have.get(num(self.diff.get(e, {}).get("LootID")), []):
+                self.fill.learn(r["type"], r["family"], i)
+        self.gen_loot, self.gen_skin, self.gen_gold = {}, {}, {}
+        for e, r in self.ct.items():
+            d = self.diff.get(e, {})
+            if not killable(r["type"], num(r["unit_flags"]), num(r["npcflag"]), num(r["flags_extra"])):
+                continue
+            if num(d.get("LootID")) not in have:
+                self.gen_loot[e] = self.fill.creature(r["type"], r["family"], r["Classification"])
+            if not num(d.get("SkinLootID")):
+                self.gen_skin[e] = self.fill.skinning(r["type"])
+            if not num(d.get("GoldMax")):
+                self.gen_gold[e] = gold(num(d.get("MaxLevel"), 1), r["Classification"])
+
     def loot(self):
         for n, (t, ents) in enumerate((("creature_loot_template", None), ("gameobject_loot_template", None))):
             data = []
@@ -973,10 +1013,19 @@ class Port:
                     continue
                 data.append([r["Entry"], item, 0, r["Chance"], r["QuestRequired"], r["LootMode"], r["GroupId"],
                              r["MinCount"], r["MaxCount"], r["Comment"] or ""])
+            if t == "creature_loot_template":
+                data += [[self.entry(e)] + row for e, v in sorted(self.gen_loot.items()) for row in v]
             keys = {r[0] for r in data}
             self.write("%d_%s" % (50 + n, t), insert(
                 t, "Entry Item Reference Chance QuestRequired LootMode GroupId MinCount MaxCount Comment".split(), data,
                 "DELETE FROM `%s` WHERE `Entry` IN %s;" % (t, in_list(keys)) if keys else None))
+        cols = "Entry Item Reference Chance QuestRequired LootMode GroupId MinCount MaxCount Comment".split()
+        skin = [[self.entry(e)] + row for e, v in sorted(self.gen_skin.items()) for row in v]
+        ref = [[r[0], self.item(r[1])] + r[2:] for r in self.fill.references()[0]]
+        ref = [r for r in ref if r[1]]
+        for name, table, data in (("52", "skinning_loot_template", skin), ("53", "reference_loot_template", ref)):
+            self.write("%s_%s" % (name, table), insert(table, cols, data, "DELETE FROM `%s` WHERE `Entry` IN %s;" % (
+                table, in_list({r[0] for r in data})) if data else None))
         v = [[self.entry(r["entry"]), r["slot"], self.item(r["item"]), r["maxcount"], r["incrtime"], 0, 0]
              for r in self.t("npc_vendor") if r["entry"] in self.ct and r["type"] == 1]
         v = [r for r in v if r[2]]
@@ -1322,6 +1371,7 @@ class Port:
         self.port_spells()
         at = c406.Dbc(os.path.join(MOP_DBC, "AreaTable.dbc"))
         self.island_areas = {r[0] for r in at.records if r[1] == MAP}
+        self.plan_loot()
         self.creatures()
         self.spawns()
         self.gameobjects()
