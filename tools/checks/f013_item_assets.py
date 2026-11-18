@@ -64,7 +64,9 @@ def creature_needs(client):
     """(display, what, [candidates]) for the models and texture variations of F-013's creature displays; model paths
     come from the client's built CreatureModelData.dbc (the displays can name a model by a variable)."""
     import struct
-    d = open(os.path.join(client, 'patch-A.MPQ', 'DBFilesClient', 'CreatureModelData.dbc'), 'rb').read()
+    # the realm patches (patch-A.<realm>.MPQ) hold the DBCs since deploy-dbc.sh went per realm
+    dbc = sorted(glob.glob(os.path.join(client, 'patch-A*.MPQ', 'DBFilesClient', 'CreatureModelData.dbc')))
+    d = open(dbc[0], 'rb').read()
     _, n, fields, size, _ = struct.unpack('<4s4I', d[:20])
     table = 20 + n * size
     models = {}
@@ -78,7 +80,7 @@ def creature_needs(client):
         ids.update(int(i) for i in re.findall(r"`id` = (\d+),", text))
         for where in re.findall(r"WHERE\s+`?id`?\s*(?:=\s*(\d+)|IN\s*\(([\d,\s]+)\))", text, re.I):
             ids.update(int(i) for i in (where[0] or where[1]).replace(' ', '').split(',') if i)
-    d = open(os.path.join(client, 'patch-A.MPQ', 'DBFilesClient', 'CreatureDisplayInfo.dbc'), 'rb').read()
+    d = open(os.path.join(os.path.dirname(dbc[0]), 'CreatureDisplayInfo.dbc'), 'rb').read()
     _, n, fields, size, _ = struct.unpack('<4s4I', d[:20])
     table = 20 + n * size
     text = lambda o: d[table + o:d.index(b'\0', table + o)].decode('latin1')
