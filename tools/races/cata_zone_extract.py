@@ -165,9 +165,16 @@ def extract(tables, maps, zones, seeds=()):
     take("creature_summon_groups", lambda r: r["summonerId"] in centries)
     centries |= {r["entry"] for r in keep["creature_summon_groups"].values()}
 
+    take("quest_template", lambda r: (r.get("Id") or r.get("ID")) in quests)
+    # kill-credit entries never spawn, but AzerothCore drops a quest objective whose creature has no template
+    # (the quest then completes on accept)
+    for r in keep["quest_template"].values():
+        centries |= {r[k] for k in ("RequiredNpcOrGo1", "RequiredNpcOrGo2", "RequiredNpcOrGo3", "RequiredNpcOrGo4")
+                     if r.get(k, 0) > 0}
+    take("creature_template", lambda r: r["entry"] in centries)
+    centries |= {r[k] for r in keep["creature_template"].values() for k in ("KillCredit1", "KillCredit2") if r[k]}
     take("creature_template", lambda r: r["entry"] in centries)
     take("gameobject_template", lambda r: r["entry"] in gentries)
-    take("quest_template", lambda r: (r.get("Id") or r.get("ID")) in quests)
     # quest chain neighbours outside the zone (breadcrumbs in and out)
     chain = set()
     for r in keep["quest_template"].values():
@@ -277,7 +284,9 @@ def extract(tables, maps, zones, seeds=()):
     for r in keep["quest_template"].values():
         spells |= {v for k, v in r.items() if v and re.match(r"(RewSpell|RewSpellCast|RewardSpell\w*|SourceSpellid|SourceSpellID|RequiredSpellCast\d|RequiredSpell)$", k)}
     spells |= {r["spell"] for r in keep["spell_area"].values()}
+    spells |= {r["data10"] for r in keep["gameobject_template"].values() if r["type"] == 10}   # goober spell
     spells.discard(0)
+    take("spell_scripts", lambda r: r["id"] in spells)
     take("conditions", cond_mine)
     take("spell_script_names", lambda r: abs(r["spell_id"]) in spells)
     take("spell_target_position", lambda r: r["id"] in spells)

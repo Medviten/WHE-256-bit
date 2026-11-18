@@ -145,6 +145,7 @@ DELETE FROM `smart_scripts` WHERE `entryorguid` = 43727 AND `source_type` = 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 43747 AND `source_type` = 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 43749 AND `source_type` = 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 44086 AND `source_type` = 0;
+DELETE FROM `smart_scripts` WHERE `entryorguid` = 44175 AND `source_type` = 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 44459 AND `source_type` = 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 44468 AND `source_type` = 0;
 DELETE FROM `smart_scripts` WHERE `entryorguid` = 44469 AND `source_type` = 0;
@@ -958,6 +959,8 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
   (35118, 0, 900, 0, 8, 0, 100, 0, 100, 0, 0, 0, 0, 0, 33, 35118, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14266: credit when hit by 100'),
   (35118, 0, 901, 0, 8, 0, 100, 0, 2098, 0, 0, 0, 0, 0, 33, 35118, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14272: credit when hit by 2098'),
   (35118, 0, 902, 0, 8, 0, 100, 0, 348, 0, 0, 0, 0, 0, 33, 35118, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14274: credit when hit by 348'),
+  (35118, 0, 903, 0, 8, 0, 100, 0, 56641, 0, 0, 0, 0, 0, 33, 44175, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14276: credit when hit by 56641'),
+  (44175, 0, 900, 0, 8, 0, 100, 0, 56641, 0, 0, 0, 0, 0, 33, 44175, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14276: credit when hit by 56641'),
   (47091, 0, 900, 0, 8, 0, 100, 0, 2061, 0, 0, 0, 0, 0, 33, 47091, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14279: credit when hit by 2061'),
-  (35118, 0, 903, 0, 8, 0, 100, 0, 5143, 0, 0, 0, 0, 0, 33, 35118, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14281: credit when hit by 5143'),
+  (35118, 0, 904, 0, 8, 0, 100, 0, 5143, 0, 0, 0, 0, 0, 33, 35118, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14281: credit when hit by 5143'),
   (47091, 0, 901, 0, 8, 0, 100, 0, 774, 0, 0, 0, 0, 0, 33, 47091, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14283: credit when hit by 774');

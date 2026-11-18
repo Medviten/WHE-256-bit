@@ -71,7 +71,8 @@ SCRIPT_SPELLS = {46598, 63313, 50630, 64630, 42716, 56685, 50345, 55034, 47433, 
 SPELL_SUBSTITUTES = {97239: 6660}
 # Spells the fixes folder writes (Neltharion's server spells, the 4.3.4-only ones)
 FIXED_SPELLS = {98914, 97995, 100615, 101644, 151049, 151111, 151159, 151168, 151170, 151174, 151180, 151189,
-                151190, 151200, 151205, 151235}
+                151190, 151200, 151205, 151235, 151171}
+SCRIPT_CAST_SPELL, SCRIPT_KILL_CREDIT = 15, 8         # spell_scripts commands
 
 # Cataclysm class -> stock trainer id of that class (AzerothCore's `trainer`)
 CLASS_TRAINER = {1: 1, 2: 3, 3: 7, 4: 9, 5: 11, 6: 13, 7: 14, 8: 16, 9: 31, 11: 33}
@@ -190,7 +191,7 @@ class Port:
             "conditions", "waypoint_data", "waypoints", "gossip_menu", "gossip_menu_option", "npc_text",
             "creature_loot_template", "gameobject_loot_template", "pickpocketing_loot_template",
             "skinning_loot_template", "npc_spellclick_spells", "vehicle_template_accessory", "npc_vendor",
-            "phase_definitions", "spell_area", "spell_script_names", "spell_target_position")}
+            "phase_definitions", "spell_area", "spell_script_names", "spell_target_position", "spell_scripts")}
         # Spell ids the other modpaks already define count as present, so their rows aren't replaced by Cataclysm's:
         # F-024 gives the Worgen racials Cataclysm's ids (Two Forms 68996 is F-063's altered form, not Cataclysm's dummy)
         self.stock_spells = dbc_ids("Spell") | modpak_spells()
@@ -266,6 +267,9 @@ class Port:
             want.add(r["spell_id"])
         for r in self.t["spell_area"]:
             want |= {r["spell"], r["aura_spell"]}
+        for r in self.t["spell_scripts"]:
+            if r["command"] == SCRIPT_CAST_SPELL:
+                want.add(r["datalong"])
         for r in self.t["quest_template"]:
             want |= {r["RewardSpell"], r["RewardSpellCast"], r["SourceSpellId"]}
             want |= {r["RequiredSpellCast%d" % i] for i in range(1, 5)}
@@ -355,6 +359,8 @@ class Port:
             151200: ("Gilneas to Darnassus", hidden, 1, 1, [dict(effect=5, target_a=1, target_b=17)]),
             151205: ("Gilneas summon 36292", hidden, 21, 1, [dict(effect=28, misc=36292, misc_b=64, target_a=32)]),
             151235: ("Dismount and Cancel All Shapeshifts", hidden, 1, 1, [dict(effect=77, target_a=1)]),
+            # Merchant Square Door (quest 14098): its spell_scripts summon a citizen or a worgen and give the credit
+            151171: ("Gilneas knocking", hidden, 1, 1, [dict(effect=77, target_a=1)]),
         }
         names = dict(effect="effect_%d", aura="effect_apply_aura_name_%d", misc="effect_misc_value_a_%d",
                      misc_b="effect_misc_value_b_%d", target_a="effect_implicit_target_a_%d",
@@ -883,14 +889,17 @@ class Port:
                        + [r["target_x"], r["target_y"], r["target_z"], r["target_o"], r["comment"] or ""])
         # Cataclysm's "cast spell on NPC" quest objectives: AzerothCore has no RequiredSpellCast, so the NPC gives
         # the credit itself when the spell hits it
+        # (a credit-only NPC never spawns: the creatures whose KillCredit names it give the credit instead)
         for q, spell, npc in self.cast_credit:
             s = self.spell_ok(spell)
             if not s or npc not in self.entries:
                 continue
-            n = 900 + sum(1 for r in out if r[0] == npc and r[2] >= 900)
-            out.append([npc, 0, n, 0, 8, 0, 100, 0, s, 0, 0, 0, 0, 0, 33, npc, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
-                        "quest %d: credit when hit by %d" % (q, s)])
-            self.cast_credit_npcs.add(npc)
+            for e in sorted({r["entry"] for r in self.t["creature_template"] if r["entry"] in self.entries
+                             and npc in (r["entry"], r["KillCredit1"], r["KillCredit2"])}):
+                n = 900 + sum(1 for r in out if r[0] == e and r[2] >= 900)
+                out.append([e, 0, n, 0, 8, 0, 100, 0, s, 0, 0, 0, 0, 0, 33, npc, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0,
+                            0, "quest %d: credit when hit by %d" % (q, s)])
+                self.cast_credit_npcs.add(e)
         keys = sorted({(r[0], r[1]) for r in out})
         delete = "\n".join("DELETE FROM `smart_scripts` WHERE `entryorguid` = %d AND `source_type` = %d;" % k for k in keys)
         cols = ("entryorguid source_type id link event_type event_phase_mask event_chance event_flags event_param1 "
@@ -972,6 +981,14 @@ class Port:
         self.write("60_spell_target_position", insert(
             "spell_target_position", "ID EffectIndex MapID PositionX PositionY PositionZ Orientation".split(), pos,
             "DELETE FROM `spell_target_position` WHERE `ID` IN %s;" % in_list(r[0] for r in pos) if pos else None))
+        # same columns in Neltharion and AzerothCore; a step whose spell or creature didn't come over is left out
+        steps = [[r[k] for k in ("id", "effIndex", "delay", "command", "datalong", "datalong2", "dataint", "x", "y",
+                                 "z", "o")] for r in self.t["spell_scripts"] if self.spell_ok(r["id"])
+                 and not (r["command"] == SCRIPT_CAST_SPELL and not self.spell_ok(r["datalong"]))
+                 and not (r["command"] == SCRIPT_KILL_CREDIT and r["datalong"] not in self.known_creatures)]
+        self.write("62_spell_scripts", insert(
+            "spell_scripts", "id effIndex delay command datalong datalong2 dataint x y z o".split(), steps,
+            "DELETE FROM `spell_scripts` WHERE `id` IN %s;" % in_list({r[0] for r in steps}) if steps else None))
         names = [[r["spell_id"], r["ScriptName"]] for r in self.t["spell_script_names"] if r["ScriptName"] in SCRIPTS]
         self.write("61_spell_script_names", insert(
             "spell_script_names", ["spell_id", "ScriptName"], names,

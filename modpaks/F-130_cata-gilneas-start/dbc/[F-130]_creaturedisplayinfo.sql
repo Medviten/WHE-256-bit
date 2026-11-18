@@ -1636,6 +1636,25 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 32778;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 32778,
+  `model_id` = 270,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.75,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'WoodenDummy',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = -1,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 33224;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 33224,
