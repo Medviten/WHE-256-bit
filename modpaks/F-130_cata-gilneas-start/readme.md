@@ -50,6 +50,8 @@ What the port does (details at the top of the script):
 
 Hand-written on top (`sql/db-world/base/zz_[I-378]_class_quest_wotlk_spells.sql`, loads after the generated files): the class trainer quests (14266-14283) are level 4 and practise what the trainer teaches at 4 (Serpent Sting, Frostbolt and Lesser Heal instead of Steady Shot, Arcane Missiles and Flash Heal), as F-013's Kezan quests do; the quests before them give enough XP to reach level 4.
 
+Classes with no Gilneas class quest (ARAC's paladins and shamans, F-100's heroes) can go on without one (`zz_[I-379]_arac_classes.sql`). With F-029_all-trainers in the manifest, a paladin and a shaman trainer also stand beside Sister Almyra in each of her phases.
+
 ### Known Issues
 - Not tried in game or loaded into a database yet, and the core patch isn't compiled
 - No terrain swaps: Cataclysm floods Duskhaven and shakes Gilneas (maps 638, 655 and 656), but the phases play on Open Azeroth's post-Cataclysm Gilneas, where the Greymane Wall is open. A terrain modpak like F-102 can add them later
