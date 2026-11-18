@@ -35,7 +35,7 @@ import cata_gilneas_port as G  # noqa: E402
 
 TAG = "F-029"
 GARMENTS = (5621, 5624, 5625, 5648, 5650)       # WotLK priest "Garments of ..." quests
-CREATURE_GUID = 13500001
+CREATURE_GUID = 13100001         # 13500001+ is F-133's (mop_pandaria_port.py)
 F029 = os.path.join(HERE, "..", "..", "modpaks", "F-029_all-trainers", "sql", "db-world", "base")
 
 # area: (map, x, y, zone id for the zone condition, faction mask, radius)
