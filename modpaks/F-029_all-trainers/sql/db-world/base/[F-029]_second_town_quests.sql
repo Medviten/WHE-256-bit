@@ -5,7 +5,7 @@
    the generic dwarf one is used). ARAC (F-002) opens them to every race.
    Warlocks and priests get none: stock's second towns have no warlock quests, and their priest quests are local
    (Garments, which F-029 retires, Help Tavara, Cleansing the Scar). The hunters' Taming the Beast chains depend on the
-   town's own beasts and rods, so aren't given here. */
+   town's own beasts and rods: Goldshire's and Brill's are zz_[I-381]_hunter_taming.sql. */
 DELETE FROM `creature_queststarter` WHERE `id` IN (142044, 142045, 142046, 142047, 142048, 142049, 142051, 142052,
   142053, 142054, 142055, 142057, 142058, 142059, 142060, 142061, 43464, 44380, 43013, 43012);
 INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES
