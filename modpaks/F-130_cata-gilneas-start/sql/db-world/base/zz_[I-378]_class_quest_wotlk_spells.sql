@@ -94,17 +94,24 @@ WHERE `source_type` = 0 AND `entryorguid` = 35118 AND `event_type` = 8 AND `even
 UPDATE `smart_scripts` SET `event_param1` = 2052, `comment` = 'quest 14279: credit when hit by 2052 (I-378)'
 WHERE `source_type` = 0 AND `entryorguid` = 47091 AND `event_type` = 8 AND `event_param1` = 2061;
 
--- SPELLHIT matches one exact spell id, so the ranks a player may cast instead also give credit: Lesser Heal rank 1
--- (2050, known from level 1) and rank 3 (591, level 6), Rejuvenation rank 2 (1058, level 10). Rows 910-912 belong
--- to this file.
-DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` = 47091 AND `id` IN (910, 911, 912);
+-- SPELLHIT matches one exact spell id, so a player casting another rank (Lesser Heal rank 1 known from level 1, or
+-- any rank trained after skipping the quest) would get nothing. Every credit row is copied once per other rank of
+-- its spell (spell_ranks); the copies are ids 2000 + id * 20 + rank, which belong to this file.
+DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN (35118, 47091) AND `id` >= 2000;
 INSERT INTO `smart_scripts`
   (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`,
    `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`,
    `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`,
    `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`,
    `target_x`, `target_y`, `target_z`, `target_o`, `comment`)
-VALUES
-  (47091, 0, 910, 0, 8, 0, 100, 0, 2050, 0, 0, 0, 0, 0, 33, 47091, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14279: credit when hit by 2050 (I-378)'),
-  (47091, 0, 911, 0, 8, 0, 100, 0, 591, 0, 0, 0, 0, 0, 33, 47091, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14279: credit when hit by 591 (I-378)'),
-  (47091, 0, 912, 0, 8, 0, 100, 0, 1058, 0, 0, 0, 0, 0, 33, 47091, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'quest 14283: credit when hit by 1058 (I-378)');
+SELECT s.`entryorguid`, s.`source_type`, 2000 + s.`id` * 20 + r.`rank`, 0, s.`event_type`, s.`event_phase_mask`,
+  s.`event_chance`, s.`event_flags`, r.`spell_id`, s.`event_param2`, s.`event_param3`, s.`event_param4`,
+  s.`event_param5`, s.`event_param6`, s.`action_type`, s.`action_param1`, s.`action_param2`, s.`action_param3`,
+  s.`action_param4`, s.`action_param5`, s.`action_param6`, s.`target_type`, s.`target_param1`, s.`target_param2`,
+  s.`target_param3`, s.`target_param4`, s.`target_x`, s.`target_y`, s.`target_z`, s.`target_o`,
+  CONCAT(COALESCE(s.`comment`, ''), ' - rank ', r.`rank`, ' (I-378)')
+FROM `smart_scripts` s
+JOIN `spell_ranks` f ON f.`spell_id` = s.`event_param1`
+JOIN `spell_ranks` r ON r.`first_spell_id` = f.`first_spell_id` AND r.`spell_id` <> s.`event_param1`
+WHERE s.`source_type` = 0 AND s.`entryorguid` IN (35118, 47091) AND s.`event_type` = 8 AND s.`action_type` = 33
+  AND s.`id` < 2000;
