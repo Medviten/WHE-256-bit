@@ -8,6 +8,7 @@
 - `.tele TheWanderingIsle`
 - Its NPCs, objects and quests, from the TrinityCore MoP Classic port's Wandering Isle import: 369 creatures (2289 spawns), 158 objects (898 spawns), 91 quests, with gossip, SmartAI, waypoint paths, loot, the island's phases and its quest invisibility, the MoP spells and vehicles they use, and the island's scripted events (the core patch's `wandering_isle.cpp`)
 - With `WanderingIsleStartZone.Enable = 1`, new Pandaren characters (F-020 / F-021), except Death Knights, start on the island by Master Shang Xi with "Much to Learn"
+- MoP's Pandaren intro flythrough over the island (`dbc/[F-134]_pandaren_intro_cinematic.sql`, `Cameras\FlyByPandaren.m2` and its narration in WHE-common's F-134 folder). With the start switch off Pandaren still get it, over wherever they start
 
 ### Setup
 - Client files (in WHE-common's `modpaks/F-134_mop-wandering-isle`, which `deploy-dbc.sh` copies into the realm's own patch when `LOCAL_COMMON_DIR` is set): the island's 100 tiles, its WDT and WDL, and the map art

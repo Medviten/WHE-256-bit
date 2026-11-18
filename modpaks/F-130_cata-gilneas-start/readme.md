@@ -3,7 +3,7 @@
 
 ### Features
 - The Cataclysm Worgen starting zone from [Project Neltharion](https://github.com/ProjectNeltharion)'s 4.3.4 world database: Gilneas City, Duskhaven, the Northern Headlands, Greymane Manor, Stormglen and Tal'doren, with their creatures, quests, phases and scripts (121 quests, 324 creatures, 121 objects)
-- New Worgen characters, except Death Knights, start in Gilneas City by Prince Liam Greymane
+- New Worgen characters, except Death Knights, start in Gilneas City by Prince Liam Greymane, after Cataclysm's Worgen intro flythrough over the city (`dbc/[F-130]_worgen_intro_cinematic.sql`; `Cameras\FlyByWorgen.m2` and its narration in WHE-common's patch-A.MPQ, MoP Classic's copies, the camera converted with wotlkconv)
 
 ### Requirements
 - F-010_patch-open-azeroth, whose Eastern Kingdoms has Cataclysm's Gilneas, and its map files. Cataclysm's Gilneas map (654) lies at the same coordinates, so the zone is spawned on map 0 unchanged
