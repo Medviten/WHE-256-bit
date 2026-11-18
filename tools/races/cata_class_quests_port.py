@@ -215,14 +215,15 @@ class Port(G.Port):
             g = self.cguid.get(r["guid"])
             if g:
                 a.append([g, 0, r["mount"], r["bytes1"], r["bytes2"], r["emote"], 0,
-                          self.auras(r["auras"], "spawn %d" % r["guid"]), ""])
+                          self.auras(r["auras"], "spawn %d" % r["guid"])])
         self.write("40_creature", G.insert(
             "creature", "guid id map zoneId areaId spawnMask phaseMask equipment_id position_x position_y position_z "
             "orientation spawntimesecs wander_distance currentwaypoint curhealth curmana MovementType npcflag "
             "unit_flags dynamicflags ScriptName VerifiedBuild CreateObject Comment".split(), c,
             "DELETE FROM `creature` WHERE `Comment` LIKE '[gen %s%%';" % TAG))
         self.write("41_creature_addon", G.insert(
-            "creature_addon", "guid path_id mount bytes1 bytes2 emote visibilityDistanceType auras Comment".split(), a,
+            # no Comment: stock creature_addon lacks it (F-013 adds it), and F-029 loads before F-010 / F-013
+            "creature_addon", "guid path_id mount bytes1 bytes2 emote visibilityDistanceType auras".split(), a,
             "DELETE FROM `creature_addon` WHERE `guid` BETWEEN %d AND %d;" % (CREATURE_GUID, CREATURE_GUID + 9999)))
 
     def smart(self):
