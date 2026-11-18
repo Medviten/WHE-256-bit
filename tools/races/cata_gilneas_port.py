@@ -114,6 +114,8 @@ CONDITION_PHASE_SOURCE = (25, 26)
 INVISIBILITY_TYPES = {18: 9, 30: 10, 36: 11}
 INVISIBILITY_AURAS = (18, 19)
 FALLBACK_DISPLAY = 646           # what Zeppelin-Craft's generator uses for a display nothing has
+# Cataclysm pet families 3.3.5a lacks (no CreatureFamily row: taming one breaks the pet): fox (50), dog (52) -> wolf
+FAMILY_MAP = {50: 1, 52: 1}
 
 dropped = collections.defaultdict(list)
 
@@ -424,7 +426,7 @@ class Port:
                          self.faction(r["faction_A"]), r["npcflag"], r["speed_walk"], r["speed_run"], r["speed_swim"],
                          r["speed_fly"], 18, r["rank"], r["dmgschool"], r["dmg_multiplier"] or 1,
                          r["baseattacktime"] or 2000, r["rangeattacktime"] or 2000, 1, 1, r["unit_class"] or 1,
-                         r["unit_flags"], r["unit_flags2"], r["dynamicflags"], r["family"], r["type"],
+                         r["unit_flags"], r["unit_flags2"], r["dynamicflags"], FAMILY_MAP.get(r["family"], r["family"]), r["type"],
                          r["type_flags"], r["lootid"], r["pickpocketloot"], r["skinloot"], r["PetSpellDataId"],
                          r["VehicleId"], r["mingold"], r["maxgold"], aname, r["MovementType"],
                          r["HoverHeight"], r["Health_mod"], r["Mana_mod"], r["Armor_mod"], 1, r["RacialLeader"],
