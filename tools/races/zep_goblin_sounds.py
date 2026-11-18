@@ -8,7 +8,7 @@ by FileDataID into WHE-common at its client path.
 
 usage: zep_goblin_sounds.py [--sql FILE ...] [--common PATH] [--client DATA] [--listfile CSV] [--build VERSION]
 --sql: other soundentries files to fetch for (F-130's [F-130]_npc_soundentries.sql, F-133 / F-134's
-[F-13x]_*_npc_soundentries.sql), with --common their modpak's folder in WHE-common
+[F-13x]_*_npc_soundentries.sql), with --common WHE-common's patch-MoP.MPQ for those two
 Resumable: files already in WHE-common are skipped."""
 import argparse, glob, os, re, sys, time, urllib.error, urllib.request
 

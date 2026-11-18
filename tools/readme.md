@@ -70,7 +70,7 @@
   builds the Questie-X-WHE addon, which gives [Questie-X](https://github.com/Xurkon/Questie-X) the maps a realm adds or
   moves (Open Azeroth's zones, Pandaria) so its arrow, coordinates and zone names work there. Rerun after the realm's
   WorldMapArea or AreaTable changes
-- `models/mop_map_art.py <MoP dbc> <WHE-common>/modpaks/F-133_mop-pandaria --world`: downloads MoP's world map art for Pandaria (and
+- `models/mop_map_art.py <MoP dbc> <WHE-common>/patch-MoP.MPQ --world`: downloads MoP's world map art for Pandaria (and
   the World map) from wago.tools at MoP Classic's version. `models/zmp_from_maps.py <map> <data dir> <out.zmp>` builds
   a continent's click grid from the server map files (used for Kalimdor's Kezan and Lost Isles, and Pandaria)
 - `skills/speed-up-sql-build/SKILL.md`: a skill for LLM assistants (Claude Code format; copy the folder into

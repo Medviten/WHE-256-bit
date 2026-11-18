@@ -330,7 +330,7 @@ def main():
         place = {r[1]: (r[2], r[3], r[4], r[5], f32(r[6]), f32(r[7]), f32(r[8])) for r in continents}
         if a.uimap:
             place.update(uimap_placement(a.uimap))
-        # MoP's World map art (WHE-common's modpaks/F-133) places the other continents differently from Open
+        # MoP's World map art (WHE-common's patch-MoP.MPQ) places the other continents differently from Open
         # Azeroth's, and their clickable rectangles on the World map come from these rows. Outland's is the same.
         moved = ["\n-- MoP's placement of the other continents on the World map, to match MoP's World map art"]
         for m in (0, 1, 571):

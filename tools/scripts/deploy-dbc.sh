@@ -315,15 +315,27 @@ if [[ -n "${LOCAL_PATCH_DIR:-}" && -n "${LOCAL_COMMON_DIR:-}" && -n "${REMOTE_CS
     echo
     MODPAK_FILES_RECORD="$LOCAL_PATCH_DIR/.modpak-files"
     if ssh -o ControlPath="$CONTROL_PATH" "$SSH_HOST" "cat '$REMOTE_CSV_DIR/modpaks.txt'" > "$TMP_DIR/modpaks.txt" 2>/dev/null; then
-        : > "$TMP_DIR/modpak-files"
+        # A path several modpaks ship (F-133 and F-134 share ~2,700 textures, models and sounds) is copied only from
+        # the last of them in manifest order, the one that wins. Copying every modpak in turn made the earlier
+        # modpak's copy differ from the patch on each run, so those files were copied back and forth every deploy.
+        : > "$TMP_DIR/modpak-sources"
         while IFS= read -r name; do
             src="$LOCAL_COMMON_DIR/modpaks/$name"
             [[ -n "$name" && -d "$src" ]] || continue
-            echo "Copying $name's client files..."
-            (cd -- "$src" && find . -type f | sed 's#^\./##') >> "$TMP_DIR/modpak-files"
-            rsync -a -- "$src/" "$LOCAL_PATCH_DIR/"
+            (cd -- "$src" && find . -type f | sed "s#^\./#$name\t#") >> "$TMP_DIR/modpak-sources"
         done < "$TMP_DIR/modpaks.txt"
-        sort -u -o "$TMP_DIR/modpak-files" "$TMP_DIR/modpak-files"
+        # paths compared case-insensitively: the client's file system and MPQ names ignore case, and the modpaks
+        # spell some shared folders differently (Interface/icons, interface/icons)
+        awk -F'\t' '{ winner[tolower($2)] = $0 } END { for (p in winner) print winner[p] }' \
+            "$TMP_DIR/modpak-sources" > "$TMP_DIR/modpak-winners"
+        while IFS= read -r name; do
+            src="$LOCAL_COMMON_DIR/modpaks/$name"
+            [[ -n "$name" && -d "$src" ]] || continue
+            awk -F'\t' -v m="$name" '$1 == m { print $2 }' "$TMP_DIR/modpak-winners" > "$TMP_DIR/modpak-files-$name"
+            echo "Copying $name's client files ($(wc -l < "$TMP_DIR/modpak-files-$name") that no later modpak replaces)..."
+            rsync -a --files-from="$TMP_DIR/modpak-files-$name" -- "$src/" "$LOCAL_PATCH_DIR/"
+        done < "$TMP_DIR/modpaks.txt"
+        cut -f2 "$TMP_DIR/modpak-sources" | sort -u > "$TMP_DIR/modpak-files"
         if [[ -f "$MODPAK_FILES_RECORD" ]]; then
             sort -u "$MODPAK_FILES_RECORD" | comm -23 - "$TMP_DIR/modpak-files" | while IFS= read -r old; do
                 echo "Removing $old (its modpak is no longer in the manifest)"

@@ -3,7 +3,7 @@
 
   python mop_map_art.py MOP_DBC_DIR OUT [--map 870] [--world] [--version 5.5.4.70631]
 
-OUT is a patch-shaped folder, for F-133 WHE-common's modpaks/F-133_mop-pandaria: files go to
+OUT is a patch-shaped folder, for F-133 / F-134 WHE-common's patch-MoP.MPQ: files go to
 OUT/Interface/WorldMap/<map>/<file>.blp, named as the 3.3.5 client asks for them. Which files: for every WorldMapArea of --map that F-133 keeps (no dungeon floors or
 phase copies), its 12 tiles (<name>1..12) and the highlight the parent map shows on hover (<name>Highlight:
 a zone's on its continent, a continent's on the World map); for every WorldMapOverlay of those, its 256 x 256 pieces (<texture>1..N, N = tiles across x down);

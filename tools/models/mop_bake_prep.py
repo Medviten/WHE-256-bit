@@ -19,7 +19,7 @@ from maghar_modern_prep import crop_scale, read_dxt, write_blp  # noqa: E402
 
 SLASH = chr(92)
 SECTIONS = 'modpaks/F-129_mod-pandaren-neutral/dbc/[BASE,F-129]_charsections.sql'
-BAKES = 'textures/bakednpctextures'      # in WHE-common/modpaks/<modpak>; the rows in WHE's <modpak>/dbc
+BAKES = 'textures/bakednpctextures'      # in WHE-common/patch-MoP.MPQ (F-133 and F-134); the rows in WHE's <modpak>/dbc
 FACE_UPPER, FACE_LOWER = (0, 320, 256, 64), (0, 384, 256, 128)    # stock rectangles at 512 x 512
 
 
@@ -120,7 +120,7 @@ def main():
         if not faces or not skins:
             print('no F-129 face or skin for', tex, (gender, skin, face))
             continue
-        bake = os.path.join(a.common, 'modpaks', a.modpak, BAKES, tex)
+        bake = os.path.join(a.common, 'patch-MoP.MPQ', BAKES, tex)
         if not os.path.exists(bake):
             continue
         jobs.append((bake, local(skins[0]), local(faces[0]), local(faces[1])))

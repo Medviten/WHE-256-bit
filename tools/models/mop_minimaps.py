@@ -8,8 +8,8 @@ community listfile names) is written to OUT/Textures/Minimap/<DIRECTORY>/map<x>_
 there by name when md5translate.trs doesn't list them (wowdecomp's MinimapBuildSource fallback), so the shared trs
 needn't change. Tiles the listfile lacks (open sea) are skipped; files already in OUT are kept.
 
-F-134: python -I mop_minimaps.py <WHE-common>/modpaks/F-134_mop-wandering-isle/World/Maps/NewRaceStartZone
-       NewRaceStartZone <WHE-common>/modpaks/F-134_mop-wandering-isle"""
+F-134: python -I mop_minimaps.py <WHE-common>/patch-MoP.MPQ/World/Maps/NewRaceStartZone
+       NewRaceStartZone <WHE-common>/patch-MoP.MPQ"""
 import argparse, glob, json, os, re, sys, urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
