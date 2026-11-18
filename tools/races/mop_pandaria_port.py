@@ -186,7 +186,7 @@ class PandariaPort(wi.Port):
                 dropped["C++ script names (not ported yet)"].append("%d %s" % (e, r["ScriptName"]))
             if r.get("AIName"):
                 dropped["SmartAI (not ported yet)"].append(e)
-            family = n(r, "family") if n(r, "family") in self.stock_families else 0
+            family = wi.pet_family(n(r, "family"), self.stock_families)
             vehicle = self.vehicle(n(r, "VehicleId"))
             tmpl.append([self.entry(e), 0, 0, 0, self.entry(r["KillCredit1"]), self.entry(r["KillCredit2"]), r["name"],
                          r["subname"] or None, r["IconName"] or None, self.menu.get(n(r, "gossip_menu_id"), 0),

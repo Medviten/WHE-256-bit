@@ -221,6 +221,25 @@ FLYING = {55650}
 MAP_DOODADS = {213439, 213532}
 
 
+
+# MoP pet families 3.3.5a has no CreatureFamily row for (a pet of one is broken): the nearest stock family
+FAMILY_MAP = {50: 1, 52: 1,              # fox, dog -> wolf
+              51: 9,                     # monkey -> gorilla
+              53: 20,                    # beetle -> scorpid
+              55: 3, 126: 3,             # shale spider, water strider -> spider
+              68: 6, 130: 6,             # hydra, basilisk -> crocolisk
+              125: 26,                   # crane -> bird of prey
+              127: 5, 129: 5,            # rodent, goat -> boar
+              128: 2,                    # quilen -> cat
+              138: 43}                   # direhorn -> rhino
+
+
+def pet_family(family, stock):
+    """The 3.3.5a family for a MoP one: kept, mapped (FAMILY_MAP) or 0."""
+    family = FAMILY_MAP.get(family, family)
+    return family if family in stock else 0
+
+
 class Port:
     def __init__(self, updates, dest, data):
         self.dest, self.data = dest, data
@@ -469,7 +488,7 @@ class Port:
             aname = r["AIName"] or ""
             if aname == "SmartAI" and e not in ai:
                 aname = ""
-            family = r["family"] if r["family"] in self.stock_families else 0
+            family = pet_family(r["family"], self.stock_families)
             vehicle = self.vehicle(r["VehicleId"])
             if r["VehicleId"] and not vehicle:
                 dropped["vehicle ids the 5.4.8 client lacks"].append("%d %d" % (e, r["VehicleId"]))
