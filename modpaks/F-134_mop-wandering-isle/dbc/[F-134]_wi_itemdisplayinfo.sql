@@ -4230,6 +4230,62 @@ INSERT INTO `itemdisplayinfo` SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
+DELETE FROM `itemdisplayinfo` WHERE `id` = 105047;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 105047,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_misc_food_165_bambooshoot01',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 23,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = '',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = '',
+  `lower_torso_texture` = '',
+  `upper_leg_texture` = '',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
+DELETE FROM `itemdisplayinfo` WHERE `id` = 105048;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 105048,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_misc_food_168_ricecake01',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 16,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = '',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = '',
+  `lower_torso_texture` = '',
+  `upper_leg_texture` = '',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
 DELETE FROM `itemdisplayinfo` WHERE `id` = 105087;
 INSERT INTO `itemdisplayinfo` SET
   `id` = 105087,
@@ -4930,6 +4986,34 @@ INSERT INTO `itemdisplayinfo` SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
+DELETE FROM `itemdisplayinfo` WHERE `id` = 105156;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 105156,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_bracer_cloth_panstart_a_01',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 7,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = '',
+  `lower_arm_texture` = 'cloth_panstart_a_01_bracer_al',
+  `hands_texture` = '',
+  `upper_torso_texture` = '',
+  `lower_torso_texture` = '',
+  `upper_leg_texture` = '',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
 DELETE FROM `itemdisplayinfo` WHERE `id` = 105162;
 INSERT INTO `itemdisplayinfo` SET
   `id` = 105162,
@@ -5462,6 +5546,62 @@ INSERT INTO `itemdisplayinfo` SET
   `item_visual` = 0,
   `particle_colour_id` = 0;
 
+DELETE FROM `itemdisplayinfo` WHERE `id` = 105341;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 105341,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_chest_cloth_panstart_a_01',
+  `icon_2` = '',
+  `geoset_group_1` = 3,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 7,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = 'cloth_panstart_a_01_sleeve_au',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = 'cloth_panstart_a_01_chest_tu',
+  `lower_torso_texture` = 'cloth_panstart_a_01_chest_tl',
+  `upper_leg_texture` = '',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
+DELETE FROM `itemdisplayinfo` WHERE `id` = 105342;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 105342,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_pants_cloth_panstart_a_01',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 3,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 7,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = '',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = '',
+  `lower_torso_texture` = '',
+  `upper_leg_texture` = 'cloth_panstart_a_01_pant_lu',
+  `lower_leg_texture` = 'cloth_panstart_a_01_pant_ll',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
 DELETE FROM `itemdisplayinfo` WHERE `id` = 105379;
 INSERT INTO `itemdisplayinfo` SET
   `id` = 105379,
@@ -5485,6 +5625,34 @@ INSERT INTO `itemdisplayinfo` SET
   `upper_torso_texture` = 'leather_panprog_b_01white_chest_tu',
   `lower_torso_texture` = 'leather_panprog_b_01white_chest_tl',
   `upper_leg_texture` = 'leather_panprog_b_01white_belt_lu',
+  `lower_leg_texture` = '',
+  `foot_texture` = '',
+  `item_visual` = 0,
+  `particle_colour_id` = 0;
+
+DELETE FROM `itemdisplayinfo` WHERE `id` = 105391;
+INSERT INTO `itemdisplayinfo` SET
+  `id` = 105391,
+  `left_model` = '',
+  `right_model` = '',
+  `left_model_texture` = '',
+  `right_model_texture` = '',
+  `icon_1` = 'inv_misc_food_167_sugarcane',
+  `icon_2` = '',
+  `geoset_group_1` = 0,
+  `geoset_group_2` = 0,
+  `geoset_group_3` = 0,
+  `flags` = 0,
+  `spell_visual_id` = 0,
+  `group_sound_index` = 15,
+  `helmet_geoset_male` = 0,
+  `helmet_geoset_female` = 0,
+  `upper_arm_texture` = '',
+  `lower_arm_texture` = '',
+  `hands_texture` = '',
+  `upper_torso_texture` = '',
+  `lower_torso_texture` = '',
+  `upper_leg_texture` = '',
   `lower_leg_texture` = '',
   `foot_texture` = '',
   `item_visual` = 0,

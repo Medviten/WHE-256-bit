@@ -72,6 +72,24 @@ PANDAREN_BITS = (1 << 23) | (1 << 24) | (1 << 25)
 EXTRA_RACES = {9: "@Goblin", 22: "@Worgen", 24: "@NeutralPandaren", 25: "@AlliancePandaren", 26: "@HordePandaren"}
 CLASS_MASK = 0x5FF            # the 3.3.5a classes (1-9, 11); MoP's Monk (512) is left to F-100's class 10 rules
 
+HUNTER_AMMO = ((2512, 5996, 24), (2101, 21328, 18))  # stock (item, display, inventory type): Rough Arrow, Light Quiver
+
+
+def mop_start_outfits():
+    """MoP's Pandaren (race 24) starting outfits from 5.4.8's CharStartOutfit.dbc, for the 3.3.5a classes MoP gives
+    Pandaren (Monk is class 10, F-100's Hero here, so it is left out; ARAC's classes keep their copied outfits):
+    [(class, gender, items[24], displays[24], inventory types[24])]."""
+    data = open(os.path.join(MOP_DBC, "CharStartOutfit.dbc"), "rb").read()
+    count, size = struct.unpack_from("<I", data, 4)[0], struct.unpack_from("<I", data, 12)[0]
+    out = []
+    for n in range(count):
+        row = data[20 + n * size:20 + (n + 1) * size]
+        race, cls, gender = row[4], row[5], row[6]
+        if race == 24 and CLASS_MASK & (1 << (cls - 1)):
+            v = struct.unpack_from("<72i", row, 8)
+            out.append((cls, gender, list(v[:24]), list(v[24:48]), list(v[48:72])))
+    return sorted(out)
+
 # SmartAI: TrinityCore master -> AzerothCore (enum names compared in both SmartScriptMgr.h)
 SAI_EVENT_MAP = {40: 108, 58: 109, 46: 46}
 SAI_EVENT_DROP = {39, 55, 56, 57} | set(range(83, 100))
@@ -408,6 +426,7 @@ class Port:
         for q in self.quests.values():
             items |= {q[k] for k in q if k.startswith(("RewardItem", "RewardChoiceItemID", "ItemDrop")) or k == "StartItem"}
         items |= {r["ObjectID"] for r in self.t("quest_objectives", "Type = 1")}
+        items |= {i for o in self.outfits for i in o[2]}
         for i in items:
             if i and i not in self.items.stock_items and self.items.has(i):
                 sp = self.items.sparse[i]
@@ -1421,6 +1440,7 @@ class Port:
             "item_template", cols, [[t[c] for c in cols] for t in tmpl],
             "DELETE FROM `item_template` WHERE `entry` IN %s;" % in_list(ports) if ports else None,
             "MoP items the island uses, from the 5.4.8 client (mop_items.py), English names from wago.tools"))
+        self.start_outfits({t["entry"]: t["displayid"] for t in tmpl})
         item_dbc = [[t["entry"], t["class"], t["subclass"], t["SoundOverrideSubclass"], t["Material"], t["displayid"],
                      t["InventoryType"], t["sheath"]] for t in tmpl]
         if item_dbc:
@@ -1453,6 +1473,44 @@ class Port:
             out.append(row)
         self.write_dbc("factiontemplate", out, "MoP faction templates (5.4.8) of the island's NPCs and objects")
 
+    def start_outfits(self, displays):
+        """MoP's Pandaren starting gear (the Trainee's set) for both playable Pandaren races, replacing the outfits
+        F-020 / F-021 copy from Humans / Orcs for those classes; the items' displays as ported."""
+        rows = []
+        # the class weapons are looted from the Iron Bough in "The Lesson of the Iron Bough" (30027-30038), whose
+        # objective a weapon already carried would meet at once: Pandaren start unarmed, as in MoP. The slot keeps the
+        # weapon's display and inventory type, which character creation's preview draws (the server only gives item_N)
+        bough = {r["ItemId"] for r in self.t("gameobject_questitem")} | {r["Item"] for r in self.t("gameobject_loot_template")}
+        for cls, gender, items, disp, inv in self.outfits:
+            for k, i in enumerate(items):
+                if i in bough:
+                    disp[k] = displays.get(i, disp[k])
+                    items[k] = 0
+            if cls == 3:
+                # MoP has no ammo; a 3.3.5a crossbow needs it: the Draenei hunter's Rough Arrows and Light Quiver
+                for item, display, slot in HUNTER_AMMO:
+                    k = next(k for k in range(24) if items[k] <= 0 and disp[k] <= 0)
+                    items[k], disp[k], inv[k] = item, display, slot
+            for k, i in enumerate(items):
+                if i > 0 and i not in self.items.stock_items:
+                    disp[k] = displays.get(i, disp[k])
+                    if not self.item_ids.get(i):
+                        sys.exit("start outfit item %d isn't ported" % i)
+            for race in ("@AlliancePandaren", "@HordePandaren"):
+                rows.append("(@CharStartOutfitID := @CharStartOutfitID + 1, %s, %d, %d, 0, %s)" % (
+                    race, cls, gender, ", ".join(str(x) for x in items + disp + inv)))
+        cols = ["id", "race", "class", "gender", "outfit_id"] + ["%s_%d" % (c, n) for c in (
+            "item", "display_item", "inventory_type") for n in range(1, 25)]
+        self.files[os.path.join("dbc", DBC_PREFIX + "charstartoutfit.sql")] = (
+            "-- MoP's Pandaren starting outfits (5.4.8 CharStartOutfit.dbc, race 24) for both Pandaren races. Monk's is\n"
+            "-- left out (class 10 is F-100's Hero); ARAC's classes keep F-020 / F-021's outfits. Generated by\n"
+            "-- tools/races/mop_wandering_isle_port.py.\n"
+            "DELETE FROM `charstartoutfit` WHERE `race` IN (@AlliancePandaren, @HordePandaren) AND `class` IN (%s);\n"
+            "SET @CharStartOutfitID = (SELECT COALESCE(MAX(`id`), 0) FROM `charstartoutfit`);\n"
+            "INSERT INTO `charstartoutfit` (%s) VALUES\n%s;\n" % (
+                ", ".join(str(c) for c in sorted({o[0] for o in self.outfits})),
+                ", ".join("`%s`" % c for c in cols), ",\n".join(rows)))
+
     # ---- output -----------------------------------------------------------------------------------------------
     def write(self, name, sql):
         if sql:
@@ -1484,6 +1542,10 @@ class Port:
 
     def run(self):
         self.go_models = set()
+        self.outfits = mop_start_outfits()
+        for o in self.outfits:
+            for i in o[2]:
+                self.item(max(i, 0))
         self.port_spells()
         at = c406.Dbc(os.path.join(MOP_DBC, "AreaTable.dbc"))
         self.island_areas = {r[0] for r in at.records if r[1] == MAP}
