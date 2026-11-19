@@ -27,3 +27,6 @@ INSERT INTO `playerbots_race_template` (`race`, `name_race`, `mounts`) VALUES
 - `name_race`: the race whose bot names it uses, 0 for generic names, or NULL for its `kin_race`.
 - `mounts`: its own mount spells. They are sorted by speed and replace the `home_race` mounts of that speed. Spells the DBCs lack are skipped.
 
+`player_race_template.exiles_reach` (default 1): the race starts on Exile's Reach when F-137 is on (F-137 moves its
+playercreateinfo to the island's beach). Race modpaks that keep their home race's start write 0; stock races have no
+row (Tauren's row writes 0). The table is dropped and made again on every build, so new columns reach old databases.

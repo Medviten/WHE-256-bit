@@ -1,4 +1,4 @@
-/* The stock races this race copies, see F-091_race-setup */
+/* The stock races this race copies, see F-091_race-setup. exiles_reach 0: keeps its home race's start with F-137 on */
 DELETE FROM `player_race_template` WHERE `race` = @KulTiran;
-INSERT INTO `player_race_template` (`race`, `home_race`, `kin_race`, `shapeshift_skin_color`) VALUES
-(@KulTiran, @Human, @Human, 0);
+INSERT INTO `player_race_template` (`race`, `home_race`, `kin_race`, `shapeshift_skin_color`, `exiles_reach`) VALUES
+(@KulTiran, @Human, @Human, 0, 0);
