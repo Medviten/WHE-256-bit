@@ -399,6 +399,9 @@ class Port:
                 want.add(num(r["ConditionValue1"]))
             if r["SourceTypeOrReferenceId"] in (13, 17, 18):
                 want.add(r["SourceEntry"])
+        # spells objects cast on use: goober data10 (the Edict of Temperance's burn credit), spellcaster data0
+        for r in self.got.values():
+            want.add(num(r["Data10"]) if r["type"] == 10 else num(r["Data0"]) if r["type"] == 22 else 0)
         # spells of the items the island hands out
         items = {r["Item"] for t in ("creature_loot_template", "gameobject_loot_template") for r in self.t(t)}
         items |= {r["ItemId"] for r in self.t("gameobject_questitem")} | {r["item"] for r in self.t("npc_vendor")}
@@ -1003,6 +1006,10 @@ class Port:
             qt.append(row)
             a = addon.get(q, {})
             src = num(a.get("SourceSpellID"))
+            if q == 29408:
+                # the start item's flame aura (credit 59591) is an on-pickup spell in MoP (trigger 5); AC's trigger 5
+                # is on-use, and nothing told the player to use the item, so the accept casts it
+                src = 114610
             if src and not self.spell_ok(src):
                 dropped["quest accept spells nothing has"].append("%d %d" % (q, src))
             src = self.spell_ok(src) or 0
