@@ -103,6 +103,10 @@ SAI_EVENT_DROP = {66, 78}
 # (entry, id) rows left out: Prince Liam Greymane at the Merchant Square turned his invincibility off when first hit,
 # so the worgen he fights killed him and the quests he ends had no one to turn in to for five minutes
 SAI_ROW_DROP = {(34913, 2)}
+# (entry, id) -> action params replaced. Liam's "invincible at 100% health" level is his maximum health: once anything
+# lowers his health without going through DamageTaken, AzerothCore's check (damage >= health - level, unsigned) wraps
+# and lets every hit through, and the worgen killed him anyway. A level of 1 hit point can't wrap
+SAI_ROW_PARAMS = {(34913, 1): (1, 0)}
 # Creature faction templates replaced: the Worgen Alpha and Runts that come for Crowley (By the Skin of His Teeth)
 # are Warsong Offensive (1978) in the source, a Horde faction no Alliance-hostile player could attack here; they get
 # the Bloodfang worgen's 2179 like every other hostile worgen
@@ -153,6 +157,26 @@ def dbc_ids(name):
     d = open(os.path.join(STOCK_DBC, name + ".dbc"), "rb").read()
     n, _, rs, _ = struct.unpack_from("<4I", d, 4)
     return {struct.unpack_from("<I", d, 20 + i * rs)[0] for i in range(n)}
+
+
+TRIGGER_FLAG, INVISIBLE_DISPLAY = 0x80, 11686
+
+
+def invisible_displays(dbc_dir):
+    """Displays whose model is an InvisibleStalker: TrinityCore keeps those for a trigger and draws any other trigger
+    as 11686 (CreatureTemplate::GetFirstInvisibleModel); AzerothCore draws a trigger's display as it is."""
+    d = open(os.path.join(dbc_dir, "CreatureModelData.dbc"), "rb").read()
+    n, _, rs, _ = struct.unpack_from("<4I", d, 4)
+    strings = 20 + n * rs
+    models = set()
+    for i in range(n):
+        mid, _, name = struct.unpack_from("<3I", d, 20 + i * rs)
+        if b"invisiblestalker" in d[strings + name:d.index(b"\0", strings + name)].lower():
+            models.add(mid)
+    d = open(os.path.join(dbc_dir, "CreatureDisplayInfo.dbc"), "rb").read()
+    n, _, rs, _ = struct.unpack_from("<4I", d, 4)
+    return {struct.unpack_from("<I", d, 20 + i * rs)[0] for i in range(n)
+            if struct.unpack_from("<2I", d, 20 + i * rs)[1] in models} | {INVISIBLE_DISPLAY}
 
 
 def go_rotation(o, r0, r1, r2, r3):
@@ -425,6 +449,7 @@ class Port:
         T = self.t
         ai = {r["entryorguid"] for r in T["smart_scripts"] if r["source_type"] == 0 and r["entryorguid"] > 0}
         tmpl, models, movement, model_info, equip = [], [], [], [], []
+        self.invisible = invisible_displays(CATA_DBC)
         displays = set()
         equip_by_id = {r["entry"]: r for r in T["creature_equip_template"]}
         self.equip_ids = {}                                # (entry, Neltharion equipment id) -> AzerothCore ID
@@ -460,6 +485,8 @@ class Port:
             idx = 0
             for k in ("modelid1", "modelid2", "modelid3", "modelid4"):
                 d = r[k]
+                if d and flags_extra & TRIGGER_FLAG and d not in self.invisible:
+                    d = INVISIBLE_DISPLAY
                 if d and d not in [m[2] for m in models if m[0] == e]:
                     models.append([e, idx, d, r["scale"] or 1, 1, 0])
                     displays.add(d)
@@ -904,6 +931,8 @@ class Port:
             why = None
             if (e, r["id"]) in SAI_ROW_DROP:
                 continue
+            if (e, r["id"]) in SAI_ROW_PARAMS:
+                p[:2] = SAI_ROW_PARAMS[(e, r["id"])]
             if ev > SAI_MAX_EVENT or ev in SAI_EVENT_DROP:
                 why = "event %d" % ev
             elif a > SAI_MAX_ACTION or a in SAI_ACTION_DROP:
