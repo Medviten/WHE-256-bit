@@ -19,6 +19,9 @@
   races; stock races and the race modpaks that keep their home race's start set 0) start on the island's beach,
   except Death Knights (`zz_[F-137]_start.sql`). With the Wandering Isle start on, the races it takes (Pandaren, and
   Hozen, Mogu and Jinyu with them) go there instead
+- Character creation shows those races retail's Stormwind or Orgrimmar scene (UI_Alliance / UI_Horde in
+  WHE-common). The client can't see `exiles_reach`: `ExilesReachKeepStart` in `data/patch-A.MPQ/Interface/GlueXML/
+  GlueParent.lua` lists the races writing 0, so a race modpak that sets 0 adds its file string there
 - The ship intro: the Alliance Ship and the Horde Transport sail retail's loops off the island as continent
   transports, with their crews on deck. With `ExilesReachStartZone.Enable = 1` (core patch below) those new
   characters start aboard their faction's ship instead of the beach:
@@ -28,6 +31,13 @@
   Kalecgos and their guards), in and out through the portals at the citadel's gate (`.tele DarkmaulCitadel` lands
   at its entrance). Killing Gor'groth stops his ritual for the dungeon quest; talking to Kalecgos credits leaving
   and sends you to Stormwind or Orgrimmar, bound there: the way off the island
+- Every quest of both chains, the class quests and the Darkmaul gate's can be done: Wowhead's givers and enders (saved
+  quest pages, `--wowhead`), the NPCs and objects TrinityCore only summons spawned at Wowhead's map points (the gate's
+  leaders, the class trainers and ghosts, catapults, runestones; 44 NPCs, 11 objects), each shown to its faction
+  until its quests are done. Steps retail scripts (bandaging, riding, rescues, spars, class ability practice, scenes)
+  are talking to the NPC (gossip credit); items it hands over come from talking to the quest NPC, or from chests
+  placed beside the class quests' NPCs. An End to Beginnings as retail: Kalecgos at the gate flies you to Stormwind
+  or Orgrimmar, where Captain Garrick / Warlord Breka Grimaxe end it
 - Core patches: `patches/core/quest-visibility-refresh.patch` rechecks those visibility conditions when a quest
   changes; `patches/core/exiles-reach-start.patch` adds `ExilesReachStartZone.Enable`, boards new characters and
   scripts Kalecgos (`npc_darkmaul_kalecgos`)
@@ -84,7 +94,10 @@
   on deck are left out
 - New characters' hearthstones are bound to the beach until Kalecgos sends them to their capital. Random bots of
   the races that start here are created on the island too
-- An End to Beginnings (retail's way off the island) has no givers: Kalecgos stands in for it
+- Scripted steps are simplified: talking to an NPC stands in for retail's items, rides, spars and scenes
+  (OBJECTIVE_TALKS in retail_world_port.py), so they complete at once. Bloodbeak (the harpy rescues) has no spawn
+  anywhere: the rescue is credited by the quest's giver. The class quest chests stand beside their NPCs (no
+  positions known). Training Rock has no giver. Retail's emote steps and buying / selling are left out
 - Darkmaul Citadel: no boss mechanics (Tunk and Gor'groth only melee), its doors are left out (TrinityCore opens
   them by script), no group finder entry, no vmaps (NPCs standing on the citadel's floors drop to the terrain when
   they move)

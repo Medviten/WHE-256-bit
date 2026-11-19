@@ -63,6 +63,48 @@ INSERT INTO `gameobjectdisplayinfo` SET
   `geo_box_max_y` = 7.1031,
   `geo_box_max_z` = 11.3953;
 
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 22454;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 22454,
+  `model_name` = 'world\\expansion05\\doodads\\human\\doodads\\6hu_magetower_book_floating01.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -0.8118,
+  `geo_box_min_y` = -1.0222,
+  `geo_box_min_z` = -0.1238,
+  `geo_box_max_x` = 0.7953,
+  `geo_box_max_y` = 1.0489,
+  `geo_box_max_z` = 0.4108;
+
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 26682;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 26682,
+  `model_name` = 'world\\expansion05\\doodads\\ogre\\6og_ogre_chains_02.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -1.1072,
+  `geo_box_min_y` = -1.8591,
+  `geo_box_min_z` = -0.1032,
+  `geo_box_max_x` = 1.5778,
+  `geo_box_max_y` = 1.482,
+  `geo_box_max_z` = 0.83;
+
 DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 30315;
 INSERT INTO `gameobjectdisplayinfo` SET
   `id` = 30315,
@@ -147,6 +189,27 @@ INSERT INTO `gameobjectdisplayinfo` SET
   `geo_box_max_y` = 1.6152,
   `geo_box_max_z` = 1.8578;
 
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 47462;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 47462,
+  `model_name` = 'world\\skillactivated\\tradeskillnodes\\8xp_herbnode_riverbud_01.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -0.7958,
+  `geo_box_min_y` = -1.0547,
+  `geo_box_min_z` = -0.0939,
+  `geo_box_max_x` = 0.4145,
+  `geo_box_max_y` = 0.6524,
+  `geo_box_max_z` = 1.709;
+
 DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 56588;
 INSERT INTO `gameobjectdisplayinfo` SET
   `id` = 56588,
@@ -167,6 +230,48 @@ INSERT INTO `gameobjectdisplayinfo` SET
   `geo_box_max_x` = 1.8926,
   `geo_box_max_y` = 1.8926,
   `geo_box_max_z` = 5.1823;
+
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 59825;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 59825,
+  `model_name` = 'world\\expansion05\\doodads\\orcclans\\6oc_bleedinghollow_runestone_runestone02.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -2.8491,
+  `geo_box_min_y` = -2.9635,
+  `geo_box_min_z` = -0.7508,
+  `geo_box_max_x` = 2.9313,
+  `geo_box_max_y` = 3.015,
+  `geo_box_max_z` = 11.3555;
+
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 60654;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 60654,
+  `model_name` = 'world\\expansion07\\doodads\\riverzone\\8riv_waterplant_a01.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -1.9325,
+  `geo_box_min_y` = -1.7837,
+  `geo_box_min_z` = -0.8235,
+  `geo_box_max_x` = 2.2433,
+  `geo_box_max_y` = 2.0301,
+  `geo_box_max_z` = 4.5625;
 
 DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 61205;
 INSERT INTO `gameobjectdisplayinfo` SET
@@ -209,3 +314,24 @@ INSERT INTO `gameobjectdisplayinfo` SET
   `geo_box_max_x` = 59.0835,
   `geo_box_max_y` = 59.2673,
   `geo_box_max_z` = 124.7294;
+
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 91251;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 91251,
+  `model_name` = 'world\\expansion09\\doodads\\exterior\\10xp_spiderwebbedhumanoid.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -1.4952,
+  `geo_box_min_y` = -1.4952,
+  `geo_box_min_z` = -0.3327,
+  `geo_box_max_x` = 1.4952,
+  `geo_box_max_y` = 1.4952,
+  `geo_box_max_z` = 2.2555;

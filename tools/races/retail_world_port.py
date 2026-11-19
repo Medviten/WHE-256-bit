@@ -38,6 +38,13 @@ Darkmaul Citadel: the dungeon's MapDifficulty and instance_template, and area tr
 (DUNGEON_TRIGGERS: TrinityCore enters it through the group finder only). Its map rows come from retail_map_port.py
 (--tag F-137,DC).
 
+Wowhead (--wowhead DIR: wowhead_givers.txt and wowhead_points.txt, read from saved Wowhead quest pages): its quest
+givers and enders replace the inferred ones, and the NPCs and objects the quests need that TrinityCore only summons
+(the Darkmaul gate's leaders, the class quests' trainers and ghosts, catapults, runestones) are spawned at its map
+points (zone %, through retail's UiMapAssignment), on the nearest island spawn's height or the terrain's (--tiles),
+each visible to its quests' faction until those quests are rewarded. CAPITAL_SPAWNS place the enders of An End to
+Beginnings in Stormwind and Orgrimmar (3.3.5a's cities, not retail's Orgrimmar of Wowhead's points).
+
 Quests (QuestSortID --zone, both factions' chains, class versions, the dungeon's):
 - the Alliance and Horde chains share races (retail starts them from the faction's ship), so each quest gets a team
   condition (conditions source type 19) on top of retail's own; HORDE_QUESTS lists the Horde ones
@@ -50,7 +57,7 @@ Quests (QuestSortID --zone, both factions' chains, class versions, the dungeon's
 - quest items: retail's rows (names, stacks, bonding) with icon-only displays (ITEM_DISPLAY_BASE and up), Item.dbc rows
 - objects the quests use keep their type (chests, goobers with the quest in data1, quest givers); the rest are props
 """
-import argparse, collections, csv, os, pickle, re, sys
+import argparse, collections, csv, glob, math, os, pickle, re, struct, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -81,9 +88,48 @@ DUNGEON_DIFFICULTY_ID = 1370       # MapDifficulty row of the dungeon (normal, 5
 # invisible helpers of TrinityCore's scripts
 DROP_ENTRIES = {167337, 167342, 167345, 167347, 167348, 167352, 167375, 167343, 167344, 167346, 167349, 167350, 167351,
                 156403, 155125, 168236}
-KILL_CREDITS = {160737: 174954}    # Combat Dummy: Warming Up's credit (retail casts a credit spell on death)
-# criteria-tree objectives a creature kill stands in for: quest objective id -> creature
-OBJECTIVE_KILLS = {394065: 156814, 397381: 156814}   # "Gor'groth's final ritual stopped": Gor'groth
+KILL_CREDITS = {160737: 174954,    # Combat Dummy: Warming Up's credit (retail casts a credit spell on death)
+                156716: 156722, 164826: 156722,   # Wandering Boars: the Re-Sizer tests (retail: an item on them)
+                157091: 165150}    # Monstrous Cadaver: the boar ride's skeleton army
+WOWHEAD_GUID = 13790001            # creature / object guids of the spawns placed at Wowhead's points
+# An End to Beginnings' enders, at the cities' arrival points (exiles_reach_start.cpp's Kalecgos sends players there):
+# entry -> (map, x, y, z, orientation, quest)
+CAPITAL_SPAWNS = {154169: (0, -8829.6, 632.6, 94.2, 4.2, 55991),      # Captain Garrick, Stormwind Trade District
+                  168431: (1, 1638.2, -4436.4, 15.6, 3.6, 59985)}     # Warlord Breka Grimaxe, Valley of Strength
+# objectives a creature kill stands in for: quest objective id or (quest, credit creature) -> creature
+OBJECTIVE_KILLS = {394065: 156814, 397381: 156814,   # "Gor'groth's final ritual stopped": Gor'groth
+                   (55639, 156929): 156900, (59949, 167254): 156900}   # the ride out of Hrun's pit: Hrun's death
+# credits retail gives through spells, scenes, summons or vehicles this port lacks: (quest, credit creature) -> the
+# quest's NPC that gives the credit when talked to (gossip, SmartAI): rescues, spars, class ability practice
+OBJECTIVE_TALKS = {(55763, 153964): 156859, (59944, 153964): 167290,       # Bloodbeak: the rescued
+                   (59254, 164577): 156651, (59933, 164577): 166906,       # Enhanced Combat Tactics: the leader
+                   (58915, 174978): 162943, (59972, 174978): 162943,       # Hjalmar's execution: Hjalmar
+                   (58933, 175015): 163024, (59968, 175015): 167586,       # Gutgruk the Tough: the rogue
+                   (59354, 164974): 156886, (59955, 164974): 167212, (59955, 167309): 167212,   # sheep: the mage
+                   (59350, 174832): 156932, (59951, 174832): 166575,       # the Druid Stone: the druid
+                   (58946, 174956): 162998,                                # the necrotic altar: Yorah
+                   (58962, 163218): 163246, (59970, 167482): 167481,       # the voidwalker: the summoned one
+                   (59349, 164865): 164835, (59957, 164865): 167537,       # Touch of Death: the monk
+                   (59356, 164990): 156886, (59953, 164990): 167215}       # the stalker: the hunter
+OBJECTIVE_DROP = {(55990, 161300), (59981, 161300),  # Controlling their Stones' hidden runestone credit (the runes count)
+                  (60174, -351423), (66349, -376533)}  # objects TrinityCore has no template of (Horde's necrotic altar)
+# objects only one faction's quest has spawns of: twin -> (spawned object, the twin's quest, the original's quest);
+# each original gets a twin on its spot, each shown to its quest's faction until that quest is rewarded
+GO_TWINS = {350796: (339568, 59949, 55639)}          # Who Lurks in the Pit's cocoons (Horde, Alliance)
+TALK_KEYWORDS = re.compile(r"slain|defeat|destroy|kill", re.I)   # objective texts that mean a kill, not a talk
+TALK_SCRIPTED = {244389}           # Kalecgos at the gate: exiles_reach_start.cpp
+# quest item chests nothing spawns (retail summons or phases them in): (object, npc it stands beside, how many);
+# each copy beside every spawn of that NPC
+CHEST_NEAR = [(341951, 162972, 3), (351426, 167184, 3),        # Withering Hemlock: the dead rogues
+              (342366, 156886, 4), (342366, 167215, 4),        # Veil Blossom: the shaman quests' givers
+              (346277, 156886, 1), (346278, 156886, 1), (346277, 167215, 1), (346278, 167215, 1),   # hunter's trap
+              (350998, 163209, 1), (350998, 167478, 1)]        # Old Grimoire: the dead warlocks
+# items retail hands over by script or from a lake: talking to the NPC gives them while the quest is taken
+# npc -> [(item, quest)]
+TALK_ITEMS = {156886: [(175979, 59355), (175975, 59352)],      # Meredy: the ice mote, her book from the lake
+              167215: [(175979, 59952)], 167212: [(178229, 59954)]}   # Mithdran: the ice mote; Thrall: Herbert's book
+# loot TrinityCore lacks: creature -> [(item, chance)], quest-required
+LOOT_EXTRA = {153581: [(168601, 100)], 153582: [(168600, 100)], 153583: [(168599, 100)]}   # the ward stone ogres
 PATH_BASE = 13700000
 MODEL_BASE = 1370000
 DISPLAY_BASE = 1370000
@@ -203,10 +249,14 @@ class Port:
                 self.dropped["object spawns of types 3.3.5a lacks"].append("%s type %s" % (r["id"], g and g["type"]))
             else:
                 self.gspawns.append(r)
+        self.select_quests()
+        self.wowhead_spawns()
         self.spawns.sort(key=lambda r: n(r["guid"]))
         self.gspawns.sort(key=lambda r: n(r["guid"]))
-        self.cguid = {r["guid"]: CREATURE_GUID + i for i, r in enumerate(self.spawns)}
-        self.gguid = {r["guid"]: GAMEOBJECT_GUID + i for i, r in enumerate(self.gspawns)}
+        self.cguid = {r["guid"]: (WOWHEAD_GUID if "wh_quests" in r else CREATURE_GUID) + i
+                      for i, r in enumerate(self.spawns)}
+        self.gguid = {r["guid"]: (WOWHEAD_GUID if "wh_quests" in r else GAMEOBJECT_GUID) + i
+                      for i, r in enumerate(self.gspawns)}
         self.stock_creatures = base_ids("creature_template")
         self.stock_gos = base_ids("gameobject_template")
         self.stock_items = base_ids("item_template")
@@ -229,7 +279,6 @@ class Port:
         self.gdi, self.rft = table(a.csv_dir, "GameObjectDisplayInfo"), table(a.csv_dir, "FactionTemplate")
         self.assets = set()
         self.conditions = []
-        self.select_quests()
         # creatures the quests credit without being spawned (talk / spar / dummy credits): templates only, so the
         # quests keep those objectives
         credit = {n(o["ObjectID"]) for objs in self.objectives.values() for o in objs if n(o["Type"]) in (0, 3)}
@@ -238,6 +287,139 @@ class Port:
         clash = set(self.entries) & (config_range("NextCreatureID") | taken("creature_template", "entry"))
         if clash:
             sys.exit("entries another modpak uses: %s" % sorted(clash))
+        self.talks = self.talk_credits()
+
+    # ---- Wowhead's quest givers and map points --------------------------------------------------------------------
+    def world_xy(self, x, y):
+        """World (x, y) of a zone map point in percent (retail's UiMapAssignment of --world-map-area)."""
+        if not hasattr(self, "uimap"):
+            rows = [r for r in table(self.a.csv_dir, "UiMapAssignment").values()
+                    if n(r["UiMapID"]) == self.a.world_map_area and n(r["MapID"]) == self.a.map]
+            f = {k: float(v) for k, v in max(rows, key=lambda r: float(r["Region_4"]) - float(r["Region_1"])).items()
+                 if k.startswith(("Ui", "Region")) and k != "UiMapID"}
+            span_y = (f["Region_4"] - f["Region_1"]) / (f["UiMax_0"] - f["UiMin_0"])
+            span_x = (f["Region_3"] - f["Region_0"]) / (f["UiMax_1"] - f["UiMin_1"])
+            self.uimap = (f["Region_4"] + f["UiMin_0"] * span_y, span_y, f["Region_3"] + f["UiMin_1"] * span_x, span_x)
+        left, span_y, top, span_x = self.uimap
+        return top - y / 100 * span_x, left - x / 100 * span_y
+
+    def terrain_z(self, x, y):
+        """Ground height of the converted tiles (--tiles) at (x, y): the nearest MCVT vertex."""
+        tile, chunk = 533.3333333, 533.3333333 / 16
+        key = (int(32 - y / tile), int(32 - x / tile))
+        if key not in self.adt:
+            path = glob.glob(os.path.join(self.a.tiles, "*_%d_%d.adt" % key))
+            self.adt[key] = []
+            for f in path[:1]:
+                d = open(f, "rb").read()
+                mcin = 20 + struct.unpack_from("<16I", d, 20)[1] + 8
+                for k in range(256):
+                    h = struct.unpack_from("<I", d, mcin + k * 16)[0] + 8
+                    px, py, pz = struct.unpack_from("<3f", d, h + 0x68)
+                    mcvt = struct.unpack_from("<145f", d, h - 8 + struct.unpack_from("<I", d, h + 0x14)[0] + 8)
+                    self.adt[key].append((px, py, pz, mcvt))
+        for px, py, pz, mcvt in self.adt[key]:
+            if px >= x > px - chunk and py >= y > py - chunk:
+                return pz + mcvt[round((px - x) / chunk * 8) * 17 + round((py - y) / chunk * 8)]
+        return None
+
+    def ground_z(self, x, y):
+        """The height of the nearest island spawn within 8 yards (buildings, bridges), else the terrain's."""
+        near = min(((math.hypot(n(r["position_x"]) - x, n(r["position_y"]) - y), n(r["position_z"]))
+                    for r in self.island), default=None)
+        if near and near[0] < 8:
+            return near[1]
+        z = self.terrain_z(x, y) if self.a.tiles else None
+        return near[1] if z is None and near else z
+
+    def wowhead_spawns(self):
+        """Wowhead's givers / enders (self.wh_start / wh_end) and spawns for what the quests need (see the docstring)."""
+        self.wh_start, self.wh_end, self.wh_gstart, self.adt = {}, {}, {}, {}
+        if not self.a.wowhead:
+            return
+        for line in open(os.path.join(self.a.wowhead, "wowhead_givers.txt"), encoding="utf-8"):
+            q, sk, si, _, ek, ei, _ = line.rstrip("\n").split("|")
+            if int(q) in self.quests:
+                if sk == "npc" and int(si) in self.ct:
+                    self.wh_start[int(q)] = int(si)
+                if sk == "object" and int(si) in self.got:
+                    self.wh_gstart[int(q)] = int(si)
+                if ek == "npc" and int(ei) in self.ct:
+                    self.wh_end[int(q)] = int(ei)
+        self.island = [r for k in ("creature", "gameobject") for r in self.t[k] if n(r["map"]) == self.a.map]
+        placed, gplaced = {n(r["id"]) for r in self.spawns}, {n(r["id"]) for r in self.gspawns}
+        targets = {n(o["ObjectID"]) for objs in self.objectives.values() for o in objs}
+        want, needed = collections.defaultdict(lambda: (set(), [])), set()
+        for line in open(os.path.join(self.a.wowhead, "wowhead_points.txt"), encoding="utf-8"):
+            q, zone, point, typ, e, _, x, y = line.rstrip("\n").split("|")
+            q, typ, e = int(q), int(typ), int(e)
+            if zone != str(self.a.zone) or q not in self.quests or (
+                    point not in ("start", "end", "sourcerequirement") and e not in targets):
+                continue
+            # start / end points: only the giver or ender Wowhead names (it also maps retail's newer copies)
+            if typ == 1 and point in ("start", "end") and e not in (self.wh_start.get(q), self.wh_end.get(q)):
+                continue
+            if typ == 1 and (e in placed or e not in self.ct or e in DROP_ENTRIES or n(self.ct[e]["flags_extra"]) & TRIGGER):
+                continue
+            if typ == 2 and (e in gplaced or e not in self.got or n(self.got[e]["type"]) not in GO_TYPES):
+                continue
+            want[(typ, e)][0].add(q)
+            want[(typ, e)][1].append(self.world_xy(float(x), float(y)))
+            if point not in ("start", "end"):
+                needed.add((typ, e))
+        for e, (m, x, y, z, o, q) in CAPITAL_SPAWNS.items():
+            if q in self.quests and e in self.ct:
+                want[(1, e)] = ({q}, [(x, y, z, o, m)])
+        for (typ, e), (quests, pts) in sorted(want.items()):
+            kept = []
+            for p in pts:                               # one spawn per spot (Wowhead lists a point per 0.2%)
+                if all(math.hypot(p[0] - k[0], p[1] - k[1]) > 6 for k in kept):
+                    kept.append(p)
+            if typ == 1 and (typ, e) not in needed and len(kept) > 1:
+                # a giver / ender Wowhead shows at several spots (it walks, or stands elsewhere later): one spawn,
+                # at the spot nearest their middle
+                cx, cy = sum(k[0] for k in kept) / len(kept), sum(k[1] for k in kept) / len(kept)
+                kept = [min(kept, key=lambda k: math.hypot(k[0] - cx, k[1] - cy))]
+            for p in kept:
+                x, y = p[0], p[1]
+                z, o, m = p[2:] if len(p) > 2 else (self.ground_z(x, y), 0, self.a.map)
+                if z is None:
+                    self.dropped["Wowhead points off the tiles"].append(e)
+                    continue
+                row = dict(guid=str(9000000000 + len(self.spawns) + len(self.gspawns)), id=str(e), map=str(m),
+                           areaId="0", position_x=round(x, 3), position_y=round(y, 3), position_z=round(z, 3),
+                           orientation=o, PhaseId="0", PhaseGroup="0", spawntimesecs="120", wander_distance="0",
+                           MovementType="0", wh_quests=sorted(quests))
+                if typ == 1:
+                    self.spawns.append(row)
+                else:
+                    row.update(rotation0="0", rotation1="0", rotation2="0", rotation3="1")
+                    self.gspawns.append(row)
+                self.dropped["spawned at Wowhead's points (%s)" % ("NPCs" if typ == 1 else "objects")].append(e)
+        for twin, (orig, q_twin, q_orig) in GO_TWINS.items():
+            if twin not in self.got or q_twin not in self.quests:
+                continue
+            for r in [r for r in self.gspawns if n(r["id"]) == orig]:
+                r["wh_quests"] = [q_orig] if q_orig in self.quests else []
+                self.gspawns.append(dict(r, guid=str(9000000000 + len(self.spawns) + len(self.gspawns)), id=str(twin),
+                                         wh_quests=[q_twin]))
+                self.dropped["objects given a twin of the other faction (GO_TWINS)"].append(twin)
+        gplaced = {n(r["id"]) for r in self.gspawns}
+        for go, npc, count in CHEST_NEAR:
+            if go in gplaced or go not in self.got:
+                continue
+            quest = n(self.got[go]["Data8"])
+            for r in [r for r in self.spawns if n(r["id"]) == npc and n(r["map"]) == self.a.map]:
+                for i in range(count):
+                    a = n(r["orientation"]) + 1.2 + i * 2 * math.pi / max(count, 3)
+                    x, y = n(r["position_x"]) + 4 * math.cos(a), n(r["position_y"]) + 4 * math.sin(a)
+                    self.gspawns.append(dict(guid=str(9000000000 + len(self.spawns) + len(self.gspawns)), id=str(go),
+                                             map=str(self.a.map), areaId="0", position_x=round(x, 3),
+                                             position_y=round(y, 3), position_z=round(self.ground_z(x, y), 3),
+                                             orientation=0, PhaseId="0", PhaseGroup="0", spawntimesecs="30",
+                                             rotation0="0", rotation1="0", rotation2="0", rotation3="1",
+                                             wh_quests=[quest] if quest in self.quests else []))
+                    self.dropped["quest chests placed beside their NPC (CHEST_NEAR)"].append(go)
 
     # ---- writing --------------------------------------------------------------------------------------------------
     def write(self, name, sql):
@@ -493,9 +675,13 @@ class Port:
                 self.dropped["scripts left for SmartAI (plan.md stage 3)"].append("%d %s" % (e, r["ScriptName"] or r["AIName"]))
             family = pet_family(FAMILIES.get(n(r["family"]), n(r["family"])), self.stock_families)
             rows = [x for x in loot_ids.get(n(d.get("LootID")), []) if not n(x["ItemType"]) and self.item(x["Item"])]
+            rows += [dict(Item=str(i), Chance=str(c), QuestRequired="1", LootMode="1", GroupId="0", MinCount="1",
+                          MaxCount="1", Comment="LOOT_EXTRA", ItemType="0") for i, c in LOOT_EXTRA.get(e, [])
+                     if self.item(i)]
             loot += [[e, self.item(x["Item"]), 0, n(x["Chance"]), n(x["QuestRequired"]), n(x["LootMode"], 1) or 1,
                       n(x["GroupId"]), n(x["MinCount"], 1), n(x["MaxCount"], 1), x["Comment"] or ""] for x in rows]
-            npcflag = n(r["npcflag"]) & 0x7FFFFFF | (2 if e in givers else 0)
+            talk = e in self.talks or e in TALK_ITEMS
+            npcflag = n(r["npcflag"]) & 0x7FFFFFF | (2 if e in givers else 0) | (1 if talk else 0)
             tmpl.append([e, 0, 0, 0, KILL_CREDITS.get(e, 0), 0, r["name"], r["subname"] or None, r["IconName"] or None, 0, lo, hi, 0,
                          self.faction(n(r["faction"])), npcflag, n(r["speed_walk"], 1), n(r["speed_run"], 1.14286), 1, 1,
                          18, CLASSIFICATION.get(n(r["Classification"]), n(r["Classification"])), n(r["dmgschool"]),
@@ -503,7 +689,7 @@ class Port:
                          n(r["RangeAttackTime"], 2000) or 2000, n(r["BaseVariance"], 1) or 1,
                          n(r["RangeVariance"], 1) or 1, n(r["unit_class"], 1) or 1, n(r["unit_flags"]),
                          n(r["unit_flags2"]) & 0x3FFFF, 0, family, n(r["type"]), 0, e if rows else 0, 0, 0, 0, 0, 0, 0,
-                         "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
+                         "SmartAI" if talk else "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
                          n(d.get("ArmorModifier"), 1), n(r["ExperienceModifier"], 1) or 1, n(r["RacialLeader"]), 0,
                          n(r["RegenHealth"], 1), 0, 0, "", 0])
             a = addons.get(e)
@@ -565,6 +751,14 @@ class Port:
     # ---- spawns ---------------------------------------------------------------------------------------------------
     def phase_conditions(self, kind, entry, guid, r):
         """Visibility conditions (source type 30) for a spawn in a retail phase."""
+        if "wh_quests" in r:                            # Wowhead spawns: its faction, until its quests are rewarded
+            for g, q in enumerate(r["wh_quests"]):
+                self.conditions.append([30, kind, entry, guid, g, 8, 0, q, 0, 0, 1, 0, 0, "",
+                                        "Wowhead spawn: until quest %d is rewarded" % q])
+                if self.team(q):
+                    self.conditions.append([30, kind, entry, guid, g, 6, 0, self.team(q), 0, 0, 0, 0, 0, "",
+                                            "Wowhead spawn: quest %d's faction" % q])
+            return
         phase = n(r["PhaseId"])
         if n(r["PhaseGroup"]):
             self.dropped["spawns in phase groups (shown to everyone)"].append(guid)
@@ -665,7 +859,18 @@ class Port:
             lock = data[0] if data[0] in self.stock_locks else 0
             used = e in quest_of or e in givers
             if typ == 3:                                # chest: lock, loot, restock .. linked trap, quest
-                data = [lock] + data[1:9] + [0] * 15
+                # retail's quest chests keep their loot in Data30 (personal loot); the quest in Data8 is left out:
+                # the loot's quest requirement already decides, and one chest serves both factions' quests
+                data = [lock, data[1] or n(r["Data30"])] + data[2:8] + [0] * 16
+                # chests TrinityCore gives no loot rows: their gameobject_questitem, quest-required
+                fallback = [dict(Item=x["ItemId"], Chance="100", QuestRequired="1", LootMode="1", GroupId="0",
+                                 MinCount="1", MaxCount="1", Comment="gameobject_questitem", ItemType="0")
+                            for x in self.t["gameobject_questitem"] if n(x["GameObjectEntry"]) == e]
+                if data[1] and not loot_rows.get(data[1]):
+                    loot_rows[data[1]] = fallback
+                elif not data[1] and fallback:
+                    data[1] = e
+                    loot_rows[e] = fallback
                 for x in loot_rows.get(data[1], []):
                     if not n(x["ItemType"]) and self.item(x["Item"]):
                         gloot.append([data[1], self.item(x["Item"]), 0, n(x["Chance"]), n(x["QuestRequired"]),
@@ -694,6 +899,7 @@ class Port:
         self.write("22_gameobject_questitem", insert(
             "gameobject_questitem", "GameObjectEntry Idx ItemId VerifiedBuild".split(), qitem,
             "DELETE FROM `gameobject_questitem` WHERE `GameObjectEntry` IN %s;" % gents))
+        gloot = list({(r[0], r[1]): r for r in gloot}.values())   # chests sharing a loot id (both factions' campfires)
         self.write("51_gameobject_loot_template", insert(
             "gameobject_loot_template", "Entry Item Reference Chance QuestRequired LootMode GroupId MinCount MaxCount "
             "Comment".split(), gloot, "DELETE FROM `gameobject_loot_template` WHERE `Entry` IN %s;"
@@ -762,6 +968,63 @@ class Port:
                                                   [[DUNGEON, self.a.map, "", 0]],
                                                   "DELETE FROM `instance_template` WHERE `map` = %d;" % DUNGEON))
 
+    def poi_trigger(self, q, objective):
+        """An area trigger for an exploration objective nothing places (TrinityCore scripts it): the objective's
+        quest map marker, a sphere around its points (at least 10 yards) on the ground's height."""
+        idx = {n(r["Idx1"]) for r in self.t["quest_poi"] if n(r["QuestID"]) == q and n(r["QuestObjectiveID"]) == objective}
+        pts = [(n(r["X"]), n(r["Y"])) for r in self.t["quest_poi_points"] if n(r["QuestID"]) == q and n(r["Idx1"]) in idx]
+        if not pts or not self.a.wowhead:
+            return None
+        x, y = sum(p[0] for p in pts) / len(pts), sum(p[1] for p in pts) / len(pts)
+        z = self.ground_z(x, y)
+        if z is None:
+            return None
+        rad = max(10.0, max(math.hypot(p[0] - x, p[1] - y) for p in pts))
+        return dict(ContinentID=str(self.a.map), Pos_0=x, Pos_1=y, Pos_2=z, Radius=rad, Box_length=0, Box_width=0,
+                    Box_height=0, Box_yaw=0)
+
+    def talk_credits(self):
+        """{npc entry: [credit creature]}: objectives retail credits by talking to, using an item on or riding an NPC
+        (type 0 / 3 objectives on a spawned NPC whose text isn't a kill) and OBJECTIVE_TALKS. Gossip gives them."""
+        spawned = {n(r["id"]) for r in self.spawns}
+        out = collections.defaultdict(set)
+        for q, objs in self.objectives.items():
+            for o in objs:
+                obj = n(o["ObjectID"])
+                if n(o["Type"]) not in (0, 3) or (q, obj) in OBJECTIVE_DROP:
+                    continue
+                if (q, obj) in OBJECTIVE_TALKS:
+                    out[OBJECTIVE_TALKS[(q, obj)]].add(obj)
+                elif (obj in spawned and o["Description"] and not TALK_KEYWORDS.search(o["Description"])
+                      and obj not in TALK_SCRIPTED and n(o["ID"]) not in OBJECTIVE_KILLS
+                      and (q, obj) not in OBJECTIVE_KILLS):
+                    out[obj].add(obj)
+        return {e: sorted(c) for e, c in out.items() if e in self.entries}
+
+    def talk_scripts(self):
+        cols = ("entryorguid source_type id link event_type event_phase_mask event_chance event_flags event_param1 "
+                "event_param2 event_param3 event_param4 event_param5 event_param6 action_type action_param1 "
+                "action_param2 action_param3 action_param4 action_param5 action_param6 target_type target_param1 "
+                "target_param2 target_param3 target_param4 target_x target_y target_z target_o comment").split()
+        rows = []
+        for e in sorted(set(self.talks) | set(TALK_ITEMS)):
+            credits = self.talks.get(e, [])
+            for i, c in enumerate(credits):
+                rows.append([e, 0, i, 0, 64, 0, 100, 0, 0, 0, 0, 0, 0, 0, 33, c, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
+                             "%s - On gossip hello - Quest credit %d" % (self.ct[e]["name"], c)])
+            for i, (item, q) in enumerate(TALK_ITEMS.get(e, []), len(credits)):
+                if q not in self.quests or not self.item(item):
+                    continue
+                rows.append([e, 0, i, 0, 64, 0, 100, 0, 0, 0, 0, 0, 0, 0, 56, self.item(item), 1, 0, 0, 0, 0, 7, 0, 0, 0,
+                             0, 0, 0, 0, 0, "%s - On gossip hello - Give quest item %d" % (self.ct[e]["name"], item)])
+                self.conditions.append([22, i + 1, e, 0, 0, 9, 0, q, 0, 0, 0, 0, 0, "",
+                                        "%s's quest item %d: only on quest %d" % (self.ct[e]["name"], item, q)])
+        self.write("65_smart_scripts", insert("smart_scripts", cols, rows,
+                                              "DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN %s;"
+                                              % in_list(set(self.talks) | set(TALK_ITEMS)) if rows else None,
+                                              "Talking to these NPCs gives the quest credits retail gives by an "
+                                              "item, a ride or a scene (talk_credits)"))
+
     # ---- quests ---------------------------------------------------------------------------------------------------
     def team(self, q):
         return None if q in NEUTRAL_QUESTS else HORDE if q in HORDE_QUESTS else ALLIANCE
@@ -812,6 +1075,10 @@ class Port:
 
     def quest_rows(self):
         self.inferred = self.infer_givers()
+        for q, e in self.wh_start.items():             # Wowhead names them: better than the inference
+            self.inferred[0][q] = e
+        for q, e in self.wh_end.items():
+            self.inferred[1][q] = e
         qs = in_list(self.quests)
         self.objective_slot = {}
         qt, qa, triggers, involved = [], [], [], []
@@ -821,8 +1088,12 @@ class Port:
             npc, items, texts, explore = [], [], [], []
             for o in self.objectives[q]:
                 typ, obj = n(o["Type"]), n(o["ObjectID"])
-                if n(o["ID"]) in OBJECTIVE_KILLS:
-                    typ, obj = 0, OBJECTIVE_KILLS[n(o["ID"])]
+                if (q, obj) in OBJECTIVE_DROP or (q, -obj) in OBJECTIVE_DROP:
+                    self.dropped["objectives left out (OBJECTIVE_DROP)"].append("%d %d" % (q, obj))
+                    continue
+                kill = OBJECTIVE_KILLS.get(n(o["ID"])) or OBJECTIVE_KILLS.get((q, obj))
+                if kill:
+                    typ, obj = 0, kill
                 if typ in (0, 3):
                     self.objective_slot[n(o["ID"])] = (q, len(npc))
                     npc.append((obj, n(o["Amount"]) or 1))
@@ -837,7 +1108,7 @@ class Port:
                         continue
                     items.append((self.item(obj), n(o["Amount"]) or 1))
                 elif typ == 19:
-                    explore.append(obj)
+                    explore.append((obj, n(o["ID"])))
                 else:
                     self.dropped["objective types 3.3.5a lacks (criteria trees; SmartAI later)"].append(
                         "%d type %d %s" % (q, typ, o["Description"] or ""))
@@ -878,12 +1149,14 @@ class Port:
             a = self.qaddon.get(q, {})
             classes = n(a.get("AllowableClasses"))
             special = n(a.get("SpecialFlags")) & 0xF
-            for t in explore:
+            for t, oid in explore:
                 r = at.get(str(t))
                 if not r and t in SERVER_TRIGGERS:
                     m, x, y, z, rad = SERVER_TRIGGERS[t]
                     r = dict(ContinentID=str(m), Pos_0=x, Pos_1=y, Pos_2=z, Radius=rad, Box_length=0, Box_width=0,
                              Box_height=0, Box_yaw=0)
+                if not r:
+                    r = self.poi_trigger(q, oid)
                 if not r:
                     self.dropped["area triggers nothing places (TrinityCore scripts them)"].append("%d %d" % (q, t))
                     continue
@@ -985,7 +1258,8 @@ class Port:
             for e, q in sorted(rel):
                 if e not in known[t]:
                     self.dropped["%s of NPCs/objects not on the island" % t].append("%d %d" % (e, q))
-            inferred = {"creature_queststarter": self.inferred[0], "creature_questender": self.inferred[1]}.get(t, {})
+            inferred = {"creature_queststarter": self.inferred[0], "creature_questender": self.inferred[1],
+                        "gameobject_queststarter": self.wh_gstart}.get(t, {})
             rel = sorted(rel | {(e, q) for q, e in inferred.items()})
             if t.startswith("creature"):
                 have = {q for e, q in rel if e in known[t]}
@@ -1014,8 +1288,9 @@ class Port:
                 "ConditionTarget ConditionValue1 ConditionValue2 ConditionValue3 NegativeCondition ErrorType ErrorTextId "
                 "ScriptName Comment").split()
         delete = ("DELETE FROM `conditions` WHERE (`SourceTypeOrReferenceId` = 19 AND `SourceEntry` IN %s) OR "
-                  "(`SourceTypeOrReferenceId` = 30 AND `SourceId` BETWEEN %d AND %d);"
-                  % (in_list(self.quests), CREATURE_GUID, CREATURE_GUID + 99999))
+                  "(`SourceTypeOrReferenceId` = 30 AND `SourceId` BETWEEN %d AND %d) OR "
+                  "(`SourceTypeOrReferenceId` = 22 AND `SourceEntry` IN %s AND `SourceId` = 0);"
+                  % (in_list(self.quests), CREATURE_GUID, WOWHEAD_GUID + 99999, in_list(TALK_ITEMS)))
         self.write("60_conditions", insert("conditions", cols, self.conditions, delete,
                                            "Phased spawns' visibility (source type 30, per guid) and the quests' "
                                            "availability (19)"))
@@ -1028,6 +1303,7 @@ class Port:
         self.gameobjects()
         self.quest_rows()
         self.spawn_rows()
+        self.talk_scripts()
         self.write_conditions()
         self.files["wi_assets.txt"] = "".join(p + "\n" for p in sorted(self.assets))
         prefix = ("zz_[AUTO,%s]_world_" % self.a.tag, "[%s]_world_" % self.a.tag,
@@ -1063,6 +1339,8 @@ def main():
     p.add_argument("--tag", default="F-137")
     p.add_argument("--comment", default="Exiles Reach")    # in spawn Comments and their DELETE: no quotes
     p.add_argument("--cache")
+    p.add_argument("--wowhead", help="folder of wowhead_givers.txt and wowhead_points.txt")
+    p.add_argument("--tiles", help="the island's converted 3.3.5a tiles (ground heights of the Wowhead spawns)")
     a = p.parse_args()
     wi.TAG = a.tag      # taken() leaves out the modpak's own files
     Port(a).run()

@@ -40,7 +40,9 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_
 UPDATE `creature_template` SET `unit_flags` = 0 WHERE `entry` = 156814;
 
 -- Kalecgos, Gor'groth's captive: talking to him credits "Speak with Kalecgos to leave Darkmaul Citadel" (Alliance
--- 161350, Horde 167663) and sends the player to their capital, bound there: the island's way out while An End to
--- Beginnings has no givers (core: exiles_reach_start.cpp, F-137's exiles-reach-start.patch)
+-- 161350, Horde 167663) and takes the player out to the citadel's gate. There Kalecgos (244389, spawned at Wowhead's
+-- point) credits An End to Beginnings' "Speak to Kalecgos to travel" and sends the player to their capital, bound
+-- there, where Captain Garrick / Warlord Breka Grimaxe end it (core: exiles_reach_start.cpp, exiles-reach-start.patch)
 UPDATE `creature_template` SET `faction` = 35, `unit_flags` = 0, `npcflag` = `npcflag` | 1, `AIName` = '', `ScriptName` = 'npc_darkmaul_kalecgos' WHERE `entry` = 156501;
-DELETE FROM `smart_scripts` WHERE `entryorguid` = 156501 AND `source_type` = 0;
+UPDATE `creature_template` SET `npcflag` = `npcflag` | 1, `AIName` = '', `ScriptName` = 'npc_exiles_reach_kalecgos' WHERE `entry` = 244389;
+DELETE FROM `smart_scripts` WHERE `entryorguid` IN (156501, 244389) AND `source_type` = 0;

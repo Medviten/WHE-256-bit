@@ -13,6 +13,45 @@ INSERT INTO `areatrigger` SET
   `box_height` = 0,
   `box_yaw` = 0;
 
+DELETE FROM `areatrigger` WHERE `id` = 16996;
+INSERT INTO `areatrigger` SET
+  `id` = 16996,
+  `map_id` = 2175,
+  `x` = 456,
+  `y` = -2046,
+  `z` = 130.7296,
+  `radius` = 10,
+  `box_length` = 0,
+  `box_width` = 0,
+  `box_height` = 0,
+  `box_yaw` = 0;
+
+DELETE FROM `areatrigger` WHERE `id` = 16893;
+INSERT INTO `areatrigger` SET
+  `id` = 16893,
+  `map_id` = 2175,
+  `x` = 695,
+  `y` = -1896,
+  `z` = 186.5166,
+  `radius` = 10,
+  `box_length` = 0,
+  `box_width` = 0,
+  `box_height` = 0,
+  `box_yaw` = 0;
+
+DELETE FROM `areatrigger` WHERE `id` = 17000;
+INSERT INTO `areatrigger` SET
+  `id` = 17000,
+  `map_id` = 2175,
+  `x` = 589.875,
+  `y` = -2061.125,
+  `z` = 160.633,
+  `radius` = 31.1253,
+  `box_length` = 0,
+  `box_width` = 0,
+  `box_height` = 0,
+  `box_yaw` = 0;
+
 DELETE FROM `areatrigger` WHERE `id` = 13700;
 INSERT INTO `areatrigger` SET
   `id` = 13700,

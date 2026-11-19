@@ -589,10 +589,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 77397;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 77397,
+  `model_id` = 1370021,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.8,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'voidwalker2',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 77902;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 77902,
-  `model_id` = 1370021,
+  `model_id` = 1370022,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -611,7 +630,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 77903;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 77903,
-  `model_id` = 1370021,
+  `model_id` = 1370022,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -630,7 +649,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 78151;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 78151,
-  `model_id` = 1370021,
+  `model_id` = 1370022,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -649,7 +668,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 78851;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 78851,
-  `model_id` = 1370022,
+  `model_id` = 1370023,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -687,7 +706,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 80910;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 80910,
-  `model_id` = 1370023,
+  `model_id` = 1370024,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 0.15,
@@ -706,7 +725,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 81105;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 81105,
-  `model_id` = 1370024,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -725,7 +744,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 81106;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 81106,
-  `model_id` = 1370024,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -741,10 +760,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 84585;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 84585,
+  `model_id` = 1370026,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 86424;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 86424,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -763,7 +801,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 87594;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 87594,
-  `model_id` = 1370022,
+  `model_id` = 1370023,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -801,7 +839,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 88316;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 88316,
-  `model_id` = 1370026,
+  `model_id` = 1370028,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.2,
@@ -820,7 +858,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 88786;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 88786,
-  `model_id` = 1370027,
+  `model_id` = 1370029,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -839,7 +877,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 88787;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 88787,
-  `model_id` = 1370027,
+  `model_id` = 1370029,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -858,7 +896,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 89266;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 89266,
-  `model_id` = 1370027,
+  `model_id` = 1370029,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -877,7 +915,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91775;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91775,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -896,7 +934,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91776;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91776,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -915,7 +953,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91777;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91777,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -934,7 +972,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91778;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91778,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -953,7 +991,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91779;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91779,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -972,7 +1010,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91780;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91780,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -991,7 +1029,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91781;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91781,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1010,7 +1048,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91782;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91782,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1029,7 +1067,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91851;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91851,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1048,7 +1086,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91853;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91853,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1067,7 +1105,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91854;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91854,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1086,7 +1124,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 92691;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 92691,
-  `model_id` = 1370028,
+  `model_id` = 1370030,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1105,7 +1143,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 92693;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 92693,
-  `model_id` = 1370028,
+  `model_id` = 1370030,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1124,7 +1162,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 92831;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 92831,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1143,7 +1181,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 95022;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 95022,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1162,7 +1200,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 95765;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 95765,
-  `model_id` = 1370029,
+  `model_id` = 1370031,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1200,7 +1238,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 96541;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 96541,
-  `model_id` = 1370030,
+  `model_id` = 1370032,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1219,7 +1257,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 97213;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 97213,
-  `model_id` = 1370031,
+  `model_id` = 1370033,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1238,7 +1276,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 97258;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 97258,
-  `model_id` = 1370032,
+  `model_id` = 1370034,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1257,7 +1295,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 105921;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 105921,
-  `model_id` = 1370033,
+  `model_id` = 1370035,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 2,
@@ -1276,7 +1314,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 107146;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 107146,
-  `model_id` = 1370034,
+  `model_id` = 1370036,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.25,
@@ -1295,7 +1333,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 107945;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 107945,
-  `model_id` = 1370035,
+  `model_id` = 1370037,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.8,
@@ -1314,7 +1352,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 114576;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 114576,
-  `model_id` = 1370033,
+  `model_id` = 1370035,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 2,
@@ -1333,7 +1371,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 115495;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 115495,
-  `model_id` = 1370036,
+  `model_id` = 1370038,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1390,7 +1428,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 139988;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 139988,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.8,
@@ -1409,7 +1447,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 139991;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 139991,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1428,7 +1466,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 139992;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 139992,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1447,7 +1485,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 139993;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 139993,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1466,7 +1504,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140023;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140023,
-  `model_id` = 1370025,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1485,7 +1523,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140024;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140024,
-  `model_id` = 1370037,
+  `model_id` = 1370039,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1504,7 +1542,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140087;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140087,
-  `model_id` = 1370038,
+  `model_id` = 1370040,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1523,7 +1561,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140088;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140088,
-  `model_id` = 1370038,
+  `model_id` = 1370040,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1542,7 +1580,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140089;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140089,
-  `model_id` = 1370038,
+  `model_id` = 1370040,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.15,
@@ -1561,7 +1599,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140090;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140090,
-  `model_id` = 1370038,
+  `model_id` = 1370040,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.2,
