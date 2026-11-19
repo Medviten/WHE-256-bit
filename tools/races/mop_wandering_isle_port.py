@@ -71,13 +71,21 @@ RACE_VARS = {1: ["Human"], 2: ["Orc"], 3: ["Dwarf"], 4: ["NightElf"], 5: ["Undea
 PANDAREN_BITS = (1 << 23) | (1 << 24) | (1 << 25)
 EXTRA_RACES = {9: "@Goblin", 22: "@Worgen", 24: "@NeutralPandaren", 25: "@AlliancePandaren", 26: "@HordePandaren"}
 CLASS_MASK = 0x5FF            # the 3.3.5a classes (1-9, 11); MoP's Monk (512) is left to F-100's class 10 rules
+# ARAC classes MoP's Pandaren couldn't be take a MoP class's outfit (the same Trainee's set; the donor picks the
+# preview weapon, matching CLASS_PHASE_EXTRA's weapon racks: paladin the warrior's sword, druid the monk's staff).
+# Death knights keep F-020 / F-021's outfits: they start in Acherus, not on the island
+ARAC_OUTFITS = {2: 1, 9: 8, 11: 10}
 
-HUNTER_AMMO = ((2512, 5996, 24), (2101, 21328, 18))  # stock (item, display, inventory type): Rough Arrow, Light Quiver
+# Pandaren displays MoP left without greeting voices (silent when spoken to here, e.g. the female class trainers) take
+# the island's most common Pandaren NPCSounds for their gender
+PANDAREN_NPC_SOUNDS = {"@PandarenMaleModel": 694, "@PandarenFemaleModel": 706}
+
+HUNTER_AMMO =((2512, 5996, 24), (2101, 21328, 18))  # stock (item, display, inventory type): Rough Arrow, Light Quiver
 
 
 def mop_start_outfits():
     """MoP's Pandaren (race 24) starting outfits from 5.4.8's CharStartOutfit.dbc, for the 3.3.5a classes MoP gives
-    Pandaren (Monk is class 10, F-100's Hero here, so it is left out; ARAC's classes keep their copied outfits):
+    Pandaren plus ARAC_OUTFITS' (Monk is class 10, F-100's Hero here, so its own row is left out):
     [(class, gender, items[24], displays[24], inventory types[24])]."""
     data = open(os.path.join(MOP_DBC, "CharStartOutfit.dbc"), "rb").read()
     count, size = struct.unpack_from("<I", data, 4)[0], struct.unpack_from("<I", data, 12)[0]
@@ -85,9 +93,11 @@ def mop_start_outfits():
     for n in range(count):
         row = data[20 + n * size:20 + (n + 1) * size]
         race, cls, gender = row[4], row[5], row[6]
-        if race == 24 and CLASS_MASK & (1 << (cls - 1)):
+        if race == 24:
             v = struct.unpack_from("<72i", row, 8)
-            out.append((cls, gender, list(v[:24]), list(v[24:48]), list(v[48:72])))
+            for c in [cls] * bool(CLASS_MASK & (1 << (cls - 1))) + [a for a, d in ARAC_OUTFITS.items() if d == cls]:
+                out.append((c, gender, list(v[:24]), list(v[24:48]), list(v[48:72])))
+    assert {o[0] for o in out} >= set(ARAC_OUTFITS), "a donor class has no MoP Pandaren outfit"
     return sorted(out)
 
 # SmartAI: TrinityCore master -> AzerothCore (enum names compared in both SmartScriptMgr.h)
@@ -795,7 +805,7 @@ class Port:
                               extended_display_info_id=extra, creature_model_scale=c406.f32(r[4]),
                               creature_model_alpha=r[5], texture_variation_1=cd.s(r[6]), texture_variation_2=cd.s(r[7]),
                               texture_variation_3=cd.s(r[8]), portrait_texture_name=cd.s(r[9]), blood_level=r[10],
-                              blood_id=r[11], npc_sound_id=self.npc_sound(r[12]),
+                              blood_id=r[11], npc_sound_id=self.npc_sound(r[12] or PANDAREN_NPC_SOUNDS.get(model, 0)),
                               praticle_color_id=r[13], creature_geoset_data=r[14], obj_effect_package_id=0))
             self.displays[d] = new
         out_m = []
@@ -1026,8 +1036,9 @@ class Port:
             a = addon.get(q, {})
             src = num(a.get("SourceSpellID"))
             if q == 29408:
-                # the start item's flame aura (credit 59591) is an on-pickup spell in MoP (trigger 5); AC's trigger 5
-                # is on-use, and nothing told the player to use the item, so the accept casts it
+                # the start item's flame aura (credit 59591) is its on-obtain spell (trigger 5), which AC casts while
+                # giving the start item, before the quest has its log slot: no credit. The item loses the spell
+                # (client_rows) and the accept casts it, after the quest is in the log
                 src = 114610
             if src and not self.spell_ok(src):
                 dropped["quest accept spells nothing has"].append("%d %d" % (q, src))
@@ -1434,6 +1445,9 @@ class Port:
             for n in range(1, 6):
                 if t["spellid_%d" % n]:
                     t["spellid_%d" % n] = self.spell_ok(t["spellid_%d" % n]) or 0
+            if t["entry"] == 80212:
+                # The Master's Flame: 29408's accept casts its flame instead (see the quest addon rows)
+                t["spellid_1"], t["spelltrigger_1"] = 0, 0
             t["AllowableClass"] = -1 if t["AllowableClass"] in (-1, 0x7FFF, 0x5FF) else t["AllowableClass"]
         cols = list(ITEM_TEMPLATE_COLUMNS)
         self.write("05_item_template", insert(
@@ -1475,7 +1489,7 @@ class Port:
 
     def start_outfits(self, displays):
         """MoP's Pandaren starting gear (the Trainee's set) for both playable Pandaren races, replacing the outfits
-        F-020 / F-021 copy from Humans / Orcs for those classes; the items' displays as ported."""
+        F-020 / F-021 copy from Humans / Orcs for every class but the death knight; the items' displays as ported."""
         rows = []
         # the class weapons are looted from the Iron Bough in "The Lesson of the Iron Bough" (30027-30038), whose
         # objective a weapon already carried would meet at once: Pandaren start unarmed, as in MoP. The slot keeps the
@@ -1503,7 +1517,8 @@ class Port:
             "item", "display_item", "inventory_type") for n in range(1, 25)]
         self.files[os.path.join("dbc", DBC_PREFIX + "charstartoutfit.sql")] = (
             "-- MoP's Pandaren starting outfits (5.4.8 CharStartOutfit.dbc, race 24) for both Pandaren races. Monk's is\n"
-            "-- left out (class 10 is F-100's Hero); ARAC's classes keep F-020 / F-021's outfits. Generated by\n"
+            "-- left out (class 10 is F-100's Hero); ARAC's paladin, warlock and druid take the warrior's, mage's and\n"
+            "-- monk's; death knights keep F-020 / F-021's outfits. Generated by\n"
             "-- tools/races/mop_wandering_isle_port.py.\n"
             "DELETE FROM `charstartoutfit` WHERE `race` IN (@AlliancePandaren, @HordePandaren) AND `class` IN (%s);\n"
             "SET @CharStartOutfitID = (SELECT COALESCE(MAX(`id`), 0) FROM `charstartoutfit`);\n"

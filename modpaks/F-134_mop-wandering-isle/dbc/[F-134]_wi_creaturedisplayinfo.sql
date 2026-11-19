@@ -871,7 +871,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = -1,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -1308,7 +1308,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = -1,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -1916,7 +1916,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -1935,7 +1935,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -1954,7 +1954,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -1973,7 +1973,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -1992,7 +1992,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -2011,7 +2011,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -2030,7 +2030,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -2049,7 +2049,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -2391,7 +2391,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = -1,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4253,7 +4253,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4272,7 +4272,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4291,7 +4291,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4310,7 +4310,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4424,7 +4424,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4443,7 +4443,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4462,7 +4462,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -4481,7 +4481,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 706,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
@@ -5089,7 +5089,7 @@ INSERT INTO `creaturedisplayinfo` SET
   `portrait_texture_name` = '',
   `blood_level` = 0,
   `blood_id` = 0,
-  `npc_sound_id` = 0,
+  `npc_sound_id` = 694,
   `praticle_color_id` = 0,
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
