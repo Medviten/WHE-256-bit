@@ -8,6 +8,15 @@
 - Retail's lights of the map (sky, fog and water colours)
 - `.tele ExilesReach` and one target per subarea (`.tele DarkmaulCitadel`, `.tele HarpyRoost`, ...)
 - TrinityCore's six graveyards of the island
+- The island's spawns from TrinityCore's retail TDB (1210): 873 creatures of 133 kinds (wildlife, murlocs,
+  quilboar, ogres, harpies, worgs, spiders, the Alliance and Horde crews, Jaina, Thrall, Wrathion, the undead army)
+  and 28 objects, with their waypoints, in retail's looks where they aren't dressed NPCs (models and textures in
+  patch-ER.MPQ). Retail's quest-stage phases are per-spawn visibility conditions, so each crew member shows where
+  your quest progress puts them, and each faction sees its own crew
+- 101 quests of both factions' chains, the class quests (3.3.5a's classes) and the dungeon's: texts, objectives,
+  quest items and their drops, map markers, faction and class restrictions (see the quest port plan, plan.md)
+- Core patch `patches/core/quest-visibility-refresh.patch`: rechecks those visibility conditions when a quest
+  changes
 
 ### Setup
 - Client files: WHE-common's `patch-ER.MPQ` (tiles, models, buildings, textures, world map and minimaps). Copy it
@@ -32,13 +41,25 @@
 5. World map: `python -I tools/models/retail_map_art.py <csv> 1409 ExilesReach <WHE-common>/patch-ER.MPQ`
 6. Minimaps: `python -I tools/models/mop_minimaps.py <tiles> ExilesReach <WHE-common>/patch-ER.MPQ --source 2175
    --version 12.1.5.70961`
-7. F-134's art fix-ups on `<WHE-common>/patch-ER.MPQ`: `tools/models/mop_m2_env.py`, `mop_m2_nobatch.py`,
+7. Spawns and quests: `python -I -X utf8 tools/races/retail_world_port.py <TDB_full_world_1210.26091_*.sql> <csv>
+   modpaks/F-137_exiles-reach --cache <pickle>` (`<csv>` also needs the tables its docstring lists), then step 4
+   again with a new `<stage>` (without `--tiles`) for the models, textures and icons it lists
+8. F-134's art fix-ups on `<WHE-common>/patch-ER.MPQ`: `tools/models/mop_m2_env.py`, `mop_m2_nobatch.py`,
    `wmo_mop_fixups.py` (each `python -I <script> <WHE-common>/patch-ER.MPQ`)
 
 ### Known Issues
 - Not tried in game yet
-- No NPCs, quests or start yet (planned: TrinityCore's retail TDB and scripts, and a switch that starts new
-  characters on the island)
+- Quests are the data stage (plan.md stage 1): no start on the island yet, and nothing scripted. TrinityCore
+  names the givers of only 30 quests; 35 more are inferred (the faction's NPC at retail's turn-in marker, the giver
+  the previous quest's ender), and 36 have no giver or ender yet (the ship intro, the class quests, the Darkmaul
+  finale: their NPCs are summoned by scripts). 25 criteria-tree objectives (emotes, buying, casting a class
+  spell, ...) are dropped, so some quests complete with less. Without the core patch, quest-stage NPCs only update
+  when you move
+- Scripts aren't ported: casters only melee, rescues, escorts and the boar ride don't run (plan.md stage 3)
+- Dressed story NPCs (the crews) wear a stock NPC look of their race and sex for now (plan.md stage 2)
+- No gear rewards yet (retail's quest packages) and RewardMoney 0
+- Levels follow the quest route by area (retail scales them); enemies have no weapons (retail item ids)
+- Hrun the Exiled is a stock skeleton (retail dresses one through CreatureDisplayInfoExtra)
 - No grass: retail's ground effect ids aren't in 3.3.5a's GroundEffectTexture.dbc, so the converter clears them
 - No baked terrain shadows (F-134's adt_bake_shadows.py): baked tiles would also need 2175 in the client's
   `bakedShadowMaps` CVar, or they double up with the real-time ones

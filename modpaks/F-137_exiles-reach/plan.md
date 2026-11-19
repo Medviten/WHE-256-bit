@@ -1,0 +1,48 @@
+# F-137 Exile's Reach: quest port plan
+
+Decided 2026-11-19: port the Alliance (Captain Garrick) and Horde (Warlord Breka Grimaxe) chains, the class quests
+and the Darkmaul Citadel dungeon. Scripted events become data and SmartAI, not ports of TrinityCore's C++
+(`zone_exiles_reach.cpp`, 32 scripts, not in any local checkout). Source: TrinityCore's retail TDB 1210.26091.
+
+## What the island has (TDB)
+
+- 103 quests (QuestSortID 10424): one chain per faction (Alliance 54xxx-58xxx, Horde 59xxx), class quests for
+  both, two dungeon quests, two repair quests. Objectives: 87 kill, 26 item, 16 object, 25 criteria tree
+  (type 14: no 3.3.5a counterpart), 7 area trigger (type 19)
+- 929 spawns: 443 unphased (done, `retail_spawns_port.py`), 357 in "See the Army of Undead" (13783), the rest in
+  55 quest-stage phases (each companion NPC has a copy per stage)
+- 32 C++ creature scripts, 18 SmartAI rows
+- The intro (Warming Up, Stand Your Ground, Brace for Impact) runs on a ship transport (npe_transport_guid 29/30)
+
+## Phasing without phase bits
+
+The 55 phases need 48 different condition sets; a phasemask has 31 usable bits, and Alliance and Horde phases
+can't share one (a player holding a bit sees every spawn with it). AzerothCore's object visibility conditions
+(`conditions` source type 30, SourceGroup 0 creature / 1 object, SourceEntry the entry, SourceId the spawn guid)
+are checked in `WorldObject::CanSeeOrDetect` per player. Each phased spawn gets its phase's conditions
+(quest states, team) on its guid. Missing in the core: visibility is only rechecked when the player moves, so a
+quest state change has to refresh it (core patch, stage 1).
+
+## Quest givers
+
+TrinityCore's TDB names starters / enders for only 30 quests (the parts it scripts). `retail_world_port.py` infers
+35 more: the ender is the faction's quest giver within 25 yards of retail's turn-in marker, the starter the
+previous quest's ender in the faction's quest lines (QuestLineXQuest 5366/5367 Alliance, 5369/5370 Horde). Still
+without one (36): the ship intro (its NPCs stand on the transport), the class quests (their trainers are summoned),
+Freeing the Light, Killclaw, Hrun's pit, Darkmaul's finale. Wowhead names them but blocks scripted reads; check its
+quest pages by hand when curating these (stage 3).
+
+## Stages
+
+1. (Done 2026-11-19, untested in game) Core: refresh visibility on quest state changes. Generator
+   (`retail_world_port.py`): quests (templates, givers and enders, texts, objectives as RequiredNpcOrGo /
+   RequiredItem / exploration), phased spawns with visibility conditions, quest items and loot.
+2. Story NPC looks: retail dresses them through CreatureDisplayInfoExtra (HD bakes on retail race models); first
+   pass uses stock displays of the same race and sex
+3. SmartAI for the scripted events: beach rescues, followers, the boar ride, prisoners, Hrun's pit, the final
+   fight; creature texts; the 36 quests without giver or ender; simple credit for the dropped criteria-tree
+   objectives (talk / click / kill)
+4. Start: `ExilesReachStartZone.Enable` sends new characters (not Death Knights, not races with their own start
+   zone) to the island; the ship intro is a static ship or skipped
+5. Class quests (retail abilities replaced where 3.3.5a lacks them; Monk and Demon Hunter versions left out)
+6. Darkmaul Citadel: terrain port of its map (as F-137's own) and the dungeon's spawns and quests

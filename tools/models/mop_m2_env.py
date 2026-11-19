@@ -152,10 +152,15 @@ def zero_lone_keys(path):
     bn, bo = arr(d, 0x2C)
     for b in range(bn):
         for t in range(3):                          # translation, rotation, scale tracks of an 88-byte bone
-            tn, to = struct.unpack_from('<II', d, bo + 88 * b + 16 + 20 * t + 4)
+            track = bo + 88 * b + 16 + 20 * t
+            # only global-sequence tracks: the others' keys of sequences kept in .anim files point into those
+            # files, not this one (writing there zeroed the header of models with .anim files)
+            if struct.unpack_from('<h', d, track + 2)[0] < 0:
+                continue
+            tn, to = struct.unpack_from('<II', d, track + 4)
             for i in range(tn):
                 count, at = struct.unpack_from('<II', d, to + 8 * i)
-                if count == 1 and struct.unpack_from('<I', d, at)[0]:
+                if count == 1 and at + 4 <= len(d) and struct.unpack_from('<I', d, at)[0]:
                     struct.pack_into('<I', d, at, 0)
                     moved += 1
     if moved:
