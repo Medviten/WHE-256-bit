@@ -13,7 +13,8 @@
 -- ability the class trainer teaches at level 4.
 --
 --   Quest  Class    Trainer                   Spell                  ID
---   14266  Warrior  Sergeant Cleese           Charge                100  (unchanged)
+--   14266  Warrior  Sergeant Cleese           Rend                  772  (was 100 Charge: the Bloodfang Worgen
+--                                                                         stand among the guards, where Charge finds no path)
 --   14272  Rogue    Loren the Fence           Eviscerate           2098  (unchanged)
 --   14274  Warlock  Vitus Darkwalker          Immolate              348  (unchanged)
 --   14276  Hunter   Huntsman Blake            Serpent Sting        1978  (was 56641)
@@ -45,8 +46,17 @@ WHERE `ID` IN (14265, 14269, 14273, 14275, 14277, 14278, 14280);
 -- quest_template
 -- ---------------------------------------------------------------------------
 
--- 14266 Warrior, 14272 Rogue, 14274 Warlock, 14283 Druid: spell already trainable at 4, level only
-UPDATE `quest_template` SET `QuestLevel` = 4, `MinLevel` = 4 WHERE `ID` IN (14266, 14272, 14274, 14283);
+-- 14272 Rogue, 14274 Warlock, 14283 Druid: spell already trainable at 4, level only
+UPDATE `quest_template` SET `QuestLevel` = 4, `MinLevel` = 4 WHERE `ID` IN (14272, 14274, 14283);
+
+-- 14266 Warrior: Charge -> Rend (both level 4); the worgen fight the guards at the front line, too close for Charge
+UPDATE `quest_template` SET
+  `QuestLevel` = 4,
+  `MinLevel` = 4,
+  `LogTitle` = 'Rend',
+  `LogDescription` = 'Speak to Sergeant Cleese and learn Rend. Practice using Rend against a Bloodfang Worgen.',
+  `ObjectiveText1` = 'Practice Rend'
+WHERE `ID` = 14266;
 
 -- 14276 Hunter: Steady Shot (level 50) -> Serpent Sting (level 4)
 UPDATE `quest_template` SET
@@ -81,6 +91,10 @@ WHERE `ID` = 14281;
 -- Bloodfang Worgen 35118 gives the hunter's credit as 44175 "Spell Practice Credit" (its KillCredit1) and the mage's
 -- as itself; Wounded Guard 47091 gives the priest's and druid's. Scoped to event_type 8 (SPELLHIT) and the old spell.
 -- ---------------------------------------------------------------------------
+
+-- Warrior: 100 Charge -> 772 Rend
+UPDATE `smart_scripts` SET `event_param1` = 772, `comment` = 'quest 14266: credit when hit by 772 (I-378)'
+WHERE `source_type` = 0 AND `entryorguid` = 35118 AND `event_type` = 8 AND `event_param1` = 100;
 
 -- Hunter: 56641 Steady Shot -> 1978 Serpent Sting
 UPDATE `smart_scripts` SET `event_param1` = 1978, `comment` = 'quest 14276: credit when hit by 1978 (I-378)'
