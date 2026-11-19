@@ -8,6 +8,8 @@ community listfile names) is written to OUT/Textures/Minimap/<DIRECTORY>/map<x>_
 there by name when md5translate.trs doesn't list them (wowdecomp's MinimapBuildSource fallback), so the shared trs
 needn't change. Tiles the listfile lacks (open sea) are skipped; files already in OUT are kept.
 
+F-137 (retail): python -I mop_minimaps.py <tiles> ExilesReach <WHE-common>/patch-ER.MPQ --source 2175
+       --version 12.1.5.70961
 F-134: python -I mop_minimaps.py <WHE-common>/patch-MoP.MPQ/World/Maps/NewRaceStartZone
        NewRaceStartZone <WHE-common>/patch-MoP.MPQ"""
 import argparse, glob, json, os, re, sys, urllib.parse
@@ -22,8 +24,9 @@ def main():
     p.add_argument("directory")
     p.add_argument("out")
     p.add_argument("--version", default="5.5.4.70631")
+    p.add_argument("--source", help="the source build's minimap folder, when it isn't DIRECTORY (Exile's Reach: 2175)")
     a = p.parse_args()
-    term = f"world/minimaps/{a.directory.lower()}/"
+    term = f"world/minimaps/{(a.source or a.directory).lower()}/"
     found = json.loads(get(f"{API}/files?search={urllib.parse.quote(term)}&limit=5000") or b"{}")
     by_path = {path.lower(): int(fdid) for fdid, path in found.items()}
     dest = os.path.join(a.out, "Textures", "Minimap", a.directory)
