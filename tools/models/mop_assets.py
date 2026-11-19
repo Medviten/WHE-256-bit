@@ -15,7 +15,8 @@ A file counts as present when WHE-common's patch-A.MPQ, the client's patch folde
 path (--listfile, D:/wow-scratch/listfile/community-listfile.csv), with the skins, .anim files and textures its models
 name, and writes STAGE/listfile.csv. --convert runs Kalibro's wotlkconv on STAGE into STAGE-out, then
 m2_unshare_tracks.py on every model and m2_restore_anim_refs.py on those with .anim files. --install copies STAGE-out
-into --common-out (WHE-common/patch-MoP.MPQ for F-133 / F-134, linked into the client as patch-MoP.<realm>.MPQ).
+into --common-out (WHE-common/patch-MoP.MPQ for F-133 / F-134). Copy that folder into the client as Data/patch-MoP.MPQ;
+don't link it: D: is a USB disk enclosure, and reading the art through a link made map loads crawl.
 Without flags it only reports what is missing and what the listfile can't name.
 """
 import argparse, glob, os, re, shutil, subprocess, sys, time
