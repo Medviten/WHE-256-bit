@@ -90,8 +90,11 @@ def adapt(csv_dir, name, map_id, directory):
                    "SkySmogColor", "SkyFogColor", "SunColor", "CloudSunColor", "CloudEmissiveColor",
                    "CloudLayer1AmbientColor", "CloudLayer2AmbientColor", "OceanCloseColor", "OceanFarColor",
                    "RiverCloseColor", "RiverFarColor", "ShadowOpacity")
+        # retail fogs by density and leaves FogEnd 0, which the client takes as fog right at the camera; such rows
+        # get 22000 (about 610 yards), the Wandering Isle's 5.4.8 fog end
         return Table([(i(r["ID"]), i(r["LightParamID"]), i(r["Time"])) + tuple(i(r[c]) for c in colours)
-                      + (bits(r["FogEnd"]), bits(r["FogScaler"]), bits(r["CloudDensity"])) for r in rows(csv_dir, "LightData")])
+                      + (bits(float(r["FogEnd"]) or 22000.0), bits(r["FogScaler"]), bits(r["CloudDensity"]))
+                      for r in rows(csv_dir, "LightData")])
     if name == "WorldMapArea":
         zones = {i(r["ID"]) for r in rows(csv_dir, "AreaTable") if i(r["ContinentID"]) == map_id and not i(r["ParentAreaID"])}
         types = {r["ID"]: r["Type"] for r in rows(csv_dir, "UiMap")}
