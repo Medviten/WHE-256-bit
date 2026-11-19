@@ -631,48 +631,6 @@ INSERT INTO `spellvisualkit` SET
   `char_param_3_4` = 0,
   `flags` = 0;
 
--- 16465 <- visual 17568
-DELETE FROM `spellvisualkit` WHERE `id` = 16465;
-INSERT INTO `spellvisualkit` SET
-  `id` = 16465,
-  `start_anim_id` = 4294967295,
-  `anim_id` = 4294967295,
-  `head_effect` = 0,
-  `chest_effect` = 0,
-  `base_effect` = 0,
-  `left_hand_effect` = 0,
-  `right_hand_effect` = 0,
-  `breath_effect` = 0,
-  `left_weapon_effect` = 0,
-  `right_weapon_effect` = 0,
-  `special_effect_1` = 0,
-  `special_effect_2` = 0,
-  `special_effect_3` = 0,
-  `world_effect` = 7515,
-  `sound_id` = 0,
-  `shake_id` = 0,
-  `char_proc_1` = 4294967295,
-  `char_proc_2` = 4294967295,
-  `char_proc_3` = 4294967295,
-  `char_proc_4` = 4294967295,
-  `char_param_0_1` = 0,
-  `char_param_0_2` = 0,
-  `char_param_0_3` = 0,
-  `char_param_0_4` = 0,
-  `char_param_1_1` = 0,
-  `char_param_1_2` = 0,
-  `char_param_1_3` = 0,
-  `char_param_1_4` = 0,
-  `char_param_2_1` = 0,
-  `char_param_2_2` = 0,
-  `char_param_2_3` = 0,
-  `char_param_2_4` = 0,
-  `char_param_3_1` = 0,
-  `char_param_3_2` = 0,
-  `char_param_3_3` = 0,
-  `char_param_3_4` = 0,
-  `flags` = 0;
-
 -- 16489 <- visual 17586
 DELETE FROM `spellvisualkit` WHERE `id` = 16489;
 INSERT INTO `spellvisualkit` SET

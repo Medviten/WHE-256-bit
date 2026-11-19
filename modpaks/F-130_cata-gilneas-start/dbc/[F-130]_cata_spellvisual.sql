@@ -937,42 +937,6 @@ INSERT INTO `spellvisual` SET
   `missile_impact_offset_y` = 0,
   `missile_impact_offset_z` = 0;
 
--- 17568 <- spell 92376
-DELETE FROM `spellvisual` WHERE `id` = 17568;
-INSERT INTO `spellvisual` SET
-  `id` = 17568,
-  `precast_kit` = 0,
-  `cast_kit` = 0,
-  `impact_kit` = 0,
-  `state_kit` = 16465,
-  `state_done_kit` = 0,
-  `channel_kit` = 0,
-  `has_missile` = 0,
-  `missile_model` = 0,
-  `missile_path_type` = 0,
-  `missile_dest_attachment` = 1,
-  `missile_sound` = 0,
-  `anim_event_sound_id` = 0,
-  `flags` = 0,
-  `caster_impact_kit` = 0,
-  `target_impact_kid` = 0,
-  `missile_attachment` = 4294967295,
-  `missile_follow_ground_height` = 0,
-  `missile_follow_drop_speed` = 0,
-  `missile_follow_approach` = 0,
-  `missile_follow_ground_flags` = 0,
-  `missile_motion` = 0,
-  `missile_targeting_kit` = 0,
-  `instant_area_kit` = 0,
-  `impact_area_kit` = 0,
-  `persistent_area_kit` = 0,
-  `missile_cast_offset_x` = 0,
-  `missile_cast_offset_y` = 0,
-  `missile_cast_offset_z` = 0,
-  `missile_impact_offset_x` = 0,
-  `missile_impact_offset_y` = 0,
-  `missile_impact_offset_z` = 0;
-
 -- 17586 <- spell 83238
 DELETE FROM `spellvisual` WHERE `id` = 17586;
 INSERT INTO `spellvisual` SET

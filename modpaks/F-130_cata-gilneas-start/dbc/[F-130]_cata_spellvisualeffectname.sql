@@ -34,17 +34,6 @@ INSERT INTO `spellvisualeffectname` SET
   `min_allowed_scale` = 0.01,
   `max_allowed_scale` = 100;
 
--- 7515 particles\lootfx.mdx
-DELETE FROM `spellvisualeffectname` WHERE `id` = 7515;
-INSERT INTO `spellvisualeffectname` SET
-  `id` = 7515,
-  `name` = 'Loot FX',
-  `file_name` = 'particles\\lootfx.mdx',
-  `area_effect_size` = 1,
-  `scale` = 0.5,
-  `min_allowed_scale` = 0.01,
-  `max_allowed_scale` = 100;
-
 -- 7527 spells\blackhole_white.mdx
 DELETE FROM `spellvisualeffectname` WHERE `id` = 7527;
 INSERT INTO `spellvisualeffectname` SET

@@ -47,6 +47,9 @@ MENU_BASE = 520000            # gossip_menu.MenuID
 TEXT_BASE = 520000            # npc_text.ID
 
 # Stock rows the zone uses: spawned, never rewritten
+# Project Neltharion's own server NPCs, not Cataclysm's: Gnomey (Radioactive's Helper, free 36-slot bags and other
+# conveniences) lives in F-138_gnomey-helper instead; XP Rates needs Neltharion's npc_xp_rates script
+NELTHARION_NPCS = {1234567, 1337016}
 STOCK_CREATURES = {385, 620, 883, 1412, 1420, 1933, 2914, 4075, 4076, 6368, 6491, 6827, 14881, 15717, 17467, 28332}
 STOCK_GAMEOBJECTS = {1617, 1618, 1619, 1731, 183812}
 STOCK_QUESTS = {3861}
@@ -258,6 +261,11 @@ class Port:
         self.stock_npcsounds = dbc_ids("NPCSounds")
         self.stock_soundData = dbc_ids("CreatureSoundData")
         self.items = CataItems(CATA_DBC, STOCK_DBC)
+        for table, key in (("creature_template", "entry"), ("creature", "id"), ("npc_vendor", "entry"),
+                           ("creature_template_addon", "entry"), ("creature_text", "entry"),
+                           ("creature_equip_template", "entry"), ("smart_scripts", "entryorguid")):
+            if table in self.t:
+                self.t[table] = [r for r in self.t[table] if r.get(key) not in NELTHARION_NPCS]
         self.entries = {r["entry"] for r in self.t["creature_template"]} - STOCK_CREATURES
         self.goentries = {r["entry"] for r in self.t["gameobject_template"]} - STOCK_GAMEOBJECTS
         self.quests = {r["Id"] for r in self.t["quest_template"]} - STOCK_QUESTS
