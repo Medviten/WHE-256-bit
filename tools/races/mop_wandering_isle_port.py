@@ -1045,8 +1045,10 @@ class Port:
             if q == 29408:
                 # the start item's flame aura (credit 59591) is its on-obtain spell (trigger 5), which AC casts while
                 # giving the start item, before the quest has its log slot: no credit. The item loses the spell
-                # (client_rows) and the accept casts it, after the quest is in the log
+                # (client_rows) and the accept casts it, after the quest is in the log. AC's auto-accept path
+                # (quest added when the details open) never casts SourceSpellID, so the quest loses auto-accept
                 src = 114610
+                row[20] &= ~0x80000
             if src and not self.spell_ok(src):
                 dropped["quest accept spells nothing has"].append("%d %d" % (q, src))
             src = self.spell_ok(src) or 0
