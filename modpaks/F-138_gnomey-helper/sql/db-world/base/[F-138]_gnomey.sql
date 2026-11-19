@@ -50,3 +50,17 @@ INSERT INTO `npc_vendor` (`entry`, `slot`, `item`, `maxcount`, `incrtime`, `Exte
   (1234567, 0, 40211, 0, 0, 0, 0),
   (1234567, 0, 62649, 0, 0, 0, 0);
 
+
+-- The props Gnomey stands on: a green glow (stock 183812) and a half-size crate (205112)
+DELETE FROM `gameobject_template` WHERE `entry` IN (205112);
+INSERT INTO `gameobject_template` (`entry`, `type`, `displayId`, `name`, `IconName`, `castBarCaption`, `unk1`, `size`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `Data6`, `Data7`, `Data8`, `Data9`, `Data10`, `Data11`, `Data12`, `Data13`, `Data14`, `Data15`, `Data16`, `Data17`, `Data18`, `Data19`, `Data20`, `Data21`, `Data22`, `Data23`, `AIName`, `ScriptName`, `VerifiedBuild`) VALUES
+  (205112, 5, 31, 'Stormwind Crate (scale x0.5)', '', '', '', 0.5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0);
+
+DELETE FROM `gameobject_template_addon` WHERE `entry` IN (205112);
+INSERT INTO `gameobject_template_addon` (`entry`, `faction`, `flags`) VALUES
+  (205112, 114, 32);
+
+DELETE FROM `gameobject` WHERE `guid` IN (7900001, 7900002);
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `ScriptName`, `VerifiedBuild`, `Comment`) VALUES
+  (7900001, 183812, 0, 0, 0, 1, 65535, -1457.11, 1410.62, 35.5569, 0.0356, 0, 0, 0.0178, 0.9998, 300, 0, 1, '', 0, '[F-138 Gnomey]'),
+  (7900002, 205112, 0, 0, 0, 1, 65535, -1457.11, 1410.62, 35.5569, 0.0356, 0, 0, 0.0178, 0.9998, 300, 0, 1, '', 0, '[F-138 Gnomey]');

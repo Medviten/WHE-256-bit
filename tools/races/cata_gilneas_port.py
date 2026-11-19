@@ -261,6 +261,13 @@ class Port:
         self.stock_npcsounds = dbc_ids("NPCSounds")
         self.stock_soundData = dbc_ids("CreatureSoundData")
         self.items = CataItems(CATA_DBC, STOCK_DBC)
+        # Their props stand on their spots (Gnomey's glow 183812 and crate 205112): F-138 has them too
+        spots = {(r["position_x"], r["position_y"]) for r in self.t["creature"] if r["id"] in NELTHARION_NPCS}
+        props = [r for r in self.t["gameobject"] if (r["position_x"], r["position_y"]) in spots]
+        self.t["gameobject"] = [r for r in self.t["gameobject"] if r not in props]
+        left = {r["id"] for r in self.t["gameobject"]}
+        self.t["gameobject_template"] = [r for r in self.t["gameobject_template"]
+                                         if r["entry"] in left or r["entry"] not in {p["id"] for p in props}]
         for table, key in (("creature_template", "entry"), ("creature", "id"), ("npc_vendor", "entry"),
                            ("creature_template_addon", "entry"), ("creature_text", "entry"),
                            ("creature_equip_template", "entry"), ("smart_scripts", "entryorguid")):

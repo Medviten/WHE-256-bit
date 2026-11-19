@@ -56,7 +56,7 @@ Level-10 class quests Worgen otherwise only find after leaving Gilneas (`zz_[I-3
 
 ### Known Issues
 - Not tried in game or loaded into a database yet, and the core patch isn't compiled
-- Neltharion's own server NPCs are left out (`NELTHARION_NPCS` in the port): Gnomey, their free-bag vendor, is F-138_gnomey-helper; XP Rates needs their script
+- Neltharion's own server NPCs are left out (`NELTHARION_NPCS` in the port): Gnomey, their free-bag vendor, and the props on his spot are F-138_gnomey-helper; XP Rates needs their script
 - No terrain swaps: Cataclysm floods Duskhaven and shakes Gilneas (maps 638, 655 and 656), but the phases play on Open Azeroth's post-Cataclysm Gilneas, where the Greymane Wall is open. A terrain modpak like F-102 can add them later
 - Worgen change form only at Last Stand (see Worgen racials): Neltharion forces the altered form with 98274, which no client here has, and the curse (68630) only shows the Cataclysm auras. Two Forms and Running Wild themselves are F-063's
 - NPCs greet, say farewell and get annoyed in their Cataclysm voices (`dbc/[F-130]_npc_*.sql`, 4.0.6a NPCSounds rows of the displays; the files, retail's .ogg, fetched into WHE-common's patch-A.MPQ with `tools/races/zep_goblin_sounds.py --sql`), but their spoken `creature_text` lines are silent: those sound ids are cleared
