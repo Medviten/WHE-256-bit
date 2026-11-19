@@ -67,10 +67,10 @@ index 9cf4c4014..d1429298d 100644
  }
 diff --git a/src/server/scripts/Custom/exiles_reach_start.cpp b/src/server/scripts/Custom/exiles_reach_start.cpp
 new file mode 100644
-index 000000000..9f898cb94
+index 000000000..57e7b9a9b
 --- /dev/null
 +++ b/src/server/scripts/Custom/exiles_reach_start.cpp
-@@ -0,0 +1,93 @@
+@@ -0,0 +1,120 @@
 +/*
 + * Custom: F-137 Exile's Reach start.
 + *
@@ -84,9 +84,10 @@ index 000000000..9f898cb94
 + * logged out on a transport (Player::LoadFromDB). With the ship missing (EnableContinentTransport off) the character
 + * starts on the beach.
 + *
-+ * The way off the island: Kalecgos, at the end of Darkmaul Citadel, credits "Speak with Kalecgos to leave" and sends
-+ * the player to their capital, bound there (retail's An End to Beginnings, whose givers its scripts summon, isn't
-+ * ported), as the Wandering Isle's finale does.
++ * The way off the island, as retail: Kalecgos, freed at the end of Darkmaul Citadel, credits "Speak with Kalecgos to
++ * leave" and takes the player out to the citadel's gate; there Lady Jaina Proudmoore / Thrall give An End to
++ * Beginnings, and talking to Kalecgos at the gate credits it and sends the player to their capital, bound there (as
++ * the Wandering Isle's finale does), where Captain Garrick / Warlord Breka Grimaxe end it (F-137 spawns them).
 + */
 +
 +#include "AreaDefines.h"
@@ -106,7 +107,13 @@ index 000000000..9f898cb94
 +    QUEST_SANDY_FIST            = 29406,    // F-134: only the races starting on the Wandering Isle may take it
 +    CREDIT_LEAVE_ALLIANCE       = 161350,   // "Speak with Kalecgos to leave Darkmaul Citadel"
 +    CREDIT_LEAVE_HORDE          = 167663,
++    CREDIT_TRAVEL               = 244389,   // "Speak to Kalecgos to travel ..." (An End to Beginnings)
++    QUEST_END_TO_BEGINNINGS_ALLIANCE    = 55991,
++    QUEST_END_TO_BEGINNINGS_HORDE       = 59985,
 +};
++
++// TrinityCore's world_safe_locs 100097: outside the citadel's gate
++static WorldLocation const DarkmaulGate(MAP_EXILES_REACH, 721.7f, -1838.4f, 186.5f, 4.3266f);
 +
 +// retail's playercreateinfo deck spots (TrinityCore: transport guids 29 and 30), relative to the ship
 +static Position const AllianceDeck = { 11.1301f, -0.417182f, 5.18741f, 3.14843f };
@@ -148,6 +155,25 @@ index 000000000..9f898cb94
 +        CloseGossipMenuFor(player);
 +        player->KilledMonsterCredit(CREDIT_LEAVE_ALLIANCE);
 +        player->KilledMonsterCredit(CREDIT_LEAVE_HORDE);
++        player->TeleportTo(DarkmaulGate);
++        return true;
++    }
++};
++
++// 244389 - Kalecgos, at Darkmaul Citadel's gate: the flight off the island
++class npc_exiles_reach_kalecgos : public CreatureScript
++{
++public:
++    npc_exiles_reach_kalecgos() : CreatureScript("npc_exiles_reach_kalecgos") { }
++
++    bool OnGossipHello(Player* player, Creature* /*creature*/) override
++    {
++        // only on An End to Beginnings (Alliance / Horde): anyone else gets his ordinary greeting
++        if (player->GetQuestStatus(QUEST_END_TO_BEGINNINGS_ALLIANCE) != QUEST_STATUS_INCOMPLETE &&
++            player->GetQuestStatus(QUEST_END_TO_BEGINNINGS_HORDE) != QUEST_STATUS_INCOMPLETE)
++            return false;
++        CloseGossipMenuFor(player);
++        player->KilledMonsterCredit(CREDIT_TRAVEL);
 +
 +        bool alliance = player->GetTeamId() == TEAM_ALLIANCE;
 +        WorldLocation home = alliance
@@ -163,4 +189,5 @@ index 000000000..9f898cb94
 +{
 +    new ExilesReachStartPlayerScript();
 +    new npc_darkmaul_kalecgos();
++    new npc_exiles_reach_kalecgos();
 +}
