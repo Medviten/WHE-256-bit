@@ -22,7 +22,8 @@ taken: spell ids other modpaks write as other spells; a MoP spell with one of th
 
 Rules:
 - the 3.3.5a attributes are MoP's first eight words; effects 3+ are left out (reported)
-- visuals are left out (0): MoP's visual kits are a different system; the spells work without them
+- visuals keep MoP's ids (SpellMisc 21-22); the caller ports the rows (mop_wandering_isle_port.MopVisuals) and clears
+  the ones it can't
 - icons stock lacks are added (the BLPs are listed by icon_files()); duration rows stock lacks are added; cast time,
   range and radius indices map to the stock row with the same values, else the nearest larger one
 - spells using effects, auras or targets 3.3.5a lacks are left out and reported; invisibility / detection types keep
@@ -294,7 +295,7 @@ class MopSpells:
             "duration_index": self.index("dur", misc[18]),
             "range_index": self.index("rng", misc[19]) or 1,
             "speed": c406.f32(misc[20]),
-            "spell_visual_1": 0, "spell_visual_2": 0,
+            "spell_visual_1": misc[21], "spell_visual_2": misc[22],
             "spell_icon_id": self.icon(misc[23]) or 1,
             "active_icon_id": self.icon(misc[24]),
             "school_mask": misc[25],
@@ -338,7 +339,8 @@ class MopSpells:
         if len(effs) > 3:
             helper = {k: v for k, v in c.items() if not k.startswith("effect_") and k not in (
                 "category", "category_recovery_time", "recovery_time", "start_recovery_time",
-                "start_recovery_category", "spell_icon_id", "active_icon_id", "spell_desc_enus", "spell_tooltip_enus")}
+                "start_recovery_category", "spell_icon_id", "active_icon_id", "spell_desc_enus", "spell_tooltip_enus",
+                "spell_visual_1", "spell_visual_2")}
             hid = self._new_id()
             helper.update(id=hid, cast_time_index=1, spell_icon_id=1,
                           spell_name_enus="%s (part %d)" % (c["spell_name_enus"].split(" (part ")[0], part + 1),

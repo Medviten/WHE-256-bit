@@ -26,7 +26,10 @@ MODPAK/sql/db-world/base/[TAG]_game_tele.sql.
 - AreaTable: every 5.4.8 row on the map, keeping the ids (the tiles' MCNK area ids name them). Area bits are moved
   below 4096 (the 3.3.5a explored-zones field holds 128 x 32 bits; MoP's are 4498+), to bits stock and the modpaks
   don't use. Flags keep MoP's (same meanings for the bits these rows use) plus 0x4400, the flyable flags F-006
-  sets. Sounds, music and ambience are 0 (MoP ids the client lacks); exploration level is capped at 80.
+  sets. Sound provider prefs are 0; exploration level is capped at 80.
+- Music: MoP's SoundAmbience, ZoneMusic and ZoneIntroMusicTable rows of the areas and the SoundEntries they play
+  ([TAG]_music_soundentries.sql; fetch the files with zep_goblin_sounds.py --sql). --music-only rewrites these and
+  the areatable SQL's three music columns, keeping its area bits.
 - Light: MoP's lights of the map (ids and positions kept) with MoP's own parameters: each parameter set stock lacks
   becomes a LightParams row (no skybox: MoP's sky models aren't in the client) and LightIntBand/LightFloatBand rows
   from 5.4.8's LightData (which replaced the bands: one row per time of day). Stock's Eastern Kingdoms default
@@ -235,6 +238,82 @@ def write_lights(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, MAP, TAG, NAME):
     print(f"{len(lights)} lights, {len(out_p)} light params from MoP's LightData")
 
 
+# (table, its AreaTable field in 5.4.8, the AreaTable column 3.3.5a has it in, the table's SoundEntries fields)
+MUSIC = (("soundambience", 8, "ambience", (1, 2)), ("zonemusic", 9, "zone_music", (6, 7)),
+         ("zoneintromusictable", 11, "zone_music_intro", (2,)))
+MUSIC_COLUMNS = {"soundambience": ("id", "sound_entry_id_day", "sound_entry_id_night"),
+                 "zonemusic": ("id", "name", "silence_min_day", "silence_min_night", "silence_max_day",
+                               "silence_max_night", "day_music", "night_music"),
+                 "zoneintromusictable": ("id", "name", "sound_id", "priority", "min_delay_minutes")}
+
+
+def write_music(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, rows, TAG, NAME):
+    """MoP's ambience, zone music and intro music of the map's areas, with the SoundEntries they play (files named
+    through the community listfile, downloaded into WHE-common by zep_goblin_sounds.py --sql). Returns
+    {area id: {areatable column: id}}."""
+    from mop_wandering_isle_port import MopSounds
+    sounds = MopSounds()
+    out = collections.defaultdict(dict)
+    for table, field, column, sound_fields in MUSIC:
+        dbc_name = {"soundambience": "SoundAmbience", "zonemusic": "ZoneMusic",
+                    "zoneintromusictable": "ZoneIntroMusicTable"}[table]
+        mop, stock = Dbc(os.path.join(mop_dbc, dbc_name + ".dbc")), Dbc(os.path.join(stock_dbc, dbc_name + ".dbc"))
+        taken = taken_ids(modpaks_dir, table, TAG)
+        written = {}
+        for r in rows:
+            mid = r[field]
+            src = mop.get(mid) if mid > 0 else None
+            if not src:
+                continue
+            if mid not in written:
+                row = list(src)
+                s = stock.get(mid)
+                if mid in taken or s and [s[i] for i in sound_fields] == [row[i] for i in sound_fields]:
+                    written[mid] = None     # stock's row, or F-010's (Open Azeroth keeps Cataclysm's ids and rows)
+                elif s:
+                    sys.exit(f"{table} {mid} is a different row in stock")
+                elif not any(sounds.sound(row[i]) for i in sound_fields):
+                    written[mid] = 0                        # no file the listfile names
+                else:
+                    for i in sound_fields:
+                        row[i] = sounds.sound(row[i])
+                    cols = dict(zip(MUSIC_COLUMNS[table], row))
+                    if "name" in cols:
+                        cols["name"] = mop.s(row[1])
+                    written[mid] = block(table, mid, cols, f"{NAME}: {cols.get('name', mid)} (MoP's)")
+            if written[mid] != 0:
+                out[r[0]][column] = mid
+        with open(os.path.join(dbc_dir, f"{TAG}_{table}.sql"), "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(HEADER + "\n".join(b for b in written.values() if b))
+    # sounds another modpak writes are left to it: F-010 has Cataclysm's ambience under the same ids (as .wav names,
+    # which the client opens as .ogg); F-133 and F-134 share theirs, each writing the rows it uses
+    other = set()
+    for f in glob.glob(os.path.join(modpaks_dir, "*", "dbc", "*soundentries.sql")):
+        if not re.search(r"\[F-13[34]\]", os.path.basename(f)):
+            other |= {int(m[0] or m[1]) for m in re.findall(r"INSERT INTO `soundentries` \([^)]*\) VALUES \((\d+)|"
+                                                            r"INSERT INTO `soundentries` SET\s*`id` = (\d+)",
+                                                            open(f, encoding="utf-8").read())}
+    entries = {k: v for k, v in sounds.out.get("soundentries", {}).items() if k not in other}
+    with open(os.path.join(dbc_dir, f"{TAG}_music_soundentries.sql"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(HEADER + f"-- The files {NAME}'s music and ambience play (5.4.8 SoundEntries)\n\n" + "\n".join(
+            block("soundentries", k, c, comment) for k, (c, comment) in sorted(entries.items())))
+    print(f"music for {len(out)} areas, {len(entries)} sound entries")
+    return out
+
+
+def apply_music(path, music):
+    """Sets the areatable SQL's ambience / zone_music / zone_music_intro to write_music's ids (area bits stay)."""
+    text = open(path, encoding="utf-8").read()
+
+    def area(m):
+        cols = music.get(int(m.group(1)), {})
+        return re.sub(r"`(ambience|zone_music|zone_music_intro)` = \d+",
+                      lambda c: "`%s` = %d" % (c.group(1), cols.get(c.group(1), 0)), m.group(0))
+    text = re.sub(r"INSERT INTO `areatable` SET\s*`id` = (\d+),.*?;\n", area, text, flags=re.S)
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(text)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     for a in ("mop_dbc", "stock_dbc", "areatable_csv", "adt_dir", "modpaks_dir", "modpak"):
@@ -249,6 +328,7 @@ def main():
     p.add_argument("--lights-only", action="store_true")
     p.add_argument("--graveyards-only", action="store_true")
     p.add_argument("--tele-only", action="store_true")
+    p.add_argument("--music-only", action="store_true")
     p.add_argument("--dungeon", nargs=3, type=float, metavar=("CORPSE_MAP", "X", "Y"),
                    help="a 5-player dungeon (instance type 1) whose ghosts go to (X, Y) on CORPSE_MAP")
     a = p.parse_args()
@@ -266,6 +346,10 @@ def main():
     if a.tele_only:
         return write_tele(rows, names, a.adt_dir, os.path.join(a.modpak, "sql", "db-world", "base"), a.tele_base,
                           MAP, TAG, NAME)
+    if a.music_only:
+        dbc_dir = os.path.join(a.modpak, "dbc")
+        return apply_music(os.path.join(dbc_dir, f"{TAG}_areatable.sql"),
+                           write_music(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, rows, TAG, NAME))
     clash = [r[0] for r in rows if r[0] in stock.rows]
     if clash:
         sys.exit(f"stock AreaTable already has ids {clash}")
@@ -305,6 +389,8 @@ def main():
             "light_id": 0}, f"{name} (MoP area bit {r[3]})"))
     with open(os.path.join(dbc_dir, f"{TAG}_areatable.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + "\n".join(out))
+    apply_music(os.path.join(dbc_dir, f"{TAG}_areatable.sql"),
+                write_music(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, rows, TAG, NAME))
 
     write_lights(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, MAP, TAG, NAME)
     write_graveyards(a.mop_dbc, a.modpaks_dir, sql_dir, MAP, TAG, NAME)
