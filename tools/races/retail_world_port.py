@@ -2,18 +2,19 @@
 """Port a retail map's spawns and quests (Exile's Reach, F-137) from TrinityCore's retail TDB to AzerothCore.
 
   python -I -X utf8 retail_world_port.py TDB_WORLD_SQL CSV_DIR MODPAK [--map 2175] [--zone 10424] [--tag F-137]
-                                         [--world-map-area 1409] [--cache PICKLE]
+                                         [--extra-maps 2261,2369,2236] [--world-map-area 1409] [--cache PICKLE]
 
 TDB_WORLD_SQL is TrinityCore's TDB_full_world_*.sql (1210.26091 for F-137); --cache keeps the tables it reads in a
 pickle, so later runs skip the 600 MB parse (delete it after changing TABLES). CSV_DIR holds wago.tools' exports of
 the retail build the map's art comes from (12.1.5.70961): CreatureDisplayInfo, CreatureDisplayInfoExtra,
 CreatureModelData, GameObjectDisplayInfo, FactionTemplate, Item, ItemSparse, ItemModifiedAppearance, ItemAppearance,
-AreaTrigger; file ids are named through the community listfile at LISTFILE. Writes
+AreaTrigger, TaxiPathNode; file ids are named through the community listfile at LISTFILE. Writes
 MODPAK/sql/db-world/base/zz_[AUTO,TAG]_world_*.sql, MODPAK/dbc/[TAG]_world_*.sql and MODPAK/wi_assets.txt (the models
 and icons tools/models/mop_assets.py fetches and converts). Rerun after changing it; it replaces only its own files.
 
 Spawns:
-- every creature and object spawn on --map. Retail's phases become object visibility conditions (conditions source
+- every creature and object spawn on --map and --extra-maps: the island, the two ships' decks (transport maps 2261,
+  2369: their crews are the ships' passengers, in deck coordinates) and Darkmaul Citadel (2236). Retail's phases become object visibility conditions (conditions source
   type 30, SourceId = the spawn's guid) carrying the phase's own conditions (quest states, team, auras): the island
   has more phases than a phasemask has bits. The core rechecks them on quest changes (F-137's core patch).
   Trigger creatures (flags_extra 0x80, the scripts' helpers) and object types 3.3.5a lacks are left out
@@ -26,6 +27,16 @@ Spawns:
 - factions 3.3.5a lacks: retail's hostile ones (enemy group has players) become 14, the rest 35
 - scripts (ScriptName, SmartAI) are dropped: enemies only melee, and the scripted quest steps need SmartAI (plan.md)
 - equipment: retail item ids, none in 3.3.5a: left out
+
+Ships (the intro): TrinityCore's `transports` whose object carries a map of --extra-maps: the Alliance Ship and the
+Horde Transport, continent transports on the island's map (guids TRANSPORT_GUIDS, which the core's
+exiles_reach_start.cpp boards new characters on), with their retail paths (TaxiPath / TaxiPathNode, the loop padded
+so AzerothCore's and the client's last-to-first teleport lands where the ship already is) and Map.dbc rows for the
+decks (as stock's transport maps). The hunters' pets on deck, the boats and the invisible helpers are left out.
+
+Darkmaul Citadel: the dungeon's MapDifficulty and instance_template, and area triggers in and out at its portals
+(DUNGEON_TRIGGERS: TrinityCore enters it through the group finder only). Its map rows come from retail_map_port.py
+(--tag F-137,DC).
 
 Quests (QuestSortID --zone, both factions' chains, class versions, the dungeon's):
 - the Alliance and Horde chains share races (retail starts them from the faction's ship), so each quest gets a team
@@ -56,8 +67,23 @@ TABLES = ("creature", "gameobject", "creature_template", "creature_template_mode
           "quest_template_addon", "quest_objectives", "quest_offer_reward", "quest_request_items", "quest_details",
           "creature_queststarter", "creature_questender", "gameobject_queststarter", "gameobject_questender",
           "conditions", "phase_area", "creature_loot_template", "gameobject_loot_template", "gameobject_questitem",
-          "quest_poi", "quest_poi_points")
+          "quest_poi", "quest_poi_points", "transports")
 CREATURE_GUID = GAMEOBJECT_GUID = 13700001
+TRANSPORT_GUIDS = {333479: 13701, 349879: 13702}    # Alliance Ship, Horde Transport: exiles_reach_start.cpp's
+PATH_NODE_BASE = 137000                             # TaxiPathNode ids (stock's end at 46874, F-076's at 50000+)
+# the dungeon's portals: (trigger id, map, x, y, z, radius) -> (map, x, y, z, orientation); the targets are
+# TrinityCore's world_safe_locs 100096 (entrance) and 100097 (exit), the triggers at its Instance Portal objects
+DUNGEON = 2236
+DUNGEON_TRIGGERS = {(13700, 2175, 733.179, -1802.69, 191.606, 4.0): (2236, 911.153, -1765.64, 181.19, 3.6743),
+                    (13701, 2236, 914.804, -1762.2, 184.382, 2.5): (2175, 721.7, -1838.4, 186.5, 4.3266)}
+DUNGEON_DIFFICULTY_ID = 1370       # MapDifficulty row of the dungeon (normal, 5 players)
+# on the decks: the hunters' class pets (retail shows the one your hunter has), the boat of the crash scene and the
+# invisible helpers of TrinityCore's scripts
+DROP_ENTRIES = {167337, 167342, 167345, 167347, 167348, 167352, 167375, 167343, 167344, 167346, 167349, 167350, 167351,
+                156403, 155125, 168236}
+KILL_CREDITS = {160737: 174954}    # Combat Dummy: Warming Up's credit (retail casts a credit spell on death)
+# criteria-tree objectives a creature kill stands in for: quest objective id -> creature
+OBJECTIVE_KILLS = {394065: 156814, 397381: 156814}   # "Gor'groth's final ritual stopped": Gor'groth
 PATH_BASE = 13700000
 MODEL_BASE = 1370000
 DISPLAY_BASE = 1370000
@@ -67,7 +93,8 @@ TRIGGER = 0x80
 # Exile's Reach's quest route (retail 1-10): beach and Murloc Hideaway, the camp, Darkmaul Plains, the Briarpatch,
 # the Ogre Ruins, Harpy Roost, Hrun's Barrow, Killclaw's Lair, the bridge and Darkmaul Citadel
 AREA_LEVELS = {10424: (1, 2), 10453: (1, 2), 10452: (2, 2), 12851: (2, 3), 10588: (2, 4), 10503: (3, 5),
-               10529: (5, 7), 10528: (6, 8), 10527: (7, 9), 11011: (8, 10), 10568: (8, 9), 10530: (9, 10)}
+               10529: (5, 7), 10528: (6, 8), 10527: (7, 9), 11011: (8, 10), 10568: (8, 9), 10530: (9, 10),
+               10581: (9, 10)}    # Darkmaul Citadel (the dungeon map)
 FACTIONS = {2753: 18}            # retail's island murlocs -> stock Murloc
 FAMILIES = {151: 5}              # stag -> boar (F-128's choice), on top of F-134's map
 CLASSIFICATION = {5: 0, 6: 0}    # trivial / minus mobs are normal in 3.3.5a
@@ -155,18 +182,21 @@ class Port:
         self.ct = {n(r["entry"]): r for r in t["creature_template"]}
         self.got = {n(r["entry"]): r for r in t["gameobject_template"]}
         self.spawns, self.gspawns = [], []
+        self.maps = {a.map} | {int(m) for m in a.extra_maps.split(",") if m}
         for r in t["creature"]:
-            if n(r["map"]) != a.map:
+            if n(r["map"]) not in self.maps:
                 continue
             e = n(r["id"])
-            if e not in self.ct:
+            if e in DROP_ENTRIES:
+                self.dropped["deck pets, scene boats and invisible helpers"].append(e)
+            elif e not in self.ct:
                 self.dropped["spawns of creatures the TDB doesn't define"].append(e)
             elif n(self.ct[e]["flags_extra"]) & TRIGGER:
                 self.dropped["trigger creatures (scripts' helpers)"].append(e)
             else:
                 self.spawns.append(r)
         for r in t["gameobject"]:
-            if n(r["map"]) != a.map:
+            if n(r["map"]) not in self.maps:
                 continue
             g = self.got.get(n(r["id"]))
             if not g or n(g["type"]) not in GO_TYPES:
@@ -181,7 +211,10 @@ class Port:
         self.stock_gos = base_ids("gameobject_template")
         self.stock_items = base_ids("item_template")
         self.entries = sorted({n(r["id"]) for r in self.spawns} - self.stock_creatures)
-        self.goentries = sorted({n(r["id"]) for r in self.gspawns} - self.stock_gos)
+        self.transports = [r for r in t.get("transports", []) if n(r["entry"]) in self.got
+                           and n(self.got[n(r["entry"])]["type"]) == 15 and n(self.got[n(r["entry"])]["Data6"]) in self.maps]
+        self.goentries = sorted(({n(r["id"]) for r in self.gspawns} | {n(r["entry"]) for r in self.transports})
+                                - self.stock_gos)
         clash = (set(self.entries) & (config_range("NextCreatureID") | taken("creature_template", "entry"))) | \
             (set(self.goentries) & taken("gameobject_template", "entry"))
         if clash:
@@ -197,6 +230,14 @@ class Port:
         self.assets = set()
         self.conditions = []
         self.select_quests()
+        # creatures the quests credit without being spawned (talk / spar / dummy credits): templates only, so the
+        # quests keep those objectives
+        credit = {n(o["ObjectID"]) for objs in self.objectives.values() for o in objs if n(o["Type"]) in (0, 3)}
+        credit |= set(KILL_CREDITS.values())
+        self.entries = sorted(set(self.entries) | ({e for e in credit if e in self.ct} - self.stock_creatures))
+        clash = set(self.entries) & (config_range("NextCreatureID") | taken("creature_template", "entry"))
+        if clash:
+            sys.exit("entries another modpak uses: %s" % sorted(clash))
 
     # ---- writing --------------------------------------------------------------------------------------------------
     def write(self, name, sql):
@@ -447,7 +488,7 @@ class Port:
         addons = {n(r["entry"]): r for r in self.t["creature_template_addon"]}
         for e in self.entries:
             r, d = self.ct[e], diff.get(e, {})
-            lo, hi = (1, 1) if n(r["type"]) == 8 else levels[e]
+            lo, hi = (1, 1) if n(r["type"]) == 8 else levels.get(e, AREA_LEVELS[self.a.zone])
             if r["ScriptName"] or r["AIName"]:
                 self.dropped["scripts left for SmartAI (plan.md stage 3)"].append("%d %s" % (e, r["ScriptName"] or r["AIName"]))
             family = pet_family(FAMILIES.get(n(r["family"]), n(r["family"])), self.stock_families)
@@ -455,7 +496,7 @@ class Port:
             loot += [[e, self.item(x["Item"]), 0, n(x["Chance"]), n(x["QuestRequired"]), n(x["LootMode"], 1) or 1,
                       n(x["GroupId"]), n(x["MinCount"], 1), n(x["MaxCount"], 1), x["Comment"] or ""] for x in rows]
             npcflag = n(r["npcflag"]) & 0x7FFFFFF | (2 if e in givers else 0)
-            tmpl.append([e, 0, 0, 0, 0, 0, r["name"], r["subname"] or None, r["IconName"] or None, 0, lo, hi, 0,
+            tmpl.append([e, 0, 0, 0, KILL_CREDITS.get(e, 0), 0, r["name"], r["subname"] or None, r["IconName"] or None, 0, lo, hi, 0,
                          self.faction(n(r["faction"])), npcflag, n(r["speed_walk"], 1), n(r["speed_run"], 1.14286), 1, 1,
                          18, CLASSIFICATION.get(n(r["Classification"]), n(r["Classification"])), n(r["dmgschool"]),
                          n(d.get("DamageModifier"), 1), n(r["BaseAttackTime"], 2000) or 2000,
@@ -552,7 +593,7 @@ class Port:
             move = n(r["MovementType"])
             if move == 2 and not path:
                 move = 0
-            c.append([guid, n(r["id"]), self.a.map, 0, 0, 1, 1, 0, n(r["position_x"]), n(r["position_y"]),
+            c.append([guid, n(r["id"]), n(r["map"]), 0, 0, 1, 1, 0, n(r["position_x"]), n(r["position_y"]),
                       n(r["position_z"]), n(r["orientation"]), n(r["spawntimesecs"], 300), n(r["wander_distance"]), 0, 1, 0,
                       move, 0, 0, 0, "", 0, 1, tag])
             if a:
@@ -577,7 +618,7 @@ class Port:
         g = []
         for r in self.gspawns:
             guid = self.gguid[r["guid"]]
-            g.append([guid, n(r["id"]), self.a.map, 0, 0, 1, 1, n(r["position_x"]), n(r["position_y"]),
+            g.append([guid, n(r["id"]), n(r["map"]), 0, 0, 1, 1, n(r["position_x"]), n(r["position_y"]),
                       n(r["position_z"]), n(r["orientation"])]
                      + [n(x) for x in go_rotation(r["orientation"], r["rotation0"], r["rotation1"], r["rotation2"], r["rotation3"])]
                      + [n(r["spawntimesecs"], 300), 255, 1, "", 0, tag])
@@ -635,6 +676,8 @@ class Port:
                 data = [lock, quest_of.get(e, 0), 0] + data[3:7] + [0, 0, 0, spell] + [0] * 13
             elif typ == 2:                              # quest giver
                 data = [lock] + [0] * 23
+            elif typ == 15:                             # ship: path, speed, acceleration, physics, deck map
+                data = [self.path_ids[e], data[1], data[2], 0, 0, 1, data[6]] + [0] * 17
             else:
                 if typ != 5:
                     self.dropped["objects no quest uses (made props)"].append("%d %s type %d" % (e, r["name"], typ))
@@ -657,6 +700,68 @@ class Port:
             % in_list({r[0] for r in gloot}) if gloot else None))
         self.write_dbc("gameobjectdisplayinfo", out, "Retail object displays (12.1.5) of the island's objects")
 
+    # ---- ships and the dungeon ------------------------------------------------------------------------------------
+    def ships(self):
+        """Paths, transports and deck maps of the ships; runs before gameobjects() (path ids)."""
+        taken_paths = taken("taxipath", "id")    # the decks' Map rows replace F-010's (retail's), as 2175's does
+        nodes = collections.defaultdict(list)
+        for r in table(self.a.csv_dir, "TaxiPathNode").values():
+            nodes[n(r["PathID"])].append(r)
+        self.path_ids, paths, path_nodes, maps, rows = {}, [], [], [], []
+        node_id = PATH_NODE_BASE
+        for r in sorted(self.transports, key=lambda r: n(r["guid"])):
+            e = n(r["entry"])
+            g = self.got[e]
+            path, deck = n(g["Data0"]), n(g["Data6"])
+            if path in taken_paths:
+                sys.exit("TaxiPath %d is another modpak's" % path)
+            ns = sorted(nodes[path], key=lambda x: n(x["NodeIndex"]))
+            pos = [(float(x["Loc_0"]), float(x["Loc_1"]), float(x["Loc_2"]), n(x["ContinentID"])) for x in ns]
+            # AzerothCore and the client drop a path's first and last node (spline ends) and teleport the ship from
+            # its last node to its first: padded so the loop between them is closed and the teleport goes nowhere
+            closed = abs(pos[0][0] - pos[-1][0]) + abs(pos[0][1] - pos[-1][1]) < 1.0
+            pos = [pos[-2]] + pos + [pos[1]] if closed else [pos[-1]] + pos + [pos[0], pos[1]]
+            self.path_ids[e] = path
+            paths.append(dict(id=path, from_taxi_node=0, to_taxi_node=0, cost=0))
+            for i, (x, y, z, m) in enumerate(pos):
+                path_nodes.append(dict(id=node_id, path_id=path, node_index=i, map=m, x=x, y=y, z=z, flags=0, delay=0,
+                                       arrival_event_id=0, departure_event_id=0))
+                node_id += 1
+            maps.append(dict(id=deck, directory="Transport%d" % e, instance_type=0, flags=1, pvp=0,
+                             name_enus="Transport: Exile's Reach %s" % g["name"], name_flags=16712190, area_table_id=0,
+                             desc_0_enus="", desc_0_flags=16712188, desc_1_enus="", desc_1_flags=16712188,
+                             loading_screen_id=0, minimap_icon_scale=1.0, corpse_map_id=-1, corpse_x=0.0, corpse_y=0.0,
+                             time_override=0, expansion=2, raid_offset=0, max_players=0))
+            rows.append([TRANSPORT_GUIDS[e], e, "Exile's Reach: %s (new characters' intro)" % g["name"], ""])
+        self.write_dbc("taxipath", paths, "The Exile's Reach ships' paths (retail's)")
+        self.write_dbc("taxipathnode", path_nodes, "The Exile's Reach ships' paths (retail's, padded at both ends)")
+        self.write_dbc("map", maps, "The Exile's Reach ships' decks (transport maps, as stock's)")
+        self.write("43_transports", insert("transports", "guid entry name ScriptName".split(), rows,
+                                           "DELETE FROM `transports` WHERE `guid` IN %s;" % in_list(r[0] for r in rows)))
+
+    def dungeon(self):
+        """Darkmaul Citadel: difficulty, instance, the portals' area triggers."""
+        self.dungeon_triggers = []
+        if DUNGEON not in self.maps:
+            return
+        ids = {k[0] for k in DUNGEON_TRIGGERS}
+        if DUNGEON_DIFFICULTY_ID in taken("mapdifficulty", "id") or ids & taken("areatrigger", "id"):
+            sys.exit("MapDifficulty %d or area triggers %s are another modpak's" % (DUNGEON_DIFFICULTY_ID, sorted(ids)))
+        self.write_dbc("mapdifficulty", [dict(id=DUNGEON_DIFFICULTY_ID, map_id=DUNGEON, difficulty=0, message_enus="",
+                                              message_flags=16712188, lockout_duration=0, max_players=5,
+                                              difficulty_string="")], "Darkmaul Citadel: normal, 5 players")
+        self.dungeon_triggers = [dict(id=t, map_id=m, x=x, y=y, z=z, radius=rad, box_length=0.0, box_width=0.0,
+                                      box_height=0.0, box_yaw=0.0) for t, m, x, y, z, rad in DUNGEON_TRIGGERS]
+        self.write("38_areatrigger_teleport", insert(
+            "areatrigger_teleport", "ID Name target_map target_position_x target_position_y target_position_z "
+            "target_orientation".split(),
+            [[k[0], "Darkmaul Citadel - %s" % ("Entrance" if v[0] == DUNGEON else "Exit")] + list(v)
+             for k, v in sorted(DUNGEON_TRIGGERS.items())],
+            "DELETE FROM `areatrigger_teleport` WHERE `ID` IN %s;" % in_list(sorted(ids))))
+        self.write("39_instance_template", insert("instance_template", "map parent script allowMount".split(),
+                                                  [[DUNGEON, self.a.map, "", 0]],
+                                                  "DELETE FROM `instance_template` WHERE `map` = %d;" % DUNGEON))
+
     # ---- quests ---------------------------------------------------------------------------------------------------
     def team(self, q):
         return None if q in NEUTRAL_QUESTS else HORDE if q in HORDE_QUESTS else ALLIANCE
@@ -676,7 +781,8 @@ class Port:
         for r in self.t["quest_poi_points"]:
             if (n(r["QuestID"]), n(r["Idx1"])) in blobs:
                 turn_in[n(r["QuestID"])].append((n(r["X"]), n(r["Y"])))
-        givers = [r for r in self.spawns if n(self.ct[n(r["id"])]["npcflag"]) & 2]
+        # island spawns only: the decks' are in deck coordinates
+        givers = [r for r in self.spawns if n(self.ct[n(r["id"])]["npcflag"]) & 2 and n(r["map"]) == self.a.map]
         enders, starters, prev = {}, {}, {}
         for q in self.quests:
             if rel["creature_questender"].get(q) or q not in turn_in:
@@ -715,6 +821,8 @@ class Port:
             npc, items, texts, explore = [], [], [], []
             for o in self.objectives[q]:
                 typ, obj = n(o["Type"]), n(o["ObjectID"])
+                if n(o["ID"]) in OBJECTIVE_KILLS:
+                    typ, obj = 0, OBJECTIVE_KILLS[n(o["ID"])]
                 if typ in (0, 3):
                     self.objective_slot[n(o["ID"])] = (q, len(npc))
                     npc.append((obj, n(o["Amount"]) or 1))
@@ -866,7 +974,8 @@ class Port:
         self.write("37_areatrigger_involvedrelation", insert(
             "areatrigger_involvedrelation", "id quest".split(), involved,
             "DELETE FROM `areatrigger_involvedrelation` WHERE `quest` IN %s;" % qs))
-        self.write_dbc("areatrigger", triggers, "Retail's area triggers of the quests' exploration objectives")
+        self.write_dbc("areatrigger", triggers + self.dungeon_triggers,
+                       "Retail's area triggers of the quests' exploration objectives and Darkmaul Citadel's portals")
         known = {"creature_queststarter": set(self.entries) | self.stock_creatures,
                  "creature_questender": set(self.entries) | self.stock_creatures,
                  "gameobject_queststarter": set(self.goentries), "gameobject_questender": set(self.goentries)}
@@ -914,6 +1023,8 @@ class Port:
     def run(self):
         self.port_items()
         self.creatures()
+        self.ships()
+        self.dungeon()
         self.gameobjects()
         self.quest_rows()
         self.spawn_rows()
@@ -946,6 +1057,7 @@ def main():
     p.add_argument("csv_dir")
     p.add_argument("modpak")
     p.add_argument("--map", type=int, default=2175)
+    p.add_argument("--extra-maps", default="2261,2369,2236", help="the ships' decks and the dungeon")
     p.add_argument("--zone", type=int, default=10424)
     p.add_argument("--world-map-area", type=int, default=1409)
     p.add_argument("--tag", default="F-137")

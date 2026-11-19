@@ -69,6 +69,10 @@ RACE_VARS = {1: ["Human"], 2: ["Orc"], 3: ["Dwarf"], 4: ["NightElf"], 5: ["Undea
              8: ["Troll"], 9: ["Goblin"], 10: ["BloodElf"], 11: ["Draenei"], 22: ["Worgen"],
              24: ["AlliancePandaren", "HordePandaren"], 25: ["AlliancePandaren"], 26: ["HordePandaren"]}
 PANDAREN_BITS = (1 << 23) | (1 << 24) | (1 << 25)
+# races that start on the Wandering Isle with the Pandaren of their faction (WanderingIsleStartZone.Enable): they may
+# take that faction's Pandaren quests and get the Pandaren starting outfit. Hozen (F-064), Mogu (F-117) and Jinyu
+# (F-124) are Alliance; their masks are 0 while their modpak is off, which leaves the quests Pandaren-only
+WI_KIN = {"AlliancePandaren": ("Hozen", "Mogu", "Jinyu")}
 EXTRA_RACES = {9: "@Goblin", 22: "@Worgen", 24: "@NeutralPandaren", 25: "@AlliancePandaren", 26: "@HordePandaren"}
 CLASS_MASK = 0x5FF            # the 3.3.5a classes (1-9, 11); MoP's Monk (512) is left to F-100's class 10 rules
 # ARAC classes MoP's Pandaren couldn't be take a MoP class's outfit (the same Trainee's set; the donor picks the
@@ -517,8 +521,9 @@ class Port:
                 dropped["items the 5.4.8 client lacks"].append(mop)
         return self.item_ids[mop]
 
-    def race_mask(self, mask):
-        """(word 1, word 2) expressions for a MoP race mask; Pandaren-only masks are the two Pandaren races."""
+    def race_mask(self, mask, wi_kin=False):
+        """(word 1, word 2) expressions for a MoP race mask; Pandaren-only masks are the two Pandaren races, and with
+        wi_kin (quests) also the races starting with them (WI_KIN)."""
         mask = num(mask)
         if mask in (0, -1) or mask >= (1 << 32) - 1 and not mask & ~((1 << 64) - 1) and mask & 0x7FF == 0x7FF:
             return 0, 0
@@ -526,6 +531,8 @@ class Port:
         names = sorted({n for r in races for n in RACE_VARS.get(r, [])})
         if not names:
             return 0, 0
+        if wi_kin and set(names) <= {"AlliancePandaren", "HordePandaren"}:
+            names += [k for n in names for k in WI_KIN.get(n, ())]
         return " | ".join("@%sMask" % n for n in names), " | ".join("@%sMask_2" % n for n in names)
 
     def phasemask(self, phase, group=0):
@@ -988,7 +995,7 @@ class Port:
         qt, qa, offer, req, details = [], [], [], [], []
         it = self.item
         for q, s in sorted(self.quests.items()):
-            races = self.race_mask(s["AllowableRaces"])
+            races = self.race_mask(s["AllowableRaces"], wi_kin=True)
             row = [q, s["QuestType"], s["QuestLevel"], s["MinLevel"], s["QuestSortID"], s["QuestInfoID"],
                    s["SuggestedGroupNum"], 0, 0, 0, 0, s["RewardNextQuest"], s["RewardXPDifficulty"], 0, 0,
                    self.spell_ok(s["RewardDisplaySpell1"]) or 0, self.spell_ok(s["RewardSpell"]) or 0,
@@ -1524,7 +1531,15 @@ class Port:
             "SET @CharStartOutfitID = (SELECT COALESCE(MAX(`id`), 0) FROM `charstartoutfit`);\n"
             "INSERT INTO `charstartoutfit` (%s) VALUES\n%s;\n" % (
                 ", ".join(str(c) for c in sorted({o[0] for o in self.outfits})),
-                ", ".join("`%s`" % c for c in cols), ",\n".join(rows)))
+                ", ".join("`%s`" % c for c in cols), ",\n".join(rows)) + "".join(
+            "\n-- %s starts on the Wandering Isle with the %s (WI_KIN): the same outfit, while its modpak is on\n"
+            "DELETE FROM `charstartoutfit` WHERE `race` = @%s AND `class` IN (%s) AND (@%sMask | @%sMask_2) <> 0;\n"
+            "INSERT INTO `charstartoutfit` (%s)\nSELECT @CharStartOutfitID := @CharStartOutfitID + 1, @%s, %s\n"
+            "FROM `charstartoutfit` WHERE `race` = @%s AND `class` IN (%s) AND (@%sMask | @%sMask_2) <> 0;\n" % (
+                kin, pandaren, kin, classes, kin, kin, ", ".join("`%s`" % c for c in cols), kin,
+                ", ".join("`%s`" % c for c in cols[2:]), pandaren, classes, kin, kin)
+            for pandaren, kins in WI_KIN.items() for kin in kins
+            for classes in [", ".join(str(c) for c in sorted({o[0] for o in self.outfits}))]))
 
     # ---- output -----------------------------------------------------------------------------------------------
     def write(self, name, sql):

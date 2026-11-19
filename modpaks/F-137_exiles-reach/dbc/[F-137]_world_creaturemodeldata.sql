@@ -96,6 +96,37 @@ INSERT INTO `creaturemodeldata` SET
 DELETE FROM `creaturemodeldata` WHERE `id` = 1370003;
 INSERT INTO `creaturemodeldata` SET
   `id` = 1370003,
+  `flags` = 4096,
+  `model_path` = 'CREATURE\\NIGHTSABER\\NIGHTSABER.M2',
+  `size_class` = 1,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 15,
+  `footprint_texture_width` = 10,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 0,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 1.2414,
+  `geo_box_min_x` = -2.6521,
+  `geo_box_min_y` = -0.8371,
+  `geo_box_min_z` = -0.0198,
+  `geo_box_max_x` = 1.1618,
+  `geo_box_max_y` = 0.5623,
+  `geo_box_max_z` = 1.1903,
+  `world_effect_scale` = 1.3,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370004;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370004,
   `flags` = 0,
   `model_path` = 'CREATURE\\HARPY2\\HARPY2.M2',
   `size_class` = 1,
@@ -124,9 +155,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370004;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370005;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370004,
+  `id` = 1370005,
   `flags` = 4096,
   `model_path` = 'CREATURE\\RABBIT2\\RABBIT2.M2',
   `size_class` = 0,
@@ -155,9 +186,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370005;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370006;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370005,
+  `id` = 1370006,
   `flags` = 17,
   `model_path` = 'CREATURE\\OWL2\\OWL2.M2',
   `size_class` = 0,
@@ -186,9 +217,71 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370006;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370007;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370006,
+  `id` = 1370007,
+  `flags` = 0,
+  `model_path` = 'CREATURE\\ROC\\ROC.M2',
+  `size_class` = 2,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 80,
+  `footprint_texture_width` = 40,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 0,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 7.4075,
+  `geo_box_min_x` = -20.8823,
+  `geo_box_min_y` = -7.3354,
+  `geo_box_min_z` = -1.0706,
+  `geo_box_max_x` = 6.5729,
+  `geo_box_max_y` = 6.7958,
+  `geo_box_max_z` = 11.8263,
+  `world_effect_scale` = 0.5,
+  `attached_effect_scale` = 4,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370008;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370008,
+  `flags` = 4096,
+  `model_path` = 'CREATURE\\DRUIDTRAVELHORDE\\DRUIDTRAVELHORDE.M2',
+  `size_class` = 1,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 18,
+  `footprint_texture_width` = 12,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 184,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 1.9884,
+  `geo_box_min_x` = -1.3346,
+  `geo_box_min_y` = -1.2366,
+  `geo_box_min_z` = -0.0265,
+  `geo_box_max_x` = 2.3149,
+  `geo_box_max_y` = 1.2046,
+  `geo_box_max_z` = 3.8586,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370009;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370009,
   `flags` = 4096,
   `model_path` = 'CREATURE\\GOAT\\GOAT.M2',
   `size_class` = 1,
@@ -217,9 +310,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370007;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370010;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370007,
+  `id` = 1370010,
   `flags` = 12297,
   `model_path` = 'CREATURE\\MANAFIEND_HOLY\\MANAFIEND_HOLY.M2',
   `size_class` = 1,
@@ -248,9 +341,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370008;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370011;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370008,
+  `id` = 1370011,
   `flags` = 4096,
   `model_path` = 'CREATURE\\WORG\\WORG.M2',
   `size_class` = 1,
@@ -279,9 +372,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370009;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370012;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370009,
+  `id` = 1370012,
   `flags` = 4096,
   `model_path` = 'CREATURE\\STAG2\\STAG2.M2',
   `size_class` = 1,
@@ -310,9 +403,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370010;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370013;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370010,
+  `id` = 1370013,
   `flags` = 4096,
   `model_path` = 'CREATURE\\DOE\\DOE.M2',
   `size_class` = 1,
@@ -341,9 +434,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370011;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370014;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370011,
+  `id` = 1370014,
   `flags` = 4096,
   `model_path` = 'CREATURE\\BABYDEER\\BABYDEER.M2',
   `size_class` = 1,
@@ -372,9 +465,102 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370012;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370015;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370012,
+  `id` = 1370015,
+  `flags` = 12291,
+  `model_path` = 'WORLD\\EXPANSION05\\DOODADS\\HUMAN\\DOODADS\\6HU_WOODENDUMMY01.M2',
+  `size_class` = 1,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 18,
+  `footprint_texture_width` = 12,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 247,
+  `collision_width` = 0.5068,
+  `collision_height` = 2.3935,
+  `mount_height` = 1.4381,
+  `geo_box_min_x` = -0.306,
+  `geo_box_min_y` = -0.9254,
+  `geo_box_min_z` = -0.1634,
+  `geo_box_max_x` = 0.2624,
+  `geo_box_max_y` = 1.0058,
+  `geo_box_max_z` = 2.7458,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370016;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370016,
+  `flags` = 4112,
+  `model_path` = 'CREATURE\\WOLFDRAENOR\\WOLFDRAENOR.M2',
+  `size_class` = 0,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 18,
+  `footprint_texture_width` = 12,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 73,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 1.4952,
+  `geo_box_min_x` = -2.2128,
+  `geo_box_min_y` = -0.564,
+  `geo_box_min_z` = -0.0023,
+  `geo_box_max_x` = 1.6778,
+  `geo_box_max_y` = 0.5949,
+  `geo_box_max_z` = 1.7269,
+  `world_effect_scale` = 1.25,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370017;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370017,
+  `flags` = 4096,
+  `model_path` = 'CREATURE\\DRUIDTRAVELALLIANCE\\DRUIDTRAVELALLIANCE.M2',
+  `size_class` = 1,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 18,
+  `footprint_texture_width` = 12,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 184,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 1.9884,
+  `geo_box_min_x` = -1.2842,
+  `geo_box_min_y` = -1.1647,
+  `geo_box_min_z` = -0.0081,
+  `geo_box_max_x` = 2.2841,
+  `geo_box_max_y` = 1.1477,
+  `geo_box_max_z` = 3.8634,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370018;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370018,
   `flags` = 8,
   `model_path` = 'CREATURE\\CRAB2\\CRAB2.M2',
   `size_class` = 0,
@@ -403,9 +589,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370013;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370019;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370013,
+  `id` = 1370019,
   `flags` = 8,
   `model_path` = 'CREATURE\\HERMITCRAB\\HERMITCRAB.M2',
   `size_class` = 0,
@@ -434,9 +620,40 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370014;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370020;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370014,
+  `id` = 1370020,
+  `flags` = 0,
+  `model_path` = 'CREATURE\\KALECGOS2\\KALECGOS2.M2',
+  `size_class` = 1,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 12,
+  `footprint_texture_width` = 10,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 2564,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 0,
+  `geo_box_min_x` = -0.3338,
+  `geo_box_min_y` = -0.5587,
+  `geo_box_min_z` = -0,
+  `geo_box_max_x` = 0.3837,
+  `geo_box_max_y` = 0.5516,
+  `geo_box_max_z` = 2.0429,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370021;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370021,
   `flags` = 4097,
   `model_path` = 'CREATURE\\VULTURE\\VULTURE.M2',
   `size_class` = 1,
@@ -465,9 +682,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370015;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370022;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370015,
+  `id` = 1370022,
   `flags` = 4115,
   `model_path` = 'CREATURE\\FROG2\\FROG2.M2',
   `size_class` = 0,
@@ -496,9 +713,40 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370016;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370023;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370016,
+  `id` = 1370023,
+  `flags` = 4098,
+  `model_path` = 'CREATURE\\BONESPIDER2\\BONESPIDER2.M2',
+  `size_class` = 0,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 6,
+  `footprint_texture_width` = 4,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 2780,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 0,
+  `geo_box_min_x` = -2.3274,
+  `geo_box_min_y` = -2.149,
+  `geo_box_min_z` = -0.1293,
+  `geo_box_max_x` = 3.9249,
+  `geo_box_max_y` = 2.1474,
+  `geo_box_max_z` = 2.0706,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370024;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370024,
   `flags` = 0,
   `model_path` = 'CREATURE\\QUILLBOAR2\\QUILLBOAR2.M2',
   `size_class` = 0,
@@ -527,9 +775,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370017;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370025;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370017,
+  `id` = 1370025,
   `flags` = 128,
   `model_path` = 'CREATURE\\OGREDRAENOR\\OGREDRAENOR.M2',
   `size_class` = 3,
@@ -558,9 +806,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370018;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370026;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370018,
+  `id` = 1370026,
   `flags` = 0,
   `model_path` = 'CREATURE\\JAINA3\\JAINA3.M2',
   `size_class` = 0,
@@ -589,9 +837,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370019;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370027;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370019,
+  `id` = 1370027,
   `flags` = 0,
   `model_path` = 'CREATURE\\COCKROACH\\COCKROACH.M2',
   `size_class` = 0,
@@ -620,9 +868,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370020;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370028;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370020,
+  `id` = 1370028,
   `flags` = 2,
   `model_path` = 'CREATURE\\ZOMBIE2\\ZOMBIE2.M2',
   `size_class` = 1,
@@ -651,9 +899,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370021;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370029;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370021,
+  `id` = 1370029,
   `flags` = 12291,
   `model_path` = 'CREATURE\\GNOMECOPTER\\GNOMECOPTER.M2',
   `size_class` = 0,
@@ -682,9 +930,9 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370022;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370030;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370022,
+  `id` = 1370030,
   `flags` = 8192,
   `model_path` = 'CREATURE\\ETTIN\\ETTIN.M2',
   `size_class` = 4,
@@ -713,9 +961,40 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370023;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370031;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370023,
+  `id` = 1370031,
+  `flags` = 0,
+  `model_path` = 'CREATURE\\AGRONN\\AGRONN.M2',
+  `size_class` = 3,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 160,
+  `footprint_texture_width` = 80,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 0,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 9.3136,
+  `geo_box_min_x` = -4.6053,
+  `geo_box_min_y` = -6.4439,
+  `geo_box_min_z` = -0.0055,
+  `geo_box_max_x` = 4.0856,
+  `geo_box_max_y` = 6.8801,
+  `geo_box_max_z` = 15.0997,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1.5,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370032;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370032,
   `flags` = 4096,
   `model_path` = 'CREATURE\\BEAR2\\BEAR2.M2',
   `size_class` = 1,
@@ -744,9 +1023,40 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370024;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370033;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370024,
+  `id` = 1370033,
+  `flags` = 4096,
+  `model_path` = 'CREATURE\\DRAGONKALECGOS2\\DRAGONKALECGOS2.M2',
+  `size_class` = 2,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 18,
+  `footprint_texture_width` = 12,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 2563,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 8.9139,
+  `geo_box_min_x` = -19.9068,
+  `geo_box_min_y` = -9.8598,
+  `geo_box_min_z` = -0.5476,
+  `geo_box_max_x` = 10.3796,
+  `geo_box_max_y` = 9.6631,
+  `geo_box_max_z` = 13.4266,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 2.75,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370034;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370034,
   `flags` = 0,
   `model_path` = 'CREATURE\\WRATHION\\WRATHION.M2',
   `size_class` = 0,
@@ -775,9 +1085,40 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370025;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370035;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370025,
+  `id` = 1370035,
+  `flags` = 4096,
+  `model_path` = 'CREATURE\\WRATHIONDRAKE\\WRATHIONDRAKE.M2',
+  `size_class` = 4,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 30,
+  `footprint_texture_width` = 20,
+  `footprint_particle_scale` = 3,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 0,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 2.918,
+  `geo_box_min_x` = -7.8257,
+  `geo_box_min_y` = -3.1187,
+  `geo_box_min_z` = -0.4826,
+  `geo_box_max_x` = 3.3567,
+  `geo_box_max_y` = 2.9578,
+  `geo_box_max_z` = 4.0534,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370036;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370036,
   `flags` = 0,
   `model_path` = 'CREATURE\\THRALLSHADOWLANDS\\THRALLSHADOWLANDS.M2',
   `size_class` = 0,
@@ -806,9 +1147,40 @@ INSERT INTO `creaturemodeldata` SET
   `missile_collision_push` = 0,
   `missile_collision_raise` = 0;
 
-DELETE FROM `creaturemodeldata` WHERE `id` = 1370026;
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370037;
 INSERT INTO `creaturemodeldata` SET
-  `id` = 1370026,
+  `id` = 1370037,
+  `flags` = 128,
+  `model_path` = 'CREATURE\\OGRENECROMANCER\\OGRENECROMANCER.M2',
+  `size_class` = 3,
+  `model_scale` = 1,
+  `blood_id` = 0,
+  `footprint_texture_id` = 0,
+  `footprint_texture_length` = 25,
+  `footprint_texture_width` = 19,
+  `footprint_particle_scale` = 1,
+  `foley_material_id` = 0,
+  `footstep_shake_size` = 0,
+  `death_thud_shake_size` = 0,
+  `sound_data` = 0,
+  `collision_width` = 0.6111,
+  `collision_height` = 2.0313,
+  `mount_height` = 1.5843,
+  `geo_box_min_x` = -0.8661,
+  `geo_box_min_y` = -1.2685,
+  `geo_box_min_z` = -0.0422,
+  `geo_box_max_x` = 0.6714,
+  `geo_box_max_y` = 1.2612,
+  `geo_box_max_z` = 3.2737,
+  `world_effect_scale` = 1,
+  `attached_effect_scale` = 1,
+  `missile_collision_radius` = 0,
+  `missile_collision_push` = 0,
+  `missile_collision_raise` = 0;
+
+DELETE FROM `creaturemodeldata` WHERE `id` = 1370038;
+INSERT INTO `creaturemodeldata` SET
+  `id` = 1370038,
   `flags` = 4097,
   `model_path` = 'CREATURE\\EAGLE2\\EAGLE2.M2',
   `size_class` = 1,

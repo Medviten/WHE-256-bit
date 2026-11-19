@@ -42,7 +42,12 @@ quest pages by hand when curating these (stage 3).
 3. SmartAI for the scripted events: beach rescues, followers, the boar ride, prisoners, Hrun's pit, the final
    fight; creature texts; the 36 quests without giver or ender; simple credit for the dropped criteria-tree
    objectives (talk / click / kill)
-4. Start: `ExilesReachStartZone.Enable` sends new characters (not Death Knights, not races with their own start
-   zone) to the island; the ship intro is a static ship or skipped
+4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
+   races keeping their start is in the race modpaks); retail's forced first character was turned down. F-137 moves
+   those races' playercreateinfo to the beach; `ExilesReachStartZone.Enable` boards them on their faction's sailing
+   ship instead (decided: retail's moving ships, not a static one). Kalecgos sends players to their capital. Ships
+   as continent transports on retail's paths, crews from TDB's deck maps 2261 / 2369, SmartAI for Warming Up / Stand Your Ground / Brace for Impact (the turn-in teleports to the beach; no crash scene)
 5. Class quests (retail abilities replaced where 3.3.5a lacks them; Monk and Demon Hunter versions left out)
-6. Darkmaul Citadel: terrain port of its map (as F-137's own) and the dungeon's spawns and quests
+6. (Started 2026-11-19, untested) Darkmaul Citadel: terrain (map 2236, `[F-137,DC]` files), spawns, instance rows,
+   portals in and out, Gor'groth's kill and Kalecgos' exit as the dungeon quest's credits. Open: boss mechanics, doors,
+   An End to Beginnings (its givers are summoned at the end), the group finder

@@ -95,10 +95,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 62588;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 62588,
+  `model_id` = 1370003,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'nightsaber',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 63597;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 63597,
-  `model_id` = 1370003,
+  `model_id` = 1370004,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.5,
@@ -117,7 +136,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 63605;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 63605,
-  `model_id` = 1370003,
+  `model_id` = 1370004,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.5,
@@ -136,7 +155,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 64062;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 64062,
-  `model_id` = 1370004,
+  `model_id` = 1370005,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -155,7 +174,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 64328;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 64328,
-  `model_id` = 1370005,
+  `model_id` = 1370006,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -174,7 +193,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 64330;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 64330,
-  `model_id` = 1370005,
+  `model_id` = 1370006,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -193,7 +212,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 64331;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 64331,
-  `model_id` = 1370005,
+  `model_id` = 1370006,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -209,10 +228,48 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 64922;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 64922,
+  `model_id` = 1370007,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'roc_orange_1',
+  `texture_variation_2` = 'roc_orange_2',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 64984;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 64984,
+  `model_id` = 1370008,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'druidtravelhorde',
+  `texture_variation_2` = 'druidtravelhorde',
+  `texture_variation_3` = 'druidtravelhorde',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 66292;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 66292,
-  `model_id` = 1370006,
+  `model_id` = 1370009,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -231,7 +288,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70162;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70162,
-  `model_id` = 1370007,
+  `model_id` = 1370010,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -250,7 +307,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70178;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70178,
-  `model_id` = 1370008,
+  `model_id` = 1370011,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -269,7 +326,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70179;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70179,
-  `model_id` = 1370008,
+  `model_id` = 1370011,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -288,7 +345,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70440;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70440,
-  `model_id` = 1370009,
+  `model_id` = 1370012,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -307,7 +364,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70446;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70446,
-  `model_id` = 1370010,
+  `model_id` = 1370013,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -326,7 +383,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70448;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70448,
-  `model_id` = 1370010,
+  `model_id` = 1370013,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -345,7 +402,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70451;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70451,
-  `model_id` = 1370010,
+  `model_id` = 1370013,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -364,7 +421,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 70722;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 70722,
-  `model_id` = 1370011,
+  `model_id` = 1370014,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 0.3,
@@ -380,10 +437,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 70861;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 70861,
+  `model_id` = 1370015,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 71224;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 71224,
-  `model_id` = 1370011,
+  `model_id` = 1370014,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 0.3,
@@ -399,10 +475,48 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 72049;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 72049,
+  `model_id` = 1370016,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'wolfdraenorlightbrown',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 73350;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 73350,
+  `model_id` = 1370017,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'druidtravelalliance',
+  `texture_variation_2` = 'druidtravelalliance',
+  `texture_variation_3` = 'druidtravelalliance',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 75371;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 75371,
-  `model_id` = 1370012,
+  `model_id` = 1370018,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -421,7 +535,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 75374;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 75374,
-  `model_id` = 1370012,
+  `model_id` = 1370018,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -440,7 +554,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 75380;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 75380,
-  `model_id` = 1370013,
+  `model_id` = 1370019,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -456,10 +570,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 75614;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 75614,
+  `model_id` = 1370020,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1.4,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'kalecgos2_4238558',
+  `texture_variation_2` = 'kalecgos2_4238559',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 77902;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 77902,
-  `model_id` = 1370014,
+  `model_id` = 1370021,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -478,7 +611,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 77903;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 77903,
-  `model_id` = 1370014,
+  `model_id` = 1370021,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -497,7 +630,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 78151;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 78151,
-  `model_id` = 1370014,
+  `model_id` = 1370021,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -516,7 +649,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 78851;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 78851,
-  `model_id` = 1370015,
+  `model_id` = 1370022,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -535,7 +668,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 79614;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 79614,
-  `model_id` = 1370011,
+  `model_id` = 1370014,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 0.3,
@@ -551,10 +684,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 80910;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 80910,
+  `model_id` = 1370023,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 0.15,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'bonespider2_grey',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 81105;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 81105,
-  `model_id` = 1370016,
+  `model_id` = 1370024,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -573,7 +725,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 81106;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 81106,
-  `model_id` = 1370016,
+  `model_id` = 1370024,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -592,7 +744,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 86424;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 86424,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -611,7 +763,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 87594;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 87594,
-  `model_id` = 1370015,
+  `model_id` = 1370022,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -630,7 +782,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 87603;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 87603,
-  `model_id` = 1370013,
+  `model_id` = 1370019,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -649,7 +801,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 88316;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 88316,
-  `model_id` = 1370018,
+  `model_id` = 1370026,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.2,
@@ -668,7 +820,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 88786;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 88786,
-  `model_id` = 1370019,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -687,7 +839,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 88787;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 88787,
-  `model_id` = 1370019,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -706,7 +858,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 89266;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 89266,
-  `model_id` = 1370019,
+  `model_id` = 1370027,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -725,7 +877,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91775;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91775,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -744,7 +896,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91776;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91776,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -763,7 +915,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91777;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91777,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -782,7 +934,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91778;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91778,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -801,7 +953,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91779;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91779,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -820,7 +972,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91780;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91780,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -839,7 +991,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91781;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91781,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -858,7 +1010,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91782;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91782,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -877,7 +1029,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91851;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91851,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -896,7 +1048,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91853;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91853,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -915,7 +1067,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 91854;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 91854,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -934,7 +1086,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 92691;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 92691,
-  `model_id` = 1370020,
+  `model_id` = 1370028,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -953,7 +1105,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 92693;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 92693,
-  `model_id` = 1370020,
+  `model_id` = 1370028,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -972,7 +1124,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 92831;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 92831,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -991,7 +1143,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 95022;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 95022,
-  `model_id` = 1370017,
+  `model_id` = 1370025,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1010,7 +1162,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 95765;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 95765,
-  `model_id` = 1370021,
+  `model_id` = 1370029,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1048,7 +1200,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 96541;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 96541,
-  `model_id` = 1370022,
+  `model_id` = 1370030,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1064,10 +1216,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 97213;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 97213,
+  `model_id` = 1370031,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'agronn_dark',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 97258;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 97258,
-  `model_id` = 1370023,
+  `model_id` = 1370032,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1083,10 +1254,29 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 105921;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 105921,
+  `model_id` = 1370033,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 2,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'dragonkalecgos2_4496931',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 107146;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 107146,
-  `model_id` = 1370024,
+  `model_id` = 1370034,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.25,
@@ -1102,10 +1292,48 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 107945;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 107945,
+  `model_id` = 1370035,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1.8,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = '',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 114576;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 114576,
+  `model_id` = 1370033,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 2,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'dragonkalecgos2_4496931',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 115495;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 115495,
-  `model_id` = 1370025,
+  `model_id` = 1370036,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1159,10 +1387,124 @@ INSERT INTO `creaturedisplayinfo` SET
   `creature_geoset_data` = 0,
   `obj_effect_package_id` = 0;
 
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 139988;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 139988,
+  `model_id` = 1370025,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1.8,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'ogre_draenor_beige',
+  `texture_variation_2` = 'highogre_draenorred2',
+  `texture_variation_3` = 'highogre_draenorred3',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 139991;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 139991,
+  `model_id` = 1370025,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'ogre_draenor_beige',
+  `texture_variation_2` = 'highogre_draenorpurple2',
+  `texture_variation_3` = 'highogre_draenorpurple3',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 139992;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 139992,
+  `model_id` = 1370025,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'ogre_draenor_beige',
+  `texture_variation_2` = 'highogre_draenorpurple2',
+  `texture_variation_3` = 'highogre_draenorpurple3',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 139993;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 139993,
+  `model_id` = 1370025,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'ogre_draenor_beige',
+  `texture_variation_2` = 'highogre_draenorpurple2',
+  `texture_variation_3` = 'highogre_draenorpurple3',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 140023;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 140023,
+  `model_id` = 1370025,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'ogre_draenor_yellow',
+  `texture_variation_2` = 'ogre_draenorarmor_purple',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
+DELETE FROM `creaturedisplayinfo` WHERE `id` = 140024;
+INSERT INTO `creaturedisplayinfo` SET
+  `id` = 140024,
+  `model_id` = 1370037,
+  `sound_id` = 0,
+  `extended_display_info_id` = 0,
+  `creature_model_scale` = 1,
+  `creature_model_alpha` = 255,
+  `texture_variation_1` = 'ogrenecromancer',
+  `texture_variation_2` = '',
+  `texture_variation_3` = '',
+  `portrait_texture_name` = '',
+  `blood_level` = 0,
+  `blood_id` = 0,
+  `npc_sound_id` = 0,
+  `praticle_color_id` = 0,
+  `creature_geoset_data` = 0,
+  `obj_effect_package_id` = 0;
+
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140087;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140087,
-  `model_id` = 1370026,
+  `model_id` = 1370038,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1181,7 +1523,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140088;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140088,
-  `model_id` = 1370026,
+  `model_id` = 1370038,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1,
@@ -1200,7 +1542,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140089;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140089,
-  `model_id` = 1370026,
+  `model_id` = 1370038,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.15,
@@ -1219,7 +1561,7 @@ INSERT INTO `creaturedisplayinfo` SET
 DELETE FROM `creaturedisplayinfo` WHERE `id` = 140090;
 INSERT INTO `creaturedisplayinfo` SET
   `id` = 140090,
-  `model_id` = 1370026,
+  `model_id` = 1370038,
   `sound_id` = 0,
   `extended_display_info_id` = 0,
   `creature_model_scale` = 1.2,

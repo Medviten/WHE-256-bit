@@ -1,0 +1,166 @@
+diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
+index f118bbd9f..38215c3dd 100644
+--- a/src/server/apps/worldserver/worldserver.conf.dist
++++ b/src/server/apps/worldserver/worldserver.conf.dist
+@@ -1471,6 +1471,20 @@ GilneasStartZone.Enable = 0
+ 
+ WanderingIsleStartZone.Enable = 0
+ 
++#
++#    ExilesReachStartZone.Enable
++#        Description: Exile's Reach ship start (WHE modpak F-137). F-137 itself moves the start of the
++#                     races it takes (player_race_template.exiles_reach, most custom races) to the
++#                     island's beach; with this on, those new characters (except Death Knights and
++#                     those the Wandering Isle start takes) start aboard their faction's ship sailing
++#                     to the island instead, as retail's new player experience. Needs F-137 (the
++#                     ships are its continent transports 13701 and 13702) and
++#                     EnableContinentTransport; without the ship a character starts on the beach.
++#        Default:     0 - (Disabled, the beach)
++#                     1 - (Enabled, the ship)
++
++ExilesReachStartZone.Enable = 0
++
+ #
+ ###################################################################################################
+ 
+diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
+index 82d7e5b09..d4842b8a6 100644
+--- a/src/server/game/World/WorldConfig.cpp
++++ b/src/server/game/World/WorldConfig.cpp
+@@ -307,6 +307,7 @@ void WorldConfig::BuildConfigCache()
+     SetConfigValue<bool>(CONFIG_GOBLIN_START_ZONE, "GoblinStartZone.Enable", false);
+     SetConfigValue<bool>(CONFIG_GILNEAS_START_ZONE, "GilneasStartZone.Enable", false);
+     SetConfigValue<bool>(CONFIG_WANDERING_ISLE_START_ZONE, "WanderingIsleStartZone.Enable", false); // Custom: F-134
++    SetConfigValue<bool>(CONFIG_EXILES_REACH_START_ZONE, "ExilesReachStartZone.Enable", false); // Custom: F-137
+ 
+     SetConfigValue<uint32>(CONFIG_MAIL_DELIVERY_DELAY, "MailDeliveryDelay", HOUR);
+     SetConfigValue<bool>(CONFIG_MAIL_PUSH_INBOX_ON_DELIVERY, "Mail.PushInboxOnDelivery", false);
+diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
+index 8d8e93034..512a9891b 100644
+--- a/src/server/game/World/WorldConfig.h
++++ b/src/server/game/World/WorldConfig.h
+@@ -147,6 +147,7 @@ enum ServerConfigs
+     CONFIG_GOBLIN_START_ZONE, // F-013 Zeppelin goblin start zone core support
+     CONFIG_GILNEAS_START_ZONE, // F-130 Gilneas (Worgen) start zone; turns CONFIG_GOBLIN_START_ZONE's support on too
+     CONFIG_WANDERING_ISLE_START_ZONE, // Custom: F-134 Wandering Isle (Pandaren) start; turns CONFIG_GOBLIN_START_ZONE's support on too
++    CONFIG_EXILES_REACH_START_ZONE, // Custom: F-137 Exile's Reach start: new characters board their faction's ship
+     CONFIG_STRICT_NAMES_RESERVED,
+     CONFIG_STRICT_NAMES_PROFANITY,
+     CONFIG_CHAT_FILTER_WHISPER,
+diff --git a/src/server/scripts/Custom/custom_script_loader.cpp b/src/server/scripts/Custom/custom_script_loader.cpp
+index 9cf4c4014..d1429298d 100644
+--- a/src/server/scripts/Custom/custom_script_loader.cpp
++++ b/src/server/scripts/Custom/custom_script_loader.cpp
+@@ -22,6 +22,7 @@ void AddSC_zeppelin_goblin_creatures();
+ void AddSC_gilneas_start(); // Custom: F-130 Gilneas start zone
+ void AddSC_wandering_isle_start(); // Custom: F-134 Wandering Isle start
+ void AddSC_wandering_isle(); // Custom: F-134 Wandering Isle scripts
++void AddSC_exiles_reach_start(); // Custom: F-137 Exile's Reach start
+ 
+ // The name of this function should match:
+ // void Add${NameOfDirectory}Scripts()
+@@ -33,4 +34,5 @@ void AddCustomScripts()
+     AddSC_gilneas_start();
+     AddSC_wandering_isle_start();
+     AddSC_wandering_isle();
++    AddSC_exiles_reach_start();
+ }
+diff --git a/src/server/scripts/Custom/exiles_reach_start.cpp b/src/server/scripts/Custom/exiles_reach_start.cpp
+new file mode 100644
+index 000000000..9f898cb94
+--- /dev/null
++++ b/src/server/scripts/Custom/exiles_reach_start.cpp
+@@ -0,0 +1,93 @@
++/*
++ * Custom: F-137 Exile's Reach start.
++ *
++ * F-137 moves the start (playercreateinfo) of the races whose player_race_template row has exiles_reach = 1 (most
++ * custom races; stock races and those that fit a stock or their own start keep it) to the island's beach. With
++ * ExilesReachStartZone.Enable on, those new characters (not Death Knights, not those the Wandering Isle start takes)
++ * start instead aboard their faction's ship sailing to the island, as retail's new player experience does: the
++ * Alliance Ship (transport 13701) or the Horde Transport (13702), on retail's deck spot. The ships are F-137's
++ * continent transports on map 2175; the character row is saved before this hook runs, so it gets the transport and
++ * the deck offset written directly, and the first login puts the character aboard the way it restores anyone who
++ * logged out on a transport (Player::LoadFromDB). With the ship missing (EnableContinentTransport off) the character
++ * starts on the beach.
++ *
++ * The way off the island: Kalecgos, at the end of Darkmaul Citadel, credits "Speak with Kalecgos to leave" and sends
++ * the player to their capital, bound there (retail's An End to Beginnings, whose givers its scripts summon, isn't
++ * ported), as the Wandering Isle's finale does.
++ */
++
++#include "AreaDefines.h"
++#include "CreatureScript.h"
++#include "DatabaseEnv.h"
++#include "ObjectMgr.h"
++#include "Player.h"
++#include "PlayerScript.h"
++#include "ScriptedGossip.h"
++#include "World.h"
++
++enum ExilesReachStart
++{
++    MAP_EXILES_REACH            = 2175,
++    TRANSPORT_ALLIANCE_SHIP     = 13701,
++    TRANSPORT_HORDE_SHIP        = 13702,
++    QUEST_SANDY_FIST            = 29406,    // F-134: only the races starting on the Wandering Isle may take it
++    CREDIT_LEAVE_ALLIANCE       = 161350,   // "Speak with Kalecgos to leave Darkmaul Citadel"
++    CREDIT_LEAVE_HORDE          = 167663,
++};
++
++// retail's playercreateinfo deck spots (TrinityCore: transport guids 29 and 30), relative to the ship
++static Position const AllianceDeck = { 11.1301f, -0.417182f, 5.18741f, 3.14843f };
++static Position const HordeDeck = { -10.7291f, -7.14635f, 8.73113f, 1.56321f };
++
++class ExilesReachStartPlayerScript : public PlayerScript
++{
++public:
++    ExilesReachStartPlayerScript() : PlayerScript("ExilesReachStartPlayerScript", { PLAYERHOOK_ON_CREATE }) { }
++
++    void OnPlayerCreate(Player* player) override
++    {
++        if (!sWorld->getBoolConfig(CONFIG_EXILES_REACH_START_ZONE) || player->getClass() == CLASS_DEATH_KNIGHT ||
++            player->GetMapId() != MAP_EXILES_REACH)
++            return;
++        // the Wandering Isle start moves them on their first login
++        Quest const* wanderingIsle = sObjectMgr->GetQuestTemplate(QUEST_SANDY_FIST);
++        if (sWorld->getBoolConfig(CONFIG_WANDERING_ISLE_START_ZONE) && wanderingIsle &&
++            player->SatisfyQuestRace(wanderingIsle, false))
++            return;
++
++        bool alliance = player->GetTeamId(true) == TEAM_ALLIANCE;
++        Position const& deck = alliance ? AllianceDeck : HordeDeck;
++        CharacterDatabase.Execute("UPDATE characters SET transguid = {}, trans_x = {}, trans_y = {}, trans_z = {}, "
++            "trans_o = {} WHERE guid = {}", uint32(alliance ? TRANSPORT_ALLIANCE_SHIP : TRANSPORT_HORDE_SHIP),
++            deck.GetPositionX(), deck.GetPositionY(), deck.GetPositionZ(), deck.GetOrientation(),
++            player->GetGUID().GetCounter());
++    }
++};
++
++// 156501 - Kalecgos, freed at the end of Darkmaul Citadel
++class npc_darkmaul_kalecgos : public CreatureScript
++{
++public:
++    npc_darkmaul_kalecgos() : CreatureScript("npc_darkmaul_kalecgos") { }
++
++    bool OnGossipHello(Player* player, Creature* /*creature*/) override
++    {
++        CloseGossipMenuFor(player);
++        player->KilledMonsterCredit(CREDIT_LEAVE_ALLIANCE);
++        player->KilledMonsterCredit(CREDIT_LEAVE_HORDE);
++
++        bool alliance = player->GetTeamId() == TEAM_ALLIANCE;
++        WorldLocation home = alliance
++            ? WorldLocation(MAP_EASTERN_KINGDOMS, -8833.38f, 628.63f, 94.01f, 1.07f)     // Stormwind, Trade District
++            : WorldLocation(MAP_KALIMDOR, 1633.75f, -4439.39f, 15.43f, 0.0f);          // Orgrimmar, Valley of Strength
++        player->SetHomebind(home, alliance ? AREA_STORMWIND_CITY : AREA_ORGRIMMAR);
++        player->TeleportTo(home);
++        return true;
++    }
++};
++
++void AddSC_exiles_reach_start()
++{
++    new ExilesReachStartPlayerScript();
++    new npc_darkmaul_kalecgos();
++}

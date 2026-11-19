@@ -84,6 +84,27 @@ INSERT INTO `gameobjectdisplayinfo` SET
   `geo_box_max_y` = 3.4602,
   `geo_box_max_z` = 4.376;
 
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 31566;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 31566,
+  `model_name` = 'world\\expansion05\\doodads\\human\\doodads\\6hu_storehouse_barrelstack1.mdx',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -0.9628,
+  `geo_box_min_y` = -1.2219,
+  `geo_box_min_z` = -0.0237,
+  `geo_box_max_x` = 0.8606,
+  `geo_box_max_y` = 0.9755,
+  `geo_box_max_z` = 2.4379;
+
 DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 33316;
 INSERT INTO `gameobjectdisplayinfo` SET
   `id` = 33316,
@@ -146,3 +167,45 @@ INSERT INTO `gameobjectdisplayinfo` SET
   `geo_box_max_x` = 1.8926,
   `geo_box_max_y` = 1.8926,
   `geo_box_max_z` = 5.1823;
+
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 61205;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 61205,
+  `model_name` = 'world\\wmo\\expansion08\\human\\9hu_human_shiplarge01.wmo',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -59.9916,
+  `geo_box_min_y` = -20.0199,
+  `geo_box_min_z` = -15.1089,
+  `geo_box_max_x` = 46.542,
+  `geo_box_max_y` = 20.903,
+  `geo_box_max_z` = 58.4939;
+
+DELETE FROM `gameobjectdisplayinfo` WHERE `id` = 61835;
+INSERT INTO `gameobjectdisplayinfo` SET
+  `id` = 61835,
+  `model_name` = 'world\\wmo\\zuldazar\\forsaken\\8fk_forsaken_shiplarge04.wmo',
+  `sound_1` = 0,
+  `sound_2` = 0,
+  `sound_3` = 0,
+  `sound_4` = 0,
+  `sound_5` = 0,
+  `sound_6` = 0,
+  `sound_7` = 0,
+  `sound_8` = 0,
+  `sound_9` = 0,
+  `sound_10` = 0,
+  `geo_box_min_x` = -94.4106,
+  `geo_box_min_y` = -59.4168,
+  `geo_box_min_z` = -9.9999,
+  `geo_box_max_x` = 59.0835,
+  `geo_box_max_y` = 59.2673,
+  `geo_box_max_z` = 124.7294;
