@@ -125,8 +125,12 @@ SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",     
             156609: "npc_er_beach_survivor", 156610: "npc_er_beach_survivor",        # Emergency First Aid
             156612: "npc_er_beach_survivor", 166786: "npc_er_beach_survivor",
             166791: "npc_er_beach_survivor", 166796: "npc_er_beach_survivor",
-            165359: "npc_er_expedition_leader", 166805: "npc_er_expedition_leader",  # Finding the Lost Expedition
-            164577: "npc_er_combat_trainer", 166916: "npc_er_combat_trainer"}        # Enhanced Combat Tactics
+            165359: "npc_er_follower", 166805: "npc_er_follower",                    # Finding the Lost Expedition
+            165360: "npc_er_follower", 175034: "npc_er_follower",                    # Northbound
+            164577: "npc_er_combat_trainer", 166916: "npc_er_combat_trainer",        # Enhanced Combat Tactics
+            150237: "npc_er_quilboar", 150238: "npc_er_quilboar",                    # the Quilboar Briarpatch
+            151091: "npc_er_geolord", 154301: "npc_er_briarpatch_prisoner",
+            167008: "npc_er_briarpatch_prisoner", 156676: "npc_er_ogre_overseer"}
 # retail conversations (TrinityCore's zone_exiles_reach.cpp) whose lines exiles_reach.cpp speaks: their broadcast
 # texts go to broadcast_text with the creatures' texts (the script names the lines by broadcast text id)
 CONVERSATIONS = (11685, 12043, 12044, 12058, 12066, 12073, 12078, 12083, 12084, 12086, 12089, 12090, 12092, 12127,

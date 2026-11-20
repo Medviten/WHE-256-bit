@@ -90,10 +90,11 @@
   trainers and the Darkmaul finale's NPCs (An End to Beginnings) are summoned by scripts, so those quests have no
   giver or ender yet. 23 criteria-tree objectives (emotes, buying, casting a class spell, ...) are dropped, so some
   quests complete with less. Without the core patch, quest-stage NPCs only update when you move
-- Scripts are ported up to the abandoned camp (the core's exiles_reach.cpp: retail's conversation lines as NPC
-  speech, the ship spar, the beach survivors, the expedition follower, the class trainer, which counts any class
-  ability as retail's 3.3.5a-less rotation checks can't be done); beyond it casters only melee and the rescues,
-  escorts and the boar ride don't run (plan.md stage 3)
+- Scripts are ported up to the Quilboar Briarpatch (the core's exiles_reach.cpp: retail's conversation lines as NPC
+  speech, the ship spar, the beach survivors, the followers, the class trainer, which counts any class ability as
+  retail's rotation checks need retail's level 1 spells, taming for hunters, the Geolord and his prisoner; enemies
+  use stock NPC spells for retail's); beyond it casters only melee and the scouting flight, the boar ride and the
+  later rescues don't run (plan.md stage 3)
 - The ship intro has no crash scene (retail's cutscene): the turn-in teleports you to the beach. The hunters' pets
   on deck are left out
 - New characters' hearthstones are bound to the beach until Kalecgos sends them to their capital. Random bots of

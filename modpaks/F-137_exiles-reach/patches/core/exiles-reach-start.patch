@@ -69,10 +69,10 @@ index 9cf4c4014..643ddb966 100644
  }
 diff --git a/src/server/scripts/Custom/exiles_reach.cpp b/src/server/scripts/Custom/exiles_reach.cpp
 new file mode 100644
-index 000000000..501d97e01
+index 000000000..0ea343c13
 --- /dev/null
 +++ b/src/server/scripts/Custom/exiles_reach.cpp
-@@ -0,0 +1,635 @@
+@@ -0,0 +1,981 @@
 +/*
 + * Custom: F-137 Exile's Reach scripts, ported from TrinityCore's zone_exiles_reach.cpp (retail's new player island,
 + * map 2175, its ships 2261 / 2369).
@@ -116,6 +116,14 @@ index 000000000..501d97e01
 +    QUEST_COOKING_MEAT_H                = 59932,
 +    QUEST_ENHANCED_COMBAT_TACTICS_A     = 59254,
 +    QUEST_ENHANCED_COMBAT_TACTICS_H     = 59933,
++    QUEST_NORTHBOUND_A                  = 55173,
++    QUEST_NORTHBOUND_H                  = 59935,
++    QUEST_TAMING_THE_WILDS_A            = 59342,
++    QUEST_TAMING_THE_WILDS_H            = 59937,
++    QUEST_DOWN_WITH_THE_QUILBOAR_A      = 55186,
++    QUEST_QUILBOAR_NECROMANCY_A         = 55184,
++    QUEST_DOWN_WITH_THE_QUILBOAR_H      = 59938,
++    QUEST_QUILBOAR_NECROMANCY_H         = 59939,
 +
 +    // the ships
 +    NPC_GARRICK_SHIP                    = 156280,
@@ -137,6 +145,14 @@ index 000000000..501d97e01
 +    NPC_GRIMAXE_CAMP                    = 166906,
 +    NPC_TRAINER_A                       = 164577,   // also the quest's credit, for both factions
 +    NPC_TRAINER_H                       = 166916,
++    NPC_GARRICK_NORTHBOUND              = 165360,
++    NPC_GRIMAXE_NORTHBOUND              = 175034,
++
++    // the Quilboar Briarpatch
++    NPC_HUXWORTH_BRIARPATCH             = 154327,
++    NPC_GARRICK_BRIARPATCH              = 156662,
++    NPC_DAWNTRACKER_BRIARPATCH          = 166996,
++    NPC_GRIMAXE_BRIARPATCH              = 166997,
 +
 +    // conversation lines and texts (broadcast text ids)
 +    LINE_WARMING_UP_ACCEPT_A            = 291036,
@@ -183,6 +199,18 @@ index 000000000..501d97e01
 +    LINE_TRAINING_CHARGE2_H             = 195997,
 +    LINE_TRAINING_DONE_A                = 189266,
 +    LINE_TRAINING_DONE_H                = 195999,
++    LINE_NORTHBOUND_A                   = 178618,
++    LINE_NORTHBOUND_H                   = 196235,
++    LINE_TAMING_TEACH_A                 = 190162,
++    LINE_TAMING_TEACH_H                 = 196682,
++    LINE_TAMING_FIND_A                  = 190163,
++    LINE_TAMING_FIND_H                  = 196683,
++    LINE_BRIARPATCH_1_A                 = 178649,   // the leader
++    LINE_BRIARPATCH_2_A                 = 178650,   // the scout
++    LINE_BRIARPATCH_3_A                 = 191076,   // the leader
++    LINE_BRIARPATCH_1_H                 = 196261,
++    LINE_BRIARPATCH_2_H                 = 196262,
++    LINE_BRIARPATCH_3_H                 = 196263,
 +};
 +
 +// Finding the Lost Expedition's goal: the abandoned camp (TrinityCore's camp point)
@@ -256,6 +284,36 @@ index 000000000..501d97e01
 +            case QUEST_ENHANCED_COMBAT_TACTICS_H:
 +                SummonFollower(player, IsAlliance(player) ? NPC_TRAINER_A : NPC_TRAINER_H);
 +                break;
++            case QUEST_NORTHBOUND_A:
++            case QUEST_NORTHBOUND_H:
++                SummonFollower(player, IsAlliance(player) ? NPC_GARRICK_NORTHBOUND : NPC_GRIMAXE_NORTHBOUND);
++                break;
++            case QUEST_TAMING_THE_WILDS_A:
++            case QUEST_TAMING_THE_WILDS_H:
++                TeachTaming(player);
++                break;
++            case QUEST_DOWN_WITH_THE_QUILBOAR_A:
++            case QUEST_QUILBOAR_NECROMANCY_A:
++                // with both of the Briarpatch's quests taken the leader and the scout set off (retail's
++                // "validated quest accept")
++                if (player->GetQuestStatus(QUEST_DOWN_WITH_THE_QUILBOAR_A) != QUEST_STATUS_NONE &&
++                    player->GetQuestStatus(QUEST_QUILBOAR_NECROMANCY_A) != QUEST_STATUS_NONE)
++                {
++                    SayLine(player, { NPC_GARRICK_BRIARPATCH }, LINE_BRIARPATCH_1_A);
++                    SayLine(player, { NPC_HUXWORTH_BRIARPATCH }, LINE_BRIARPATCH_2_A, 4s);
++                    SayLine(player, { NPC_GARRICK_BRIARPATCH }, LINE_BRIARPATCH_3_A, 9s);
++                }
++                break;
++            case QUEST_DOWN_WITH_THE_QUILBOAR_H:
++            case QUEST_QUILBOAR_NECROMANCY_H:
++                if (player->GetQuestStatus(QUEST_DOWN_WITH_THE_QUILBOAR_H) != QUEST_STATUS_NONE &&
++                    player->GetQuestStatus(QUEST_QUILBOAR_NECROMANCY_H) != QUEST_STATUS_NONE)
++                {
++                    SayLine(player, { NPC_GRIMAXE_BRIARPATCH }, LINE_BRIARPATCH_1_H);
++                    SayLine(player, { NPC_DAWNTRACKER_BRIARPATCH }, LINE_BRIARPATCH_2_H, 4s);
++                    SayLine(player, { NPC_GRIMAXE_BRIARPATCH }, LINE_BRIARPATCH_3_H, 9s);
++                }
++                break;
 +            default:
 +                break;
 +        }
@@ -291,8 +349,28 @@ index 000000000..501d97e01
 +    }
 +
 +private:
-+    // a personal summon beside the player: Finding the Lost Expedition's leader (npc_er_expedition_leader),
-+    // Enhanced Combat Tactics' trainer (npc_er_combat_trainer)
++    // Taming the Wilds: the hunter scout teaches taming (retail's level 1 hunters lack it; 3.3.5a's learn it at 10):
++    // Tame Beast and the pet spells, then sends the player off to tame a beast
++    static void TeachTaming(Player* player)
++    {
++        bool alliance = IsAlliance(player);
++        uint32 scout = alliance ? NPC_HUXWORTH_BRIARPATCH : NPC_DAWNTRACKER_BRIARPATCH;
++        SayLine(player, { scout }, alliance ? LINE_TAMING_TEACH_A : LINE_TAMING_TEACH_H);
++        ObjectGuid guid = player->GetGUID();
++        player->m_Events.AddEventAtOffset([guid]()
++        {
++            Player* p = ObjectAccessor::FindPlayer(guid);
++            if (!p || p->getClass() != CLASS_HUNTER)
++                return;
++            for (uint32 spell : { 1515u, 883u, 2641u, 982u, 6991u })    // Tame Beast, Call / Dismiss / Revive / Feed Pet
++                if (!p->HasSpell(spell))
++                    p->learnSpell(spell);
++        }, 6s);
++        SayLine(player, { scout }, alliance ? LINE_TAMING_FIND_A : LINE_TAMING_FIND_H, 7s);
++    }
++
++    // a personal summon beside the player: a leader following them (npc_er_follower), Enhanced Combat Tactics'
++    // trainer (npc_er_combat_trainer)
 +    static void SummonFollower(Player* player, uint32 entry)
 +    {
 +        Position pos = player->GetNearPosition(2.0f, static_cast<float>(M_PI) / 2);
@@ -465,21 +543,52 @@ index 000000000..501d97e01
 +    bool _up = false;
 +};
 +
-+enum ExpeditionLeaderData
++enum FollowerData
 +{
-+    EVENT_LEADER_START  = 1,
-+    EVENT_LEADER_CHECK,
-+    POINT_CAMP          = 1,
++    EVENT_FOLLOWER_START    = 1,
++    EVENT_FOLLOWER_CHECK,
++    POINT_FOLLOWER_GOAL     = 1,
 +};
 +
-+// 165359 - Captain Garrick, 166805 - Warlord Breka Grimaxe: Finding the Lost Expedition. Summoned on the quest's
-+// accept (visible to the player only), they send the survivors off, follow the player to the abandoned camp and, once
-+// there, find the expedition's last survivor (Alaria / Won'sa) and walk to her
-+struct npc_er_expedition_leader : public ScriptedAI
++struct FollowerInfo
 +{
-+    npc_er_expedition_leader(Creature* creature) : ScriptedAI(creature) { }
++    uint32 Entry;
++    uint32 Quest;
++    uint32 StartLine;       // said on setting off
++    Position Goal;          // walked to once the player gets there
++    uint32 GoalLine;        // said there (0: none)
++    uint32 OtherSpeaker;    // and who answers (0: no one)
++    uint32 OtherLine;
++};
 +
-+    bool Alliance() const { return me->GetEntry() == NPC_GARRICK_FOLLOWER; }
++static FollowerInfo const Followers[] =
++{
++    // Finding the Lost Expedition: the leader sends the survivors off and finds the expedition's last survivor
++    { NPC_GARRICK_FOLLOWER, QUEST_FINDING_THE_LOST_EXPEDITION_A, LINE_EXPEDITION_A, AbandonedCamp, LINE_CAMP_LEADER_A,
++      NPC_ALARIA_CAMP, LINE_CAMP_HUNGRY_A },
++    { NPC_GRIMAXE_FOLLOWER, QUEST_FINDING_THE_LOST_EXPEDITION_H, LINE_EXPEDITION_H, AbandonedCamp, LINE_CAMP_LEADER_H,
++      NPC_WONSA_CAMP, LINE_CAMP_HUNGRY_H },
++    // Northbound: the leader leaves Alaria / Won'sa to rest and comes along to the Quilboar Briarpatch
++    { NPC_GARRICK_NORTHBOUND, QUEST_NORTHBOUND_A, LINE_NORTHBOUND_A, { -142.62154f, -2641.0364f, 48.775497f, 6.07f }, 0,
++      0, 0 },
++    { NPC_GRIMAXE_NORTHBOUND, QUEST_NORTHBOUND_H, LINE_NORTHBOUND_H, { -142.56076f, -2640.9915f, 48.755478f, 6.07f }, 0,
++      0, 0 },
++};
++
++// 165359 / 166805 (Finding the Lost Expedition), 165360 / 175034 (Northbound) - Captain Garrick, Warlord Breka
++// Grimaxe: summoned on the quest's accept (visible to the player only), they follow the player to the quest's goal and
++// walk there once the player arrives (FollowerInfo)
++struct npc_er_follower : public ScriptedAI
++{
++    npc_er_follower(Creature* creature) : ScriptedAI(creature) { }
++
++    FollowerInfo const* Info() const
++    {
++        for (FollowerInfo const& info : Followers)
++            if (info.Entry == me->GetEntry())
++                return &info;
++        return nullptr;
++    }
 +
 +    Player* Owner() const
 +    {
@@ -491,48 +600,55 @@ index 000000000..501d97e01
 +    void IsSummonedBy(WorldObject* /*summoner*/) override
 +    {
 +        me->SetReactState(REACT_PASSIVE);
-+        events.ScheduleEvent(EVENT_LEADER_START, 1s);
++        events.ScheduleEvent(EVENT_FOLLOWER_START, 1s);
 +    }
 +
 +    void MovementInform(uint32 type, uint32 id) override
 +    {
-+        if (type == POINT_MOTION_TYPE && id == POINT_CAMP)
++        if (type == POINT_MOTION_TYPE && id == POINT_FOLLOWER_GOAL)
++        {
++            if (FollowerInfo const* info = Info())
++                me->SetFacingTo(info->Goal.GetOrientation());
 +            me->DespawnOrUnsummon(10s);
++        }
 +    }
 +
 +    void UpdateAI(uint32 diff) override
 +    {
 +        events.Update(diff);
++        FollowerInfo const* info = Info();
++        if (!info)
++            return;
 +        switch (events.ExecuteEvent())
 +        {
-+            case EVENT_LEADER_START:
++            case EVENT_FOLLOWER_START:
 +                if (Player* owner = Owner())
 +                {
-+                    me->Say(Alliance() ? LINE_EXPEDITION_A : LINE_EXPEDITION_H, owner);
++                    me->Say(info->StartLine, owner);
 +                    me->GetMotionMaster()->MoveFollow(owner, 2.0f, static_cast<float>(M_PI) / 4);
 +                }
-+                events.ScheduleEvent(EVENT_LEADER_CHECK, 2s);
++                events.ScheduleEvent(EVENT_FOLLOWER_CHECK, 2s);
 +                break;
-+            case EVENT_LEADER_CHECK:
++            case EVENT_FOLLOWER_CHECK:
 +            {
 +                Player* owner = Owner();
-+                uint32 quest = Alliance() ? QUEST_FINDING_THE_LOST_EXPEDITION_A : QUEST_FINDING_THE_LOST_EXPEDITION_H;
 +                // the player left, dropped the quest or went elsewhere: no follower
-+                if (!owner || owner->GetQuestStatus(quest) == QUEST_STATUS_NONE || !me->IsWithinDist(owner, 80.0f))
++                if (!owner || owner->GetQuestStatus(info->Quest) == QUEST_STATUS_NONE || !me->IsWithinDist(owner, 80.0f))
 +                {
 +                    me->DespawnOrUnsummon();
 +                    break;
 +                }
-+                if (owner->GetDistance(AbandonedCamp) > 25.0f)
++                if (owner->GetDistance(info->Goal) > 25.0f)
 +                {
-+                    events.ScheduleEvent(EVENT_LEADER_CHECK, 1s);
++                    events.ScheduleEvent(EVENT_FOLLOWER_CHECK, 1s);
 +                    break;
 +                }
-+                SayLine(owner, { Alliance() ? uint32(NPC_ALARIA_CAMP) : uint32(NPC_WONSA_CAMP) },
-+                    Alliance() ? LINE_CAMP_HUNGRY_A : LINE_CAMP_HUNGRY_H);
-+                me->Say(Alliance() ? LINE_CAMP_LEADER_A : LINE_CAMP_LEADER_H, owner);
++                if (info->OtherSpeaker)
++                    SayLine(owner, { info->OtherSpeaker }, info->OtherLine);
++                if (info->GoalLine)
++                    me->Say(info->GoalLine, owner);
 +                me->GetMotionMaster()->Clear();
-+                me->GetMotionMaster()->MovePoint(POINT_CAMP, AbandonedCamp);
++                me->GetMotionMaster()->MovePoint(POINT_FOLLOWER_GOAL, info->Goal);
 +                break;
 +            }
 +            default:
@@ -700,13 +816,243 @@ index 000000000..501d97e01
 +    bool _done = false;
 +};
 +
++// ---- the Quilboar Briarpatch ------------------------------------------------------------------------------------
++
++enum BriarpatchData
++{
++    NPC_QUILBOAR_GEOMANCER  = 150238,
++    NPC_LINDIE_PRISONER     = 154301,
++    NPC_CORK_PRISONER       = 167008,
++
++    // retail's spells have no 3.3.5a counterpart: stock NPC spells of the kind
++    SPELL_STRIKE            = 11976,    // Quilboar Warrior's Brutal Strike
++    SPELL_LIGHTNING_BOLT    = 9532,     // Quilboar Geomancer's Earth Bolt
++    SPELL_EARTH_SHOCK       = 13281,    // Geolord Grek'og's Earth Bolt
++    SPELL_THUNDERCLAP       = 8078,     // Geolord Grek'og's Upheaval, Gork the Basher's Earthshatter
++    SPELL_BACKHAND          = 6253,     // Gork the Basher's Backhand
++
++    SAY_AGGRO               = 0,        // creature_text groups (TrinityCore's)
++    SAY_DEATH               = 1,
++
++    LINE_GEOLORD_AGGRO      = 178952,
++    LINE_LINDIE_HELP        = 191077,
++    LINE_CORK_HELP          = 196264,
++    LINE_LINDIE_FREED       = 176943,
++    LINE_CORK_FREED         = 196265,
++
++    EVENT_ABILITY_1         = 1,
++    EVENT_ABILITY_2,
++    EVENT_PRISONER_HELP,
++    EVENT_PRISONER_RUN,
++
++    ACTION_FREE_PRISONER    = 1,
++};
++
++static Position const PrisonerPosition = { 16.4271f, -2511.82f, 78.8215f, 5.66398f };
++static Position const PrisonerJumpPosition = { 19.5174f, -2513.75f, 74.0545f, 0.0f };
++static Position const PrisonerRunPosition = { 51.005207f, -2485.644f, 78.15223f, 0.0f };
++
++// 150237 - Quilboar Warrior, 150238 - Quilboar Geomancer: a battle cry and a death cry now and then
++struct npc_er_quilboar : public ScriptedAI
++{
++    npc_er_quilboar(Creature* creature) : ScriptedAI(creature) { }
++
++    void Reset() override { events.Reset(); }
++
++    void JustEngagedWith(Unit* who) override
++    {
++        if (roll_chance_f(33.3f))
++            Talk(SAY_AGGRO, who);
++        events.ScheduleEvent(EVENT_ABILITY_1, 3s, 5s);
++    }
++
++    void JustDied(Unit* killer) override
++    {
++        if (roll_chance_f(33.3f))
++            Talk(SAY_DEATH, killer);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!UpdateVictim())
++            return;
++        events.Update(diff);
++        if (me->HasUnitState(UNIT_STATE_CASTING))
++            return;
++        if (events.ExecuteEvent() == EVENT_ABILITY_1)
++        {
++            bool geomancer = me->GetEntry() == NPC_QUILBOAR_GEOMANCER;
++            DoCastVictim(geomancer ? SPELL_LIGHTNING_BOLT : SPELL_STRIKE);
++            if (geomancer)
++                events.ScheduleEvent(EVENT_ABILITY_1, 3s, 10s);
++            else
++                events.ScheduleEvent(EVENT_ABILITY_1, 8s, 12s);
++        }
++        DoMeleeAttackIfReady();
++    }
++};
++
++// 156676 - Gork the Basher (TrinityCore's Ogre Overseer)
++struct npc_er_ogre_overseer : public ScriptedAI
++{
++    npc_er_ogre_overseer(Creature* creature) : ScriptedAI(creature) { }
++
++    void Reset() override { events.Reset(); }
++
++    void JustEngagedWith(Unit* who) override
++    {
++        Talk(SAY_AGGRO, who);
++        events.ScheduleEvent(EVENT_ABILITY_1, 5s);
++        events.ScheduleEvent(EVENT_ABILITY_2, 10s, 15s);
++    }
++
++    void JustDied(Unit* killer) override
++    {
++        Talk(SAY_DEATH, killer);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!UpdateVictim())
++            return;
++        events.Update(diff);
++        if (me->HasUnitState(UNIT_STATE_CASTING))
++            return;
++        switch (events.ExecuteEvent())
++        {
++            case EVENT_ABILITY_1:
++                DoCastVictim(SPELL_BACKHAND);
++                events.ScheduleEvent(EVENT_ABILITY_1, 15s, 20s);
++                break;
++            case EVENT_ABILITY_2:
++                DoCastAOE(SPELL_THUNDERCLAP);
++                events.ScheduleEvent(EVENT_ABILITY_2, 15s, 20s);
++                break;
++            default:
++                break;
++        }
++        DoMeleeAttackIfReady();
++    }
++};
++
++// 151091 - Geolord Grek'og: his ritual holds the expedition's engineer (Lindie Springstock for the Alliance, Cork
++// Fizzlepop for the Horde: retail picks by the instance's team, here by the team of who attacks him), freed when he
++// dies
++struct npc_er_geolord : public ScriptedAI
++{
++    npc_er_geolord(Creature* creature) : ScriptedAI(creature), _summons(creature) { }
++
++    void Reset() override
++    {
++        events.Reset();
++        _summons.DespawnAll();
++    }
++
++    void JustSummoned(Creature* summon) override { _summons.Summon(summon); }
++
++    void JustEngagedWith(Unit* who) override
++    {
++        Player* player = who->GetCharmerOrOwnerPlayerOrPlayerItself();
++        me->Say(LINE_GEOLORD_AGGRO, player);
++        if (player && _summons.empty())
++            me->SummonCreature(IsAlliance(player) ? NPC_LINDIE_PRISONER : NPC_CORK_PRISONER, PrisonerPosition,
++                TEMPSUMMON_MANUAL_DESPAWN);
++        events.ScheduleEvent(EVENT_ABILITY_1, 3s, 5s);
++        events.ScheduleEvent(EVENT_ABILITY_2, 10s, 15s);
++    }
++
++    void JustDied(Unit* /*killer*/) override
++    {
++        for (ObjectGuid const& guid : _summons)
++            if (Creature* prisoner = ObjectAccessor::GetCreature(*me, guid))
++                prisoner->AI()->DoAction(ACTION_FREE_PRISONER);
++        _summons.clear();
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!UpdateVictim())
++            return;
++        events.Update(diff);
++        if (me->HasUnitState(UNIT_STATE_CASTING))
++            return;
++        switch (events.ExecuteEvent())
++        {
++            case EVENT_ABILITY_1:
++                DoCastVictim(SPELL_EARTH_SHOCK);
++                events.ScheduleEvent(EVENT_ABILITY_1, 10s, 12s);
++                break;
++            case EVENT_ABILITY_2:
++                DoCastAOE(SPELL_THUNDERCLAP);
++                events.ScheduleEvent(EVENT_ABILITY_2, 10s, 15s);
++                break;
++            default:
++                break;
++        }
++        DoMeleeAttackIfReady();
++    }
++
++private:
++    SummonList _summons;
++};
++
++// 154301 - Lindie Springstock, 167008 - Cork Fizzlepop: held over the Geolord's ritual, they call for help, and once
++// freed jump down, cheer and run off
++struct npc_er_briarpatch_prisoner : public ScriptedAI
++{
++    npc_er_briarpatch_prisoner(Creature* creature) : ScriptedAI(creature) { }
++
++    bool Alliance() const { return me->GetEntry() == NPC_LINDIE_PRISONER; }
++
++    void IsSummonedBy(WorldObject* /*summoner*/) override
++    {
++        me->SetReactState(REACT_PASSIVE);
++        me->SetDisableGravity(true);
++        me->SetControlled(true, UNIT_STATE_ROOT);
++        events.ScheduleEvent(EVENT_PRISONER_HELP, 2s);
++    }
++
++    void DoAction(int32 action) override
++    {
++        if (action != ACTION_FREE_PRISONER)
++            return;
++        events.Reset();
++        me->SetControlled(false, UNIT_STATE_ROOT);
++        me->SetDisableGravity(false);
++        me->GetMotionMaster()->MoveJump(PrisonerJumpPosition, 8.0f, 8.0f);
++        me->Say(Alliance() ? LINE_LINDIE_FREED : LINE_CORK_FREED);
++        events.ScheduleEvent(EVENT_PRISONER_RUN, 4s);
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        events.Update(diff);
++        switch (events.ExecuteEvent())
++        {
++            case EVENT_PRISONER_HELP:
++                me->Say(Alliance() ? LINE_LINDIE_HELP : LINE_CORK_HELP);
++                break;
++            case EVENT_PRISONER_RUN:
++                me->GetMotionMaster()->MovePoint(0, PrisonerRunPosition);
++                me->DespawnOrUnsummon(5s);
++                break;
++            default:
++                break;
++        }
++    }
++};
++
 +void AddSC_exiles_reach()
 +{
 +    new ExilesReachQuestScript();
 +    RegisterCreatureAI(npc_er_ship_sparring);
 +    RegisterCreatureAI(npc_er_beach_survivor);
-+    RegisterCreatureAI(npc_er_expedition_leader);
++    RegisterCreatureAI(npc_er_follower);
 +    RegisterCreatureAI(npc_er_combat_trainer);
++    RegisterCreatureAI(npc_er_quilboar);
++    RegisterCreatureAI(npc_er_ogre_overseer);
++    RegisterCreatureAI(npc_er_geolord);
++    RegisterCreatureAI(npc_er_briarpatch_prisoner);
 +}
 diff --git a/src/server/scripts/Custom/exiles_reach_start.cpp b/src/server/scripts/Custom/exiles_reach_start.cpp
 new file mode 100644
