@@ -50,8 +50,12 @@ quest pages by hand when curating these (stage 3).
      spells for retail's). Part 3: the plains (the scouting copter as a taxi flight, SCOUT_FLIGHTS; the quests'
      lines; Torgok). Part 5: the Re-Sizer (custom spell on the item: the boar grows and
      goes to the pen) and the rides (custom mount auras trampling / bombing the skeleton army; CUSTOM_SPELLS
-     13700001-4; the copter flies, its bombs reach 20 yards, Slow Fall when it ends). Left: Westward Bound's companions, the ogres' TDB SmartAI (animkits, timed lists),
-     Hrun's pit and Bloodbeak's ritual as events. Part 4: Tunk, Gor'groth, Hrun the Exiled and Bloodbeak fight with
+     13700001-4; the copter flies, its bombs reach 20 yards, Slow Fall when it ends).
+     Part 6 (flavour): TrinityCore's SmartAI
+     kept where AzerothCore's does the same (SMART_ACTIONS: the Ogre Chef's cooking walk, Lindie and the boar),
+     the stags' chained paths as one loop, stock casters' SmartAI for the ogre / Darkmaul shadowcasters and harpy
+     boltcallers (CASTERS), Westward Bound's scouts as followers. Left: Hrun's pit and Bloodbeak's ritual as
+     events. Part 4: Tunk, Gor'groth, Hrun the Exiled and Bloodbeak fight with
      two stock NPC spells each (npc_er_boss)
 4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
    races keeping their start is in the race modpaks); retail's forced first character was turned down. F-137 moves

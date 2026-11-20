@@ -76,7 +76,7 @@ TABLES = ("creature", "gameobject", "creature_template", "creature_template_mode
           "creature_queststarter", "creature_questender", "gameobject_queststarter", "gameobject_questender",
           "conditions", "phase_area", "creature_loot_template", "gameobject_loot_template", "gameobject_questitem",
           "quest_poi", "quest_poi_points", "transports", "creature_text", "conversation_template",
-          "conversation_line_template")
+          "conversation_line_template", "smart_scripts")
 CREATURE_GUID = GAMEOBJECT_GUID = 13700001
 TRANSPORT_GUIDS = {333479: 13701, 349879: 13702}    # Alliance Ship, Horde Transport: exiles_reach_start.cpp's
 PATH_NODE_BASE = 137000                             # TaxiPathNode ids (stock's end at 46874, F-076's at 50000+)
@@ -126,6 +126,21 @@ CUSTOM_SPELLS = {
     # the ground from the air
     SPELL_COPTER_BOMB: (11969, "Re-Deather Bomb", dict(effect_radius_index_1=9, cast_time_index=1)),
 }
+# TrinityCore's SmartAI of the island's creatures and the timed action lists they call, kept where AzerothCore's
+# SmartAI does the same: these actions (talk, emote, emote state, orientation / look at, timed list, stand state,
+# casts of spells stock has); the rest (animkits, retail spells, morphs) is left out. Waypoint chains (reached the
+# end of path A -> start path B) become one looping path (creatures())
+SMART_ACTIONS = {1, 5, 11, 17, 66, 80, 85, 90, 91}
+# casters retail scripts in C++ or not at all: a stock caster's SmartAI of their level (AzerothCore's), as
+# (event, event params, action, action params, target): Frostmane Shadowcaster's (1124) for the ogre and Darkmaul
+# shadowcasters, Windfury Wind Witch's (2963) for the harpy boltcallers. Casters without mana get the mage class
+SHADOWCASTER = [(1, (1000, 1000, 1800000, 1800000), 11, (20798, 1), 1, "Out of combat - Cast Demon Skin"),
+                (0, (500, 500, 3400, 6400), 11, (20791, 64), 2, "In combat (at range) - Cast Shadow Bolt"),
+                (0, (0, 0, 180000, 186200), 11, (11980, 0), 2, "In combat - Cast Curse of Weakness"),
+                (2, (0, 15, 0, 0), 25, (1, 0), 1, "At 15% health - Flee for assist")]
+BOLTCALLER = [(0, (1700, 3700, 4800, 7900), 11, (9532, 64), 2, "In combat (at range) - Cast Lightning Bolt"),
+              (2, (5, 30, 0, 0), 11, (6982, 0), 2, "At 30% health - Cast Gust of Wind")]
+CASTERS = {153242: SHADOWCASTER, 161006: SHADOWCASTER, 156821: SHADOWCASTER, 152843: BOLTCALLER}
 SPELL_SCRIPTS = {SPELL_RE_SIZER: "spell_er_re_sizer", SPELL_RIDE_COPTER: "spell_er_ride_copter"}
 ITEM_SPELLS = {170557: SPELL_RE_SIZER, 178051: SPELL_RE_SIZER}    # the Re-Sizers, both factions
 WOWHEAD_GUID = 13790001            # creature / object guids of the spawns placed at Wowhead's points
@@ -170,6 +185,8 @@ SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",     
             162817: "npc_er_torgok",                                                 # the boar ride / Re-Deather
             157300: "npc_er_boss", 156814: "npc_er_boss", 156900: "npc_er_boss",     # Tunk, Gor'groth, Hrun
             156595: "npc_er_ride", 167142: "npc_er_ride",                            # the boar / copter rides
+            156891: "npc_er_follower", 156803: "npc_er_follower",                    # Westward Bound's scouts
+            167225: "npc_er_follower", 167226: "npc_er_follower",
             153964: "npc_er_boss"}                                                   # Bloodbeak
 # the SCRIPTED ones talked to (gossip flag): Emergency First Aid's survivors, the scouting copters
 SCRIPTED_GOSSIP = {156609, 156610, 156612, 166786, 166791, 166796, 156518, 167027, 156595, 167142}
@@ -360,6 +377,7 @@ class Port:
         if clash:
             sys.exit("entries another modpak uses: %s" % sorted(clash))
         self.talks = self.talk_credits()
+        self.smart = self.smart_rows()
 
     # ---- Wowhead's quest givers and map points --------------------------------------------------------------------
     def world_xy(self, x, y):
@@ -763,9 +781,11 @@ class Port:
                          18, CLASSIFICATION.get(n(r["Classification"]), n(r["Classification"])), n(r["dmgschool"]),
                          n(d.get("DamageModifier"), 1), n(r["BaseAttackTime"], 2000) or 2000,
                          n(r["RangeAttackTime"], 2000) or 2000, n(r["BaseVariance"], 1) or 1,
-                         n(r["RangeVariance"], 1) or 1, n(r["unit_class"], 1) or 1, n(r["unit_flags"]),
+                         n(r["RangeVariance"], 1) or 1,
+                         8 if e in CASTERS and n(r["unit_class"], 1) in (1, 4) else n(r["unit_class"], 1) or 1,
+                         n(r["unit_flags"]),
                          n(r["unit_flags2"]) & 0x3FFFF, 0, family, n(r["type"]), 0, e if rows else 0, 0, 0, 0, 0, 0, 0,
-                         "SmartAI" if talk and e not in SCRIPTED else "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
+                         "SmartAI" if (talk or e in self.smart) and e not in SCRIPTED else "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
                          n(d.get("ArmorModifier"), 1), n(r["ExperienceModifier"], 1) or 1, n(r["RacialLeader"]), 0,
                          n(r["RegenHealth"], 1), 0, 0, SCRIPTED.get(e, ""), 0])
             a = addons.get(e)
@@ -878,9 +898,28 @@ class Port:
             "creature_addon", "guid path_id mount bytes1 bytes2 emote visibilityDistanceType auras Comment".split(), ca,
             "DELETE FROM `creature_addon` WHERE `guid` BETWEEN %d AND %d;" % (CREATURE_GUID, CREATURE_GUID + 99999)))
         mtype = {n(r["PathId"]): n(r["MoveType"]) for r in self.t["waypoint_path"]}
-        wp = [[paths[n(r["PathId"])], n(r["NodeId"]), n(r["PositionX"]), n(r["PositionY"]), n(r["PositionZ"]),
-               n(r["Orientation"]) if r["Orientation"] is not None else None, "", n(r["Delay"]), mtype.get(n(r["PathId"]), 0),
-               0, 100, 0] for r in self.t["waypoint_path_node"] if n(r["PathId"]) in paths]
+        nodes = collections.defaultdict(list)
+        for r in self.t["waypoint_path_node"]:
+            nodes[n(r["PathId"])].append(r)
+        # retail chains paths by SmartAI (path A's end starts path B): one path of the whole loop
+        chain = {n(r["event_param2"]): n(r["action_param2"]) for r in self.t["smart_scripts"]
+                 if r["source_type"] == "0" and r["event_type"] == "40" and r["action_type"] == "53"}
+        wp = []
+        for path, new in paths.items():
+            seq, cur = [], path
+            while cur and cur not in seq:
+                seq.append(cur)
+                cur = chain.get(cur)
+            point = 0
+            for p in seq:
+                for r in sorted(nodes[p], key=lambda r: n(r["NodeId"])):
+                    wp.append([new, point if len(seq) == 1 else point + 1, n(r["PositionX"]), n(r["PositionY"]),
+                               n(r["PositionZ"]), n(r["Orientation"]) if r["Orientation"] is not None else None, "",
+                               n(r["Delay"]), mtype.get(path, 0), 0, 100, 0])
+                    point += 1
+            if len(seq) == 1:       # retail's own node ids (the SmartAI's waypoint events name them)
+                for w, r in zip(wp[len(wp) - point:], sorted(nodes[path], key=lambda r: n(r["NodeId"]))):
+                    w[1] = n(r["NodeId"])
         self.write("44_waypoint_data", insert(
             "waypoint_data", "id point position_x position_y position_z orientation Comment delay move_type action "
             "action_chance wpguid".split(), sorted(wp, key=lambda w: (w[0], w[1])),
@@ -1093,12 +1132,64 @@ class Port:
                     out[obj].add(obj)
         return {e: sorted(c) for e, c in out.items() if e in self.entries and e not in SCRIPTED}
 
+    def smart_rows(self):
+        """{entry: [smart_scripts row]}: TrinityCore's SmartAI of the island's creatures (SMART_ACTIONS; not those the
+        core scripts or the talk credits use) and CASTERS'; their timed action lists under entry -1 * list id"""
+        stock_spell = lambda v: n(v) in self.stock_spells
+        by = collections.defaultdict(list)
+        for r in self.t["smart_scripts"]:
+            by[(n(r["source_type"]), n(r["entryorguid"]))].append(r)
+
+        def keep(r):
+            a = n(r["action_type"])
+            return a in SMART_ACTIONS and (a not in (11, 85) or stock_spell(r["action_param1"]))
+
+        def port(rows):
+            ok = {n(r["id"]) for r in rows if keep(r)}
+            # linked rows (event 61) go with the row linking to them
+            for r in sorted(rows, key=lambda r: n(r["id"])):
+                if n(r["event_type"]) == 61 and not any(n(x["link"]) == n(r["id"]) and n(x["id"]) in ok for x in rows):
+                    ok.discard(n(r["id"]))
+            out = []
+            for r in rows:
+                if n(r["id"]) not in ok:
+                    continue
+                link = n(r["link"]) if n(r["link"]) in ok else 0
+                out.append([n(r["entryorguid"]), n(r["source_type"]), n(r["id"]), link, n(r["event_type"]),
+                            n(r["event_phase_mask"]), n(r["event_chance"], 100), n(r["event_flags"]) & 0x1FF]
+                           + [n(r["event_param%d" % i]) for i in range(1, 6)] + [0, n(r["action_type"])]
+                           + [n(r["action_param%d" % i]) for i in range(1, 7)] + [n(r["target_type"])]
+                           + [n(r["target_param%d" % i]) for i in range(1, 5)]
+                           + [n(r["target_%s" % c]) for c in "xyzo"] + [(r["comment"] or "")[:255]])
+            return out
+
+        out = {}
+        for e in self.entries:
+            if e in SCRIPTED or e in self.talks or e in TALK_ITEMS:
+                continue
+            if e in CASTERS:
+                out[e] = [[e, 0, i, 0, ev, 0, 100, 0] + list(ep) + [0, 0, act] + list(ap) + [0, 0, 0, 0, tgt, 0, 0, 0, 0,
+                                                                                          0, 0, 0, 0,
+                                                                                          "%s - %s" % (self.ct[e]["name"], c)]
+                          for i, (ev, ep, act, ap, tgt, c) in enumerate(CASTERS[e])]
+                continue
+            rows = port(by.get((0, e), []))
+            for r in list(rows):
+                if r[14] == 80:                         # its timed action lists
+                    rows += port(by.get((9, r[15]), []))
+            if rows:
+                out[e] = rows
+                self.dropped["TrinityCore SmartAI ported (SMART_ACTIONS)"].append(e)
+        return out
+
     def talk_scripts(self):
         cols = ("entryorguid source_type id link event_type event_phase_mask event_chance event_flags event_param1 "
                 "event_param2 event_param3 event_param4 event_param5 event_param6 action_type action_param1 "
                 "action_param2 action_param3 action_param4 action_param5 action_param6 target_type target_param1 "
                 "target_param2 target_param3 target_param4 target_x target_y target_z target_o comment").split()
         rows = []
+        for e in sorted(self.smart):
+            rows += self.smart[e]
         for e in sorted(set(self.talks) | set(TALK_ITEMS)):
             credits = self.talks.get(e, [])
             for i, c in enumerate(credits):
@@ -1112,8 +1203,11 @@ class Port:
                 self.conditions.append([22, i + 1, e, 0, 0, 9, 0, q, 0, 0, 0, 0, 0, "",
                                         "%s's quest item %d: only on quest %d" % (self.ct[e]["name"], item, q)])
         self.write("65_smart_scripts", insert("smart_scripts", cols, rows,
-                                              "DELETE FROM `smart_scripts` WHERE `source_type` = 0 AND `entryorguid` IN %s;"
-                                              % in_list(set(self.talks) | set(TALK_ITEMS)) if rows else None,
+                                              "DELETE FROM `smart_scripts` WHERE (`source_type` = 0 AND `entryorguid` IN %s) "
+                                              "OR (`source_type` = 9 AND `entryorguid` IN %s);"
+                                              % (in_list(set(self.talks) | set(TALK_ITEMS) | set(self.smart)),
+                                                 in_list({r[0] for rs in self.smart.values() for r in rs if r[1] == 9}
+                                                         or {0})) if rows else None,
                                               "Talking to these NPCs gives the quest credits retail gives by an "
                                               "item, a ride or a scene (talk_credits)"))
 

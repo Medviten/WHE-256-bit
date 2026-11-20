@@ -99,7 +99,8 @@
   rotation checks need retail's level 1 spells, taming for hunters, the Geolord and his prisoner, the scouting
   flight as a taxi ride, Torgok, the Re-Sizer and the boar / copter rides as custom spells (13700001-4: the rides
   are a mount aura that tramples or bombs around you, the copter's a flying one; not retail's vehicles); enemies use stock NPC spells for
-  retail's). The ogres' TrinityCore SmartAI and Westward Bound's companions aren't ported (plan.md stage 3)
+  retail's). TrinityCore's SmartAI is kept where AzerothCore's does the same (animkits and retail spells left
+  out); the ogre and Darkmaul shadowcasters and the harpy boltcallers cast a stock caster's spells (plan.md stage 3)
 - The ship intro has no crash scene (retail's cutscene): the turn-in teleports you to the beach. The hunters' pets
   on deck are left out
 - New characters' hearthstones are bound to the beach until Kalecgos sends them to their capital. Random bots of
