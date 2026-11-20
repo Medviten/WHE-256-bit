@@ -103,24 +103,30 @@ KILL_CREDITS = {160737: 174954,    # Combat Dummy: Warming Up's credit (retail c
                 157091: 165150}    # Monstrous Cadaver: the boar ride's skeleton army
 # Custom spells (3.3.5a has no retail counterpart), cloned from a stock spell: id -> (donor, name, changes). The core's
 # exiles_reach.cpp scripts them (SPELL_SCRIPTS). Ids 137xxxxx (F-134 has 134xxxxx)
-SPELL_RE_SIZER, SPELL_RIDE_BOAR, SPELL_RIDE_COPTER = 13700001, 13700002, 13700003
+SPELL_RE_SIZER, SPELL_RIDE_BOAR, SPELL_RIDE_COPTER, SPELL_COPTER_BOMB = 13700001, 13700002, 13700003, 13700004
 CUSTOM_SPELLS = {
     # Re-Sizer v9.0.1 (Re-sizing the Situation): a dummy on the targeted boar, from Inoculate Nestlewood Owlkin
     SPELL_RE_SIZER: (29528, "Re-Sizer v9.0.1", dict(effect_1=3, effect_apply_aura_name_1=0, effect_amplitude_1=0,
                                                    effect_trigger_spell_1=0, duration_index=0)),
     # Riding the Giant Boar (Ride of the Scientifically Enhanced Boar) / the Choppy Booster (The Re-Deather): Brown
-    # Horse's mount and speed for two minutes, instant, with a trample (Trample, 5568) or a bomb (Fire Nova, 11969)
-    # each 1.5 seconds around the rider: the skeleton army falls under it
+    # Horse's mount for two minutes, instant, with a trample (Trample, 5568) or a bomb (SPELL_COPTER_BOMB) each 1.5
+    # seconds around the rider: the skeleton army falls under it. The boar runs (ground speed +100%), the copter
+    # flies (aura 207, mounted flight speed +100%, which lets its rider fly anywhere: no flying-area attribute)
     SPELL_RIDE_BOAR: (458, "Giant Boar", dict(effect_misc_value_a_1=156595, effect_base_points_2=99, cast_time_index=1,
                                               duration_index=4, effect_3=6, effect_apply_aura_name_3=23,
                                               effect_amplitude_3=1500, effect_trigger_spell_3=5568,
                                               effect_implicit_target_a_3=1)),
-    SPELL_RIDE_COPTER: (458, "Choppy Booster Mk. 5", dict(effect_misc_value_a_1=167142, effect_base_points_2=99,
-                                                          cast_time_index=1, duration_index=4, effect_3=6,
-                                                          effect_apply_aura_name_3=23, effect_amplitude_3=1500,
-                                                          effect_trigger_spell_3=11969, effect_implicit_target_a_3=1)),
+    SPELL_RIDE_COPTER: (458, "Choppy Booster Mk. 5", dict(effect_misc_value_a_1=167142, effect_apply_aura_name_2=207,
+                                                          effect_base_points_2=99, cast_time_index=1, duration_index=4,
+                                                          effect_3=6, effect_apply_aura_name_3=23,
+                                                          effect_amplitude_3=1500,
+                                                          effect_trigger_spell_3=SPELL_COPTER_BOMB,
+                                                          effect_implicit_target_a_3=1)),
+    # the Re-Deather's bombs: Fire Nova (about 100 fire damage to the enemies around), reaching 20 yards so it hits
+    # the ground from the air
+    SPELL_COPTER_BOMB: (11969, "Re-Deather Bomb", dict(effect_radius_index_1=9, cast_time_index=1)),
 }
-SPELL_SCRIPTS = {SPELL_RE_SIZER: "spell_er_re_sizer"}
+SPELL_SCRIPTS = {SPELL_RE_SIZER: "spell_er_re_sizer", SPELL_RIDE_COPTER: "spell_er_ride_copter"}
 ITEM_SPELLS = {170557: SPELL_RE_SIZER, 178051: SPELL_RE_SIZER}    # the Re-Sizers, both factions
 WOWHEAD_GUID = 13790001            # creature / object guids of the spawns placed at Wowhead's points
 # An End to Beginnings' enders, at the cities' arrival points (exiles_reach_start.cpp's Kalecgos sends players there):
