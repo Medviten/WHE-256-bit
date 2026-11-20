@@ -79,7 +79,11 @@
    ConversationLine among them), then step 4 again with a new `<stage>` (without `--tiles`) for the models, textures
    and icons it lists. The scripted steps: the core's `exiles_reach.cpp` (TrinityCore's zone_exiles_reach.cpp,
    ported; in `patches/core/exiles-reach-start.patch`) and the hand-written `sql/db-world/base/zz_[F-137]_smartai.sql`
-8. F-134's art fix-ups on the new art (each `python -I <script> <folder>`): `tools/models/mop_m2_env.py`,
+8. Music and ambience (after step 3, which writes them as 0): `python -I -X utf8 tools/races/retail_music.py <csv>
+   modpaks/F-137_exiles-reach` (`<csv>` also needs ZoneMusic, SoundAmbience, ZoneIntroMusicTable, SoundKit and
+   SoundKitEntry), then `python -I tools/races/zep_goblin_sounds.py --sql "modpaks/F-137_exiles-reach/dbc/[F-137]_music_soundentries.sql"
+   --common <WHE-common>/patch-ER.MPQ --build 12.1.5.70961` for the files the client lacks
+9. F-134's art fix-ups on the new art (each `python -I <script> <folder>`): `tools/models/mop_m2_env.py`,
    `mop_m2_nobatch.py`, `wmo_mop_fixups.py`
 
 ### Known Issues
