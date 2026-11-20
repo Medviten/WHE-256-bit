@@ -1410,6 +1410,12 @@ class Port:
                 if t in taken_at:
                     sys.exit("area trigger %d is another modpak's" % t)
                 special |= EXPLORATION
+                if t in {x[0] for x in involved}:
+                    # AzerothCore keys areatrigger_involvedrelation by trigger alone (one quest each): a quest sharing
+                    # a trigger with another (the faction twins) gets a copy of it under a new id above retail's
+                    t = max(max(map(int, at)), max(x["id"] for x in triggers)) + 1
+                    if t in taken_at:
+                        sys.exit("area trigger %d is another modpak's" % t)
                 involved.append([t, q])
                 if t not in {x["id"] for x in triggers}:
                     triggers.append(dict(id=t, map_id=n(r["ContinentID"]), x=float(r["Pos_0"]), y=float(r["Pos_1"]),
