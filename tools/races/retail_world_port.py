@@ -141,7 +141,9 @@ SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",     
             151091: "npc_er_geolord", 154301: "npc_er_briarpatch_prisoner",
             167008: "npc_er_briarpatch_prisoner", 156676: "npc_er_ogre_overseer",
             156518: "npc_er_scout_copter", 167027: "npc_er_scout_copter",            # the scouting flights
-            162817: "npc_er_torgok"}                                                 # the boar ride / Re-Deather
+            162817: "npc_er_torgok",                                                 # the boar ride / Re-Deather
+            157300: "npc_er_boss", 156814: "npc_er_boss", 156900: "npc_er_boss",     # Tunk, Gor'groth, Hrun
+            153964: "npc_er_boss"}                                                   # Bloodbeak
 # the SCRIPTED ones talked to (gossip flag): Emergency First Aid's survivors, the scouting copters
 SCRIPTED_GOSSIP = {156609, 156610, 156612, 166786, 166791, 166796, 156518, 167027}
 # retail conversations (TrinityCore's zone_exiles_reach.cpp) whose lines exiles_reach.cpp speaks: their broadcast
@@ -250,6 +252,12 @@ def n(v, default=0):
         return v
     f = float(v)
     return int(f) if f.is_integer() and "." not in v and "e" not in v.lower() else f
+
+
+def retail_text(text):
+    """A retail text for 3.3.5a: retail's icons (|T...|t) dropped, spell links (retail's ids) as plain names."""
+    text = re.sub(r"\|T[^|]*\|t ?", "", text)
+    return re.sub(r"\|c\w{8}\|H[^|]*\|h\[([^]]*)\]\|h\|r", r"\1", text)
 
 
 def table(csv_dir, name, key="ID"):
@@ -1084,7 +1092,7 @@ class Port:
         """The creatures' texts (TrinityCore's creature_text) and the broadcast texts they and the CONVERSATIONS'
         lines use (retail's BroadcastText, from TrinityCore's hotfixes: --hotfixes), at retail's ids, which stock's
         broadcast_text (up to 77865) and the other modpaks (100000 and up) don't use. Sounds are left out (retail's
-        sound kits), and emotes and languages 3.3.5a lacks"""
+        sound kits), and emotes and languages 3.3.5a lacks, and retail's icons and spell links in the texts"""
         if not self.a.hotfixes:
             return
         bt = {n(r["ID"]): r for r in tdb_tables(self.a.hotfixes, self.a.cache and self.a.cache + ".bt",
@@ -1106,7 +1114,8 @@ class Port:
                 "comment").split()
         self.write("66_creature_text", insert(
             "creature_text", cols,
-            [[n(r["CreatureID"]), n(r["GroupID"]), n(r["ID"]), r["Text"] or "", n(r["Type"]), lang(r["Language"]),
+            [[n(r["CreatureID"]), n(r["GroupID"]), n(r["ID"]), retail_text(r["Text"] or ""),
+              n(r["Type"]), lang(r["Language"]),
               float(r["Probability"] or 0), emote(r["Emote"]), n(r["Duration"]), 0, n(r["BroadcastTextId"]),
               n(r["TextRange"]), (r["comment"] or "")[:255]] for r in rows],
             "DELETE FROM `creature_text` WHERE `CreatureID` IN %s;" % in_list(ents),

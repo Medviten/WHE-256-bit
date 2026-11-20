@@ -103,7 +103,7 @@
   (OBJECTIVE_TALKS in retail_world_port.py), so they complete at once. Bloodbeak (the harpy rescues) is spawned at
   Wowhead's spot atop the roost; killing it completes the rescue (no ritual event). The class quest chests stand beside their NPCs (no
   positions known). Training Rock has no giver. Retail's emote steps and buying / selling are left out
-- Darkmaul Citadel: no boss mechanics (Tunk and Gor'groth only melee), its doors are left out (TrinityCore opens
+- Darkmaul Citadel: Tunk and Gor'groth have two stock NPC spells each in place of retail's mechanics; its doors are left out (TrinityCore opens
   them by script), no group finder entry, no vmaps (NPCs standing on the citadel's floors drop to the terrain when
   they move)
 - Dressed story NPCs (the crews) wear a stock NPC look of their race and sex for now (plan.md stage 2)

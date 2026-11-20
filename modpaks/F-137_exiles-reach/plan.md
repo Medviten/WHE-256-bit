@@ -49,8 +49,9 @@ quest pages by hand when curating these (stage 3).
      Northbound, Taming the Wilds (teaches taming), the Briarpatch (Geolord, prisoners, quilboar, Gork; stock NPC
      spells for retail's). Part 3: the plains (the scouting copter as a taxi flight, SCOUT_FLIGHTS; the quests'
      lines; Torgok). Left: the re-sizer and the boar ride as retail plays them (an item on the boars, a vehicle:
-     a kill and a talk credit for now), Westward Bound's companions, then what TrinityCore lacks: Hrun's pit, Bloodbeak's
-     ritual, the harpies and ogres, Darkmaul's bosses
+     a kill and a talk credit for now), Westward Bound's companions, the ogres' TDB SmartAI (animkits, timed lists),
+     Hrun's pit and Bloodbeak's ritual as events. Part 4: Tunk, Gor'groth, Hrun the Exiled and Bloodbeak fight with
+     two stock NPC spells each (npc_er_boss)
 4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
    races keeping their start is in the race modpaks); retail's forced first character was turned down. F-137 moves
    those races' playercreateinfo to the beach; `ExilesReachStartZone.Enable` boards them on their faction's sailing
