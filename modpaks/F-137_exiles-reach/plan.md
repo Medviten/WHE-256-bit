@@ -47,7 +47,9 @@ quest pages by hand when curating these (stage 3).
      ship and beach walk paths skipped). Texts: creature_text plus retail's broadcast texts (`--hotfixes`), spoken by
      id. Part 1 (2026-11-20, untested): the ships, the beach, the abandoned camp, Enhanced Combat Tactics. Part 2:
      Northbound, Taming the Wilds (teaches taming), the Briarpatch (Geolord, prisoners, quilboar, Gork; stock NPC
-     spells for retail's). Next: the scouting flight, Re-sizing the Situation, the boar ride / The Re-Deather, Westward Bound, then what TrinityCore lacks: Hrun's pit, Bloodbeak's
+     spells for retail's). Part 3: the plains (the scouting copter as a taxi flight, SCOUT_FLIGHTS; the quests'
+     lines; Torgok). Left: the re-sizer and the boar ride as retail plays them (an item on the boars, a vehicle:
+     a kill and a talk credit for now), Westward Bound's companions, then what TrinityCore lacks: Hrun's pit, Bloodbeak's
      ritual, the harpies and ogres, Darkmaul's bosses
 4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
    races keeping their start is in the race modpaks); retail's forced first character was turned down. F-137 moves

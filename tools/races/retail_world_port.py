@@ -80,6 +80,15 @@ TABLES = ("creature", "gameobject", "creature_template", "creature_template_mode
 CREATURE_GUID = GAMEOBJECT_GUID = 13700001
 TRANSPORT_GUIDS = {333479: 13701, 349879: 13702}    # Alliance Ship, Horde Transport: exiles_reach_start.cpp's
 PATH_NODE_BASE = 137000                             # TaxiPathNode ids (stock's end at 46874, F-076's at 50000+)
+# The scouting flights (The Scout-o-Matic 5000, The Choppy Booster Mk. 5): retail flies the copter (a vehicle) along
+# TrinityCore's paths 15652600 / 15652601 out to the ogre ruins and back; here a taxi flight on the copter
+# (exiles_reach.cpp's npc_er_scout_copter): TaxiPath id -> (from node, to node, mount creature). Free node ids under
+# the taxi mask's 448 (stock and F-010 use the rest)
+SCOUT_FLIGHTS = {13710: (429, 430, 156518), 13711: (431, 432, 167027)}
+SCOUT_PATH = [(107.872, -2414.18, 95.6877), (115.21, -2420.22, 135.1), (156.118, -2398.14, 138.275),
+              (182.069, -2381.79, 138.275), (211.519, -2379.63, 138.275),
+              (236.5, -2360.0, 140.0), (211.5, -2335.0, 140.0), (186.5, -2360.0, 140.0),   # a turn over the ruins
+              (174.542, -2386.82, 124.667), (140.0, -2405.0, 110.0), (107.872, -2414.18, 95.6877)]
 # the dungeon's portals: (trigger id, map, x, y, z, radius) -> (map, x, y, z, orientation); the targets are
 # TrinityCore's world_safe_locs 100096 (entrance) and 100097 (exit), the triggers at its Instance Portal objects
 DUNGEON = 2236
@@ -130,7 +139,11 @@ SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",     
             164577: "npc_er_combat_trainer", 166916: "npc_er_combat_trainer",        # Enhanced Combat Tactics
             150237: "npc_er_quilboar", 150238: "npc_er_quilboar",                    # the Quilboar Briarpatch
             151091: "npc_er_geolord", 154301: "npc_er_briarpatch_prisoner",
-            167008: "npc_er_briarpatch_prisoner", 156676: "npc_er_ogre_overseer"}
+            167008: "npc_er_briarpatch_prisoner", 156676: "npc_er_ogre_overseer",
+            156518: "npc_er_scout_copter", 167027: "npc_er_scout_copter",            # the scouting flights
+            162817: "npc_er_torgok"}                                                 # the boar ride / Re-Deather
+# the SCRIPTED ones talked to (gossip flag): Emergency First Aid's survivors, the scouting copters
+SCRIPTED_GOSSIP = {156609, 156610, 156612, 166786, 166791, 166796, 156518, 167027}
 # retail conversations (TrinityCore's zone_exiles_reach.cpp) whose lines exiles_reach.cpp speaks: their broadcast
 # texts go to broadcast_text with the creatures' texts (the script names the lines by broadcast text id)
 CONVERSATIONS = (11685, 12043, 12044, 12058, 12066, 12073, 12078, 12083, 12084, 12086, 12089, 12090, 12092, 12127,
@@ -704,8 +717,10 @@ class Port:
                      if self.item(i)]
             loot += [[e, self.item(x["Item"]), 0, n(x["Chance"]), n(x["QuestRequired"]), n(x["LootMode"], 1) or 1,
                       n(x["GroupId"]), n(x["MinCount"], 1), n(x["MaxCount"], 1), x["Comment"] or ""] for x in rows]
-            talk = e in self.talks or e in TALK_ITEMS
+            talk = e in self.talks or e in TALK_ITEMS or e in SCRIPTED_GOSSIP
             npcflag = n(r["npcflag"]) & 0x7FFFFFF | (2 if e in givers else 0) | (1 if talk else 0)
+            if e in SCRIPTED_GOSSIP:
+                npcflag &= ~0x1000000       # no spellclick (retail's vehicles): the client would send that, not gossip
             tmpl.append([e, 0, 0, 0, KILL_CREDITS.get(e, 0), 0, r["name"], r["subname"] or None, r["IconName"] or None, 0, lo, hi, 0,
                          self.faction(n(r["faction"])), npcflag, n(r["speed_walk"], 1), n(r["speed_run"], 1.14286), 1, 1,
                          18, CLASSIFICATION.get(n(r["Classification"]), n(r["Classification"])), n(r["dmgschool"]),
@@ -713,7 +728,7 @@ class Port:
                          n(r["RangeAttackTime"], 2000) or 2000, n(r["BaseVariance"], 1) or 1,
                          n(r["RangeVariance"], 1) or 1, n(r["unit_class"], 1) or 1, n(r["unit_flags"]),
                          n(r["unit_flags2"]) & 0x3FFFF, 0, family, n(r["type"]), 0, e if rows else 0, 0, 0, 0, 0, 0, 0,
-                         "SmartAI" if talk else "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
+                         "SmartAI" if talk and e not in SCRIPTED else "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
                          n(d.get("ArmorModifier"), 1), n(r["ExperienceModifier"], 1) or 1, n(r["RacialLeader"]), 0,
                          n(r["RegenHealth"], 1), 0, 0, SCRIPTED.get(e, ""), 0])
             a = addons.get(e)
@@ -963,8 +978,24 @@ class Port:
                              loading_screen_id=0, minimap_icon_scale=1.0, corpse_map_id=-1, corpse_x=0.0, corpse_y=0.0,
                              time_override=0, expansion=2, raid_offset=0, max_players=0))
             rows.append([TRANSPORT_GUIDS[e], e, "Exile's Reach: %s (new characters' intro)" % g["name"], ""])
-        self.write_dbc("taxipath", paths, "The Exile's Reach ships' paths (retail's)")
-        self.write_dbc("taxipathnode", path_nodes, "The Exile's Reach ships' paths (retail's, padded at both ends)")
+        taxi_nodes = []
+        for path, (start, end, mount) in sorted(SCOUT_FLIGHTS.items()):
+            if path in taken_paths:
+                sys.exit("TaxiPath %d is another modpak's" % path)
+            name = "Exile's Reach: %s" % self.ct[mount]["name"]
+            for node in (start, end):
+                x, y, z = SCOUT_PATH[0]
+                taxi_nodes.append(dict(id=node, map=self.a.map, x=x, y=y, z=z, name_enus=name, name_flags=16712190,
+                                       mount_creature_id_1=mount, mount_creature_id_2=mount))
+            paths.append(dict(id=path, from_taxi_node=start, to_taxi_node=end, cost=0))
+            for i, (x, y, z) in enumerate(SCOUT_PATH):
+                path_nodes.append(dict(id=node_id, path_id=path, node_index=i, map=self.a.map, x=x, y=y, z=z, flags=0,
+                                       delay=0, arrival_event_id=0, departure_event_id=0))
+                node_id += 1
+        self.write_dbc("taxinodes", taxi_nodes, "The Exile's Reach scouting flights' ends (SCOUT_FLIGHTS)")
+        self.write_dbc("taxipath", paths, "The Exile's Reach ships' paths (retail's) and scouting flights")
+        self.write_dbc("taxipathnode", path_nodes, "The Exile's Reach ships' paths (retail's, padded at both ends) "
+                                                   "and scouting flights (SCOUT_PATH)")
         self.write_dbc("map", maps, "The Exile's Reach ships' decks (transport maps, as stock's)")
         self.write("43_transports", insert("transports", "guid entry name ScriptName".split(), rows,
                                            "DELETE FROM `transports` WHERE `guid` IN %s;" % in_list(r[0] for r in rows)))

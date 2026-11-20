@@ -69,10 +69,10 @@ index 9cf4c4014..643ddb966 100644
  }
 diff --git a/src/server/scripts/Custom/exiles_reach.cpp b/src/server/scripts/Custom/exiles_reach.cpp
 new file mode 100644
-index 000000000..0ea343c13
+index 000000000..7ad9508ac
 --- /dev/null
 +++ b/src/server/scripts/Custom/exiles_reach.cpp
-@@ -0,0 +1,981 @@
+@@ -0,0 +1,1160 @@
 +/*
 + * Custom: F-137 Exile's Reach scripts, ported from TrinityCore's zone_exiles_reach.cpp (retail's new player island,
 + * map 2175, its ships 2261 / 2369).
@@ -98,6 +98,7 @@ index 000000000..0ea343c13
 +#include "ScriptedGossip.h"
 +#include "SpellInfo.h"
 +#include "TemporarySummon.h"
++#include <span>
 +
 +enum ExilesReachData
 +{
@@ -124,6 +125,12 @@ index 000000000..0ea343c13
 +    QUEST_QUILBOAR_NECROMANCY_A         = 55184,
 +    QUEST_DOWN_WITH_THE_QUILBOAR_H      = 59938,
 +    QUEST_QUILBOAR_NECROMANCY_H         = 59939,
++    QUEST_SCOUT_O_MATIC_A               = 55193,
++    QUEST_CHOPPY_BOOSTER_H              = 59940,
++    QUEST_RESIZING_A                    = 56034,
++    QUEST_RESIZING_H                    = 59941,
++    QUEST_BOAR_RIDE_A                   = 55879,
++    QUEST_RE_DEATHER_H                  = 59942,
 +
 +    // the ships
 +    NPC_GARRICK_SHIP                    = 156280,
@@ -153,6 +160,16 @@ index 000000000..0ea343c13
 +    NPC_GARRICK_BRIARPATCH              = 156662,
 +    NPC_DAWNTRACKER_BRIARPATCH          = 166996,
 +    NPC_GRIMAXE_BRIARPATCH              = 166997,
++
++    // the plains
++    NPC_LINDIE_PLAINS                   = 149899,
++    NPC_CORK_PLAINS                     = 167019,
++    NPC_GARRICK_PLAINS                  = 156280,   // the ship's entry, standing at the plains camp too
++    NPC_GRIMAXE_PLAINS                  = 167021,
++    NPC_SCOUT_O_MATIC                   = 156518,
++    NPC_CHOPPY_BOOSTER                  = 167027,
++    NPC_HENRY_PRISONER                  = 156799,
++    NPC_SHUJA_PRISONER                  = 167126,
 +
 +    // conversation lines and texts (broadcast text ids)
 +    LINE_WARMING_UP_ACCEPT_A            = 291036,
@@ -211,29 +228,48 @@ index 000000000..0ea343c13
 +    LINE_BRIARPATCH_1_H                 = 196261,
 +    LINE_BRIARPATCH_2_H                 = 196262,
 +    LINE_BRIARPATCH_3_H                 = 196263,
++    LINE_COPTER_1_A                     = 178680,   // the engineer re-sizes the copter
++    LINE_COPTER_2_A                     = 178681,
++    LINE_COPTER_3_A                     = 178682,
++    LINE_COPTER_1_H                     = 196285,
++    LINE_COPTER_2_H                     = 196286,
++    LINE_COPTER_3_H                     = 196287,
++    LINE_RESIZING_A                     = 178721,
++    LINE_RESIZING_H                     = 196328,
++    LINE_BOAR_RIDE_A                    = 178752,
++    LINE_RE_DEATHER_H                   = 196342,
 +};
++
++// The scouting flight's lines over the radio: (speaker, line) at 4 second steps; the engineer and the leader
++static std::pair<uint32, uint32> const ScoutLinesA[] = { { NPC_LINDIE_PLAINS, 178693 }, { NPC_GARRICK_PLAINS, 291044 },
++    { NPC_LINDIE_PLAINS, 178695 }, { NPC_LINDIE_PLAINS, 178696 }, { NPC_GARRICK_PLAINS, 291045 } };
++static std::pair<uint32, uint32> const ScoutLinesH[] = { { NPC_CORK_PLAINS, 196290 }, { NPC_GRIMAXE_PLAINS, 290966 },
++    { NPC_CORK_PLAINS, 196293 }, { NPC_CORK_PLAINS, 196295 }, { NPC_GRIMAXE_PLAINS, 290967 } };
 +
 +// Finding the Lost Expedition's goal: the abandoned camp (TrinityCore's camp point)
 +static Position const AbandonedCamp = { -249.059f, -2492.52f, 18.0742f, 0.0f };
 +
-+// A conversation line: the speaker says the broadcast text to the player, after a delay (the speaker looked up again
-+// then, so it may have despawned or moved away meanwhile)
++// A conversation line: the speaker (the nearest creature of the entries) says the broadcast text to the player,
++// after a delay (the speaker looked up again then, so it may have despawned or moved away meanwhile). A whisper
++// reaches the player wherever they are (lines over the radio, retail's talking heads far from the speaker)
 +static void SayLine(Player* player, std::initializer_list<uint32> entries, uint32 broadcastTextId,
-+    Milliseconds delay = 0ms)
++    Milliseconds delay = 0ms, bool whisper = false)
 +{
 +    std::vector<uint32> speakers(entries);
 +    ObjectGuid playerGuid = player->GetGUID();
-+    auto say = [playerGuid, speakers, broadcastTextId]()
++    auto say = [playerGuid, speakers, broadcastTextId, whisper]()
 +    {
 +        Player* p = ObjectAccessor::FindPlayer(playerGuid);
 +        if (!p)
 +            return;
 +        Creature* best = nullptr;
 +        for (uint32 entry : speakers)
-+            if (Creature* c = p->FindNearestCreature(entry, 60.0f, true))
++            if (Creature* c = p->FindNearestCreature(entry, whisper ? 300.0f : 60.0f, true))
 +                if (!best || p->GetDistance(c) < p->GetDistance(best))
 +                    best = c;
-+        if (best)
++        if (best && whisper)
++            best->Whisper(broadcastTextId, p);
++        else if (best)
 +            best->Say(broadcastTextId, p);
 +    };
 +    if (delay == 0ms)
@@ -313,6 +349,28 @@ index 000000000..0ea343c13
 +                    SayLine(player, { NPC_DAWNTRACKER_BRIARPATCH }, LINE_BRIARPATCH_2_H, 4s);
 +                    SayLine(player, { NPC_GRIMAXE_BRIARPATCH }, LINE_BRIARPATCH_3_H, 9s);
 +                }
++                break;
++            case QUEST_SCOUT_O_MATIC_A:
++                SayLine(player, { NPC_LINDIE_PLAINS }, LINE_COPTER_1_A);
++                SayLine(player, { NPC_LINDIE_PLAINS }, LINE_COPTER_2_A, 5s);
++                SayLine(player, { NPC_LINDIE_PLAINS }, LINE_COPTER_3_A, 10s);
++                break;
++            case QUEST_CHOPPY_BOOSTER_H:
++                SayLine(player, { NPC_CORK_PLAINS }, LINE_COPTER_1_H);
++                SayLine(player, { NPC_CORK_PLAINS }, LINE_COPTER_2_H, 5s);
++                SayLine(player, { NPC_CORK_PLAINS }, LINE_COPTER_3_H, 10s);
++                break;
++            case QUEST_RESIZING_A:
++                SayLine(player, { NPC_LINDIE_PLAINS }, LINE_RESIZING_A);
++                break;
++            case QUEST_RESIZING_H:
++                SayLine(player, { NPC_CORK_PLAINS }, LINE_RESIZING_H);
++                break;
++            case QUEST_BOAR_RIDE_A:
++                SayLine(player, { NPC_GARRICK_PLAINS }, LINE_BOAR_RIDE_A);
++                break;
++            case QUEST_RE_DEATHER_H:
++                SayLine(player, { NPC_CORK_PLAINS }, LINE_RE_DEATHER_H);
 +                break;
 +            default:
 +                break;
@@ -1042,6 +1100,125 @@ index 000000000..0ea343c13
 +    }
 +};
 +
++// ---- the plains -------------------------------------------------------------------------------------------------
++
++enum PlainsData
++{
++    // F-137's SCOUT_FLIGHTS: taxi nodes of the scouting flights (start, end)
++    TAXI_SCOUT_A_START      = 429,
++    TAXI_SCOUT_A_END        = 430,
++    TAXI_SCOUT_H_START      = 431,
++    TAXI_SCOUT_H_END        = 432,
++
++    SPELL_SHADOW_BOLT       = 695,      // Torgok's Spirit Bolt
++
++    LINE_TORGOK_DEAD_1_A    = 187073,   // Captain Garrick
++    LINE_TORGOK_DEAD_2_A    = 178791,   // Henry Garrick
++    LINE_TORGOK_DEAD_3_A    = 178792,   // Captain Garrick
++    LINE_TORGOK_DEAD_1_H    = 196369,   // Shuja Grimaxe
++    LINE_TORGOK_DEAD_2_H    = 196368,   // Warlord Breka Grimaxe
++};
++
++// 156518 - Scout-o-Matic 5000, 167027 - Choppy Booster Mk. 5: The Scout-o-Matic 5000 / The Choppy Booster Mk. 5.
++// Retail flies the player on the copter (a vehicle) over the ogre ruins, where the camera spots Wrathion, and back;
++// here talking to it takes a taxi flight on the copter along the same path (F-137's SCOUT_FLIGHTS), the camp talking
++// over the radio, and the landing credits the scouting
++struct npc_er_scout_copter : public ScriptedAI
++{
++    npc_er_scout_copter(Creature* creature) : ScriptedAI(creature) { }
++
++    void sGossipHello(Player* player) override
++    {
++        CloseGossipMenuFor(player);
++        bool alliance = me->GetEntry() == NPC_SCOUT_O_MATIC;
++        uint32 quest = alliance ? QUEST_SCOUT_O_MATIC_A : QUEST_CHOPPY_BOOSTER_H;
++        if (player->GetQuestStatus(quest) != QUEST_STATUS_INCOMPLETE || player->IsInFlight())
++            return;
++        std::vector<uint32> nodes = alliance ? std::vector<uint32>{ TAXI_SCOUT_A_START, TAXI_SCOUT_A_END }
++            : std::vector<uint32>{ TAXI_SCOUT_H_START, TAXI_SCOUT_H_END };
++        uint32 credit = me->GetEntry();
++        if (!player->ActivateTaxiPathTo(nodes))
++        {
++            player->KilledMonsterCredit(credit);    // no flight (busy, or the DBC rows missing): the quest still goes on
++            return;
++        }
++        Milliseconds delay = 3s;
++        for (auto const& [speaker, line] : alliance ? std::span(ScoutLinesA) : std::span(ScoutLinesH))
++        {
++            SayLine(player, { speaker }, line, delay, true);
++            delay += 4s;
++        }
++        WaitForLanding(player->GetGUID(), credit);
++    }
++
++    // the scouting is done when the flight is
++    static void WaitForLanding(ObjectGuid guid, uint32 credit)
++    {
++        Player* player = ObjectAccessor::FindPlayer(guid);
++        if (!player)
++            return;
++        player->m_Events.AddEventAtOffset([guid, credit]()
++        {
++            Player* p = ObjectAccessor::FindPlayer(guid);
++            if (!p)
++                return;
++            if (p->IsInFlight())
++                WaitForLanding(guid, credit);
++            else
++                p->KilledMonsterCredit(credit);
++        }, 1s);
++    }
++};
++
++// 162817 - Torgok: the necromancer of the ogre ruins, holding Henry Garrick (Alliance) / Shuja Grimaxe (Horde). Once
++// he dies the leader and the freed prisoner talk (retail's personal copies walk over; here those standing there)
++struct npc_er_torgok : public ScriptedAI
++{
++    npc_er_torgok(Creature* creature) : ScriptedAI(creature) { }
++
++    void Reset() override { events.Reset(); }
++
++    void JustEngagedWith(Unit* who) override
++    {
++        Talk(SAY_AGGRO, who);
++        events.ScheduleEvent(EVENT_ABILITY_1, 2s, 4s);
++    }
++
++    void JustDied(Unit* killer) override
++    {
++        Talk(SAY_DEATH, killer);
++        Player* player = killer ? killer->GetCharmerOrOwnerPlayerOrPlayerItself() : nullptr;
++        if (!player)
++            return;
++        if (IsAlliance(player))
++        {
++            SayLine(player, { NPC_GARRICK_PLAINS }, LINE_TORGOK_DEAD_1_A, 2s);
++            SayLine(player, { NPC_HENRY_PRISONER }, LINE_TORGOK_DEAD_2_A, 6s);
++            SayLine(player, { NPC_GARRICK_PLAINS }, LINE_TORGOK_DEAD_3_A, 11s);
++        }
++        else
++        {
++            SayLine(player, { NPC_SHUJA_PRISONER }, LINE_TORGOK_DEAD_1_H, 2s);
++            SayLine(player, { NPC_GRIMAXE_PLAINS }, LINE_TORGOK_DEAD_2_H, 6s);
++        }
++    }
++
++    void UpdateAI(uint32 diff) override
++    {
++        if (!UpdateVictim())
++            return;
++        events.Update(diff);
++        if (me->HasUnitState(UNIT_STATE_CASTING))
++            return;
++        if (events.ExecuteEvent() == EVENT_ABILITY_1)
++        {
++            DoCastVictim(SPELL_SHADOW_BOLT);
++            events.ScheduleEvent(EVENT_ABILITY_1, 6s, 9s);
++        }
++        DoMeleeAttackIfReady();
++    }
++};
++
 +void AddSC_exiles_reach()
 +{
 +    new ExilesReachQuestScript();
@@ -1053,6 +1230,8 @@ index 000000000..0ea343c13
 +    RegisterCreatureAI(npc_er_ogre_overseer);
 +    RegisterCreatureAI(npc_er_geolord);
 +    RegisterCreatureAI(npc_er_briarpatch_prisoner);
++    RegisterCreatureAI(npc_er_scout_copter);
++    RegisterCreatureAI(npc_er_torgok);
 +}
 diff --git a/src/server/scripts/Custom/exiles_reach_start.cpp b/src/server/scripts/Custom/exiles_reach_start.cpp
 new file mode 100644

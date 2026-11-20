@@ -10,10 +10,8 @@ DELETE FROM `smart_scripts` WHERE `entryorguid` = 160737 AND `source_type` = 0;
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
   (160737, 0, 0, 0, 25, 0, 100, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Combat Dummy - On reset - Set react state passive');
 
--- Stand Your Ground (Private Cole, Grunt Throg) and Emergency First Aid's survivors: the core's exiles_reach.cpp
--- (ScriptName from the generated templates). Talking to a survivor bandages them: gossip flag
+-- Stand Your Ground (Private Cole, Grunt Throg): the core's exiles_reach.cpp (ScriptName from the generated templates)
 DELETE FROM `smart_scripts` WHERE `entryorguid` IN (160664, 166583) AND `source_type` = 0;
-UPDATE `creature_template` SET `npcflag` = `npcflag` | 1 WHERE `entry` IN (156609, 156610, 156612, 166786, 166791, 166796);
 
 -- Brace for Impact: turning it in on deck wrecks the ship; retail plays the crash scene and wakes you on the beach
 -- (TrinityCore's spells 305425 / 325131 land at the same spot), here the turn-in teleports you there
