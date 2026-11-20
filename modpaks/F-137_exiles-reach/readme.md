@@ -97,8 +97,9 @@
 - Scripts are ported up to the plains (the core's exiles_reach.cpp: retail's conversation lines as NPC speech, the
   ship spar, the beach survivors, the followers, the class trainer, which counts any class ability as retail's
   rotation checks need retail's level 1 spells, taming for hunters, the Geolord and his prisoner, the scouting
-  flight as a taxi ride, Torgok; enemies use stock NPC spells for retail's). The re-sizer and the boar ride are
-  still a kill and a talk credit; beyond the plains casters only melee and the rescues don't run (plan.md stage 3)
+  flight as a taxi ride, Torgok, the Re-Sizer and the boar / copter rides as custom spells (13700001-3: the rides
+  are a mount aura that tramples or bombs around you, not retail's vehicles); enemies use stock NPC spells for
+  retail's). The ogres' TrinityCore SmartAI and Westward Bound's companions aren't ported (plan.md stage 3)
 - The ship intro has no crash scene (retail's cutscene): the turn-in teleports you to the beach. The hunters' pets
   on deck are left out
 - New characters' hearthstones are bound to the beach until Kalecgos sends them to their capital. Random bots of

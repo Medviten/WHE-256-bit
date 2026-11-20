@@ -69,10 +69,10 @@ index 9cf4c4014..643ddb966 100644
  }
 diff --git a/src/server/scripts/Custom/exiles_reach.cpp b/src/server/scripts/Custom/exiles_reach.cpp
 new file mode 100644
-index 000000000..8a8a5f03f
+index 000000000..3ad4aa726
 --- /dev/null
 +++ b/src/server/scripts/Custom/exiles_reach.cpp
-@@ -0,0 +1,1239 @@
+@@ -0,0 +1,1331 @@
 +/*
 + * Custom: F-137 Exile's Reach scripts, ported from TrinityCore's zone_exiles_reach.cpp (retail's new player island,
 + * map 2175, its ships 2261 / 2369).
@@ -97,6 +97,8 @@ index 000000000..8a8a5f03f
 +#include "ScriptedCreature.h"
 +#include "ScriptedGossip.h"
 +#include "SpellInfo.h"
++#include "SpellScript.h"
++#include "SpellScriptLoader.h"
 +#include "TemporarySummon.h"
 +#include <span>
 +
@@ -1297,6 +1299,94 @@ index 000000000..8a8a5f03f
 +    }
 +};
 +
++// ---- the boars: Re-sizing the Situation, Ride of the Scientifically Enhanced Boar / The Re-Deather ----------------
++
++enum BoarData
++{
++    NPC_WANDERING_BOAR      = 156716,
++    NPC_WANDERING_BOAR2     = 164826,
++    CREDIT_RE_SIZED         = 156722,   // "Re-Sizer v9.0.1 tested on Wandering Boars"
++    NPC_GIANT_BOAR          = 156595,   // the ride's credit too
++    NPC_CHOPPY_BOOSTER_RIDE = 167142,   // the ride's credit too
++
++    // F-137's CUSTOM_SPELLS
++    SPELL_RIDE_BOAR         = 13700002, // mounted on the Giant Boar, trampling around
++    SPELL_RIDE_COPTER       = 13700003, // mounted on the Choppy Booster, bombing around
++
++    LINE_BOAR_HANG_ON_A     = 178754,   // "Something's happening to the boar! Hang on, $n!"
++    LINE_BOAR_DONE_A        = 187052,   // "We've dealt with the undead. Now let's finish off that necromancer..."
++    LINE_COPTER_EXPLODE_H   = 196348,   // "... Looks like that rig is about to... explode."
++};
++
++static Position const GiantBoarPen = { 116.146f, -2430.48f, 90.508415f, 0.785398f };
++
++// 13700001 - Re-Sizer v9.0.1 (F-137's custom spell, the Re-Sizers' use): on a Wandering Boar it grows huge, credits
++// the test and trots off to the camp's pen (retail's re-sizing; the boar respawns later)
++class spell_er_re_sizer : public SpellScript
++{
++    PrepareSpellScript(spell_er_re_sizer);
++
++    SpellCastResult CheckCast()
++    {
++        Unit* target = GetExplTargetUnit();
++        Creature* boar = target ? target->ToCreature() : nullptr;
++        if (!boar || !boar->IsAlive() || boar->GetObjectScale() > 1.5f ||
++            (boar->GetEntry() != NPC_WANDERING_BOAR && boar->GetEntry() != NPC_WANDERING_BOAR2))
++            return SPELL_FAILED_BAD_TARGETS;
++        return SPELL_CAST_OK;
++    }
++
++    void HandleDummy(SpellEffIndex /*effIndex*/)
++    {
++        Creature* boar = GetHitCreature();
++        Player* player = GetCaster() ? GetCaster()->ToPlayer() : nullptr;
++        if (!boar || !player)
++            return;
++        player->KilledMonsterCredit(CREDIT_RE_SIZED);
++        boar->CombatStop(true);
++        boar->SetFaction(FACTION_FRIENDLY);
++        boar->SetReactState(REACT_PASSIVE);
++        boar->SetObjectScale(2.5f);
++        boar->GetMotionMaster()->Clear();
++        boar->GetMotionMaster()->MovePoint(0, GiantBoarPen);
++        boar->DespawnOrUnsummon(8s, 60s);
++    }
++
++    void Register() override
++    {
++        OnCheckCast += SpellCheckCastFn(spell_er_re_sizer::CheckCast);
++        OnEffectHitTarget += SpellEffectFn(spell_er_re_sizer::HandleDummy, EFFECT_0, SPELL_EFFECT_DUMMY);
++    }
++};
++
++// 156595 - Giant Boar (Ride of the Scientifically Enhanced Boar), 167142 - Choppy Booster Mk. 5 (The Re-Deather):
++// retail's vehicles. Talking to one credits the ride and mounts the player on it for two minutes (F-137's custom
++// aura), trampling (the boar) or bombing (the copter) everything around them every 1.5 seconds: the skeleton army
++// falls as they ride through it
++struct npc_er_ride : public ScriptedAI
++{
++    npc_er_ride(Creature* creature) : ScriptedAI(creature) { }
++
++    void sGossipHello(Player* player) override
++    {
++        CloseGossipMenuFor(player);
++        bool boar = me->GetEntry() == NPC_GIANT_BOAR;
++        uint32 quest = boar ? QUEST_BOAR_RIDE_A : QUEST_RE_DEATHER_H;
++        uint32 spell = boar ? SPELL_RIDE_BOAR : SPELL_RIDE_COPTER;
++        if (player->GetQuestStatus(quest) != QUEST_STATUS_INCOMPLETE || player->HasAura(spell))
++            return;
++        player->KilledMonsterCredit(me->GetEntry());
++        player->CastSpell(player, spell, true);
++        if (boar)
++        {
++            SayLine(player, { NPC_GARRICK_PLAINS }, LINE_BOAR_HANG_ON_A, 3s, true);
++            SayLine(player, { NPC_GARRICK_PLAINS }, LINE_BOAR_DONE_A, 110s, true);
++        }
++        else
++            SayLine(player, { NPC_CORK_PLAINS }, LINE_COPTER_EXPLODE_H, 105s, true);
++    }
++};
++
 +void AddSC_exiles_reach()
 +{
 +    new ExilesReachQuestScript();
@@ -1311,6 +1401,8 @@ index 000000000..8a8a5f03f
 +    RegisterCreatureAI(npc_er_scout_copter);
 +    RegisterCreatureAI(npc_er_torgok);
 +    RegisterCreatureAI(npc_er_boss);
++    RegisterCreatureAI(npc_er_ride);
++    RegisterSpellScript(spell_er_re_sizer);
 +}
 diff --git a/src/server/scripts/Custom/exiles_reach_start.cpp b/src/server/scripts/Custom/exiles_reach_start.cpp
 new file mode 100644

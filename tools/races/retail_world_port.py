@@ -100,8 +100,28 @@ DUNGEON_DIFFICULTY_ID = 1370       # MapDifficulty row of the dungeon (normal, 5
 DROP_ENTRIES = {167337, 167342, 167345, 167347, 167348, 167352, 167375, 167343, 167344, 167346, 167349, 167350, 167351,
                 156403, 155125, 168236}
 KILL_CREDITS = {160737: 174954,    # Combat Dummy: Warming Up's credit (retail casts a credit spell on death)
-                156716: 156722, 164826: 156722,   # Wandering Boars: the Re-Sizer tests (retail: an item on them)
                 157091: 165150}    # Monstrous Cadaver: the boar ride's skeleton army
+# Custom spells (3.3.5a has no retail counterpart), cloned from a stock spell: id -> (donor, name, changes). The core's
+# exiles_reach.cpp scripts them (SPELL_SCRIPTS). Ids 137xxxxx (F-134 has 134xxxxx)
+SPELL_RE_SIZER, SPELL_RIDE_BOAR, SPELL_RIDE_COPTER = 13700001, 13700002, 13700003
+CUSTOM_SPELLS = {
+    # Re-Sizer v9.0.1 (Re-sizing the Situation): a dummy on the targeted boar, from Inoculate Nestlewood Owlkin
+    SPELL_RE_SIZER: (29528, "Re-Sizer v9.0.1", dict(effect_1=3, effect_apply_aura_name_1=0, effect_amplitude_1=0,
+                                                   effect_trigger_spell_1=0, duration_index=0)),
+    # Riding the Giant Boar (Ride of the Scientifically Enhanced Boar) / the Choppy Booster (The Re-Deather): Brown
+    # Horse's mount and speed for two minutes, instant, with a trample (Trample, 5568) or a bomb (Fire Nova, 11969)
+    # each 1.5 seconds around the rider: the skeleton army falls under it
+    SPELL_RIDE_BOAR: (458, "Giant Boar", dict(effect_misc_value_a_1=156595, effect_base_points_2=99, cast_time_index=1,
+                                              duration_index=4, effect_3=6, effect_apply_aura_name_3=23,
+                                              effect_amplitude_3=1500, effect_trigger_spell_3=5568,
+                                              effect_implicit_target_a_3=1)),
+    SPELL_RIDE_COPTER: (458, "Choppy Booster Mk. 5", dict(effect_misc_value_a_1=167142, effect_base_points_2=99,
+                                                          cast_time_index=1, duration_index=4, effect_3=6,
+                                                          effect_apply_aura_name_3=23, effect_amplitude_3=1500,
+                                                          effect_trigger_spell_3=11969, effect_implicit_target_a_3=1)),
+}
+SPELL_SCRIPTS = {SPELL_RE_SIZER: "spell_er_re_sizer"}
+ITEM_SPELLS = {170557: SPELL_RE_SIZER, 178051: SPELL_RE_SIZER}    # the Re-Sizers, both factions
 WOWHEAD_GUID = 13790001            # creature / object guids of the spawns placed at Wowhead's points
 # An End to Beginnings' enders, at the cities' arrival points (exiles_reach_start.cpp's Kalecgos sends players there):
 # entry -> (map, x, y, z, orientation, quest)
@@ -143,9 +163,10 @@ SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",     
             156518: "npc_er_scout_copter", 167027: "npc_er_scout_copter",            # the scouting flights
             162817: "npc_er_torgok",                                                 # the boar ride / Re-Deather
             157300: "npc_er_boss", 156814: "npc_er_boss", 156900: "npc_er_boss",     # Tunk, Gor'groth, Hrun
+            156595: "npc_er_ride", 167142: "npc_er_ride",                            # the boar / copter rides
             153964: "npc_er_boss"}                                                   # Bloodbeak
 # the SCRIPTED ones talked to (gossip flag): Emergency First Aid's survivors, the scouting copters
-SCRIPTED_GOSSIP = {156609, 156610, 156612, 166786, 166791, 166796, 156518, 167027}
+SCRIPTED_GOSSIP = {156609, 156610, 156612, 166786, 166791, 166796, 156518, 167027, 156595, 167142}
 # retail conversations (TrinityCore's zone_exiles_reach.cpp) whose lines exiles_reach.cpp speaks: their broadcast
 # texts go to broadcast_text with the creatures' texts (the script names the lines by broadcast text id)
 CONVERSATIONS = (11685, 12043, 12044, 12058, 12066, 12073, 12078, 12083, 12084, 12086, 12089, 12090, 12092, 12127,
@@ -563,6 +584,8 @@ class Port:
                        sheath=n(it["SheatheType"]), ScriptName="", VerifiedBuild=0)
             for z in ("dmg_type1", "dmg_type2"):
                 row[z] = 0
+            if i in ITEM_SPELLS:            # used on its target (spelltrigger 0)
+                row.update(spellid_1=ITEM_SPELLS[i], spelltrigger_1=0, spellcooldown_1=-1, spellcategorycooldown_1=-1)
             tmpl.append([row[c] for c in ITEM_TEMPLATE_COLUMNS])
             dbc.append([i, cls, sub, -1, n(it["Material"]), d, inv, n(it["SheatheType"])])
             self.item_map[i] = i
@@ -1130,6 +1153,25 @@ class Port:
             "DELETE FROM `broadcast_text` WHERE `ID` IN %s;" % in_list(ids),
             "Retail's broadcast texts of the creatures' texts and the scripts' conversation lines"))
 
+    def custom_spells(self):
+        """CUSTOM_SPELLS' Spell.dbc rows (stock's donor rows changed) and their spell_script_names."""
+        import coa_racials as cr
+        taken_spells = taken("spell", "id")
+        donors = cr.load_spells(os.path.join(STOCK_DBC, "Spell.dbc"), {d for d, _, _ in CUSTOM_SPELLS.values()})
+        rows = []
+        for sid, (donor, name, changes) in sorted(CUSTOM_SPELLS.items()):
+            if sid in taken_spells:
+                sys.exit("spell %d is another modpak's" % sid)
+            r = dict(zip(cr.COLUMNS, donors[donor]))
+            r.update(changes, id=sid, spell_name_enus=name, spell_subtext_enus="", spell_desc_enus="",
+                     spell_tooltip_enus="")
+            rows.append(r)
+        self.write_dbc("spell", rows, "Custom spells of the island's scripts (CUSTOM_SPELLS)")
+        self.write("68_spell_script_names", insert(
+            "spell_script_names", ["spell_id", "ScriptName"], sorted(SPELL_SCRIPTS.items()),
+            "DELETE FROM `spell_script_names` WHERE `spell_id` IN %s;" % in_list(SPELL_SCRIPTS),
+            "The custom spells' scripts (the core's exiles_reach.cpp)"))
+
     # ---- quests ---------------------------------------------------------------------------------------------------
     def team(self, q):
         return None if q in NEUTRAL_QUESTS else HORDE if q in HORDE_QUESTS else ALLIANCE
@@ -1411,6 +1453,7 @@ class Port:
         self.spawn_rows()
         self.talk_scripts()
         self.texts()
+        self.custom_spells()
         self.write_conditions()
         self.files["wi_assets.txt"] = "".join(p + "\n" for p in sorted(self.assets))
         prefix = ("zz_[AUTO,%s]_world_" % self.a.tag, "[%s]_world_" % self.a.tag,

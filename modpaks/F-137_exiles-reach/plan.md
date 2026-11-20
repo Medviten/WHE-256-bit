@@ -48,8 +48,9 @@ quest pages by hand when curating these (stage 3).
      id. Part 1 (2026-11-20, untested): the ships, the beach, the abandoned camp, Enhanced Combat Tactics. Part 2:
      Northbound, Taming the Wilds (teaches taming), the Briarpatch (Geolord, prisoners, quilboar, Gork; stock NPC
      spells for retail's). Part 3: the plains (the scouting copter as a taxi flight, SCOUT_FLIGHTS; the quests'
-     lines; Torgok). Left: the re-sizer and the boar ride as retail plays them (an item on the boars, a vehicle:
-     a kill and a talk credit for now), Westward Bound's companions, the ogres' TDB SmartAI (animkits, timed lists),
+     lines; Torgok). Part 5: the Re-Sizer (custom spell on the item: the boar grows and
+     goes to the pen) and the rides (custom mount auras trampling / bombing the skeleton army; CUSTOM_SPELLS
+     13700001-3). Left: Westward Bound's companions, the ogres' TDB SmartAI (animkits, timed lists),
      Hrun's pit and Bloodbeak's ritual as events. Part 4: Tunk, Gor'groth, Hrun the Exiled and Bloodbeak fight with
      two stock NPC spells each (npc_er_boss)
 4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
