@@ -162,6 +162,8 @@ GO_TYPES = {2, 3, 5, 10}
 # the starter the ender of the quest before it in the faction's quest lines (QuestLineXQuest; class quests follow
 # the last quest for everyone), which also becomes its PrevQuestID
 GIVER_RANGE = 25.0
+# quests no data links: quest -> PrevQuestID (A Shaman's Duty, Horde: as the Alliance's 59002 follows 59352)
+PREV_QUESTS = {59969: 59954}
 QUEST_LINES = {ALLIANCE: (5366, 5367), HORDE: (5369, 5370)}
 TEAM_NAMES = {ALLIANCE: {"Captain Garrick", "Henry Garrick", "Kee-La", "Bjorn Stouthands", "Alaria", "Austin Huxworth",
                          "Lindie Springstock", "Meredy Huntswell", "Quartermaster Richter", "Private Cole",
@@ -1170,7 +1172,8 @@ class Port:
                                          box_width=float(r["Box_width"]), box_height=float(r["Box_height"]),
                                          box_yaw=float(r["Box_yaw"])))
             link = lambda k: n(a.get(k)) if abs(n(a.get(k))) in self.quests else 0
-            qa.append([q, n(a.get("MaxLevel")), classes & CLASS_MASK, 0, link("PrevQuestID") or self.inferred[2].get(q, 0),
+            qa.append([q, n(a.get("MaxLevel")), classes & CLASS_MASK, 0,
+                       link("PrevQuestID") or PREV_QUESTS.get(q) or self.inferred[2].get(q, 0),
                        link("NextQuestID"),
                        n(a.get("ExclusiveGroup")), link("BreadcrumbForQuestId"), 0, 0, 0, 0, 0, 0, 0, 0,
                        n(a.get("ProvidedItemCount")), special])
