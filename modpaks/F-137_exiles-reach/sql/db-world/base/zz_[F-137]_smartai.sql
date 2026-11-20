@@ -1,6 +1,6 @@
 -- F-137 Exile's Reach: SmartAI for the ship intro and Darkmaul Citadel, in place of TrinityCore's C++
--- (zone_exiles_reach.cpp, instance_darkmaul_citadel). Hand-written; runs after the generated zz_[AUTO,F-137] files,
--- so the creature_template changes here stay.
+-- (zone_exiles_reach.cpp, instance_darkmaul_citadel); the rest is ported to the core's exiles_reach.cpp.
+-- Hand-written; runs after the generated zz_[AUTO,F-137] files, so the creature_template changes here stay.
 
 -- ---- The ships (both factions) ----------------------------------------------------------------------------------
 -- Warming Up: Combat Dummies give the quest's credit (KillCredit1 174954, generated) and don't fight back; faction 7
@@ -10,21 +10,10 @@ DELETE FROM `smart_scripts` WHERE `entryorguid` = 160737 AND `source_type` = 0;
 INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
   (160737, 0, 0, 0, 25, 0, 100, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Combat Dummy - On reset - Set react state passive');
 
--- Stand Your Ground: Private Cole (Alliance) and Grunt Throg (Horde) spar with whoever takes the quest and yield at
--- 30% health, crediting their opponent (155607, the quest's spar credit)
-UPDATE `creature_template` SET `AIName` = 'SmartAI' WHERE `entry` IN (160664, 166583);
+-- Stand Your Ground (Private Cole, Grunt Throg) and Emergency First Aid's survivors: the core's exiles_reach.cpp
+-- (ScriptName from the generated templates). Talking to a survivor bandages them: gossip flag
 DELETE FROM `smart_scripts` WHERE `entryorguid` IN (160664, 166583) AND `source_type` = 0;
-INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`, `event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`, `action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`, `target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
-  (160664, 0, 0, 1, 19, 0, 100, 0, 58209, 0, 0, 0, 0, 0, 2, 14, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Private Cole - On Stand Your Ground accepted - Turn hostile'),
-  (160664, 0, 1, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Private Cole - Linked - Attack the player'),
-  (160664, 0, 2, 3, 2, 0, 100, 0, 0, 30, 1000, 1000, 0, 0, 33, 155607, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Private Cole - At 30% health - Spar credit to his opponent'),
-  (160664, 0, 3, 4, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Private Cole - Linked - Default faction'),
-  (160664, 0, 4, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Private Cole - Linked - Evade'),
-  (166583, 0, 0, 1, 19, 0, 100, 0, 59927, 0, 0, 0, 0, 0, 2, 14, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Grunt Throg - On Stand Your Ground accepted - Turn hostile'),
-  (166583, 0, 1, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 'Grunt Throg - Linked - Attack the player'),
-  (166583, 0, 2, 3, 2, 0, 100, 0, 0, 30, 1000, 1000, 0, 0, 33, 155607, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 'Grunt Throg - At 30% health - Spar credit to his opponent'),
-  (166583, 0, 3, 4, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Grunt Throg - Linked - Default faction'),
-  (166583, 0, 4, 0, 61, 0, 100, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Grunt Throg - Linked - Evade');
+UPDATE `creature_template` SET `npcflag` = `npcflag` | 1 WHERE `entry` IN (156609, 156610, 156612, 166786, 166791, 166796);
 
 -- Brace for Impact: turning it in on deck wrecks the ship; retail plays the crash scene and wakes you on the beach
 -- (TrinityCore's spells 305425 / 325131 land at the same spot), here the turn-in teleports you there

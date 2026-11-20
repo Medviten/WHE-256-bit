@@ -43,6 +43,12 @@ quest pages by hand when curating these (stage 3).
    (`--wowhead`), talk credits for scripted steps, quest chests, loot fixes. Left for a fuller pass: SmartAI for the
    scripted events (beach rescues, followers, the boar ride, prisoners, Hrun's pit, the final fight), creature
    texts, real spars and class ability checks instead of talk credits, Bloodbeak's ritual event
+   - Scripts: TrinityCore's zone_exiles_reach.cpp ported to the core's exiles_reach.cpp (gameplay and dialogue; the
+     ship and beach walk paths skipped). Texts: creature_text plus retail's broadcast texts (`--hotfixes`), spoken by
+     id. Part 1 (2026-11-20, untested): the ships, the beach, the abandoned camp, Enhanced Combat Tactics. Next:
+     Northbound, Taming the Wilds, the Briarpatch (Geolord, prisoners, quilboar), the scouting flight, Re-sizing the
+     Situation, the boar ride / The Re-Deather, Westward Bound, then what TrinityCore lacks: Hrun's pit, Bloodbeak's
+     ritual, the harpies and ogres, Darkmaul's bosses
 4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
    races keeping their start is in the race modpaks); retail's forced first character was turned down. F-137 moves
    those races' playercreateinfo to the beach; `ExilesReachStartZone.Enable` boards them on their faction's sailing

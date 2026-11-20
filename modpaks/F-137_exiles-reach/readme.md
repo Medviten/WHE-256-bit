@@ -74,9 +74,11 @@
 6. Minimaps: `python -I tools/models/mop_minimaps.py <tiles> ExilesReach <WHE-common>/patch-ER.MPQ --source 2175
    --version 12.1.5.70961`; the dungeon's: `<dungeon tiles> DarkmaulCitadel ... --source 2236`
 7. Spawns, quests, ships and the dungeon's instance rows: `python -I -X utf8 tools/races/retail_world_port.py
-   <TDB_full_world_1210.26091_*.sql> <csv> modpaks/F-137_exiles-reach --cache <pickle>` (`<csv>` also needs the
-   tables its docstring lists), then step 4 again with a new `<stage>` (without `--tiles`) for the models, textures
-   and icons it lists. The scripted steps are hand-written: `sql/db-world/base/zz_[F-137]_smartai.sql`
+   <TDB_full_world_1210.26091_*.sql> <csv> modpaks/F-137_exiles-reach --cache <pickle> --wowhead <dir> --tiles
+   <tiles> --hotfixes <TDB_full_hotfixes_1210.26091_*.sql>` (`<csv>` also needs the tables its docstring lists,
+   ConversationLine among them), then step 4 again with a new `<stage>` (without `--tiles`) for the models, textures
+   and icons it lists. The scripted steps: the core's `exiles_reach.cpp` (TrinityCore's zone_exiles_reach.cpp,
+   ported; in `patches/core/exiles-reach-start.patch`) and the hand-written `sql/db-world/base/zz_[F-137]_smartai.sql`
 8. F-134's art fix-ups on the new art (each `python -I <script> <folder>`): `tools/models/mop_m2_env.py`,
    `mop_m2_nobatch.py`, `wmo_mop_fixups.py`
 
@@ -88,15 +90,17 @@
   trainers and the Darkmaul finale's NPCs (An End to Beginnings) are summoned by scripts, so those quests have no
   giver or ender yet. 23 criteria-tree objectives (emotes, buying, casting a class spell, ...) are dropped, so some
   quests complete with less. Without the core patch, quest-stage NPCs only update when you move
-- Scripts aren't ported beyond the ship and Darkmaul steps above: casters only melee, rescues, escorts and the boar
-  ride don't run (plan.md stage 3)
+- Scripts are ported up to the abandoned camp (the core's exiles_reach.cpp: retail's conversation lines as NPC
+  speech, the ship spar, the beach survivors, the expedition follower, the class trainer, which counts any class
+  ability as retail's 3.3.5a-less rotation checks can't be done); beyond it casters only melee and the rescues,
+  escorts and the boar ride don't run (plan.md stage 3)
 - The ship intro has no crash scene (retail's cutscene): the turn-in teleports you to the beach. The hunters' pets
   on deck are left out
 - New characters' hearthstones are bound to the beach until Kalecgos sends them to their capital. Random bots of
   the races that start here are created on the island too
 - Scripted steps are simplified: talking to an NPC stands in for retail's items, rides, spars and scenes
-  (OBJECTIVE_TALKS in retail_world_port.py), so they complete at once. Bloodbeak (the harpy rescues) is spawned at Wowhead's spot atop the roost; killing
-  it completes the rescue (no ritual event). The class quest chests stand beside their NPCs (no
+  (OBJECTIVE_TALKS in retail_world_port.py), so they complete at once. Bloodbeak (the harpy rescues) is spawned at
+  Wowhead's spot atop the roost; killing it completes the rescue (no ritual event). The class quest chests stand beside their NPCs (no
   positions known). Training Rock has no giver. Retail's emote steps and buying / selling are left out
 - Darkmaul Citadel: no boss mechanics (Tunk and Gor'groth only melee), its doors are left out (TrinityCore opens
   them by script), no group finder entry, no vmaps (NPCs standing on the citadel's floors drop to the terrain when

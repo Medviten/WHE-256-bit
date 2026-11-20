@@ -25,7 +25,8 @@ Spawns:
   other models than stock's or MoP's), displays another modpak uses moved to DISPLAY_BASE and up. Dressed NPCs
   (CreatureDisplayInfoExtra: HD bakes on retail race models) get a stock display of their race and sex for now
 - factions 3.3.5a lacks: retail's hostile ones (enemy group has players) become 14, the rest 35
-- scripts (ScriptName, SmartAI) are dropped: enemies only melee, and the scripted quest steps need SmartAI (plan.md)
+- scripts (ScriptName, SmartAI) are dropped, except the creatures the core's exiles_reach.cpp scripts (SCRIPTED);
+  texts: TrinityCore's creature_text and the broadcast texts of those and of the scripts' conversations (--hotfixes)
 - equipment: retail item ids, none in 3.3.5a: left out
 
 Ships (the intro): TrinityCore's `transports` whose object carries a map of --extra-maps: the Alliance Ship and the
@@ -74,7 +75,8 @@ TABLES = ("creature", "gameobject", "creature_template", "creature_template_mode
           "quest_template_addon", "quest_objectives", "quest_offer_reward", "quest_request_items", "quest_details",
           "creature_queststarter", "creature_questender", "gameobject_queststarter", "gameobject_questender",
           "conditions", "phase_area", "creature_loot_template", "gameobject_loot_template", "gameobject_questitem",
-          "quest_poi", "quest_poi_points", "transports")
+          "quest_poi", "quest_poi_points", "transports", "creature_text", "conversation_template",
+          "conversation_line_template")
 CREATURE_GUID = GAMEOBJECT_GUID = 13700001
 TRANSPORT_GUIDS = {333479: 13701, 349879: 13702}    # Alliance Ship, Horde Transport: exiles_reach_start.cpp's
 PATH_NODE_BASE = 137000                             # TaxiPathNode ids (stock's end at 46874, F-076's at 50000+)
@@ -102,8 +104,7 @@ OBJECTIVE_KILLS = {394065: 156814, 397381: 156814,   # "Gor'groth's final ritual
                    (55763, 153964): 153964, (59944, 153964): 153964}   # the harpy rescues: Bloodbeak's death
 # credits retail gives through spells, scenes, summons or vehicles this port lacks: (quest, credit creature) -> the
 # quest's NPC that gives the credit when talked to (gossip, SmartAI): rescues, spars, class ability practice
-OBJECTIVE_TALKS = {(59254, 164577): 156651, (59933, 164577): 166906,       # Enhanced Combat Tactics: the leader
-                   (58915, 174978): 162943, (59972, 174978): 162943,       # Hjalmar's execution: Hjalmar
+OBJECTIVE_TALKS = {(58915, 174978): 162943, (59972, 174978): 162943,       # Hjalmar's execution: Hjalmar
                    (58933, 175015): 163024, (59968, 175015): 167586,       # Gutgruk the Tough: the rogue
                    (59354, 164974): 156886, (59955, 164974): 167212, (59955, 167309): 167212,   # sheep: the mage
                    (59350, 174832): 156932, (59951, 174832): 166575,       # the Druid Stone: the druid
@@ -118,6 +119,23 @@ OBJECTIVE_DROP = {(55990, 161300), (59981, 161300),  # Controlling their Stones'
 GO_TWINS = {350796: (339568, 59949, 55639)}          # Who Lurks in the Pit's cocoons (Horde, Alliance)
 TALK_KEYWORDS = re.compile(r"slain|defeat|destroy|kill", re.I)   # objective texts that mean a kill, not a talk
 TALK_SCRIPTED = {244389}           # Kalecgos at the gate: exiles_reach_start.cpp
+# creatures the core's exiles_reach.cpp scripts (TrinityCore's zone_exiles_reach.cpp, ported): entry -> ScriptName.
+# Their templates are written even when nothing spawns them (the script summons them); no talk credit SmartAI
+SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",          # Stand Your Ground
+            156609: "npc_er_beach_survivor", 156610: "npc_er_beach_survivor",        # Emergency First Aid
+            156612: "npc_er_beach_survivor", 166786: "npc_er_beach_survivor",
+            166791: "npc_er_beach_survivor", 166796: "npc_er_beach_survivor",
+            165359: "npc_er_expedition_leader", 166805: "npc_er_expedition_leader",  # Finding the Lost Expedition
+            164577: "npc_er_combat_trainer", 166916: "npc_er_combat_trainer"}        # Enhanced Combat Tactics
+# retail conversations (TrinityCore's zone_exiles_reach.cpp) whose lines exiles_reach.cpp speaks: their broadcast
+# texts go to broadcast_text with the creatures' texts (the script names the lines by broadcast text id)
+CONVERSATIONS = (11685, 12043, 12044, 12058, 12066, 12073, 12078, 12083, 12084, 12086, 12089, 12090, 12092, 12127,
+                 12128, 12798, 12818, 12863, 13611, 13630, 13631, 13632, 13633, 13634, 13635, 13710, 13712, 13892,
+                 13893, 13895, 14422, 14423, 14424, 14432, 14437, 14440, 14441, 14444, 14447, 14448, 14449, 14452,
+                 14453, 14454, 14455, 14456, 14457, 14458, 14459, 14460, 14461, 14462, 14463, 14465, 14466, 14467,
+                 14468, 14471, 14472, 14473, 14474, 14475, 14476, 14477, 14486, 14487, 14488, 14489, 14490, 14491,
+                 14492, 14493, 14494, 14495, 14499, 14513, 14514, 14516, 14517, 14520, 14525, 14526, 14527, 14611,
+                 14613, 15615, 15618)
 # quest item chests nothing spawns (retail summons or phases them in): (object, npc it stands beside, how many);
 # each copy beside every spawn of that NPC
 CHEST_NEAR = [(341951, 162972, 3), (351426, 167184, 3),        # Withering Hemlock: the dead rogues
@@ -174,7 +192,7 @@ TEAM_NAMES = {ALLIANCE: {"Captain Garrick", "Henry Garrick", "Kee-La", "Bjorn St
 B = "\\"
 
 
-def tdb_tables(path, cache):
+def tdb_tables(path, cache, tables=TABLES):
     """{table: [dict]} of TABLES from a TDB full world dump (values as strings, NULL as None)."""
     if cache and os.path.exists(cache):
         return pickle.load(open(cache, "rb"))
@@ -195,7 +213,7 @@ def tdb_tables(path, cache):
                 cur = None
             continue
         m = re.match(r"INSERT INTO `(\w+)` VALUES", line)
-        if not m or m.group(1) not in TABLES:
+        if not m or m.group(1) not in tables:
             continue
         for t in tup.finditer(line, m.end()):
             vals = [unescape(v.group(1)) if v.group(1) is not None else None if v.group(2) else v.group(3).strip()
@@ -284,7 +302,7 @@ class Port:
         # creatures the quests credit without being spawned (talk / spar / dummy credits): templates only, so the
         # quests keep those objectives
         credit = {n(o["ObjectID"]) for objs in self.objectives.values() for o in objs if n(o["Type"]) in (0, 3)}
-        credit |= set(KILL_CREDITS.values())
+        credit |= set(KILL_CREDITS.values()) | set(SCRIPTED)
         self.entries = sorted(set(self.entries) | ({e for e in credit if e in self.ct} - self.stock_creatures))
         clash = set(self.entries) & (config_range("NextCreatureID") | taken("creature_template", "entry"))
         if clash:
@@ -673,7 +691,7 @@ class Port:
         for e in self.entries:
             r, d = self.ct[e], diff.get(e, {})
             lo, hi = (1, 1) if n(r["type"]) == 8 else levels.get(e, AREA_LEVELS[self.a.zone])
-            if r["ScriptName"] or r["AIName"]:
+            if (r["ScriptName"] or r["AIName"]) and e not in SCRIPTED:
                 self.dropped["scripts left for SmartAI (plan.md stage 3)"].append("%d %s" % (e, r["ScriptName"] or r["AIName"]))
             family = pet_family(FAMILIES.get(n(r["family"]), n(r["family"])), self.stock_families)
             rows = [x for x in loot_ids.get(n(d.get("LootID")), []) if not n(x["ItemType"]) and self.item(x["Item"])]
@@ -693,7 +711,7 @@ class Port:
                          n(r["unit_flags2"]) & 0x3FFFF, 0, family, n(r["type"]), 0, e if rows else 0, 0, 0, 0, 0, 0, 0,
                          "SmartAI" if talk else "", n(r["MovementType"]), 1, n(d.get("HealthModifier"), 1), n(d.get("ManaModifier"), 1),
                          n(d.get("ArmorModifier"), 1), n(r["ExperienceModifier"], 1) or 1, n(r["RacialLeader"]), 0,
-                         n(r["RegenHealth"], 1), 0, 0, "", 0])
+                         n(r["RegenHealth"], 1), 0, 0, SCRIPTED.get(e, ""), 0])
             a = addons.get(e)
             movement.append([e, 1, 1, 1 if a and n(a["AnimTier"]) == 3 else 0])
         cols = ("entry difficulty_entry_1 difficulty_entry_2 difficulty_entry_3 KillCredit1 KillCredit2 name subname "
@@ -1001,7 +1019,7 @@ class Port:
                       and obj not in TALK_SCRIPTED and n(o["ID"]) not in OBJECTIVE_KILLS
                       and (q, obj) not in OBJECTIVE_KILLS):
                     out[obj].add(obj)
-        return {e: sorted(c) for e, c in out.items() if e in self.entries}
+        return {e: sorted(c) for e, c in out.items() if e in self.entries and e not in SCRIPTED}
 
     def talk_scripts(self):
         cols = ("entryorguid source_type id link event_type event_phase_mask event_chance event_flags event_param1 "
@@ -1026,6 +1044,47 @@ class Port:
                                               % in_list(set(self.talks) | set(TALK_ITEMS)) if rows else None,
                                               "Talking to these NPCs gives the quest credits retail gives by an "
                                               "item, a ride or a scene (talk_credits)"))
+
+    def texts(self):
+        """The creatures' texts (TrinityCore's creature_text) and the broadcast texts they and the CONVERSATIONS'
+        lines use (retail's BroadcastText, from TrinityCore's hotfixes: --hotfixes), at retail's ids, which stock's
+        broadcast_text (up to 77865) and the other modpaks (100000 and up) don't use. Sounds are left out (retail's
+        sound kits), and emotes and languages 3.3.5a lacks"""
+        if not self.a.hotfixes:
+            return
+        bt = {n(r["ID"]): r for r in tdb_tables(self.a.hotfixes, self.a.cache and self.a.cache + ".bt",
+                                                ("broadcast_text",))["broadcast_text"]}
+        emote = lambda v: n(v) if n(v) in self.stock_emotes else 0
+        lang = lambda v: n(v) if n(v) in (0, 1, 7) else 0      # universal, orcish, common
+        ents = set(self.entries)
+        rows = [r for r in self.t["creature_text"] if n(r["CreatureID"]) in ents]
+        ids = {n(r["BroadcastTextId"]) for r in rows}
+        lines = {n(r["ID"]): r for r in table(self.a.csv_dir, "ConversationLine").values()}
+        first = {n(r["Id"]): n(r["FirstLineId"]) for r in self.t["conversation_template"]}
+        for c in CONVERSATIONS:
+            line = first.get(c)
+            while line and line in lines:
+                ids.add(n(lines[line]["BroadcastTextID"]))
+                line = n(lines[line]["NextConversationLineID"])
+        ids = sorted(i for i in ids if i in bt)
+        cols = ("CreatureID GroupID ID Text Type Language Probability Emote Duration Sound BroadcastTextId TextRange "
+                "comment").split()
+        self.write("66_creature_text", insert(
+            "creature_text", cols,
+            [[n(r["CreatureID"]), n(r["GroupID"]), n(r["ID"]), r["Text"] or "", n(r["Type"]), lang(r["Language"]),
+              float(r["Probability"] or 0), emote(r["Emote"]), n(r["Duration"]), 0, n(r["BroadcastTextId"]),
+              n(r["TextRange"]), (r["comment"] or "")[:255]] for r in rows],
+            "DELETE FROM `creature_text` WHERE `CreatureID` IN %s;" % in_list(ents),
+            "TrinityCore's texts of the island's creatures"))
+        cols = ("ID LanguageID MaleText FemaleText EmoteID1 EmoteID2 EmoteID3 EmoteDelay1 EmoteDelay2 EmoteDelay3 "
+                "SoundEntriesId EmotesID Flags VerifiedBuild").split()
+        self.write("67_broadcast_text", insert(
+            "broadcast_text", cols,
+            [[i, lang(bt[i]["LanguageID"]), bt[i]["Text"] or "", bt[i]["Text1"] or "", emote(bt[i]["EmoteID1"]),
+              emote(bt[i]["EmoteID2"]), emote(bt[i]["EmoteID3"]), n(bt[i]["EmoteDelay1"]), n(bt[i]["EmoteDelay2"]),
+              n(bt[i]["EmoteDelay3"]), 0, 0, 0, 0] for i in ids],
+            "DELETE FROM `broadcast_text` WHERE `ID` IN %s;" % in_list(ids),
+            "Retail's broadcast texts of the creatures' texts and the scripts' conversation lines"))
 
     # ---- quests ---------------------------------------------------------------------------------------------------
     def team(self, q):
@@ -1307,6 +1366,7 @@ class Port:
         self.quest_rows()
         self.spawn_rows()
         self.talk_scripts()
+        self.texts()
         self.write_conditions()
         self.files["wi_assets.txt"] = "".join(p + "\n" for p in sorted(self.assets))
         prefix = ("zz_[AUTO,%s]_world_" % self.a.tag, "[%s]_world_" % self.a.tag,
@@ -1344,6 +1404,7 @@ def main():
     p.add_argument("--cache")
     p.add_argument("--wowhead", help="folder of wowhead_givers.txt and wowhead_points.txt")
     p.add_argument("--tiles", help="the island's converted 3.3.5a tiles (ground heights of the Wowhead spawns)")
+    p.add_argument("--hotfixes", help="TrinityCore's TDB_full_hotfixes_*.sql (broadcast texts; cached in CACHE.bt)")
     a = p.parse_args()
     wi.TAG = a.tag      # taken() leaves out the modpak's own files
     Port(a).run()
