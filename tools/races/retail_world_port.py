@@ -98,11 +98,11 @@ CAPITAL_SPAWNS = {154169: (0, -8829.6, 632.6, 94.2, 4.2, 55991),      # Captain 
                   168431: (1, 1638.2, -4436.4, 15.6, 3.6, 59985)}     # Warlord Breka Grimaxe, Valley of Strength
 # objectives a creature kill stands in for: quest objective id or (quest, credit creature) -> creature
 OBJECTIVE_KILLS = {394065: 156814, 397381: 156814,   # "Gor'groth's final ritual stopped": Gor'groth
-                   (55639, 156929): 156900, (59949, 167254): 156900}   # the ride out of Hrun's pit: Hrun's death
+                   (55639, 156929): 156900, (59949, 167254): 156900,   # the ride out of Hrun's pit: Hrun's death
+                   (55763, 153964): 153964, (59944, 153964): 153964}   # the harpy rescues: Bloodbeak's death
 # credits retail gives through spells, scenes, summons or vehicles this port lacks: (quest, credit creature) -> the
 # quest's NPC that gives the credit when talked to (gossip, SmartAI): rescues, spars, class ability practice
-OBJECTIVE_TALKS = {(55763, 153964): 156859, (59944, 153964): 167290,       # Bloodbeak: the rescued
-                   (59254, 164577): 156651, (59933, 164577): 166906,       # Enhanced Combat Tactics: the leader
+OBJECTIVE_TALKS = {(59254, 164577): 156651, (59933, 164577): 166906,       # Enhanced Combat Tactics: the leader
                    (58915, 174978): 162943, (59972, 174978): 162943,       # Hjalmar's execution: Hjalmar
                    (58933, 175015): 163024, (59968, 175015): 167586,       # Gutgruk the Tough: the rogue
                    (59354, 164974): 156886, (59955, 164974): 167212, (59955, 167309): 167212,   # sheep: the mage

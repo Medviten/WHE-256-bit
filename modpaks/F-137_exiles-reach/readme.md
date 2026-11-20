@@ -95,8 +95,8 @@
 - New characters' hearthstones are bound to the beach until Kalecgos sends them to their capital. Random bots of
   the races that start here are created on the island too
 - Scripted steps are simplified: talking to an NPC stands in for retail's items, rides, spars and scenes
-  (OBJECTIVE_TALKS in retail_world_port.py), so they complete at once. Bloodbeak (the harpy rescues) has no spawn
-  anywhere: the rescue is credited by the quest's giver. The class quest chests stand beside their NPCs (no
+  (OBJECTIVE_TALKS in retail_world_port.py), so they complete at once. Bloodbeak (the harpy rescues) is spawned at Wowhead's spot atop the roost; killing
+  it completes the rescue (no ritual event). The class quest chests stand beside their NPCs (no
   positions known). Training Rock has no giver. Retail's emote steps and buying / selling are left out
 - Darkmaul Citadel: no boss mechanics (Tunk and Gor'groth only melee), its doors are left out (TrinityCore opens
   them by script), no group finder entry, no vmaps (NPCs standing on the citadel's floors drop to the terrain when

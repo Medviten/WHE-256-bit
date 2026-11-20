@@ -42,7 +42,7 @@ quest pages by hand when curating these (stage 3).
 3. (Done 2026-11-19 as the simple version, untested) Every quest doable: Wowhead's givers / enders and map points
    (`--wowhead`), talk credits for scripted steps, quest chests, loot fixes. Left for a fuller pass: SmartAI for the
    scripted events (beach rescues, followers, the boar ride, prisoners, Hrun's pit, the final fight), creature
-   texts, real spars and class ability checks instead of talk credits, Bloodbeak
+   texts, real spars and class ability checks instead of talk credits, Bloodbeak's ritual event
 4. (Done 2026-11-19, untested) Start: decided per race (player_race_template.exiles_reach, F-091; the user's list of
    races keeping their start is in the race modpaks); retail's forced first character was turned down. F-137 moves
    those races' playercreateinfo to the beach; `ExilesReachStartZone.Enable` boards them on their faction's sailing
