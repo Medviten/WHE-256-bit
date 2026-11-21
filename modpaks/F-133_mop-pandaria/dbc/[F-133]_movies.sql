@@ -10,15 +10,15 @@
 
 DELETE FROM `movie` WHERE `id` IN (119, 120, 121);
 INSERT INTO `movie` (`id`, `movie_path`, `volume`) VALUES
-  (119, 'Interface\Cinematics\mop_wra', 100),
-  (120, 'Interface\Cinematics\mop_wrh', 100),
-  (121, 'Interface\Cinematics\mop_jade_crash', 100);
+  (119, 'Interface\\Cinematics\\mop_wra', 100),
+  (120, 'Interface\\Cinematics\\mop_wrh', 100),
+  (121, 'Interface\\Cinematics\\mop_jade_crash', 100);
 
 DELETE FROM `filedata` WHERE `id` IN (1330119, 1330120, 1330121);
 INSERT INTO `filedata` (`id`, `file_name`, `file_path`) VALUES
-  (1330119, 'mop_wra_1024.avi', 'Interface\Cinematics\'),
-  (1330120, 'mop_wrh_1024.avi', 'Interface\Cinematics\'),
-  (1330121, 'mop_jade_crash_1024.avi', 'Interface\Cinematics\');
+  (1330119, 'mop_wra_1024.avi', 'Interface\\Cinematics\\'),
+  (1330120, 'mop_wrh_1024.avi', 'Interface\\Cinematics\\'),
+  (1330121, 'mop_jade_crash_1024.avi', 'Interface\\Cinematics\\');
 
 DELETE FROM `moviefiledata` WHERE `id` IN (1330119, 1330120, 1330121);
 INSERT INTO `moviefiledata` (`id`, `resolution`) VALUES (1330119, 1024), (1330120, 1024), (1330121, 1024);

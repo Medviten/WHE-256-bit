@@ -9,10 +9,10 @@
 -- [F-013]_goblin_cinematic.sql). The subtitles (.sbt) aren't shown.
 
 DELETE FROM `movie` WHERE `id` = 21;
-INSERT INTO `movie` (`id`, `movie_path`, `volume`) VALUES (21, 'Interface\Cinematics\Worgen', 100);
+INSERT INTO `movie` (`id`, `movie_path`, `volume`) VALUES (21, 'Interface\\Cinematics\\Worgen', 100);
 
 DELETE FROM `filedata` WHERE `id` = 455943;
-INSERT INTO `filedata` (`id`, `file_name`, `file_path`) VALUES (455943, 'Worgen_1024.avi', 'Interface\Cinematics\');
+INSERT INTO `filedata` (`id`, `file_name`, `file_path`) VALUES (455943, 'Worgen_1024.avi', 'Interface\\Cinematics\\');
 
 DELETE FROM `moviefiledata` WHERE `id` = 455943;
 INSERT INTO `moviefiledata` (`id`, `resolution`) VALUES (455943, 1024);
