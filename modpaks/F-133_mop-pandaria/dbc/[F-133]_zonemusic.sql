@@ -1259,3 +1259,507 @@ INSERT INTO `zonemusic` SET
   `silence_max_night` = 250000,
   `day_music` = 39687,
   `night_music` = 39687;
+
+-- Pandaria: Zone-DarkmoonFaire-IslandWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1058;
+INSERT INTO `zonemusic` SET
+  `id` = 1058,
+  `name` = 'Zone-DarkmoonFaire-IslandWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 300000,
+  `silence_max_night` = 300000,
+  `day_music` = 26536,
+  `night_music` = 26536;
+
+-- Pandaria: Zone-50-Cave-GenericWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1316;
+INSERT INTO `zonemusic` SET
+  `id` = 1316,
+  `name` = 'Zone-50-Cave-GenericWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34021,
+  `night_music` = 34021;
+
+-- Pandaria: Zone-Deepholm (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 638;
+INSERT INTO `zonemusic` SET
+  `id` = 638,
+  `name` = 'Zone-Deepholm',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 300000,
+  `silence_max_night` = 300000,
+  `day_music` = 5074,
+  `night_music` = 5074;
+
+-- Pandaria: Zone-50-WanderingIsle-GeneralIndoors (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1055;
+INSERT INTO `zonemusic` SET
+  `id` = 1055,
+  `name` = 'Zone-50-WanderingIsle-GeneralIndoors',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 25838,
+  `night_music` = 25838;
+
+-- Pandaria: Zone-50-WanderingIsle-GeneralWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1050;
+INSERT INTO `zonemusic` SET
+  `id` = 1050,
+  `name` = 'Zone-50-WanderingIsle-GeneralWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 25837,
+  `night_music` = 25837;
+
+-- Pandaria: Zone-50-TJS-TempleoftheJadeSerpent-GeneralWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1125;
+INSERT INTO `zonemusic` SET
+  `id` = 1125,
+  `name` = 'Zone-50-TJS-TempleoftheJadeSerpent-GeneralWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 31983,
+  `night_music` = 31984;
+
+-- Pandaria: Zone-50-TJS-FountainoftheEverseeing (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1124;
+INSERT INTO `zonemusic` SET
+  `id` = 1124,
+  `name` = 'Zone-50-TJS-FountainoftheEverseeing',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 30456,
+  `night_music` = 30456;
+
+-- Pandaria: Zone-50-TJS-ScrollKeepersSanctum-GeneralWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1126;
+INSERT INTO `zonemusic` SET
+  `id` = 1126,
+  `name` = 'Zone-50-TJS-ScrollKeepersSanctum-GeneralWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 31986,
+  `night_music` = 31986;
+
+-- Pandaria: Zone-51-PandarenTavern_B (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1319;
+INSERT INTO `zonemusic` SET
+  `id` = 1319,
+  `name` = 'Zone-51-PandarenTavern_B',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34878,
+  `night_music` = 34878;
+
+-- Pandaria: Zone-50-SSB-TricklingPassage-A_walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1202;
+INSERT INTO `zonemusic` SET
+  `id` = 1202,
+  `name` = 'Zone-50-SSB-TricklingPassage-A_walk',
+  `silence_min_day` = 18000,
+  `silence_min_night` = 18000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33750,
+  `night_music` = 33750;
+
+-- Pandaria: Zone-50-SSB-Brewhall_walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1210;
+INSERT INTO `zonemusic` SET
+  `id` = 1210,
+  `name` = 'Zone-50-SSB-Brewhall_walk',
+  `silence_min_day` = 18000,
+  `silence_min_night` = 18000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33757,
+  `night_music` = 33757;
+
+-- Pandaria: Zone-50-SSB-TheGreatWheel_walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1214;
+INSERT INTO `zonemusic` SET
+  `id` = 1214,
+  `name` = 'Zone-50-SSB-TheGreatWheel_walk',
+  `silence_min_day` = 18000,
+  `silence_min_night` = 18000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33766,
+  `night_music` = 33766;
+
+-- Pandaria: Zone-50-KLS-PeakofSerenity-CraneWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1282;
+INSERT INTO `zonemusic` SET
+  `id` = 1282,
+  `name` = 'Zone-50-KLS-PeakofSerenity-CraneWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33878,
+  `night_music` = 33878;
+
+-- Pandaria: Zone-50-Scenario-ArenaofAnnihilation (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1315;
+INSERT INTO `zonemusic` SET
+  `id` = 1315,
+  `name` = 'Zone-50-Scenario-ArenaofAnnihilation',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34019,
+  `night_music` = 34019;
+
+-- Pandaria: Zone-50-VEB-MSP-Exterior-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1219;
+INSERT INTO `zonemusic` SET
+  `id` = 1219,
+  `name` = 'Zone-50-VEB-MSP-Exterior-Walk',
+  `silence_min_day` = 18000,
+  `silence_min_night` = 18000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33785,
+  `night_music` = 33785;
+
+-- Pandaria: Zone-50-KLS-PeakofSerenity-BrewmasterWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1275;
+INSERT INTO `zonemusic` SET
+  `id` = 1275,
+  `name` = 'Zone-50-KLS-PeakofSerenity-BrewmasterWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33876,
+  `night_music` = 33876;
+
+-- Pandaria: Zone-51-Scenario-DaggerInTheDark_Ending (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1328;
+INSERT INTO `zonemusic` SET
+  `id` = 1328,
+  `name` = 'Zone-51-Scenario-DaggerInTheDark_Ending',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34974,
+  `night_music` = 34974;
+
+-- Pandaria: Zone-51-Scenario-DaggerintheDark (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1303;
+INSERT INTO `zonemusic` SET
+  `id` = 1303,
+  `name` = 'Zone-51-Scenario-DaggerintheDark',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34973,
+  `night_music` = 34973;
+
+-- Pandaria: Zone-50-TS-MantidHousesWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1292;
+INSERT INTO `zonemusic` SET
+  `id` = 1292,
+  `name` = 'Zone-50-TS-MantidHousesWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33940,
+  `night_music` = 33940;
+
+-- Pandaria: Zone-50-TS-SravessMantidAmberHousesWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1298;
+INSERT INTO `zonemusic` SET
+  `id` = 1298,
+  `name` = 'Zone-50-TS-SravessMantidAmberHousesWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33964,
+  `night_music` = 33964;
+
+-- Pandaria: Zone-50-DW_AmberglowHollow_Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1251;
+INSERT INTO `zonemusic` SET
+  `id` = 1251,
+  `name` = 'Zone-50-DW_AmberglowHollow_Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33841,
+  `night_music` = 33841;
+
+-- Pandaria: Zone-50-MSV-Raid-RepositoryWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1139;
+INSERT INTO `zonemusic` SET
+  `id` = 1139,
+  `name` = 'Zone-50-MSV-Raid-RepositoryWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33202,
+  `night_music` = 33202;
+
+-- Pandaria: Zone-50-SpiritCave-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1108;
+INSERT INTO `zonemusic` SET
+  `id` = 1108,
+  `name` = 'Zone-50-SpiritCave-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 29218,
+  `night_music` = 29218;
+
+-- Pandaria: Zone-50-SoN-HallowedOutTree (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1159;
+INSERT INTO `zonemusic` SET
+  `id` = 1159,
+  `name` = 'Zone-50-SoN-HallowedOutTree',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33612,
+  `night_music` = 33612;
+
+-- Pandaria: Zone-50-SoN-NiuzaoExteriorWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1160;
+INSERT INTO `zonemusic` SET
+  `id` = 1160,
+  `name` = 'Zone-50-SoN-NiuzaoExteriorWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33614,
+  `night_music` = 33614;
+
+-- Pandaria: Zone-50-DW_TheAmberWood_Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1239;
+INSERT INTO `zonemusic` SET
+  `id` = 1239,
+  `name` = 'Zone-50-DW_TheAmberWood_Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33818,
+  `night_music` = 33818;
+
+-- Pandaria: Zone-50-VEB-TheKeggary-H-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1230;
+INSERT INTO `zonemusic` SET
+  `id` = 1230,
+  `name` = 'Zone-50-VEB-TheKeggary-H-Walk',
+  `silence_min_day` = 0,
+  `silence_min_night` = 0,
+  `silence_max_day` = 0,
+  `silence_max_night` = 0,
+  `day_music` = 33808,
+  `night_music` = 33808;
+
+-- Pandaria: Zone-50-VEB-TheCelestialVault-H-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1402;
+INSERT INTO `zonemusic` SET
+  `id` = 1402,
+  `name` = 'Zone-50-VEB-TheCelestialVault-H-Walk',
+  `silence_min_day` = 0,
+  `silence_min_night` = 0,
+  `silence_max_day` = 0,
+  `silence_max_night` = 0,
+  `day_music` = 39701,
+  `night_music` = 39701;
+
+-- Pandaria: Zone-50-VEB-TheStarsBazaar-H-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1403;
+INSERT INTO `zonemusic` SET
+  `id` = 1403,
+  `name` = 'Zone-50-VEB-TheStarsBazaar-H-Walk',
+  `silence_min_day` = 0,
+  `silence_min_night` = 0,
+  `silence_max_day` = 0,
+  `silence_max_night` = 0,
+  `day_music` = 39702,
+  `night_music` = 39702;
+
+-- Pandaria: Zone-50-VEB-EtherealCorridor-H-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1401;
+INSERT INTO `zonemusic` SET
+  `id` = 1401,
+  `name` = 'Zone-50-VEB-EtherealCorridor-H-Walk',
+  `silence_min_day` = 0,
+  `silence_min_night` = 0,
+  `silence_max_day` = 0,
+  `silence_max_night` = 0,
+  `day_music` = 39700,
+  `night_music` = 39700;
+
+-- Pandaria: Zone-50-VEB-PathofSerentiy-H-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1400;
+INSERT INTO `zonemusic` SET
+  `id` = 1400,
+  `name` = 'Zone-50-VEB-PathofSerentiy-H-Walk',
+  `silence_min_day` = 0,
+  `silence_min_night` = 0,
+  `silence_max_day` = 0,
+  `silence_max_night` = 0,
+  `day_music` = 39699,
+  `night_music` = 39699;
+
+-- Pandaria: Zone-50-VEB-ChamberofEnlightenment-H-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1398;
+INSERT INTO `zonemusic` SET
+  `id` = 1398,
+  `name` = 'Zone-50-VEB-ChamberofEnlightenment-H-Walk',
+  `silence_min_day` = 0,
+  `silence_min_night` = 0,
+  `silence_max_day` = 0,
+  `silence_max_night` = 0,
+  `day_music` = 39697,
+  `night_music` = 39697;
+
+-- Pandaria: Zone-50-GSS-SerpentSpine-VFW-DW-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1307;
+INSERT INTO `zonemusic` SET
+  `id` = 1307,
+  `name` = 'Zone-50-GSS-SerpentSpine-VFW-DW-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34002,
+  `night_music` = 34002;
+
+-- Pandaria: Zone-50-GSS-SerpentSpine-KLS-TS-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1304;
+INSERT INTO `zonemusic` SET
+  `id` = 1304,
+  `name` = 'Zone-50-GSS-SerpentSpine-KLS-TS-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34007,
+  `night_music` = 34007;
+
+-- Pandaria: Zone-50-GSS-SerpentSpine-KW-DW-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1308;
+INSERT INTO `zonemusic` SET
+  `id` = 1308,
+  `name` = 'Zone-50-GSS-SerpentSpine-KW-DW-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34003,
+  `night_music` = 34003;
+
+-- Pandaria: Zone-50-GSS-SerpentSpine-VEB-TS-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1305;
+INSERT INTO `zonemusic` SET
+  `id` = 1305,
+  `name` = 'Zone-50-GSS-SerpentSpine-VEB-TS-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 34000,
+  `night_music` = 34000;
+
+-- Pandaria: Zone-50-DW_MiscMantidHouses_Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1240;
+INSERT INTO `zonemusic` SET
+  `id` = 1240,
+  `name` = 'Zone-50-DW_MiscMantidHouses_Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33819,
+  `night_music` = 33819;
+
+-- Pandaria: Zone-52-IOTK_Zandalari1 (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1346;
+INSERT INTO `zonemusic` SET
+  `id` = 1346,
+  `name` = 'Zone-52-IOTK_Zandalari1',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 36642,
+  `night_music` = 36642;
+
+-- Pandaria: Zone-52-IOTK_Saurok (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1352;
+INSERT INTO `zonemusic` SET
+  `id` = 1352,
+  `name` = 'Zone-52-IOTK_Saurok',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 36681,
+  `night_music` = 36681;
+
+-- Pandaria: Zone-54-SOR-Vale-ScarredVale-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1395;
+INSERT INTO `zonemusic` SET
+  `id` = 1395,
+  `name` = 'Zone-54-SOR-Vale-ScarredVale-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 39693,
+  `night_music` = 39693;
+
+-- Pandaria: Zone-54-SOR-Vale-ShaofPride-Battle (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1396;
+INSERT INTO `zonemusic` SET
+  `id` = 1396,
+  `name` = 'Zone-54-SOR-Vale-ShaofPride-Battle',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 39696,
+  `night_music` = 39696;
+
+-- Pandaria: Zone-54-SOR-Vale-NorushenRoom-Walk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1404;
+INSERT INTO `zonemusic` SET
+  `id` = 1404,
+  `name` = 'Zone-54-SOR-Vale-NorushenRoom-Walk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 39695,
+  `night_music` = 39695;

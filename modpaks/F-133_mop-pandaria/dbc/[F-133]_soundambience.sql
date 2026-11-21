@@ -209,3 +209,416 @@ INSERT INTO `soundambience` SET
   `id` = 1141,
   `sound_entry_id_day` = 39665,
   `sound_entry_id_night` = 39665;
+
+-- Pandaria: 971 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 971;
+INSERT INTO `soundambience` SET
+  `id` = 971,
+  `sound_entry_id_day` = 37827,
+  `sound_entry_id_night` = 37827;
+
+-- Pandaria: 974 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 974;
+INSERT INTO `soundambience` SET
+  `id` = 974,
+  `sound_entry_id_day` = 27236,
+  `sound_entry_id_night` = 27236;
+
+-- Pandaria: 932 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 932;
+INSERT INTO `soundambience` SET
+  `id` = 932,
+  `sound_entry_id_day` = 26913,
+  `sound_entry_id_night` = 26913;
+
+-- Pandaria: 940 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 940;
+INSERT INTO `soundambience` SET
+  `id` = 940,
+  `sound_entry_id_day` = 29170,
+  `sound_entry_id_night` = 29170;
+
+-- Pandaria: 941 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 941;
+INSERT INTO `soundambience` SET
+  `id` = 941,
+  `sound_entry_id_day` = 27000,
+  `sound_entry_id_night` = 27000;
+
+-- Pandaria: 942 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 942;
+INSERT INTO `soundambience` SET
+  `id` = 942,
+  `sound_entry_id_day` = 27001,
+  `sound_entry_id_night` = 27001;
+
+-- Pandaria: 939 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 939;
+INSERT INTO `soundambience` SET
+  `id` = 939,
+  `sound_entry_id_day` = 26950,
+  `sound_entry_id_night` = 26950;
+
+-- Pandaria: 988 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 988;
+INSERT INTO `soundambience` SET
+  `id` = 988,
+  `sound_entry_id_day` = 27267,
+  `sound_entry_id_night` = 27267;
+
+-- Pandaria: 970 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 970;
+INSERT INTO `soundambience` SET
+  `id` = 970,
+  `sound_entry_id_day` = 27236,
+  `sound_entry_id_night` = 27236;
+
+-- Pandaria: 973 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 973;
+INSERT INTO `soundambience` SET
+  `id` = 973,
+  `sound_entry_id_day` = 4214,
+  `sound_entry_id_night` = 4214;
+
+-- Pandaria: 1013 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1013;
+INSERT INTO `soundambience` SET
+  `id` = 1013,
+  `sound_entry_id_day` = 4214,
+  `sound_entry_id_night` = 4214;
+
+-- Pandaria: 934 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 934;
+INSERT INTO `soundambience` SET
+  `id` = 934,
+  `sound_entry_id_day` = 26915,
+  `sound_entry_id_night` = 26915;
+
+-- Pandaria: 935 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 935;
+INSERT INTO `soundambience` SET
+  `id` = 935,
+  `sound_entry_id_day` = 26916,
+  `sound_entry_id_night` = 26916;
+
+-- Pandaria: 943 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 943;
+INSERT INTO `soundambience` SET
+  `id` = 943,
+  `sound_entry_id_day` = 27003,
+  `sound_entry_id_night` = 27003;
+
+-- Pandaria: 930 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 930;
+INSERT INTO `soundambience` SET
+  `id` = 930,
+  `sound_entry_id_day` = 26811,
+  `sound_entry_id_night` = 26811;
+
+-- Pandaria: 986 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 986;
+INSERT INTO `soundambience` SET
+  `id` = 986,
+  `sound_entry_id_day` = 27269,
+  `sound_entry_id_night` = 27269;
+
+-- Pandaria: 609 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 609;
+INSERT INTO `soundambience` SET
+  `id` = 609,
+  `sound_entry_id_day` = 18052,
+  `sound_entry_id_night` = 18052;
+
+-- Pandaria: 1041 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1041;
+INSERT INTO `soundambience` SET
+  `id` = 1041,
+  `sound_entry_id_day` = 26914,
+  `sound_entry_id_night` = 26914;
+
+-- Pandaria: 982 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 982;
+INSERT INTO `soundambience` SET
+  `id` = 982,
+  `sound_entry_id_day` = 26914,
+  `sound_entry_id_night` = 26914;
+
+-- Pandaria: 954 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 954;
+INSERT INTO `soundambience` SET
+  `id` = 954,
+  `sound_entry_id_day` = 27099,
+  `sound_entry_id_night` = 27099;
+
+-- Pandaria: 1012 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1012;
+INSERT INTO `soundambience` SET
+  `id` = 1012,
+  `sound_entry_id_day` = 31862,
+  `sound_entry_id_night` = 31862;
+
+-- Pandaria: 1062 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1062;
+INSERT INTO `soundambience` SET
+  `id` = 1062,
+  `sound_entry_id_day` = 27236,
+  `sound_entry_id_night` = 27236;
+
+-- Pandaria: 983 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 983;
+INSERT INTO `soundambience` SET
+  `id` = 983,
+  `sound_entry_id_day` = 4195,
+  `sound_entry_id_night` = 27254;
+
+-- Pandaria: 933 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 933;
+INSERT INTO `soundambience` SET
+  `id` = 933,
+  `sound_entry_id_day` = 26914,
+  `sound_entry_id_night` = 26914;
+
+-- Pandaria: 959 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 959;
+INSERT INTO `soundambience` SET
+  `id` = 959,
+  `sound_entry_id_day` = 27131,
+  `sound_entry_id_night` = 27131;
+
+-- Pandaria: 993 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 993;
+INSERT INTO `soundambience` SET
+  `id` = 993,
+  `sound_entry_id_day` = 9015,
+  `sound_entry_id_night` = 9015;
+
+-- Pandaria: 985 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 985;
+INSERT INTO `soundambience` SET
+  `id` = 985,
+  `sound_entry_id_day` = 9022,
+  `sound_entry_id_night` = 9022;
+
+-- Pandaria: 963 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 963;
+INSERT INTO `soundambience` SET
+  `id` = 963,
+  `sound_entry_id_day` = 27163,
+  `sound_entry_id_night` = 27163;
+
+-- Pandaria: 1048 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1048;
+INSERT INTO `soundambience` SET
+  `id` = 1048,
+  `sound_entry_id_day` = 27254,
+  `sound_entry_id_night` = 27254;
+
+-- Pandaria: 956 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 956;
+INSERT INTO `soundambience` SET
+  `id` = 956,
+  `sound_entry_id_day` = 27102,
+  `sound_entry_id_night` = 27102;
+
+-- Pandaria: 945 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 945;
+INSERT INTO `soundambience` SET
+  `id` = 945,
+  `sound_entry_id_day` = 27030,
+  `sound_entry_id_night` = 27030;
+
+-- Pandaria: 978 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 978;
+INSERT INTO `soundambience` SET
+  `id` = 978,
+  `sound_entry_id_day` = 26914,
+  `sound_entry_id_night` = 26914;
+
+-- Pandaria: 984 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 984;
+INSERT INTO `soundambience` SET
+  `id` = 984,
+  `sound_entry_id_day` = 27099,
+  `sound_entry_id_night` = 27099;
+
+-- Pandaria: 1058 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1058;
+INSERT INTO `soundambience` SET
+  `id` = 1058,
+  `sound_entry_id_day` = 26914,
+  `sound_entry_id_night` = 26914;
+
+-- Pandaria: 953 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 953;
+INSERT INTO `soundambience` SET
+  `id` = 953,
+  `sound_entry_id_day` = 27098,
+  `sound_entry_id_night` = 27098;
+
+-- Pandaria: 1042 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1042;
+INSERT INTO `soundambience` SET
+  `id` = 1042,
+  `sound_entry_id_day` = 9015,
+  `sound_entry_id_night` = 9015;
+
+-- Pandaria: 979 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 979;
+INSERT INTO `soundambience` SET
+  `id` = 979,
+  `sound_entry_id_day` = 27249,
+  `sound_entry_id_night` = 27249;
+
+-- Pandaria: 929 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 929;
+INSERT INTO `soundambience` SET
+  `id` = 929,
+  `sound_entry_id_day` = 26810,
+  `sound_entry_id_night` = 26810;
+
+-- Pandaria: 1024 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1024;
+INSERT INTO `soundambience` SET
+  `id` = 1024,
+  `sound_entry_id_day` = 32110,
+  `sound_entry_id_night` = 32110;
+
+-- Pandaria: 964 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 964;
+INSERT INTO `soundambience` SET
+  `id` = 964,
+  `sound_entry_id_day` = 27222,
+  `sound_entry_id_night` = 27222;
+
+-- Pandaria: 1025 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1025;
+INSERT INTO `soundambience` SET
+  `id` = 1025,
+  `sound_entry_id_day` = 32110,
+  `sound_entry_id_night` = 32110;
+
+-- Pandaria: 967 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 967;
+INSERT INTO `soundambience` SET
+  `id` = 967,
+  `sound_entry_id_day` = 27030,
+  `sound_entry_id_night` = 27030;
+
+-- Pandaria: 1023 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1023;
+INSERT INTO `soundambience` SET
+  `id` = 1023,
+  `sound_entry_id_day` = 32109,
+  `sound_entry_id_night` = 32109;
+
+-- Pandaria: 1022 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1022;
+INSERT INTO `soundambience` SET
+  `id` = 1022,
+  `sound_entry_id_day` = 32109,
+  `sound_entry_id_night` = 32109;
+
+-- Pandaria: 1028 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1028;
+INSERT INTO `soundambience` SET
+  `id` = 1028,
+  `sound_entry_id_day` = 32109,
+  `sound_entry_id_night` = 32109;
+
+-- Pandaria: 981 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 981;
+INSERT INTO `soundambience` SET
+  `id` = 981,
+  `sound_entry_id_day` = 27030,
+  `sound_entry_id_night` = 27030;
+
+-- Pandaria: 1026 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1026;
+INSERT INTO `soundambience` SET
+  `id` = 1026,
+  `sound_entry_id_day` = 32110,
+  `sound_entry_id_night` = 32110;
+
+-- Pandaria: 938 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 938;
+INSERT INTO `soundambience` SET
+  `id` = 938,
+  `sound_entry_id_day` = 26919,
+  `sound_entry_id_night` = 26919;
+
+-- Pandaria: 1027 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1027;
+INSERT INTO `soundambience` SET
+  `id` = 1027,
+  `sound_entry_id_day` = 32109,
+  `sound_entry_id_night` = 32109;
+
+-- Pandaria: 969 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 969;
+INSERT INTO `soundambience` SET
+  `id` = 969,
+  `sound_entry_id_day` = 27102,
+  `sound_entry_id_night` = 27102;
+
+-- Pandaria: 958 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 958;
+INSERT INTO `soundambience` SET
+  `id` = 958,
+  `sound_entry_id_day` = 27130,
+  `sound_entry_id_night` = 27130;
+
+-- Pandaria: 1032 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1032;
+INSERT INTO `soundambience` SET
+  `id` = 1032,
+  `sound_entry_id_day` = 27236,
+  `sound_entry_id_night` = 27236;
+
+-- Pandaria: 1047 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1047;
+INSERT INTO `soundambience` SET
+  `id` = 1047,
+  `sound_entry_id_day` = 27099,
+  `sound_entry_id_night` = 27099;
+
+-- Pandaria: 1098 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1098;
+INSERT INTO `soundambience` SET
+  `id` = 1098,
+  `sound_entry_id_day` = 27236,
+  `sound_entry_id_night` = 27236;
+
+-- Pandaria: 1113 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1113;
+INSERT INTO `soundambience` SET
+  `id` = 1113,
+  `sound_entry_id_day` = 37841,
+  `sound_entry_id_night` = 37841;
+
+-- Pandaria: 1138 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1138;
+INSERT INTO `soundambience` SET
+  `id` = 1138,
+  `sound_entry_id_day` = 39411,
+  `sound_entry_id_night` = 39411;
+
+-- Pandaria: 1121 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1121;
+INSERT INTO `soundambience` SET
+  `id` = 1121,
+  `sound_entry_id_day` = 37880,
+  `sound_entry_id_night` = 37880;
+
+-- Pandaria: 1111 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1111;
+INSERT INTO `soundambience` SET
+  `id` = 1111,
+  `sound_entry_id_day` = 37727,
+  `sound_entry_id_night` = 37727;
+
+-- Pandaria: 1120 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1120;
+INSERT INTO `soundambience` SET
+  `id` = 1120,
+  `sound_entry_id_day` = 37879,
+  `sound_entry_id_night` = 37879;

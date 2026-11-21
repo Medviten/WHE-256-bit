@@ -48,3 +48,66 @@ INSERT INTO `soundambience` SET
   `id` = 927,
   `sound_entry_id_day` = 26798,
   `sound_entry_id_night` = 26798;
+
+-- The Wandering Isle: 974 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 974;
+INSERT INTO `soundambience` SET
+  `id` = 974,
+  `sound_entry_id_day` = 27236,
+  `sound_entry_id_night` = 27236;
+
+-- The Wandering Isle: 1039 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 1039;
+INSERT INTO `soundambience` SET
+  `id` = 1039,
+  `sound_entry_id_day` = 32275,
+  `sound_entry_id_night` = 32275;
+
+-- The Wandering Isle: 995 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 995;
+INSERT INTO `soundambience` SET
+  `id` = 995,
+  `sound_entry_id_day` = 27775,
+  `sound_entry_id_night` = 27775;
+
+-- The Wandering Isle: 828 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 828;
+INSERT INTO `soundambience` SET
+  `id` = 828,
+  `sound_entry_id_day` = 25608,
+  `sound_entry_id_night` = 25608;
+
+-- The Wandering Isle: 988 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 988;
+INSERT INTO `soundambience` SET
+  `id` = 988,
+  `sound_entry_id_day` = 27267,
+  `sound_entry_id_night` = 27267;
+
+-- The Wandering Isle: 933 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 933;
+INSERT INTO `soundambience` SET
+  `id` = 933,
+  `sound_entry_id_day` = 26914,
+  `sound_entry_id_night` = 26914;
+
+-- The Wandering Isle: 991 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 991;
+INSERT INTO `soundambience` SET
+  `id` = 991,
+  `sound_entry_id_day` = 27254,
+  `sound_entry_id_night` = 27254;
+
+-- The Wandering Isle: 986 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 986;
+INSERT INTO `soundambience` SET
+  `id` = 986,
+  `sound_entry_id_day` = 27269,
+  `sound_entry_id_night` = 27269;
+
+-- The Wandering Isle: 920 (MoP's)
+DELETE FROM `soundambience` WHERE `id` = 920;
+INSERT INTO `soundambience` SET
+  `id` = 920,
+  `sound_entry_id_day` = 26773,
+  `sound_entry_id_night` = 26773;

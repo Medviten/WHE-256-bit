@@ -95,3 +95,63 @@ INSERT INTO `zonemusic` SET
   `silence_max_night` = 250000,
   `day_music` = 25835,
   `night_music` = 25835;
+
+-- The Wandering Isle: Zone-50-WanderingIsle-GeneralIndoors (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1055;
+INSERT INTO `zonemusic` SET
+  `id` = 1055,
+  `name` = 'Zone-50-WanderingIsle-GeneralIndoors',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 25838,
+  `night_music` = 25838;
+
+-- The Wandering Isle: Zone-50-PandarenTavern_A (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1147;
+INSERT INTO `zonemusic` SET
+  `id` = 1147,
+  `name` = 'Zone-50-PandarenTavern_A',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33540,
+  `night_music` = 33540;
+
+-- The Wandering Isle: MUS_50_MischiefMakers_GeneralWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1146;
+INSERT INTO `zonemusic` SET
+  `id` = 1146,
+  `name` = 'MUS_50_MischiefMakers_GeneralWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33537,
+  `night_music` = 33537;
+
+-- The Wandering Isle: Zone-50-KLS-PeakofSerenity-CraneWalk (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1282;
+INSERT INTO `zonemusic` SET
+  `id` = 1282,
+  `name` = 'Zone-50-KLS-PeakofSerenity-CraneWalk',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 33878,
+  `night_music` = 33878;
+
+-- The Wandering Isle: Zone-54-TI-TimelessIsle (MoP's)
+DELETE FROM `zonemusic` WHERE `id` = 1378;
+INSERT INTO `zonemusic` SET
+  `id` = 1378,
+  `name` = 'Zone-54-TI-TimelessIsle',
+  `silence_min_day` = 180000,
+  `silence_min_night` = 180000,
+  `silence_max_day` = 250000,
+  `silence_max_night` = 250000,
+  `day_music` = 39129,
+  `night_music` = 39128;

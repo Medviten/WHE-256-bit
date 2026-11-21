@@ -26,3 +26,21 @@ INSERT INTO `zoneintromusictable` SET
   `sound_id` = 25832,
   `priority` = 0,
   `min_delay_minutes` = 40;
+
+-- The Wandering Isle: Intro-50-WanderingIsle-Temple (MoP's)
+DELETE FROM `zoneintromusictable` WHERE `id` = 944;
+INSERT INTO `zoneintromusictable` SET
+  `id` = 944,
+  `name` = 'Intro-50-WanderingIsle-Temple',
+  `sound_id` = 33525,
+  `priority` = 0,
+  `min_delay_minutes` = 40;
+
+-- The Wandering Isle: Intro-50-DawningSpan (MoP's)
+DELETE FROM `zoneintromusictable` WHERE `id` = 947;
+INSERT INTO `zoneintromusictable` SET
+  `id` = 947,
+  `name` = 'Intro-50-DawningSpan',
+  `sound_id` = 25852,
+  `priority` = 0,
+  `min_delay_minutes` = 40;

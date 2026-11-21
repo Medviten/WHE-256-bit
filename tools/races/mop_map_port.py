@@ -30,6 +30,10 @@ MODPAK/sql/db-world/base/[TAG]_game_tele.sql.
 - Music: MoP's SoundAmbience, ZoneMusic and ZoneIntroMusicTable rows of the areas and the SoundEntries they play
   ([TAG]_music_soundentries.sql; fetch the files with zep_goblin_sounds.py --sql). --music-only rewrites these and
   the areatable SQL's three music columns, keeping its area bits.
+- Indoor sound (--wmo-sources FOLDER_OR_MPQ ... --wmo-names CSV): MoP's WMOAreaTable rows of the WMOs the tiles
+  place (ids from the root files' MOHD, read from the first source that has the file; stock's WMOs keep stock's
+  rows), with their ambience, music and intro music ported as above, into [TAG]_wmoareatable.sql. The CSV is
+  https://wago.tools/db2/WMOAreaTable/csv?build=5.5.4.70631 (5.4.8's names are ruRU).
 - Light: MoP's lights of the map (ids and positions kept) with MoP's own parameters: each parameter set stock lacks
   becomes a LightParams row (no skybox: MoP's sky models aren't in the client) and LightIntBand/LightFloatBand rows
   from 5.4.8's LightData (which replaced the bands: one row per time of day). Stock's Eastern Kingdoms default
@@ -101,12 +105,17 @@ def chunks(adt_dir):
     return out
 
 
-def taken_ids(modpaks_dir, table, own_tag):
-    """Ids other modpaks' dbc/*<table>.sql insert."""
+# F-133 and F-134 share MoP's music, ambience and WMO rows (Pandaren buildings on both maps): each writes the ones it
+# uses, so either works without the other
+MOP_TAGS = re.compile(r"\[F-13[34]\]")
+
+
+def taken_ids(modpaks_dir, table, own_tag, shared=False):
+    """Ids other modpaks' dbc/*<table>.sql insert (with SHARED, not counting F-133's and F-134's)."""
     ids = set()
     pat = re.compile(r"INSERT INTO `%s` \([^)]*\) VALUES \((\d+)|INSERT INTO `%s` SET\s*`id` = (\d+)" % (table, table))
     for f in glob.glob(os.path.join(modpaks_dir, "*", "dbc", f"*{table}.sql")):
-        if own_tag in os.path.basename(f):
+        if own_tag in os.path.basename(f) or shared and MOP_TAGS.search(os.path.basename(f)):
             continue
         ids |= {int(m.group(1) or m.group(2)) for m in pat.finditer(open(f, encoding="utf-8").read())}
     return ids
@@ -238,30 +247,33 @@ def write_lights(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, MAP, TAG, NAME):
     print(f"{len(lights)} lights, {len(out_p)} light params from MoP's LightData")
 
 
-# (table, its AreaTable field in 5.4.8, the AreaTable column 3.3.5a has it in, the table's SoundEntries fields)
-MUSIC = (("soundambience", 8, "ambience", (1, 2)), ("zonemusic", 9, "zone_music", (6, 7)),
-         ("zoneintromusictable", 11, "zone_music_intro", (2,)))
+# (table, its AreaTable field in 5.4.8, the AreaTable column 3.3.5a has it in, its WMOAreaTable field in 5.4.8 and
+# column in 3.3.5a, the table's SoundEntries fields)
+MUSIC = (("soundambience", 8, "ambience", 6, "ambience_id", (1, 2)),
+         ("zonemusic", 9, "zone_music", 7, "zone_music", (6, 7)),
+         ("zoneintromusictable", 11, "zone_music_intro", 8, "intro_sound", (2,)))
 MUSIC_COLUMNS = {"soundambience": ("id", "sound_entry_id_day", "sound_entry_id_night"),
                  "zonemusic": ("id", "name", "silence_min_day", "silence_min_night", "silence_max_day",
                                "silence_max_night", "day_music", "night_music"),
                  "zoneintromusictable": ("id", "name", "sound_id", "priority", "min_delay_minutes")}
 
 
-def write_music(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, rows, TAG, NAME):
-    """MoP's ambience, zone music and intro music of the map's areas, with the SoundEntries they play (files named
-    through the community listfile, downloaded into WHE-common by zep_goblin_sounds.py --sql). Returns
-    {area id: {areatable column: id}}."""
+def write_music(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, rows, TAG, NAME, wmo_rows=()):
+    """MoP's ambience, zone music and intro music of the map's areas (and of WMO_ROWS, 5.4.8 WMOAreaTable rows), with
+    the SoundEntries they play (files named through the community listfile, downloaded into WHE-common by
+    zep_goblin_sounds.py --sql). Returns {area id: {areatable column: id}}, {wmoareatable id: {column: id}}."""
     from mop_wandering_isle_port import MopSounds
     sounds = MopSounds()
-    out = collections.defaultdict(dict)
-    for table, field, column, sound_fields in MUSIC:
+    out, wmo_out = collections.defaultdict(dict), collections.defaultdict(dict)
+    for table, field, column, wmo_field, wmo_column, sound_fields in MUSIC:
         dbc_name = {"soundambience": "SoundAmbience", "zonemusic": "ZoneMusic",
                     "zoneintromusictable": "ZoneIntroMusicTable"}[table]
         mop, stock = Dbc(os.path.join(mop_dbc, dbc_name + ".dbc")), Dbc(os.path.join(stock_dbc, dbc_name + ".dbc"))
-        taken = taken_ids(modpaks_dir, table, TAG)
+        taken = taken_ids(modpaks_dir, table, TAG, shared=True)
         written = {}
-        for r in rows:
-            mid = r[field]
+        sources = [(r, field, column, out) for r in rows] + [(r, wmo_field, wmo_column, wmo_out) for r in wmo_rows]
+        for r, f, col, dest in sources:
+            mid = r[f]
             src = mop.get(mid) if mid > 0 else None
             if not src:
                 continue
@@ -282,14 +294,14 @@ def write_music(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, rows, TAG, NAME):
                         cols["name"] = mop.s(row[1])
                     written[mid] = block(table, mid, cols, f"{NAME}: {cols.get('name', mid)} (MoP's)")
             if written[mid] != 0:
-                out[r[0]][column] = mid
+                dest[r[0]][col] = mid
         with open(os.path.join(dbc_dir, f"{TAG}_{table}.sql"), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(HEADER + "\n".join(b for b in written.values() if b))
     # sounds another modpak writes are left to it: F-010 has Cataclysm's ambience under the same ids (as .wav names,
-    # which the client opens as .ogg); F-133 and F-134 share theirs, each writing the rows it uses
+    # which the client opens as .ogg); F-133 and F-134 share theirs (MOP_TAGS)
     other = set()
     for f in glob.glob(os.path.join(modpaks_dir, "*", "dbc", "*soundentries.sql")):
-        if not re.search(r"\[F-13[34]\]", os.path.basename(f)):
+        if not MOP_TAGS.search(os.path.basename(f)):
             other |= {int(m[0] or m[1]) for m in re.findall(r"INSERT INTO `soundentries` \([^)]*\) VALUES \((\d+)|"
                                                             r"INSERT INTO `soundentries` SET\s*`id` = (\d+)",
                                                             open(f, encoding="utf-8").read())}
@@ -297,8 +309,84 @@ def write_music(mop_dbc, stock_dbc, modpaks_dir, dbc_dir, rows, TAG, NAME):
     with open(os.path.join(dbc_dir, f"{TAG}_music_soundentries.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + f"-- The files {NAME}'s music and ambience play (5.4.8 SoundEntries)\n\n" + "\n".join(
             block("soundentries", k, c, comment) for k, (c, comment) in sorted(entries.items())))
-    print(f"music for {len(out)} areas, {len(entries)} sound entries")
-    return out
+    print(f"music for {len(out)} areas and {len(wmo_out)} WMO groups, {len(entries)} sound entries")
+    return out, wmo_out
+
+
+def map_wmo_ids(adt_dir, sources):
+    """{WMO id (the root's MOHD): file} of the WMOs the map's tiles place (MWMO), read from the first of SOURCES
+    (folders, or MPQs read by name) that has the file. WMOs in none of them are left out, and listed."""
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "models"))
+    from mpq_extract import extract
+    folders = {}
+    for src in sources:
+        if os.path.isdir(src):
+            folders[src] = {os.path.relpath(f, src).replace(os.sep, "/").lower(): f
+                            for f in glob.glob(os.path.join(src, "**", "*.wmo"), recursive=True)}
+    names = set()
+    for adt in glob.glob(os.path.join(adt_dir, "*.adt")):
+        b = open(adt, "rb").read()
+        i = 0
+        while i + 8 <= len(b):
+            n = struct.unpack_from("<I", b, i + 4)[0]
+            if b[i:i + 4] == b"OMWM":
+                names |= {x.decode("latin-1").replace(chr(92), "/").lower()
+                          for x in b[i + 8:i + 8 + n].split(bytes(1)) if x}
+            i += 8 + n
+    ids, missing = {}, []
+    for name in sorted(names):
+        data = None
+        for src in sources:
+            if src in folders:
+                data = open(folders[src][name], "rb").read() if name in folders[src] else None
+            else:
+                data = extract(src, name.replace("/", "\\"))
+            if data:
+                break
+        if not data:
+            missing.append(name)
+            continue
+        i = 0
+        while i + 8 <= len(data):
+            n = struct.unpack_from("<I", data, i + 4)[0]
+            if data[i:i + 4] == b"DHOM":
+                ids[struct.unpack_from("<I", data, i + 8 + 0x20)[0]] = name
+                break
+            i += 8 + n
+    if missing:
+        print(f"{len(missing)} WMOs not in the sources (stock's or another modpak's, with their rows): "
+              + ", ".join(missing))
+    return ids
+
+
+def wmo_area_rows(mop_dbc, stock_dbc, modpaks_dir, wmo_ids, TAG):
+    """MoP's WMOAreaTable rows of WMO_IDS, the WMOs stock has no rows for (stock's keep stock's rows)."""
+    mop, stock = Dbc(os.path.join(mop_dbc, "WMOAreaTable.dbc")), Dbc(os.path.join(stock_dbc, "WMOAreaTable.dbc"))
+    stock_wmos = {r[1] for r in stock.records}
+    rows = [r for r in mop.records if r[1] in wmo_ids and r[1] not in stock_wmos]
+    taken = set(stock.rows) | taken_ids(modpaks_dir, "wmoareatable", TAG, shared=True)
+    clash = sorted(r[0] for r in rows if r[0] in taken)
+    if clash:
+        sys.exit(f"wmoareatable ids {clash} are taken")
+    return rows
+
+
+def write_wmo_areas(dbc_dir, rows, music, wmo_ids, names_csv, area_ids, TAG, NAME):
+    """[TAG]_wmoareatable.sql: the rows with write_music's sounds, MoP's sound providers (the same
+    SoundProviderPreferences rows as stock's) and flags (the bits stock uses), the area when the map has it and
+    English names from NAMES_CSV (wago.tools' WMOAreaTable export). The underwater sounds 3.3.5a lacks are dropped."""
+    names = {int(r["ID"]): r["AreaName_lang"] for r in csv.DictReader(open(names_csv, encoding="utf-8"))}
+    out = []
+    for r in sorted(rows, key=lambda r: (r[1], r[2], r[3])):
+        cols = {"id": r[0], "wmo_id": r[1], "name_set_id": r[2], "wmo_group_id": r[3], "sound_provider_pref": r[4],
+                "sound_provider_pref_underwater": r[5], "ambience_id": 0, "zone_music": 0, "intro_sound": 0,
+                "flags": r[9], "area_table_id": r[10] if r[10] in area_ids else 0,
+                "name_enus": names.get(r[0], ""), "name_flags": 16712190}
+        cols.update(music.get(r[0], {}))
+        out.append(block("wmoareatable", r[0], cols, f"{NAME}: {wmo_ids[r[1]]} group {r[3]}"))
+    with open(os.path.join(dbc_dir, f"{TAG}_wmoareatable.sql"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(HEADER + "\n".join(out))
+    print(f"{len(out)} wmoareatable rows for {len({r[1] for r in rows})} WMOs")
 
 
 def apply_music(path, music):
@@ -312,6 +400,20 @@ def apply_music(path, music):
     text = re.sub(r"INSERT INTO `areatable` SET\s*`id` = (\d+),.*?;\n", area, text, flags=re.S)
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(text)
+
+
+def port_music(a, dbc_dir, rows, TAG, NAME):
+    """Areas' music into the areatable SQL; with --wmo-sources, the map's WMOs' indoor sound too."""
+    wmo_ids, wmo_rows = {}, []
+    if a.wmo_sources:
+        if not a.wmo_names:
+            sys.exit("--wmo-sources needs --wmo-names")
+        wmo_ids = map_wmo_ids(a.adt_dir, a.wmo_sources)
+        wmo_rows = wmo_area_rows(a.mop_dbc, a.stock_dbc, a.modpaks_dir, wmo_ids, TAG)
+    music, wmo_music = write_music(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, rows, TAG, NAME, wmo_rows)
+    apply_music(os.path.join(dbc_dir, f"{TAG}_areatable.sql"), music)
+    if a.wmo_sources:
+        write_wmo_areas(dbc_dir, wmo_rows, wmo_music, wmo_ids, a.wmo_names, {r[0] for r in rows}, TAG, NAME)
 
 
 def main():
@@ -329,6 +431,9 @@ def main():
     p.add_argument("--graveyards-only", action="store_true")
     p.add_argument("--tele-only", action="store_true")
     p.add_argument("--music-only", action="store_true")
+    p.add_argument("--wmo-sources", nargs="+", metavar="FOLDER_OR_MPQ",
+                   help="where the map's WMOs are, first match wins: their indoor sound goes into wmoareatable")
+    p.add_argument("--wmo-names", metavar="CSV", help="wago.tools' WMOAreaTable export, for English names")
     p.add_argument("--dungeon", nargs=3, type=float, metavar=("CORPSE_MAP", "X", "Y"),
                    help="a 5-player dungeon (instance type 1) whose ghosts go to (X, Y) on CORPSE_MAP")
     a = p.parse_args()
@@ -348,8 +453,7 @@ def main():
                           MAP, TAG, NAME)
     if a.music_only:
         dbc_dir = os.path.join(a.modpak, "dbc")
-        return apply_music(os.path.join(dbc_dir, f"{TAG}_areatable.sql"),
-                           write_music(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, rows, TAG, NAME))
+        return port_music(a, dbc_dir, rows, TAG, NAME)
     clash = [r[0] for r in rows if r[0] in stock.rows]
     if clash:
         sys.exit(f"stock AreaTable already has ids {clash}")
@@ -389,8 +493,7 @@ def main():
             "light_id": 0}, f"{name} (MoP area bit {r[3]})"))
     with open(os.path.join(dbc_dir, f"{TAG}_areatable.sql"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(HEADER + "\n".join(out))
-    apply_music(os.path.join(dbc_dir, f"{TAG}_areatable.sql"),
-                write_music(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, rows, TAG, NAME))
+    port_music(a, dbc_dir, rows, TAG, NAME)
 
     write_lights(a.mop_dbc, a.stock_dbc, a.modpaks_dir, dbc_dir, MAP, TAG, NAME)
     write_graveyards(a.mop_dbc, a.modpaks_dir, sql_dir, MAP, TAG, NAME)

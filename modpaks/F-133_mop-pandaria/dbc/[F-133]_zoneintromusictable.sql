@@ -215,3 +215,39 @@ INSERT INTO `zoneintromusictable` SET
   `sound_id` = 39690,
   `priority` = 1,
   `min_delay_minutes` = 40;
+
+-- Pandaria: Intro-50-DawningSpan (MoP's)
+DELETE FROM `zoneintromusictable` WHERE `id` = 947;
+INSERT INTO `zoneintromusictable` SET
+  `id` = 947,
+  `name` = 'Intro-50-DawningSpan',
+  `sound_id` = 25852,
+  `priority` = 0,
+  `min_delay_minutes` = 40;
+
+-- Pandaria: Intro-50-TJS-HeartofJade (MoP's)
+DELETE FROM `zoneintromusictable` WHERE `id` = 1000;
+INSERT INTO `zoneintromusictable` SET
+  `id` = 1000,
+  `name` = 'Intro-50-TJS-HeartofJade',
+  `sound_id` = 31985,
+  `priority` = 0,
+  `min_delay_minutes` = 40;
+
+-- Pandaria: Intro-50-SoN-Dungeon-SiegeofNiuzao (MoP's)
+DELETE FROM `zoneintromusictable` WHERE `id` = 1019;
+INSERT INTO `zoneintromusictable` SET
+  `id` = 1019,
+  `name` = 'Intro-50-SoN-Dungeon-SiegeofNiuzao',
+  `sound_id` = 33611,
+  `priority` = 0,
+  `min_delay_minutes` = 40;
+
+-- Pandaria: Intro-54-SOR-Vale-NorushenRoom-Intro (MoP's)
+DELETE FROM `zoneintromusictable` WHERE `id` = 1111;
+INSERT INTO `zoneintromusictable` SET
+  `id` = 1111,
+  `name` = 'Intro-54-SOR-Vale-NorushenRoom-Intro',
+  `sound_id` = 39694,
+  `priority` = 1,
+  `min_delay_minutes` = 40;

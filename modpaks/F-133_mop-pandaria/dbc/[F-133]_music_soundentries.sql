@@ -2,6 +2,22 @@
 
 -- The files Pandaria's music and ambience play (5.4.8 SoundEntries)
 
+-- 18052 AMB_BlackrockCaverns
+DELETE FROM `soundentries` WHERE `id` = 18052;
+INSERT INTO `soundentries` SET
+  `id` = 18052,
+  `sound_type` = 50,
+  `name` = 'AMB_BlackrockCaverns',
+  `file_1` = 'amb_blackrockcaverns.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.6,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 22810 MUS_MulgoreTauren
 DELETE FROM `soundentries` WHERE `id` = 22810;
 INSERT INTO `soundentries` SET
@@ -45,6 +61,92 @@ INSERT INTO `soundentries` SET
   `file_6` = 'mus_barrowdens_gu02.mp3',
   `frequency_6` = 1,
   `base_dir` = 'sound\\music\\cataclysm',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 25837 MUS_50_WanderingIsle_GeneralWalk
+DELETE FROM `soundentries` WHERE `id` = 25837;
+INSERT INTO `soundentries` SET
+  `id` = 25837,
+  `sound_type` = 28,
+  `name` = 'MUS_50_WanderingIsle_GeneralWalk',
+  `file_1` = 'mus_50_wanderingislea_uu01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_wanderingislea_uu05.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_wanderingislec_uu01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_wanderingislec_uu02.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_wanderingislec_uu03.mp3',
+  `frequency_5` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\wanderingisle',
+  `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 25838 MUS_50_WanderingIsle_GeneralIndoors
+DELETE FROM `soundentries` WHERE `id` = 25838;
+INSERT INTO `soundentries` SET
+  `id` = 25838,
+  `sound_type` = 28,
+  `name` = 'MUS_50_WanderingIsle_GeneralIndoors',
+  `file_1` = 'mus_50_wanderingislea_uu01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_wanderingislec_uu01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_wanderingisleb_uu01.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\wanderingisle',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 25852 MUS_50_DawningSpan_INTRO
+DELETE FROM `soundentries` WHERE `id` = 25852;
+INSERT INTO `soundentries` SET
+  `id` = 25852,
+  `sound_type` = 28,
+  `name` = 'MUS_50_DawningSpan_INTRO',
+  `file_1` = 'mus_50_wanderingislec_hero_uu01.mp3',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\wanderingisle',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26536 MUS_43_DarkmoonFaire_IslandWalk
+DELETE FROM `soundentries` WHERE `id` = 26536;
+INSERT INTO `soundentries` SET
+  `id` = 26536,
+  `sound_type` = 28,
+  `name` = 'MUS_43_DarkmoonFaire_IslandWalk',
+  `file_1` = 'mus_43_darkmoonfairea_hero_uu01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_43_darkmoonfairea_uu01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_43_darkmoonfaireb_hero_uu01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_43_darkmoonfaireb_uu01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_43_darkmoonfaireb_uu02.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_43_darkmoonfaired_uu02.mp3',
+  `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\darkmoonfaire',
   `volume` = 0.8,
   `flags` = 0,
   `min_distance` = 8,
@@ -356,6 +458,214 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 26811 AMB_WanderingIsle_Base
+DELETE FROM `soundentries` WHERE `id` = 26811;
+INSERT INTO `soundentries` SET
+  `id` = 26811,
+  `sound_type` = 50,
+  `name` = 'AMB_WanderingIsle_Base',
+  `file_1` = 'amb_wanderingisle_base_day01.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26913 AMB_JadeTemple_EastTemple_MainHall
+DELETE FROM `soundentries` WHERE `id` = 26913;
+INSERT INTO `soundentries` SET
+  `id` = 26913,
+  `sound_type` = 50,
+  `name` = 'AMB_JadeTemple_EastTemple_MainHall',
+  `file_1` = 'amb_jadetemple_east_mainhall_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26914 AMB_ShadopanDungeon
+DELETE FROM `soundentries` WHERE `id` = 26914;
+INSERT INTO `soundentries` SET
+  `id` = 26914,
+  `sound_type` = 50,
+  `name` = 'AMB_ShadopanDungeon',
+  `file_1` = 'amb_shadopandungeon_interior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26915 AMB_StormStoutBrewery_FoyerInterior
+DELETE FROM `soundentries` WHERE `id` = 26915;
+INSERT INTO `soundentries` SET
+  `id` = 26915,
+  `sound_type` = 50,
+  `name` = 'AMB_StormStoutBrewery_FoyerInterior',
+  `file_1` = 'amb_stormstoutbrewery_foyerinterior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26916 AMB_StormStoutBrewery_MainHall_Interior
+DELETE FROM `soundentries` WHERE `id` = 26916;
+INSERT INTO `soundentries` SET
+  `id` = 26916,
+  `sound_type` = 50,
+  `name` = 'AMB_StormStoutBrewery_MainHall_Interior',
+  `file_1` = 'amb_stormstoutbrewery_mainhallinterior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26919 AMB_GreatwallDungeon_ClosedInterior
+DELETE FROM `soundentries` WHERE `id` = 26919;
+INSERT INTO `soundentries` SET
+  `id` = 26919,
+  `sound_type` = 50,
+  `name` = 'AMB_GreatwallDungeon_ClosedInterior',
+  `file_1` = 'amb_greatwalldungeon_closedinterior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.42,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 26950 AMB_JadeTemple_EastTemple_Approach
+DELETE FROM `soundentries` WHERE `id` = 26950;
+INSERT INTO `soundentries` SET
+  `id` = 26950,
+  `sound_type` = 50,
+  `name` = 'AMB_JadeTemple_EastTemple_Approach',
+  `file_1` = 'amb_jadetemple_east_approach_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27000 AMB_JadeTemple_LibraryApproach
+DELETE FROM `soundentries` WHERE `id` = 27000;
+INSERT INTO `soundentries` SET
+  `id` = 27000,
+  `sound_type` = 50,
+  `name` = 'AMB_JadeTemple_LibraryApproach',
+  `file_1` = 'amb_jadetemple_libraryapproach_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.78,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27001 AMB_JadeTemple_Library
+DELETE FROM `soundentries` WHERE `id` = 27001;
+INSERT INTO `soundentries` SET
+  `id` = 27001,
+  `sound_type` = 50,
+  `name` = 'AMB_JadeTemple_Library',
+  `file_1` = 'amb_jadetemple_library_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27003 AMB_StormStoutBrewery_WheelHouse_1stFl
+DELETE FROM `soundentries` WHERE `id` = 27003;
+INSERT INTO `soundentries` SET
+  `id` = 27003,
+  `sound_type` = 50,
+  `name` = 'AMB_StormStoutBrewery_WheelHouse_1stFl',
+  `file_1` = 'amb_stormstoutbrewery_wheelhousefloor1_interior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.75,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27030 AMB_GreatwallDungeon_OpenInterior
+DELETE FROM `soundentries` WHERE `id` = 27030;
+INSERT INTO `soundentries` SET
+  `id` = 27030,
+  `sound_type` = 50,
+  `name` = 'AMB_GreatwallDungeon_OpenInterior',
+  `file_1` = 'amb_greatwalldungeon_openinterior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.72,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27098 Amb_Mogudungeon_Area1_2
+DELETE FROM `soundentries` WHERE `id` = 27098;
+INSERT INTO `soundentries` SET
+  `id` = 27098,
+  `sound_type` = 50,
+  `name` = 'Amb_Mogudungeon_Area1_2',
+  `file_1` = 'amb_mogudungeon_intensity1_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27099 Amb_Mogudungeon_Area3
+DELETE FROM `soundentries` WHERE `id` = 27099;
+INSERT INTO `soundentries` SET
+  `id` = 27099,
+  `sound_type` = 50,
+  `name` = 'Amb_Mogudungeon_Area3',
+  `file_1` = 'amb_mogudungeon_intensity3_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 27100 Amb_Mogudungeon_Area3_2
 DELETE FROM `soundentries` WHERE `id` = 27100;
 INSERT INTO `soundentries` SET
@@ -367,6 +677,166 @@ INSERT INTO `soundentries` SET
   `base_dir` = 'sound\\ambience\\zoneambience',
   `volume` = 0.8,
   `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27102 Amb_DreadWastes_MantidLairs
+DELETE FROM `soundentries` WHERE `id` = 27102;
+INSERT INTO `soundentries` SET
+  `id` = 27102,
+  `sound_type` = 50,
+  `name` = 'Amb_DreadWastes_MantidLairs',
+  `file_1` = 'amb_dreadwastes_ambersolar_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27130 AMB_MantidDungeon_NarrowTunnel_2
+DELETE FROM `soundentries` WHERE `id` = 27130;
+INSERT INTO `soundentries` SET
+  `id` = 27130,
+  `sound_type` = 50,
+  `name` = 'AMB_MantidDungeon_NarrowTunnel_2',
+  `file_1` = 'amb_mantiddungeon_narrowtunnel_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.39,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27131 AMB_BlackrockCaverns_Vol_up
+DELETE FROM `soundentries` WHERE `id` = 27131;
+INSERT INTO `soundentries` SET
+  `id` = 27131,
+  `sound_type` = 50,
+  `name` = 'AMB_BlackrockCaverns_Vol_up',
+  `file_1` = 'amb_blackrockcaverns.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27163 Amb_Moguraid_Int
+DELETE FROM `soundentries` WHERE `id` = 27163;
+INSERT INTO `soundentries` SET
+  `id` = 27163,
+  `sound_type` = 50,
+  `name` = 'Amb_Moguraid_Int',
+  `file_1` = 'amb_moguraid_interior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27222 AMB_GreatwallDungeon_OpenInterior_Variant1
+DELETE FROM `soundentries` WHERE `id` = 27222;
+INSERT INTO `soundentries` SET
+  `id` = 27222,
+  `sound_type` = 50,
+  `name` = 'AMB_GreatwallDungeon_OpenInterior_Variant1',
+  `file_1` = 'amb_greatwalldungeon_openinterior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.35,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27236 SmallRoomTone_Variant2_Quieter
+DELETE FROM `soundentries` WHERE `id` = 27236;
+INSERT INTO `soundentries` SET
+  `id` = 27236,
+  `sound_type` = 50,
+  `name` = 'SmallRoomTone_Variant2_Quieter',
+  `file_1` = 'largeroomtone.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\wmoambience',
+  `volume` = 0.3,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27249 Amb_Mogudungeon_Area3_GuoLai
+DELETE FROM `soundentries` WHERE `id` = 27249;
+INSERT INTO `soundentries` SET
+  `id` = 27249,
+  `sound_type` = 50,
+  `name` = 'Amb_Mogudungeon_Area3_GuoLai',
+  `file_1` = 'amb_mogudungeon_intensity3_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27254 SmallRoomTone_MidVol
+DELETE FROM `soundentries` WHERE `id` = 27254;
+INSERT INTO `soundentries` SET
+  `id` = 27254,
+  `sound_type` = 50,
+  `name` = 'SmallRoomTone_MidVol',
+  `file_1` = 'largeroomtone.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\wmoambience',
+  `volume` = 0.45,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27267 AMB_WanderingIsle_Base_Variant1
+DELETE FROM `soundentries` WHERE `id` = 27267;
+INSERT INTO `soundentries` SET
+  `id` = 27267,
+  `sound_type` = 50,
+  `name` = 'AMB_WanderingIsle_Base_Variant1',
+  `file_1` = 'amb_wanderingisle_base_day01.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.2,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 27269 LargeRoomTone_Variant1
+DELETE FROM `soundentries` WHERE `id` = 27269;
+INSERT INTO `soundentries` SET
+  `id` = 27269,
+  `sound_type` = 50,
+  `name` = 'LargeRoomTone_Variant1',
+  `file_1` = 'largeroomtonenew.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\wmoambience',
+  `volume` = 1,
+  `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
   `eax_def` = 0,
@@ -447,6 +917,22 @@ INSERT INTO `soundentries` SET
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.8,
   `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 29170 Amb_JadeTemple_Meditation
+DELETE FROM `soundentries` WHERE `id` = 29170;
+INSERT INTO `soundentries` SET
+  `id` = 29170,
+  `sound_type` = 50,
+  `name` = 'Amb_JadeTemple_Meditation',
+  `file_1` = 'amb_jadetemple_meditationchamber_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.8,
+  `flags` = 512,
   `min_distance` = 8,
   `distance_cutoff` = 45,
   `eax_def` = 0,
@@ -598,6 +1084,40 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 29218 MUS_50_SpiritCave_Walk
+DELETE FROM `soundentries` WHERE `id` = 29218;
+INSERT INTO `soundentries` SET
+  `id` = 29218,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SpiritCave_Walk',
+  `file_1` = 'mus_50_spiritcave_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_spiritpath_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_spiritcave_02.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_spiritpath_02.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_spiritcave_03.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_spiritpath_03.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_spiritcave_04.mp3',
+  `frequency_7` = 1,
+  `file_8` = 'mus_50_spiritpath_04.mp3',
+  `frequency_8` = 1,
+  `file_9` = 'mus_50_spiritcave_hero_01.mp3',
+  `frequency_9` = 1,
+  `file_10` = 'mus_50_spiritpath_hero_01.mp3',
+  `frequency_10` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 30435 MUS_50_TownlongSteppes_GeneralWalk_Day
 DELETE FROM `soundentries` WHERE `id` = 30435;
 INSERT INTO `soundentries` SET
@@ -642,6 +1162,28 @@ INSERT INTO `soundentries` SET
   `frequency_5` = 1,
   `file_6` = 'mus_50_pandaria_d_03.mp3',
   `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 30456 MUS_50_TJS_FountainoftheEverseeing_Walk
+DELETE FROM `soundentries` WHERE `id` = 30456;
+INSERT INTO `soundentries` SET
+  `id` = 30456,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TJS_FountainoftheEverseeing_Walk',
+  `file_1` = 'mus_50_jinyu_a_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_jinyu_a_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_jinyu_a_hero_03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_jinyu_a_hero_04.mp3',
+  `frequency_4` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.8,
   `flags` = 0,
@@ -914,6 +1456,22 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 31862 AMB_KrasarangWild_RedCraneTemple_Int
+DELETE FROM `soundentries` WHERE `id` = 31862;
+INSERT INTO `soundentries` SET
+  `id` = 31862,
+  `sound_type` = 50,
+  `name` = 'AMB_KrasarangWild_RedCraneTemple_Int',
+  `file_1` = 'amb_shadopandungeon_interior_loop.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.7,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 31982 MUS_50_TJS_TempleoftheJadeSerpent_Intro
 DELETE FROM `soundentries` WHERE `id` = 31982;
 INSERT INTO `soundentries` SET
@@ -930,6 +1488,130 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 31983 MUS_50_TJS_TempleoftheJadeSerpent_Day_GeneralWalk
+DELETE FROM `soundentries` WHERE `id` = 31983;
+INSERT INTO `soundentries` SET
+  `id` = 31983,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TJS_TempleoftheJadeSerpent_Day_GeneralWalk',
+  `file_1` = 'mus_50_pandaria_a_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_pandaria_a_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_pandaria_a_hero_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_serpentsheart_hero_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_serpentsheart_hero_02.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_serpentsheart_hero_03.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_pandaria_b_01.mp3',
+  `frequency_7` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 31984 MUS_50_TJS_TempleoftheJadeSerpent_Night_GeneralWalk
+DELETE FROM `soundentries` WHERE `id` = 31984;
+INSERT INTO `soundentries` SET
+  `id` = 31984,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TJS_TempleoftheJadeSerpent_Night_GeneralWalk',
+  `file_1` = 'mus_50_pandaria_a_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_pandaria_a_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_pandaria_a_hero_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_pandaria_b_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_serpentsheart_night_walk_01.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_serpentsheart_night_walk_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_serpentsheart_night_walk_03.mp3',
+  `frequency_7` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 31985 MUS_50_TJS_HeartofJade_Intro
+DELETE FROM `soundentries` WHERE `id` = 31985;
+INSERT INTO `soundentries` SET
+  `id` = 31985,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TJS_HeartofJade_Intro',
+  `file_1` = 'mus_50_pandaria_a_choir_01.mp3',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 31986 MUS_50_TJS_ScrollKeepersSanctum_Walk
+DELETE FROM `soundentries` WHERE `id` = 31986;
+INSERT INTO `soundentries` SET
+  `id` = 31986,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TJS_ScrollKeepersSanctum_Walk',
+  `file_1` = 'mus_50_pandaria_b_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_pandaria_b_hero_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_pandaria_b_hero_02.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 32109 AMB_Townlong_Steppes_Base_GW_NonInstance
+DELETE FROM `soundentries` WHERE `id` = 32109;
+INSERT INTO `soundentries` SET
+  `id` = 32109,
+  `sound_type` = 50,
+  `name` = 'AMB_Townlong_Steppes_Base_GW_NonInstance',
+  `file_1` = 'amb_townlong_steppes_base.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.9,
+  `flags` = 544,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 32110 AMB_DreadWastes_Base_GW_NonInstance
+DELETE FROM `soundentries` WHERE `id` = 32110;
+INSERT INTO `soundentries` SET
+  `id` = 32110,
+  `sound_type` = 50,
+  `name` = 'AMB_DreadWastes_Base_GW_NonInstance',
+  `file_1` = 'amb_dreadwastes_base.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.39,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 32182 AMB_Townlong_Steppes_ShanZeDao
 DELETE FROM `soundentries` WHERE `id` = 32182;
 INSERT INTO `soundentries` SET
@@ -941,6 +1623,34 @@ INSERT INTO `soundentries` SET
   `base_dir` = 'sound\\ambience\\zoneambience',
   `volume` = 0.6,
   `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33202 MUS_50_MSV_Raid_RepositoryWalk 
+DELETE FROM `soundentries` WHERE `id` = 33202;
+INSERT INTO `soundentries` SET
+  `id` = 33202,
+  `sound_type` = 28,
+  `name` = 'MUS_50_MSV_Raid_RepositoryWalk ',
+  `file_1` = 'mus_50_shawalk_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_shawalk_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_shawalk_hero_03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_shawalk_hero_04.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_siegeofniuzaotemple_hero_01.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_siegeofniuzaotemple_hero_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_siegeofniuzaotemple_hero_03.mp3',
+  `frequency_7` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
   `eax_def` = 0,
@@ -1082,6 +1792,64 @@ INSERT INTO `soundentries` SET
   `frequency_10` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.9,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33611 MUS_50_SoN_Dungeon_SiegeofNiuzao_INTRO
+DELETE FROM `soundentries` WHERE `id` = 33611;
+INSERT INTO `soundentries` SET
+  `id` = 33611,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SoN_Dungeon_SiegeofNiuzao_INTRO',
+  `file_1` = 'mus_50_siegeofniuzaotemple_hero_01.mp3',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33612 MUS_50_SoN_Dungeon_HallowedOutTreeWalk
+DELETE FROM `soundentries` WHERE `id` = 33612;
+INSERT INTO `soundentries` SET
+  `id` = 33612,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SoN_Dungeon_HallowedOutTreeWalk',
+  `file_1` = 'mus_50_mantid_a_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_mantid_a_hero_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_siegeofniuzaotemple_hero_03.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.88,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33614 MUS_50_SoN_Dungeon_NiuzaoExteriorWalk
+DELETE FROM `soundentries` WHERE `id` = 33614;
+INSERT INTO `soundentries` SET
+  `id` = 33614,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SoN_Dungeon_NiuzaoExteriorWalk',
+  `file_1` = 'mus_50_shadopan_b_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_shadopan_b_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_siegeofniuzaotemple_hero_02.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_townlongsteppes_a_hero_01.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.88,
   `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
@@ -1434,6 +2202,72 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 33750 MUS_50_SSB_Dungeon_TricklingPassageA_Walk 
+DELETE FROM `soundentries` WHERE `id` = 33750;
+INSERT INTO `soundentries` SET
+  `id` = 33750,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SSB_Dungeon_TricklingPassageA_Walk ',
+  `file_1` = 'mus_50_townlongsteppes_b_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_gateofthesettingsun_b_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_hozen_a_04.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_hozen_a_05.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_hozen_a_09.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_hozen_a_10.mp3',
+  `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33757 MUS_50_SSB_Dungeon_StormstoutBrewhall_Walk 
+DELETE FROM `soundentries` WHERE `id` = 33757;
+INSERT INTO `soundentries` SET
+  `id` = 33757,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SSB_Dungeon_StormstoutBrewhall_Walk ',
+  `file_1` = 'mus_50_hozen_b_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_hozen_b_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_hozen_b_03.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.9,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33766 MUS_50_SSB_Dungeon_TheGreatWheel_Walk
+DELETE FROM `soundentries` WHERE `id` = 33766;
+INSERT INTO `soundentries` SET
+  `id` = 33766,
+  `sound_type` = 28,
+  `name` = 'MUS_50_SSB_Dungeon_TheGreatWheel_Walk',
+  `file_1` = 'mus_50_pandaria_d_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_pandaria_d_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_darkbrew_01.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 33781 MUS_50_VEB_AncestralRise_Walk
 DELETE FROM `soundentries` WHERE `id` = 33781;
 INSERT INTO `soundentries` SET
@@ -1452,6 +2286,32 @@ INSERT INTO `soundentries` SET
   `frequency_5` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33785 MUS_50_VEB_MSP_Exterior_Walk
+DELETE FROM `soundentries` WHERE `id` = 33785;
+INSERT INTO `soundentries` SET
+  `id` = 33785,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_MSP_Exterior_Walk',
+  `file_1` = 'mus_50_theriver_04.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_jinyu_a_hero_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_theheartland_hero_04.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_pandaria_c_walk_02.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_vfw_a_03.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_shenzinsu_01.mp3',
+  `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.85,
   `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
@@ -1644,6 +2504,24 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 33808 MUS_50_VEB_Shrine_TheKeggary_Walk
+DELETE FROM `soundentries` WHERE `id` = 33808;
+INSERT INTO `soundentries` SET
+  `id` = 33808,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_Shrine_TheKeggary_Walk',
+  `file_1` = 'mus_50_monk_mistweaver_b_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_monk_mistweaver_b_03.mp3',
+  `frequency_2` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 33810 MUS_50_VEB_RuinsRise_Walk
 DELETE FROM `soundentries` WHERE `id` = 33810;
 INSERT INTO `soundentries` SET
@@ -1721,6 +2599,50 @@ INSERT INTO `soundentries` SET
   `file_4` = 'mus_50_mogu_b_hero_01.mp3',
   `frequency_4` = 1,
   `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33818 MUS_50_DW_TheAmberWomb_Walk
+DELETE FROM `soundentries` WHERE `id` = 33818;
+INSERT INTO `soundentries` SET
+  `id` = 33818,
+  `sound_type` = 28,
+  `name` = 'MUS_50_DW_TheAmberWomb_Walk',
+  `file_1` = 'tf_bonewalkuni01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'tf_bonewalkuni02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'tf_bonewalkuni03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'tf_bonewalkuni04.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\terokkar',
+  `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33819 MUS_50_DW_MiscMantidHouses_Walk
+DELETE FROM `soundentries` WHERE `id` = 33819;
+INSERT INTO `soundentries` SET
+  `id` = 33819,
+  `sound_type` = 28,
+  `name` = 'MUS_50_DW_MiscMantidHouses_Walk',
+  `file_1` = 'mystery01-zone.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mystery02-zone.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mystery03-zone.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mystery04-zone.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\musical moments\\mystery',
   `volume` = 0.8,
   `flags` = 0,
   `min_distance` = 8,
@@ -1990,6 +2912,28 @@ INSERT INTO `soundentries` SET
   `frequency_8` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33841 MUS_50_DW_AmberglowHollow_Walk
+DELETE FROM `soundentries` WHERE `id` = 33841;
+INSERT INTO `soundentries` SET
+  `id` = 33841,
+  `sound_type` = 28,
+  `name` = 'MUS_50_DW_AmberglowHollow_Walk',
+  `file_1` = 'tf_bonewalkuni01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'tf_bonewalkuni02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'tf_bonewalkuni03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'tf_bonewalkuni04.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\terokkar',
+  `volume` = 0.8,
   `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
@@ -2586,6 +3530,26 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 33876 MUS_50_KLS_PeakofSerenity_BrewmasterWalk
+DELETE FROM `soundentries` WHERE `id` = 33876;
+INSERT INTO `soundentries` SET
+  `id` = 33876,
+  `sound_type` = 28,
+  `name` = 'MUS_50_KLS_PeakofSerenity_BrewmasterWalk',
+  `file_1` = 'mus_50_monk_brewmaster_a_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_darkbrew_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_darkbrew_hero_01.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 33877 MUS_50_KLS_PeakofSerenity_WindwalkerWalk
 DELETE FROM `soundentries` WHERE `id` = 33877;
 INSERT INTO `soundentries` SET
@@ -2602,6 +3566,26 @@ INSERT INTO `soundentries` SET
   `frequency_4` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.95,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 33878 MUS_50_KLS_PeakofSerenity_CraneWalk
+DELETE FROM `soundentries` WHERE `id` = 33878;
+INSERT INTO `soundentries` SET
+  `id` = 33878,
+  `sound_type` = 28,
+  `name` = 'MUS_50_KLS_PeakofSerenity_CraneWalk',
+  `file_1` = 'mus_50_templeofthejadeserpent_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_templeofthejadeserpent_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_templeofthejadeserpent_hero_03.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
   `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
@@ -2958,6 +3942,28 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 33940 MUS_50_TS_MantidHouses_Walk
+DELETE FROM `soundentries` WHERE `id` = 33940;
+INSERT INTO `soundentries` SET
+  `id` = 33940,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TS_MantidHouses_Walk',
+  `file_1` = 'mystery01-zone.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mystery02-zone.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mystery03-zone.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mystery04-zone.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\musical moments\\mystery',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 33941 MUS_50_TS_ShadoPanGarrison_Walk
 DELETE FROM `soundentries` WHERE `id` = 33941;
 INSERT INTO `soundentries` SET
@@ -3072,6 +4078,28 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 33964 MUS_50_TS_SravessMantidAmberHouses_Walk
+DELETE FROM `soundentries` WHERE `id` = 33964;
+INSERT INTO `soundentries` SET
+  `id` = 33964,
+  `sound_type` = 28,
+  `name` = 'MUS_50_TS_SravessMantidAmberHouses_Walk',
+  `file_1` = 'tf_bonewalkuni01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'tf_bonewalkuni02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'tf_bonewalkuni03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'tf_bonewalkuni04.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\terokkar',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 33965 MUS_50_TS_ShanzeDao_INTRO
 DELETE FROM `soundentries` WHERE `id` = 33965;
 INSERT INTO `soundentries` SET
@@ -3112,6 +4140,32 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 34000 MUS_50_GSS_SerpentSpine_VEB_TS_Walk
+DELETE FROM `soundentries` WHERE `id` = 34000;
+INSERT INTO `soundentries` SET
+  `id` = 34000,
+  `sound_type` = 28,
+  `name` = 'MUS_50_GSS_SerpentSpine_VEB_TS_Walk',
+  `file_1` = 'mus_50_townlongsteppes_c_hero_03.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_townlongsteppes_c_night_hero_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_townlongsteppes_d_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_townlongsteppes_d_hero_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_veb_b_02.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_veb_b_hero_01.mp3',
+  `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 34001 MUS_50_GSS_SerpentSpine_VEB_DW_Walk
 DELETE FROM `soundentries` WHERE `id` = 34001;
 INSERT INTO `soundentries` SET
@@ -3134,6 +4188,96 @@ INSERT INTO `soundentries` SET
   `frequency_7` = 1,
   `file_8` = 'mus_50_veb_b_night_06.mp3',
   `frequency_8` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34002 MUS_50_GSS_SerpentSpine_VFW_DW_Walk
+DELETE FROM `soundentries` WHERE `id` = 34002;
+INSERT INTO `soundentries` SET
+  `id` = 34002,
+  `sound_type` = 28,
+  `name` = 'MUS_50_GSS_SerpentSpine_VFW_DW_Walk',
+  `file_1` = 'mus_50_gateofthesettingsun_a_hero_03.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_gateofthesettingsun_a_hero_04.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_dreadwastes_a_hero_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_dreadwastes_a_hero_02.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_vfw_a_01.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_vfw_a_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_vfw_a_06.mp3',
+  `frequency_7` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34003 MUS_50_GSS_SerpentSpine_KW_DW_Walk
+DELETE FROM `soundentries` WHERE `id` = 34003;
+INSERT INTO `soundentries` SET
+  `id` = 34003,
+  `sound_type` = 28,
+  `name` = 'MUS_50_GSS_SerpentSpine_KW_DW_Walk',
+  `file_1` = 'mus_50_gateofthesettingsun_a_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_dreadwastes_a_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_dreadwastes_a_hero_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_krasarangwilds_a_hero_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_krasarangwilds_a_hero_02.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_krasarangwilds_b_hero_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_krasarangwilds_b_hero_03.mp3',
+  `frequency_7` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34007 MUS_50_GSS_SerpentSpine_KLS_TS_Walk
+DELETE FROM `soundentries` WHERE `id` = 34007;
+INSERT INTO `soundentries` SET
+  `id` = 34007,
+  `sound_type` = 28,
+  `name` = 'MUS_50_GSS_SerpentSpine_KLS_TS_Walk',
+  `file_1` = 'mus_50_kunlaisummit_a_hero_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_kunlaisummit_a_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_kunlaisummit_a_hero_03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_kunlaisummit_a_hero_04.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_townlongsteppes_c_hero_01.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_townlongsteppes_c_hero_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_shadopan_a_hero_01.mp3',
+  `frequency_7` = 1,
+  `file_8` = 'mus_50_shadopan_a_hero_03.mp3',
+  `frequency_8` = 1,
+  `file_9` = 'mus_50_townlongsteppes_d_hero_02.mp3',
+  `frequency_9` = 1,
+  `file_10` = 'mus_50_townlongsteppes_a_hero_02.mp3',
+  `frequency_10` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.8,
   `flags` = 0,
@@ -3168,6 +4312,60 @@ INSERT INTO `soundentries` SET
   `frequency_9` = 1,
   `file_10` = 'mystery10-zone.mp3',
   `frequency_10` = 1,
+  `base_dir` = 'sound\\music\\musical moments\\mystery',
+  `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34019 MUS_50_Scenario_ArenaofAnnihilation
+DELETE FROM `soundentries` WHERE `id` = 34019;
+INSERT INTO `soundentries` SET
+  `id` = 34019,
+  `sound_type` = 28,
+  `name` = 'MUS_50_Scenario_ArenaofAnnihilation',
+  `file_1` = 'mus_50_monk_windwalker_a_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_shadopan_a_hero_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_shadopan_a_hero_03.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_shadopan_b_hero_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_monk_windwalker_a_walk_03.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_pandaria_c_hero_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_battleforpandaria_hero_01.mp3',
+  `frequency_7` = 1,
+  `file_8` = 'mus_50_battleforpandaria_hero_02.mp3',
+  `frequency_8` = 1,
+  `file_9` = 'mus_50_pandariapvp_hero_01.mp3',
+  `frequency_9` = 1,
+  `file_10` = 'mus_50_pandariapvp_hero_02.mp3',
+  `frequency_10` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34021 MUS_50_CaveGeneric_A
+DELETE FROM `soundentries` WHERE `id` = 34021;
+INSERT INTO `soundentries` SET
+  `id` = 34021,
+  `sound_type` = 28,
+  `name` = 'MUS_50_CaveGeneric_A',
+  `file_1` = 'mystery10-zone.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mystery08-zone.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mystery05-zone.mp3',
+  `frequency_3` = 1,
   `base_dir` = 'sound\\music\\musical moments\\mystery',
   `volume` = 1,
   `flags` = 0,
@@ -3218,6 +4416,28 @@ INSERT INTO `soundentries` SET
   `frequency_3` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.95,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34878 MUS_51_PandarenTavern_B
+DELETE FROM `soundentries` WHERE `id` = 34878;
+INSERT INTO `soundentries` SET
+  `id` = 34878,
+  `sound_type` = 28,
+  `name` = 'MUS_51_PandarenTavern_B',
+  `file_1` = 'mus_50_bamboo_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_veb_b_night_06.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_woodofstaves_hero_02.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_veb_b_night_03.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.9,
   `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
@@ -3386,6 +4606,108 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 34973 MUS_51_Scenario_DaggerInTheDark
+DELETE FROM `soundentries` WHERE `id` = 34973;
+INSERT INTO `soundentries` SET
+  `id` = 34973,
+  `sound_type` = 28,
+  `name` = 'MUS_51_Scenario_DaggerInTheDark',
+  `file_1` = 'mus_50_spiritsb_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_spiritsb_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_51_garroshtheme_a_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_51_garroshtheme_b_02.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_battleforpandaria_hero_01.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_50_battleforpandaria_hero_02.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_50_pandariapvp_hero_02.mp3',
+  `frequency_7` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 34974 MUS_51_Scenario_DaggerInTheDark_Ending
+DELETE FROM `soundentries` WHERE `id` = 34974;
+INSERT INTO `soundentries` SET
+  `id` = 34974,
+  `sound_type` = 28,
+  `name` = 'MUS_51_Scenario_DaggerInTheDark_Ending',
+  `file_1` = 'mus_51_garroshtheme_a_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_51_garroshtheme_a_hero_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_51_garroshtheme_b_hero_01.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 36642 MUS_52_IOTK_Zandalari1_General_Walk
+DELETE FROM `soundentries` WHERE `id` = 36642;
+INSERT INTO `soundentries` SET
+  `id` = 36642,
+  `sound_type` = 28,
+  `name` = 'MUS_52_IOTK_Zandalari1_General_Walk',
+  `file_1` = 'mus_52_thunderisle_c_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_52_thunderisle_c_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_52_thunderisle_c_04.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_52_zandalari_1_b_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_52_zandalari_1_b_02.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_52_zandalari_1_b_03.mp3',
+  `frequency_6` = 1,
+  `file_7` = 'mus_52_zandalari_1_c_01.mp3',
+  `frequency_7` = 1,
+  `file_8` = 'mus_52_zandalari_1_c_02.mp3',
+  `frequency_8` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 1,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 36681 MUS_52_IOTK_Saurok_Walk
+DELETE FROM `soundentries` WHERE `id` = 36681;
+INSERT INTO `soundentries` SET
+  `id` = 36681,
+  `sound_type` = 28,
+  `name` = 'MUS_52_IOTK_Saurok_Walk',
+  `file_1` = 'mus_50_shawalk_hero_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_spiritsb_01.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_spiritsb_02.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_townlongsteppes_a_hero_01.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_50_townlongsteppes_a_hero_02.mp3',
+  `frequency_5` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 36926 MUS_52_IOG_IsleOfGiants_Walk
 DELETE FROM `soundentries` WHERE `id` = 36926;
 INSERT INTO `soundentries` SET
@@ -3472,6 +4794,70 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 37727 Amb_OGRaid_ShaOfPride_Room
+DELETE FROM `soundentries` WHERE `id` = 37727;
+INSERT INTO `soundentries` SET
+  `id` = 37727,
+  `sound_type` = 50,
+  `name` = 'Amb_OGRaid_ShaOfPride_Room',
+  `file_1` = 'thepitofsaron.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 1,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 37841 Amb_OGRaid_CorruptedVale_Base
+DELETE FROM `soundentries` WHERE `id` = 37841;
+INSERT INTO `soundentries` SET
+  `id` = 37841,
+  `sound_type` = 50,
+  `name` = 'Amb_OGRaid_CorruptedVale_Base',
+  `file_1` = 'amb_dreadwastes_base.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\zoneambience',
+  `volume` = 0.49,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 37879 Amb_OGRaid_Compound_TitanRoom
+DELETE FROM `soundentries` WHERE `id` = 37879;
+INSERT INTO `soundentries` SET
+  `id` = 37879,
+  `sound_type` = 50,
+  `name` = 'Amb_OGRaid_Compound_TitanRoom',
+  `file_1` = 'ulduarraid_planetariumhallway.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\wmoambience',
+  `volume` = 0.6,
+  `flags` = 512,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 37880 AMB_OGRaid_GoblinMine
+DELETE FROM `soundentries` WHERE `id` = 37880;
+INSERT INTO `soundentries` SET
+  `id` = 37880,
+  `sound_type` = 50,
+  `name` = 'AMB_OGRaid_GoblinMine',
+  `file_1` = 'minestandardnorthrend.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\wmoambience',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 39124 MUS_54_TI_TimelessIsle_Intro
 DELETE FROM `soundentries` WHERE `id` = 39124;
 INSERT INTO `soundentries` SET
@@ -3553,6 +4939,22 @@ INSERT INTO `soundentries` SET
   `flags` = 0,
   `min_distance` = 8,
   `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39411 AMB_OGRaid_Entrance
+DELETE FROM `soundentries` WHERE `id` = 39411;
+INSERT INTO `soundentries` SET
+  `id` = 39411,
+  `sound_type` = 50,
+  `name` = 'AMB_OGRaid_Entrance',
+  `file_1` = 'karazhanlibraryexterior.ogg',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\ambience\\wmoambience',
+  `volume` = 0.85,
+  `flags` = 0,
+  `min_distance` = 7,
+  `distance_cutoff` = 30,
   `eax_def` = 0,
   `advanced_id` = 0;
 
@@ -3766,6 +5168,110 @@ INSERT INTO `soundentries` SET
   `eax_def` = 0,
   `advanced_id` = 0;
 
+-- 39693 MUS_54_SOR_Vale_ScarredVale_Walk
+DELETE FROM `soundentries` WHERE `id` = 39693;
+INSERT INTO `soundentries` SET
+  `id` = 39693,
+  `sound_type` = 28,
+  `name` = 'MUS_54_SOR_Vale_ScarredVale_Walk',
+  `file_1` = 'mus_54_corruptedvale_night_hero.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_54_shadescendant_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_54_shadescendant_hero.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_54_shavocaline_03.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_54_corruptedvale_night_04.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_54_shaangry_01.mp3',
+  `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39694 MUS_54_SOR_Vale_NorushenRoom_Intro
+DELETE FROM `soundentries` WHERE `id` = 39694;
+INSERT INTO `soundentries` SET
+  `id` = 39694,
+  `sound_type` = 28,
+  `name` = 'MUS_54_SOR_Vale_NorushenRoom_Intro',
+  `file_1` = 'mus_54_legendary_05.mp3',
+  `frequency_1` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.9,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39695 MUS_54_SOR_Vale_NorushenRoom_Walk
+DELETE FROM `soundentries` WHERE `id` = 39695;
+INSERT INTO `soundentries` SET
+  `id` = 39695,
+  `sound_type` = 28,
+  `name` = 'MUS_54_SOR_Vale_NorushenRoom_Walk',
+  `file_1` = 'ur_titanyoggwalk.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'ur_algalonbattle01walk.mp3',
+  `frequency_2` = 1,
+  `base_dir` = 'sound\\music\\zonemusic\\ulduarraidint',
+  `volume` = 0.86,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39696 MUS_54_SOR_Vale_ShaofPrideRoom_Battle
+DELETE FROM `soundentries` WHERE `id` = 39696;
+INSERT INTO `soundentries` SET
+  `id` = 39696,
+  `sound_type` = 28,
+  `name` = 'MUS_54_SOR_Vale_ShaofPrideRoom_Battle',
+  `file_1` = 'mus_54_shavocaline_hero.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_54_shadescendant_03.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_54_shaangry_hero.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_54_shaambient_03.mp3',
+  `frequency_4` = 1,
+  `file_5` = 'mus_54_legendary_02.mp3',
+  `frequency_5` = 1,
+  `file_6` = 'mus_54_legendary_09.mp3',
+  `frequency_6` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.86,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39697 MUS_50_VEB_Shrine_ChamberofEnlightenment_H_Walk
+DELETE FROM `soundentries` WHERE `id` = 39697;
+INSERT INTO `soundentries` SET
+  `id` = 39697,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_Shrine_ChamberofEnlightenment_H_Walk',
+  `file_1` = 'mus_50_theriver_03.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_theriver_04.mp3',
+  `frequency_2` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
 -- 39698 MUS_50_VEB_Shrine_TheEmperorsStep_H_Walk
 DELETE FROM `soundentries` WHERE `id` = 39698;
 INSERT INTO `soundentries` SET
@@ -3778,6 +5284,84 @@ INSERT INTO `soundentries` SET
   `frequency_2` = 1,
   `file_3` = 'mus_50_templeofthefivedawns_03.mp3',
   `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39699 MUS_50_VEB_Shrine_PathofSerentiy_H_Walk
+DELETE FROM `soundentries` WHERE `id` = 39699;
+INSERT INTO `soundentries` SET
+  `id` = 39699,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_Shrine_PathofSerentiy_H_Walk',
+  `file_1` = 'mus_50_theriver_07.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_theriver_05.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_spirits_a_01.mp3',
+  `frequency_3` = 1,
+  `file_4` = 'mus_50_spiritsb_02.mp3',
+  `frequency_4` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39700 MUS_50_VEB_Shrine_EtherealCorridor_H_Walk
+DELETE FROM `soundentries` WHERE `id` = 39700;
+INSERT INTO `soundentries` SET
+  `id` = 39700,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_Shrine_EtherealCorridor_H_Walk',
+  `file_1` = 'mus_50_jinyu_d_night_hero_02.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_jinyu_d_night_01.mp3',
+  `frequency_2` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39701 MUS_50_VEB_Shrine_TheCelestialVault_H_Walk
+DELETE FROM `soundentries` WHERE `id` = 39701;
+INSERT INTO `soundentries` SET
+  `id` = 39701,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_Shrine_TheCelestialVault_H_Walk',
+  `file_1` = 'mus_50_templeofthefivedawns_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_templeofthefivedawns_02.mp3',
+  `frequency_2` = 1,
+  `file_3` = 'mus_50_templeofthefivedawns_03.mp3',
+  `frequency_3` = 1,
+  `base_dir` = 'sound\\music\\pandaria',
+  `volume` = 0.8,
+  `flags` = 0,
+  `min_distance` = 8,
+  `distance_cutoff` = 45,
+  `eax_def` = 0,
+  `advanced_id` = 0;
+
+-- 39702 MUS_50_VEB_Shrine_TheStarsBazaar_H_Walk
+DELETE FROM `soundentries` WHERE `id` = 39702;
+INSERT INTO `soundentries` SET
+  `id` = 39702,
+  `sound_type` = 28,
+  `name` = 'MUS_50_VEB_Shrine_TheStarsBazaar_H_Walk',
+  `file_1` = 'mus_50_veb_b_night_01.mp3',
+  `frequency_1` = 1,
+  `file_2` = 'mus_50_veb_b_night_02.mp3',
+  `frequency_2` = 1,
   `base_dir` = 'sound\\music\\pandaria',
   `volume` = 0.8,
   `flags` = 0,

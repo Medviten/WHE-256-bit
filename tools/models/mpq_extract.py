@@ -3,10 +3,11 @@
 
   python mpq_extract.py ARCHIVE.mpq "Path\\In\\Archive" OUT_FILE
 
-Handles single-unit and sectored files, zlib and bzip2 compression and encrypted files. Enough for the client
+Handles single-unit and sectored files, zlib, bzip2 and LZMA compression and encrypted files. Enough for the client
 patches (e.g. OA's patch-4.MPQ or the squished patch-3.mpq); other compressions stop with an error."""
 import bz2, os, struct, sys, zlib
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "checks"))
 from check_f013_assets import decrypt, hash_string  # noqa: E402
 
@@ -24,6 +25,11 @@ def unpack(data, size):
         return zlib.decompress(data[1:])
     if kind == 0x10:
         return bz2.decompress(data[1:])
+    if kind == 0x12:
+        from mpq_lzma_repack import unpack as unpack_lzma
+        out = unpack_lzma(data, size)
+        if out is not None:
+            return out
     raise SystemExit(f"compression {kind:#x} isn't supported")
 
 
