@@ -18,7 +18,7 @@ Open Azeroth's Eastern Kingdoms and Kalimdor are Cataclysm's terrain, so Catacly
 - a new node needs a flight master: Neltharion's flight masters (npcflag 8192) within FM_RANGE of it. Nodes without one
   are left out
 Paths: Cataclysm's TaxiPath rows (and their TaxiPathNode points) with a new node at one end and a node here at the
-other, unless the pair is connected already. Path and point ids are new where taken; points' events are dropped.
+other, unless the pair is connected already. Path ids are new where taken; point ids are given when the SQL runs; points' events are dropped.
 Mounts that AzerothCore has no creature for become the stock wind rider (Horde) or gryphon (Alliance).
 
 The flight masters are ported by cata_gilneas_port.py's Port (templates, models, Cataclysm displays with their NPC
@@ -64,10 +64,8 @@ class Taxi:
         self.cata_paths = c406.Dbc(os.path.join(g.CATA_DBC, "TaxiPath.dbc"))
         self.cata_points = c406.Dbc(os.path.join(g.CATA_DBC, "TaxiPathNode.dbc"))
         base_paths = c406.Dbc(os.path.join(base_dbc, "TaxiPath.dbc"))
-        base_points = c406.Dbc(os.path.join(base_dbc, "TaxiPathNode.dbc"))
         self.base_pairs = {(r[1], r[2]) for r in base_paths.records}
         self.taken_paths = {r[0] for r in base_paths.records}
-        self.taken_points = {r[0] for r in base_points.records}
         pos = lambda r: tuple(c406.f32(v) for v in r[2:5])
         self.base = {r[0]: (r[1], pos(r)) for r in bd.records}
         self.cata = {}                       # Cataclysm id -> (map, pos, name, mounts)
@@ -260,13 +258,10 @@ class Port(g.Port):
             h, al = (x if not x or x in stock else (HORDE_MOUNT, ALLIANCE_MOUNT)[n] for n, x in enumerate(mounts))
             nodes.append(dict(id=i, map=m, x=round(p[0], 4), y=round(p[1], 4), z=round(p[2], 4), name_enus=name,
                               name_flags=16712190, mount_creature_id_1=h, mount_creature_id_2=al))
-        point_id = max(taxi.taken_points) + 1
         for pid, a, b, cost, pts in taxi.paths():
             paths.append(dict(id=pid, from_taxi_node=a, to_taxi_node=b, cost=cost))
             for n, (m, x, y, z, flags, delay) in enumerate(pts):
-                points.append(dict(id=point_id, path_id=pid, node_index=n, map=m, x=round(x, 4), y=round(y, 4),
-                                   z=round(z, 4), flags=flags, delay=delay, arrival_event_id=0, departure_event_id=0))
-                point_id += 1
+                points.append((pid, n, m, round(x, 4), round(y, 4), round(z, 4), flags, delay))
         known = set(taxi.base) | {n["id"] for n in nodes}
         assert all(n["id"] <= 2048 for n in nodes), "node ids past the patched core's masks"
         assert all(p["from_taxi_node"] in known and p["to_taxi_node"] in known for p in paths), "path to a missing node"
@@ -274,8 +269,16 @@ class Port(g.Port):
             len(paths) + len(taxi.base_pairs), "a pair connected twice"
         self.write_dbc("taxinodes", nodes, "Cataclysm's taxi nodes (4.0.6a) Open Azeroth's world has none for")
         self.write_dbc("taxipath", paths, "Cataclysm's flight paths (4.0.6a) to and from them")
-        self.write_dbc("taxipathnode", points, "The points of those paths; a stock node Cataclysm moved keeps its spot, "
-                       "as the first or last point")
+        # point ids after the highest one there when the SQL runs (as F-006 does): no clash with other modpaks' points
+        self.files[os.path.join("dbc", "[%s]_taxipathnode.sql" % TAG)] = (
+            "-- The points of those paths; a stock node Cataclysm moved keeps its spot, as the first or last point.\n\n"
+            "DELETE FROM `taxipathnode` WHERE `path_id` IN %s;\n"
+            "SET @TaxiPathNodeID = (SELECT COALESCE(MAX(id), 0) FROM `taxipathnode`);\n"
+            "INSERT INTO `taxipathnode` (`id`, `path_id`, `node_index`, `map`, `x`, `y`, `z`, `flags`, `delay`, "
+            "`arrival_event_id`, `departure_event_id`) VALUES\n%s;\n" % (
+                g.in_list(p["id"] for p in paths),
+                ",\n".join("  (@TaxiPathNodeID := @TaxiPathNodeID + 1, %d, %d, %d, %s, %s, %s, %d, %d, 0, 0)" % q
+                           for q in points)))
         return len(nodes), len(paths), len(points)
 
     def run(self, taxi):

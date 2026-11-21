@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Smooth a boat's TaxiPathNode path and check it stays on water, for Open Azeroth's moved and added boat routes.
 
-  python -I transport_paths.py PATH_ID OUT_SQL --first-id N [--drop I,I...] [--move I=X,Y] [--dbc DIR] [--data DATA]
+  python -I transport_paths.py PATH_ID OUT_SQL [--drop I,I...] [--move I=X,Y] [--dbc DIR] [--data DATA]
                                 [--comment TEXT] [--rounds N]
 
 Reads the path from a built client's TaxiPathNode.dbc (--dbc, default the test client's War realm patch), drops the
@@ -11,7 +11,8 @@ docks where the NPCs wait. Points closer than MIN_GAP to the previous one are me
 the new path (Open Azeroth's ADTs, stock's where OA has none) and lists every stretch away from the docks where the sea
 is shallower than DRAFT: boats run at z 0, so ground above -DRAFT means the hull is on land.
 
-Writes OUT_SQL: the path's points replaced (DELETE by path, new ids from --first-id). Boats at z 0 as stock's are."""
+Writes OUT_SQL: the path's points replaced (DELETE by path; new ids after the highest one there when the SQL runs, as
+F-006 does, so they never land on another modpak's). Boats at z 0 as stock's are."""
 import argparse, math, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -59,7 +60,6 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("path", type=int)
     ap.add_argument("out")
-    ap.add_argument("--first-id", type=int, required=True)
     ap.add_argument("--drop", default="")
     ap.add_argument("--dbc", default=DBC)
     ap.add_argument("--data", default=DATA)
@@ -107,14 +107,15 @@ def main():
              "change the script's arguments, not this file." % (a.path, " ".join(
                  ["drop " + (a.drop or "none")] + ["move " + m for m in a.move])), "",
              "DELETE FROM `taxipathnode` WHERE `path_id` = %d;" % a.path,
+             "SET @TaxiPathNodeID = (SELECT COALESCE(MAX(id), 0) FROM `taxipathnode`);",
              "INSERT INTO `taxipathnode` (`id`, `path_id`, `node_index`, `map`, `x`, `y`, `z`, `flags`, `delay`, "
              "`arrival_event_id`, `departure_event_id`) VALUES"]
     vals = []
     for i, (x, y, _) in enumerate(pts):
         s = stop_at.get((x, y))
         flags, delay, arr, dep = (s[7], s[8], s[9], s[10]) if s else (0, 0, 0, 0)
-        vals.append("  (%d, %d, %d, %d, %.4f, %.4f, 0, %d, %d, %d, %d)" % (a.first_id + i, a.path, i, m, x, y, flags,
-                                                                         delay, arr, dep))
+        vals.append("  (@TaxiPathNodeID := @TaxiPathNodeID + 1, %d, %d, %d, %.4f, %.4f, 0, %d, %d, %d, %d)" % (
+            a.path, i, m, x, y, flags, delay, arr, dep))
     open(a.out, "w", encoding="utf-8", newline="\n").write("\n".join(lines).lstrip("\n") + "\n" + ",\n".join(vals) + ";\n")
     print("%d points (was %d), %d stops kept, sharpest turn %.0f deg at %s; shallow water away from docks: %d samples"
           % (len(pts), len(rows) + len(drop), len(stops), max(turns)[0], max(turns)[1:], len(shallow)))
