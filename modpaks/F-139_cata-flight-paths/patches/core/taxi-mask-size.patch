@@ -1,0 +1,83 @@
+diff --git a/src/server/game/DataStores/DBCStores.cpp b/src/server/game/DataStores/DBCStores.cpp
+index 1b2aaaad4..31d007550 100644
+--- a/src/server/game/DataStores/DBCStores.cpp
++++ b/src/server/game/DataStores/DBCStores.cpp
+@@ -622,6 +622,12 @@ void LoadDBCStores(std::string const& dataPath)
+ 
+             // valid taxi network node
+             uint8  field   = (uint8)((i - 1) / 32);
++            // Custom: nodes past the mask stay out of the network (stock wrote past the end of the masks)
++            if (field >= TaxiMaskSize)
++            {
++                LOG_ERROR("server.loading", "TaxiNodes.dbc: node {} is beyond the {} nodes taxi masks hold, skipped", i, TaxiMaskSize * 32);
++                continue;
++            }
+             uint32 submask = 1 << ((i - 1) % 32);
+             sTaxiNodesMask[field] |= submask;
+ 
+diff --git a/src/server/game/Entities/Player/PlayerTaxi.cpp b/src/server/game/Entities/Player/PlayerTaxi.cpp
+index 27af1d152..1dbbda0f3 100644
+--- a/src/server/game/Entities/Player/PlayerTaxi.cpp
++++ b/src/server/game/Entities/Player/PlayerTaxi.cpp
+@@ -116,14 +116,19 @@ bool PlayerTaxi::LoadTaxiMask(std::string_view data)
+ 
+ void PlayerTaxi::AppendTaximaskTo(ByteBuffer& data, bool all)
+ {
++    // Custom: the client reads one 64-bit word per 64 node ids of its TaxiNodes.dbc, (max id / 64) + 1 of them
++    // (14 uint32 for stock's, whose ids end at 440), so send that many rather than all of TaxiMaskSize
++    uint32 maxNode = sTaxiNodesStore.GetNumRows() ? sTaxiNodesStore.GetNumRows() - 1 : 0;
++    uint32 count = std::min<uint32>(((maxNode >> 6) + 1) * 2, TaxiMaskSize);
++
+     if (all)
+     {
+-        for (uint8 i = 0; i < TaxiMaskSize; i++)
++        for (uint32 i = 0; i < count; i++)
+             data << uint32(sTaxiNodesMask[i]);              // all existed nodes
+     }
+     else
+     {
+-        for (uint8 i = 0; i < TaxiMaskSize; i++)
++        for (uint32 i = 0; i < count; i++)
+             data << uint32(m_taximask[i]);                  // known nodes
+     }
+ }
+diff --git a/src/server/game/Entities/Player/PlayerTaxi.h b/src/server/game/Entities/Player/PlayerTaxi.h
+index e8041cb09..9abaff2bc 100644
+--- a/src/server/game/Entities/Player/PlayerTaxi.h
++++ b/src/server/game/Entities/Player/PlayerTaxi.h
+@@ -36,6 +36,9 @@ public:
+     {
+         uint8  field   = uint8((nodeidx - 1) / 32);
+         uint32 submask = 1 << ((nodeidx - 1) % 32);
++        // Custom: nodes past the mask are never known (stock read past its end)
++        if (!nodeidx || field >= TaxiMaskSize)
++            return false;
+         return (m_taximask[field] & submask) == submask;
+     }
+ 
+@@ -43,6 +46,9 @@ public:
+     {
+         uint8  field   = uint8((nodeidx - 1) / 32);
+         uint32 submask = 1 << ((nodeidx - 1) % 32);
++        // Custom: see IsTaximaskNodeKnown
++        if (!nodeidx || field >= TaxiMaskSize)
++            return false;
+         if ((m_taximask[field] & submask) != submask)
+         {
+             m_taximask[field] |= submask;
+diff --git a/src/server/shared/DataStores/DBCStructure.h b/src/server/shared/DataStores/DBCStructure.h
+index 0d193574d..b732a8173 100644
+--- a/src/server/shared/DataStores/DBCStructure.h
++++ b/src/server/shared/DataStores/DBCStructure.h
+@@ -2283,7 +2283,10 @@ typedef std::map<uint32, TaxiPathSetForSource> TaxiPathSetBySource;
+ typedef std::vector<TaxiPathNodeEntry const*> TaxiPathNodeList;
+ typedef std::vector<TaxiPathNodeList> TaxiPathNodesByPath;
+ 
+-static constexpr std::size_t TaxiMaskSize = 14;
++// Custom: room for 2048 taxi nodes (stock: 14 words, nodes 1-448). Open Azeroth and WHE's Cataclysm flight paths
++// (F-139) add nodes up to 683; the packets carry only as many words as the client's TaxiNodes.dbc needs
++// (PlayerTaxi::AppendTaximaskTo).
++static constexpr std::size_t TaxiMaskSize = 64;
+ typedef std::array<uint32, TaxiMaskSize> TaxiMask;
+ 
+ #endif

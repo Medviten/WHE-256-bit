@@ -64,8 +64,8 @@ def creature_needs(client):
     """(display, what, [candidates]) for the models and texture variations of F-013's creature displays; model paths
     come from the client's built CreatureModelData.dbc (the displays can name a model by a variable)."""
     import struct
-    # the realm patches (patch-A.<realm>.MPQ) hold the DBCs since deploy-dbc.sh went per realm
-    dbc = sorted(glob.glob(os.path.join(client, 'patch-A*.MPQ', 'DBFilesClient', 'CreatureModelData.dbc')))
+    # the realm patches (patch-WHE.<realm>.MPQ, patch-A.<realm>.MPQ before) hold the DBCs since deploy-dbc.sh went per realm
+    dbc = sorted(glob.glob(os.path.join(client, 'patch-WHE.*.MPQ', 'DBFilesClient', 'CreatureModelData.dbc')) + glob.glob(os.path.join(client, 'patch-A*.MPQ', 'DBFilesClient', 'CreatureModelData.dbc')))
     d = open(dbc[0], 'rb').read()
     _, n, fields, size, _ = struct.unpack('<4s4I', d[:20])
     table = 20 + n * size
@@ -111,7 +111,7 @@ def main():
     global F013
     F013 = a.modpak or F013
     local = {}
-    for root in [a.common] + [os.path.join(a.client, p) for p in ('patch-C.MPQ', 'patch-B.MPQ', 'patch-A.MPQ')]:
+    for root in [a.common] + [os.path.join(a.client, p) for p in ('patch-WHE.MPQ', 'patch-C.MPQ', 'patch-B.MPQ', 'patch-A.MPQ')]:
         for k, v in tree(root).items():
             local.setdefault(k, v)
     archives = [Archive(p) for p in glob.glob(os.path.join(a.client, '*.[mM][pP][qQ]'))
