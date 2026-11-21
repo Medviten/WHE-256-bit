@@ -2,7 +2,7 @@
 -- Alliance), 120 mop_wrh (Garrosh redirects the invasion fleet, Horde), 121 mop_jade_crash (the gunship crashing in
 -- the Jade Forest). Movie ids are MoP's own. MoP ships 1280 x 720 VP9 video with the sound in a separate .mp3; the
 -- files here are re-encoded to what the 3.3.5a client plays (1024 x 576 MPEG-4, MP3 inside, like Goblin_1024.avi):
--- Interface\Cinematics\<name>_1024.avi in WHE-common's patch-MoP.MPQ. mop_jade (118, the Jade Forest battle) is left
+-- Interface\Cinematics\<name>_1024.avi in WHE-common's patch-A.MPQ (shipped as patch-WHE-cinematics.MPQ). mop_jade (118, the Jade Forest battle) is left
 -- out: its downloaded sound is damaged.
 --
 -- The client builds the file name as Movie.movie_path + "_" + MovieFileData.resolution + ".avi" and skips a
