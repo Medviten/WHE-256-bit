@@ -5,6 +5,7 @@
 - Exile's Reach (retail's map 2175, the Shadowlands new player island) as a visitable map
 - Its 16 areas with retail's English names (zone text, exploration), every one flyable
 - Retail's map of the island (world map, single zone map like the Wandering Isle) and its minimaps
+- A fog of war on that map (retail has none): each area's part shows once you have explored it
 - Retail's lights of the map (sky, fog and water colours)
 - `.tele ExilesReach` and one target per subarea (`.tele DarkmaulCitadel`, `.tele HarpyRoost`, ...)
 - TrinityCore's six graveyards of the island
@@ -72,7 +73,11 @@
    --directory DarkmaulCitadel --name "Darkmaul Citadel" --tele-base 22360 --dungeon 2175 721.7 -1838.4`
 4. Art: `python -I tools/models/mop_assets.py modpaks/F-137_exiles-reach <stage> --common-out <WHE-common>/patch-ER.MPQ
    --version 12.1.5.70961 --tiles <tiles> --fetch --convert --install` (the dungeon's with `--tiles <dungeon tiles>`)
-5. World map: `python -I tools/models/retail_map_art.py <csv> 1409 ExilesReach <WHE-common>/patch-ER.MPQ`
+5. World map: `python -I tools/models/retail_map_art.py <csv> 1409 ExilesReach <art>` (a scratch folder: the
+   retail tiles are only the fog's source), then `python -I tools/models/retail_map_fog.py
+   <art>/Interface/WorldMap/ExilesReach <tiles> modpaks/F-137_exiles-reach <WHE-common>/patch-ER.MPQ --uimap 1409
+   --first-id 21751 --skip 10639,13377` (the faded base tiles, an overlay per area cut by the tiles' area ids,
+   `dbc/[F-137]_worldmapoverlay_fog.sql`; the North Sea's areas stay unfogged)
 6. Minimaps: `python -I tools/models/mop_minimaps.py <tiles> ExilesReach <WHE-common>/patch-ER.MPQ --source 2175
    --version 12.1.5.70961`; the dungeon's: `<dungeon tiles> DarkmaulCitadel ... --source 2236`
 7. Spawns, quests, ships and the dungeon's instance rows: `python -I -X utf8 tools/races/retail_world_port.py
