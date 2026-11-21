@@ -115,6 +115,10 @@ SAI_ROW_PARAMS = {(34913, 1): (1, 0)}
 # the Bloodfang worgen's 2179 like every other hostile worgen
 FACTION_FIX = {35170: 2179, 35188: 2179}
 SAI_SPELL_ACTIONS = {11, 28, 75, 85, 86, 134}
+# Spells that only play a movie: Cataclysm's effect 45 (PLAY_MOVIE) is ADD_HONOR in AzerothCore, so casting them would
+# play nothing; SmartAI plays the movie itself instead (SMART_ACTION_PLAYMOVIE). 93477: the Worgen cinematic, movie 21
+MOVIE_SPELLS = {93477: 21}
+SMART_ACTION_PLAYMOVIE = 68
 SAI_SPELL_EVENTS = {8, 31}
 # Neltharion condition types AzerothCore doesn't have
 CONDITION_DROP = {201, 202}
@@ -952,6 +956,8 @@ class Port:
                 why = "event %d" % ev
             elif a > SAI_MAX_ACTION or a in SAI_ACTION_DROP:
                 why = "action %d" % a
+            if a in (11, 86, 134) and p[0] in MOVIE_SPELLS:
+                a, p = SMART_ACTION_PLAYMOVIE, [MOVIE_SPELLS[p[0]], 0, 0, 0, 0, 0]
             if not why and a in SAI_SPELL_ACTIONS:
                 s = self.spell_ok(p[0])
                 why = None if s else "spell %d" % p[0]
