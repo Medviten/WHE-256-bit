@@ -4,24 +4,24 @@ SET @HozenMask_2                     = IF(@Hozen BETWEEN 65 AND 128, 1 << (@Hoze
 SET @HozenHelmetMask                 = 1 << @Hozen;
 
 -- Important variable updates (Alliance vs. Horde)
-SET @AllianceMask                         = @AllianceMask    | @HozenMask;
-SET @AllianceMask_2                       = @AllianceMask_2    | @HozenMask_2; -- races 65-128
+SET @HordeMask                            = @HordeMask         | @HozenMask;
+SET @HordeMask_2                          = @HordeMask_2       | @HozenMask_2; -- races 65-128
 SET @BarrensBros                          = @HordeMask    & ~@UndercityMask; -- important if Horde
 SET @BarrensBros_2                        = @HordeMask_2    & ~@UndercityMask_2; -- races 65-128
 SET @PlayableRaceMask                     = @PlayableRaceMask | @HozenMask;
 SET @PlayableRaceMask_2                   = @PlayableRaceMask_2 | @HozenMask_2; -- races 65-128
 SET @BowHunters                           = @BowHunters      | @HozenMask;
 SET @BowHunters_2                         = @BowHunters_2      | @HozenMask_2; -- races 65-128
-SET @HozenLanguage                      = 7; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
-SET @HozenAlliance                      = 0; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
-SET @HozenKnowThyEnemy                  = @KnowThyEnemyAlliance;
+SET @HozenLanguage                      = 1; -- 7 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HozenAlliance                      = 1; -- 0 for Alliance, 1 for Horde (ChrRaces.dbc)
+SET @HozenKnowThyEnemy                  = @KnowThyEnemyHorde;
 
 -- Miscellaneous
-SET @HozenHome = @Human; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
+SET @HozenHome = @Orc; -- classes, start outfits, start position, action bars, stats, totems and druid forms are copied from this race
 SET @HozenKin = @Tauren; -- voice, emotes and names are copied from this race
-SET @HozenFlags = @HumanFlags;
-SET @HozenExplorationSound = @HumanExplorationSound;
-SET @HozenCinematicSequence = @HumanCinematicSequence;
+SET @HozenFlags = @OrcFlags;
+SET @HozenExplorationSound = @OrcExplorationSound;
+SET @HozenCinematicSequence = @OrcCinematicSequence;
 SET @HozenBlood = 1;
 SET @HozenMaleModelPath = 'custom\\hozen\\unknown\\536927.m2'; -- CoA Custom 1.9 model (retail, prepared by coa_race_prep.py)
 SET @HozenFaction = 1243; -- vacant slot

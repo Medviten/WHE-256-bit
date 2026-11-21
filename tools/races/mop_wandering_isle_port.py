@@ -70,9 +70,9 @@ RACE_VARS = {1: ["Human"], 2: ["Orc"], 3: ["Dwarf"], 4: ["NightElf"], 5: ["Undea
              24: ["AlliancePandaren", "HordePandaren"], 25: ["AlliancePandaren"], 26: ["HordePandaren"]}
 PANDAREN_BITS = (1 << 23) | (1 << 24) | (1 << 25)
 # races that start on the Wandering Isle with the Pandaren of their faction (WanderingIsleStartZone.Enable): they may
-# take that faction's Pandaren quests and get the Pandaren starting outfit. Hozen (F-064), Mogu (F-117) and Jinyu
-# (F-124) are Alliance; their masks are 0 while their modpak is off, which leaves the quests Pandaren-only
-WI_KIN = {"AlliancePandaren": ("Hozen", "Mogu", "Jinyu")}
+# take that faction's Pandaren quests and get the Pandaren starting outfit. Mogu (F-117) and Jinyu (F-124) are
+# Alliance, Hozen (F-064) Horde; their masks are 0 while their modpak is off, which leaves the quests Pandaren-only
+WI_KIN = {"AlliancePandaren": ("Mogu", "Jinyu"), "HordePandaren": ("Hozen",)}
 EXTRA_RACES = {9: "@Goblin", 22: "@Worgen", 24: "@NeutralPandaren", 25: "@AlliancePandaren", 26: "@HordePandaren"}
 CLASS_MASK = 0x5FF            # the 3.3.5a classes (1-9, 11); MoP's Monk (512) is left to F-100's class 10 rules
 # ARAC classes MoP's Pandaren couldn't be take a MoP class's outfit (the same Trainee's set; the donor picks the

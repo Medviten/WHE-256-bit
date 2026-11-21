@@ -20,10 +20,10 @@ import struct
 # model folder(s) in the CoA package, male model, female model (None: male only), display scale,
 # faction name, faction description, race info
 RACES = [
-    ('Hozen', 'Hozen', 'Hozen', 64, 'hozen', 'Alliance', 'Human', 'Tauren', True, 112, 'Hozen', 'Hu',
+    ('Hozen', 'Hozen', 'Hozen', 64, 'hozen', 'Horde', 'Orc', 'Tauren', True, 112, 'Hozen', 'Hu',
      ['custom/hozen'], 'custom\\hozen\\unknown\\536927.m2', None, 1.15,
      'Hozen of the Jade Forest', 'Hozen who left the Jade Forest to see the wider world, and stayed for the bananas.',
-     'The hozen are a boisterous race of monkey-like people from Pandaria. Quick to anger and quicker to laugh, a few tribes have thrown in with the Alliance.'),
+     'The hozen are a boisterous race of monkey-like people from Pandaria. Quick to anger and quicker to laugh, a few tribes have thrown in with the Horde.'),
     ('Sylvari', 'Sylvari', 'Sylvari', 65, 'sylvari', 'Alliance', 'NightElf', 'NightElf', False, 110, 'Vorkai', 'Be',
      ['custom/vorkai'], 'custom\\vorkai\\fmm\\faunmale.m2', 'custom\\vorkai\\fnf00\\faunfemale.m2', 1.0,
      'Grove Wardens', 'Fauns and dryads of the forest who guard the groves beside the night elves.',

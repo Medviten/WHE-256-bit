@@ -8,8 +8,8 @@
 - `.tele TheWanderingIsle`
 - Its NPCs, objects and quests, from the TrinityCore MoP Classic port's Wandering Isle import: 369 creatures (2289 spawns), 158 objects (898 spawns), 91 quests, with gossip, SmartAI, waypoint paths, loot, the island's phases and its quest invisibility, the MoP spells and vehicles they use, and the island's scripted events (the core patch's `wandering_isle.cpp`)
 - With `WanderingIsleStartZone.Enable = 1`, new Pandaren characters (F-020 / F-021), except Death Knights, start on the island by Master Shang Xi with "Much to Learn"
-- Hozen (F-064), Mogu (F-117) and Jinyu (F-124) start with the Pandaren when their modpak is on: the island's
-  Pandaren quests (Alliance Pandaren's) take them too, which also lets WanderingIsleStartZone.Enable move them there,
+- Hozen (F-064, Horde), Mogu (F-117) and Jinyu (F-124, Alliance) start with the Pandaren of their side when their modpak is on: the island's
+  Pandaren quests (their side's Pandaren's) take them too, which also lets WanderingIsleStartZone.Enable move them there,
   and they get the Pandaren outfit below (`WI_KIN` in tools/races/mop_wandering_isle_port.py). Without the Wandering
   Isle start they go to Exile's Reach (F-137) or their home race's start
 - MoP's Pandaren starting gear (`dbc/[F-134]_wi_charstartoutfit.sql`, from 5.4.8's CharStartOutfit.dbc): the Trainee's set, food and Hearthstone for Pandaren warriors, hunters, rogues, priests, shamans and mages of both factions. No weapon, as in MoP: the class weapon is looted from the Iron Bough in "The Lesson of the Iron Bough", and the outfit only shows it in character creation's preview (hunters get the stock Rough Arrows and Light Quiver, as 3.3.5's crossbow needs ammo). Monk's outfit is left out (class 10 is F-100's Hero); the classes ARAC adds keep F-020 / F-021's outfits
