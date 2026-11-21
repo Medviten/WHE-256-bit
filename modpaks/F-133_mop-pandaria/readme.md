@@ -14,6 +14,7 @@
   `python tools/models/swap_server_maps.py 870 <ADT_DIR>/World/maps/hawaiimainland <DATA_DIR> --new-map`
   where `<DATA_DIR>/dbc` holds `LiquidType.dbc`. Copy `maps/870*.map` and `vmaps/870.vmtree` to the server. No mmaps are needed (creatures there would only lack pathfinding)
 - Keep it after F-010 in the manifest: Open Azeroth also has map 870, at expansion 4, which the core refuses to let a 3.3.5 account enter
+- For the regular zeppelin and ship services (shown only once the first trip is done): `patches/core/transport-visibility.patch` and a recompile. It adds the world table `transport_visibility` (transport entry, quest: only players with that quest rewarded see the transport; `sql/db-world/base/[F-133]_transport_visibility_table.sql` creates it too). Without the patch the services are visible to everyone
 - Not compatible with F-080_patch-reforged-m, which uses 39 of these area ids for Eastern Kingdoms mines
 
 ### Considerations

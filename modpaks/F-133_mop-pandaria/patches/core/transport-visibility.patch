@@ -1,0 +1,200 @@
+diff --git a/data/sql/updates/pending_db_world/rev_1795294189999907100.sql b/data/sql/updates/pending_db_world/rev_1795294189999907100.sql
+new file mode 100644
+index 000000000..46a485fae
+--- /dev/null
++++ b/data/sql/updates/pending_db_world/rev_1795294189999907100.sql
+@@ -0,0 +1,7 @@
++-- Transports only players who have rewarded a quest see: a row hides transport `entry` (gameobject_template, type 15)
++-- from everyone without `quest` rewarded, its passengers excepted. Rewarding the quest shows it at once.
++CREATE TABLE IF NOT EXISTS `transport_visibility` (
++    `entry` INT UNSIGNED NOT NULL COMMENT 'gameobject_template entry of the transport',
++    `quest` INT UNSIGNED NOT NULL COMMENT 'quest_template id the player must have rewarded to see it',
++    PRIMARY KEY (`entry`)
++) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Transports shown only after a quest';
+diff --git a/src/server/game/Entities/Transport/Transport.cpp b/src/server/game/Entities/Transport/Transport.cpp
+index 5204d2636..e4fbb606a 100644
+--- a/src/server/game/Entities/Transport/Transport.cpp
++++ b/src/server/game/Entities/Transport/Transport.cpp
+@@ -208,11 +208,20 @@ void MotionTransport::BuildUpdate(UpdateDataMapType& data_map)
+         return;
+ 
+     for (Map::PlayerList::const_iterator itr = players.begin(); itr != players.end(); ++itr)
+-        BuildFieldsUpdate(itr->GetSource(), data_map);
++        if (!IsHiddenFor(itr->GetSource())) // Custom: no updates for a transport the player was never sent
++            BuildFieldsUpdate(itr->GetSource(), data_map);
+ 
+     ClearUpdateMask(true);
+ }
+ 
++// Custom: a transport with a `transport_visibility` quest is shown only to players who have that quest rewarded
++// (and to its passengers, so nobody loses the deck under them)
++bool MotionTransport::IsHiddenFor(Player const* player) const
++{
++    uint32 quest = _transportInfo ? _transportInfo->visibilityQuest : 0;
++    return quest && player->GetTransport() != this && !player->GetQuestRewardStatus(quest);
++}
++
+ void MotionTransport::Update(uint32 diff)
+ {
+     if (_requiresFirstDepartureSync)
+diff --git a/src/server/game/Entities/Transport/Transport.h b/src/server/game/Entities/Transport/Transport.h
+index dfdf094db..1afbf1fd1 100644
+--- a/src/server/game/Entities/Transport/Transport.h
++++ b/src/server/game/Entities/Transport/Transport.h
+@@ -40,6 +40,9 @@ public:
+ 
+     virtual void DelayedUpdate(uint32 /*diff*/) {}
+ 
++    // Custom: whether the player is not to see this transport (`transport_visibility`)
++    [[nodiscard]] virtual bool IsHiddenFor(Player const* /*player*/) const { return false; }
++
+     uint32 GetPathProgress() const { return GetGOValue()->Transport.PathProgress; }
+     void SetPathProgress(uint32 val) { m_goValue.Transport.PathProgress = val; }
+ 
+@@ -57,6 +60,7 @@ public:
+     bool CreateMoTrans(ObjectGuid::LowType guidlow, uint32 entry, uint32 mapid, float x, float y, float z, float ang, uint32 animprogress);
+     void CleanupsBeforeDelete(bool finalCleanup = true) override;
+     void BuildUpdate(UpdateDataMapType& data_map) override;
++    [[nodiscard]] bool IsHiddenFor(Player const* player) const override; // Custom: `transport_visibility`
+ 
+     void Update(uint32 diff) override;
+     void DelayedUpdate(uint32 diff) override;
+diff --git a/src/server/game/Maps/Map.cpp b/src/server/game/Maps/Map.cpp
+index 684b535dc..a0520a93b 100644
+--- a/src/server/game/Maps/Map.cpp
++++ b/src/server/game/Maps/Map.cpp
+@@ -384,7 +384,8 @@ bool Map::AddToMap(Transport* obj, bool /*checkTransport*/)
+     // They get the correct transport list from SendInitTransports when added to their new map
+     for (Map::PlayerList::const_iterator itr = GetPlayers().begin(); itr != GetPlayers().end(); ++itr)
+     {
+-        if (itr->GetSource()->IsInWorld() && itr->GetSource()->GetTransport() != obj)
++        if (itr->GetSource()->IsInWorld() && itr->GetSource()->GetTransport() != obj
++            && !obj->IsHiddenFor(itr->GetSource())) // Custom: `transport_visibility`
+         {
+             UpdateData data;
+             obj->BuildCreateUpdateBlockForPlayer(&data, itr->GetSource());
+@@ -1744,7 +1745,8 @@ void Map::SendInitTransports(Player* player)
+     // Hack to send out transports
+     UpdateData transData;
+     for (TransportsContainer::const_iterator itr = _transports.begin(); itr != _transports.end(); ++itr)
+-        if (*itr != player->GetTransport() && (!sToCloud9Sidecar->ClusterModeEnabled() || player->InSamePhase(*itr)))
++        if (*itr != player->GetTransport() && (!sToCloud9Sidecar->ClusterModeEnabled() || player->InSamePhase(*itr))
++            && !(*itr)->IsHiddenFor(player)) // Custom: `transport_visibility`
+             (*itr)->BuildCreateUpdateBlockForPlayer(&transData, player);
+ 
+     if (!transData.HasData())
+@@ -1755,6 +1757,24 @@ void Map::SendInitTransports(Player* player)
+     player->SendDirectMessage(&packet);
+ }
+ 
++// Custom: sends the transports on this map that rewarding questId reveals (`transport_visibility`)
++void Map::SendTransportsRevealedBy(Player* player, uint32 questId)
++{
++    UpdateData transData;
++    for (Transport* transport : _transports)
++        if (MotionTransport* motion = transport->ToMotionTransport())
++            if (motion->GetTransportTemplate() && motion->GetTransportTemplate()->visibilityQuest == questId
++                && motion != player->GetTransport())
++                motion->BuildCreateUpdateBlockForPlayer(&transData, player);
++
++    if (!transData.HasData())
++        return;
++
++    WorldPacket packet;
++    transData.BuildPacket(packet);
++    player->SendDirectMessage(&packet);
++}
++
+ void Map::SendRemoveTransports(Player* player)
+ {
+     if (_transports.empty())
+diff --git a/src/server/game/Maps/Map.h b/src/server/game/Maps/Map.h
+index dff5e27fc..164ff5094 100644
+--- a/src/server/game/Maps/Map.h
++++ b/src/server/game/Maps/Map.h
+@@ -503,6 +503,7 @@ public:
+     void SendZoneText(uint32 zoneId, char const* text, WorldSession const* self = nullptr, TeamId teamId = TEAM_NEUTRAL) const;
+ 
+     void SendInitTransports(Player* player);
++    void SendTransportsRevealedBy(Player* player, uint32 questId); // Custom: `transport_visibility`
+     void SendRemoveTransports(Player* player);
+     void SendZoneDynamicInfo(uint32 zoneId, Player* player) const;
+     void SendZoneWeather(uint32 zoneId, Player* player) const;
+diff --git a/src/server/game/Maps/TransportMgr.cpp b/src/server/game/Maps/TransportMgr.cpp
+index ca5ef2d8b..730ddbc3f 100644
+--- a/src/server/game/Maps/TransportMgr.cpp
++++ b/src/server/game/Maps/TransportMgr.cpp
+@@ -98,6 +98,28 @@ void TransportMgr::LoadTransportTemplates()
+     LOG_INFO("server.loading", " ");
+ }
+ 
++// Custom: transports only players who have rewarded a quest see (a regular service that opens after a scripted first
++// trip, for instance). Transports skip grid visibility, so this is checked where they are sent. After the quests load.
++void TransportMgr::LoadTransportVisibility()
++{
++    if (QueryResult visibility = WorldDatabase.Query("SELECT entry, quest FROM transport_visibility"))
++    {
++        do
++        {
++            Field* fields = visibility->Fetch();
++            uint32 entry = fields[0].Get<uint32>();
++            uint32 quest = fields[1].Get<uint32>();
++            auto itr = _transportTemplates.find(entry);
++            if (itr == _transportTemplates.end())
++                LOG_ERROR("sql.sql", "Table `transport_visibility` has entry {}, which is no transport, skipped.", entry);
++            else if (!sObjectMgr->GetQuestTemplate(quest))
++                LOG_ERROR("sql.sql", "Table `transport_visibility` has transport {} with missing quest {}, skipped.", entry, quest);
++            else
++                itr->second.visibilityQuest = quest;
++        } while (visibility->NextRow());
++    }
++}
++
+ class SplineRawInitializer
+ {
+ public:
+diff --git a/src/server/game/Maps/TransportMgr.h b/src/server/game/Maps/TransportMgr.h
+index 73a5655fb..2d71eb846 100644
+--- a/src/server/game/Maps/TransportMgr.h
++++ b/src/server/game/Maps/TransportMgr.h
+@@ -79,6 +79,7 @@ struct TransportTemplate
+     float accelTime;
+     float accelDist;
+     uint32 entry;
++    uint32 visibilityQuest = 0; // Custom: shown only to players who have this quest rewarded (`transport_visibility`)
+ };
+ 
+ typedef std::map<uint32, TransportAnimationEntry const*> TransportPathContainer;
+@@ -108,6 +109,7 @@ public:
+     void Unload();
+ 
+     void LoadTransportTemplates();
++    void LoadTransportVisibility(); // Custom: `transport_visibility`, after the quests
+ 
+     // Creates a transport using given GameObject template entry
+     MotionTransport* CreateTransport(uint32 entry, ObjectGuid::LowType guid = 0, Map* map = nullptr);
+diff --git a/src/server/game/World/World.cpp b/src/server/game/World/World.cpp
+index 2b379d9be..8194b9b53 100644
+--- a/src/server/game/World/World.cpp
++++ b/src/server/game/World/World.cpp
+@@ -995,6 +995,9 @@ void World::SetInitialWorldSettings()
+     LOG_INFO("server.loading", "Starting Battlefield System");
+     sBattlefieldMgr->InitBattlefield();
+ 
++    LOG_INFO("server.loading", "Loading Transport Visibility..."); // Custom: `transport_visibility`
++    sTransportMgr->LoadTransportVisibility();
++
+     LOG_INFO("server.loading", "Loading Transports...");
+     sTransportMgr->SpawnContinentTransports();
+ 
+diff --git a/src/server/game/Entities/Player/PlayerQuest.cpp b/src/server/game/Entities/Player/PlayerQuest.cpp
+index 4c50021ac..5ea08b235 100644
+--- a/src/server/game/Entities/Player/PlayerQuest.cpp
++++ b/src/server/game/Entities/Player/PlayerQuest.cpp
+@@ -921,2 +921,6 @@ void Player::RewardQuest(Quest const* quest, uint32 reward, Object* questGiver,
+ 
++    // Custom: transports this quest reveals (`transport_visibility`) appear now, not at the next map change
++    if (IsInWorld())
++        GetMap()->SendTransportsRevealedBy(this, quest_id);
++
+     sScriptMgr->OnPlayerCompleteQuest(this, quest);
