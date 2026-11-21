@@ -152,6 +152,7 @@ F-026_custom-race-support # required for any custom race to function correctly
 #F-138_gnomey-helper # Off by default (Project Neltharion's Gnomey in Gilneas City, a vendor of free 36-slot bags and other conveniences; not Cataclysm content, formerly in F-130)
 #F-139_cata-flight-paths # Off by default (tentative, untested; Cataclysm's flight paths and flight masters on Open Azeroth's world; requires F-010, a core patch + recompile and WHE-common's assets, see its readme; keep after F-010, F-130 and F-137)
 #F-140_hidden-transports # Off by default (transports shown only once a quest is done, e.g. the regular Pandaria services after the first trip; a core patch + recompile; keep after the modpaks whose transports it hides)
+#F-142_kezan-zeppelin # Off by default (tentative, untested; a zeppelin between Bladefist Bay and Kezan and an elevator in Kezan's zeppelin tower; requires F-010 and Open Azeroth maps from 2026-11-21 on, see its readme; keep after F-010)
 #F-100_hero_class # Off by default (tentative, untested; a class that can use any trainer and any talent tree; needs the core and client patches and its interface files; keep after the race modpaks, F-002 and F-010)
 #F-087_undead_paladin # Off by default (playable Undead paladins with Forsaken paladin mounts; keep after F-026 and F-002)
 #F-003_mod-faction-free # Off by default (core patch in patches/core)
