@@ -98,7 +98,10 @@ DUNGEON_DIFFICULTY_ID = 1370       # MapDifficulty row of the dungeon (normal, 5
 # on the decks: the hunters' class pets (retail shows the one your hunter has), the boat of the crash scene and the
 # invisible helpers of TrinityCore's scripts
 DROP_ENTRIES = {167337, 167342, 167345, 167347, 167348, 167352, 167375, 167343, 167344, 167346, 167349, 167350, 167351,
-                156403, 155125, 168236}
+                156403, 155125, 168236,
+                # Emergency First Aid's standing survivors: TrinityCore's templates of personal clones, never shown;
+                # npc_er_beach_survivor stands the lying ones up instead
+                151088, 151089, 154170, 166787, 166792, 166797}
 KILL_CREDITS = {160737: 174954,    # Combat Dummy: Warming Up's credit (retail casts a credit spell on death)
                 157091: 165150}    # Monstrous Cadaver: the boar ride's skeleton army
 # Custom spells (3.3.5a has no retail counterpart), cloned from a stock spell: id -> (donor, name, changes). The core's
@@ -188,8 +191,10 @@ SCRIPTED = {160664: "npc_er_ship_sparring", 166583: "npc_er_ship_sparring",     
             156891: "npc_er_follower", 156803: "npc_er_follower",                    # Westward Bound's scouts
             167225: "npc_er_follower", 167226: "npc_er_follower",
             153964: "npc_er_boss"}                                                   # Bloodbeak
-# the SCRIPTED ones talked to (gossip flag): Emergency First Aid's survivors, the scouting copters
-SCRIPTED_GOSSIP = {156609, 156610, 156612, 166786, 166791, 166796, 156518, 167027, 156595, 167142}
+# the SCRIPTED ones talked to (gossip flag): the scouting copters, the rides
+SCRIPTED_GOSSIP = {156518, 167027, 156595, 167142}
+# the SCRIPTED ones used (spellclick flag only, the "use" cursor; the AI's OnSpellClick): Emergency First Aid's survivors
+SCRIPTED_CLICK = {156609, 156610, 156612, 166786, 166791, 166796}
 # retail conversations (TrinityCore's zone_exiles_reach.cpp) whose lines exiles_reach.cpp speaks: their broadcast
 # texts go to broadcast_text with the creatures' texts (the script names the lines by broadcast text id)
 CONVERSATIONS = (11685, 12043, 12044, 12058, 12066, 12073, 12078, 12083, 12084, 12086, 12089, 12090, 12092, 12127,
@@ -776,6 +781,8 @@ class Port:
             npcflag = n(r["npcflag"]) & 0x7FFFFFF | (2 if e in givers else 0) | (1 if talk else 0)
             if e in SCRIPTED_GOSSIP:
                 npcflag &= ~0x1000000       # no spellclick (retail's vehicles): the client would send that, not gossip
+            if e in SCRIPTED_CLICK:
+                npcflag = 0x1000000
             tmpl.append([e, 0, 0, 0, KILL_CREDITS.get(e, 0), 0, r["name"], r["subname"] or None, r["IconName"] or None, 0, lo, hi, 0,
                          self.faction(n(r["faction"])), npcflag, n(r["speed_walk"], 1), n(r["speed_run"], 1.14286), 1, 1,
                          18, CLASSIFICATION.get(n(r["Classification"]), n(r["Classification"])), n(r["dmgschool"]),
@@ -863,7 +870,16 @@ class Port:
         rows = self.phase_rows.get(phase, {})
         area = n(r["areaId"])
         pick = rows.get(area) or rows.get(0) or (rows[min(rows)] if rows else [])
-        self.conditions += self.convert_conditions(pick, 30, kind, entry, guid, "phase %d" % phase)
+        out = self.convert_conditions(pick, 30, kind, entry, guid, "phase %d" % phase)
+        # retail phases mostly test quest states, which a player of the other faction passes too ("not taken"): a
+        # group whose quests are all one faction's shows only to that faction
+        for g in sorted({r[4] for r in out}):
+            grp = [r for r in out if r[4] == g]
+            teams = {self.team(r[7]) for r in grp if r[5] in (8, 9, 14, 28, 47, 48) and r[7] in self.quests}
+            if len(teams) == 1 and None not in teams and not any(r[5] == 6 for r in grp):
+                out.append([30, kind, entry, guid, g, 6, 0, teams.pop(), 0, 0, 0, 0, 0, "",
+                            "phase %d: its quests' faction" % phase])
+        self.conditions += out
 
     def spawn_rows(self):
         tag = "[gen %s %s]" % (self.a.tag, self.a.comment)
