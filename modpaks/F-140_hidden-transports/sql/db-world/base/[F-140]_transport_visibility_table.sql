@@ -1,4 +1,4 @@
--- Same definition as the core patch's pending update (patches/core/transport-visibility.patch), for world dumps taken
+-- Same definition as the core patch's pending update (`patches/core/transport-visibility.patch`), for world dumps taken
 -- before the worldserver created the table.
 -- Transports only players who have rewarded a quest see: a row hides transport `entry` (gameobject_template, type 15)
 -- from everyone without `quest` rewarded, its passengers excepted. Rewarding the quest shows it at once.
