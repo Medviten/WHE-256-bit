@@ -21,7 +21,9 @@
   Hozen, Mogu and Jinyu with them) go there instead
 - Character creation shows those races retail's Stormwind or Orgrimmar scene (UI_Alliance / UI_Horde in
   WHE-common). The client can't see `exiles_reach`: `ExilesReachKeepStart` in `data/patch-A.MPQ/Interface/GlueXML/
-  GlueParent.lua` lists the races writing 0, so a race modpak that sets 0 adds its file string there
+  GlueParent.lua` lists the races writing 0, so a race modpak that sets 0 adds its file string there. The Wandering
+  Isle races are listed too and keep the Pandaren scene (UI_Pandaren). WHE-common's patch-A.MPQ has the same file:
+  change both
 - The ship intro: the Alliance Ship and the Horde Transport sail retail's loops off the island as continent
   transports, with their crews on deck. With `ExilesReachStartZone.Enable = 1` (core patch below) those new
   characters start aboard their faction's ship instead of the beach:

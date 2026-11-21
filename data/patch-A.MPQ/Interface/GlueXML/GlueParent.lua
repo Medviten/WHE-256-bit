@@ -549,7 +549,7 @@ GlueBackgroundFallback = {
 	["ICETROLL"] = "Orc", ["QIRAJI"] = "Orc", ["EREDAR"] = "Draenei", ["ARAKKOA"] = "Draenei",
 	["FELELF"] = "BloodElf", ["QUILLBOAR"] = "Tauren", ["DEMON"] = "BloodElf",
 	["SATYR"] = "NightElf", ["GNOLL"] = "Human", ["BEHOLDER"] = "Dwarf", ["SHIVAN"] = "Draenei",
-	["HOZEN"] = "Human", ["SYLVARI"] = "NightElf", ["MANTID"] = "Tauren", ["ETHEREAL"] = "NightElf",
+	["HOZEN"] = "Pandaren", ["SYLVARI"] = "NightElf", ["MANTID"] = "Tauren", ["ETHEREAL"] = "NightElf",
 	["BANSHEE"] = "Scourge", ["FACELESSONE"] = "Orc",
 	["ALLIANCEDRACTHYR"] = "KulTiran", ["HORDEDRACTHYR"] = "Ogre",
 	["ALLIANCEHARANIR"] = "NightElf", ["HORDEHARANIR"] = "Orc",
@@ -567,17 +567,18 @@ GlueBackgroundFallback = {
 	["MOARG"] = "Orc", -- CoA 1.9.9
 	["NERUBIAN"] = "Scourge", -- CoA 1.9.9
 	["LICH"] = "Scourge", -- CoA 1.9.9
-	["MOGU"] = "Human", -- CoA 1.9.9
+	["MOGU"] = "Pandaren", -- CoA 1.9.9; Wandering Isle start
 	["LOSTONE"] = "Draenei", -- CoA 1.9.9
 	["DRAKKIN"] = "Human", -- CoA 1.9.9
 	["ALLIANCEORC"] = "Human", -- CoA 1.9.9
 	["HARPY"] = "Tauren", -- CoA 1.9.9
 	["ILLIDARIBLOODELF"] = "BloodElf", -- CoA 1.9.9
 	["ILLIDARINIGHTELF"] = "NightElf", -- CoA 1.9.9
-	["JINYU"] = "NightElf", -- CoA 1.9.9
+	["JINYU"] = "Pandaren", -- CoA 1.9.9; Wandering Isle start
 	["TWOHEADEDOGRE"] = "Orc", -- CoA 1.9.9
 	["GRUMMLE"] = "Dwarf", -- CoA 1.9.9
 	["ELUNECHOSEN"] = "NightElf", -- CoA 1.9.9
+	["NEUTRALPANDAREN"] = "Pandaren", -- Wandering Isle start (UI_Pandaren)
 };
 
 -- Races with a scene of their own: the scene of the stock race in brackets with the camera moved back (or forward)
@@ -604,10 +605,34 @@ TallDeathKnightRaces = {
 	["TUSKARR"] = true, ["KYRIAN"] = true, ["ALLIANCEPANDAREN"] = true, ["VENTHYR"] = true, ["CENTAUR"] = true,
 };
 
+-- Character creation of races starting on Exile's Reach (F-137) uses retail's two scenes: Stormwind (UI_Alliance) or
+-- Orgrimmar (UI_Horde), by the race's faction. Every custom race starts there unless its player_race_template row
+-- writes exiles_reach 0: those races, the stock races and death knights (who keep Acherus) are listed here, and so are
+-- the Wandering Isle races (Pandaren, Hozen, Mogu, Jinyu), who keep MoP's Pandaren scene (UI_Pandaren).
+ExilesReachKeepStart = {
+	["HUMAN"] = true, ["ORC"] = true, ["DWARF"] = true, ["NIGHTELF"] = true, ["SCOURGE"] = true, ["TAUREN"] = true,
+	["GNOME"] = true, ["TROLL"] = true, ["BLOODELF"] = true, ["DRAENEI"] = true, ["DEATHKNIGHT"] = true,
+	["HIGHELF"] = true, ["MAGHAR"] = true, ["OGRE"] = true, ["DARKIRONDWARF"] = true, ["ZANDALARITROLL"] = true,
+	["ALLIANCEPANDAREN"] = true, ["HORDEPANDAREN"] = true, ["NEUTRALPANDAREN"] = true, ["BROKEN"] = true,
+	["HOZEN"] = true, ["MOGU"] = true, ["JINYU"] = true,
+	["GOBLIN"] = true, ["WORGEN"] = true, ["GILNEAN"] = true, ["KULTIRAN"] = true, ["HIGHMOUNTAINTAUREN"] = true,
+	["LIGHTFORGEDDRAENEI"] = true, ["THINHUMAN"] = true, ["TUSKARR"] = true, ["DARKFALLEN"] = true, ["FURBOLG"] = true,
+	["SKELETON"] = true, ["EREDAR"] = true, ["CENTAUR"] = true, ["BANSHEE"] = true, ["CULTIST"] = true,
+	["DREADLORD"] = true, ["NERUBIAN"] = true, ["LICH"] = true, ["HARPY"] = true, ["TWOHEADEDOGRE"] = true,
+};
+GlueAmbienceTracks["ALLIANCE"] = "GlueScreenHuman";
+GlueAmbienceTracks["HORDE"] = "GlueScreenOrcTroll";
+
 -- Function to set the background model for character select and create screens
 -- race: the character's race file string, passed along for death knights (see TallDeathKnightRaces)
 function SetBackgroundModel(model, name, race)
     local nameupper = strupper(name);
+
+	if ( model == CharacterCreate and not ExilesReachKeepStart[nameupper] ) then
+		local _, faction = GetFactionForRace(CharacterCreate.selectedRace);
+		name = (faction == "Horde") and "Horde" or "Alliance";
+		nameupper = strupper(name);
+	end
 
 	-- only the scene changes: ambience and lighting stay the death knight ones (nameupper)
 	if ( nameupper == "DEATHKNIGHT" and race and TallDeathKnightRaces[strupper(race)] ) then
