@@ -53,7 +53,9 @@ function CharacterSelect_OnShow()
 	local CurrentModel = CharacterSelect.currentModel;
 
 	if ( CurrentModel ) then
-		PlayGlueAmbience(GlueAmbienceTracks[strupper(CurrentModel)], 4.0);
+		-- races without a track of their own fall back to the character select one (as SetBackgroundModel does); a
+		-- nil name errors and stopped this function before the character list was updated
+		PlayGlueAmbience(GlueAmbienceTracks[strupper(CurrentModel)] or GlueAmbienceTracks["CHARACTERSELECT"], 4.0);
 	end
 
 	UpdateAddonButton();
@@ -731,9 +733,9 @@ function CharacterSelect_SelectCharacter(id, noCreate)
 		if ( id > 0 ) then
 			CharacterSelect_ScrollToIndex(id);
 		end
-		local backgroundRace;
-		CharacterSelect.currentModel, backgroundRace = GetSelectBackgroundModel(id);
-		SetBackgroundModel(CharacterSelect, CharacterSelect.currentModel, backgroundRace);
+		local backgroundRace, backgroundFaction;
+		CharacterSelect.currentModel, backgroundRace, backgroundFaction = GetSelectBackgroundModel(id);
+		SetBackgroundModel(CharacterSelect, CharacterSelect.currentModel, backgroundRace, backgroundFaction);
 
 		SelectCharacter(id);
 	end

@@ -43,6 +43,9 @@ GlueAmbienceTracks["SCOURGE"] = "GlueScreenUndead";
 GlueAmbienceTracks["NIGHTELF"] = "GlueScreenNightElf";
 GlueAmbienceTracks["DRAENEI"] = "GlueScreenDraenei";
 GlueAmbienceTracks["BLOODELF"] = "GlueScreenBloodElf";
+-- Gnome and Troll scenes of their own (F-141; the client shows the Dwarf and Orc scenes without them)
+GlueAmbienceTracks["GNOME"] = "GlueScreenDwarfGnome";
+GlueAmbienceTracks["TROLL"] = "GlueScreenOrcTroll";
 GlueAmbienceTracks["DARKPORTAL"] = "GlueScreenIntro";
 GlueAmbienceTracks["DEATHKNIGHT"] = "GlueScreenIntro";
 GlueAmbienceTracks["CHARACTERSELECT"] = "GlueScreenIntro";
@@ -224,6 +227,15 @@ RaceLights = {
     },
 }
 
+-- Gnome and Troll scenes of their own (F-141, Cataclysm's) light like the Dwarf and Orc scenes they replace; the
+-- Gnome scene is darker than Dun Morogh's, so its character gets the Dwarf light dimmed (and less glow, below)
+RaceLights.GNOME = {
+	{1,     0,  -0.00000,       -0.00000,       -1.00000,   1.0,    0.20000,    0.20000,    0.20000,    0.0,    0.00000,    0.00000,    0.00000},
+	{1,     0,  -0.88314,       0.42916,        -0.18945,   1.0,    0.00000,    0.00000,    0.00000,    1.3,    0.44706,    0.67451,    0.760785},
+};
+CharModelGlowInfo["GNOME"] = 0.1;
+RaceLights.TROLL = RaceLights.ORC;
+
 -- New races light like the stock race whose scene they use
 RaceLights.THINHUMAN = RaceLights.HUMAN;
 RaceLights.CULTIST = RaceLights.SCOURGE;
@@ -235,7 +247,7 @@ RaceLights.TITAN = RaceLights.DWARF; -- CoA 1.9.9
 RaceLights.FUNGARIAN = RaceLights.NIGHTELF; -- CoA 1.9.9
 RaceLights.SABERON = RaceLights.NIGHTELF; -- CoA 1.9.9
 RaceLights.DRAKONID = RaceLights.ORC; -- CoA 1.9.9
-RaceLights.SPORELING = RaceLights.GNOME; -- CoA 1.9.9
+RaceLights.SPORELING = RaceLights.DWARF; -- CoA 1.9.9 (shown in the Dwarf scene)
 RaceLights.STORMFORGED = RaceLights.DWARF; -- CoA 1.9.9
 RaceLights.MOARG = RaceLights.ORC; -- CoA 1.9.9
 RaceLights.NERUBIAN = RaceLights.SCOURGE; -- CoA 1.9.9
@@ -562,7 +574,7 @@ GlueBackgroundFallback = {
 	["FUNGARIAN"] = "NightElf", -- CoA 1.9.9
 	["SABERON"] = "NightElf", -- CoA 1.9.9
 	["DRAKONID"] = "Orc", -- CoA 1.9.9
-	["SPORELING"] = "Gnome", -- CoA 1.9.9
+	["SPORELING"] = "Dwarf", -- CoA 1.9.9 (the Gnome scene; UI_Gnome is only there with F-141)
 	["STORMFORGED"] = "Dwarf", -- CoA 1.9.9
 	["MOARG"] = "Orc", -- CoA 1.9.9
 	["NERUBIAN"] = "Scourge", -- CoA 1.9.9
@@ -605,8 +617,8 @@ TallDeathKnightRaces = {
 	["TUSKARR"] = true, ["KYRIAN"] = true, ["ALLIANCEPANDAREN"] = true, ["VENTHYR"] = true, ["CENTAUR"] = true,
 };
 
--- Character creation of races starting on Exile's Reach (F-137) uses retail's two scenes: Stormwind (UI_Alliance) or
--- Orgrimmar (UI_Horde), by the race's faction. Every custom race starts there unless its player_race_template row
+-- Character creation and select of races starting on Exile's Reach (F-137) use retail's two scenes: Stormwind
+-- (UI_Alliance) or Orgrimmar (UI_Horde), by the race's faction. Every custom race starts there unless its player_race_template row
 -- writes exiles_reach 0: those races, the stock races and death knights (who keep Acherus) are listed here, and so are
 -- the Wandering Isle races (Pandaren, Hozen, Mogu, Jinyu), who keep MoP's Pandaren scene (UI_Pandaren).
 ExilesReachKeepStart = {
@@ -625,11 +637,16 @@ GlueAmbienceTracks["HORDE"] = "GlueScreenOrcTroll";
 
 -- Function to set the background model for character select and create screens
 -- race: the character's race file string, passed along for death knights (see TallDeathKnightRaces)
-function SetBackgroundModel(model, name, race)
+-- faction: character select's race faction ("Alliance"/"Horde", third value of GetSelectBackgroundModel(); patched
+-- client), for the Exile's Reach scenes; character creation asks GetFactionForRace
+function SetBackgroundModel(model, name, race, faction)
     local nameupper = strupper(name);
 
-	if ( model == CharacterCreate and not ExilesReachKeepStart[nameupper] ) then
-		local _, faction = GetFactionForRace(CharacterCreate.selectedRace);
+	if ( model == CharacterCreate ) then
+		faction = select(2, GetFactionForRace(CharacterCreate.selectedRace));
+	end
+	-- an older client returns no faction on character select: it keeps the race's scene
+	if ( faction and not ExilesReachKeepStart[nameupper] ) then
 		name = (faction == "Horde") and "Horde" or "Alliance";
 		nameupper = strupper(name);
 	end
