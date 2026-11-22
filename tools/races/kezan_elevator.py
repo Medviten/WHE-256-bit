@@ -14,7 +14,8 @@ import math, os, struct, sys
 ENTRY, GUID, DISPLAY, SOURCE = 1420001, 14200001, 9693, 204246
 BOTTOM = (-8927.875, -10672.941, 113.70)          # .gps standing at the foot of the shaft
 TOP_Z = 153.12                                    # .gps on the landing at its top
-FACING = math.radians(-2.0 + 180.0)               # the tower's: MODF yaw -2, world yaw = MODF + 180 (CMap::CreateMapObjDef)
+FACING = math.radians(-2.0 + 180.0 - 90.0)        # the tower's (MODF yaw -2, world yaw = MODF + 180, CMap::CreateMapObjDef),
+                                                  # turned 90 degrees right so the car's open sides face the landings (seen in game)
 
 
 def rows(path):

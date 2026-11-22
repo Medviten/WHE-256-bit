@@ -10,4 +10,4 @@ INSERT INTO `gameobject_template_addon` (`entry`, `faction`, `flags`) VALUES (14
 
 DELETE FROM `gameobject` WHERE `guid` = 14200001;
 INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`) VALUES
-  (14200001, 1420001, 1, 0, 0, 1, 1, -8927.875, -10672.941, 113.700, 3.10669, 0, 0, 0.9998477, 0.0174524, 180, 0, 1);
+  (14200001, 1420001, 1, 0, 0, 1, 1, -8927.875, -10672.941, 113.700, 1.53589, 0, 0, 0.6946584, 0.7193398, 180, 0, 1);
