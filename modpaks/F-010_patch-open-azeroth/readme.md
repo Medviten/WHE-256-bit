@@ -6,6 +6,18 @@
 - Moves coordinates for Azuremyst and Quel'Thalas NPCs, spawns, quests, graveyards, etc.
 - Music and sounds in new zones
 - `.tele` targets for the new zones: TolBarad, Surwich, Gilneas (replaces stock's), CavernsOfConsumption, Vashjir (or Vashj'ir), LostIsles, Maelstrom, Kezan, Crestfall, Havenswood, Deepholm. Deepholm, the Maelstrom and Pandaria are set to expansion 2 (`dbc/[F-010]_map.sql`), since the core keeps players off maps above the server's expansion
+- EasternPlaguelands moved to Light's Hope Chapel (stock's spot lies over a gap in Open Azeroth's terrain), and Kezan to
+  the goblin start at KTC headquarters (the old spot was under the ground)
+- `.tele` targets for 295 of Open Azeroth's areas on Kalimdor and the Eastern Kingdoms, named after them in CamelCase
+  (KeelHarbor; `.tele` also finds a part of a name, so `.tele keelharb` works). Each is the dry, whole, flat map chunk
+  nearest the middle of the area; where no chunk is dry (35 areas, nearly all Vashj'ir's), a whole one under water, 3
+  yards above the sea floor. GilneasCity is an alias of Gilneas. Made by `tools/races/oa_area_tele.py`, which lists
+  the areas it leaves out: names stock already has, names two areas share, and areas no terrain chunk carries (most of
+  Gilneas's and Kezan's, about half of Vashj'ir's)
+- 95 `.tele` targets from TrinityCore's Cataclysm world database (TDB 4.3.4, whose terrain Open Azeroth's is
+  converted from): 70 stock doesn't have (TwilightHighlands, MountHyjal, NorthernBarrens, RuinsOfGilneas,
+  KelptharForest, ThroneOfTheTides...), and 25 hand-placed spots that replace generated ones (HallsOfOrigination,
+  Highbank...). Made by `tools/races/tdb_tele_import.py`
 
 ### Known Issues
 - Minimaps not visible in some places
