@@ -152,6 +152,7 @@ class Look199:
             colours = sorted({r['choice'] for r in textures[11] if r['option'] == 0})
             by_choice = {t: {r['choice']: r['path'] for r in textures[t] if r['option'] == 0} for t in self.skin_types}
             self.skins = [tuple(by_choice[t].get(c) or by_choice[t][min(by_choice[t])] for t in self.skin_types) for c in colours]
+            self.skins = [s for s in self.skins if not coa_races.misfit(s[0])]   # stock creature layouts
         self.fixed = {}
         for t, rs in textures.items():
             if t in self.skin_types:

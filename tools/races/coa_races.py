@@ -68,6 +68,25 @@ CENTAUR = ('Centaur', 'Centaur', 'Centaur', 57, 'centaur', 'Horde', 'Tauren', 'T
            ['custom/centaur'], 'custom\\centaur\\unknown\\4036647.m2', 'custom\\centaur\\unknown\\4081379.m2', 1.6,
            'Gelkis Clan', 'Centaur of Desolace who honour the earth and made peace with the tauren.', '')
 
+# Catalog skin textures of the stock creature a player model replaced (WotLK's Faceless One, TBC's dreadlord, Ulduar's
+# female titans): laid out for that creature, not the player model, so their skin colours are left out. CoA's DLL
+# swapped the model with them; WHE can't. Lower case, backslashes. drop_misfit_skins.py removes them from built modpaks.
+MISFIT_SKINS = {
+    'creature\\facelessone\\facelessoneskinpurple.blp', 'creature\\facelessone\\facelessoneskinblue.blp',
+    'creature\\facelessone\\facelessoneskingreen.blp',
+    'creature\\dreadlord\\dreadlordskin.blp', 'creature\\dreadlord\\dreadlordskingreen.blp',
+    'creature\\titanfemale\\titanfemaleskin_01.blp',   # retail's, not in the client either
+    'creature\\titanfemale\\titanfemaleskinbronze1.blp', 'creature\\titanfemale\\titanfemaleskingold1.blp',
+    'creature\\titanfemale\\titanfemaleskinivory1.blp', 'creature\\titanfemale\\titanfemaleskinsilver1.blp',
+}
+
+
+def misfit(path):
+    """Whether a skin texture (or its death knight tint, *_dk.blp) is in MISFIT_SKINS."""
+    p = path.lower().replace('/', '\\')
+    return p in MISFIT_SKINS or p.replace('_dk.blp', '.blp') in MISFIT_SKINS
+
+
 ALWAYS = 0xFFFF
 HIDDEN_GEOSET = 1999   # in the 0-2000 range the character code hides and never shows again
 
@@ -106,6 +125,7 @@ class Look:
         colours = sorted({r['choice'] for r in textures[11] if r['option'] == 0})
         by_choice = {t: {r['choice']: r['path'] for r in textures[t] if r['option'] == 0} for t in self.skin_types}
         self.skins = [tuple(by_choice[t].get(c, by_choice[t][min(by_choice[t])]) for t in self.skin_types) for c in colours]
+        self.skins = [s for s in self.skins if not misfit(s[0])]
         self.fixed = {}
         for t, rs in textures.items():
             if t in self.skin_types:
