@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Recompress an MPQ archive (format 1 or 2) with LZMA sectors, keeping its file names, hashes and flags.
 
-  python -I mpq_lzma_repack.py IN.mpq OUT.mpq [--method best|lzma] [--sector-kb 4] [--jobs N] [--limit N]
+  python -I mpq_lzma_repack.py IN.mpq OUT.mpq [--method best|lzma|zlib] [--sector-kb 4] [--jobs N] [--limit N]
   python -I mpq_lzma_repack.py --verify IN.mpq OUT.mpq
 
 Each file is decompressed and its sectors are compressed again. --method best (default) keeps, per sector, the
 smallest of LZMA (0x12), zlib level 9 (0x02) and the data itself; --method lzma uses LZMA wherever it is smaller than
-the data. --sector-kb changes the sector size (the client reads one whole sector for any read inside it, so larger
+the data. --method zlib uses zlib only: AC's map and vmap extractors (libmpq) can't read LZMA sectors, so they need
+such a copy of an LZMA-packed patch (Open Azeroth's), e.g. --method zlib --sector-kb 4. --sector-kb changes the sector size (the client reads one whole sector for any read inside it, so larger
 sectors compress better but make small reads slower). --limit repacks only the first N files (for sampling; the
 output then holds only those).
 
@@ -50,8 +51,8 @@ def lzma_block(data):
 
 def compress(data, method):
     best = data
-    candidates = [lzma_block(data)]
-    if method == "best":
+    candidates = [] if method == "zlib" else [lzma_block(data)]
+    if method in ("best", "zlib"):
         candidates.append(b"\x02" + zlib.compress(data, 9))
     for c in candidates:
         if len(c) < len(best):
@@ -201,7 +202,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("input")
     parser.add_argument("output")
-    parser.add_argument("--method", choices=["best", "lzma"], default="best")
+    parser.add_argument("--method", choices=["best", "lzma", "zlib"], default="best")
     parser.add_argument("--sector-kb", type=int, default=0, help="new sector size in KB (default: keep)")
     parser.add_argument("--jobs", type=int, default=os.cpu_count())
     parser.add_argument("--limit", type=int, default=0)
