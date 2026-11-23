@@ -105,12 +105,23 @@ def overwrite(src, common):
     return copied
 
 
+# Facial hair styles (gender, variation, geosets 1xx, 3xx, 2xx, 16xx, 17xx) for CoA races whose release has none: CoA's
+# DLL picks their geosets. The Arakkoa (CoA race 79) wear their whole body in group 1 (outfits 101-105; the female has
+# no 103, and her 101 is only a loincloth), and one piece each in 302, 202/203, 1602 and 1702 (her talons): the
+# "Features" option picks the body, the single pieces always show. All zeros showed no body at all.
+FACIAL_STYLES = {
+    79: [(0, i, body, 2, 2, 0, 0) for i, body in enumerate((1, 2, 3, 4, 5))] +
+        [(1, i, body, 2, 3, 2, 2) for i, body in enumerate((2, 4, 5))],
+}
+
+
 def filtered(customization, has):
     """customization() without the colours whose textures nobody has, the remaining colours renumbered per gender."""
     def wrapped(source):
         sections, hair, facial = customization(source)
         if source[0] != 'coa':
             return sections, hair, facial
+        facial = FACIAL_STYLES.get(source[1], facial)
         kept, dropped = [], set()
         for keyed in (SKIN_SECTIONS, HAIR_SECTIONS):
             for g in {s[0] for s in sections}:
