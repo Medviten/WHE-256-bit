@@ -13,3 +13,23 @@ index 42407a15..30e5b9f8 100644
  }
  
  uint32 DialogStatusValue::getDialogStatus(Player* bot, int32 questgiver, uint32 questId)
+diff --git a/src/Mgr/Travel/TravelMgr.cpp b/src/Mgr/Travel/TravelMgr.cpp
+index 268a1064..addc0c03 100644
+--- a/src/Mgr/Travel/TravelMgr.cpp
++++ b/src/Mgr/Travel/TravelMgr.cpp
+@@ -1344,10 +1344,13 @@ bool ExploreTravelDestination::isActive(Player* bot)
+     if (area->exploreFlag == 0xffff)
+         return false;
+ 
+-    int offset = area->exploreFlag / 32;
++    uint32 offset = area->exploreFlag / 32;
++    if (offset >= PLAYER_EXPLORED_ZONES_SIZE)
++        return false;
+ 
+     uint32 val = (uint32)(1 << (area->exploreFlag % 32));
+-    uint32 currFields = bot->GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset);
++    // Custom: area bits past 4095 are in the appended PLAYER_EXPLORED_ZONES_EXT_1 (azerothcore-wotlk-256-bit)
++    uint32 currFields = bot->GetUInt32Value(PlayerExploredZonesField(offset));
+ 
+     return !(currFields & val);
+ }

@@ -1,5 +1,5 @@
 diff --git a/src/server/apps/worldserver/worldserver.conf.dist b/src/server/apps/worldserver/worldserver.conf.dist
-index 396d801..1484192 100644
+index 396d80180..1484192ad 100644
 --- a/src/server/apps/worldserver/worldserver.conf.dist
 +++ b/src/server/apps/worldserver/worldserver.conf.dist
 @@ -2961,6 +2961,17 @@ Quests.IgnoreAutoAccept = 0
@@ -20,8 +20,21 @@ index 396d801..1484192 100644
  #
  #    Rate.RewardQuestMoney
  #        Description: Allows to tweak the amount of money rewarded by quests (does not affect RewardBonusMoney).
+diff --git a/src/server/game/Achievements/AchievementMgr.cpp b/src/server/game/Achievements/AchievementMgr.cpp
+index 00c3a0b73..57678f3bf 100644
+--- a/src/server/game/Achievements/AchievementMgr.cpp
++++ b/src/server/game/Achievements/AchievementMgr.cpp
+@@ -1394,7 +1394,7 @@ void AchievementMgr::UpdateAchievementCriteria(AchievementCriteriaTypes type, ui
+                             continue;
+ 
+                         uint32 mask = 1 << (uint32(area->exploreFlag) % 32);
+-                        if (GetPlayer()->GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + playerIndexOffset) & mask)
++                        if (GetPlayer()->GetUInt32Value(PlayerExploredZonesField(playerIndexOffset)) & mask) // Custom: PlayerExploredZonesField
+                         {
+                             matchFound = true;
+                             break;
 diff --git a/src/server/game/Entities/Object/Object.cpp b/src/server/game/Entities/Object/Object.cpp
-index cffada5..dd204ed 100644
+index cffada5d2..393856062 100644
 --- a/src/server/game/Entities/Object/Object.cpp
 +++ b/src/server/game/Entities/Object/Object.cpp
 @@ -499,12 +499,14 @@ void Object::BuildValuesUpdate(uint8 updateType, ByteBuffer* data, Player* targe
@@ -29,7 +42,7 @@ index cffada5..dd204ed 100644
      ByteBuffer fieldBuffer;
      UpdateMask updateMask;
 -    updateMask.SetCount(m_valuesCount);
-+    // Custom: the extended quest log fields are private, so other players get the stock-length mask
++    // Custom: the appended fields (extended quest log, explored zones) are private, so other players get the stock-length mask
 +    uint16 valuesCount = m_valuesCount == PLAYER_END && target != this ? uint16(PLAYER_QUEST_LOG_EXT_1_1) : m_valuesCount;
 +    updateMask.SetCount(valuesCount);
  
@@ -42,17 +55,17 @@ index cffada5..dd204ed 100644
          if (_fieldNotifyFlags & flags[index] ||
                  ((updateType == UPDATETYPE_VALUES ? _changesMask.GetBit(index) : m_uint32Values[index]) && (flags[index] & visibleFlag)))
 diff --git a/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp b/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
-index 149ca6d..dd2939e 100644
+index 149ca6da4..bd11296f3 100644
 --- a/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
 +++ b/src/server/game/Entities/Object/Updates/UpdateFieldFlags.cpp
 @@ -1487,8 +1487,19 @@ uint32 UnitUpdateFieldFlags[PLAYER_END] =
      UF_FLAG_PRIVATE,                                        // PLAYER_FIELD_GLYPHS_1+5
      UF_FLAG_PRIVATE,                                        // PLAYER_GLYPHS_ENABLED
      UF_FLAG_PRIVATE,                                        // PLAYER_PET_SPELL_POWER
-+    // PLAYER_QUEST_LOG_EXT_1_1 .. PLAYER_QUEST_LOG_SIZE: filled in below
++    // PLAYER_QUEST_LOG_EXT_1_1 .. PLAYER_FIELD_EXT_PADDING: filled in below
  };
  
-+// Custom: the extended quest log fields and PLAYER_QUEST_LOG_SIZE are all private
++// Custom: the appended fields (extended quest log, PLAYER_QUEST_LOG_SIZE, extended explored zones) are all private
 +static struct QuestLogExtFieldFlags
 +{
 +    QuestLogExtFieldFlags()
@@ -66,10 +79,10 @@ index 149ca6d..dd2939e 100644
  {
      UF_FLAG_PUBLIC,                                         // OBJECT_FIELD_GUID
 diff --git a/src/server/game/Entities/Object/Updates/UpdateFields.h b/src/server/game/Entities/Object/Updates/UpdateFields.h
-index 7f57183..f3b90e5 100644
+index 7f57183af..c392c9d61 100644
 --- a/src/server/game/Entities/Object/Updates/UpdateFields.h
 +++ b/src/server/game/Entities/Object/Updates/UpdateFields.h
-@@ -389,7 +389,12 @@ enum EUnitFields
+@@ -389,7 +389,14 @@ enum EUnitFields
      PLAYER_FIELD_GLYPHS_1                     = UNIT_END + 0x0492, // Size: 6, Type: INT, Flags: PRIVATE
      PLAYER_GLYPHS_ENABLED                     = UNIT_END + 0x0498, // Size: 1, Type: INT, Flags: PRIVATE
      PLAYER_PET_SPELL_POWER                    = UNIT_END + 0x0499, // Size: 1, Type: INT, Flags: PRIVATE
@@ -78,16 +91,72 @@ index 7f57183..f3b90e5 100644
 +    // moves. Private; the client takes them from the matching wowdecomp-256-bit build.
 +    PLAYER_QUEST_LOG_EXT_1_1                  = UNIT_END + 0x049A, // Size: 1150, Type: INT, Flags: PRIVATE
 +    PLAYER_QUEST_LOG_SIZE                     = UNIT_END + 0x0918, // Size: 1, Type: INT, Flags: PRIVATE (Custom: Quests.LogSize, for the client's GetQuestLogCapacity())
-+    PLAYER_FIELD_EXT_PADDING                  = UNIT_END + 0x0919, // Size: 1, Type: INT, Flags: PRIVATE (Custom: always 0, keeps the client's player data a multiple of 8 bytes)
-+    PLAYER_END                                = UNIT_END + 0x091A, // Custom: was UNIT_END + 0x049A
++    // Custom: explored-zone words 128-511 (area bits 4096-16383), after PLAYER_EXPLORED_ZONES_1's stock 128 words
++    PLAYER_EXPLORED_ZONES_EXT_1               = UNIT_END + 0x0919, // Size: 384, Type: BYTES, Flags: PRIVATE
++    PLAYER_FIELD_EXT_PADDING                  = UNIT_END + 0x0A99, // Size: 1, Type: INT, Flags: PRIVATE (Custom: always 0, keeps the client's player data a multiple of 8 bytes)
++    PLAYER_END                                = UNIT_END + 0x0A9A, // Custom: was UNIT_END + 0x049A
  };
  
  enum EGameObjectFields
+diff --git a/src/server/game/Entities/Player/Player.cpp b/src/server/game/Entities/Player/Player.cpp
+index 004a5a481..06de3782a 100644
+--- a/src/server/game/Entities/Player/Player.cpp
++++ b/src/server/game/Entities/Player/Player.cpp
+@@ -5965,11 +5965,11 @@ void Player::CheckAreaExploreAndOutdoor()
+     }
+ 
+     uint32 val = (uint32)(1 << (areaEntry->exploreFlag % 32));
+-    uint32 currFields = GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset);
++    uint32 currFields = GetUInt32Value(PlayerExploredZonesField(offset)); // Custom: PlayerExploredZonesField
+ 
+     if (!(currFields & val))
+     {
+-        SetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset, (uint32)(currFields | val));
++        SetUInt32Value(PlayerExploredZonesField(offset), (uint32)(currFields | val));
+ 
+         UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_EXPLORE_AREA, areaId);
+ 
+@@ -15228,7 +15228,7 @@ void Player::_SaveCharacter(bool create, CharacterDatabaseTransaction trans)
+ 
+         ss.str("");
+         for (uint32 i = 0; i < PLAYER_EXPLORED_ZONES_SIZE; ++i)
+-            ss << GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + i) << ' ';
++            ss << GetUInt32Value(PlayerExploredZonesField(i)) << ' '; // Custom: PlayerExploredZonesField
+         stmt->SetData(index++, ss.str());
+ 
+         ss.str("");
+@@ -15368,7 +15368,7 @@ void Player::_SaveCharacter(bool create, CharacterDatabaseTransaction trans)
+ 
+         ss.str("");
+         for (uint32 i = 0; i < PLAYER_EXPLORED_ZONES_SIZE; ++i)
+-            ss << GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + i) << ' ';
++            ss << GetUInt32Value(PlayerExploredZonesField(i)) << ' '; // Custom: PlayerExploredZonesField
+         stmt->SetData(index++, ss.str());
+ 
+         ss.str("");
 diff --git a/src/server/game/Entities/Player/Player.h b/src/server/game/Entities/Player/Player.h
-index cc1f42b..4ead92f 100644
+index cc1f42b1f..c9518c411 100644
 --- a/src/server/game/Entities/Player/Player.h
 +++ b/src/server/game/Entities/Player/Player.h
-@@ -1509,37 +1509,43 @@ public:
+@@ -70,7 +70,16 @@ typedef void(*bgZoneRef)(Battleground*, WorldPackets::WorldState::InitWorldState
+ 
+ #define PLAYER_MAX_SKILLS           127
+ #define PLAYER_MAX_DAILY_QUESTS     25
+-#define PLAYER_EXPLORED_ZONES_SIZE  128
++// Custom: 512 explored-zone words (16384 area bits) instead of 128: words 0-127 are PLAYER_EXPLORED_ZONES_1, words
++// 128-511 the appended PLAYER_EXPLORED_ZONES_EXT_1 (needs the wowdecomp-256-bit client). Index them with
++// PlayerExploredZonesField().
++#define PLAYER_EXPLORED_ZONES_STOCK_SIZE  128
++#define PLAYER_EXPLORED_ZONES_SIZE  512
++
++inline uint16 PlayerExploredZonesField(uint32 word)
++{
++    return word < PLAYER_EXPLORED_ZONES_STOCK_SIZE ? PLAYER_EXPLORED_ZONES_1 + word : PLAYER_EXPLORED_ZONES_EXT_1 + word - PLAYER_EXPLORED_ZONES_STOCK_SIZE;
++}
+ 
+ // corpse reclaim times
+ #define DEATH_EXPIRE_STEP (5*MINUTE)
+@@ -1509,37 +1518,43 @@ public:
      void ResetSeasonalQuestStatus(uint16 event_id);
  
      [[nodiscard]] uint16 FindQuestSlot(uint32 quest_id) const;
@@ -150,7 +219,7 @@ index cc1f42b..4ead92f 100644
      }
      uint16 GetReqKillOrCastCurrentCount(uint32 quest_id, int32 entry);
 diff --git a/src/server/game/Entities/Player/PlayerQuest.cpp b/src/server/game/Entities/Player/PlayerQuest.cpp
-index b3228c1..fa1ba74 100644
+index b3228c1ef..fa1ba747b 100644
 --- a/src/server/game/Entities/Player/PlayerQuest.cpp
 +++ b/src/server/game/Entities/Player/PlayerQuest.cpp
 @@ -519,7 +519,7 @@ bool Player::CanRewardQuest(Quest const* quest, uint32 reward, bool msg)
@@ -195,8 +264,36 @@ index b3228c1..fa1ba74 100644
  void Player::AreaExploredOrEventHappens(uint32 questId)
  {
      if (questId)
+diff --git a/src/server/game/Entities/Player/PlayerStorage.cpp b/src/server/game/Entities/Player/PlayerStorage.cpp
+index fb173c903..441233489 100644
+--- a/src/server/game/Entities/Player/PlayerStorage.cpp
++++ b/src/server/game/Entities/Player/PlayerStorage.cpp
+@@ -5098,11 +5098,22 @@ bool Player::LoadFromDB(ObjectGuid playerGuid, CharacterDatabaseQueryHolder cons
+     SetUInt32Value(UNIT_FIELD_LEVEL, fields[6].Get<uint8>());
+     SetUInt32Value(PLAYER_XP, fields[7].Get<uint32>());
+ 
+-    if (!_LoadIntoDataField(fields[66].Get<std::string>(), PLAYER_EXPLORED_ZONES_1, PLAYER_EXPLORED_ZONES_SIZE))
++    // Custom: exploredZones holds PLAYER_EXPLORED_ZONES_SIZE words; a character saved before the extension has the stock
++    // 128, and its other words stay 0 (_LoadIntoDataField would reject the shorter list)
++    std::vector<std::string_view> exploredZones = Acore::Tokenize(fields[66].Get<std::string_view>(), ' ', false);
++    if (exploredZones.size() != PLAYER_EXPLORED_ZONES_STOCK_SIZE && exploredZones.size() != PLAYER_EXPLORED_ZONES_SIZE)
+     {
+         LOG_WARN("entities.player.loading", "Player::LoadFromDB: Player ({}) has invalid exploredzones data ({}). Forcing partial load.", guid, fields[66].Get<std::string_view>());
+     }
+ 
++    for (uint32 i = 0; i < exploredZones.size() && i < PLAYER_EXPLORED_ZONES_SIZE; ++i)
++    {
++        if (Optional<uint32> val = Acore::StringTo<uint32>(exploredZones[i]))
++        {
++            SetUInt32Value(PlayerExploredZonesField(i), *val);
++        }
++    }
++
+     if (!_LoadIntoDataField(fields[69].Get<std::string>(), PLAYER__FIELD_KNOWN_TITLES, KNOWN_TITLES_SIZE * 2))
+     {
+         LOG_WARN("entities.player.loading", "Player::LoadFromDB: Player ({}) has invalid knowntitles mask ({}). Forcing partial load.", guid, fields[69].Get<std::string_view>());
 diff --git a/src/server/game/Entities/Player/PlayerUpdates.cpp b/src/server/game/Entities/Player/PlayerUpdates.cpp
-index a0529ad..d3702b3 100644
+index a0529ad54..d3702b386 100644
 --- a/src/server/game/Entities/Player/PlayerUpdates.cpp
 +++ b/src/server/game/Entities/Player/PlayerUpdates.cpp
 @@ -57,6 +57,9 @@ void Player::Update(uint32 p_time)
@@ -209,8 +306,24 @@ index a0529ad..d3702b3 100644
      // undelivered mail
      if (m_nextMailDelivereTime && m_nextMailDelivereTime <= GameTime::GetGameTime().count())
      {
+diff --git a/src/server/game/Handlers/CharacterHandler.cpp b/src/server/game/Handlers/CharacterHandler.cpp
+index 8a43e20de..45ca7d753 100644
+--- a/src/server/game/Handlers/CharacterHandler.cpp
++++ b/src/server/game/Handlers/CharacterHandler.cpp
+@@ -1097,9 +1097,9 @@ void WorldSession::HandlePlayerLoginFromDB(LoginQueryHolder const& holder)
+         // start with every map explored
+         if (sWorld->getBoolConfig(CONFIG_START_ALL_EXPLORED))
+         {
+-            for (uint8 i = 0; i < PLAYER_EXPLORED_ZONES_SIZE; i++)
++            for (uint32 i = 0; i < PLAYER_EXPLORED_ZONES_SIZE; i++) // Custom: uint32 (512 words), PlayerExploredZonesField
+             {
+-                pCurrChar->SetFlag(PLAYER_EXPLORED_ZONES_1 + i, 0xFFFFFFFF);
++                pCurrChar->SetFlag(PlayerExploredZonesField(i), 0xFFFFFFFF);
+             }
+         }
+ 
 diff --git a/src/server/game/Quests/QuestDef.h b/src/server/game/Quests/QuestDef.h
-index 17b286e..3a1a9c1 100644
+index 17b286ed1..3a1a9c18a 100644
 --- a/src/server/game/Quests/QuestDef.h
 +++ b/src/server/game/Quests/QuestDef.h
 @@ -31,7 +31,10 @@ class Player;
@@ -226,7 +339,7 @@ index 17b286e..3a1a9c1 100644
  #define QUEST_OBJECTIVES_COUNT 4
  #define QUEST_ITEM_OBJECTIVES_COUNT 6
 diff --git a/src/server/game/World/WorldConfig.cpp b/src/server/game/World/WorldConfig.cpp
-index a39e23b..bf66829 100644
+index a39e23b37..bf6682929 100644
 --- a/src/server/game/World/WorldConfig.cpp
 +++ b/src/server/game/World/WorldConfig.cpp
 @@ -381,6 +381,8 @@ void WorldConfig::BuildConfigCache()
@@ -239,7 +352,7 @@ index a39e23b..bf66829 100644
      SetConfigValue<bool>(CONFIG_QUEST_IGNORE_AUTO_COMPLETE, "Quests.IgnoreAutoComplete", false);
  
 diff --git a/src/server/game/World/WorldConfig.h b/src/server/game/World/WorldConfig.h
-index 4b6bf00..540ae77 100644
+index 4b6bf0075..540ae77bc 100644
 --- a/src/server/game/World/WorldConfig.h
 +++ b/src/server/game/World/WorldConfig.h
 @@ -244,6 +244,7 @@ enum ServerConfigs
@@ -250,3 +363,49 @@ index 4b6bf00..540ae77 100644
      CONFIG_CHAT_STRICT_LINK_CHECKING_SEVERITY,
      CONFIG_CHAT_STRICT_LINK_CHECKING_KICK,
      CONFIG_CHAT_CHANNEL_LEVEL_REQ,
+diff --git a/src/server/scripts/Commands/cs_cheat.cpp b/src/server/scripts/Commands/cs_cheat.cpp
+index 880dc772c..c62cec796 100644
+--- a/src/server/scripts/Commands/cs_cheat.cpp
++++ b/src/server/scripts/Commands/cs_cheat.cpp
+@@ -223,12 +223,12 @@ public:
+                 ChatHandler(chr->GetSession()).PSendSysMessage(LANG_YOURS_EXPLORE_SET_NOTHING, handler->GetNameLink());
+         }
+ 
+-        for (uint8 i = 0; i < PLAYER_EXPLORED_ZONES_SIZE; ++i)
++        for (uint32 i = 0; i < PLAYER_EXPLORED_ZONES_SIZE; ++i) // Custom: uint32 (512 words), PlayerExploredZonesField
+         {
+             if (reveal)
+-                handler->GetSession()->GetPlayer()->SetFlag(PLAYER_EXPLORED_ZONES_1+i, 0xFFFFFFFF);
++                handler->GetSession()->GetPlayer()->SetFlag(PlayerExploredZonesField(i), 0xFFFFFFFF);
+             else
+-                handler->GetSession()->GetPlayer()->SetFlag(PLAYER_EXPLORED_ZONES_1+i, 0);
++                handler->GetSession()->GetPlayer()->SetFlag(PlayerExploredZonesField(i), 0);
+         }
+ 
+         return true;
+diff --git a/src/server/scripts/Commands/cs_misc.cpp b/src/server/scripts/Commands/cs_misc.cpp
+index 647a38069..c9f782f71 100644
+--- a/src/server/scripts/Commands/cs_misc.cpp
++++ b/src/server/scripts/Commands/cs_misc.cpp
+@@ -1683,8 +1683,8 @@ public:
+         }
+ 
+         uint32 val = uint32((1 << (area->exploreFlag % 32)));
+-        uint32 currFields = playerTarget->GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset);
+-        playerTarget->SetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset, uint32((currFields | val)));
++        uint32 currFields = playerTarget->GetUInt32Value(PlayerExploredZonesField(offset)); // Custom: PlayerExploredZonesField
++        playerTarget->SetUInt32Value(PlayerExploredZonesField(offset), uint32((currFields | val)));
+ 
+         handler->SendSysMessage(LANG_EXPLORE_AREA);
+         return true;
+@@ -1714,8 +1714,8 @@ public:
+         }
+ 
+         uint32 val = uint32((1 << (area->exploreFlag % 32)));
+-        uint32 currFields = playerTarget->GetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset);
+-        playerTarget->SetUInt32Value(PLAYER_EXPLORED_ZONES_1 + offset, uint32((currFields ^ val)));
++        uint32 currFields = playerTarget->GetUInt32Value(PlayerExploredZonesField(offset)); // Custom: PlayerExploredZonesField
++        playerTarget->SetUInt32Value(PlayerExploredZonesField(offset), uint32((currFields ^ val)));
+ 
+         handler->SendSysMessage(LANG_UNEXPLORE_AREA);
+         return true;

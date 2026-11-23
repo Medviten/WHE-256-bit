@@ -13,7 +13,7 @@ index bfcf9048..c686e6fe 100644
              return 1;
          }
 diff --git a/WoW/Source/Object/ObjectClient/Player_C.cpp b/WoW/Source/Object/ObjectClient/Player_C.cpp
-index 5f60a8a2..353f1a83 100644
+index 5f60a8a2..382912fe 100644
 --- a/WoW/Source/Object/ObjectClient/Player_C.cpp
 +++ b/WoW/Source/Object/ObjectClient/Player_C.cpp
 @@ -2810,7 +2810,8 @@ CGPlayer_C::CGPlayer_C(uint32_t time, const CClientObjCreate& create)
@@ -21,7 +21,7 @@ index 5f60a8a2..353f1a83 100644
  
      if (this->m_obj->m_guid == ClntObjMgrGetActivePlayer()) {
 -        for (uint32_t i = 0; i < 1002; i++) {
-+        // Custom: + PLAYER_EXT_FIELDS lists for the appended fields (extended quest log, quest log size)
++        // Custom: + PLAYER_EXT_FIELDS lists for the appended fields (extended quest log, quest log size, extended explored zones)
 +        for (uint32_t i = 0; i < 1002 + PLAYER_EXT_FIELDS; i++) {
              new (&this->m_playerLocalMirrorLists[i]) TSList<void>();
          }
@@ -92,38 +92,56 @@ index 5f60a8a2..353f1a83 100644
      }
  
 -    for (uint32_t i = 0; i < 1002; i++) {
-+    // Custom: + PLAYER_EXT_FIELDS lists for the appended fields (extended quest log, quest log size)
++    // Custom: + PLAYER_EXT_FIELDS lists for the appended fields (extended quest log, quest log size, extended explored zones)
 +    for (uint32_t i = 0; i < 1002 + PLAYER_EXT_FIELDS; i++) {
          this->m_playerLocalMirrorLists[i].~TSList<void>();
      }
  
 diff --git a/WoW/Source/Object/Player.cpp b/WoW/Source/Object/Player.cpp
-index a302dc76..e99bbae1 100644
+index a302dc76..41bd7705 100644
 --- a/WoW/Source/Object/Player.cpp
 +++ b/WoW/Source/Object/Player.cpp
-@@ -98,6 +98,11 @@ uint32_t CGPlayer::GetSavedIndexFromDataIndex(uint32_t index, uint32_t count, in
+@@ -98,6 +98,12 @@ uint32_t CGPlayer::GetSavedIndexFromDataIndex(uint32_t index, uint32_t count, in
                  return i + sizeof(CGPlayer::s_mirrorFields) / sizeof(CGPlayer::s_mirrorFields[0]);
              }
          }
 +
-+        // Custom: the appended fields (extended quest log, quest log size) follow the stock local mirror fields
++        // Custom: the appended fields (extended quest log, quest log size, extended explored zones) follow the stock local
++    // mirror fields
 +        if (index >= 1178 && index < 1178 + PLAYER_EXT_FIELDS) {
 +            return index - 1178 + sizeof(CGPlayer::s_mirrorFields) / sizeof(CGPlayer::s_mirrorFields[0]) + sizeof(CGPlayer::s_localMirrorFields) / sizeof(CGPlayer::s_localMirrorFields[0]);
 +        }
      }
  
      return 1178;
-@@ -130,7 +135,8 @@ int32_t CGPlayer::HasZoneExplored(int32_t zone) {
+@@ -120,8 +126,15 @@ float CGPlayer::GetDrunknessTurnValue() {
+ // VERIFY: ce82abd2 manual
+ // OFFSET: 0x00546100
+ int32_t CGPlayer::HasZoneExplored(int32_t zone) {
++    // Custom: bits 4096-16383 are in the appended m_playerExploredZonesExt
+     if (static_cast<uint32_t>(zone / 8) >= sizeof(this->m_player->m_playerExploredZones1)) {
+-        return 1;
++        uint32_t byte = static_cast<uint32_t>(zone / 8) - sizeof(this->m_player->m_playerExploredZones1);
++
++        if (byte >= sizeof(this->m_player->m_playerExploredZonesExt)) {
++            return 1;
++        }
++
++        return this->m_player->m_playerExploredZonesExt[byte] & (1 << (zone % 8));
+     }
+ 
+     return this->m_player->m_playerExploredZones1[zone / 8] & (1 << (zone % 8));
+@@ -130,7 +143,8 @@ int32_t CGPlayer::HasZoneExplored(int32_t zone) {
  // VERIFY: 89fd3c87 auto
  // OFFSET: 0x004F5530
  int32_t CGPlayer::TotalFields() {
 -    return CGUnit::TotalFields() + 1043;
-+    // Custom: + the appended fields (extended quest log, quest log size)
++    // Custom: + the appended fields (extended quest log, quest log size, extended explored zones)
 +    return CGUnit::TotalFields() + 1043 + PLAYER_EXT_FIELDS;
  }
  
  // VERIFY: f3b17437 auto
-@@ -170,9 +176,15 @@ bool CGPlayer::HasAuraVision(uint8_t vision) {
+@@ -170,9 +184,15 @@ bool CGPlayer::HasAuraVision(uint8_t vision) {
  // VERIFY: d70d997f manual
  // OFFSET: 0x005E0870
  PlayerQuestLogEntry* CGPlayer::GetQuestLogEntry(uint32_t slot) {
@@ -141,10 +159,10 @@ index a302dc76..e99bbae1 100644
      return &this->m_player->m_playerQuestLog[slot];
  }
 diff --git a/WoW/Source/Object/Player.h b/WoW/Source/Object/Player.h
-index dff9dafa..2f847a18 100644
+index dff9dafa..7a7a3b62 100644
 --- a/WoW/Source/Object/Player.h
 +++ b/WoW/Source/Object/Player.h
-@@ -8,6 +8,16 @@
+@@ -8,6 +8,22 @@
  
  class CGPlayerLocalData;
  
@@ -154,14 +172,20 @@ index dff9dafa..2f847a18 100644
 +static constexpr uint32_t PLAYER_QUEST_LOG_STOCK_SLOTS = 25;
 +static constexpr uint32_t PLAYER_QUEST_LOG_SLOTS = 255;
 +static constexpr uint32_t PLAYER_QUEST_LOG_EXT_FIELDS = (PLAYER_QUEST_LOG_SLOTS - PLAYER_QUEST_LOG_STOCK_SLOTS) * 5;
-+// Custom: all fields appended after the stock player fields: the extended quest log, m_playerQuestLogSize and
-+// m_playerExtPad
-+static constexpr uint32_t PLAYER_EXT_FIELDS = PLAYER_QUEST_LOG_EXT_FIELDS + 2;
++// Custom: 512 explored-zone words (16384 area bits) instead of 128. Words 0-127 keep the stock field
++// (m_playerExploredZones1, PLAYER_EXPLORED_ZONES_1); words 128-511 are appended (m_playerExploredZonesExt,
++// PLAYER_EXPLORED_ZONES_EXT_1 on the server), private like the extended quest log
++static constexpr uint32_t PLAYER_EXPLORED_ZONES_STOCK_FIELDS = 128;
++static constexpr uint32_t PLAYER_EXPLORED_ZONES_FIELDS = 512;
++static constexpr uint32_t PLAYER_EXPLORED_ZONES_EXT_FIELDS = PLAYER_EXPLORED_ZONES_FIELDS - PLAYER_EXPLORED_ZONES_STOCK_FIELDS;
++// Custom: all fields appended after the stock player fields: the extended quest log, m_playerQuestLogSize, the
++// extended explored zones and m_playerExtPad
++static constexpr uint32_t PLAYER_EXT_FIELDS = PLAYER_QUEST_LOG_EXT_FIELDS + 1 + PLAYER_EXPLORED_ZONES_EXT_FIELDS + 1;
 +
  struct PlayerQuestLogEntry {
      /* 0000 */ uint32_t m_questId;
      /* 0004 */ uint32_t m_state;
-@@ -128,6 +138,12 @@ class CGPlayerLocalData : public CGPlayerData {
+@@ -128,6 +144,14 @@ class CGPlayerLocalData : public CGPlayerData {
      /* 1248 */ uint32_t m_playerFieldGlyphs1 [6];
      /* 1260 */ uint32_t m_playerGlyphsEnabled;
      /* 1264 */ uint32_t m_playerPetSpellPower;
@@ -169,13 +193,15 @@ index dff9dafa..2f847a18 100644
 +    /* 1268 */ PlayerQuestLogEntry m_playerQuestLogExt [PLAYER_QUEST_LOG_SLOTS - PLAYER_QUEST_LOG_STOCK_SLOTS];
 +    // Custom: the server's Quests.LogSize (0 from a server without it), for GetQuestLogCapacity()
 +    /* 2460 */ uint32_t m_playerQuestLogSize;
++    // Custom: explored-zone words 128-511 (see PLAYER_EXPLORED_ZONES_FIELDS)
++    /* 2464 */ uint8_t m_playerExploredZonesExt [PLAYER_EXPLORED_ZONES_EXT_FIELDS * 4];
 +    // Custom: keeps the size a multiple of 8 (WOWGUID members align the struct to 8), so it matches the field count
-+    /* 2464 */ uint32_t m_playerExtPad;
++    /* 2A64 */ uint32_t m_playerExtPad;
  };
  
  #endif
 diff --git a/WoW/Source/ObjectMgrClient/Mirror.cpp b/WoW/Source/ObjectMgrClient/Mirror.cpp
-index e87e2e55..510a3db6 100644
+index e87e2e55..fad5fdf8 100644
 --- a/WoW/Source/ObjectMgrClient/Mirror.cpp
 +++ b/WoW/Source/ObjectMgrClient/Mirror.cpp
 @@ -154,7 +154,7 @@ CGFieldDescriptor UNIT_DESCRIPTORS[89] = {
@@ -183,21 +209,22 @@ index e87e2e55..510a3db6 100644
  
  // STATIC: 0xAC66D8
 -CGFieldDescriptor PLAYER_DESCRIPTORS[215] = {
-+CGFieldDescriptor PLAYER_DESCRIPTORS[217] = { // Custom: + PLAYER_QUEST_LOG_EXT, PLAYER_QUEST_LOG_SIZE (was 215)
++CGFieldDescriptor PLAYER_DESCRIPTORS[218] = { // Custom: + PLAYER_QUEST_LOG_EXT, PLAYER_QUEST_LOG_SIZE, PLAYER_EXPLORED_ZONES_EXT (was 215)
      { "PLAYER_DUEL_ARBITER", 0, 2, 4, 0x1 },
      { "PLAYER_FLAGS", 2, 1, 1, 0x1 },
      { "PLAYER_GUILDID", 3, 1, 1, 0x1 },
-@@ -370,6 +370,8 @@ CGFieldDescriptor PLAYER_DESCRIPTORS[215] = {
+@@ -370,6 +370,9 @@ CGFieldDescriptor PLAYER_DESCRIPTORS[215] = {
      { "PLAYER_FIELD_GLYPHS_1", 1170, 6, 1, 0x2 },
      { "PLAYER_GLYPHS_ENABLED", 1176, 1, 1, 0x2 },
      { "PLAYER_PET_SPELL_POWER", 1177, 1, 1, 0x2 },
 +    { "PLAYER_QUEST_LOG_EXT", 1178, PLAYER_QUEST_LOG_EXT_FIELDS, 1, 0x2 }, // Custom: quest log slots 25-254
 +    { "PLAYER_QUEST_LOG_SIZE", 1178 + PLAYER_QUEST_LOG_EXT_FIELDS, 1, 1, 0x2 }, // Custom: Quests.LogSize
++    { "PLAYER_EXPLORED_ZONES_EXT", 1178 + PLAYER_QUEST_LOG_EXT_FIELDS + 1, PLAYER_EXPLORED_ZONES_EXT_FIELDS, 5, 0x2 }, // Custom: explored-zone words 128-511
  };
  
  // STATIC: 0xAC77A8
 diff --git a/WoW/Source/ObjectMgrClient/Mirror.h b/WoW/Source/ObjectMgrClient/Mirror.h
-index 7360dcf5..9d15a298 100644
+index 7360dcf5..89cb4eaa 100644
 --- a/WoW/Source/ObjectMgrClient/Mirror.h
 +++ b/WoW/Source/ObjectMgrClient/Mirror.h
 @@ -24,7 +24,7 @@ extern CGFieldDescriptor OBJECT_DISCRIPTORS[5];
@@ -205,20 +232,20 @@ index 7360dcf5..9d15a298 100644
  extern CGFieldDescriptor CONTAINER_DESCRIPTORS[3];
  extern CGFieldDescriptor UNIT_DESCRIPTORS[89];
 -extern CGFieldDescriptor PLAYER_DESCRIPTORS[215];
-+extern CGFieldDescriptor PLAYER_DESCRIPTORS[217]; // Custom: was 215
++extern CGFieldDescriptor PLAYER_DESCRIPTORS[218]; // Custom: was 215
  extern CGFieldDescriptor GAMEOBJECT_DESCRIPTORS[8];
  extern CGFieldDescriptor DYNAMICOBJECT_DESCRIPTORS[5];
  extern CGFieldDescriptor CORPSE_DESCRIPTORS[10];
 diff --git a/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp b/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp
-index 5489e570..8e791fce 100644
+index 5489e570..d609c778 100644
 --- a/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp
 +++ b/WoW/Source/ObjectMgrClient/ObjectMgrClient.cpp
 @@ -39,8 +39,14 @@ static thread_local ObjectMgr* s_curMgr;
  // STATIC: 0x00B4B014
  static ObjectMgr* s_savedObjMgr;
  
-+// Custom: the active player has PLAYER_EXT_FIELDS more fields than stock (1326) for the 255-slot quest log and its
-+// size, which takes the update mask past the stock 42 blocks
++// Custom: the active player has PLAYER_EXT_FIELDS more fields than stock (1326) for the 255-slot quest log, its size
++// and the extended explored zones, which takes the update mask past the stock 42 blocks
 +static constexpr uint32_t ACTIVE_PLAYER_DWORDS = 1326 + PLAYER_EXT_FIELDS;
 +static constexpr uint32_t MAX_DIRTY_MASK_BLOCKS = (ACTIVE_PLAYER_DWORDS + 31) / 32;
 +static_assert(ACTIVE_PLAYER_DWORDS * sizeof(uint32_t) == sizeof(CGObjectData) + sizeof(CGUnitData) + sizeof(CGPlayerLocalData), "active player field count");
@@ -973,3 +1000,24 @@ index db28a6a3..8d8ff566 100644
      }
  }
  
+diff --git a/WoW/Source/Ui/WorldMap.cpp b/WoW/Source/Ui/WorldMap.cpp
+index d3d996b9..550a7130 100644
+--- a/WoW/Source/Ui/WorldMap.cpp
++++ b/WoW/Source/Ui/WorldMap.cpp
+@@ -85,6 +85,9 @@ static int32_t s_chunkCacheIndex;
+ // OFFSET: 0x00547120
+ void CGWorldMap::EnterWorld() {
+     ClntObjMgrSetObjMirrorHandler(ClntObjMgrGetActivePlayer(), ID_PLAYER, 0xDF4, 0x200, PlayerExploredZonesUpdateHandler, nullptr, HANDLER_PRIORITY_NORMAL, 0);
++    // Custom: the appended explored-zone words redraw the map too
++    static_assert(offsetof(CGPlayerLocalData, m_playerExploredZones1) == 0xDF4, "explored zones offset");
++    ClntObjMgrSetObjMirrorHandler(ClntObjMgrGetActivePlayer(), ID_PLAYER, offsetof(CGPlayerLocalData, m_playerExploredZonesExt), sizeof(CGPlayerLocalData::m_playerExploredZonesExt), PlayerExploredZonesUpdateHandler, nullptr, HANDLER_PRIORITY_NORMAL, 0);
+ }
+ 
+ // VERIFY: ceb82748 auto
+@@ -1437,4 +1440,6 @@ bool WorldMapTransformPosition(int32_t mapID, float x, float y, int32_t* outMapI
+ // OFFSET: 0x00547150
+ void CGWorldMap::LeaveWorld() {
+     ClntObjMgrUnsetObjMirrorHandler(ClntObjMgrGetActivePlayer(), ID_PLAYER, 0xDF4, PlayerExploredZonesUpdateHandler, nullptr);
++    // Custom: see EnterWorld
++    ClntObjMgrUnsetObjMirrorHandler(ClntObjMgrGetActivePlayer(), ID_PLAYER, offsetof(CGPlayerLocalData, m_playerExploredZonesExt), PlayerExploredZonesUpdateHandler, nullptr);
+ }
