@@ -80,6 +80,30 @@ ROUTES = {
                  (-8820, -11050, 275), (-8450, -11150, 280), (-6300, -9700, 300), (-2500, -7600, 300),
                  (900, -5900, 280), (1500, -5450, 200), (1330, -5180, 110)]),
         ]),
+    # The second Kezan zeppelin, in place of Kezan's south static zeppelin (uid 267668, MODF yaw -91.3, also hidden by
+    # build_oa.py) and at Bladefist's east berth. Both berths face one way, so it runs a figure eight rather than the
+    # first's loop backwards: out of Kezan east as the first does (43 yd to its south), north over the sea east of the
+    # first's route, over Durotar and into Bladefist's east berth from inland, out over the bay, south over the sea
+    # further east, west over Kezan's north and into its berth from the sea alongside the first. It starts at Kezan, so
+    # it runs about half a lap behind the first; the laps differ, so that drifts. Where the two routes cross it flies
+    # 60-100 yd higher (the hull is 56 tall); near the towers the berths' axes splay apart, and each keeps to its own.
+    "kezan_zeppelin_south": dict(
+        tag="F-142", path=14201, entry=1420003, guid=14203, display=3031, speed=30, accel=1,
+        name="Zeppelin to Kezan", where="Bladefist Bay, Durotar and Kezan (zeppelin)",
+        legs=[
+            (1, [(-8953.75, -10559.17, 170.9),
+                 ("stop", -8955.84, -10649.15, 170.9, None),
+                 # nothing tall east of this berth, but climb out as the first does
+                 (-8956.54, -10679.14, 205.9), (-8957.23, -10709.13, 230.9), (-8955, -10800, 260),
+                 (-8850, -11150, 300), (-8300, -11550, 340), (-6050, -10050, 360), (-2250, -7950, 360),
+                 (600, -5900, 360), (800, -4900, 330), (950, -4500, 260), (1149, -4475, 200),
+                 (1196.8, -4617.6, 150),     # on the east berth's axis, 300 yd out
+                 ("stop", 1291.9, -4902.0, 59.0, -71.5),
+                 (1371.2, -5139.0, 110), (1450, -5200, 150), (1700, -5300, 230), (1900, -5800, 300),
+                 (-2000, -8400, 400), (-6000, -10600, 400), (-7200, -9600, 380), (-7700, -9300, 360),
+                 # the first's approach, 43 yd to its right
+                 (-8123, -9764, 290), (-8823, -10214, 220)]),
+        ]),
     # F-144: stock transports that sail or fly the whole way over Open Azeroth's filled-in sea, changing map on
     # Kalimdor's east edge instead of out of sight. Near the docks they keep stock's own nodes (paths 302 and 967),
     # with stock's stop events, which the zeppelin masters' lines and world states hang on.
