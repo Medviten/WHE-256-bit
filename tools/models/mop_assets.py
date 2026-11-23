@@ -2,7 +2,7 @@
 """Fetch and convert the client files a MoP modpak's DBC rows name (F-134's Wandering Isle), from MoP Classic on wago.
 
   python -I mop_assets.py MODPAK STAGE [--common-out DIR] [--client DATA] [--common PATH] [--version V]
-                          [--listfile CSV] [--fetch] [--convert] [--install]
+                          [--listfile CSV] [--fetch] [--convert] [--install] [--tiles DIR [--no-doodads]]
 
 What is wanted (each a list of candidate client paths, as in tools/checks/f013_item_assets.py):
 - MODPAK/wi_assets.txt (if any): the port's creature and object models, NPC bakes and spell icons
@@ -17,7 +17,8 @@ name, and writes STAGE/listfile.csv. --convert runs Kalibro's wotlkconv on STAGE
 m2_unshare_tracks.py on every model and m2_restore_anim_refs.py on those with .anim files. --install copies STAGE-out
 into --common-out (WHE-common/patch-MoP.MPQ for F-133 / F-134). Copy that folder into the client as Data/patch-MoP.MPQ;
 don't link it: D: is a USB disk enclosure, and reading the art through a link made map loads crawl.
-Without flags it only reports what is missing and what the listfile can't name.
+Without flags it only reports what is missing and what the listfile can't name. --no-doodads leaves out the M2 doodads
+(the tiles' MMDX and the WMOs' doodad sets), for terrain textures and WMOs only.
 """
 import argparse, glob, os, re, shutil, subprocess, sys, time
 
@@ -39,13 +40,13 @@ def sql_rows(paths, table):
             yield {k: v.replace("\\\\", "\\") for k, v in re.findall(r"`(\w+)` = '?((?:[^'\n]|'')*?)'?,?$", block, re.M)}
 
 
-def tile_models(tiles):
+def tile_models(tiles, doodads=True):
     """[(what, [candidate])] for the WMOs (MWMO), M2 doodads (MMDX) and terrain textures (MTEX) converted 3.3.5a
     tiles name."""
     out = set()
     for adt in glob.glob(os.path.join(tiles, "*.adt")):
         c = chunks(open(adt, "rb").read())
-        for tag in (b"OMWM", b"XDMM", b"XETM"):
+        for tag in (b"OMWM", b"XDMM", b"XETM") if doodads else (b"OMWM", b"XETM"):
             for name in c.get(tag, b"").split(b"\0"):
                 if name:
                     out.add(name.decode("latin1").replace("/", B))
@@ -59,12 +60,12 @@ def strings(blob):
     return [s.decode("latin1") for s in blob.split(b"\0") if s]
 
 
-def wmo_named(data, names):
+def wmo_named(data, names, doodads=True):
     """The file ids a WMO root names: groups, doodads, textures, skybox (by id since 8.1, else by name)."""
     import struct
     c, ids = chunks(data), []
     ints = lambda b: list(struct.unpack("<%dI" % (len(b) // 4), b[:len(b) // 4 * 4]))  # noqa: E731
-    ids += ints(c.get(b"DIFG", b"")) + ints(c.get(b"IDOM", b""))
+    ids += ints(c.get(b"DIFG", b"")) + (ints(c.get(b"IDOM", b"")) if doodads else [])
     if b"ISOM" in c and len(c[b"ISOM"]) == 4:
         ids += ints(c[b"ISOM"])
     momt = c.get(b"TMOM", b"")
@@ -72,7 +73,7 @@ def wmo_named(data, names):
         for i in range(0, len(momt) - 63, 64):
             ids += [struct.unpack_from("<I", momt, i + o)[0] for o in (12, 24, 36)]
     lookup = lambda p: names.get(p.replace(B, "/").lower().replace(".mdx", ".m2"))  # noqa: E731
-    ids += [lookup(s) for s in strings(c.get(b"XTOM", b"")) + strings(c.get(b"NDOM", b""))]
+    ids += [lookup(s) for s in strings(c.get(b"XTOM", b"")) + (strings(c.get(b"NDOM", b"")) if doodads else [])]
     return [i for i in ids if i]
 
 
@@ -173,7 +174,7 @@ def patient_get(url, tries=10):
             time.sleep(60)
 
 
-def fetch(paths, names, stage, version):
+def fetch(paths, names, stage, version, doodads=True):
     by_id = {v: k for k, v in names.items()}
     lf = os.path.join(stage, "listfile.csv")
     listing = {}
@@ -207,17 +208,23 @@ def fetch(paths, names, stage, version):
         if data[:4] in (b"MD21", b"SKL1"):
             queue += named(data)
         elif data[:4] == b"REVM" and b"DHOM" in chunks(data):
-            queue += wmo_named(data, names)
+            queue += wmo_named(data, names, doodads)
     with open(lf, "w", encoding="utf8", newline="\n") as f:
         f.writelines("%d;%s\n" % kv for kv in sorted(listing.items()))
     return len(seen) - len(failed), failed
 
 
-def convert(stage):
+def convert(stage, community):
     out = stage.rstrip("/\\") + "-out"
+    # The community listfile too, so references to files not fetched (--no-doodads' doodads) keep their real paths
+    # instead of becoming unknown\<id>; the stage's own lines come last and win.
+    merged = stage.rstrip("/\\") + "-listfile.csv"  # beside STAGE, so the converter doesn't copy it into the output
+    with open(merged, "w", encoding="utf8", newline="\n") as f:
+        for path in (community, os.path.join(stage, "listfile.csv")):
+            f.writelines(open(path, encoding="utf8", errors="replace"))
     cmd = [sys.executable, "-I", "-c", "import sys,runpy; sys.path.insert(0, %r); sys.argv = ['wotlkconv'] + sys.argv[1:]; "
            "runpy.run_module('wotlkconv', run_name='__main__')" % CONVERTER,
-           "convert", stage, "-o", out, "-l", os.path.join(stage, "listfile.csv"), "-q"]
+           "convert", stage, "-o", out, "-l", merged, "-q"]
     subprocess.run(cmd, check=True)
     fixed, anims = 0, 0
     for m2 in glob.glob(os.path.join(out, "**", "*.m2"), recursive=True):
@@ -248,12 +255,13 @@ def main():
     ap.add_argument("--convert", action="store_true")
     ap.add_argument("--install", action="store_true")
     ap.add_argument("--tiles", help="also the WMOs and doodads these converted 3.3.5a tiles place")
+    ap.add_argument("--no-doodads", action="store_true", help="no M2 doodads: terrain textures and WMOs only")
     a = ap.parse_args()
     present = Present(a.common, a.client)
     extra = tree(a.common_out) if a.common_out and os.path.isdir(a.common_out) else {}
     names = listfile(a.listfile)
     want, unnamed = set(), []
-    for what, candidates in wanted(a.modpak) + (tile_models(a.tiles) if a.tiles else []):
+    for what, candidates in wanted(a.modpak) + (tile_models(a.tiles, not a.no_doodads) if a.tiles else []):
         if any(present(c) for c in candidates) or any(
                 c.upper() in extra or (not c.upper().endswith((".BLP", ".WMO")) and any(k.startswith(c.upper()) and k.endswith(".M2")
                                                                              for k in extra)) for c in candidates):
@@ -265,11 +273,11 @@ def main():
             unnamed.append(what)
     print("%d files to fetch; %d wants nothing names: %s" % (len(want), len(unnamed), ", ".join(sorted(unnamed)[:20])))
     if a.fetch:
-        n, failed = fetch(sorted(want), names, a.stage, a.version)
+        n, failed = fetch(sorted(want), names, a.stage, a.version, not a.no_doodads)
         print("fetched %d files (with dependencies); %d not in %s: %s" % (n, len(failed), a.version, failed[:20]))
     out = a.stage.rstrip("/\\") + "-out"
     if a.convert:
-        out = convert(a.stage)
+        out = convert(a.stage, a.listfile)
     if a.install:
         if not a.common_out:
             sys.exit("--install needs --common-out")
