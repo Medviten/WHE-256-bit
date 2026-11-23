@@ -71,12 +71,12 @@ ROUTES = {
                  (1200, -4720, 140), (700, -4650, 250), (-600, -4900, 300), (-4500, -7300, 300),
                  (-8100, -9800, 280), (-8800, -10250, 220),
                  # Kezan's berth, guide points written out: level in from the sea (90 yd out), but out over the town
-                 # climbing at once (30 yd out 25 higher, 60 yd out 50 higher; 30 higher at 60 still clipped in game),
+                 # climbing at once (30 yd out 35 higher, 60 yd out 60 higher; 30 higher at 60 clipped in game, 50 barely),
                  # since a goblin house 37 yd east of the berth reaches 147.5, the hull's bottom is 26.6 below its
                  # origin and its nose reaches 49 yd ahead; then over the garage (131), the houses and the big wall (242)
                  (-8903.9, -10561.7, 170.6),
                  ("stop", -8912.9, -10651.3, 170.6, None),
-                 (-8915.9, -10681.1, 195.0), (-8918.9, -10711.0, 220.0), (-8905, -10800, 255),
+                 (-8915.9, -10681.1, 205.0), (-8918.9, -10711.0, 230.0), (-8905, -10800, 260),
                  (-8820, -11050, 275), (-8450, -11150, 280), (-6300, -9700, 300), (-2500, -7600, 300),
                  (900, -5900, 280), (1500, -5450, 200), (1330, -5180, 110)]),
         ]),
