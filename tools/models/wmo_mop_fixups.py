@@ -10,11 +10,22 @@ black colours; alpha, which can blend texture layers, is kept.
 
 Groups with their own water (MLIQ) whose liquid is a river type (1 Water, 5 Slow Water) get 13, WMO Water: stock WMO
 pools use it, while river water is shaded by a depth the WMO liquid doesn't have (the Singing Pools'
-pa_pools_of_sight came out purple). Safe to rerun."""
+pa_pools_of_sight came out purple).
+
+Groups whose liquid id isn't in the stock LiquidType.dbc (retail's, e.g. 940 8XP Azerite) crash the client when a player
+is over that water (CMapObjGroup::QueryLiquid reads the missing record's flags). They get the stock WMO liquid of the
+same kind, from retail 12.1.5's LiquidType (sound bank and material); retail's fog volumes, which stock has no liquid
+for, get WMO Water with every MLIQ tile marked empty (flags 0xF), so no water is drawn or swum in. Other unknown ids get
+WMO Water. Safe to rerun."""
 import glob, os, struct, sys
 
 LIMIT = 128
 RIVER, WMO_WATER = (1, 5), 13
+STOCK = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 20, 21, 41, 61, 81, 100, 121, 141, 181}
+# retail id -> stock: water 13, interior water 17, ocean 14, fel 15 Green Lava, azerite 19 WMO Magma, slime 20
+RETAIL = {301: 13, 689: 13, 941: 13, 1055: 13, 411: 17, 896: 14, 856: 20, 940: 19,
+          869: 15, 870: 15, 873: 15, 876: 15, 877: 15, 878: 15, 879: 15}
+FOG = {814, 864, 880, 909}  # retail material 10: volumetric fog
 
 
 def chunks(d, start, end):
@@ -31,8 +42,20 @@ def patch(path):
     for t, p, n in chunks(d, 0, len(d)):
         if t != b'PGOM':
             continue
-        if struct.unpack_from('<I', d, p + 8 + 0x34)[0] in RIVER and b'QILM' in d[p + 8 + 0x44:p + 8 + n]:
+        liquid = struct.unpack_from('<I', d, p + 8 + 0x34)[0]
+        mliq = [(sp, sn) for st, sp, sn in chunks(d, p + 8 + 0x44, p + 8 + n) if st == b'QILM']
+        if liquid in RIVER and mliq:
             struct.pack_into('<I', d, p + 8 + 0x34, WMO_WATER)
+            changed += 1
+        elif liquid and liquid not in STOCK and mliq:
+            sp, sn = mliq[0]
+            xv, yv, xt, yt = struct.unpack_from('<4I', d, sp + 8)
+            tiles = sp + 8 + 30 + xv * yv * 8
+            assert tiles + xt * yt <= sp + 8 + sn, path
+            if liquid in FOG:
+                for i in range(tiles, tiles + xt * yt):
+                    d[i] |= 0xF
+            struct.pack_into('<I', d, p + 8 + 0x34, RETAIL.get(liquid, WMO_WATER))
             changed += 1
         if not struct.unpack_from('<I', d, p + 16)[0] & 0x8:
             continue
